@@ -1,8 +1,7 @@
+import React from "react";
 
-
-function Join () {
-    return (<p>회원가입 페이지 입니다.</p>)
-
+function Join() {
+  return <p></p>;
 }
 
-export default Join
+export default Join;
