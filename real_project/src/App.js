@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
 //Pages 연결
-import Main from "./pages/Main";
 
 
 import Addprofile from "./pages/AddProfile"
@@ -24,15 +23,15 @@ function App() {
     <div className="App">
 
       
-      <Addprofile/>
+      {/* <Addprofile/>
       <Chat/>
       <EmploymentProfile/>
       <Join/>
-      <Login/>
-      <MainEmployment/>
+      <Login/> */}
+      {/* <MainEmployment/> */}
       <MainRecruit/>
-      <Recruit/>
-      <RecruitWrite/>
+      {/* <Recruit/>
+      <RecruitWrite/> */}
 
     </div>
 
