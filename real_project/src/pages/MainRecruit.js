@@ -19,6 +19,11 @@ const MainRecruit = () => {
         setModalOpen(false);
     };
 
+
+    const Card_list = Array.from({ length: 12 }, (v, i) => i);
+    console.log(Card_list)
+
+
     return (
         <>
             <p>메인 프로젝트 페이지 입니다.</p>
@@ -27,7 +32,7 @@ const MainRecruit = () => {
             <div className="Werp">
                 {/* 헤더 생성 전 임시로 로그인 로그아웃 버튼 생성 */}
                 {/* 각 기능 활성화시 사용 가능하도록 */}
-                
+
                 <div className="RoleSelectBox">
                     {/* 직군 선택을 위한 드롭박스(?)/ 필터 */}
                     직군 선택을 위한 박스<br />
@@ -45,7 +50,7 @@ const MainRecruit = () => {
                     {/* 모달에서 추가작업 */}
                     <button onClick={openModal}>기술 선택</button>
                     <ModalMainRecruit open={modalOpen} close={closeModal} header="선택할 기술"></ModalMainRecruit>
-                    
+
 
                 </div><br />
 
@@ -54,15 +59,19 @@ const MainRecruit = () => {
                     선택된 기술
                     {/* 각 기술에 취소 기능이 들어가도록 */}
                     {/* 모달에서 역으로? 필터 키를 가져오도록? */}
-                    
+
                 </div>
                 <div className="CardContainer">
                     {/* 카드 컴포넌트 불러오기 */}
                     카드들이 여기서 출력
-                    <p/>
-                    <br/>
-                    <CardRecruit/>
-                    <br/>
+                    <p />
+                    <br />
+                    
+                    {Card_list.map((list, idx) => {
+                        return <CardRecruit data={list} key={idx} />
+                    })}
+
+                    <br />
                     여기까지 카드
                 </div>
                 <div className="AddBtnContainer">
