@@ -1,3 +1,6 @@
+
+import './App.css';
+import React from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
@@ -13,6 +16,7 @@ import RecruitWrite from "./pages/RecruitWrite";
 
 function App() {
   return (
+
     <MainWrap>
       {/* <Addprofile />
       <Chat />
@@ -35,6 +39,7 @@ function App() {
         <Route path="/chat" element={<Chat />}></Route>
       </Routes>
     </MainWrap>
+
   );
 }
 
