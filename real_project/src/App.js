@@ -1,5 +1,16 @@
-import styled from "styled-components"
-import { Routes, Route} from "react-router-dom";
+
+import './App.css';
+import React from "react";
+import styled from "styled-components";
+import { Routes, Route } from "react-router-dom";
+
+//Pages 연결
+
+
+
+
+
+
 
 import Addprofile from "./pages/AddProfile"
 import Chat from "./pages/Chat"
@@ -15,6 +26,7 @@ import RecruitWrite from "./pages/RecruitWrite"
 
 function App() {
   return (
+
     <MainWrap>
       <Addprofile/>
       <Chat/>
@@ -37,6 +49,7 @@ function App() {
             <Route path="/chat" element={<Chat />}></Route>
       </Routes>
     </MainWrap>
+
   );
 }
 
