@@ -68,7 +68,12 @@ function Join() {
   };
   //유효성검사:nickName
   const onChageNickName = (e) => {
-    if (e.target.value.length === 1) {
+    console.log(e.target.value.length);
+    if (e.target.value.length < 0) {
+      setNickNameError(true);
+      setNickName(e.target.value);
+    }
+    if (e.target.value.length <= 2) {
       setNickNameError(false);
       setNickName(e.target.value);
     } else {
@@ -79,7 +84,7 @@ function Join() {
 
   //유효성검사:Name
   const onChageName = (e) => {
-    if (e.target.value.length === 1) {
+    if (e.target.value.length <= 3) {
       setNameError(false);
       setName(e.target.value);
     } else {
@@ -88,6 +93,7 @@ function Join() {
     }
     setName(e.target.value);
   };
+
   //유효성검사:Birth
   const onChangeBirth = (e) => {
     const regex = /^[0-9\b -]{0,8}$/;
@@ -95,6 +101,7 @@ function Join() {
       setBirth(e.target.value);
     }
   };
+
   //유효성검사:Number
   const OnChangephoneNumber = (e) => {
     const regex = /^[0-9\b -]{0,13}$/;
@@ -102,6 +109,7 @@ function Join() {
       setPhoneNumber(e.target.value);
     }
   };
+
   //유효성검사:Password
   const OnChangePassWord = (e) => {
     const passwordRegex =
@@ -171,7 +179,6 @@ function Join() {
       passwordCheck,
       profileImage,
       allCheck
-
     );
     try {
       await dispatch(
@@ -241,7 +248,7 @@ function Join() {
                 type="text"
                 placeholder="닉네임"
                 minLength={2}
-                maxLength={8}
+                maxLength={10}
                 value={nickname}
                 onChange={onChageNickName}
               ></InputBar>
@@ -258,7 +265,7 @@ function Join() {
                 type="text"
                 placeholder="이름"
                 minLength={2}
-                maxLength={5}
+                maxLength={15}
                 value={name}
                 onChange={onChageName}
               ></InputBar>
@@ -480,4 +487,3 @@ const JoinButton = styled.button`
 `;
 
 export default Join;
-

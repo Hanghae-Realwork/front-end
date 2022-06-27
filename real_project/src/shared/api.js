@@ -1,21 +1,39 @@
 import axios from "axios";
 
-const api = axios.create({
-
+//이미지 데이터
+const imgApi = axios.create({
   baseURL: "http://3.39.226.20/",
-
-
-
+  headers: {
+    "content-type": "multipart/form-data",
+  },
+});
+//기존 api
+const api = axios.create({
+  baseURL: "http://3.39.226.20/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
   },
 });
 
-
+//토큰
+api.interceptors.request.use(function (config) {
+  const accessToken = `${localStorage.getItem("token")}`;
+  if (accessToken !== undefined) {
+    config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  }
+  return config;
+});
+//imgFrom토큰
+imgApi.interceptors.request.use(function (config) {
+  const accessToken = `${localStorage.getItem("token")}`;
+  if (accessToken !== undefined) {
+    config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  }
+  return config;
+});
 
 //apis body
-
 export const apis = {
   signup: (
     userId,
@@ -40,9 +58,9 @@ export const apis = {
       policy: allCheck,
     }),
 
-    loadprojects: () => api.get("/api/projects"),
-    loadpost: (id) => api.get(`/api/detail/${id}`),
-    
-}
+  //   login: (userEmail, password) =>
+  //     api.post("/api/users/login", { userEmail: userEmail, password: password }),
 
-
+  loadprojects: () => api.get("/api/projects"),
+  loadpost: (id) => api.get(`/api/detail/${id}`),
+};
