@@ -12,7 +12,16 @@ const CardRecruit = () => {
         <>
             {/* 입력될 카드 내용 */}
             <div className="Warp">
-                <div className="CardBox">
+                <div className="CardBox"
+                // postId에 맞춰서 해당 Recruit로 이동
+                // 각 CardBox자체로 클릭이 가능
+
+                // key={postId}
+                // onClick={() => {
+                //   navigate(`/detail/${list.projectId}`);
+                // }}
+
+                >
                     <div className="UserId">
                         작성자
                         {/* userId 위치 */}

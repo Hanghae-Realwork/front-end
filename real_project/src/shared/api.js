@@ -10,7 +10,7 @@ const api = axios.create({
 
 
 export const apis = {
-    loadposts: () => api.get("/api/postList"),
+    loadprojects: () => api.get("/api/projects"),
     loadpost: (id) => api.get(`/api/detail/${id}`),
     
 }

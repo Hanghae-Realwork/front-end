@@ -19,7 +19,7 @@ const MainRecruit = () => {
         setModalOpen(false);
     };
 
-
+    // 배열 출력 테스트
     const Card_list = Array.from({ length: 12 }, (v, i) => i);
     console.log(Card_list)
 
@@ -30,9 +30,6 @@ const MainRecruit = () => {
             {/* 전체적인 내용 완성 후 styled 방식으로 변경 */}
             {/* Header이후의 내용으로 작성 */}
             <div className="Werp">
-                {/* 헤더 생성 전 임시로 로그인 로그아웃 버튼 생성 */}
-                {/* 각 기능 활성화시 사용 가능하도록 */}
-
                 <div className="RoleSelectBox">
                     {/* 직군 선택을 위한 드롭박스(?)/ 필터 */}
                     직군 선택을 위한 박스<br />
@@ -66,7 +63,7 @@ const MainRecruit = () => {
                     카드들이 여기서 출력
                     <p />
                     <br />
-                    
+
                     {Card_list.map((list, idx) => {
                         return <CardRecruit data={list} key={idx} />
                     })}

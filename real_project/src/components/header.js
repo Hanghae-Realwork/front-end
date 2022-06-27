@@ -34,9 +34,9 @@ const Header = () => {
                 >프로젝트</button>
                 {/* 팀원찾기 페이지로 이동 */}
                 <button className="EmploymentBtn"
-                // onClick={() =>
-                //     navigate("/mainemployment")
-                // }
+                onClick={() =>
+                    navigate("/mainemployment")
+                }
                 >팀원찾기</button>
 
 
