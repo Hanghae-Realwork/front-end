@@ -21,14 +21,14 @@ import MainEmployment from "./pages/MainEmployment"
 import MainRecruit from "./pages/MainRecruit"
 import Recruit from "./pages/Recruit"
 import RecruitWrite from "./pages/RecruitWrite"
-
+import Header from './components/Header';
 
 
 function App() {
   return (
 
     <MainWrap>
-      <Addprofile/>
+      {/* <Addprofile/>
       <Chat/>
       <EmploymentProfile/>
       <Join/>
@@ -36,7 +36,8 @@ function App() {
       <MainEmployment/>
       <MainRecruit/>
       <Recruit/>
-      <RecruitWrite/>
+      <RecruitWrite/> */}
+       <Header />
       <Routes>
             <Route path="/" element={<MainRecruit />} />
             <Route path="/login" element={<Login />} />
