@@ -22,17 +22,17 @@ function App() {
   return (
     <div className="App">
 
-      
-      {/* <Addprofile/>
+      <Routes>
+        {/* <Addprofile/>
       <Chat/>
       <EmploymentProfile/>
       <Join/>
       <Login/> */}
-      {/* <MainEmployment/> */}
-      <MainRecruit/>
-      {/* <Recruit/>
+        <Route path="/" element={<MainEmployment />} />
+        <Route path="/" element={<MainRecruit />} />
+        {/* <Recruit/>
       <RecruitWrite/> */}
-
+      </Routes>
     </div>
 
   );
