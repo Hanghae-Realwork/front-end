@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://44.204.90.116",
+  baseURL: "백엔드 서버 입력",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
