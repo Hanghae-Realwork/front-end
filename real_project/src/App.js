@@ -1,9 +1,11 @@
+
 import './App.css';
 import React from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
 //Pages 연결
+
 
 
 
@@ -24,24 +26,39 @@ import RecruitWrite from "./pages/RecruitWrite"
 
 function App() {
   return (
-    <div className="App">
 
-
-      <Routes>
-        {/* <Addprofile/>
+    <MainWrap>
+      <Addprofile/>
       <Chat/>
       <EmploymentProfile/>
       <Join/>
-      <Login/> */}
-        <Route path="/" element={<MainEmployment />} />
-        <Route path="/" element={<MainRecruit />} />
-        {/* <Recruit/>
-      <RecruitWrite/> */}
+      <Login/>
+      <MainEmployment/>
+      <MainRecruit/>
+      <Recruit/>
+      <RecruitWrite/>
+      <Routes>
+            <Route path="/" element={<MainRecruit />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/join" element={<Join />} />
+            <Route path="/employmentprofile" element={<EmploymentProfile />} />
+            <Route path="/addprofile" element={<Addprofile />}/>
+            <Route path="/mainemployment" element={<MainEmployment />}></Route>
+            <Route path="/recruit" element={<Recruit />}></Route>
+            <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
+            <Route path="/chat" element={<Chat />}></Route>
       </Routes>
-
-    </div>
+    </MainWrap>
 
   );
 }
+
+const MainWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+`
+
 
 export default App;
