@@ -8,10 +8,10 @@ function Chat () {
 
     return (
       <div>
-        <video id="localVideo" autoplay width="480px" />
+        {/* <video id="localVideo" autoplay width="480px" />
 
         <script src="/socket.io/socket.io.js"></script>
-        <script src="./rtc.js"></script>
+        <script src="./rtc.js"></script> */}
 
         
       </div>
