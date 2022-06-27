@@ -166,6 +166,7 @@ function Join() {
       passwordCheck,
       profileImage,
       allCheck
+
     );
     try {
       await dispatch(
@@ -474,3 +475,4 @@ const JoinButton = styled.button`
 `;
 
 export default Join;
+
