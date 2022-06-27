@@ -14,33 +14,7 @@ const MainEmployment = () => {
             <div className="Werp">
                 {/* 헤더 생성 전 임시로 로그인 로그아웃 버튼 생성 */}
                 {/* 각 기능 활성화시 사용 가능하도록 */}
-                <div className="BtnBox">
-                        <button className="LoginBtn"
-                        // onClick={() => {
-                        //     navigate("/Login")
-                        // }}
-                        >로그인</button>
-                        <button className="JoinBtn"
-                        // onClick={(
-                        //     navigate("/Join")
-                        // )}
-                        >회원가입</button>
-                        <button className="LogoutBtn">로그아웃</button>
-                    <br/>
-                        {/* replace용도로도 좋고 새로고침이나 정보를 다시 받을 수 있는 용도 */}
-                        <button className="RecruitBtn"
-                        onClick={(
-                            navigate("/")
-                        )}
-                        >프로젝트</button>
-                        {/* 팀원찾기 페이지로 이동 */}
-                        <button className="EmploymentBtn"
-                        onClick={(
-                            navigate("/MainEmployment")
-                        )}
-                        >팀원찾기</button>
-                    
-                </div>
+                
                 <div className="RoleSelectBox">
                     {/* 직군 선택을 위한 드롭박스(?)/ 필터 */}
                     직군 선택을 위한 박스<br />
