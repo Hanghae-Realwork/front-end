@@ -1,3 +1,4 @@
+
 import React from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -73,6 +74,7 @@ const MainEmployment = () => {
         </>
 
     )
+
 }
 
 export default MainEmployment

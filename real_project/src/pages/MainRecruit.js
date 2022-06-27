@@ -1,3 +1,4 @@
+
 import React from "react";
 import EmploymentProfile from "./EmploymentProfile";
 import Recruit from "./Recruit";
@@ -88,6 +89,7 @@ const MainRecruit = () => {
             </div>
         </>
     )
+
 
 
 }

@@ -6,6 +6,10 @@ import { Routes, Route } from "react-router-dom";
 //Pages 연결
 
 
+
+
+
+
 import Addprofile from "./pages/AddProfile"
 import Chat from "./pages/Chat"
 import EmploymentProfile from "./pages/EmploymentProfile"
@@ -22,6 +26,7 @@ function App() {
   return (
     <div className="App">
 
+
       <Routes>
         {/* <Addprofile/>
       <Chat/>
@@ -33,6 +38,7 @@ function App() {
         {/* <Recruit/>
       <RecruitWrite/> */}
       </Routes>
+
     </div>
 
   );
