@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
+
 //Pages 연결
 import Addprofile from "./pages/AddProfile"
 import Chat from "./pages/Chat"
@@ -19,6 +20,7 @@ import SelectBox from "./components/SelectBox"
 
 
 
+
 function App() {
 
   const Card_list = Array.from({ length: 12 }, (v, i) => i);
@@ -27,6 +29,7 @@ function App() {
   return (
 
     <MainWrap>
+
       <Header/>
       {/* <Addprofile/>
       <Chat/>
@@ -39,16 +42,17 @@ function App() {
       <RecruitWrite/> */}
       {/* <CardRecruit/> */}
       <SelectBox/>
+
       <Routes>
-            <Route path="/" element={<MainRecruit />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/employmentprofile" element={<EmploymentProfile />} />
-            <Route path="/addprofile" element={<Addprofile />}/>
-            <Route path="/mainemployment" element={<MainEmployment />}></Route>
-            <Route path="/recruit" element={<Recruit />}></Route>
-            <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
-            <Route path="/chat" element={<Chat />}></Route>
+        <Route path="/" element={<MainRecruit />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/employmentprofile" element={<EmploymentProfile />} />
+        <Route path="/addprofile" element={<Addprofile />} />
+        <Route path="/mainemployment" element={<MainEmployment />}></Route>
+        <Route path="/recruit" element={<Recruit />}></Route>
+        <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
+        <Route path="/chat" element={<Chat />}></Route>
       </Routes>
     </MainWrap>
 
@@ -60,7 +64,6 @@ const MainWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-`
-
+`;
 
 export default App;
