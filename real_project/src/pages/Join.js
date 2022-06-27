@@ -157,4 +157,5 @@ const JoinButton = styled.button`
     background-color: #25282A;
 `
 
-export default Join
+export default Join;
+
