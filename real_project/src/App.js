@@ -15,8 +15,10 @@ import MainEmployment from "./pages/MainEmployment"
 import MainRecruit from "./pages/MainRecruit"
 import Recruit from "./pages/Recruit"
 import RecruitWrite from "./pages/RecruitWrite"
+
 import Header from "./components/Header"
 import SelectBox from "./components/SelectBox"
+
 
 
 
@@ -30,7 +32,9 @@ function App() {
 
     <MainWrap>
 
+
       <Header/>
+
       {/* <Addprofile/>
       <Chat/>
       <EmploymentProfile/>
@@ -40,6 +44,7 @@ function App() {
       <MainRecruit/>
       <Recruit/>
       <RecruitWrite/> */}
+
       {/* <CardRecruit/> */}
       <SelectBox/>
 
@@ -53,6 +58,7 @@ function App() {
         <Route path="/recruit" element={<Recruit />}></Route>
         <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
+
       </Routes>
     </MainWrap>
 
