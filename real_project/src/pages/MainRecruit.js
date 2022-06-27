@@ -8,7 +8,7 @@ import CardRecruit from "../components/CardRecruit";
 
 const MainRecruit = () => {
 
-    const navigate = useNavigate
+    const navigate = useNavigate();
 
     const [modalOpen, setModalOpen] = React.useState(false);
 
@@ -75,9 +75,9 @@ const MainRecruit = () => {
                     <div className="AddBtn">
                         {/* Write 파일의 형식이 정해지는 대로 반영 */}
                         <button
-                        // onClick={() => {
-                        //     navigate("/RecruitWrite")
-                        // }}
+                        onClick={() => {
+                            navigate("/recruitwrite")
+                        }}
                         >등록 하러 가기</button>
                     </div>
 

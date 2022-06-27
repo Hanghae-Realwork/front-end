@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 
 const MainEmployment = () => {
-    const  navigate =useNavigate
+    const  navigate =useNavigate();
     
     return (
         <>
@@ -32,13 +32,22 @@ const MainEmployment = () => {
                     {/* 카드 컴포넌트 불러오기 */}
                     {/* <Card/> */}
                     카드들이 여기서 출력
+                    <p />
+                    <br />
+
+                    {/* {Card_list.map((list, idx) => {
+                        return <CardRecruit data={list} key={idx} />
+                    })} */}
+
+                    <br />
+                    여기까지 카드
                 </div>
                 <div className="AddBtnContainer">
                     <div className="AddBtn">
                         {/* Write 파일의 형식이 정해지는 대로 반영 */}
                         <button
                         // onClick={() => {
-                        //     navigate("/RecruitWrite")
+                        //     navigate("/addprofile")
                         // }}
                         >프로필 등록 하러 가기</button>
                     </div>
