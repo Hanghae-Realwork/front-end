@@ -3,10 +3,8 @@ import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
 // middlewares
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-
-// reducers
 import user from "./modules/user";
-
+// reducers
 
 const rootReducer = combineReducers({ 
     user 
