@@ -2,69 +2,116 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+import Tag from "./TagCompo"
+
+
 
 const CardRecruit = () => {
+  
+  return (
     <>
-        {/* 카드 불러오는 함수 */}
-        {/* 기술 체크박스가 필터기능이 동시에 작동 되도록 */}
+      <CardRecruitWrap>
+        <CardWrap>
+            <CardWriter><WriterName>작성자</WriterName></CardWriter>
+            <CardTitle><TitleText>제목입니다</TitleText></CardTitle>
+            <DayInfo><DateLimit>22.06.20 ~ 22.07.25</DateLimit></DayInfo>
+            <CardMainText><span>카드 내용이 노출 됩니다</span><br/><span>카드 내용은 최대 두줄만 나옵니다.</span></CardMainText>
+            <CardJobName><JobNameText>찾는 기술명이 노출 됩니다</JobNameText></CardJobName>
+            <CardTagArea><Tag/><Tag/><Tag/><Tag/><Tag/><Tag/><Tag/><Tag/><Tag/><Tag/></CardTagArea>
+            <CardJobName><WriterName>n 시간 전</WriterName></CardJobName>
+        </CardWrap>
+      </CardRecruitWrap>
     </>
-    return (
-        <>
-            {/* 입력될 카드 내용 */}
-            <div className="Warp">
-                <div className="CardBox"
-                // postId에 맞춰서 해당 Recruit로 이동
-                // 각 CardBox자체로 클릭이 가능
-
-                // key={postId}
-                // onClick={() => {
-                //   navigate(`/detail/${list.projectId}`);
-                // }}
-
-                >
-                    <div className="UserId">
-                        작성자
-                        {/* userId 위치 */}
-                    </div><br />
-                    <div className="Title">
-                        프로젝트 제목
-                        {/* title 위치 */}
-                    </div>
-                    <div className="Date">
-                        <div className="StartDate">
-                            시작시간 yyyy-mm-dd
-                            {/* start 위치 */}
-
-                        </div>
-                        <div className="EndDate">
-                            종료시간 yyyy-mm-dd
-                            {/* end 위치 */}
-                        </div>
-                    </div>
-                    <div className="InfoText">
-                        소개 텍스트
-                        {/* 소개(api) 텍스트? 위치*/}
-                    </div>
-                    <div className="Role">
-                        찾는 직군 이름
-                        {/* role 위치 */}
-                    </div>
-                    <div className="Skills">
-                        기술/ 기술/ 기술
-                        {/* skills  위치*/}
-                    </div>
-                    <div className="Moment">
-                        등록시간 N시간 전
-                        {/* 등록시간(api) 위치*/}
-                    </div>
-                </div>
-            </div>
-
-        </>
-    )
+  );
+};
 
 
-}
+
+const CardRecruitWrap = styled.div`
+    border: 1px solid black;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 15px;
+`
+
+const CardWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 400px;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+`
+
+
+const CardWriter = styled.div`
+    /* border: 1px solid black; */
+    width: 380px;
+    height: auto;
+    padding: 10px;
+`
+
+const WriterName = styled.span`
+    font-size: 12px;
+    color: #C1C6C8;
+`
+
+const CardTitle = styled.div`
+    /* border: 1px solid black; */
+    width: 380px;
+    height: auto;
+    padding: 10px;
+`
+
+const TitleText = styled.span`
+    font-weight: bold;
+    font-size: 18px;
+`
+
+const DayInfo = styled.div`
+    /* border: 1px solid black; */
+    width: 380px;
+    height: auto;
+    padding: 10px;
+`
+
+const DateLimit = styled.span`
+    font-size: 12px;
+`
+
+const CardMainText = styled.div`
+    /* border: 1px solid black; */
+    width: 380px;
+    height: auto;
+    padding: 10px;
+`
+
+const CardJobName = styled.div`
+    /* border: 1px solid black; */
+    width: 380px;
+    height: auto;
+    padding: 10px;
+`
+
+const JobNameText = styled.span`
+    font-size: 14px;
+    font-weight: bold;
+`
+
+const CardTagArea = styled.div`
+    /* border: 1px solid black; */
+    width: 380px;
+    height: auto;
+    padding: 10px;
+`
 
 
 export default CardRecruit

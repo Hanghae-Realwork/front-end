@@ -1,47 +1,89 @@
-import React, { useEffect } from "react";
+
+import React from "react";
+import styled from "styled-components";
+
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
 
-    const navigate = useNavigate();
+function Header () {
+
+    const navigate = useNavigate()
 
     return (
-        <>
-            {/* 헤더 생성 전 임시로 로그인 로그아웃 버튼 생성 */}
-            {/* 각 기능 활성화시 사용 가능하도록 */}
+        <HeaderWrap>
+            <LogoWrap>
+                <p onClick={() => {navigate(`/`)}}>LOGO</p>
+            </LogoWrap>
+            <HeaderConWrap>
+                <HeaderLeftWrap>
+                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainemployment`)}}>프로젝트 찾기</FindProject>
+                    <FindProject onClick={() => {navigate(`/recruit`)}}>팀원 찾기</FindProject>
+                </HeaderLeftWrap>
+                <HeaderRightWrap>
+                    <CircleImage></CircleImage>
+                </HeaderRightWrap>
+            </HeaderConWrap>
+        </HeaderWrap>
+    )
+}
 
 
-            <div className="BtnBox">
-                <button className="LoginBtn"
-                    onClick={() => {
-                        navigate("/login")
-                    }}
-                >로그인</button>
-                <button className="JoinBtn"
-                onClick={() => {
-                    navigate("/join")
-                }}
-                >회원가입</button>
-                <button className="LogoutBtn">로그아웃</button>
+const HeaderWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #D0D3D4;
+`
 
-                <button className="Mypage">마이페이지</button>
-                <br />
-                {/* replace용도로도 좋고 새로고침이나 정보를 다시 받을 수 있는 용도 */}
-                <button className="RecruitBtn"
-                    onClick={() =>{
-                        navigate("/")
-                     } }
-                >프로젝트</button>
-                {/* 팀원찾기 페이지로 이동 */}
-                <button className="EmploymentBtn"
-                onClick={() =>
-                    navigate("/mainemployment")
-                }
-                >팀원찾기</button>
+const LogoWrap = styled.div`
+    font-weight: bold;
+    font-size: 50px;
+    cursor: pointer;
+    /* border: 1px solid wrap; */
+`
 
+const HeaderConWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vh;
 
-            </div>
-        </>
-    );
-};
-export default Header;
+`
+
+const HeaderLeftWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+
+`
+
+const FindProject = styled.button`
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    margin-right: 10px;
+    margin-left: 60px;
+    margin-top: 30px;
+    font-size: 25px;
+`
+
+const HeaderRightWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+
+`
+
+const CircleImage = styled.div`
+    width: 70px;
+    height:70px;
+    border-radius: 100px;
+    background-color: aliceblue;
+`
+
+export default Header
