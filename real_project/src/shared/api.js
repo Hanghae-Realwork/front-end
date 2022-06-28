@@ -42,6 +42,8 @@ export const apis = {
 
     loadprojects: () => api.get("/api/projects"),
     loadpost: (id) => api.get(`/api/detail/${id}`),
+
+
     
 }
 

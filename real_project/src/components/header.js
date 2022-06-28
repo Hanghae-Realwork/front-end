@@ -16,8 +16,8 @@ function Header () {
             </LogoWrap>
             <HeaderConWrap>
                 <HeaderLeftWrap>
-                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainemployment`)}}>프로젝트 찾기</FindProject>
-                    <FindProject onClick={() => {navigate(`/recruit`)}}>팀원 찾기</FindProject>
+                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/`)}}>프로젝트 찾기</FindProject>
+                    <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
                 </HeaderLeftWrap>
                 <HeaderRightWrap>
                     <CircleImage></CircleImage>

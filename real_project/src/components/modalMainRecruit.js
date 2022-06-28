@@ -5,24 +5,6 @@ const modalMainRecruit = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, header } = props;
 
-
-
-//   const fileInput = React.useRef();
-//   const [preview, setPreview] = useState("");
-
-//   const selectFile = (e) => {
-//     const reader = new FileReader();
-//     const file = fileInput.current.files[0];
-//     reader.readAsDataURL(file);
-
-//     reader.onload = function (e) {
-//       setPreview(e.target.result);
-//     };
-//   };
-
-
-
-
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? 'openModal modal' : 'modal'}>

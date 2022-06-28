@@ -1,10 +1,20 @@
 
-import React from "react";
+import React, { useEffect, useState, useRef, useSelector } from "react";
 
 
 function RecruitWrite() {
+
+    const [category, setCategory] = useState("");
+    const [skills, setSkills] = useState("");
+    const [postTitle, setPostTitle] = useState("");
+    const [detail, setDetail] = useState("");
+    const [Price, setPrice] = useState("");
+    let postImage = document.getElementById("postImage");
+
+
     return (
         <>
+
             <p> 구인 공고 페이지 입니다.</p>
             <div className="WriteComponent">
                 <div className="WantRole">
@@ -42,17 +52,24 @@ function RecruitWrite() {
 
                 </div>
                 {/*  기술 선택 박스 */}
+                {/* Tag Compo 사용 */}
                 <div className="SkillsCheck">
                     원하는 기술선택
                     <br />
 
-                    <input type="checkbox" value="js">
+                    <input type="checkbox" value="js" 
+                    onClick={(e) => setSkills(e.target.value)}
+                    >
                     </input>
                     자바스크립트
-                    <input type="checkbox" value="react">
+                    <input type="checkbox" value="react"
+                    onClick={(e) => setSkills(e.target.value)}
+                    >
                     </input>
                     리액트
-                    <input type="checkbox" value="node.js">
+                    <input type="checkbox" value="node.js" 
+                    onClick={(e) => setSkills(e.target.value)}
+                    >
                     </input>
                     노드
 
@@ -79,7 +96,7 @@ function RecruitWrite() {
                 {/* 이미지 업로드, 다중등록 가능하게 */}
                 <div className="ImageUpload">
                     <input type="file" placeholder="이미지 등록">
-                        
+
                     </input>
 
 
