@@ -17,6 +17,9 @@ function Header () {
                 <HeaderLeftWrap>
                     <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainemployment`)}}>프로젝트 찾기</FindProject>
                     <FindProject onClick={() => {navigate(`/recruit`)}}>팀원 찾기</FindProject>
+                    <FindProject onClick={() => {navigate(`/login`)}}>로그인 (임시)</FindProject>
+                    <FindProject onClick={() => {navigate(`/join`)}}>회원가입 (임시)</FindProject>
+
                 </HeaderLeftWrap>
                 <HeaderRightWrap>
                     <CircleImage></CircleImage>
@@ -40,9 +43,9 @@ const HeaderWrap = styled.div`
 
 const LogoWrap = styled.div`
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
     cursor: pointer;
-    /* border: 1px solid wrap; */
+    /* border: 1px solid black; */
 `
 
 const HeaderConWrap = styled.div`
@@ -51,7 +54,7 @@ const HeaderConWrap = styled.div`
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    width: 100vh;
+    width: 180vh;
 
 `
 
@@ -68,8 +71,8 @@ const FindProject = styled.button`
     background-color: transparent;
     margin-right: 10px;
     margin-left: 60px;
-    margin-top: 30px;
-    font-size: 25px;
+    margin-top: 15px;
+    font-size: 20px;
 `
 
 const HeaderRightWrap = styled.div`
@@ -79,9 +82,9 @@ const HeaderRightWrap = styled.div`
 `
 
 const CircleImage = styled.div`
-    width: 70px;
-    height:70px;
-    border-radius: 100px;
+    width: 50px;
+    height:50px;
+    border-radius: 50px;
     background-color: aliceblue;
 `
 

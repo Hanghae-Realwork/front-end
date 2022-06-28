@@ -42,10 +42,3 @@ export const apis = {
 };
 
 
-export const apis = {
-    loadposts: () => api.get("/api/postList"),
-    loadpost: (id) => api.get(`/api/detail/${id}`),
-    
-}
-
-

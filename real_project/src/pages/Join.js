@@ -166,7 +166,6 @@ function Join() {
       passwordCheck,
       profileImage,
       allCheck
-
     );
     try {
       await dispatch(
@@ -236,14 +235,14 @@ function Join() {
                 type="text"
                 placeholder="닉네임"
                 minLength={2}
-                maxLength={8}
+                maxLength={15}
                 value={nickname}
                 onChange={onChageNickName}
               ></InputBar>
               {nicknameError ? (
                 ""
               ) : (
-                <ValiSpan>1글자 이상 입력해주세요.</ValiSpan>
+                <ValiSpan>한글자 이상 입력해주세요.</ValiSpan>
               )}
             </IdWrap>
 
@@ -253,11 +252,11 @@ function Join() {
                 type="text"
                 placeholder="이름"
                 minLength={2}
-                maxLength={5}
+                maxLength={15}
                 value={name}
                 onChange={onChageName}
               ></InputBar>
-              {nameError ? "" : <ValiSpan>1글자 이상 입력해주세요.</ValiSpan>}
+              {nameError ? "" : <ValiSpan>두글자 이상 입력해주세요.</ValiSpan>}
             </IdWrap>
             <IdWrap>
               <InputBar
