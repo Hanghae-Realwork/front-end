@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Tag from "./TagCompo"
 
 
+
 const CardRecruit = () => {
   
   return (
@@ -23,6 +24,7 @@ const CardRecruit = () => {
     </>
   );
 };
+
 
 
 const CardRecruitWrap = styled.div`
@@ -48,6 +50,7 @@ const CardWrap = styled.div`
     align-items: center;
     padding: 5px;
 `
+
 
 const CardWriter = styled.div`
     /* border: 1px solid black; */
@@ -109,5 +112,6 @@ const CardTagArea = styled.div`
     height: auto;
     padding: 10px;
 `
+
 
 export default CardRecruit

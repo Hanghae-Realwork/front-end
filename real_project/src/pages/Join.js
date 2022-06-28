@@ -27,14 +27,14 @@ function Join() {
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
-  //ckeckBox id
 
+  //생일
   useEffect(() => {
     if (birth.length === 8) {
       setBirth(birth.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
     }
   }, [birth]);
-
+  //핸드폰
   useEffect(() => {
     if (phoneNumber.length === 10) {
       setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
@@ -48,6 +48,7 @@ function Join() {
     }
   }, [phoneNumber]);
 
+  //체크박스
   useEffect(() => {
     if (ageCheck === true && useCheck === true && marketingCheck === true) {
       setAllCheck(true);
@@ -56,7 +57,7 @@ function Join() {
     }
   }, [ageCheck, useCheck, marketingCheck]);
 
-  //userID
+  //유효성검사:userID
   const onChangeUserId = (e) => {
     const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -65,9 +66,14 @@ function Join() {
     else setUserIdError(true);
     setUserId(e.target.value);
   };
-
+  //유효성검사:nickName
   const onChageNickName = (e) => {
-    if (e.target.value.length === 1) {
+    console.log(e.target.value.length);
+    if (e.target.value.length < 0) {
+      setNickNameError(true);
+      setNickName(e.target.value);
+    }
+    if (e.target.value.length <= 2) {
       setNickNameError(false);
       setNickName(e.target.value);
     } else {
@@ -76,8 +82,9 @@ function Join() {
     }
   };
 
+  //유효성검사:Name
   const onChageName = (e) => {
-    if (e.target.value.length === 1) {
+    if (e.target.value.length <= 3) {
       setNameError(false);
       setName(e.target.value);
     } else {
@@ -87,6 +94,7 @@ function Join() {
     setName(e.target.value);
   };
 
+  //유효성검사:Birth
   const onChangeBirth = (e) => {
     const regex = /^[0-9\b -]{0,8}$/;
     if (regex.test(e.target.value)) {
@@ -94,12 +102,15 @@ function Join() {
     }
   };
 
+  //유효성검사:Number
   const OnChangephoneNumber = (e) => {
     const regex = /^[0-9\b -]{0,13}$/;
     if (regex.test(e.target.value)) {
       setPhoneNumber(e.target.value);
     }
   };
+
+  //유효성검사:Password
   const OnChangePassWord = (e) => {
     const passwordRegex =
       /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
@@ -112,11 +123,13 @@ function Join() {
     else setConfirmPasswordError(true);
     setPassword(e.target.value);
   };
+  //유효성검사:PasswordCheck
   const OnChangePassWordCheck = (e) => {
     if (password === e.target.value) setConfirmPasswordError(false);
     else setConfirmPasswordError(true);
     setPasswordCheck(e.target.value);
   };
+  //체크박스
   const allBtnEvent = () => {
     if (allCheck === false) {
       setAllCheck(true);
@@ -235,7 +248,10 @@ function Join() {
                 type="text"
                 placeholder="닉네임"
                 minLength={2}
+
                 maxLength={15}
+
+
                 value={nickname}
                 onChange={onChageNickName}
               ></InputBar>
@@ -474,4 +490,3 @@ const JoinButton = styled.button`
 `;
 
 export default Join;
-
