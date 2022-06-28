@@ -2,6 +2,7 @@ import { apis } from "../../shared/api";
 
 const LOGIN = "user/LOGIN";
 const LOGOUT = "user/LOGOUT";
+const USERINFO = "user/USERINFO";
 
 const initialState = {
   signup: {
@@ -19,6 +20,17 @@ const initialState = {
   },
 };
 
+export function login(id) {
+  return { type: LOGIN, id };
+}
+export function logOut(userInfo) {
+  return { type: LOGOUT, userInfo };
+}
+export function userInfo(infototal) {
+  return { type: USERINFO, infototal };
+}
+
+//middleWare
 export const signupAxios = (
   userId,
   nickname,
@@ -55,17 +67,36 @@ export const signupAxios = (
   };
 };
 
+// export const loginAxios = (userEmail, password) => {
+//   return async function (dispatch) {
+//     let success = null;
+//     await apis
+//       .login(userEmail, password)
+
+//       .then((res) => {
+//         localStorage.setItem("token", res.data.token);
+//         dispatch(login(userEmail));
+//         success = true;
+//       })
+//       .catch((err) => {
+//         success = false;
+//         console.log(err);
+//       });
+//     return success;
+//   };
+// };
+
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     default:
-      // case "user/USERINFO":
-      //   {
-      //     const newUserInfo = action.info;
-      //     return {
-      //       signup: newUserInfo,
-      //       userInfo: state.userInfo,
-      //     };
-      //   }
+    case "user/USERINFO":
+      {
+        const newUserInfo = action.info;
+        return {
+          signup: newUserInfo,
+          userInfo: state.userInfo,
+        };
+      }
       return state;
   }
 }
