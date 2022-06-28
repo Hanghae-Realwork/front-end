@@ -248,14 +248,17 @@ function Join() {
                 type="text"
                 placeholder="닉네임"
                 minLength={2}
-                maxLength={10}
+
+                maxLength={15}
+
+
                 value={nickname}
                 onChange={onChageNickName}
               ></InputBar>
               {nicknameError ? (
                 ""
               ) : (
-                <ValiSpan>1글자 이상 입력해주세요.</ValiSpan>
+                <ValiSpan>한글자 이상 입력해주세요.</ValiSpan>
               )}
             </IdWrap>
 
@@ -269,7 +272,7 @@ function Join() {
                 value={name}
                 onChange={onChageName}
               ></InputBar>
-              {nameError ? "" : <ValiSpan>1글자 이상 입력해주세요.</ValiSpan>}
+              {nameError ? "" : <ValiSpan>두글자 이상 입력해주세요.</ValiSpan>}
             </IdWrap>
             <IdWrap>
               <InputBar
