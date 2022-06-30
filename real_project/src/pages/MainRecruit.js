@@ -9,7 +9,7 @@ import SelectCompo from "../components/SelectCompo"
 const MainRecruit = () => {
   
 
-  const navigate = useNavigate; //CSS 100% 완성 전까지 비활성화
+  const navigate = useNavigate();
 
   // 배열 출력 테스트
   const Card_list = Array.from({ length: 12 }, (v, i) => i);
