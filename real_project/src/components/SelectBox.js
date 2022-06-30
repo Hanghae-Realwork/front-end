@@ -9,9 +9,7 @@ function SelectBox() {
         <>
             <SelectBoxWrap>
                 <SelectAllWrap>
-                        <CategoryText>FrontEnd-Enginer</CategoryText>
                     <SelectBoxTab>
-                        <TecLabel><CheckBox type="checkbox" name="FrontAll"></CheckBox>전체 선택</TecLabel>
                         <TecLabel><CheckBox type="checkbox" name="Front"></CheckBox>React</TecLabel>
                         <TecLabel><CheckBox type="checkbox" name="Front"></CheckBox>Vue</TecLabel>
                         <TecLabel><CheckBox type="checkbox" name="Front"></CheckBox>JavaScript</TecLabel>
@@ -21,27 +19,14 @@ function SelectBox() {
                     </SelectBoxTab>
                 </SelectAllWrap>
                 <SelectAllWrap>
-                <CategoryText>Backend-Enginer</CategoryText>
                     <SelectBoxTab>
-                        <TecLabel><CheckBox type="checkbox"></CheckBox>전체 선택</TecLabel>
                         <TecLabel><CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
                         <TecLabel><CheckBox type="checkbox"></CheckBox>Java</TecLabel>
-                        <TecLabel><CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
+                        <TecLabel><CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
                         <TecLabel><CheckBox type="checkbox"></CheckBox>Koa</TecLabel>
                         <TecLabel><CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
                         <TecLabel><CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
                         <TecLabel><CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                    </SelectBoxTab>
-                </SelectAllWrap>
-                <SelectAllWrap>
-                <CategoryText>UX/UI Designer</CategoryText>
-                    <SelectBoxTab>
-                        <TecLabel><CheckBox type="checkbox"></CheckBox>전체 선택</TecLabel>
-                        <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
-                        <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
-                        <TecLabel><CheckBox type="checkbox"></CheckBox>Illustrator</TecLabel>
-                        <TecLabel><CheckBox type="checkbox"></CheckBox>3D MAX</TecLabel>
-                        <TecLabel><CheckBox type="checkbox"></CheckBox>Blender</TecLabel>
                     </SelectBoxTab>
                 </SelectAllWrap>
                 <SelectButton> 적용 완료 </SelectButton>
@@ -104,3 +89,10 @@ const SelectButton = styled.div`
 
 
 export default SelectBox
+
+
+{/* <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
+<TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
+<TecLabel><CheckBox type="checkbox"></CheckBox>Illustrator</TecLabel>
+<TecLabel><CheckBox type="checkbox"></CheckBox>3D MAX</TecLabel>
+<TecLabel><CheckBox type="checkbox"></CheckBox>Blender</TecLabel> */}

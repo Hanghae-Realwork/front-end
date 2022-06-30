@@ -1,128 +1,241 @@
 
-import React, { useEffect, useState, useRef, useSelector } from "react";
+import React from "react";
+import styled from "styled-components";
 
+
+import Plus from "../image/plus.svg"
 
 function RecruitWrite() {
 
-    const [title, setTtile] = useState("");
-    const [role, setRole] = useState("");
-    const [skills, setSkills] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
-    const [detail, setDetail] = useState("");
-    const [subscript, setSubscript] = useState("");
-    const [photo, setPhoto] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
+  return (
+    <>
+    <RecruitWriteWrap>
 
-    let photos = document.getElementById("photo");
+        <RecruitWriteTopWrap>
+            <RecTitleTextWrap>
+                <RecTitleText>구하는 직군</RecTitleText>
+            </RecTitleTextWrap>
+            <RecTopTextContentWrap>
+                <RecTopRadioLabel>
+                    <RecTopRadio type="radio" name="RecRadio"/>프론트엔드 개발자
+                </RecTopRadioLabel>
+                <RecTopRadioLabel>
+                    <RecTopRadio type="radio" name="RecRadio"/>백엔드 개발자
+                </RecTopRadioLabel>
+                <RecTopRadioLabel>
+                    <RecTopRadio type="radio" name="RecRadio"/>그래픽 디자이너
+                </RecTopRadioLabel>
+            </RecTopTextContentWrap>
+        </RecruitWriteTopWrap>
 
-
-
-    return (
-        <>
-
-            <p> 구인 공고 페이지 입니다.</p>
-            <div className="WriteComponent">
-                <div className="WantRole">
-                    구하는 직군
-                </div>
-                {/* 직군 선택 버튼. 택 1만 가능하도록 */}
-                <div className="RoleButton">
-                    <label className="RoleSelect">
-                        <button
-                            type="radio"
-                            id="Frontend"
-                            name="radioButton"
-                            // onClick={(e) => setRole(e.target.value)}
-                            value="Frontend"
-                        >FrontEnd 개발자</button>
-                    </label>
-                    <label className="RoleSelect">
-                        <button
-                            type="radio"
-                            id="Backend"
-                            name="radioButton"
-                            // onClick={(e) => setRole(e.target.value)}
-                            value="Backend"
-                        >BackEnd 개발자</button>
-                    </label>
-                    <label className="RoleSelect">
-                        <button
-                            type="radio"
-                            id="UXUI"
-                            name="radioButton"
-                            // onClick={(e) => setRole(e.target.value)}
-                            value="UXUI"
-                        >UX/UI 디자이너</button>
-                    </label>
-
-                </div>
-                {/*  기술 선택 박스 */}
-                {/* Tag Compo 사용 */}
-                <div className="SkillsCheck">
-                    원하는 기술선택
-                    <br />
-
-                    <input type="checkbox" value="js" 
-                    onClick={(e) => setSkills(e.target.value)}
-                    >
-                    </input>
-                    자바스크립트
-                    <input type="checkbox" value="react"
-                    onClick={(e) => setSkills(e.target.value)}
-                    >
-                    </input>
-                    리액트
-                    <input type="checkbox" value="node.js" 
-                    onClick={(e) => setSkills(e.target.value)}
-                    >
-                    </input>
-                    노드
-
-                </div>
-
-                {/* 제목을 포함한 내용 입력 */}
-                <div className="Title">
-                    <div className="TitleText">
-                        제목입력
-                    </div>
-                    <input type="text" placeholder="제목을 입력해주세요" id="title" 
-                    onChange={(e) => {setTtile(e.target.value);}} />
-                </div>
-                <div className="SubScript">
-                    간단한 프로젝트 설명
-                    <br />
-                    <input type="text" placeholder="간단하게 프로젝트를 설명해주세요 (n자 이내)" id="subscript" 
-                    onChange={(e) => {setSubscript(e.target.value);}}/>
-                </div>
-                <div className="Dtail">
-                    팀 상세 설명
-                    <br />
-                    <input type="text" id="detail"
-                    onChange={(e) => {setDetail(e.target.value);}} />
-                </div>
-
-                {/* 프로젝트 기간 설정 */}
-                <div className="ProjectDate">
-                    프로젝트 기간 입력
-                    {/* 이후 datepicker로 변경 */}
-                    <div className="StartDate" type="date" onChange={(e) => {setStartDate(e.target.value);}}></div>
-                    <div className="EndDate" type="date" onChange={(e) => {setEndDate(e.target.value);}}></div>
-                </div>
-
-                {/* 이미지 업로드, 다중등록 가능하게 */}
-                <div className="ImageUpload">
-                    이미지 업로드
-                    <input type="file" placeholder="이미지 등록">
-                    </input>
+        <RecruitWriteMidWrap>
+            <RecTitleTextWrap> 
+                <RecTitleText>요구 스킬</RecTitleText> 
+            </RecTitleTextWrap>
+            <RecMidContentWrap>
+                <MidTextWrap>
+                    <MidText>개발자</MidText>
+                </MidTextWrap>
+                    <MidContetWrap>
+                        <ConLabel><InputCon type="checkbox"/>React</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Vue.js</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>JavaScript</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Node.js</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Java</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Spring</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Python</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>C</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>C++</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>C#</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Swift</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Ruby</ConLabel>
+                    </MidContetWrap>
+                <MidTextWrap>
+                    <MidText>디자이너</MidText>
+                </MidTextWrap>
+                    <MidContetWrap>
+                        <ConLabel><InputCon type="checkbox"/>Illustrator</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>adobe XD</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Figma</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>3D MAX</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Blender</ConLabel>
+                    </MidContetWrap>
+            </RecMidContentWrap>
+        </RecruitWriteMidWrap>
 
 
+        <RecTitleTextWrap>
+            <RecTitleText>제목</RecTitleText>
+            <div><RecTitleTextInput/></div>
+        </RecTitleTextWrap>
+        
+        <RecTitleTextWrap>
+            <RecTitleText>프로젝트 제목</RecTitleText>
+            <div><RecTitleTextInput/></div>
+        </RecTitleTextWrap>
 
-                </div>
-            </div>
-        </>
-    )
+
+        <RecruitWriteTextBotWrap>
+        <RecTitleTextWrap>
+            <RecTitleText>프로젝트 상세 설명</RecTitleText>
+        </RecTitleTextWrap>
+            <div><RecMainCon/></div>
+        </RecruitWriteTextBotWrap>
+        <div>
+            <RecButtonWrap>
+                <RecButton>모집글 올리기</RecButton>
+            </RecButtonWrap>
+        </div>
+    </RecruitWriteWrap>
+    </>
+  );
+
 }
 
-export default RecruitWrite
+
+const RecruitWriteWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 700px;
+
+`
+
+const RecruitWriteTopWrap = styled.div`
+    /* border: 1px solid black; */
+
+`
+
+const RecTitleTextWrap = styled.div`
+    margin: 30px 0px 10px 0;
+`
+
+const RecruitWriteMidWrap = styled.div`
+    /* border: 1px solid black; */
+
+`
+
+const RecruitWriteTextBotWrap = styled.div`
+    /* border: 1px solid black; */
+
+`
+
+const RecTitleText = styled.span`
+    font-size: 17px;
+    font-weight: bold;
+    color: #685BC7;
+`
+
+const RecTopTextContentWrap = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    margin: 15px;
+`
+
+const RecTopRadio = styled.input`
+    appearance: none;
+    border: 0.5px solid gainsboro;
+    border-radius: 5rem;
+    width: 15px;
+    height: 15px;
+    margin-bottom: -2px;
+    margin-right: 5px;
+
+  &:checked {
+    border-color: transparent;
+    background-color: #685BC7;
+  }
+
+`
+
+const RecTopRadioLabel = styled.label`
+
+`
+
+const RecMidContentWrap = styled.div`
+    /* border: 1px solid black; */
+
+`
+
+const MidTextWrap = styled.div`
+    /* border: 1px solid black; */
+    margin-top: 10px;
+`
+
+const MidText = styled.span`
+    font-size: 14px;
+    margin: 15px;
+`
+
+const MidContetWrap = styled.div`
+    margin: 15px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+`
+
+const InputCon = styled.input`
+    appearance: none;
+    border: 0.5px solid gainsboro;
+    border-radius: 0.25rem;
+    width: 15px;
+    height: 15px;
+    margin-bottom: -3px;
+    margin-right: 5px;
+
+  &:checked {
+    border-color: transparent;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: #685BC7;
+  }
+`
+
+const ConLabel = styled.label`
+    font-size: 13px;
+`
+
+const RecMainCon = styled.textarea`
+    margin: 20px;
+    padding: 10px;
+    width: 600px;
+    height: 400px;
+    outline: none;
+    resize: none;
+`
+
+const RecTitleTextInput = styled.input`
+    border: none;
+    outline: none;
+    padding: 7px;
+    border-bottom: 1px solid black;
+    width: 600px;
+    margin: 15px;
+`
+
+const RecButtonWrap = styled.div`
+    margin: 15px;
+    float: right;
+`
+
+const RecButton = styled.button`
+    background-color: #685BC7;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+`
+
+
+
+
+export default RecruitWrite;

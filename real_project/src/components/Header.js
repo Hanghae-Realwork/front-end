@@ -12,20 +12,20 @@ function Header () {
     return (
         <HeaderWrap>
             <LogoWrap>
-                <p onClick={() => {navigate(`/`)}}>LOGO</p>
+                <HeaderFix onClick={() => {navigate(`/`)}}>renDev</HeaderFix>
             </LogoWrap>
             <HeaderConWrap>
                 <HeaderLeftWrap>
 
-                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainemployment`)}}>프로젝트 찾기</FindProject>
-                    <FindProject onClick={() => {navigate(`/recruit`)}}>팀원 찾기</FindProject>
-                    <FindProject onClick={() => {navigate(`/login`)}}>로그인 (임시)</FindProject>
-                    <FindProject onClick={() => {navigate(`/join`)}}>회원가입 (임시)</FindProject>
+                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
+                    <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
+                    <FindProject onClick={() => {navigate(`/recruitwrite`)}}>지원자 모집 (임시)</FindProject>
 
 
                 </HeaderLeftWrap>
                 <HeaderRightWrap>
-                    <CircleImage></CircleImage>
+                    <LoginButton onClick={() => {navigate(`/login`)}}>로그인</LoginButton>
+                    <CircleImage onClick={() => {navigate(`/addprofile`)}}></CircleImage>
                 </HeaderRightWrap>
             </HeaderConWrap>
         </HeaderWrap>
@@ -39,16 +39,22 @@ const HeaderWrap = styled.div`
     height: auto;
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    padding: 15px;
     border-bottom: 2px solid #D0D3D4;
 `
 
 const LogoWrap = styled.div`
     font-weight: bold;
     font-size: 40px;
+    margin: 5px;
     cursor: pointer;
     /* border: 1px solid black; */
+`
+
+const HeaderFix = styled.span`
+    color: #685BC7;
 `
 
 const HeaderConWrap = styled.div`
@@ -56,14 +62,16 @@ const HeaderConWrap = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    align-items: center;
-    width: 180vh;
-
+    align-items: flex-end;
+    width: 140vh;
 `
 
 const HeaderLeftWrap = styled.div`
     /* border: 1px solid black; */
     display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: flex-end;
 
 `
 
@@ -72,23 +80,36 @@ const FindProject = styled.button`
     outline: none;
     cursor: pointer;
     background-color: transparent;
-    margin-right: 10px;
-    margin-left: 60px;
-    margin-top: 15px;
-    font-size: 20px;
+    margin: 10px;
+    font-size: 16px;
 `
 
 const HeaderRightWrap = styled.div`
     /* border: 1px solid black; */
     display: flex;
-
+    flex-flow:row wrap;
+    justify-content: center;
+    align-items: flex-end;
 `
 
+const LoginButton = styled.button`
+    font-size: 14px;
+    padding: 5px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-right: 10px;
+    cursor: pointer;
+`
+
+
 const CircleImage = styled.div`
-    width: 50px;
-    height:50px;
+    width: 40px;
+    height:40px;
     border-radius: 50px;
-    background-color: aliceblue;
+    background-color: #685BC7;
+    cursor: pointer;
 `
 
 export default Header
