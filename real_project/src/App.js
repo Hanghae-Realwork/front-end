@@ -5,7 +5,8 @@ import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
 //Pages 연결
-import Addprofile from "./pages/AddProfile";
+
+import AddProfile from "./pages/AddProfile";
 import Chat from "./pages/Chat";
 import EmploymentProfile from "./pages/EmploymentProfile";
 import Join from "./pages/Join";
@@ -14,37 +15,40 @@ import MainEmployment from "./pages/MainEmployment";
 import MainRecruit from "./pages/MainRecruit";
 import Recruit from "./pages/Recruit";
 import RecruitWrite from "./pages/RecruitWrite";
+import Main from "./pages/Main";
+// import AddProfile from "./pages/AddProfile"
+
+//Components 연결
+import Header from "./components/Header";
+// import SelectBox from "./components/SelectBox"
 
 import Header from "./components/Header";
 import SelectBox from "./components/SelectBox";
 
 function App() {
-  const Card_list = Array.from({ length: 12 }, (v, i) => i);
-  console.log(Card_list);
-
   return (
     <MainWrap>
-      {/* <Header /> */}
+      <Header />
 
-      {/* <Addprofile/>
-      <Chat/>
-      <EmploymentProfile/>
-      <Join/>
-      <Login/>
-      <MainEmployment/>
-      <MainRecruit/>
-      <Recruit/>
-      <RecruitWrite/> */}
+      {/* <Addprofile/> '완료' */}
+      {/* <Chat/> */}
+      {/* <EmploymentProfile/> '완료' */}
+      {/* <Join/> '완료' */}
+      {/* <Login/> '완료' */}
+      {/* <MainEmployment/>
+      <MainRecruit/> */}
+      {/* <Recruit/> */}
+      {/* <RecruitWrite/> '완료' */}
 
-      {/* <CardRecruit/> */}
-      {/* <SelectBox /> */}
-
+      {/* <CardRecruit/> '컴포넌트' */}
+      {/* <SelectBox/> '컴포넌트' */}
       <Routes>
-        <Route path="/" element={<MainRecruit />} />
+        <Route path="/" element={<Main />} />
+        <Route path="/mainrecruit" element={<MainRecruit />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
         <Route path="/employmentprofile" element={<EmploymentProfile />} />
-        <Route path="/addprofile" element={<Addprofile />} />
+        <Route path="/addprofile" element={<AddProfile />} />
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
         <Route path="/recruit" element={<Recruit />}></Route>
         <Route path="/recruitwrite" element={<RecruitWrite />}></Route>

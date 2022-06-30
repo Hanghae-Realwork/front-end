@@ -24,6 +24,7 @@ api.interceptors.request.use(function (config) {
   }
   return config;
 });
+
 //imgFrom토큰
 imgApi.interceptors.request.use(function (config) {
   const accessToken = `${localStorage.getItem("token")}`;
@@ -64,3 +65,4 @@ export const apis = {
   loadprojects: () => api.get("/api/projects"),
   loadpost: (id) => api.get(`/api/detail/${id}`),
 };
+
