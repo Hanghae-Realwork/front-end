@@ -70,6 +70,7 @@ const modalMainRecruit = (props) => {
   );
 };
 
+
 const SelectBoxWrap = styled.div`
     border: 1px solid black;
     width: 600px;
@@ -121,3 +122,4 @@ const SelectButton = styled.div`
 `
 
 export default modalMainRecruit;
+
