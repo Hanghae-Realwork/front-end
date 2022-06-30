@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
+import { useNavigate } from "react-router-dom";
+
+
 function Login() {
+
+  const navigate = useNavigate();
+
+
   return (
     <>
       <LoginWrap>
         <AlignWrap>
           <LogoWrap>
-            <p>로고</p>
+            <p>renDev</p>
           </LogoWrap>
           <InpuLoginWrap>
             <IdWrap>
@@ -19,6 +26,9 @@ function Login() {
           <ButtonWrap>
             <LoginButton>로그인</LoginButton>
           </ButtonWrap>
+          <LoginText>랑데브가 처음인가요? 
+            <span style={{color:"#685BC7", fontWeight:"bold", cursor:"pointer", marginLeft:"15px"}} 
+              onClick={() => {navigate(`/join`)}}>회원 가입하기</span></LoginText>
         </AlignWrap>
       </LoginWrap>
     </>
@@ -33,6 +43,7 @@ const LoginWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 70px;
 `;
 
 const AlignWrap = styled.div`
@@ -54,6 +65,7 @@ const LogoWrap = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 30px;
+  color: #685BC7;
 `;
 
 const InpuLoginWrap = styled.div`
@@ -110,7 +122,13 @@ const LoginButton = styled.button`
   color: white;
   font-weight: bold;
   font-size: 20px;
-  background-color: #25282a;
+  background-color: #685BC7;
 `;
+
+const LoginText = styled.span`
+  font-size: 14px;
+  margin-top:20px;
+`
+
 
 export default Login;

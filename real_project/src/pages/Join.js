@@ -228,149 +228,67 @@ function Join() {
       <JoinWrap>
         <AlignWrap>
           <LogoWrap>
-            <p>로고</p>
+            <p>renDev</p>
           </LogoWrap>
-          <InpuJoinWrap>
+          <InputJoinWrap>
             <IdWrap>
-              <InputBar
-                repuired
-                type="email"
-                placeholder="아이디"
-                value={userId}
-                onChange={onChangeUserId}
-              ></InputBar>
-              {userIdError && <ValiSpan>이메일 형식에 맞지 않습니다.</ValiSpan>}
+              <InputBar repuiredtype="email" placeholder="아이디" value={userId} onChange={onChangeUserId}></InputBar>              
+                {userIdError && <ValiSpan>이메일 형식에 맞지 않습니다.</ValiSpan>}
             </IdWrap>
-
             <IdWrap>
-              <InputBar
-                required
-                type="text"
-                placeholder="닉네임"
-                minLength={2}
-
-                maxLength={15}
-
-
-                value={nickname}
-                onChange={onChageNickName}
-              ></InputBar>
-              {nicknameError ? (
-                ""
-              ) : (
-                <ValiSpan>한글자 이상 입력해주세요.</ValiSpan>
-              )}
+              <InputBar requiredtype="text" placeholder="닉네임" 
+              minLength={2} maxLength={15} value={nickname} onChange={onChageNickName}></InputBar>
+              {nicknameError ? ("") : ( <ValiSpan>한글자 이상 입력해주세요.</ValiSpan> )}
             </IdWrap>
-
             <IdWrap>
-              <InputBar
-                required
-                type="text"
-                placeholder="이름"
-                minLength={2}
-                maxLength={15}
-                value={name}
-                onChange={onChageName}
-              ></InputBar>
+              <InputBar requiredtype="text" placeholder="이름" 
+                minLength={2} maxLength={15} value={name} onChange={onChageName}></InputBar>
               {nameError ? "" : <ValiSpan>두글자 이상 입력해주세요.</ValiSpan>}
             </IdWrap>
             <IdWrap>
-              <InputBar
-                required
-                type="text"
-                placeholder="생년월일 / 0000-00-00"
-                value={birth}
-                onChange={onChangeBirth}
-              ></InputBar>
+              <InputBar requiredtype="text" placeholder="생년월일 / 0000-00-00" value={birth}
+                onChange={onChangeBirth}></InputBar>
+            </IdWrap>
+            <IdWrap>
+              <InputBar placeholder="핸드폰 번호 / 010-0000-0000" 
+              requiredtype="text" onChange={OnChangephoneNumber} value={phoneNumber}></InputBar>
             </IdWrap>
             <IdWrap>
               <InputBar
-                placeholder="핸드폰 번호 / 010-0000-0000"
-                required
-                type="text"
-                onChange={OnChangephoneNumber}
-                value={phoneNumber}
-              ></InputBar>
+                placeholder="비밀번호" requiredtype="password"
+                maxLength={16} onChange={OnChangePassWord} value={password}></InputBar>
+              {passwordError && (<ValiSpan> 숫자, 영어, 특수문자 조합 8~16글자로 입력해주세요.</ValiSpan>)}
             </IdWrap>
-            <PwWrap>
+            <IdWrap>
               <InputBar
-                placeholder="비밀번호"
-                required
-                type="password"
-                maxLength={16}
-                onChange={OnChangePassWord}
-                value={password}
-              ></InputBar>
-              {passwordError && (
-                <ValiSpan>
-                  숫자, 영어, 특수문자 조합 8~16글자로 입력해주세요.
-                </ValiSpan>
-              )}
-            </PwWrap>
-            <PwWrap>
-              <InputBar
-                placeholder="비밀번호 확인"
-                required
-                type="password"
-                maxLength={16}
-                onChange={OnChangePassWordCheck}
-                value={passwordCheck}
-              ></InputBar>
-              {confirmPasswordError && (
-                <ValiSpan>비밀번호를 확인해주세요.</ValiSpan>
-              )}
-            </PwWrap>
-            <PolicyWrap>
-              {" "}
+                placeholder="비밀번호 확인" requiredtype="password" maxLength={16} onChange={OnChangePassWordCheck}
+                value={passwordCheck}></InputBar>
+              {confirmPasswordError && (<ValiSpan>비밀번호를 확인해주세요.</ValiSpan>)}
+            </IdWrap>
+          </InputJoinWrap>
+          <PolicyWrap>
               <div>
-                <label>약관동의</label>
-                <div>
+                <AgreementWrap>
+                <AgreementTitle>약관동의</AgreementTitle>
                   <div>
-                    <input
-                      type="checkbox"
-                      id="all-check"
-                      checked={allCheck}
-                      onChange={allBtnEvent}
-                    />
-                    <label htmlFor="all-check">전체동의</label>
+                    <AgreementInput type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent}/>
+                    <AgreementText htmlFor="all-check">전체동의</AgreementText>
                   </div>
                   <div>
-                    <input
-                      type="checkbox"
-                      id="check1"
-                      checked={ageCheck}
-                      onChange={ageBtnEvent}
-                    />
-                    <label htmlFor="check1">
-                      만 14세 이상입니다 <span>(필수)</span>
-                    </label>
+                    <AgreementInput type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent}/>
+                    <AgreementText htmlFor="check1">만 14세 이상입니다 (필수) </AgreementText>
                   </div>
                   <div>
-                    <input
-                      type="checkbox"
-                      id="check2"
-                      checked={useCheck}
-                      onChange={useBtnEvent}
-                    />
-                    <label htmlFor="check2">
-                      이용약관 <span>(필수)</span>
-                    </label>
+                    <AgreementInput type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent}/>
+                    <AgreementText htmlFor="check2">이용약관 (필수) </AgreementText>
                   </div>
                   <div>
-                    <input
-                      type="checkbox"
-                      id="check3"
-                      checked={marketingCheck}
-                      onChange={marketingBtnEvent}
-                    />
-                    <label htmlFor="check3">
-                      마케팅 동의 <span>(선택)</span>
-                    </label>
+                    <AgreementInput type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent}/>
+                    <AgreementText htmlFor="check3">마케팅 동의 (선택) </AgreementText>
                   </div>
-                </div>
+              </AgreementWrap>
               </div>
             </PolicyWrap>
-          </InpuJoinWrap>
           <ButtonWrap>
             <JoinButton onClick={signupFunction}>회원가입</JoinButton>
           </ButtonWrap>
@@ -388,6 +306,7 @@ const JoinWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
 `;
 
 const AlignWrap = styled.div`
@@ -409,11 +328,15 @@ const LogoWrap = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 30px;
+  margin-bottom: 50px;
+  color: #685BC7;
 `;
+
 const ValiSpan = styled.span`
   color: red;
+  font-size: 13px;
 `;
-const InpuJoinWrap = styled.div`
+const InputJoinWrap = styled.div`
   /* border: 1px solid black; */
   width: auto;
   height: auto;
@@ -425,33 +348,28 @@ const InpuJoinWrap = styled.div`
 
 const IdWrap = styled.div`
   /* border: 1px solid black; */
-  width: 500px;
-  height: 50px;
+  /* width: 500px; */
+  /* height: 50px; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin: 30px;
   flex-direction: column;
 `;
 
-const PwWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 500px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px;
-`;
 
 const PolicyWrap = styled.div`
   /* border: 1px solid black; */
   width: 400px;
-  height: 50px;
+  height: 150px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 30px;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  /* margin: 30px; */
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 `;
 
 const InputBar = styled.input`
@@ -461,10 +379,6 @@ const InputBar = styled.input`
   padding: 7px;
   width: 400px;
 `;
-
-const ServicePolicy = styled.span``;
-
-const CheckBox = styled.input``;
 
 const ButtonWrap = styled.div`
   /* border:1px solid black; */
@@ -486,7 +400,47 @@ const JoinButton = styled.button`
   color: white;
   font-weight: bold;
   font-size: 20px;
-  background-color: #25282a;
+  background-color: #685BC7;
 `;
+
+const AgreementWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 7px;
+  color: #685BC7;
+`
+
+const AgreementTitle = styled.label`
+  font-weight: bold;
+  margin-bottom: 5px;
+`
+
+const AgreementText = styled.label`
+  font-weight: bold;
+  font-size: 14px;
+`
+
+const AgreementInput = styled.input`
+  appearance: none;
+    border: 0.5px solid gainsboro;
+    border-radius: 0.25rem;
+    width: 15px;
+    height: 15px;
+    margin-bottom: -3px;
+    margin-right: 5px;
+
+  &:checked {
+    border-color: transparent;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: #685BC7;
+  }
+`
+
+
 
 export default Join;

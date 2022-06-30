@@ -24,6 +24,7 @@ api.interceptors.request.use(function (config) {
   }
   return config;
 });
+
 //imgFrom토큰
 imgApi.interceptors.request.use(function (config) {
   const accessToken = `${localStorage.getItem("token")}`;
