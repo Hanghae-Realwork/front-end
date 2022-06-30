@@ -72,6 +72,7 @@ function Join() {
     else setUserIdError(true);
     setUserId(e.target.value);
   };
+
   //유효성검사:nickName
   const onChageNickName = (e) => {
     if (e.target.value.length < 0) {
@@ -128,12 +129,14 @@ function Join() {
     else setConfirmPasswordError(true);
     setPassword(e.target.value);
   };
+
   //유효성검사:PasswordCheck
   const OnChangePassWordCheck = (e) => {
     if (password === e.target.value) setConfirmPasswordError(false);
     else setConfirmPasswordError(true);
     setPasswordCheck(e.target.value);
   };
+
   //체크박스
   const allBtnEvent = () => {
     if (allCheck === false) {
@@ -227,8 +230,8 @@ function Join() {
   //     alert("에러입니다!" + err);
   //   }
   // };
+
   const signupFunction = () => {
-    console.log(allCheck);
     if (
       userId === "" ||
       nickname === "" ||
@@ -260,63 +263,133 @@ function Join() {
           </LogoWrap>
           <InputJoinWrap>
             <IdWrap>
-              <InputBar repuiredtype="email" placeholder="아이디" value={userId} onChange={onChangeUserId}></InputBar>              
-                {userIdError && <ValiSpan>이메일 형식에 맞지 않습니다.</ValiSpan>}
+              <InputBar
+                repuiredtype="email"
+                placeholder="아이디"
+                value={userId}
+                onChange={onChangeUserId}
+              ></InputBar>
+              {userIdError && <ValiSpan>이메일 형식에 맞지 않습니다.</ValiSpan>}
             </IdWrap>
             <IdWrap>
-              <InputBar requiredtype="text" placeholder="닉네임" 
-              minLength={2} maxLength={15} value={nickname} onChange={onChageNickName}></InputBar>
-              {nicknameError ? ("") : ( <ValiSpan>한글자 이상 입력해주세요.</ValiSpan> )}
+              <InputBar
+                requiredtype="text"
+                placeholder="닉네임"
+                minLength={2}
+                maxLength={15}
+                value={nickname}
+                onChange={onChageNickName}
+              ></InputBar>
+              {nicknameError ? (
+                ""
+              ) : (
+                <ValiSpan>한글자 이상 입력해주세요.</ValiSpan>
+              )}
             </IdWrap>
             <IdWrap>
-              <InputBar requiredtype="text" placeholder="이름" 
-                minLength={2} maxLength={15} value={name} onChange={onChageName}></InputBar>
+              <InputBar
+                requiredtype="text"
+                placeholder="이름"
+                minLength={2}
+                maxLength={15}
+                value={name}
+                onChange={onChageName}
+              ></InputBar>
               {nameError ? "" : <ValiSpan>두글자 이상 입력해주세요.</ValiSpan>}
             </IdWrap>
             <IdWrap>
-              <InputBar requiredtype="text" placeholder="생년월일 / 0000-00-00" value={birth}
-                onChange={onChangeBirth}></InputBar>
-            </IdWrap>
-            <IdWrap>
-              <InputBar placeholder="핸드폰 번호 / 010-0000-0000" 
-              requiredtype="text" onChange={OnChangephoneNumber} value={phoneNumber}></InputBar>
+              <InputBar
+                requiredtype="text"
+                placeholder="생년월일 / 0000-00-00"
+                value={birth}
+                onChange={onChangeBirth}
+              ></InputBar>
             </IdWrap>
             <IdWrap>
               <InputBar
-                placeholder="비밀번호" requiredtype="password"
-                maxLength={16} onChange={OnChangePassWord} value={password}></InputBar>
-              {passwordError && (<ValiSpan> 숫자, 영어, 특수문자 조합 8~16글자로 입력해주세요.</ValiSpan>)}
+                placeholder="핸드폰 번호 / 010-0000-0000"
+                requiredtype="text"
+                onChange={OnChangephoneNumber}
+                value={phoneNumber}
+              ></InputBar>
             </IdWrap>
             <IdWrap>
               <InputBar
-                placeholder="비밀번호 확인" requiredtype="password" maxLength={16} onChange={OnChangePassWordCheck}
-                value={passwordCheck}></InputBar>
-              {confirmPasswordError && (<ValiSpan>비밀번호를 확인해주세요.</ValiSpan>)}
+                placeholder="비밀번호"
+                requiredtype="password"
+                maxLength={16}
+                onChange={OnChangePassWord}
+                value={password}
+              ></InputBar>
+              {passwordError && (
+                <ValiSpan>
+                  {" "}
+                  숫자, 영어, 특수문자 조합 8~16글자로 입력해주세요.
+                </ValiSpan>
+              )}
+            </IdWrap>
+            <IdWrap>
+              <InputBar
+                placeholder="비밀번호 확인"
+                requiredtype="password"
+                maxLength={16}
+                onChange={OnChangePassWordCheck}
+                value={passwordCheck}
+              ></InputBar>
+              {confirmPasswordError && (
+                <ValiSpan>비밀번호를 확인해주세요.</ValiSpan>
+              )}
             </IdWrap>
           </InputJoinWrap>
           <PolicyWrap>
-              <div>
-                <AgreementWrap>
+            <div>
+              <AgreementWrap>
                 <AgreementTitle>약관동의</AgreementTitle>
-                  <div>
-                    <AgreementInput type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent}/>
-                    <AgreementText htmlFor="all-check">전체동의</AgreementText>
-                  </div>
-                  <div>
-                    <AgreementInput type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent}/>
-                    <AgreementText htmlFor="check1">만 14세 이상입니다 (필수) </AgreementText>
-                  </div>
-                  <div>
-                    <AgreementInput type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent}/>
-                    <AgreementText htmlFor="check2">이용약관 (필수) </AgreementText>
-                  </div>
-                  <div>
-                    <AgreementInput type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent}/>
-                    <AgreementText htmlFor="check3">마케팅 동의 (선택) </AgreementText>
-                  </div>
+                <div>
+                  <AgreementInput
+                    type="checkbox"
+                    id="all-check"
+                    checked={allCheck}
+                    onChange={allBtnEvent}
+                  />
+                  <AgreementText htmlFor="all-check">전체동의</AgreementText>
+                </div>
+                <div>
+                  <AgreementInput
+                    type="checkbox"
+                    id="check1"
+                    checked={ageCheck}
+                    onChange={ageBtnEvent}
+                  />
+                  <AgreementText htmlFor="check1">
+                    만 14세 이상입니다 (필수){" "}
+                  </AgreementText>
+                </div>
+                <div>
+                  <AgreementInput
+                    type="checkbox"
+                    id="check2"
+                    checked={useCheck}
+                    onChange={useBtnEvent}
+                  />
+                  <AgreementText htmlFor="check2">
+                    이용약관 (필수){" "}
+                  </AgreementText>
+                </div>
+                <div>
+                  <AgreementInput
+                    type="checkbox"
+                    id="check3"
+                    checked={marketingCheck}
+                    onChange={marketingBtnEvent}
+                  />
+                  <AgreementText htmlFor="check3">
+                    마케팅 동의 (선택){" "}
+                  </AgreementText>
+                </div>
               </AgreementWrap>
-              </div>
-            </PolicyWrap>
+            </div>
+          </PolicyWrap>
           <ButtonWrap>
             <JoinButton id="IDID" onClick={signupFunction}>
               회원가입
@@ -359,7 +432,7 @@ const LogoWrap = styled.div`
   font-weight: bold;
   font-size: 30px;
   margin-bottom: 50px;
-  color: #685BC7;
+  color: #685bc7;
 `;
 
 const ValiSpan = styled.span`
@@ -386,7 +459,6 @@ const IdWrap = styled.div`
   margin: 30px;
   flex-direction: column;
 `;
-
 
 const PolicyWrap = styled.div`
   /* border: 1px solid black; */
@@ -430,7 +502,7 @@ const JoinButton = styled.button`
   color: white;
   font-weight: bold;
   font-size: 20px;
-  background-color: #685BC7;
+  background-color: #685bc7;
 `;
 
 const AgreementWrap = styled.div`
@@ -439,27 +511,27 @@ const AgreementWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 7px;
-  color: #685BC7;
-`
+  color: #685bc7;
+`;
 
 const AgreementTitle = styled.label`
   font-weight: bold;
   margin-bottom: 5px;
-`
+`;
 
 const AgreementText = styled.label`
   font-weight: bold;
   font-size: 14px;
-`
+`;
 
 const AgreementInput = styled.input`
   appearance: none;
-    border: 0.5px solid gainsboro;
-    border-radius: 0.25rem;
-    width: 15px;
-    height: 15px;
-    margin-bottom: -3px;
-    margin-right: 5px;
+  border: 0.5px solid gainsboro;
+  border-radius: 0.25rem;
+  width: 15px;
+  height: 15px;
+  margin-bottom: -3px;
+  margin-right: 5px;
 
   &:checked {
     border-color: transparent;
@@ -467,10 +539,8 @@ const AgreementInput = styled.input`
     background-size: 100% 100%;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-color: #685BC7;
+    background-color: #685bc7;
   }
-`
-
-
+`;
 
 export default Join;

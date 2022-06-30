@@ -22,7 +22,6 @@ import Main from "./pages/Main";
 import Header from "./components/Header";
 // import SelectBox from "./components/SelectBox"
 
-import Header from "./components/Header";
 import SelectBox from "./components/SelectBox";
 
 function App() {
