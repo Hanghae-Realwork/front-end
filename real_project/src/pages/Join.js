@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { signupAxios } from "../redux/modules/user";
+import { signupAxios, userInfo } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
+import { flushSync } from "react-dom";
 
 function Join() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function Join() {
       setBirth(birth.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
     }
   }, [birth]);
+
   //핸드폰
   useEffect(() => {
     if (phoneNumber.length === 10) {
@@ -52,7 +54,11 @@ function Join() {
   useEffect(() => {
     if (ageCheck === true && useCheck === true && marketingCheck === true) {
       setAllCheck(true);
-    } else {
+    } else if (
+      ageCheck === true &&
+      useCheck === true &&
+      marketingCheck === false
+    ) {
       setAllCheck(false);
     }
   }, [ageCheck, useCheck, marketingCheck]);
@@ -68,7 +74,6 @@ function Join() {
   };
   //유효성검사:nickName
   const onChageNickName = (e) => {
-    console.log(e.target.value.length);
     if (e.target.value.length < 0) {
       setNickNameError(true);
       setNickName(e.target.value);
@@ -168,61 +173,84 @@ function Join() {
     }
   };
 
-  const signupFunction = async () => {
-    console.log(
-      userId,
-      nickname,
-      name,
-      birth,
-      phoneNumber,
-      password,
-      passwordCheck,
-      profileImage,
-      allCheck
-    );
-    try {
-      await dispatch(
-        signupAxios(
-          userId,
-          nickname,
-          name,
-          birth,
-          phoneNumber,
-          password,
-          allCheck
-        )
-      ).then((res) => {
-        if (res === true) {
-          console.log(res);
-          navigate("/login");
-          alert("회원가입되었습니다!");
-        } else {
-          if (res.response.data.message === "the username already exists.") {
-            alert("이미 가입된 ID입니다!");
-            document.getElementById("SigninBtn").disabled = false;
-          } else if (
-            res.response.data.message === "the nickname already exists."
-          ) {
-            alert("이미 가입된 닉네임입니다!");
-            document.getElementById("SigninBtn").disabled = false;
-          } else if (res.response.data.errors[0] === undefined) {
-            alert("입력한 내용을 다시 확인해주세요!");
-            document.getElementById("SigninBtn").disabled = false;
-          } else {
-            alert(
-              res.response.data.errors[0].field +
-                "에 " +
-                res.response.data.errors[0].reason
-            );
-            document.getElementById("SigninBtn").disabled = false;
-          }
-        }
-      });
-    } catch (err) {
-      alert("에러입니다!" + err);
+  // const signupFunction = async () => {
+  //   console.log(
+  //     userId,
+  //     nickname,
+  //     name,
+  //     birth,
+  //     phoneNumber,
+  //     password,
+  //     passwordCheck,
+  //     profileImage,
+  //     allCheck
+  //   );
+  //   try {
+  //     await dispatch(
+  //       signupAxios(
+  //         userId,
+  //         nickname,
+  //         name,
+  //         birth,
+  //         phoneNumber,
+  //         password,
+  //         allCheck
+  //       )
+  //     ).then((res) => {
+  //       if (res === true) {
+  //         console.log(res);
+  //         navigate("/login");
+  //         alert("회원가입되었습니다!");
+  //       } else {
+  //         if (res.response.data.message === "the username already exists.") {
+  //           alert("이미 가입된 ID입니다!");
+  //           document.getElementById("SigninBtn").disabled = false;
+  //         } else if (
+  //           res.response.data.message === "the nickname already exists."
+  //         ) {
+  //           alert("이미 가입된 닉네임입니다!");
+  //           document.getElementById("SigninBtn").disabled = false;
+  //         } else if (res.response.data.errors[0] === undefined) {
+  //           alert("입력한 내용을 다시 확인해주세요!");
+  //           document.getElementById("SigninBtn").disabled = false;
+  //         } else {
+  //           alert(
+  //             res.response.data.errors[0].field +
+  //               "에 " +
+  //               res.response.data.errors[0].reason
+  //           );
+  //           document.getElementById("SigninBtn").disabled = false;
+  //         }
+  //       }
+  //     });
+  //   } catch (err) {
+  //     alert("에러입니다!" + err);
+  //   }
+  // };
+  const signupFunction = () => {
+    console.log(allCheck);
+    if (
+      userId === "" ||
+      nickname === "" ||
+      name === "" ||
+      birth === "" ||
+      phoneNumber === "" ||
+      password === "" ||
+      passwordCheck === "" ||
+      userId === " " ||
+      nickname === " " ||
+      name === " " ||
+      birth === " " ||
+      phoneNumber === " " ||
+      password === " " ||
+      passwordCheck === " "
+    ) {
+      alert("빈칸을 입력해주세요.");
+    } else {
+      console.log("입력");
+      document.getElementById("IDID").disabled = true;
     }
   };
-
   return (
     <>
       <JoinWrap>
@@ -369,7 +397,9 @@ function Join() {
             </PolicyWrap>
           </InpuJoinWrap>
           <ButtonWrap>
-            <JoinButton onClick={signupFunction}>회원가입</JoinButton>
+            <JoinButton id="IDID" onClick={signupFunction}>
+              회원가입
+            </JoinButton>
           </ButtonWrap>
         </AlignWrap>
       </JoinWrap>
