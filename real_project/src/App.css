@@ -1,3 +1,75 @@
+::-webkit-scrollbar {
+  display: none;
+  }
+
+  .slide-fade-in-dropdown {
+    overflow: hidden;
+  }
+  
+  .slide-fade-in-dropdown > ul {
+    animation: slide-fade-in-dropdown-animation .2s ease;
+  }
+  
+  .slide-fade-out-dropdown {
+    overflow: hidden;
+  }
+  
+  .slide-fade-out-dropdown > ul {
+    animation: slide-fade-out-dropdown-animation 0.4s ease;
+    animation-fill-mode: forwards;
+  }
+  
+  .components-dropdown > ul {
+    position: absolute;
+    /* top: 5px; */
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .optionList {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 16px;
+    background-color: #8B84D7;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* height: 150px; */
+  }
+
+  .ListinOption{
+    /* border: 1px solid black; */
+    padding: 15px;
+    width: 190px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+  }
+
+  .MainBack{
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+     background-position: 0% 50%;
+    }
+    50% {
+     background-position: 100% 50%;
+    }
+    100% {
+     background-position: 0% 50%;
+    }
+   }
+
+/*   
 .App {
   text-align: center;
 }
@@ -28,6 +100,8 @@
   color: #61dafb;
 }
 
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +109,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
