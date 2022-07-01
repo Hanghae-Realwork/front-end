@@ -19,7 +19,6 @@ import Main from "./pages/Main"
 
 //Components 연결
 import Header from "./components/Header"
-import SelectBox from "./components/SelectBox"
 import Loading from "./pages/Loading"
 
 
@@ -32,9 +31,9 @@ function App() {
   return (
 
     <MainWrap>
-
-      <Header/>
-
+      <MainHeader>
+        <Header/>
+      </MainHeader>
       {/* <Addprofile/> '완료' */}
       {/* <Chat/> */}
       {/* <EmploymentProfile/> '완료' */}
@@ -60,8 +59,6 @@ function App() {
         <Route path="/recruit" element={<Recruit />}></Route>
         <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
-        <Route path="/selectbox" element={<SelectBox />}></Route>
-
       </Routes>
     </MainWrap>
 
@@ -74,5 +71,14 @@ const MainWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const MainHeader = styled.div`
+display: flex;
+flex-flow: column nowrap;
+justify-content: center;
+align-items: center;
+margin-bottom: 80px;
+`;
+
 
 export default App;

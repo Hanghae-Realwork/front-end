@@ -145,7 +145,7 @@ function SelectCompo() {
     return (
       <DropDownAllWrap>
         <SerchMenuWrap><App/> <AppSkill/></SerchMenuWrap> 
-        <RecButtonWrap><RecritButton>내 소개 등록하기</RecritButton></RecButtonWrap>
+        <RecButtonWrap><RecritButton>프로젝트 개시하기</RecritButton></RecButtonWrap>
       </DropDownAllWrap>
     );
 }
