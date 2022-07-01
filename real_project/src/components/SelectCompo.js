@@ -1,12 +1,17 @@
 import '../App.css';
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+
+import SelectBox from "../components/SelectBox";
+
 
 import up from "../image/up-fill.svg"
 import down from "../image/down-fill.svg"
 
 function SelectCompo() {
+
+    const [modal, setModal] = useState(false);
 
     //드롭다운 스테이트 (전역)
     const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
@@ -59,7 +64,15 @@ function SelectCompo() {
     // 리턴 컴포넌트 최종(출력 구간)
     return (
       <DropDownAllWrap>
-        <App/>
+        <App/> <SelectBoxLabel onClick={() => {
+            setModal(); setModal(true);
+            }}>
+                <DropText>
+                    <span>기술스택 선택</span> 
+                    <img src = {down} />
+                </DropText>
+            </SelectBoxLabel>
+        {modal === true ? <SelectBox close={setModal}/> : null}
       </DropDownAllWrap>
     );
 }
@@ -69,6 +82,11 @@ const DropDownAllWrap = styled.div`
     /* border: 1px solid black; */
     width: 100%;
     margin-top: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
 `
 
 const DropDownWrap = styled.div`
@@ -76,7 +94,7 @@ const DropDownWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-left: 180px;
+    /* margin-left: 180px; */
 `
 
 const DropDownButton = styled.label`
@@ -101,6 +119,17 @@ const DropText = styled.div`
     align-items: center;
 `
 
-
+const SelectBoxLabel = styled.label`
+    background-color: #685BC7;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    width: 160px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: bold;
+`
 
 export default SelectCompo

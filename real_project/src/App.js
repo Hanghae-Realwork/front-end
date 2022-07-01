@@ -19,7 +19,8 @@ import Main from "./pages/Main"
 
 //Components 연결
 import Header from "./components/Header"
-// import SelectBox from "./components/SelectBox"
+import SelectBox from "./components/SelectBox"
+import Loading from "./pages/Loading"
 
 
 
@@ -43,9 +44,11 @@ function App() {
       <MainRecruit/> */}
       {/* <Recruit/> */}
       {/* <RecruitWrite/> '완료' */}
+      {/* <Loading/> '완료' */}
 
       {/* <CardRecruit/> '컴포넌트' */}
       {/* <SelectBox/> '컴포넌트' */}
+      
       <Routes>
         <Route path="/" element={ <Main /> } />
         <Route path="/mainrecruit" element={<MainRecruit />} />
@@ -57,6 +60,8 @@ function App() {
         <Route path="/recruit" element={<Recruit />}></Route>
         <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
+        <Route path="/selectbox" element={<SelectBox />}></Route>
+
       </Routes>
     </MainWrap>
 
