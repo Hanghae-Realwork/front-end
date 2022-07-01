@@ -1,15 +1,19 @@
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import Card from "../components/CardRecruit";
 import SelectCompo from "../components/SelectCompo"
+import SelectBox from "../components/SelectBox";
 
 const MainRecruit = () => {
   
 
   const navigate = useNavigate();
+
+ 
+
 
   // 배열 출력 테스트
   const Card_list = Array.from({ length: 12 }, (v, i) => i);
@@ -17,13 +21,14 @@ const MainRecruit = () => {
 
   return (
     <>
-    <SelectCompo />
+        <TopCompoWrap>
+            <SelectCompo /> 
+        </TopCompoWrap>
       <CardContainerWrap>
-        {Card_list.map((list, idx) => {
+        {Card_list === undefined ? null 
+        :Card_list.map((list, idx) => {
           return (
-            <>
-              <Card data={list} key={idx} />
-            </>
+              <Card key={idx} />
           );
         })}
       </CardContainerWrap>
@@ -33,13 +38,30 @@ const MainRecruit = () => {
 
 
 const CardContainerWrap = styled.div`
- display: flex;
+  display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   /* border: 1px solid black; */
-  width: 1400px;
+  max-width: 1400px;
+`
+
+const TopCompoWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 135vh;
+    max-width: 1400px;
+    gap: 20px;
 `
 
 
+
+
 export default MainRecruit;
+
+
+
+{/* <SelectBoxButton onClick={() => {navigate(`/selectbox`)}}>보유스택</SelectBoxButton> */}

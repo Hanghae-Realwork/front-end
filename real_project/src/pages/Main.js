@@ -18,6 +18,16 @@ function Main () {
                         </MainButtonWrap>
                 </MaininTitleTopWrap>
             </MainAllWrap>
+                
+            <MainBotWrap>
+                <MainBotText>
+                    <MainTextTitle>
+                        <TitleSpan>renDev는 이런 서비스 입니다</TitleSpan>
+                        <ContentSpan>여기에는 renDev의 서비스를 길고 장황하게 설명합니다. 길게 말하면 끝도 없이 나오겠지만 ㅈ</ContentSpan>
+
+                    </MainTextTitle>
+                </MainBotText>
+            </MainBotWrap>
         </>
 
     )
@@ -92,7 +102,36 @@ const MainButtonWrap = styled.div`
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
-    
 `
+
+const MainBotWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+`
+
+const MainBotText = styled.div`
+    /* border: 1px solid black; */
+    width: 155vh;
+    height: 110px;
+`
+
+const MainTextTitle = styled.div`
+
+`
+
+const TitleSpan = styled.p`
+    font-weight: bold;
+    font-size: 16px;
+`
+
+const ContentSpan = styled.span`
+    font-size: 14px;
+`
+
 
 export default Main
