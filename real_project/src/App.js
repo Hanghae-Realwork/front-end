@@ -21,6 +21,7 @@ import Main from "./pages/Main"
 import Header from "./components/Header"
 import SelectBox from "./components/SelectBox"
 import Loading from "./pages/Loading"
+import BoardNew from './test-componets/TestFormHook';
 
 
 
@@ -63,6 +64,7 @@ function App() {
         <Route path="/selectbox" element={<SelectBox />}></Route>
 
       </Routes>
+      <BoardNew/>
     </MainWrap>
 
   );

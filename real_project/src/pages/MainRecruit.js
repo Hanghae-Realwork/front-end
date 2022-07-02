@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Card from "../components/CardRecruit";
 import SelectCompo from "../components/SelectCompo"
 import SelectBox from "../components/SelectBox";
+import InfiniteScroll from "../test-componets/InfiniteScroll";
 
 const MainRecruit = () => {
   
@@ -32,6 +33,7 @@ const MainRecruit = () => {
           );
         })}
       </CardContainerWrap>
+      {/* <InfiniteScroll/> */}
     </>
   );
 };
