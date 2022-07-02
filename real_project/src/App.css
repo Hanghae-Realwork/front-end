@@ -1,3 +1,4 @@
+/* 이천희 */
 ::-webkit-scrollbar {
   display: none;
   }
@@ -34,7 +35,7 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
-    font-size: 16px;
+    font-size: 14px;
     background-color: #8B84D7;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -44,7 +45,7 @@
   .ListinOption{
     /* border: 1px solid black; */
     padding: 15px;
-    width: 190px;
+    width: 140px;
     color: white;
     cursor: pointer;
     font-weight: bold;
@@ -68,6 +69,10 @@
      background-position: 0% 50%;
     }
    }
+/* 이천희 */
+
+
+
 
 /*   
 .App {

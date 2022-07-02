@@ -48,7 +48,7 @@ function RecruitWrite() {
                         <ConLabel><InputCon type="checkbox"/>C++</ConLabel>
                         <ConLabel><InputCon type="checkbox"/>C#</ConLabel>
                         <ConLabel><InputCon type="checkbox"/>Swift</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Ruby</ConLabel>
+                        <ConLabel><InputCon type="checkbox"/>Kotlin</ConLabel>
                     </MidContetWrap>
                 <MidTextWrap>
                     <MidText>디자이너</MidText>
