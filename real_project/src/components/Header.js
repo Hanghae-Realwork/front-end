@@ -19,7 +19,6 @@ function Header () {
                 <HeaderLeftWrap>
                     <FindProject onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
                     <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
-                    <FindProject onClick={() => {navigate(`/recruitwrite`)}}>지원자 모집 (임시)</FindProject>
 
                 </HeaderLeftWrap>
                 <HeaderRightWrap>
@@ -41,10 +40,10 @@ const HeaderWrap = styled.div`
     align-items: center;
     padding: 10px;
     border-bottom: 2px solid #D0D3D4;
-    z-index: 900;
+    /* z-index: 900;
     position: fixed;
     top: 0%;
-    background-color: white;
+    background-color: white; */
 `
 
 const LogoWrap = styled.div`

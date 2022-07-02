@@ -5,8 +5,11 @@ import styled from "styled-components";
 
 import up from "../image/up-fill.svg"
 import down from "../image/down-fill.svg"
+import { useNavigate } from 'react-router-dom';
 
 function SelectCompo() {
+
+    const navigate = useNavigate()
 
     const [modal, setModal] = useState(false);
 
@@ -145,7 +148,7 @@ function SelectCompo() {
     return (
       <DropDownAllWrap>
         <SerchMenuWrap><App/> <AppSkill/></SerchMenuWrap> 
-        <RecButtonWrap><RecritButton>프로젝트 개시하기</RecritButton></RecButtonWrap>
+        <RecButtonWrap><RecritButton onClick={() => {navigate(`/recruitwrite`)}}>프로젝트 개시하기</RecritButton></RecButtonWrap>
       </DropDownAllWrap>
     );
 }

@@ -15,8 +15,8 @@ const MainRecruit = () => {
 
 
   // 배열 출력 테스트
-  const Card_list = Array.from({ length: 24 }, (v, i) => i);
-  console.log(Card_list);
+  const Card_list = Array.from({ length: 25 }, (v, i) => i);
+//   console.log(Card_list);
 
   return (
     <>

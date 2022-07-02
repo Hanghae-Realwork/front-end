@@ -15,7 +15,6 @@ import MainRecruit from "./pages/MainRecruit"
 import Recruit from "./pages/Recruit"
 import RecruitWrite from "./pages/RecruitWrite"
 import Main from "./pages/Main"
-// import AddProfile from "./pages/AddProfile"
 
 //Components 연결
 import Header from "./components/Header"
@@ -31,10 +30,10 @@ function App() {
   return (
 
     <MainWrap>
-      <MainHeader>
+      {/* <MainHeader> */}
         <Header/>
-      </MainHeader>
-      {/* <Addprofile/> '완료' */}
+      {/* </MainHeader> */}
+      {/* <AddProfile/> */}
       {/* <Chat/> */}
       {/* <EmploymentProfile/> '완료' */}
       {/* <Join/> '완료' */}
