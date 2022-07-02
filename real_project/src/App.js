@@ -15,11 +15,9 @@ import MainRecruit from "./pages/MainRecruit"
 import Recruit from "./pages/Recruit"
 import RecruitWrite from "./pages/RecruitWrite"
 import Main from "./pages/Main"
-// import AddProfile from "./pages/AddProfile"
 
 //Components 연결
 import Header from "./components/Header"
-import SelectBox from "./components/SelectBox"
 import Loading from "./pages/Loading"
 import BoardNew from './test-componets/TestFormHook';
 
@@ -33,10 +31,10 @@ function App() {
   return (
 
     <MainWrap>
-
-      <Header/>
-
-      {/* <Addprofile/> '완료' */}
+      {/* <MainHeader> */}
+        <Header/>
+      {/* </MainHeader> */}
+      {/* <AddProfile/> */}
       {/* <Chat/> */}
       {/* <EmploymentProfile/> '완료' */}
       {/* <Join/> '완료' */}
@@ -61,8 +59,6 @@ function App() {
         <Route path="/recruit" element={<Recruit />}></Route>
         <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
-        <Route path="/selectbox" element={<SelectBox />}></Route>
-
       </Routes>
       <BoardNew/>
     </MainWrap>
@@ -76,5 +72,14 @@ const MainWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const MainHeader = styled.div`
+display: flex;
+flex-flow: column nowrap;
+justify-content: center;
+align-items: center;
+margin-bottom: 80px;
+`;
+
 
 export default App;

@@ -4,9 +4,13 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import Card from "../components/CardRecruit";
+
 import SelectCompo from "../components/SelectCompo"
-import SelectBox from "../components/SelectBox";
+
 import InfiniteScroll from "../test-componets/InfiniteScroll";
+
+import RecSelectCompo from "../components/RecSelectCompo"
+
 
 const MainRecruit = () => {
   
@@ -17,13 +21,13 @@ const MainRecruit = () => {
 
 
   // 배열 출력 테스트
-  const Card_list = Array.from({ length: 12 }, (v, i) => i);
-  console.log(Card_list);
+  const Card_list = Array.from({ length: 25 }, (v, i) => i);
+//   console.log(Card_list);
 
   return (
     <>
         <TopCompoWrap>
-            <SelectCompo /> 
+            <RecSelectCompo /> 
         </TopCompoWrap>
       <CardContainerWrap>
         {Card_list === undefined ? null 
@@ -46,6 +50,8 @@ const CardContainerWrap = styled.div`
   align-items: center;
   /* border: 1px solid black; */
   max-width: 1400px;
+  margin-top: 30px;
+
 `
 
 const TopCompoWrap = styled.div`
@@ -57,6 +63,7 @@ const TopCompoWrap = styled.div`
     width: 135vh;
     max-width: 1400px;
     gap: 20px;
+    border-bottom: 3px solid #685BC7;
 `
 
 

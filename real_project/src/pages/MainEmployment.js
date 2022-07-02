@@ -10,36 +10,48 @@ import SelectCompo from "../components/SelectCompo"
 const MainEmployment = () => {
     const  navigate =useNavigate();
     
-    const Card_list = Array.from({ length: 12 }, (v, i) => i);
+    const Card_list = Array.from({ length: 24 }, (v, i) => i);
 
     return (
-        <>
-            <>
-    <SelectCompo />
+      <>
+        <TopCompoWrap>
+            <SelectCompo /> 
+        </TopCompoWrap>
       <CardContainerWrap>
-        {Card_list.map((list, idx) => {
+        {Card_list === undefined ? null 
+        :Card_list.map((list, idx) => {
           return (
-            <>
-              <Card data={list} key={idx} />
-            </>
+              <Card key={idx} />
           );
         })}
       </CardContainerWrap>
     </>
-        </>
-
     )
 
 }
 
 
 const CardContainerWrap = styled.div`
- display: flex;
+  display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   /* border: 1px solid black; */
-  width: 1400px;
+  max-width: 1400px;
+  margin-top: 30px;
 `
+
+const TopCompoWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 135vh;
+    max-width: 1400px;
+    gap: 20px;
+    border-bottom: 3px solid #685BC7;
+`
+
 
 export default MainEmployment
