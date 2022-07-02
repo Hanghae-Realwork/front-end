@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import Plus from "../image/plus.svg"
+import Plus from "../image/plus.svg";
 
 function AddProfile() {
   return (
     <>
       <AddProfileWrap>
+
           <ProfileTopWrap>
             <SelfWrap>
                 <div>
@@ -32,14 +33,14 @@ function AddProfile() {
                     <CircleProfile></CircleProfile>
                 </ProfilePicWrap>
         </ProfileTopWrap>
+
       </AddProfileWrap>
     </>
   );
 }
 
-
-
 const AddProfileWrap = styled.div`
+
     border: 1px solid black;
     display: flex;
     flex-flow: row wrap;
@@ -92,6 +93,9 @@ const CircleProfile = styled.div`
     border-radius:100px;
 `
 
+
+
+const RadioWrap = styled.div``;
 
 
 

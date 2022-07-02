@@ -1,26 +1,30 @@
 
+
 import React, { useState } from "react";
+
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import Card from "../components/CardRecruit";
 
+
 import SelectCompo from "../components/SelectCompo"
 
 import InfiniteScroll from "../test-componets/InfiniteScroll";
+
 
 import RecSelectCompo from "../components/RecSelectCompo"
 
 
 const MainRecruit = () => {
-  
-
   const navigate = useNavigate();
 
  
 
 
   // 배열 출력 테스트
+
+
   const Card_list = Array.from({ length: 25 }, (v, i) => i);
 //   console.log(Card_list);
 
@@ -29,6 +33,7 @@ const MainRecruit = () => {
         <TopCompoWrap>
             <RecSelectCompo /> 
         </TopCompoWrap>
+
       <CardContainerWrap>
         {Card_list === undefined ? null 
         :Card_list.map((list, idx) => {
@@ -42,13 +47,13 @@ const MainRecruit = () => {
   );
 };
 
-
 const CardContainerWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   /* border: 1px solid black; */
+
   max-width: 1400px;
   margin-top: 30px;
 
@@ -65,6 +70,7 @@ const TopCompoWrap = styled.div`
     gap: 20px;
     border-bottom: 3px solid #685BC7;
 `
+
 
 
 
