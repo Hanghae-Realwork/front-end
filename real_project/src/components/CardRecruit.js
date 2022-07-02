@@ -15,7 +15,7 @@ const CardRecruit = () => {
       <CardRecruitWrap>
         <CardWrap onClick={() => {navigate(`/employmentprofile`)}}>
             <CardWriter><WriterName>작성자</WriterName></CardWriter>
-            <CardTitle><TitleText>제목입니다</TitleText></CardTitle>
+            <CardTitle><TitleText>프로젝트 제목입니다</TitleText></CardTitle>
             <DayInfo><DateLimit>22.06.20 ~ 22.07.25</DateLimit></DayInfo>
             <CardMainText><JobText>카드 내용이 노출 됩니다</JobText><br/><JobText>카드 내용은 최대 두줄만 나옵니다.</JobText></CardMainText>
             {/* <CardJobName><JobNameText>찾는 기술명이 노출 됩니다</JobNameText></CardJobName> */}
@@ -37,7 +37,7 @@ const CardRecruitWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    border-radius: 25px;
+    border-radius: 10px;
     padding: 10px;
     margin: 15px;
 `
@@ -105,7 +105,8 @@ const CardTagArea = styled.div`
     display: flex;
     flex-wrap: row wrap;
     justify-content: flex-start;
-    padding: 10px;
+    align-items: center;
+    padding: 5px;
 `
 
 const JobText = styled.span`
