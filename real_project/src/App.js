@@ -22,7 +22,7 @@ import Header from "./components/Header"
 import Loading from "./pages/Loading"
 
 
-import SelectBox from "./components/SelectBox";
+// import SelectBox from "./components/SelectBox";
 
 function App() {
   return (
