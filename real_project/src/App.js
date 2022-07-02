@@ -6,30 +6,26 @@ import { Routes, Route } from "react-router-dom";
 
 //Pages 연결
 
-import AddProfile from "./pages/AddProfile"
-import Chat from "./pages/Chat"
-import EmploymentProfile from "./pages/EmploymentProfile"
-import Join from "./pages/Join"
-import Login from "./pages/Login"
-import MainEmployment from "./pages/MainEmployment"
-import MainRecruit from "./pages/MainRecruit"
-import Recruit from "./pages/Recruit"
-import RecruitWrite from "./pages/RecruitWrite"
-import Main from "./pages/Main"
+import AddProfile from "./pages/AddProfile";
+import Chat from "./pages/Chat";
+import EmploymentProfile from "./pages/EmploymentProfile";
+import Join from "./pages/Join";
+import Login from "./pages/Login";
+import MainEmployment from "./pages/MainEmployment";
+import MainRecruit from "./pages/MainRecruit";
+import Recruit from "./pages/Recruit";
+import RecruitWrite from "./pages/RecruitWrite";
+import Main from "./pages/Main";
 
 //Components 연결
-import Header from "./components/Header"
-import Loading from "./pages/Loading"
-
-
-import SelectBox from "./components/SelectBox";
+import Header from "./components/Header";
+import Loading from "./pages/Loading";
 
 function App() {
   return (
     <MainWrap>
-
       {/* <MainHeader> */}
-        <Header/>
+      <Header />
       {/* </MainHeader> */}
       {/* <AddProfile/> */}
 
@@ -45,7 +41,7 @@ function App() {
 
       {/* <CardRecruit/> '컴포넌트' */}
       {/* <SelectBox/> '컴포넌트' */}
-      
+
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
@@ -70,12 +66,11 @@ const MainWrap = styled.div`
 `;
 
 const MainHeader = styled.div`
-display: flex;
-flex-flow: column nowrap;
-justify-content: center;
-align-items: center;
-margin-bottom: 80px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 80px;
 `;
-
 
 export default App;
