@@ -31,41 +31,41 @@ export function userInfo(infototal) {
 }
 
 //middleWare
-export const signupAxios = (
-  userId,
-  nickname,
-  name,
-  birth,
-  phoneNumber,
-  password,
-  passwordCheck,
-  profileImage,
-  allCheck
-) => {
-  return async function (dispatch) {
-    let res = null;
-    await apis
-      .signup(
-        userId,
-        nickname,
-        name,
-        birth,
-        phoneNumber,
-        password,
-        passwordCheck,
-        profileImage,
-        allCheck
-      )
-      .then(() => {
-        res = true;
-      })
-      .catch((err) => {
-        console.log(err);
-        res = false;
-      });
-    return res;
-  };
-};
+// export const signupAxios = (
+//   userId,
+//   nickname,
+//   name,
+//   birth,
+//   phoneNumber,
+//   password,
+//   passwordCheck,
+//   profileImage,
+//   allCheck
+// ) => {
+//   return async function (dispatch) {
+//     let res = null;
+//     await apis
+//       .signup(
+//         userId,
+//         nickname,
+//         name,
+//         birth,
+//         phoneNumber,
+//         password,
+//         passwordCheck,
+//         profileImage,
+//         allCheck
+//       )
+//       .then(() => {
+//         res = true;
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res = false;
+//       });
+//     return res;
+//   };
+// };
 
 // export const loginAxios = (userEmail, password) => {
 //   return async function (dispatch) {

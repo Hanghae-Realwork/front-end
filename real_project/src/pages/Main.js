@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
 function Main () {
 
     const navigate = useNavigate()
@@ -42,38 +43,38 @@ function Main () {
         </>
 
     )
+
 }
 
-
 const MainAllWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 100%;
-    height: 60vh;
-    padding: 20px;
-    background-color: #9595D2;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: flex-end;
-`
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 60vh;
+  padding: 20px;
+  background-color: #9595d2;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+`;
 
 const MaininTitleTopWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 400px;
-    height:350px;
-    margin-left: 100px;
-    margin-bottom: 70px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-`
+  /* border: 1px solid black; */
+  width: 400px;
+  height: 350px;
+  margin-left: 100px;
+  margin-bottom: 70px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+`;
 
 const TitleMain = styled.span`
-    font-size: 35px;
-    font-weight: bolder;
-    color: white;
-`
+  font-size: 35px;
+  font-weight: bolder;
+  color: white;
+`;
 
 const HeadTitleWrap = styled.div`
     /* border: 1px solid black; */
@@ -81,6 +82,7 @@ const HeadTitleWrap = styled.div`
 `
 
 const SubWrap = styled.div`
+
     margin-top: 20px;
     /* border: 1px solid black; */
     text-align: justify;
@@ -92,30 +94,30 @@ const SubMain = styled.span`
     color: white;
     font-weight: bold;
 `
-
 const PageButton = styled.button`
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    font-weight: bold;
-    padding: 12px;
-    background-color: #2E008B;
-    color: white;
-    cursor: pointer;
-`
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 12px;
+  background-color: #2e008b;
+  color: white;
+  cursor: pointer;
+`;
 
 const PageButton2 = styled.button`
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    font-weight: bold;
-    padding: 12px;
-    background-color: #B884CB;
-    color: white;
-    cursor: pointer;
-`
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 12px;
+  background-color: #b884cb;
+  color: white;
+  cursor: pointer;
+`;
 
 const MainButtonWrap = styled.div`
+
     /* border: 1px solid black; */
     margin-top: 30px;
     display: flex;

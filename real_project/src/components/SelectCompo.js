@@ -1,12 +1,15 @@
-import '../App.css';
+import "../App.css";
 
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import up from "../image/up-fill.svg"
-import down from "../image/down-fill.svg"
+import up from "../image/up-fill.svg";
+import down from "../image/down-fill.svg";
 
 function SelectCompo() {
+  //드롭다운 스테이트 (전역)
+  const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
+
 
     const [modal, setModal] = useState(false);
 
@@ -147,11 +150,20 @@ function SelectCompo() {
         <SerchMenuWrap><App/> <AppSkill/></SerchMenuWrap> 
         <RecButtonWrap><RecritButton>내 소개 등록하기</RecritButton></RecButtonWrap>
       </DropDownAllWrap>
+
     );
+  };
+
+  // 리턴 컴포넌트 최종(출력 구간)
+  return (
+    <DropDownAllWrap>
+      <App />
+    </DropDownAllWrap>
+  );
 }
 
-
 const DropDownAllWrap = styled.div`
+
     /* border: 1px solid black; */
     width: 100%;
     margin-top: 50px;
@@ -327,3 +339,4 @@ export default SelectCompo
 //       {modal === true ? <SelectBox close={setModal}/> : null}
 //     </DropDownAllWrap>
 //   );
+

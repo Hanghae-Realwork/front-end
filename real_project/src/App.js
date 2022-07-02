@@ -1,10 +1,11 @@
 // 라이브러리 및 그 외
-import './App.css';
+import "./App.css";
 import React from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
 //Pages 연결
+
 import AddProfile from "./pages/AddProfile"
 import Chat from "./pages/Chat"
 import EmploymentProfile from "./pages/EmploymentProfile"
@@ -21,19 +22,17 @@ import Header from "./components/Header"
 import Loading from "./pages/Loading"
 
 
-
-
+import SelectBox from "./components/SelectBox";
 
 function App() {
-
-
   return (
-
     <MainWrap>
+
       {/* <MainHeader> */}
         <Header/>
       {/* </MainHeader> */}
       {/* <AddProfile/> */}
+
       {/* <Chat/> */}
       {/* <EmploymentProfile/> '완료' */}
       {/* <Join/> '완료' */}
@@ -48,7 +47,7 @@ function App() {
       {/* <SelectBox/> '컴포넌트' */}
       
       <Routes>
-        <Route path="/" element={ <Main /> } />
+        <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
@@ -60,7 +59,6 @@ function App() {
         <Route path="/chat" element={<Chat />}></Route>
       </Routes>
     </MainWrap>
-
   );
 }
 
