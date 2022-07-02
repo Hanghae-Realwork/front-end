@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Header () {
 
     const navigate = useNavigate()
+    // style={{fontWeight: ? "bold" : " "}}
 
     return (
         <HeaderWrap>
@@ -16,9 +17,8 @@ function Header () {
                 <HeaderFix onClick={() => {navigate(`/`)}}>renDev</HeaderFix>
             </LogoWrap>
                 <HeaderLeftWrap>
-                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
+                    <FindProject onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
                     <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
-                    <FindProject onClick={() => {navigate(`/recruitwrite`)}}>지원자 모집 (임시)</FindProject>
 
                 </HeaderLeftWrap>
                 <HeaderRightWrap>
@@ -34,13 +34,16 @@ function Header () {
 const HeaderWrap = styled.div`
     /* border: 1px solid black; */
     width: 100%;
-    height: auto;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-    padding: 15px;
+    padding: 10px;
     border-bottom: 2px solid #D0D3D4;
+    /* z-index: 900;
+    position: fixed;
+    top: 0%;
+    background-color: white; */
 `
 
 const LogoWrap = styled.div`
@@ -82,6 +85,9 @@ const FindProject = styled.button`
     background-color: transparent;
     /* margin: 10px; */
     font-size: 16px;
+    color: #685BC7;
+    font-weight: bold;
+
 `
 
 const HeaderRightWrap = styled.div`
@@ -91,6 +97,7 @@ const HeaderRightWrap = styled.div`
     justify-content: center;
     align-items: flex-end;
     margin-bottom: 5px;
+    
 `
 
 const LoginButton = styled.button`
@@ -102,6 +109,8 @@ const LoginButton = styled.button`
     background-color: transparent;
     margin-right: 10px;
     cursor: pointer;
+    color: #685BC7;
+
 `
 
 
@@ -114,3 +123,5 @@ const CircleImage = styled.div`
 `
 
 export default Header
+
+
