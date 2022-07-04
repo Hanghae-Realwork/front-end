@@ -7,18 +7,19 @@ import up from "../image/up-fill.svg";
 import down from "../image/down-fill.svg";
 
 function SelectCompo() {
-  
-
 
   const [modal, setModal] = useState(false);
 
   //드롭다운 스테이트 (전역)
   //스택 선택 스테이트 (전역))
   const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
-  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = React.useState(false);
 
-  //드롭다운 컴포넌트 (자식 18 ~ 40)   
-  const Dropdown = props => {
+  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] =
+    React.useState(false);
+
+  //드롭다운 컴포넌트 (자식 18 ~ 40)
+  const Dropdown = (props) => {
+
     const [visibilityAnimation, setVisibilityAnimation] = React.useState(false);
     const [repeat, setRepeat] = React.useState(null);
 
@@ -155,47 +156,48 @@ function SelectCompo() {
 
 
 
-const DropDownAllWrap = styled.div`
+// 리턴 컴포넌트 최종(출력 구간)
 
-    /* border: 1px solid black; */
-    width: 100%;
-    margin-top: 50px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-`
+const DropDownAllWrap = styled.div`
+  /* border: 1px solid black; */
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+`;
 
 const DropDownWrap = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    /* margin-left: 180px; */
-`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* margin-left: 180px; */
+`;
 
 const DropDownButton = styled.label`
-    /* border: 1px solid black; */
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    width: 150px;
-    color: white;
-    font-weight: bold;
-    background-color: #685BC7;
-`
+  /* border: 1px solid black; */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  width: 150px;
+  color: white;
+  font-weight: bold;
+  background-color: #685bc7;
+`;
 
 const DropText = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const SelectBoxWrap = styled.div`
   border: 3px solid #685bc7;
@@ -233,7 +235,6 @@ const SelectBoxTab = styled.div`
   gap: 10px;
 `;
 
-
 const TecLabel = styled.label`
   font-size: 14px;
 `;
@@ -250,7 +251,6 @@ const SelectButton = styled.button`
   font-size: 14px;
   font-weight: bold;
 `;
-
 
 const CheckBox = styled.input`
   appearance: none;
@@ -269,61 +269,52 @@ const CheckBox = styled.input`
     background-repeat: no-repeat;
     background-color: #685bc7;
   }
-`
+`;
 
 const TitleTextTag = styled.p`
-    font-weight: bold;
-    color: #685bc7;
-
-`
+  font-weight: bold;
+  color: #685bc7;
+`;
 
 const SelectButtonWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-`
-
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+`;
 
 const SpanInText = styled.div`
-    font-size: 14px;
-`
+  font-size: 14px;
+`;
 
 const RecritButton = styled.button`
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: #24135F;
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    font-size: 13px;
-`
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #24135f;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+`;
 
 const SerchMenuWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
 
 const RecButtonWrap = styled.div`
-    /* border: 1px solid black; */
-`
+  /* border: 1px solid black; */
+`;
 
-
-
-export default SelectCompo
-
-
-
-
-
+export default SelectCompo;
 
 // return (
 //     <DropDownAllWrap>
@@ -332,4 +323,3 @@ export default SelectCompo
 //       {modal === true ? <SelectBox close={setModal}/> : null}
 //     </DropDownAllWrap>
 //   );
-
