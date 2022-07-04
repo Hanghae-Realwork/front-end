@@ -6,7 +6,9 @@ function AddProfile() {
   return (
     <>
       <AddProfileWrap>
+
         <ProfileTopWrap>
+
             <SelfWrap>
                 <div>
                     <TitleTextTag>간단한 자기 소개</TitleTextTag>
@@ -72,9 +74,8 @@ function AddProfile() {
   );
 }
 
-
-
 const AddProfileWrap = styled.div`
+
     border: 1px solid black;
     display: flex;
     flex-flow: column nowrap;
@@ -188,6 +189,9 @@ const TitleTextTag = styled.p`
     color: #685bc7;
 
 `
+
+const RadioWrap = styled.div``;
+
 
 
 export default AddProfile;
