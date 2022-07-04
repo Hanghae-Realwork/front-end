@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import Plus from "../image/plus.svg"
 
 function RecruitWrite() {
+
+    
     const onSubmit = async (data) => {
         await new Promise((r) => setTimeout(r, 1000));
         alert(JSON.stringify(data));
@@ -50,28 +52,28 @@ function RecruitWrite() {
                                 <MidText>개발자</MidText>
                             </MidTextWrap>
                             <MidContetWrap>
-                                <ConLabel><InputCon type="checkbox" />React</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Vue.js</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />JavaScript</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Node.js</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Java</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Spring</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Python</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />C</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />C++</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />C#</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Swift</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Kotlin</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="React" {...register("skills")} />React</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Vue.js" {...register("skills")} />Vue.js</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="JavaScript" {...register("skills")} />JavaScript</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Node.js" {...register("skills")} />Node.js</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Java" {...register("skills")} />Java</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Spring" {...register("skills")} />Spring</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Python" {...register("skills")} />Python</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="C" {...register("skills")} />C</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="C++" {...register("skills")} />C++</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="C#" {...register("skills")} />C#</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Swift" {...register("skills")} />Swift</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Kotlin" {...register("skills")} />Kotlin</ConLabel>
                             </MidContetWrap>
                             <MidTextWrap>
                                 <MidText>디자이너</MidText>
                             </MidTextWrap>
                             <MidContetWrap>
-                                <ConLabel><InputCon type="checkbox" />Illustrator</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />adobe XD</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Figma</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />3D MAX</ConLabel>
-                                <ConLabel><InputCon type="checkbox" />Blender</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Illustrator" {...register("skills")} />Illustrator</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="adobe XD" {...register("skills")} />adobe XD</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Figma" {...register("skills")} />Figma</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="3D MAX" {...register("skills")} />3D MAX</ConLabel>
+                                <ConLabel><InputCon id="skills" type="checkbox" value="Blender" {...register("skills")} />Blender</ConLabel>
                             </MidContetWrap>
                         </RecMidContentWrap>
                     </RecruitWriteMidWrap>
