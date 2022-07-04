@@ -1,5 +1,5 @@
 import "react-day-picker/dist/style.css";
-import style from "./style.css";
+import style from "./css/style.css";
 import React, { useRef, useState } from "react";
 import { format, isValid, parse, isAfter } from "date-fns";
 import { DayPicker } from "react-day-picker";
