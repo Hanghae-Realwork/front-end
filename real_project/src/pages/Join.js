@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 function Join() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
   const [userId, setUserId] = useState("");
   const [nickname, setNickName] = useState("");
   const [name, setName] = useState("");
@@ -15,6 +17,7 @@ function Join() {
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [profileImage, setProfileImage] = useState("");
+
   //error
   const [userIdError, setUserIdError] = useState(false);
   const [nicknameError, setNickNameError] = useState(false);
@@ -48,6 +51,7 @@ function Join() {
     }
   }, [phoneNumber]);
 
+
   //체크박스
   useEffect(() => {
     if (ageCheck === true && useCheck === true && marketingCheck === true) {
@@ -56,6 +60,7 @@ function Join() {
       setAllCheck(false);
     }
   }, [ageCheck, useCheck, marketingCheck]);
+
 
   //유효성검사:userID
   const onChangeUserId = (e) => {
@@ -66,6 +71,8 @@ function Join() {
     else setUserIdError(true);
     setUserId(e.target.value);
   };
+
+
   //유효성검사:nickName
   const onChageNickName = (e) => {
     console.log(e.target.value.length);
@@ -82,6 +89,7 @@ function Join() {
     }
   };
 
+
   //유효성검사:Name
   const onChageName = (e) => {
     if (e.target.value.length <= 3) {
@@ -94,6 +102,7 @@ function Join() {
     setName(e.target.value);
   };
 
+
   //유효성검사:Birth
   const onChangeBirth = (e) => {
     const regex = /^[0-9\b -]{0,8}$/;
@@ -102,6 +111,7 @@ function Join() {
     }
   };
 
+
   //유효성검사:Number
   const OnChangephoneNumber = (e) => {
     const regex = /^[0-9\b -]{0,13}$/;
@@ -109,6 +119,7 @@ function Join() {
       setPhoneNumber(e.target.value);
     }
   };
+
 
   //유효성검사:Password
   const OnChangePassWord = (e) => {
@@ -123,12 +134,16 @@ function Join() {
     else setConfirmPasswordError(true);
     setPassword(e.target.value);
   };
+
+
   //유효성검사:PasswordCheck
   const OnChangePassWordCheck = (e) => {
     if (password === e.target.value) setConfirmPasswordError(false);
     else setConfirmPasswordError(true);
     setPasswordCheck(e.target.value);
   };
+
+  
   //체크박스
   const allBtnEvent = () => {
     if (allCheck === false) {

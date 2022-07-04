@@ -3,22 +3,20 @@ import '../App.css';
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import up from "../image/up-fill.svg"
-import down from "../image/down-fill.svg"
+import up from "../image/up-fill.svg";
+import down from "../image/down-fill.svg";
 
 function SelectCompo() {
 
-    const [modal, setModal] = useState(false);
-
     //드롭다운 스테이트 (전역)
     //스택 선택 스테이트 (전역))
-    const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
-    const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = React.useState(false);
+    const [dropdownVisibility, setDropdownVisibility] = useState(false);
+    const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = useState(false);
 
     //드롭다운 컴포넌트 (자식 18 ~ 40)   
     const Dropdown = props => {
-        const [visibilityAnimation, setVisibilityAnimation] = React.useState(false);
-        const [repeat, setRepeat] = React.useState(null);
+        const [visibilityAnimation, setVisibilityAnimation] = useState(false);
+        const [repeat, setRepeat] = useState(null);
     
         React.useEffect(() => {
             if (props.visibility) {
@@ -42,8 +40,8 @@ function SelectCompo() {
 
     //스택 선택 드롭다운 (43 ~ 65)
     const DropdownSkill = props => {
-        const [visibilityAni, setVisibilityAni] = React.useState(false);
-        const [repeatSkill, setRepeatSkill] = React.useState(null);
+        const [visibilityAni, setVisibilityAni] = useState(false);
+        const [repeatSkill, setRepeatSkill] = useState(null);
     
         React.useEffect(() => {
             if (props.visibility) {
