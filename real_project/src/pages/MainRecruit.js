@@ -42,7 +42,7 @@ const MainRecruit = () => {
           );
         })}
       </CardContainerWrap>
-      {/* <InfiniteScroll/> */}
+      
     </>
   );
 };
