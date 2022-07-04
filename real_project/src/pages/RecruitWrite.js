@@ -1,89 +1,125 @@
 import React from "react";
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 
 import Plus from "../image/plus.svg"
 
 function RecruitWrite() {
-  return (
-    <>
-    <RecruitWriteWrap>
+    const onSubmit = async (data) => {
+        await new Promise((r) => setTimeout(r, 1000));
+        alert(JSON.stringify(data));
+        console.log(data)
+    }
 
-        <RecruitWriteTopWrap>
-            <RecTitleTextWrap>
-                <RecTitleText>구하는 직군</RecTitleText>
-            </RecTitleTextWrap>
-            <RecTopTextContentWrap>
-                <RecTopRadioLabel>
-                    <RecTopRadio type="radio" name="RecRadio"/>프론트엔드 개발자
-                </RecTopRadioLabel>
-                <RecTopRadioLabel>
-                    <RecTopRadio type="radio" name="RecRadio"/>백엔드 개발자
-                </RecTopRadioLabel>
-                <RecTopRadioLabel>
-                    <RecTopRadio type="radio" name="RecRadio"/>그래픽 디자이너
-                </RecTopRadioLabel>
-            </RecTopTextContentWrap>
-        </RecruitWriteTopWrap>
 
-        <RecruitWriteMidWrap>
-            <RecTitleTextWrap> 
-                <RecTitleText>요구 스킬</RecTitleText> 
-            </RecTitleTextWrap>
-            <RecMidContentWrap>
-                <MidTextWrap>
-                    <MidText>개발자</MidText>
-                </MidTextWrap>
-                    <MidContetWrap>
-                        <ConLabel><InputCon type="checkbox"/>React</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Vue.js</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>JavaScript</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Node.js</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Java</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Spring</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Python</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>C</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>C++</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>C#</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Swift</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Kotlin</ConLabel>
-                    </MidContetWrap>
-                <MidTextWrap>
-                    <MidText>디자이너</MidText>
-                </MidTextWrap>
-                    <MidContetWrap>
-                        <ConLabel><InputCon type="checkbox"/>Illustrator</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>adobe XD</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Figma</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>3D MAX</ConLabel>
-                        <ConLabel><InputCon type="checkbox"/>Blender</ConLabel>
-                    </MidContetWrap>
-            </RecMidContentWrap>
-        </RecruitWriteMidWrap>
+    const {
+        register,
+        handleSubmit,
+        formState: { isSubmitting, isDirty, errors }
+    } = useForm();
 
-        <RecTitleTextWrap>
-            <RecTitleText>제목</RecTitleText>
-            <div><RecTitleTextInput/></div>
-        </RecTitleTextWrap>
-        
-        <RecTitleTextWrap>
-            <RecTitleText>프로젝트 제목</RecTitleText>
-            <div><RecTitleTextInput/></div>
-        </RecTitleTextWrap>
 
-        <RecruitWriteTextBotWrap>
-        <RecTitleTextWrap>
-            <RecTitleText>프로젝트 상세 설명</RecTitleText>
-        </RecTitleTextWrap>
-            <div><RecMainCon/></div>
-        </RecruitWriteTextBotWrap>
-        <div>
-            <RecButtonWrap>
-                <RecButton>모집글 올리기</RecButton>
-            </RecButtonWrap>
-        </div>
-    </RecruitWriteWrap>
-    </>
-  );
+    return (
+        <>
+
+            <RecruitWriteWrap>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <RecruitWriteTopWrap>
+                        <RecTitleTextWrap>
+                            <RecTitleText>구하는 직군</RecTitleText>
+                        </RecTitleTextWrap>
+                        <RecTopTextContentWrap >
+                            <RecTopRadioLabel>
+                                <RecTopRadio id="role" type="radio" name="RecRadio" value="frontend" {...register("role")}/>프론트엔드 개발자
+                            </RecTopRadioLabel>
+                            <RecTopRadioLabel>
+                                <RecTopRadio id="role" type="radio" name="RecRadio" value="backend" {...register("role")}/>백엔드 개발자
+                            </RecTopRadioLabel>
+                            <RecTopRadioLabel>
+                                <RecTopRadio id="role" type="radio" name="RecRadio" value="graphicDesigner" {...register("role")}/>그래픽 디자이너
+                            </RecTopRadioLabel>
+                        </RecTopTextContentWrap>
+                    </RecruitWriteTopWrap>
+
+                    <RecruitWriteMidWrap>
+                        <RecTitleTextWrap>
+                            <RecTitleText>요구 스킬</RecTitleText>
+                        </RecTitleTextWrap>
+                        <RecMidContentWrap>
+                            <MidTextWrap>
+                                <MidText>개발자</MidText>
+                            </MidTextWrap>
+                            <MidContetWrap>
+                                <ConLabel><InputCon type="checkbox" />React</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Vue.js</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />JavaScript</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Node.js</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Java</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Spring</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Python</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />C</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />C++</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />C#</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Swift</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Kotlin</ConLabel>
+                            </MidContetWrap>
+                            <MidTextWrap>
+                                <MidText>디자이너</MidText>
+                            </MidTextWrap>
+                            <MidContetWrap>
+                                <ConLabel><InputCon type="checkbox" />Illustrator</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />adobe XD</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Figma</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />3D MAX</ConLabel>
+                                <ConLabel><InputCon type="checkbox" />Blender</ConLabel>
+                            </MidContetWrap>
+                        </RecMidContentWrap>
+                    </RecruitWriteMidWrap>
+
+                    <RecTitleTextWrap>
+                        <RecTitleText htmlFor="title">제목</RecTitleText>
+                        <div>
+                            
+                            <RecTitleTextInput
+                                id="title"
+                                type="text"
+                                placeholder="제목을 입력해주세요"
+                                {...register("title")}
+                            />
+                        </div>
+                    </RecTitleTextWrap>
+
+                    <RecTitleTextWrap>
+                        <RecTitleText htmlFor="subscript">프로젝트 제목</RecTitleText>
+                        <div><RecTitleTextInput 
+                        id="subscript"
+                        type="text"
+                        placeholder="프로젝트의 제목을 입력해주세요"
+                        {...register("subscript")}
+                        /></div>
+                    </RecTitleTextWrap>
+
+                    <RecruitWriteTextBotWrap>
+                        <RecTitleTextWrap>
+                            <RecTitleText>프로젝트 상세 설명</RecTitleText>
+                        </RecTitleTextWrap>
+                        <div><RecMainCon 
+                        id="details"
+                        type="text"
+                        placeholder="프로젝트의 내용을 입력해주세요"
+                        {...register("details")}
+                        /></div>
+                    </RecruitWriteTextBotWrap>
+                    <div>
+                        <RecButtonWrap >
+                            <RecButton type="submit" disabled={isSubmitting}>모집글 올리기</RecButton>
+                        </RecButtonWrap>
+                    </div>
+                </form>
+            </RecruitWriteWrap>
+
+        </>
+    );
 }
 
 
