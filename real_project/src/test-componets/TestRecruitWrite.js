@@ -1,17 +1,16 @@
-import React, {useState, useRef} from "react";
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
-import DayPickerSub from "../components/DayPickerSub";
-
-import Plus from "../image/plus.svg";
+// import React, { useState } from "react";
+// import styled from "styled-components";
+// import { useForm } from "react-hook-form";
+// import DayPickerSub from "../components/DayPickerSub";
+// import { ko } from "date-fns/esm/locale";
+// import Plus from "../image/plus.svg";
 
 function RecruitWrite() {
-    const dateref=useRef
-    const [selected, setSelected] = useState(dateref);
-    
+    const [selected, setSelected] = useState(new Date());
+    const today = new Date();
     const onSubmit = async (data) => {
         await new Promise((r) => setTimeout(r, 1000));
-        alert(JSON.stringify(data));
+        // alert(JSON.stringify(data));
         console.log(data)
     }
 
@@ -107,12 +106,12 @@ function RecruitWrite() {
                         <RecTitleText>프로젝트 기간</RecTitleText>
                         <div>
                             <DayPickerSub
-                                id="selected"
-                                selected={selected}
-                                type="date"
-                                value="selected"
-                                dateref={dateref}
-                                {...register("selected")}
+                                id="date"
+                                mode="range"
+                                
+                                
+                                
+                                {...register("date")}
                             />
                         </div>
                     </RecTitleTextWrap>
@@ -275,4 +274,4 @@ const RecButton = styled.button`
   border-radius: 10px;
 `;
 
-export default RecruitWrite;
+// export default RecruitWrite;
