@@ -60,7 +60,7 @@ const TopCompoWrap = styled.div`
     width: 135vh;
     max-width: 1400px;
     gap: 20px;
-    border-bottom: 3px solid #685BC7;
+    /* border-bottom: 3px solid #685BC7; */
 `
 
 
