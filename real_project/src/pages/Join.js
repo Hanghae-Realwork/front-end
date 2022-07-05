@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { signupAxios, userInfo } from "../redux/modules/user";
+import { signupAxios, userInfo, checkUserIdAxios } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 import { flushSync } from "react-dom";
 
@@ -230,7 +230,20 @@ function Join() {
       alert("에러입니다!" + err);
     }
   };
-
+  //아이디 중복체크
+  const onClickCheckUserId = async () => {
+    try {
+      await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
+        if (checksuccess === true) {
+          console.log("success", checksuccess);
+        } else {
+          console.log("error:", checksuccess);
+        }
+      });
+    } catch (err) {
+      alert("err");
+    }
+  };
   return (
     <>
       <JoinWrap>
@@ -246,6 +259,7 @@ function Join() {
                 value={userId}
                 onChange={onChangeUserId}
               ></InputBar>
+              <button onClick={onClickCheckUserId}>중복버튼</button>
               {userIdError && <ValiSpan>이메일 형식에 맞지 않습니다.</ValiSpan>}
             </IdWrap>
             <IdWrap>
