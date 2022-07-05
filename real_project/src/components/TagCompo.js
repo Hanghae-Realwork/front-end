@@ -6,7 +6,7 @@ function TagCompo () {
     return(
         <>
         <TagButton>
-            리액트
+            React
         </TagButton>
 
         </>
@@ -17,10 +17,11 @@ const TagButton = styled.button`
     border: none;
     outline: none;
     cursor: pointer;
-    background-color: #D0D3D4;
-    font-size: 13px;
+    background-color: #AE97E3;
+    font-size: 12px;
+    font-weight: 500;
     border-radius: 15px;
-    padding: 7px;
+    padding: 5px 12px 5px 12px;
     color: white;
     margin: 3px;
 `
