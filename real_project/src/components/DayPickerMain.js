@@ -14,15 +14,19 @@ const DayPickerMain = () => {
   const today = new Date();
   const [toggle, setToggle] = useState(false);
 
-  console.log("날짜", selected);
+  // console.log("날짜", selected);
   const onClickToggle = () => {
     setToggle((prev) => !prev);
   };
 
   let footer = (
-    <Container1 className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
+    <Container1
+      className="pa2 bg-white button-reset ba"
+      aria-label="Pick a date"
+      onClick={onClickToggle}
+    >
       <ContainerStartDateDiv1>
-        <ButtonName>프로젝트 기간</ButtonName>  <img src = {down} />
+        <ButtonName>프로젝트 기간</ButtonName> <img src={down} />
         {/* <SelectedDate>날짜 입력</SelectedDate> */}
       </ContainerStartDateDiv1>
     </Container1>
@@ -30,11 +34,17 @@ const DayPickerMain = () => {
   if (selected?.from) {
     if (!selected.to) {
       footer = (
-        <Container1 type="button" className="pa2 bg-white button-reset ba"
-          aria-label="Pick a date" onClick={onClickToggle}>
+        <Container1
+          type="button"
+          className="pa2 bg-white button-reset ba"
+          aria-label="Pick a date"
+          onClick={onClickToggle}
+        >
           <ContainerStartDateDiv1>
-            <ButtonName>프로젝트 시작<SelectedDate>
-              {format(selected.from, "MM월 dd일 ")}</SelectedDate></ButtonName>
+            <ButtonName>
+              프로젝트 시작
+              <SelectedDate>{format(selected.from, "MM월 dd일 ")}</SelectedDate>
+            </ButtonName>
           </ContainerStartDateDiv1>
           <ContainerStartDateDiv1>
             <ButtonName>프로젝트 끝</ButtonName>
@@ -44,8 +54,12 @@ const DayPickerMain = () => {
       );
     } else if (selected?.to) {
       footer = (
-        <Container1 type="button" className="pa2 bg-white button-reset ba"
-          aria-label="Pick a date" onClick={onClickToggle}>
+        <Container1
+          type="button"
+          className="pa2 bg-white button-reset ba"
+          aria-label="Pick a date"
+          onClick={onClickToggle}
+        >
           <ContainerStartDateDiv1>
             <ButtonName>프로젝트 시작</ButtonName>
             <SelectedDate>{format(selected.from, "MM월 dd일 ")}</SelectedDate>
@@ -62,19 +76,28 @@ const DayPickerMain = () => {
   return (
     <DivDayPicker>
       {footer}
+
       {toggle ? (
-        <DayPicker className="dayPicker_container__divMain"
-          styles={{caption: 
-            { fontSize: "13px", color: "white", padding: "5px",
-          backgroundColor:"#AE97E3" }
-        }}
+        <DayPicker
+          className="dayPicker_container__divMain"
+          styles={{
+            caption: {
+              fontSize: "13px",
+              color: "white",
+              padding: "5px",
+              backgroundColor: "#AE97E3",
+            },
+          }}
           mode="range"
           selected={selected}
           onSelect={setSelected}
           locale={ko}
           numberOfMonths={2}
-          disabled={{ before: today }}></DayPicker>
-      ) : ("")}
+          disabled={{ before: today }}
+        ></DayPicker>
+      ) : (
+        ""
+      )}
     </DivDayPicker>
   );
 };
@@ -86,7 +109,7 @@ const Container1 = styled.div`
   justify-content: center;
   align-items: center;
   outline: none;
-  background-color: #AE97E3;
+  background-color: #ae97e3;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   font-weight: bold;
@@ -137,7 +160,5 @@ const DivDayPicker = styled.div`
   /* border: 1px solid black; */
   /* max-width: 520px; */
 `;
-
-
 
 export default DayPickerMain;

@@ -1,6 +1,8 @@
 
 import React, { useState, useRef } from "react";
+
 import axios from "axios";
+
 import styled from "styled-components";
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
@@ -10,6 +12,7 @@ import { format, isValid, parse, isAfter } from "date-fns";
 import "react-day-picker/dist/style.css";
 import "../components/day-picker.css";
 import { ko } from "date-fns/esm/locale";
+
 
 
 
@@ -258,7 +261,9 @@ function RecruitWrite() {
           </RecruitWriteTextBotWrap>
           <div>
             <RecButtonWrap >
+
               <RecButton type="submit" disabled={isSubmitting}>모집글 올리기</RecButton>
+
 
             </RecButtonWrap>
           </div>
