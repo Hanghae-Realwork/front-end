@@ -1,42 +1,63 @@
+
 import React, { useState, useRef } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
+
 import { DayPicker } from "react-day-picker";
 import { format, isValid, parse, isAfter } from "date-fns";
-
-import { ko } from "date-fns/esm/locale";
-
-import Plus from "../image/plus.svg";
-
 import "react-day-picker/dist/style.css";
 import "../components/day-picker.css";
+import { ko } from "date-fns/esm/locale";
+
+
+
+
+
+
+
 
 function RecruitWrite() {
   const dateref = useRef
   const [selected, setSelected] = useState(new Date);
   // const [startdate, setStart] = useState(selected.from);
-
- 
   const today = new Date();
-  const startdate = selected.from
+  const startdate = JSON.stringify(selected.from)
+  const enddate = JSON.stringify(selected.to)
 
-  const enddate = selected.to
-  
 
 
   const onSubmit = async (data) => {
     const output = {
       ...data,
-      startdate: startdate,
-      enddate: enddate
+      start: startdate.slice(1, 11),
+      end: enddate.slice(1, 11),
+      email: null,
+      phone: null,
+      schedule: null,
     }
     await new Promise((r) => setTimeout(r, 1000));
     alert(JSON.stringify(output));
+    axios({
+      method: "post",
+      url: "http://3.39.226.20/api/projects",
+      data: JSON.stringify(output),
+      headers: {
+        "content-type": `application/json`
+        // "Content-Type": "multipart/form-data"
+      }
+    })
+        .then((res) => {
+          alert("프로젝트 등록완료!")
+          console.log(res);
+
+        })
     console.log(data)
     console.log(output)
   }
-  
+
+
   // console.log(selected)
   const {
     register,
@@ -45,10 +66,7 @@ function RecruitWrite() {
     formState: { isSubmitting, isDirty, errors }
   } = useForm();
 
-  const addPost = async (e) => {
-
-
-  }
+  
 
   // const 
   // const variables={
@@ -113,15 +131,19 @@ function RecruitWrite() {
 
   }
 
+
   return (
     <>
 
       <RecruitWriteWrap>
+
         <form onSubmit={handleSubmit(onSubmit)}>
+
           <RecruitWriteTopWrap>
             <RecTitleTextWrap>
               <RecTitleText>구하는 직군</RecTitleText>
             </RecTitleTextWrap>
+
             <RecTopTextContentWrap >
               <RecTopRadioLabel>
                 <RecTopRadio id="role" type="radio" name="RecRadio" value="frontend" {...register("role")} />프론트엔드 개발자
@@ -131,6 +153,7 @@ function RecruitWrite() {
               </RecTopRadioLabel>
               <RecTopRadioLabel>
                 <RecTopRadio id="role" type="radio" name="RecRadio" value="graphicDesigner" {...register("role")} />그래픽 디자이너
+
               </RecTopRadioLabel>
             </RecTopTextContentWrap>
           </RecruitWriteTopWrap>
@@ -144,6 +167,7 @@ function RecruitWrite() {
                 <MidText>개발자</MidText>
               </MidTextWrap>
               <MidContetWrap>
+
                 <ConLabel><InputCon id="skills" type="checkbox" value="React" {...register("skills")} />React</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="Vue.js" {...register("skills")} />Vue.js</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="JavaScript" {...register("skills")} />JavaScript</ConLabel>
@@ -156,21 +180,25 @@ function RecruitWrite() {
                 <ConLabel><InputCon id="skills" type="checkbox" value="C#" {...register("skills")} />C#</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="Swift" {...register("skills")} />Swift</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="Kotlin" {...register("skills")} />Kotlin</ConLabel>
+
               </MidContetWrap>
               <MidTextWrap>
                 <MidText>디자이너</MidText>
               </MidTextWrap>
               <MidContetWrap>
+
                 <ConLabel><InputCon id="skills" type="checkbox" value="Illustrator" {...register("skills")} />Illustrator</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="adobe XD" {...register("skills")} />adobe XD</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="Figma" {...register("skills")} />Figma</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="3D MAX" {...register("skills")} />3D MAX</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="Blender" {...register("skills")} />Blender</ConLabel>
+
               </MidContetWrap>
             </RecMidContentWrap>
           </RecruitWriteMidWrap>
 
           <RecTitleTextWrap>
+
             <RecTitleText htmlFor="title">제목</RecTitleText>
             <div>
 
@@ -180,10 +208,12 @@ function RecruitWrite() {
                 placeholder="제목을 입력해주세요"
                 {...register("title")}
               />
+
             </div>
           </RecTitleTextWrap>
 
           <RecTitleTextWrap>
+
             <RecTitleText htmlFor="subscript">프로젝트 제목</RecTitleText>
             <div><RecTitleTextInput
               id="subscript"
@@ -200,27 +230,25 @@ function RecruitWrite() {
                 styles={{
                   caption: { fontSize: "10px", padding: "10px" },
                 }}
-                
-
                 className="dayPicker_container__div"
                 mode="range"
                 selected={selected}
-
                 onSelect={setSelected}
                 locale={ko}
                 numberOfMonths={2}
                 disabled={{ before: today }}
-                
               ></DayPicker>
               {footer}
             </div>
           </RecTitleTextWrap>
 
 
+
           <RecruitWriteTextBotWrap>
             <RecTitleTextWrap>
               <RecTitleText>프로젝트 상세 설명</RecTitleText>
             </RecTitleTextWrap>
+
             <div><RecMainCon
               id="details"
               type="text"
@@ -230,7 +258,8 @@ function RecruitWrite() {
           </RecruitWriteTextBotWrap>
           <div>
             <RecButtonWrap >
-              <RecButton type="submit" disabled={isSubmitting} onClick={addPost}>모집글 올리기</RecButton>
+              <RecButton type="submit" disabled={isSubmitting}>모집글 올리기</RecButton>
+
             </RecButtonWrap>
           </div>
         </form>
@@ -284,7 +313,6 @@ const RecTopRadio = styled.input`
   height: 15px;
   margin-bottom: -2px;
   margin-right: 5px;
-
   &:checked {
     border-color: transparent;
     background-color: #685bc7;
@@ -324,7 +352,6 @@ const InputCon = styled.input`
   height: 15px;
   margin-bottom: -3px;
   margin-right: 5px;
-
   &:checked {
     border-color: transparent;
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
