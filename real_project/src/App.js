@@ -16,10 +16,14 @@ import MainRecruit from "./pages/MainRecruit";
 import Recruit from "./pages/Recruit";
 import RecruitWrite from "./pages/RecruitWrite";
 import Main from "./pages/Main";
+import Test from "./pages/Test";
 
 //Components 연결
-import Header from "./components/Header";
-import Loading from "./pages/Loading";
+import Header from "./components/Header"
+import Loading from "./pages/Loading"
+
+
+// import SelectBox from "./components/SelectBox";
 
 function App() {
   return (
@@ -28,7 +32,7 @@ function App() {
       <Header />
       {/* </MainHeader> */}
       {/* <AddProfile/> */}
-
+      {/* <Test/> */}
       {/* <Chat/> */}
       {/* <EmploymentProfile/> '완료' */}
       {/* <Join/> '완료' */}
