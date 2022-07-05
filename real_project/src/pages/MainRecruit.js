@@ -10,7 +10,7 @@ import Card from "../components/CardRecruit";
 
 import SelectCompo from "../components/SelectCompo"
 
-import InfiniteScroll from "../test-componets/InfiniteScroll";
+// import InfiniteScroll from "../test-componets/InfiniteScroll";
 
 
 import RecSelectCompo from "../components/RecSelectCompo"

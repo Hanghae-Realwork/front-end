@@ -12,23 +12,18 @@ import Plus from "../image/plus.svg";
 import "react-day-picker/dist/style.css";
 import "../components/day-picker.css";
 
+
 function RecruitWrite() {
   const dateref = useRef
   const [selected, setSelected] = useState(new Date);
   // const [startdate, setStart] = useState(selected.from);
-
- 
   const today = new Date();
   const startdate = selected.from
-
   const enddate = selected.to
-  
-
-
   const onSubmit = async (data) => {
     const output = {
       ...data,
-      startdate: startdate,
+      startdate: JSON.stringify(startdate),
       enddate: enddate
     }
     await new Promise((r) => setTimeout(r, 1000));
@@ -47,7 +42,7 @@ function RecruitWrite() {
 
   const addPost = async (e) => {
 
-
+   
   }
 
   // const 
@@ -200,17 +195,13 @@ function RecruitWrite() {
                 styles={{
                   caption: { fontSize: "10px", padding: "10px" },
                 }}
-                
-
                 className="dayPicker_container__div"
                 mode="range"
                 selected={selected}
-
                 onSelect={setSelected}
                 locale={ko}
                 numberOfMonths={2}
                 disabled={{ before: today }}
-                
               ></DayPicker>
               {footer}
             </div>
