@@ -1,34 +1,21 @@
 
 import React, { useState, useRef } from "react";
-
+import axios from "axios";
 import styled from "styled-components";
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
 
 import { DayPicker } from "react-day-picker";
 import { format, isValid, parse, isAfter } from "date-fns";
-
+import "react-day-picker/dist/style.css";
+import "../components/day-picker.css";
 import { ko } from "date-fns/esm/locale";
 
 
-  const { handleSubmit, register, error, watch } = useForm({
-    defaultValues: {
-      title: "",
-      details: "",
-      subscript: "",
-      role: "",
-      start: "",
-      end: "",
-      skills: [],
-      email: "",
-      phone: "",
-      schedule: null,
-    },
-  });
 
 
-import "react-day-picker/dist/style.css";
-import "../components/day-picker.css";
+
+
 
 
 function RecruitWrite() {
@@ -36,20 +23,41 @@ function RecruitWrite() {
   const [selected, setSelected] = useState(new Date);
   // const [startdate, setStart] = useState(selected.from);
   const today = new Date();
-  const startdate = selected.from
-  const enddate = selected.to
+  const startdate = JSON.stringify(selected.from)
+  const enddate = JSON.stringify(selected.to)
+
+
+
   const onSubmit = async (data) => {
     const output = {
       ...data,
-      startdate: JSON.stringify(startdate),
-      enddate: enddate
+      start: startdate.slice(1, 11),
+      end: enddate.slice(1, 11),
+      email: null,
+      phone: null,
+      schedule: null,
     }
     await new Promise((r) => setTimeout(r, 1000));
     alert(JSON.stringify(output));
+    axios({
+      method: "post",
+      url: "http://3.39.226.20/api/projects",
+      data: JSON.stringify(output),
+      headers: {
+        "content-type": `application/json`
+        // "Content-Type": "multipart/form-data"
+      }
+    })
+        .then((res) => {
+          alert("프로젝트 등록완료!")
+          console.log(res);
+
+        })
     console.log(data)
     console.log(output)
   }
-  
+
+
   // console.log(selected)
   const {
     register,
@@ -58,10 +66,7 @@ function RecruitWrite() {
     formState: { isSubmitting, isDirty, errors }
   } = useForm();
 
-  const addPost = async (e) => {
-
-   
-  }
+  
 
   // const 
   // const variables={
@@ -253,7 +258,7 @@ function RecruitWrite() {
           </RecruitWriteTextBotWrap>
           <div>
             <RecButtonWrap >
-              <RecButton type="submit" disabled={isSubmitting} onClick={addPost}>모집글 올리기</RecButton>
+              <RecButton type="submit" disabled={isSubmitting}>모집글 올리기</RecButton>
 
             </RecButtonWrap>
           </div>
