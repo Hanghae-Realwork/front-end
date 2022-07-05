@@ -227,7 +227,7 @@ function SelectCompo() {
     <DropDownAllWrap>
       <SerchMenuWrap>
         <App /> <AppSkill />
-        <DayPickerMain />{" "}
+        <DayPickerMain />
       </SerchMenuWrap>
       <RecButtonWrap>
         <RecritButton
