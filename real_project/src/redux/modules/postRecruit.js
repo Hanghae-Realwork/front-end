@@ -1,6 +1,7 @@
 import { apis } from "../../shared/api";
 
 const LOAD = "recruit/LOAD";
+const CREATE = "recruit/CREATE"
 
 const initialState = {
   list: {
@@ -19,6 +20,10 @@ const initialState = {
 
 export function load(discription) {
   return { type: LOAD, discription };
+}
+
+export function create(discription) {
+  return { type: CREATE, discription };
 }
 
 //Reducer
