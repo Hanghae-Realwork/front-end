@@ -20,7 +20,7 @@ function Header () {
 
 
                     <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
-=
+
                     <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
 
 
