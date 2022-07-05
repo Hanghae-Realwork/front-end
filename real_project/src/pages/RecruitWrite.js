@@ -9,6 +9,9 @@ import { ko } from "date-fns/esm/locale";
 
 import Plus from "../image/plus.svg";
 
+import "react-day-picker/dist/style.css";
+import "../components/day-picker.css";
+
 function RecruitWrite() {
   const dateref = useRef
   const [selected, setSelected] = useState(new Date);
