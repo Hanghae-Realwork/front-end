@@ -53,9 +53,9 @@
   }
 
   .MainBack{
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(-45deg, #FFB549, #FF585D, #307FE2, #004E42);
   background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
+  animation: gradient 15s ease infinite;
   }
 
   @keyframes gradient {
@@ -69,6 +69,11 @@
      background-position: 0% 50%;
     }
    }
+
+ .Recipiet{
+   
+ }
+
 /* 이천희 */
 
 

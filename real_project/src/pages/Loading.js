@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import pacman from "../image/Bean Eater-0.5s-200px.svg"
+// import dot from "../image/Ellipsis-1.6s-114px.svg"
+
 
 export const Loading = () => {
   return (
@@ -32,6 +34,7 @@ const LoadingText = styled.div`
     color: white;
     font-weight: bold;
     font-size: 1.5em;
+    justify-content: center;
 `
 
 

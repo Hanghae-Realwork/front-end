@@ -7,20 +7,18 @@ import up from "../image/up-fill.svg";
 import down from "../image/down-fill.svg";
 
 function SelectCompo() {
+  const [modal, setModal] = useState(false);
 
-
-
-    const [modal, setModal] = useState(false);
 
     //드롭다운 스테이트 (전역)
     //스택 선택 스테이트 (전역))
-    const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
-    const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = React.useState(false);
+    const [dropdownVisibility, setDropdownVisibility] = useState(false);
+    const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = useState(false);
 
     //드롭다운 컴포넌트 (자식 18 ~ 40)   
     const Dropdown = props => {
-        const [visibilityAnimation, setVisibilityAnimation] = React.useState(false);
-        const [repeat, setRepeat] = React.useState(null);
+        const [visibilityAnimation, setVisibilityAnimation] = useState(false);
+        const [repeat, setRepeat] = useState(null);
     
         React.useEffect(() => {
             if (props.visibility) {
@@ -44,8 +42,8 @@ function SelectCompo() {
 
     //스택 선택 드롭다운 (43 ~ 65)
     const DropdownSkill = props => {
-        const [visibilityAni, setVisibilityAni] = React.useState(false);
-        const [repeatSkill, setRepeatSkill] = React.useState(null);
+        const [visibilityAni, setVisibilityAni] = useState(false);
+        const [repeatSkill, setRepeatSkill] = useState(null);
     
         React.useEffect(() => {
             if (props.visibility) {
@@ -80,7 +78,6 @@ function SelectCompo() {
                     <ul className='optionList'>
                         <li className='ListinOption'>프론트엔드 엔지니어</li>
                         <li className='ListinOption'>백엔드 엔지니어</li>
-                        <li className='ListinOption'>개발자</li>
                         <li className='ListinOption'>디자이너</li>
                     </ul>
                 </Dropdown>
@@ -113,11 +110,28 @@ function SelectCompo() {
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>C</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>C++</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>C#</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
+
                 </SelectBoxTab>
                 </SelectAllWrap>
 
@@ -126,9 +140,11 @@ function SelectCompo() {
                   <SelectBoxTab>
                     <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
                     <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Illustrator</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>3D MAX</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Blender</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe Illustrator</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe PhotoShop</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Invision</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Sketch</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
                   </SelectBoxTab>
                 </SelectAllWrap>
                 <SelectButtonWrap>
@@ -137,65 +153,63 @@ function SelectCompo() {
               </SelectBoxWrap>
             </Dropdown>
           </DropDownWrap>
-        );
-    };
-
-
-
-
-    // 리턴 컴포넌트 최종(출력 구간)
-    return (
-      <DropDownAllWrap>
-        <SerchMenuWrap><App/> <AppSkill/></SerchMenuWrap> 
-        <RecButtonWrap><RecritButton>내 소개 등록하기</RecritButton></RecButtonWrap>
-      </DropDownAllWrap>
-
-    );
-  };
+        )}
 
   // 리턴 컴포넌트 최종(출력 구간)
+  return (
+    <DropDownAllWrap>
+      <SerchMenuWrap>
+        <App /> <AppSkill />
+      </SerchMenuWrap>
+      <RecButtonWrap>
+        <RecritButton>내 소개 등록하기</RecritButton>
+      </RecButtonWrap>
+    </DropDownAllWrap>
+  );
+}
+
+// 리턴 컴포넌트 최종(출력 구간)
 
 const DropDownAllWrap = styled.div`
-
-    /* border: 1px solid black; */
-    width: 100%;
-    margin-top: 50px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-`
+  /* border: 1px solid black; */
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+`;
 
 const DropDownWrap = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    /* margin-left: 180px; */
-`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* margin-left: 180px; */
+`;
 
 const DropDownButton = styled.label`
-    /* border: 1px solid black; */
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    width: 150px;
-    color: white;
-    font-weight: bold;
-    background-color: #685BC7;
-`
+  /* border: 1px solid black; */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  width: 150px;
+  color: white;
+  font-weight: bold;
+  background-color: #685bc7;
+`;
 
 const DropText = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const SelectBoxWrap = styled.div`
   border: 3px solid #685bc7;
@@ -233,7 +247,6 @@ const SelectBoxTab = styled.div`
   gap: 10px;
 `;
 
-
 const TecLabel = styled.label`
   font-size: 14px;
 `;
@@ -250,7 +263,6 @@ const SelectButton = styled.button`
   font-size: 14px;
   font-weight: bold;
 `;
-
 
 const CheckBox = styled.input`
   appearance: none;
@@ -269,67 +281,57 @@ const CheckBox = styled.input`
     background-repeat: no-repeat;
     background-color: #685bc7;
   }
-`
+`;
 
 const TitleTextTag = styled.p`
-    font-weight: bold;
-    color: #685bc7;
-
-`
+  font-weight: bold;
+  color: #685bc7;
+`;
 
 const SelectButtonWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-`
-
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+`;
 
 const SpanInText = styled.div`
-    font-size: 14px;
-`
+  font-size: 14px;
+`;
 
 const RecritButton = styled.button`
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: #24135F;
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    font-size: 13px;
-`
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #24135f;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+`;
 
 const SerchMenuWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
 
 const RecButtonWrap = styled.div`
-    /* border: 1px solid black; */
-`
+  /* border: 1px solid black; */
+`;
 
-
-
-export default SelectCompo
-
-
-
-
-
+export default SelectCompo;
 
 // return (
 //     <DropDownAllWrap>
-//       <App/> <SelectBoxLabel onClick={() => { setModal(); setModal(true); }}> 
+//       <App/> <SelectBoxLabel onClick={() => { setModal(); setModal(true); }}>
 //           <DropText><span>기술스택 선택</span> <img src = {down} /> </DropText></SelectBoxLabel>
 //       {modal === true ? <SelectBox close={setModal}/> : null}
 //     </DropDownAllWrap>
 //   );
-

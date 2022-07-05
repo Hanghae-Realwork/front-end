@@ -14,7 +14,7 @@ function Header () {
         <HeaderWrap>
             <HeaderConWrap>
             <LogoWrap>
-                <HeaderFix onClick={() => {navigate(`/`)}}>renDev</HeaderFix>
+                <HeaderFix onClick={() => {navigate(`/`)}}>ren<span style={{color:"#AE97E3"}}>D</span>ev</HeaderFix>
             </LogoWrap>
                 <HeaderLeftWrap>
 
@@ -43,7 +43,8 @@ const HeaderWrap = styled.div`
     justify-content: space-around;
     align-items: center;
     padding: 10px;
-    border-bottom: 2px solid #D0D3D4;
+    /* border-bottom: 2px solid #D0D3D4; */
+    background-color: #303032;
     /* z-index: 900;
     position: fixed;
     top: 0%;
@@ -59,7 +60,7 @@ const LogoWrap = styled.div`
 `
 
 const HeaderFix = styled.span`
-    color: #685BC7;
+    color: #fff;
 `
 
 const HeaderConWrap = styled.div`
@@ -89,7 +90,7 @@ const FindProject = styled.button`
     background-color: transparent;
     /* margin: 10px; */
     font-size: 16px;
-    color: #685BC7;
+    color: #FFF;
     font-weight: bold;
 
 `
@@ -113,7 +114,7 @@ const LoginButton = styled.button`
     background-color: transparent;
     margin-right: 10px;
     cursor: pointer;
-    color: #685BC7;
+    color: #fff;
 
 `
 
@@ -122,7 +123,7 @@ const CircleImage = styled.div`
     width: 40px;
     height:40px;
     border-radius: 50px;
-    background-color: #685BC7;
+    background-color: #AE97E3;
     cursor: pointer;
 `
 
