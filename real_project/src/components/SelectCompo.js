@@ -110,9 +110,6 @@ function SelectCompo() {
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
-
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
@@ -130,6 +127,8 @@ function SelectCompo() {
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
                     <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
 

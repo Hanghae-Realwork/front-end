@@ -106,7 +106,7 @@ function SelectCompo() {
           <ul className="optionList">
             <li className="ListinOption">프론트엔드 엔지니어</li>
             <li className="ListinOption">백엔드 엔지니어</li>
-            <li className="ListinOption">개발자</li>
+            {/* <li className="ListinOption">개발자</li> */}
             <li className="ListinOption">디자이너</li>
           </ul>
         </Dropdown>
@@ -142,75 +142,47 @@ function SelectCompo() {
               <SelectBoxTab>
                 {/* <라벨> <인풋> </인풋> </라벨> 구조로, 라벨 안에 먹이면 라벨과 하나로 묶입니다. */}
                 {/* 이 외에도 다양하게 마크업의 꺾쇠 안에 <><><></></></> 이런 식으로 먹여 코드를 압축하거나 묶을 수 있습니다. */}
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>React
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Vue.js
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>JavaScript
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Node.js
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Java
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Spring
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Python
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>C
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>C++
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>C#
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Swift
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Kotlin
-                </TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>React</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Vue.js</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
               </SelectBoxTab>
             </SelectAllWrap>
 
             <SelectAllWrap>
               <TitleTextTag>디자이너</TitleTextTag>
               <SelectBoxTab>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Figma
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Adobe XD
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Illustrator
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>3D MAX
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Blender
-                </TecLabel>
+                <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
+                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
+                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe Illustrator</TecLabel>
+                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe PhotoShop</TecLabel>
+                <TecLabel><CheckBox type="checkbox"></CheckBox>Invision</TecLabel>
+                <TecLabel><CheckBox type="checkbox"></CheckBox>Sketch</TecLabel>
+                <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
               </SelectBoxTab>
             </SelectAllWrap>
             <SelectButtonWrap>
@@ -272,7 +244,7 @@ const DropDownButton = styled.label`
   width: 150px;
   color: white;
   font-weight: bold;
-  background-color: #685bc7;
+  background-color: #AE97E3;
 `;
 
 const DropText = styled.div`
@@ -284,9 +256,9 @@ const DropText = styled.div`
 `;
 
 const SelectBoxWrap = styled.div`
-  border: 3px solid #685bc7;
+  border: 3px solid #AE97E3;
   width: 600px;
-  height: 280px;
+  height: 380px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -316,7 +288,7 @@ const SelectBoxTab = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-  gap: 10px;
+  gap: 13px;
 `;
 
 const TecLabel = styled.label`
@@ -327,7 +299,7 @@ const SelectButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  background-color: #685bc7;
+  background-color: #AE97E3;
   color: white;
   padding: 10px;
   margin-top: 30px;
@@ -351,13 +323,13 @@ const CheckBox = styled.input`
     background-size: 100% 100%;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-color: #685bc7;
+    background-color: #AE97E3;
   }
 `;
 
 const TitleTextTag = styled.p`
   font-weight: bold;
-  color: #685bc7;
+  color: #AE97E3;
 `;
 
 const SelectButtonWrap = styled.div`
@@ -366,7 +338,7 @@ const SelectButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  /* gap: 15px; */
 `;
 
 const SpanInText = styled.div`
@@ -377,7 +349,7 @@ const RecritButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  background-color: #24135f;
+  background-color: #AE97E3;
   padding: 10px;
   border-radius: 10px;
   color: white;

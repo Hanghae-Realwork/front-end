@@ -30,7 +30,7 @@ const CardRecruit = () => {
 
 
 const CardRecruitWrap = styled.div`
-    border: 3px solid #A7A4E0;
+    border: 3px solid #AE97E3;
     width: auto;
     height: auto;
     display: flex;
@@ -75,7 +75,7 @@ const CardTitle = styled.div`
 const TitleText = styled.span`
     font-weight: bold;
     font-size: 18px;
-    color: #685BC7;
+    color: #AE97E3;
 `
 
 const DayInfo = styled.div`

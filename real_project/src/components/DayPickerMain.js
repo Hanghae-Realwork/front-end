@@ -33,7 +33,8 @@ const DayPickerMain = () => {
         <Container1 type="button" className="pa2 bg-white button-reset ba"
           aria-label="Pick a date" onClick={onClickToggle}>
           <ContainerStartDateDiv1>
-            <ButtonName>프로젝트 시작<SelectedDate>{format(selected.from, "MM월 dd일 ")}</SelectedDate></ButtonName>
+            <ButtonName>프로젝트 시작<SelectedDate>
+              {format(selected.from, "MM월 dd일 ")}</SelectedDate></ButtonName>
           </ContainerStartDateDiv1>
           <ContainerStartDateDiv1>
             <ButtonName>프로젝트 끝</ButtonName>
@@ -63,7 +64,10 @@ const DayPickerMain = () => {
       {footer}
       {toggle ? (
         <DayPicker className="dayPicker_container__divMain"
-          styles={{caption: { fontSize: "13px", padding: "10px", color: "#AE97E3" }}}
+          styles={{caption: 
+            { fontSize: "13px", color: "white", padding: "5px",
+          backgroundColor:"#AE97E3" }
+        }}
           mode="range"
           selected={selected}
           onSelect={setSelected}
@@ -82,14 +86,15 @@ const Container1 = styled.div`
   justify-content: center;
   align-items: center;
   outline: none;
-  background-color: #685bc7;
+  background-color: #AE97E3;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   font-weight: bold;
   color: white;
   cursor: pointer;
   /* border: 1px solid black; */
-  width: 170px;
+  min-width: 150px;
+  max-width: 490px;
 `;
 
 //시작날짜, 끝날짜 따로따로
@@ -100,6 +105,7 @@ const ContainerStartDateDiv1 = styled.div`
   align-items: center;
   /* padding: 5px; */
   /* border: 1px solid black; */
+  /* max-width: 490px; */
 `;
 
 //시작날짜 폰트
@@ -115,8 +121,10 @@ const ButtonName = styled.span`
 
 //선택날짜 폰트
 const SelectedDate = styled.span`
-  min-width: 110px;
-  font-size: 13px;
+  /* min-width: 110px; */
+  font-size: 12px;
+  margin-left: 5px;
+  margin-right: 10px;
 `;
 
 //전체
@@ -126,6 +134,8 @@ const DivDayPicker = styled.div`
   justify-content: end;
   align-items: center;
   position: relative;
+  /* border: 1px solid black; */
+  /* max-width: 520px; */
 `;
 
 
