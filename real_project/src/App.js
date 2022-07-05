@@ -16,6 +16,7 @@ import MainRecruit from "./pages/MainRecruit";
 import Recruit from "./pages/Recruit";
 import RecruitWrite from "./pages/RecruitWrite";
 import Main from "./pages/Main";
+import Test from "./pages/Test";
 
 //Components 연결
 
@@ -33,7 +34,7 @@ function App() {
       <Header />
       {/* </MainHeader> */}
       {/* <AddProfile/> */}
-
+      {/* <Test/> */}
       {/* <Chat/> */}
       {/* <EmploymentProfile/> '완료' */}
       {/* <Join/> '완료' */}
