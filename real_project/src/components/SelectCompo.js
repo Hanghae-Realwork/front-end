@@ -6,155 +6,287 @@ import styled from "styled-components";
 import up from "../image/up-fill.svg";
 import down from "../image/down-fill.svg";
 
+import { useNavigate } from "react-router-dom";
 function SelectCompo() {
-
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
 
+  //드롭다운 스테이트 (전역)
+  //스택 선택 스테이트 (전역))
+  const [dropdownVisibility, setDropdownVisibility] = useState(false);
+  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = useState(false);
 
-    //드롭다운 스테이트 (전역)
-    //스택 선택 스테이트 (전역))
-    const [dropdownVisibility, setDropdownVisibility] = useState(false);
-    const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = useState(false);
+  //드롭다운 컴포넌트 (자식 18 ~ 40)
+  const Dropdown = (props) => {
+    const [visibilityAnimation, setVisibilityAnimation] = useState(false);
+    const [repeat, setRepeat] = useState(null);
 
-    //드롭다운 컴포넌트 (자식 18 ~ 40)   
-    const Dropdown = props => {
-        const [visibilityAnimation, setVisibilityAnimation] = useState(false);
-        const [repeat, setRepeat] = useState(null);
-    
-        React.useEffect(() => {
-            if (props.visibility) {
-                clearTimeout(repeat);
-                setRepeat(null);
-                setVisibilityAnimation(true);
-            } else {
-                setRepeat(setTimeout(() => {
-                    setVisibilityAnimation(false);
-                }, 400));
-            }
-        }, [props.visibility]);
-    
-        return (
-            <article className={`components-dropdown ${props.visibility ? 'slide-fade-in-dropdown' : 'slide-fade-out-dropdown'}`}>
-                { visibilityAnimation && props.children }
-            </article>
-        )
-    };
+    React.useEffect(() => {
+      if (props.visibility) {
+        clearTimeout(repeat);
+        setRepeat(null);
+        setVisibilityAnimation(true);
+      } else {
+        setRepeat(
+          setTimeout(() => {
+            setVisibilityAnimation(false);
+          }, 400)
+        );
+      }
+    }, [props.visibility]);
 
+    return (
+      <article
+        className={`components-dropdown ${
+          props.visibility
+            ? "slide-fade-in-dropdown"
+            : "slide-fade-out-dropdown"
+        }`}
+      >
+        {visibilityAnimation && props.children}
+      </article>
+    );
+  };
 
-    //스택 선택 드롭다운 (43 ~ 65)
-    const DropdownSkill = props => {
-        const [visibilityAni, setVisibilityAni] = useState(false);
-        const [repeatSkill, setRepeatSkill] = useState(null);
-    
-        React.useEffect(() => {
-            if (props.visibility) {
-                clearTimeout(repeatSkill);
-                setRepeatSkill(null);
-                setVisibilityAni(true);
-            } else {
-                setRepeatSkill(setTimeout(() => {
-                    setVisibilityAni(false);
-                }, 400));
-            }
-        }, [props.visibility]);
-    
-        return (
-            <article className={`components-dropdown ${props.visibility ? 'slide-fade-in-dropdown' : 'slide-fade-out-dropdown'}`}>
-                { visibilityAni && props.children }
-            </article>
-        )
-    };
+  //스택 선택 드롭다운 (43 ~ 65)
+  const DropdownSkill = (props) => {
+    const [visibilityAni, setVisibilityAni] = useState(false);
+    const [repeatSkill, setRepeatSkill] = useState(null);
 
+    React.useEffect(() => {
+      if (props.visibility) {
+        clearTimeout(repeatSkill);
+        setRepeatSkill(null);
+        setVisibilityAni(true);
+      } else {
+        setRepeatSkill(
+          setTimeout(() => {
+            setVisibilityAni(false);
+          }, 400)
+        );
+      }
+    }, [props.visibility]);
 
+    return (
+      <article
+        className={`components-dropdown ${
+          props.visibility
+            ? "slide-fade-in-dropdown"
+            : "slide-fade-out-dropdown"
+        }`}
+      >
+        {visibilityAni && props.children}
+      </article>
+    );
+  };
 
-    //드롭다운 컴포넌트 (본체 69 ~ 87)
-    const App = props => {
-        return (
-            <DropDownWrap>
-                <DropDownButton onClick={e => setDropdownVisibility(!dropdownVisibility)}>
-                {dropdownVisibility ? <DropText><SpanInText>닫기</SpanInText><img src = {up} /></DropText> : 
-                    <DropText><SpanInText>직군 선택하기</SpanInText><img src = {down} /></DropText>}
-            </DropDownButton>
-                <Dropdown visibility={dropdownVisibility}>
-                    <ul className='optionList'>
-                        <li className='ListinOption'>프론트엔드 엔지니어</li>
-                        <li className='ListinOption'>백엔드 엔지니어</li>
-                        <li className='ListinOption'>디자이너</li>
-                    </ul>
-                </Dropdown>
-            </DropDownWrap>
-        )
-    };
+  //드롭다운 컴포넌트 (본체 69 ~ 87)
+  const App = (props) => {
+    return (
+      <DropDownWrap>
+        <DropDownButton
+          onClick={(e) => setDropdownVisibility(!dropdownVisibility)}
+        >
+          {dropdownVisibility ? (
+            <DropText>
+              <SpanInText>닫기</SpanInText>
+              <img src={up} />
+            </DropText>
+          ) : (
+            <DropText>
+              <SpanInText>직군 선택하기</SpanInText>
+              <img src={down} />
+            </DropText>
+          )}
+        </DropDownButton>
+        <Dropdown visibility={dropdownVisibility}>
+          <ul className="optionList">
+            <li className="ListinOption">프론트엔드 엔지니어</li>
+            <li className="ListinOption">백엔드 엔지니어</li>
+            <li className="ListinOption">디자이너</li>
+          </ul>
+        </Dropdown>
+      </DropDownWrap>
+    );
+  };
 
+  //스택 선택 드롭다운 컴포넌트 (본체 90 ~ 137)
 
-    //스택 선택 드롭다운 컴포넌트 (본체 90 ~ 137)
+  const AppSkill = (props) => {
+    return (
+      <DropDownWrap>
+        <DropDownButton
+          onClick={(e) => setDropdownVisibilitySkill(!dropdownVisibilitySkill)}
+        >
+          {dropdownVisibilitySkill ? (
+            <DropText>
+              <SpanInText>닫기</SpanInText>
+              <img src={up} />
+            </DropText>
+          ) : (
+            <DropText>
+              {" "}
+              <SpanInText>스킬 및 스택 선택하기</SpanInText>
+              <img src={down} />
+            </DropText>
+          )}
+        </DropDownButton>
+        <Dropdown visibility={dropdownVisibilitySkill}>
+          <SelectBoxWrap>
+            <SelectAllWrap>
+              <TitleTextTag>개발자</TitleTextTag>
+              <SelectBoxTab>
+                {/* <라벨> <인풋> </인풋> </라벨> 구조로, 라벨 안에 먹이면 라벨과 하나로 묶입니다. */}
+                {/* 이 외에도 다양하게 마크업의 꺾쇠 안에 <><><></></></> 이런 식으로 먹여 코드를 압축하거나 묶을 수 있습니다. */}
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>React
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Vue.js
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>JavaScript
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Node.js
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Java
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Spring
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Python
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>MongoDB
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>MySQL
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Redis
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>TypeScript
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Ruby
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>AWS
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Go
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>PHP
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Git
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>.NET
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>React Native
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Django
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Flask
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Nest.JS
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Express.JS
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>NoSQL
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>SQL
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Swift
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Kotlin
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>Android
+                </TecLabel>
+                <TecLabel>
+                  {" "}
+                  <CheckBox type="checkbox"></CheckBox>iOS
+                </TecLabel>
+              </SelectBoxTab>
+            </SelectAllWrap>
 
-    const AppSkill = props => {
-        return (
-          <DropDownWrap>
-            <DropDownButton
-              onClick={(e) => setDropdownVisibilitySkill(!dropdownVisibilitySkill)}>
-              {dropdownVisibilitySkill ? ( <DropText><SpanInText>닫기</SpanInText><img src={up} /></DropText>) : 
-              (<DropText> <SpanInText>스킬 및 스택 선택하기</SpanInText><img src={down} /></DropText>)}
-            </DropDownButton>
-            <Dropdown visibility={dropdownVisibilitySkill}>
-              <SelectBoxWrap>
-                <SelectAllWrap>
-                  <TitleTextTag>개발자</TitleTextTag>
-                <SelectBoxTab>
-                    {/* <라벨> <인풋> </인풋> </라벨> 구조로, 라벨 안에 먹이면 라벨과 하나로 묶입니다. */}
-                    {/* 이 외에도 다양하게 마크업의 꺾쇠 안에 <><><></></></> 이런 식으로 먹여 코드를 압축하거나 묶을 수 있습니다. */}
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>React</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Vue.js</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
-                    <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
-
-                </SelectBoxTab>
-                </SelectAllWrap>
-
-                <SelectAllWrap>
-                  <TitleTextTag>디자이너</TitleTextTag>
-                  <SelectBoxTab>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe Illustrator</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe PhotoShop</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Invision</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Sketch</TecLabel>
-                    <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
-                  </SelectBoxTab>
-                </SelectAllWrap>
-                <SelectButtonWrap>
-                  <SelectButton> 선택 완료 </SelectButton>
-                </SelectButtonWrap>
-              </SelectBoxWrap>
-            </Dropdown>
-          </DropDownWrap>
-        )}
+            <SelectAllWrap>
+              <TitleTextTag>디자이너</TitleTextTag>
+              <SelectBoxTab>
+                <TecLabel>
+                  <CheckBox type="checkbox"></CheckBox>Figma
+                </TecLabel>
+                <TecLabel>
+                  <CheckBox type="checkbox"></CheckBox>Adobe XD
+                </TecLabel>
+                <TecLabel>
+                  <CheckBox type="checkbox"></CheckBox>Adobe Illustrator
+                </TecLabel>
+                <TecLabel>
+                  <CheckBox type="checkbox"></CheckBox>Adobe PhotoShop
+                </TecLabel>
+                <TecLabel>
+                  <CheckBox type="checkbox"></CheckBox>Invision
+                </TecLabel>
+                <TecLabel>
+                  <CheckBox type="checkbox"></CheckBox>Sketch
+                </TecLabel>
+                <TecLabel>
+                  <CheckBox type="checkbox"></CheckBox>Protopie
+                </TecLabel>
+              </SelectBoxTab>
+            </SelectAllWrap>
+            <SelectButtonWrap>
+              <SelectButton> 선택 완료 </SelectButton>
+            </SelectButtonWrap>
+          </SelectBoxWrap>
+        </Dropdown>
+      </DropDownWrap>
+    );
+  };
 
 
 
