@@ -1,12 +1,60 @@
 import styled from "styled-components";
 
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import {React, useRef} from "react"
 
 function Login() {
+  
+  const loginidRef = useRef(null);
+  const passwordRef = useRef(null);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
+  // 이벤트 리스너 (입력 완료 후 '엔터'키를 눌러서 로그인 할 수 있게 합니다.)
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      loginFunction();
+    }
+  });
+
+
+  // 로그인 벨리데이션 체크 함수
+  const loginFunction = async () => {
+    if (
+      loginidRef.current.value === "" ||
+      passwordRef.current.value === "" ||
+      loginidRef.current.value === " " ||
+      passwordRef.current.value === " " ||
+      loginidRef.current.value === null ||
+      passwordRef.current.value === null
+    ) {
+      alert("아이디, 비밀번호를 채워주세요!");
+      return false;
+    }}
+
+
+    //axios 연결 후 활성화 될 벨리데이션 체크 입니다.
+  //   document.getElementById("LoginBtn").disabled = true;
+  //   try {
+  //     await dispatch(
+  //       loginAxios(usernameRef.current.value, passwordRef.current.value)
+  //     ).then((success) => {
+  //       console.log(success);
+  //       if (success === true) {
+  //         navigate("/");
+  //         alert("로그인되었습니다!");
+  //       } else {
+  //         document.getElementById("LoginBtn").disabled = false;
+  //       }
+  //     });
+  //   } catch (err) {
+  //     console.log("Error >>", err);
+  //     document.getElementById("LoginBtn").disabled = false;
+  //   }
+  // };
 
   return (
     <>
@@ -17,18 +65,17 @@ function Login() {
           </LogoWrap>
           <InpuLoginWrap>
             <IdWrap>
-              <InputBar placeholder="아이디"></InputBar>
+              <InputBar ref={loginidRef} placeholder="아이디"></InputBar>
             </IdWrap>
             <PwWrap>
-              <InputBar placeholder="패스워드"></InputBar>
+              <InputBar ref={passwordRef} placeholder="패스워드"></InputBar>
             </PwWrap>
           </InpuLoginWrap>
           <ButtonWrap>
             <LoginButton>로그인</LoginButton>
           </ButtonWrap>
           <LoginText>랑데브가 처음인가요? 
-            <span style={{color:"#685BC7", fontWeight:"bold", cursor:"pointer", marginLeft:"15px"}} 
-              onClick={() => {navigate(`/join`)}}>회원 가입하기</span></LoginText>
+            <MovetoJoin onClick={() => {navigate(`/join`)}}>회원 가입하기</MovetoJoin></LoginText>
         </AlignWrap>
       </LoginWrap>
     </>
@@ -128,6 +175,13 @@ const LoginButton = styled.button`
 const LoginText = styled.span`
   font-size: 14px;
   margin-top:20px;
+`
+
+const MovetoJoin = styled.span`
+  color: #685BC7;
+  font-weight: bold; 
+  cursor: pointer; 
+  margin-left: 15px;
 `
 
 

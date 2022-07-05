@@ -13,33 +13,31 @@ function Main () {
         <>
             <MainAllWrap className="MainBack">
                 <MaininTitleTopWrap>
-                    <HeadTitleWrap><TitleMain>프로젝트와 사람이 만나는 곳,<br/>여기는 renDev입니다</TitleMain></HeadTitleWrap>
-                    <SubWrap><SubMain>우주 공간을 초속 수십킬로로 유영하는 두 개발자의 상대속도가 0이 되어 마주치는 순간을 
-                        우리는 renDev라고 부르기로 했어요. <br/>개발자들은 물론, 디자이너 까지. 
-                        프로젝트에 필요한 모든 사람의 도킹을 도와드리는 renDev에서 새로운 방식의 협업을 시작해 보세요.</SubMain></SubWrap>
+                    <HeadTitleWrap><TitleMain>사람과 아이디어의 조우<span style={{fontSize:"49px", fontWeight:"bold"}}>, renDev</span></TitleMain></HeadTitleWrap>
+                    <SubWrap><SubMain>우주항공용어로 랑데부(Rendez-Vous)란, 드넓은 우주를 유영하던 두 물체의 만남을 말합니다.
+                        개발자들은 물론, 디자이너까지, 아이디어의 우주를 헤엄치며 함께할 팀원을 찾는 여러분께 renDev가 협업을 위한 랑데부 포인트가 되어드리겠습니다.</SubMain></SubWrap>
                     <MainButtonWrap>
                         <PageButton onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 페이지로 가기</PageButton>
-                        <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>팀원 페이지로 가기</PageButton2>
+                        <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>크루원 구하러 가기</PageButton2>
                         </MainButtonWrap>
                 </MaininTitleTopWrap>
             </MainAllWrap>
                 
-            <MainBotWrap>
+            <MainTextBotWrap>
                 <MainBotText>
                     <MainTextTitle>
-                        <TitleSpan>renDev는 이런 서비스 입니다</TitleSpan>
+                        {/* <TitleSpan>renDev는 이런 서비스 입니다</TitleSpan> */}
                         <ContentSpan>저 멀리 시대에 뒤쳐진 은하계 서쪽 소용돌이의 끝, 
                             지도에도 나와 있지 않은 그 변두리 지역에 아무도 주목하지 않는 작은 노란색 항성이 하나 있다.
                             <SubSpan> ~은하수를 여행하는 히치하이커를 위한 안내서~ (더글라스 애덤스)</SubSpan>
                             <br/>은하수를 여행하는 히치하이커 라는 작품을 아시나요?
-                            여기는 획기적인 아이디어의 프로젝트가 준비 되어 있는데, 
-                            팀원을 어떻게 구할지 고민하시는 히치하이커들을 위해 준비 된 공간 renDev 입니다.
+                            프로젝트를 함께할 사람들을 기다리는 히치하이커들을 위한 공간, 신선한 아이디어의 프로젝트와 준비된 크루원들이 모이는 이곳은 renDev입니다.
                             
                         </ContentSpan>
 
                     </MainTextTitle>
                 </MainBotText>
-            </MainBotWrap>
+            </MainTextBotWrap>
         </>
 
     )
@@ -60,7 +58,7 @@ const MainAllWrap = styled.div`
 
 const MaininTitleTopWrap = styled.div`
   /* border: 1px solid black; */
-  width: 400px;
+  width: 500px;
   height: 350px;
   margin-left: 100px;
   margin-bottom: 70px;
@@ -100,7 +98,7 @@ const PageButton = styled.button`
   border-radius: 5px;
   font-weight: bold;
   padding: 12px;
-  background-color: #2e008b;
+  background-color: #AE97E3;
   color: white;
   cursor: pointer;
 `;
@@ -111,7 +109,7 @@ const PageButton2 = styled.button`
   border-radius: 5px;
   font-weight: bold;
   padding: 12px;
-  background-color: #b884cb;
+  background-color: #77C3E7;
   color: white;
   cursor: pointer;
 `;
@@ -136,6 +134,16 @@ const MainBotWrap = styled.div`
     align-items: center;
 `
 
+const MainTextBotWrap = styled.div`
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #303032;
+`
+
 const MainBotText = styled.div`
     /* border: 1px solid black; */
     width: 155vh;
@@ -143,7 +151,7 @@ const MainBotText = styled.div`
 `
 
 const MainTextTitle = styled.div`
-
+    color: white;
 `
 
 const TitleSpan = styled.p`
