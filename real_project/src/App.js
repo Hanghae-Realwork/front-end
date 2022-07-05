@@ -19,10 +19,8 @@ import Main from "./pages/Main";
 import Test from "./pages/Test";
 
 //Components 연결
-
 import Header from "./components/Header"
 import Loading from "./pages/Loading"
-import BoardNew from './test-componets/TestFormHook';
 
 
 // import SelectBox from "./components/SelectBox";
@@ -60,7 +58,7 @@ function App() {
         <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
       </Routes>
-      <BoardNew/>
+      {/* <BoardNew/> */}
     </MainWrap>
   );
 }
