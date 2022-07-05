@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { signupAxios, userInfo, checkUserIdAxios } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
-import { flushSync } from "react-dom";
 
+import { useForm } from "react-hook-form";
 function Join() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -1,4 +1,3 @@
-// 라이브러리 및 그 외
 import "./App.css";
 import React from "react";
 import styled from "styled-components";
@@ -21,16 +20,6 @@ import Test from "./pages/Test";
 //Components 연결
 import Header from "./components/Header";
 import Loading from "./pages/Loading";
-
-import Addprofile from "./pages/AddProfile";
-import Chat from "./pages/Chat";
-import EmploymentProfile from "./pages/EmploymentProfile";
-import Join from "./pages/Join";
-import Login from "./pages/Login";
-import MainEmployment from "./pages/MainEmployment";
-import MainRecruit from "./pages/MainRecruit";
-import Recruit from "./pages/Recruit";
-import RecruitWrite from "./pages/RecruitWrite";
 
 // import SelectBox from "./components/SelectBox";
 
