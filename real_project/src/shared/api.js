@@ -49,18 +49,16 @@ export const apis = {
     phoneNumber,
     password,
     passwordCheck,
-    profileImage,
     allCheck
   ) =>
     api.post("/api/users/signup", {
       userId: userId,
       nickname: nickname,
+      password: password,
+      passwordCheck: passwordCheck,
       name: name,
       birth: birth,
       phone: phoneNumber,
-      password: password,
-      passwordCheck: passwordCheck,
-      profileImage: profileImage,
       policy: allCheck,
     }),
 

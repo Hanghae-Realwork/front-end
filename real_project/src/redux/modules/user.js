@@ -13,7 +13,7 @@ const initialState = {
     phone: null,
     password: null,
     passwordCheck: null,
-    policy: null,
+    policy: false,
   },
   userInfo: {
     userEmail: null,
@@ -42,10 +42,20 @@ export const signupAxios = (
   phoneNumber,
   password,
   passwordCheck,
-  profileImage,
   allCheck
 ) => {
   return async function (dispatch) {
+    console.log(
+      "보내기 전:",
+      userId,
+      nickname,
+      name,
+      birth,
+      phoneNumber,
+      password,
+      passwordCheck,
+      allCheck
+    );
     let res = null;
     await apis
       .signup(
@@ -56,7 +66,6 @@ export const signupAxios = (
         phoneNumber,
         password,
         passwordCheck,
-        profileImage,
         allCheck
       )
       .then(() => {
@@ -81,6 +90,22 @@ export const checkUserIdAxios = (userId) => {
       })
       .catch((err) => {
         console.log(err);
+        checksuccess = false;
+      });
+    return checksuccess;
+  };
+};
+
+export const checkUserNicknameAxios = (nickname) => {
+  return async function (dispatch) {
+    let checksuccess = null;
+    await apis
+      .checkUserNickname(nickname)
+      .then(() => {
+        checksuccess = true;
+      })
+      .catch((err) => {
+        console.log(err.response.data.errorMessage);
         checksuccess = false;
       });
     return checksuccess;
