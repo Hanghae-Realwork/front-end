@@ -53,7 +53,7 @@ const AllCardWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-    clip-path: polygon(100% 0, 86% 0, 100% 10%);
+    /* clip-path: polygon(100% 0, 40% 0, 100% 10%); */
 
 `
 
