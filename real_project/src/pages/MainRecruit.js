@@ -1,20 +1,31 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { loadRecruitsApi } from "../redux/modules/postRecruit";
 
 import Card from "../components/CardRecruit";
 
 import RecSelectCompo from "../components/RecSelectCompo";
 
 
-const MainRecruit = () => {
+const MainRecruit = (list) => {
   const navigate = useNavigate();
-
+  const [card_list, setCard_list] = useState()
   // 배열 출력 테스트
+  const dispatch = useDispatch();
+  const loadRecruits = useSelector((state) => state);
+  // Array.from({ length: 25 }, (v, i) => i);
+  // console.log(loadRecruits.postRecruit.list.projects);
+  const Card_list = loadRecruits.postRecruit.list.projects;
+  console.log(Card_list)
+  useEffect(() => {
+    dispatch(loadRecruitsApi());
+  }, [dispatch]
 
-  const Card_list = Array.from({ length: 25 }, (v, i) => i);
-  //   console.log(Card_list);
+  );
+  // console.log(list);
 
   return (
     <>
@@ -25,11 +36,13 @@ const MainRecruit = () => {
       <CardContainerWrap>
         {Card_list === undefined
           ? null
-          : Card_list.map((list, idx) => {
-              return <Card key={idx} />;
+          : Card_list.map((list, projectId ) => {
+              return <Card key={projectId }
+               />;
             })}
+
       </CardContainerWrap>
-      
+
     </>
   );
 };
