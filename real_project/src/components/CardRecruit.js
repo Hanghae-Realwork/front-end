@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom";
 // import _ from "lodash";
 import Tag from "./TagCompo"
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
+
+// import Recepit from "../image/Ellipsis.svg"
 // import { loadRecruitsApi } from "../redux/modules/postRecruit";
+import Recepit from "../image/recepie.svg"
 
 
 
@@ -39,7 +42,7 @@ const dispatch=useDispatch
                             </CardTitleInfo>
                             <CardMainTextInfo>
                                 <CardMainText>
-                                    [여기에 내용이 노출 됩니다]
+                                    {list.subscript}
                                     <br />
                                     {list.subscript}
                                 </CardMainText>
@@ -86,7 +89,8 @@ const AllWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    clip-path: inset(0 5px 0 5px);
+
+    /* clip-path: inset(0 5px 0 5px); */
 `
 
 const AllTopWrap = styled.div`
