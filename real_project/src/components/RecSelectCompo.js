@@ -87,18 +87,32 @@ function SelectCompo() {
   const App = (props) => {
     return (
       <DropDownWrap>
-        <DropDownButton
-          onClick={(e) => setDropdownVisibility(!dropdownVisibility)}
-        >
+        <DropDownButton onClick={(e) => setDropdownVisibility(!dropdownVisibility)}>
           {dropdownVisibility ? (
             <DropText>
-              <SpanInText>닫기</SpanInText>
-              <img src={up} />
+              <TextImageWrap>
+              <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="black"/>
+              <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="black"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
+              </svg>
+              <SpanInText>닫기</SpanInText></TextImageWrap>
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#323232"/>
+              </svg>
             </DropText>
           ) : (
             <DropText>
-              <SpanInText>직군 선택하기</SpanInText>
-              <img src={down} />
+              <TextImageWrap>
+                <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="black"/>
+                  <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="black"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
+                </svg>          
+                <SpanInText>직군 선택하기</SpanInText></TextImageWrap>
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#303032"/>
+                </svg>
             </DropText>
           )}
         </DropDownButton>
@@ -119,29 +133,38 @@ function SelectCompo() {
   const AppSkill = (props) => {
     return (
       <DropDownWrap>
-        <DropDownButton
-          onClick={(e) => setDropdownVisibilitySkill(!dropdownVisibilitySkill)}
-        >
+        <DropDownButtonSkill onClick={(e) => setDropdownVisibilitySkill(!dropdownVisibilitySkill)}>
           {dropdownVisibilitySkill ? (
-            <DropText>
-              <SpanInText>닫기</SpanInText>
-              <img src={up} />
-            </DropText>
+            <DropTextSkill>
+              <TextImageWrap>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
+                </svg><SpanInText>닫기</SpanInText>
+              </TextImageWrap>
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#323232"/>
+              </svg>
+            </DropTextSkill>
           ) : (
-            <DropText>
-              {" "}
-              <SpanInText>스킬 및 스택 선택하기</SpanInText>
-              <img src={down} />
-            </DropText>
+            <DropTextSkill>
+              <TextImageWrap>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
+                </svg>
+
+                <SpanInText>스킬 및 스택</SpanInText>
+              </TextImageWrap>
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#303032"/>
+                </svg>
+            </DropTextSkill>
           )}
-        </DropDownButton>
+        </DropDownButtonSkill>
         <Dropdown visibility={dropdownVisibilitySkill}>
           <SelectBoxWrap>
             <SelectAllWrap>
               <TitleTextTag>개발자</TitleTextTag>
               <SelectBoxTab>
-                {/* <라벨> <인풋> </인풋> </라벨> 구조로, 라벨 안에 먹이면 라벨과 하나로 묶입니다. */}
-                {/* 이 외에도 다양하게 마크업의 꺾쇠 안에 <><><></></></> 이런 식으로 먹여 코드를 압축하거나 묶을 수 있습니다. */}
                 <TecLabel> <CheckBox type="checkbox"></CheckBox>React</TecLabel>
                   <TecLabel> <CheckBox type="checkbox"></CheckBox>Vue.js</TecLabel>
                   <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
@@ -197,32 +220,26 @@ function SelectCompo() {
   // 리턴 컴포넌트 최종(출력 구간)
   return (
     <DropDownAllWrap>
-      <SerchMenuWrap>
-        <App /> <AppSkill />
-        <DayPickerMain />{" "}
-      </SerchMenuWrap>
+      <div>
+        <CompoWrap><App /> <DayPickerMain /> <AppSkill /> </CompoWrap>
+      </div>
       <RecButtonWrap>
-        <RecritButton
-          onClick={() => {
-            navigate(`/recruitwrite`);
-          }}
-        >
-          프로젝트 개시하기
-        </RecritButton>
+        <RecritButton onClick={() => {navigate(`/recruitwrite`);}}>모집글 올리기</RecritButton>
       </RecButtonWrap>
     </DropDownAllWrap>
   );
 }
 
+
+
 const DropDownAllWrap = styled.div`
   /* border: 1px solid black; */
-  width: 100%;
+  width: 153vh;
   margin-top: 50px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
 `;
 
 const DropDownWrap = styled.div`
@@ -235,19 +252,45 @@ const DropDownWrap = styled.div`
 
 const DropDownButton = styled.label`
   /* border: 1px solid black; */
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  /* border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px; */
   outline: none;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 9px 13px 9px 13px;
   width: 150px;
-  color: white;
+  font-weight: 400;
+  border-right: 1px solid black;
+`;
+
+const TextImageWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`
+
+const DropDownButtonSkill = styled.label`
+  /* border: 1px solid black; */
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 9px 10px 9px 10px;
+  width: 150px;
   font-weight: bold;
-  background-color: #AE97E3;
+  /* border: 1px solid black; */
 `;
 
 const DropText = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const DropTextSkill = styled.div`
   /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
@@ -263,9 +306,9 @@ const SelectBoxWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-end;
-  border-top-right-radius: 20px;
+  /* border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom-left-radius: 20px; */
   padding: 20px;
   position: absolute;
   background-color: white;
@@ -293,6 +336,7 @@ const SelectBoxTab = styled.div`
 
 const TecLabel = styled.label`
   font-size: 14px;
+  /* border: 1px solid black; */
 `;
 
 const SelectButton = styled.button`
@@ -343,32 +387,45 @@ const SelectButtonWrap = styled.div`
 
 const SpanInText = styled.div`
   font-size: 14px;
+  font-weight: 400;
 `;
 
 const RecritButton = styled.button`
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: #AE97E3;
-  padding: 10px;
-  border-radius: 10px;
-  color: white;
-  font-weight: bold;
-  font-size: 13px;
-`;
-
-const SerchMenuWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(115.2deg, #AE97E3, #77C3E7 77.66%);
+  border-radius: 2px;
+  padding: 8px 24px 8px 24px;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  width: 127px;
+  height: 37px;
 `;
 
 const RecButtonWrap = styled.div`
   /* border: 1px solid black; */
 `;
+
+const CompoWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 560px;
+  height: 36px;
+  /* border: 1px solid black; */
+`
+
+
+
 
 export default SelectCompo;
 
