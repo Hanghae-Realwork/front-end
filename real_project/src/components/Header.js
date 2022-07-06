@@ -12,26 +12,21 @@ function Header () {
 
     return (
         <BackGroundDiv>
-        <HeaderWrap>
-            <HeaderConWrap>
-            <LogoWrap>
-                <HeaderFix onClick={() => {navigate(`/`)}}>ren<span style={{color:"#AE97E3"}}>D</span>ev</HeaderFix>
-            </LogoWrap>
-                <HeaderLeftWrap>
-
-
-                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
-=
-                    <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
-
-
-                </HeaderLeftWrap>
-                <HeaderRightWrap>
-                    <LoginButton onClick={() => {navigate(`/login`)}}>로그인</LoginButton>
-                    <CircleImage onClick={() => {navigate(`/addprofile`)}}></CircleImage>
-                </HeaderRightWrap>
-            </HeaderConWrap>
-        </HeaderWrap>
+            <HeaderWrap>
+                <HeaderConWrap>
+                    <LogoWrap>
+                        <HeaderFix onClick={() => {navigate(`/`)}}>ren<span style={{color:"#AE97E3"}}>D</span>ev</HeaderFix>
+                    </LogoWrap>
+                    <HeaderLeftWrap>
+                        <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
+                        <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
+                    </HeaderLeftWrap>
+                    <HeaderRightWrap>
+                        <LoginButton onClick={() => {navigate(`/login`)}}>로그인</LoginButton>
+                        <CircleImage onClick={() => {navigate(`/addprofile`)}}></CircleImage>
+                    </HeaderRightWrap>
+                </HeaderConWrap>
+            </HeaderWrap>
         </BackGroundDiv>
     )
 }
@@ -62,7 +57,7 @@ const LogoWrap = styled.div`
     height: 48px;
     font-weight: 700;
     font-size: 32px;
-    margin: 26px 0px 26px 0px;
+    /* margin: 26px 0px 26px 0px; */
     cursor: pointer;
     /* border: 1px solid white; */
     display: flex;

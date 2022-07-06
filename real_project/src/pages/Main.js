@@ -14,7 +14,7 @@ function Main () {
             <BackGroundDiv className="MainBack">
                 <MainAllWrap >
                     <MaininTitleTopWrap>
-                        <HeadTitleWrap><TitleMain>사람과 아이디어의 조우<span style={{fontSize:"49px", fontWeight:"bold"}}>, renDev</span></TitleMain></HeadTitleWrap>
+                        <HeadTitleWrap><TitleMain>사람과 아이디어의 조우,<span style={{fontSize:"49px", fontWeight:"bold"}}> renDev</span></TitleMain></HeadTitleWrap>
                         <SubWrap><SubMain>우주항공용어로 랑데부(Rendez-Vous)란, 드넓은 우주를 유영하던 두 물체의 만남을 말합니다.
                             개발자들은 물론, 디자이너까지, 아이디어의 우주를 헤엄치며 함께할 팀원을 찾는 여러분께 renDev가 협업을 위한 랑데부 포인트가 되어드리겠습니다.</SubMain></SubWrap>
                         <MainButtonWrap>
@@ -65,6 +65,7 @@ const MainAllWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-end;
+  padding: 0px 0px 0px 110px ;
 `;
 
 const MaininTitleTopWrap = styled.div`

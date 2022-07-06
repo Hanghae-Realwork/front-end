@@ -220,14 +220,13 @@ const CardBotTextDateInfo = styled.div`
     line-height: 21px;
 `
 
-
 const CardViewButton = styled.button`
     width: 340px;
     height: 40px;
     padding: 8px;
     margin-top: 20px;
     margin-bottom: 12.5px;
-    background: linear-gradient(45deg, #AE97E3, #77C3E7);
+    background: #303032;
     border: none;
     outline: none;
     cursor: pointer;
