@@ -17,8 +17,12 @@ function Header () {
                 <HeaderFix onClick={() => {navigate(`/`)}}>ren<span style={{color:"#AE97E3"}}>D</span>ev</HeaderFix>
             </LogoWrap>
                 <HeaderLeftWrap>
-                    <FindProject onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
+
+
+                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
+=
                     <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
+
 
                 </HeaderLeftWrap>
                 <HeaderRightWrap>

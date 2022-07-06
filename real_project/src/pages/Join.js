@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { signupAxios, userInfo } from "../redux/modules/user";
+import { signupAxios, userInfo, checkUserIdAxios } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 import { flushSync } from "react-dom";
 
@@ -9,7 +9,7 @@ function Join() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
+  //회원가입 변수
   const [userId, setUserId] = useState("");
   const [nickname, setNickName] = useState("");
   const [name, setName] = useState("");
@@ -53,7 +53,6 @@ function Join() {
     }
   }, [phoneNumber]);
 
-
   //체크박스
   useEffect(() => {
     if (ageCheck === true && useCheck === true && marketingCheck === true) {
@@ -67,7 +66,6 @@ function Join() {
     }
   }, [ageCheck, useCheck, marketingCheck]);
 
-
   //유효성검사:userID
   const onChangeUserId = (e) => {
     const emailRegex =
@@ -77,7 +75,6 @@ function Join() {
     else setUserIdError(true);
     setUserId(e.target.value);
   };
-
 
   //유효성검사:nickName
   const onChageNickName = (e) => {
@@ -94,10 +91,9 @@ function Join() {
     }
   };
 
-
   //유효성검사:Name
   const onChageName = (e) => {
-    if (e.target.value.length <= 3) {
+    if (e.target.value.length <= 2) {
       setNameError(false);
       setName(e.target.value);
     } else {
@@ -107,7 +103,6 @@ function Join() {
     setName(e.target.value);
   };
 
-
   //유효성검사:Birth
   const onChangeBirth = (e) => {
     const regex = /^[0-9\b -]{0,8}$/;
@@ -116,7 +111,6 @@ function Join() {
     }
   };
 
-
   //유효성검사:Number
   const OnChangephoneNumber = (e) => {
     const regex = /^[0-9\b -]{0,13}$/;
@@ -124,7 +118,6 @@ function Join() {
       setPhoneNumber(e.target.value);
     }
   };
-
 
   //유효성검사:Password
   const OnChangePassWord = (e) => {
@@ -140,8 +133,6 @@ function Join() {
     setPassword(e.target.value);
   };
 
-
-
   //유효성검사:PasswordCheck
   const OnChangePassWordCheck = (e) => {
     if (password === e.target.value) setConfirmPasswordError(false);
@@ -149,9 +140,7 @@ function Join() {
     setPasswordCheck(e.target.value);
   };
 
-
-
-  //체크박스
+  //체크박스 : 전체동의 체크시 다른 체크박스 true
   const allBtnEvent = () => {
     if (allCheck === false) {
       setAllCheck(true);
@@ -190,62 +179,7 @@ function Join() {
     }
   };
 
-  // const signupFunction = async () => {
-  //   console.log(
-  //     userId,
-  //     nickname,
-  //     name,
-  //     birth,
-  //     phoneNumber,
-  //     password,
-  //     passwordCheck,
-  //     profileImage,
-  //     allCheck
-  //   );
-  //   try {
-  //     await dispatch(
-  //       signupAxios(
-  //         userId,
-  //         nickname,
-  //         name,
-  //         birth,
-  //         phoneNumber,
-  //         password,
-  //         allCheck
-  //       )
-  //     ).then((res) => {
-  //       if (res === true) {
-  //         console.log(res);
-  //         navigate("/login");
-  //         alert("회원가입되었습니다!");
-  //       } else {
-  //         if (res.response.data.message === "the username already exists.") {
-  //           alert("이미 가입된 ID입니다!");
-  //           document.getElementById("SigninBtn").disabled = false;
-  //         } else if (
-  //           res.response.data.message === "the nickname already exists."
-  //         ) {
-  //           alert("이미 가입된 닉네임입니다!");
-  //           document.getElementById("SigninBtn").disabled = false;
-  //         } else if (res.response.data.errors[0] === undefined) {
-  //           alert("입력한 내용을 다시 확인해주세요!");
-  //           document.getElementById("SigninBtn").disabled = false;
-  //         } else {
-  //           alert(
-  //             res.response.data.errors[0].field +
-  //               "에 " +
-  //               res.response.data.errors[0].reason
-  //           );
-  //           document.getElementById("SigninBtn").disabled = false;
-  //         }
-  //       }
-  //     });
-  //   } catch (err) {
-  //     alert("에러입니다!" + err);
-  //   }
-  // };
-
-  const signupFunction = () => {
+  const signupFunction = async () => {
     if (
       userId === "" ||
       nickname === "" ||
@@ -263,9 +197,51 @@ function Join() {
       passwordCheck === " "
     ) {
       alert("빈칸을 입력해주세요.");
-    } else {
-      console.log("입력");
-      document.getElementById("IDID").disabled = true;
+      return false;
+    }
+    document.getElementById("IDID").disabled = true;
+
+    try {
+      await dispatch(
+        signupAxios(
+          userId,
+          nickname,
+          name,
+          birth,
+          phoneNumber,
+          password,
+          passwordCheck,
+          profileImage,
+          allCheck
+        )
+      ).then((res) => {
+        if (res === true) {
+          console.log(res);
+          navigate("/login");
+          alert("회원가입되었습니다!");
+        } else {
+          if (res.response.data.message === "the username already exists.") {
+            alert("이미 가입된 ID입니다!");
+            document.getElementById("SigninBtn").disabled = false;
+          }
+        }
+      });
+    } catch (err) {
+      alert("에러입니다!" + err);
+    }
+  };
+  //아이디 중복체크
+  const onClickCheckUserId = async () => {
+    try {
+      await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
+        if (checksuccess === true) {
+          console.log("success", checksuccess);
+        } else {
+          console.log("error:", checksuccess);
+        }
+      });
+    } catch (err) {
+      alert("err");
     }
   };
   return (
@@ -283,6 +259,7 @@ function Join() {
                 value={userId}
                 onChange={onChangeUserId}
               ></InputBar>
+              <button onClick={onClickCheckUserId}>중복버튼</button>
               {userIdError && <ValiSpan>이메일 형식에 맞지 않습니다.</ValiSpan>}
             </IdWrap>
             <IdWrap>
