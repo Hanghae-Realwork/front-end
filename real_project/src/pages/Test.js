@@ -66,6 +66,7 @@ const AllWrap = styled.div`
     justify-content: center;
     align-items: center;
     clip-path: inset(0 5px 0 5px);
+    background-color: brown;
     /* position: absolute; */
     /* clip: rect(300 500 10% 10%)  */
 `

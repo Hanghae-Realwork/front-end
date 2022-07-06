@@ -11,6 +11,7 @@ function Header () {
     // style={{fontWeight: ? "bold" : " "}}
 
     return (
+        <BackGroundDiv>
         <HeaderWrap>
             <HeaderConWrap>
             <LogoWrap>
@@ -31,14 +32,24 @@ function Header () {
                 </HeaderRightWrap>
             </HeaderConWrap>
         </HeaderWrap>
+        </BackGroundDiv>
     )
 }
 
 
-const HeaderWrap = styled.div`
-    /* border: 1px solid black; */
+
+const BackGroundDiv = styled.div`
+    background-color: #1F1F1F;
     width: 100%;
-    min-width: 1400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const HeaderWrap = styled.div`
+    /* border: 1px solid white; */
+    width: 100%;
+    max-width: 1440px;
     height: 100px;
     display: flex;
     flex-flow: row wrap;
@@ -134,6 +145,10 @@ const CircleImage = styled.div`
     background: linear-gradient(45deg, #AE97E3, #77C3E7);
     cursor: pointer;
 `
+
+
+
+
 
 export default Header
 

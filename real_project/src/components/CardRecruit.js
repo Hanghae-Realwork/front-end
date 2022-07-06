@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import Tag from "./TagCompo"
 
+import Test from "../image/Test.svg"
+
 
 
 const CardRecruit = () => {
@@ -37,11 +39,7 @@ const CardRecruit = () => {
                     <TagWrap><Tag/><Tag/><Tag/><Tag/></TagWrap>
                 </CardTagWrap>
             </AllTopWrap>
-            <CircleWrap>
-                <AllMidWrapOne/>
                     <DashedLine/>
-                <AllMidWrapTwo/>
-            </CircleWrap>
             <AllBotWrap>
                 <CardBotTopWrap>
                     <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
@@ -60,24 +58,22 @@ const CardRecruit = () => {
 
 const AllWrap = styled.div`
     margin: 0px 24px 19px 0px;
-    border: 1px solid black;
     border-top: none;
     border-bottom: none;
-    width: 394px;
-    height: 443px;
+    width: 384px;
+    height: 426px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    clip-path: inset(0 5px 0 5px);
+    background-image: url(${Test});
+    background-position: center;
+    background-size: cover;
+    background-repeat: none;
 `
 
 const AllTopWrap = styled.div`
     border-bottom: none;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    /* border-radius: 5px; */
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     width: 384px;
@@ -86,58 +82,26 @@ const AllTopWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    /* margin-bottom: -2px; */
-    background-color: white;
-`
-
-const CircleWrap = styled.div`
-    /* border: 1px solid black; */
-    border-right: none;
-    border-left: none; 
-    width: 405px;
-    height: 40px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    clip-path: stroke-box;
-    /* background-color: white; */
-`
-
-const AllMidWrapOne = styled.div`
-    border: 1px solid black;
-    width: 35px;
-    height: 30px;
-    border-radius: 0px 30px 30px 0px;
-    background-color: transparent;
-    clip-path: stroke-box;
 `
 
 const AllMidWrapTwo = styled.div`
-    border: 1px solid black;
     width: 35px;
     height: 30px;
     border-radius: 30px 0px 0px 30px;
     background-color: transparent;
+   
 `
 
 const AllBotWrap = styled.div`
-    /* border: 1px solid black; */
     border-top: none;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    /* border-radius: 5px; */
     width: 384px;
     height: 117px;
-    /* margin-top: -1px; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    background-color: white;
 `
 
 
@@ -226,7 +190,9 @@ const TagWrap = styled.div`
 //// 센터 대쉬라인
 const DashedLine = styled.hr`
     width: 300px;
+    height: 0px;
     border: 0.5px dashed #8D8D8D;
+    margin-top: -5px;
 `
 
 
