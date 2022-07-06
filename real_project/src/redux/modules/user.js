@@ -63,7 +63,6 @@ export const signupAxios = (
         res = true;
       })
       .catch((err) => {
-        console.log(err.errorMessage);
         res = false;
       });
     return res;
