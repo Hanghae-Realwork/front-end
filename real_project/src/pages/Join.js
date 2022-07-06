@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { signupAxios, userInfo, checkUserIdAxios } from "../redux/modules/user";
+import {
+  signupAxios,
+  checkUserIdAxios,
+  checkUserNicknameAxios,
+} from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 import { flushSync } from "react-dom";
 
@@ -17,7 +21,6 @@ function Join() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  const [profileImage, setProfileImage] = useState("");
 
   //error
   const [userIdError, setUserIdError] = useState(false);
@@ -25,6 +28,7 @@ function Join() {
   const [nameError, setNameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [birthyearError, setBirthyear] = useState(true);
 
   //이용약관:동의 비동의
   const [allCheck, setAllCheck] = useState(false);
@@ -91,15 +95,8 @@ function Join() {
     }
   };
 
-  //유효성검사:Name
+  //Name
   const onChageName = (e) => {
-    if (e.target.value.length <= 2) {
-      setNameError(false);
-      setName(e.target.value);
-    } else {
-      setNameError(true);
-      setName(e.target.value);
-    }
     setName(e.target.value);
   };
 
@@ -199,8 +196,16 @@ function Join() {
       alert("빈칸을 입력해주세요.");
       return false;
     }
-    document.getElementById("IDID").disabled = true;
-
+    console.log(
+      userId,
+      nickname,
+      name,
+      birth,
+      phoneNumber,
+      password,
+      passwordCheck,
+      typeof allCheck
+    );
     try {
       await dispatch(
         signupAxios(
@@ -211,23 +216,18 @@ function Join() {
           phoneNumber,
           password,
           passwordCheck,
-          profileImage,
           allCheck
         )
       ).then((res) => {
         if (res === true) {
-          console.log(res);
           navigate("/login");
           alert("회원가입되었습니다!");
         } else {
-          if (res.response.data.message === "the username already exists.") {
-            alert("이미 가입된 ID입니다!");
-            document.getElementById("SigninBtn").disabled = false;
-          }
+          console.log("다시 시도해주세요");
         }
       });
     } catch (err) {
-      alert("에러입니다!" + err);
+      console.log("에러입니다!" + err.response);
     }
   };
   //아이디 중복체크
@@ -235,9 +235,23 @@ function Join() {
     try {
       await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
         if (checksuccess === true) {
-          console.log("success", checksuccess);
+          console.log("success");
         } else {
-          console.log("error:", checksuccess);
+          console.log("error");
+        }
+      });
+    } catch (err) {
+      alert("err");
+    }
+  };
+
+  const onClickChecknickname = async () => {
+    try {
+      await dispatch(checkUserNicknameAxios(nickname)).then((checksuccess) => {
+        if (checksuccess === true) {
+          console.log("success");
+        } else {
+          console.log("error");
         }
       });
     } catch (err) {
@@ -271,10 +285,11 @@ function Join() {
                 value={nickname}
                 onChange={onChageNickName}
               ></InputBar>
+              <button onClick={onClickChecknickname}>중복버튼</button>
               {nicknameError ? (
                 ""
               ) : (
-                <ValiSpan>한글자 이상 입력해주세요.</ValiSpan>
+                <ValiSpan>두글자 이상 입력해주세요.</ValiSpan>
               )}
             </IdWrap>
             <IdWrap>
@@ -286,8 +301,12 @@ function Join() {
                 value={name}
                 onChange={onChageName}
               ></InputBar>
-              {nameError ? "" : <ValiSpan>두글자 이상 입력해주세요.</ValiSpan>}
             </IdWrap>
+
+            <IdWrap>
+              <ValiSpan>{setBirthyear ? "" : "false오류"}</ValiSpan>
+            </IdWrap>
+
             <IdWrap>
               <InputBar
                 requiredtype="text"
