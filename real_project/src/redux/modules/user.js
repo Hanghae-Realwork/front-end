@@ -24,6 +24,7 @@ const initialState = {
 export function login(id) {
   return { type: LOGIN, id };
 }
+
 export function logOut(userInfo) {
   return { type: LOGOUT, userInfo };
 }
@@ -142,6 +143,7 @@ export default function reducer(state = initialState, action = {}) {
           userInfo: state.userInfo,
         };
       }
+
       return state;
   }
 }

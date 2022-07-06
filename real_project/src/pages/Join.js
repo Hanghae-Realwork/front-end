@@ -8,6 +8,7 @@ import {
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 
+import { useForm } from "react-hook-form";
 function Join() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
