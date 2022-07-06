@@ -78,7 +78,6 @@ function RecruitWrite() {
   } = useForm();
 
 
-
   // const 
   // const variables={
   //   data:data,
@@ -269,7 +268,9 @@ function RecruitWrite() {
           </RecruitWriteTextBotWrap>
           <div>
             <RecButtonWrap >
+
               <RecButton type="submit" disabled={isSubmitting}>모집글 올리기</RecButton>
+
 
             </RecButtonWrap>
           </div>
