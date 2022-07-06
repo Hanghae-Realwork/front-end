@@ -145,7 +145,7 @@ export const apis = {
       schedule: schedule,
     }),
   //  - 10. 프로젝트 조회
-  projectsLoad: () => api.get("/api/projects"),
+  projectsLoad: () => api.get("/api/projects?page=1&limit=9"),
 
   //  - 11. 프로젝트 상세조회
   projectsLoadDetail: (projectId) => api.get("/api/projects/${projectId}"),
