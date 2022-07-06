@@ -14,13 +14,17 @@ const DayPickerMain = () => {
   const today = new Date();
   const [toggle, setToggle] = useState(false);
 
-  console.log("날짜", selected);
+  // console.log("날짜", selected);
   const onClickToggle = () => {
     setToggle((prev) => !prev);
   };
 
   let footer = (
-    <Container1 className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
+    <Container1
+      className="pa2 bg-white button-reset ba"
+      aria-label="Pick a date"
+      onClick={onClickToggle}
+    >
       <ContainerStartDateDiv1>
         <DateFirstViewWrap>
           <DateWrap>
@@ -39,12 +43,14 @@ const DayPickerMain = () => {
              <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#303032"/>
             </svg>
         </DateFirstViewWrap>
+
       </ContainerStartDateDiv1>
     </Container1>
   );
   if (selected?.from) {
     if (!selected.to) {
       footer = (
+
         <Container1 type="button" className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
           <ContainerStartDateDiv1>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +90,9 @@ const DayPickerMain = () => {
   return (
     <DivDayPicker>
       {footer}
+
       {toggle ? (
+
         <DayPicker className="dayPicker_container__divMain"
           styles={{caption: { fontSize: "13px", color: "white", padding: "5px", backgroundColor:"#AE97E3" }}}
           mode="range" selected={selected} onSelect={setSelected} locale={ko} numberOfMonths={2} disabled={{ before: today }}></DayPicker>
@@ -100,6 +108,7 @@ const Container1 = styled.label`
   justify-content: flex-start;
   align-items: center;
   outline: none;
+
   cursor: pointer;
   /* border: 1px solid black; */
   padding: 9px 12px 9px 10px;
@@ -161,6 +170,5 @@ const DateFirstViewWrap = styled.div`
   /* border: 1px solid black; */
   width:160px;
 `
-
 
 export default DayPickerMain;
