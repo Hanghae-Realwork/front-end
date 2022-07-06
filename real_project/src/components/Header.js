@@ -1,41 +1,63 @@
-
 import React from "react";
 import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 
+function Header() {
+  const navigate = useNavigate();
+  // style={{fontWeight: ? "bold" : " "}}
 
-function Header () {
+  return (
+    <HeaderWrap>
+      <HeaderConWrap>
+        <LogoWrap>
+          <HeaderFix
+            onClick={() => {
+              navigate(`/`);
+            }}
+          >
+            ren<span style={{ color: "#AE97E3" }}>D</span>ev
+          </HeaderFix>
+        </LogoWrap>
+        <HeaderLeftWrap>
+          <FindProject
+            style={{ fontWeight: "bold" }}
+            onClick={() => {
+              navigate(`/mainrecruit`);
+            }}
+          >
+            프로젝트 찾기
+          </FindProject>
 
-    const navigate = useNavigate()
-    // style={{fontWeight: ? "bold" : " "}}
-
-    return (
-        <HeaderWrap>
-            <HeaderConWrap>
-            <LogoWrap>
-                <HeaderFix onClick={() => {navigate(`/`)}}>ren<span style={{color:"#AE97E3"}}>D</span>ev</HeaderFix>
-            </LogoWrap>
-                <HeaderLeftWrap>
-
-
-                    <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
-=
-                    <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
-
-
-                </HeaderLeftWrap>
-                <HeaderRightWrap>
-                    <LoginButton onClick={() => {navigate(`/login`)}}>로그인</LoginButton>
-                    <CircleImage onClick={() => {navigate(`/addprofile`)}}></CircleImage>
-                </HeaderRightWrap>
-            </HeaderConWrap>
-        </HeaderWrap>
-    )
+          <FindProject
+            onClick={() => {
+              navigate(`/mainemployment`);
+            }}
+          >
+            팀원 찾기
+          </FindProject>
+        </HeaderLeftWrap>
+        <HeaderRightWrap>
+          <LoginButton
+            onClick={() => {
+              navigate(`/login`);
+            }}
+          >
+            로그인
+          </LoginButton>
+          <CircleImage
+            onClick={() => {
+              navigate(`/addprofile`);
+            }}
+          ></CircleImage>
+        </HeaderRightWrap>
+      </HeaderConWrap>
+    </HeaderWrap>
+  );
 }
 
-
 const HeaderWrap = styled.div`
+
     /* border: 1px solid black; */
     width: 100%;
     height: 100px;
@@ -135,5 +157,6 @@ const CircleImage = styled.div`
 `
 
 export default Header
+
 
 
