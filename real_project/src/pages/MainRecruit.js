@@ -12,19 +12,18 @@ import RecSelectCompo from "../components/RecSelectCompo";
 
 const MainRecruit = (list) => {
   const navigate = useNavigate();
-  const [card_list, setCard_list] = useState()
+  // const [card_list, setCard_list] = useState()
   // 배열 출력 테스트
   const dispatch = useDispatch();
   const loadRecruits = useSelector((state) => state);
   // Array.from({ length: 25 }, (v, i) => i);
-  // console.log(loadRecruits.postRecruit.list.projects);
-  const Card_list = loadRecruits.postRecruit.list.projects;
-  console.log(Card_list)
+  console.log(loadRecruits.postRecruit.list.projects);
   useEffect(() => {
+   
     dispatch(loadRecruitsApi());
   }, [dispatch]
-
   );
+ 
   // console.log(list);
 
   return (
@@ -34,12 +33,9 @@ const MainRecruit = (list) => {
         <RecSelectCompo /> 
       </TopCompoWrap>
       <CardContainerWrap>
-        {Card_list === undefined
-          ? null
-          : Card_list.map((list, projectId ) => {
-              return <Card key={projectId }
-               />;
-            })}
+        
+              <Card />
+            
 
       </CardContainerWrap>
 
