@@ -6,9 +6,8 @@ import Tag from "../components/TagCompo"
 function Test () {
 
     return(
-
         <>
-        <AllWrap className="Recipiet">
+        <AllWrap>
             <AllTopWrap>
                 <CardTopInfo>
                     <CardWriteName>[작성자명]</CardWriteName>
@@ -25,23 +24,17 @@ function Test () {
                     </CardMainText>
                 </CardMainTextInfo>
                 <CardJobTextWrap>
-                    <CardJobTitle>[구하는 직군]</CardJobTitle>
                     <div style={{marginTop:"4px"}}><CardJobMainTitle>[구하는 직군 명]</CardJobMainTitle></div>
                 </CardJobTextWrap>
                 <CardTagWrap>
-                    <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br/>
-                    <div style={{marginTop:"4px"}}><Tag/><Tag/><Tag/><Tag/></div>
+                    <TagWrap><Tag/><Tag/><Tag/><Tag/></TagWrap>
                 </CardTagWrap>
             </AllTopWrap>
-            <CircleWrap>
-                <AllMidWrap/>
                     <DashedLine/>
-                <AllMidWrap/>
-            </CircleWrap>
             <AllBotWrap>
                 <CardBotTopWrap>
-                    <CardBotTextDate>프로젝트 러닝 기간:</CardBotTextDate>
-                    <CardBotTextDateInfo>22.06.20 ~ 22.08.15</CardBotTextDateInfo>
+                    <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+                    <CardBotTextDateInfo> 22.06.20 ~ 22.08.15</CardBotTextDateInfo>
                 </CardBotTopWrap>
                 <CardViewButton>프로젝트 보러 가기</CardViewButton>
             </AllBotWrap>
@@ -55,65 +48,38 @@ function Test () {
 //// 카드 전체 틀 관련 CSS 뭉치
 
 const AllWrap = styled.div`
-    margin: 60px;
     border: 1px solid black;
+    margin: 60px 24px 19px 0px;
     border-top: none;
     border-bottom: none;
-    width: 394px;
-    height: 445px;
+    width: 384px;
+    height: 330px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    clip-path: inset(0 5px 0 5px);
-    /* position: absolute; */
-    /* clip: rect(300 500 10% 10%)  */
+    background-image: url(${Test});
+    background-size: cover;
 `
 
 const AllTopWrap = styled.div`
     border-bottom: none;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     width: 384px;
-    height: 305px;
+    height: 250px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    margin-bottom: -5px;
-`
-
-const CircleWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 460px;
-    height: 50px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-`
-
-const AllMidWrap = styled.div`
-    border: 1px solid black;
-    width: 49px;
-    height: 32px;
-    border-radius: 15px;
 `
 
 const AllBotWrap = styled.div`
-    /* border: 1px solid black; */
     border-top: none;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     width: 384px;
-    height: 118.5px;
-    margin-top: -5px;
+    height: 117px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -145,6 +111,7 @@ const CardWriteTime = styled.span`
     font-size: 12px;
     width: 65px;
     height: 18px;
+    color: #8D8D8D; 
 `
 
 const CardTitleInfo = styled.div`
@@ -196,10 +163,18 @@ const CardTagWrap = styled.div`
     margin-bottom: 20px;
 `
 
+const TagWrap = styled.div`
+    /* border: 1px solid black; */
+    margin-top: 5px;
+    height: 34px;
+`
+
 //// 센터 대쉬라인
 const DashedLine = styled.hr`
-    width: 320px;
-    border: 0.5px dashed #8A8D8F;
+    width: 300px;
+    height: 0px;
+    border: 0.5px dashed #8D8D8D;
+    margin-top: -5px;
 `
 
 
@@ -227,14 +202,13 @@ const CardBotTextDateInfo = styled.div`
     line-height: 21px;
 `
 
-
 const CardViewButton = styled.button`
     width: 340px;
     height: 40px;
     padding: 8px;
     margin-top: 20px;
     margin-bottom: 12.5px;
-    background-color: black;
+    background: #303032;
     border: none;
     outline: none;
     cursor: pointer;
