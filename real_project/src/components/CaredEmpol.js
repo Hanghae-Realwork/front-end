@@ -12,13 +12,6 @@ function CradEmpol () {
         <>
             <AllCardWrap>
                 <CardTopWrap>
-                    <ProfileWrap>
-                        <ProfileCircle></ProfileCircle>
-                    </ProfileWrap>
-                    <CardTextWrap>
-                        <CardTitle>[작성자이름]</CardTitle>
-                        <CardText>[FrontEnd개발자]</CardText>
-                    </CardTextWrap>
                     <ProfileTopWrap>
                         <ProfileWrap>
                             <ProfileCircle></ProfileCircle>
@@ -51,7 +44,8 @@ function CradEmpol () {
 
 
 const AllCardWrap = styled.div`
-    border: 1px solid black;
+    border: 0.5px solid black;
+    border-radius: 1px;
     width: 384px;
     height: 250px;
     margin: 50px;
@@ -64,8 +58,6 @@ const AllCardWrap = styled.div`
 `
 
 const CardTopWrap = styled.div`
-    border: 1px solid black;
-    width: 190px;
     /* border: 1px solid black; */
     width: 384px;
     height: 70px;
@@ -77,7 +69,6 @@ const CardTopWrap = styled.div`
 `
 
 const CardTextWrap = styled.div`
-    border: 1px solid black;
     /* border: 1px solid black; */
     margin: 19px 0px 0px 12px;
 `
@@ -90,7 +81,6 @@ const ProfileTopWrap = styled.div`
 `
 
 const CardTitle = styled.div`
-    border: 1px solid black;
     /* border: 1px solid black; */
     width: 100px;
     height: 27px;
@@ -100,7 +90,6 @@ const CardTitle = styled.div`
 `
 
 const CardText = styled.div`
-    border: 1px solid black;
     /* border: 1px solid black; */
     width: 110px;
     height: 21px;
@@ -108,9 +97,6 @@ const CardText = styled.div`
 `
 
 const ProfileWrap = styled.div`
-    border: 1px solid black;
-    width: 65px;
-    height: 65px;
     /* border: 1px solid black; */
     width: 60px;
     height: 60px;
@@ -130,7 +116,6 @@ const FlipWrap = styled.div`
 `
 
 const ProfileCircle = styled.div`
-    border: 1px solid black;
     /* border: 1px solid black; */
     width: 60px;
     height: 60px;
