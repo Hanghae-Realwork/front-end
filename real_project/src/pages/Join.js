@@ -7,7 +7,6 @@ import {
   checkUserNicknameAxios,
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
-import { flushSync } from "react-dom";
 
 function Join() {
   const dispatch = useDispatch();
