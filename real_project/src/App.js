@@ -19,10 +19,9 @@ import Main from "./pages/Main";
 
 //Components 연결
 
-import Header from "./components/Header"
-import Loading from "./pages/Loading"
-import EmpoCard from "./components/CaredEmpol"
-
+import Header from "./components/Header";
+import Loading from "./pages/Loading";
+import EmpoCard from "./components/CaredEmpol";
 
 // import SelectBox from "./components/SelectBox";
 

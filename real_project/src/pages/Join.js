@@ -18,6 +18,7 @@ function Join() {
   const [nickname, setNickName] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -140,7 +141,7 @@ function Join() {
   //유효성검사:Birth
   const onChangeBirth = (e) => {
     const BirthRegex = /^[0-9\b -]{0,4}$/;
-    const { name, value } = e.target;
+    const { name } = e.target;
     if (name === "year") {
       if (BirthRegex.test(e.target.value)) setYear(e.target.value);
     } else if (name === "month") {
@@ -328,18 +329,24 @@ function Join() {
     }
   };
   const signupFunction = async () => {
+    const birth = [year, month, day];
+    setBirth(birth);
+    const birthDay = birth.toString();
+
+    const totalBirth = birthDay.replace(",", "-").replace(",", "-");
+    console.log(totalBirth);
     if (
       userId === "" ||
       nickname === "" ||
       name === "" ||
-      birth === "" ||
+      totalBirth === "" ||
       phoneNumber === "" ||
       password === "" ||
       passwordCheck === "" ||
       userId === " " ||
       nickname === " " ||
       name === " " ||
-      birth === " " ||
+      totalBirth === " " ||
       phoneNumber === " " ||
       password === " " ||
       passwordCheck === " "
@@ -359,7 +366,7 @@ function Join() {
           userId,
           nickname,
           name,
-          birth,
+          totalBirth,
           phoneNumber,
           password,
           passwordCheck,
