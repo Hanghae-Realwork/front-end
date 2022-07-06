@@ -8,7 +8,7 @@ import down from "../image/down-fill.svg";
 import { useNavigate } from "react-router-dom";
 import DayPickerMain from "./DayPickerMain";
 
-function SelectCompo() {
+function RecSelectCompo() {
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
@@ -429,7 +429,7 @@ const CompoWrap = styled.div`
 
 
 
-export default SelectCompo;
+export default RecSelectCompo;
 
 // return (
 //     <DropDownAllWrap>
