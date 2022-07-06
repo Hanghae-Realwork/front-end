@@ -1,4 +1,3 @@
-// 라이브러리 및 그 외
 import "./App.css";
 import React from "react";
 import styled from "styled-components";
@@ -19,6 +18,7 @@ import Main from "./pages/Main";
 // import Test from "./pages/Test";
 
 //Components 연결
+
 import Header from "./components/Header"
 import Loading from "./pages/Loading"
 import EmpoCard from "./components/CaredEmpol"
