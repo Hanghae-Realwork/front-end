@@ -30,7 +30,7 @@ function App() {
     <MainWrap>
       {/* <MainHeader> */}
       <Header />
-      {/* <EmpoCard></EmpoCard> */}
+      <EmpoCard></EmpoCard>
       {/* </MainHeader> */}
       {/* <AddProfile/> */}
       {/* <Test/> */}
