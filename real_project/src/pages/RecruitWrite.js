@@ -1,35 +1,60 @@
 import React, { useState, useRef } from "react";
 
+import axios from "axios";
+
 import styled from "styled-components";
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
 
 import { DayPicker } from "react-day-picker";
 import { format, isValid, parse, isAfter } from "date-fns";
-
-import { ko } from "date-fns/esm/locale";
-
 import "react-day-picker/dist/style.css";
 import "../components/day-picker.css";
+import { ko } from "date-fns/esm/locale";
+
 
 function RecruitWrite() {
-  //datepicker
-  const [selected, setSelected] = useState(new Date());
+  const dateref = useRef
+  const [selected, setSelected] = useState(new Date);
+  // const [startdate, setStart] = useState(selected.from);
   const today = new Date();
-  const startdate = selected.from;
-  const enddate = selected.to;
+  const startdate = JSON.stringify(selected.from)
+  const enddate = JSON.stringify(selected.to)
+
+
+
 
   const onSubmit = async (data) => {
     const output = {
       ...data,
-      startdate: startdate,
-      enddate: enddate,
-    };
+
+      start: startdate.slice(1, 11),
+      end: enddate.slice(1, 11),
+      email: null,
+      phone: null,
+      schedule: null,
+    }
     await new Promise((r) => setTimeout(r, 1000));
     alert(JSON.stringify(output));
-    console.log(data);
-    console.log(output);
-  };
+    axios({
+      method: "post",
+      url: "http://3.39.226.20/api/projects",
+      data: JSON.stringify(output),
+      headers: {
+        "content-type": `application/json`
+        // "Content-Type": "multipart/form-data"
+      }
+    })
+        .then((res) => {
+          alert("프로젝트 등록완료!")
+          console.log(res);
+
+        })
+    console.log(data)
+    console.log(output)
+  }
+
+
 
   // console.log(selected)
   const {
@@ -38,7 +63,16 @@ function RecruitWrite() {
     formState: { isSubmitting, isDirty, errors },
   } = useForm();
 
-  const addPost = async (e) => {};
+
+  
+
+  // const 
+  // const variables={
+  //   data:data,
+  //   date:selected
+  // }
+  // console.log(variables)
+
 
   let footer = (
     <p
@@ -364,14 +398,12 @@ function RecruitWrite() {
             </div>
           </RecruitWriteTextBotWrap>
           <div>
-            <RecButtonWrap>
-              <RecButton
-                type="submit"
-                disabled={isSubmitting}
-                onClick={addPost}
-              >
-                모집글 올리기
-              </RecButton>
+
+            <RecButtonWrap >
+
+              <RecButton type="submit" disabled={isSubmitting}>모집글 올리기</RecButton>
+
+
             </RecButtonWrap>
           </div>
         </form>

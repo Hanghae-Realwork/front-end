@@ -57,91 +57,106 @@ function Header() {
 }
 
 const HeaderWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px;
-  /* border-bottom: 2px solid #D0D3D4; */
-  background-color: #303032;
-  /* z-index: 900;
-    position: fixed;
-    top: 0%;
-    background-color: white; */
-`;
+
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #1F1F1F;
+`
 
 const LogoWrap = styled.div`
-  font-weight: bold;
-  font-size: 40px;
-  margin: 5px;
-  cursor: pointer;
-  /* border: 1px solid black; */
-`;
+    height: 48px;
+    font-weight: 700;
+    font-size: 32px;
+    margin: 26px 0px 26px 0px;
+    cursor: pointer;
+    /* border: 1px solid white; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+`
 
-const HeaderFix = styled.span`
-  color: #fff;
-`;
+const HeaderFix = styled.label`
+    color: #fff;
+    cursor: pointer;
+`
 
 const HeaderConWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 158vh;
-`;
+    /* border: 1px solid white; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 155vh;
+`
 
 const HeaderLeftWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-  width: 120vh;
-  gap: 20px;
-  margin-bottom: 5px;
-`;
+    /* border: 1px solid white; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 108vh;
+    gap: 20px;
+    margin-bottom: 5px;
+`
 
-const FindProject = styled.button`
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: transparent;
-  /* margin: 10px; */
-  font-size: 16px;
-  color: #fff;
-  font-weight: bold;
-`;
+const FindProject = styled.label`
+    /* border: 1px solid white; */
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    /* margin: 10px; */
+    font-size: 16px;
+    color: #FFF;
+    font-weight: 500;
+    padding: 8px 16px 8px 16px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+`
 
 const HeaderRightWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: flex-end;
-  margin-bottom: 5px;
-`;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow:row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    
+`
 
-const LoginButton = styled.button`
-  font-size: 14px;
-  padding: 5px;
-  font-weight: bold;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  margin-right: 10px;
-  cursor: pointer;
-  color: #fff;
-`;
+const LoginButton = styled.span`
+    font-size: 14px;
+    padding: 5px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-right: 18px;
+    cursor: pointer;
+    color: #fff;
+    /* border: 1px solid black; */
+
+`
+
 
 const CircleImage = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  background-color: #ae97e3;
-  cursor: pointer;
-`;
+    width: 36px;
+    height:36px;
+    border-radius: 100%;
+    background: linear-gradient(45deg, #AE97E3, #77C3E7);
+    cursor: pointer;
+`
 
-export default Header;
+export default Header
+
+
+
