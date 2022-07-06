@@ -6,10 +6,10 @@ import Tag from "./TagCompo"
 
 
 
-const CardRecruit = () => {
-
+const CardRecruit = (props) => {
+    console.log(props)
     const navigate = useNavigate();
-  
+   
   return (
     <>
       <CardRecruitWrap>
