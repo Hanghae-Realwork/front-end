@@ -34,6 +34,7 @@ function Header () {
 const HeaderWrap = styled.div`
     /* border: 1px solid black; */
     width: 100%;
+    min-width: 1400px;
     height: 100px;
     display: flex;
     flex-flow: row wrap;
