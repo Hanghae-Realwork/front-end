@@ -18,7 +18,8 @@ function Join() {
   const [nickname, setNickName] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
-
+  const [totalBirth, setTotalBirth] = useState("");
+  console.log(totalBirth);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -333,8 +334,8 @@ function Join() {
     setBirth(birth);
     const birthDay = birth.toString();
 
-    const totalBirth = birthDay.replace(",", "-").replace(",", "-");
-    console.log(totalBirth);
+    setTotalBirth(birthDay.replace(",", "-").replace(",", "-"));
+
     if (
       userId === "" ||
       nickname === "" ||

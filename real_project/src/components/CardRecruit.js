@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 
 import Tag from "./TagCompo"
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
@@ -58,8 +57,8 @@ const CardRecruit = (props) => {
             })}
         </>
     );
-};
 
+};
 
 //// 카드 전체 틀 관련 CSS 뭉치
 
@@ -73,7 +72,9 @@ const AllWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
   background-image: url(${Recepit});
+
   background-position: center;
   background-size: cover;
   background-repeat: none;
@@ -91,6 +92,8 @@ const AllTopWrap = styled.div`
   align-items: center;
 `;
 
+
+
 const AllBotWrap = styled.div`
   border-top: none;
   border-bottom-left-radius: 5px;
@@ -106,108 +109,111 @@ const AllBotWrap = styled.div`
 //// 카드 내용 관련 CSS 뭉치
 
 const CardTopInfo = styled.div`
-    /* border: 1px solid black; */
-    width: 344px;
-    height: 18px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 23px 20px 0px 20px;
-`
+  /* border: 1px solid black; */
+  width: 344px;
+  height: 18px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 23px 20px 0px 20px;
+`;
 
 const CardWriteName = styled.span`
-    font-size: 12px;
-    width: 54px;
-    height: 18px;
-`
+  font-size: 12px;
+  width: 54px;
+  height: 18px;
+`;
 
 const CardWriteTime = styled.span`
-    font-size: 12px;
-    width: 65px;
-    height: 18px;
-    color: #8D8D8D; 
-`
+  font-size: 12px;
+  width: 65px;
+  height: 18px;
+  color: #8d8d8d;
+`;
 
 const CardTitleInfo = styled.div`
-    /* border: 1px solid black; */
-    width: 344px;
-    margin: 16px 20px 0px 20px;
-`
+  /* border: 1px solid black; */
+  width: 344px;
+  margin: 16px 20px 0px 20px;
+`;
 
 const CardTitleText = styled.span`
-    font-size: 18px;
-    font-weight: 700;
-`
+  font-size: 18px;
+  font-weight: 700;
+`;
 
 const CardMainTextInfo = styled.div`
-    /* border: 1px solid black; */
-    width: 344px;
-    height: 44px;
-    margin: 20px 20px 0px 20px;
-`
+  /* border: 1px solid black; */
+  width: 344px;
+  height: 44px;
+  margin: 20px 20px 0px 20px;
+`;
 
 const CardMainText = styled.span`
-    font-size: 14px;
-    line-height: 21px;
-`
+  font-size: 14px;
+  line-height: 21px;
+`;
 
 const CardJobTextWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 344px;
-    margin: 26px 20px 0px 20px;
-    height: 50px;
-`
+  /* border: 1px solid black; */
+  width: 344px;
+  margin: 26px 20px 0px 20px;
+  height: 50px;
+`;
 
 const CardJobTitle = styled.span`
-    font-size: 12px;
-    margin-bottom: 4px;
-`
+  font-size: 12px;
+  margin-bottom: 4px;
+`;
 
 const CardJobMainTitle = styled.span`
-    margin-top: 4px;
-    font-weight: 700;
-    font-size: 14px;
-`
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 14px;
+`;
 
 const CardTagWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 344px;
-    height: 52px;
-    margin-top: 8px;
-    margin-bottom: 20px;
-`
+  /* border: 1px solid black; */
+  width: 344px;
+  height: 52px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+`;
 
 const TagWrap = styled.div`
-    /* border: 1px solid black; */
-    margin-top: 5px;
-    height: 34px;
-`
+  /* border: 1px solid black; */
+  margin-top: 5px;
+  height: 34px;
+`;
 
 //// 센터 대쉬라인
 const DashedLine = styled.hr`
+
     width: 300px;
     border: 0.5px dashed #8D8D8D;
 `
 
+
 const CardBotTopWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 340px;
-    height: 20px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: 18px;
-`
+  /* border: 1px solid black; */
+  width: 340px;
+  height: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 18px;
+`;
 
 const CardBotTextDate = styled.span`
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+`;
 
 const CardBotTextDateInfo = styled.div`
+
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;
@@ -229,3 +235,4 @@ const CardViewButton = styled.button`
 `
 
 export default CardRecruit;
+
