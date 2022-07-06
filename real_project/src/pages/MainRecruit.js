@@ -28,17 +28,12 @@ const MainRecruit = (list) => {
 
   return (
     <>
-      <TopCompoWrap>
-
-        <RecSelectCompo /> 
-      </TopCompoWrap>
-      <CardContainerWrap>
-        
-              <Card />
-            
-
-      </CardContainerWrap>
-
+      <RecSelectCompo />
+      <CardBackGround>
+        <CardContainerWrap>
+        <Card />
+        </CardContainerWrap>
+      </CardBackGround>
     </>
   );
 };
@@ -48,27 +43,18 @@ const CardContainerWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
-  /* background-color: ; */
-  max-width: 1400px;
-  margin-top: 30px;
-
+  max-width: 1440px;
   padding: 33px 50px 0px 50px;
+`
+
+const CardBackGround = styled.div`
   background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);
-
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
-const TopCompoWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 156vh;
-    max-width: 1400px;
-    /* gap: 20px; */
-    z-index: 10;
-    /* border-bottom: 3px solid #685BC7; */
-`
 
 export default MainRecruit;
 

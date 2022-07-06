@@ -91,27 +91,27 @@ function SelectCompo() {
           {dropdownVisibility ? (
             <DropText>
               <TextImageWrap>
-              <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="black"/>
-              <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="black"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
-              </svg>
+                <svg width="15" height="18" viewBox="0 0 15 18" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="white"/>
+                <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="white"/>
+                </svg>
               <SpanInText>닫기</SpanInText></TextImageWrap>
-              <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#323232"/>
-              </svg>
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#fff"/>
+                </svg>
             </DropText>
           ) : (
             <DropText>
               <TextImageWrap>
-                <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="black"/>
-                  <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="black"/>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
-                </svg>          
+                  <svg width="15" height="18" viewBox="0 0 15 18" fill="black" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="black"/>
+                    <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="black"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
+                  </svg>          
                 <SpanInText>직군 선택하기</SpanInText></TextImageWrap>
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#303032"/>
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="black" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#black"/>
                 </svg>
             </DropText>
           )}
@@ -137,25 +137,24 @@ function SelectCompo() {
           {dropdownVisibilitySkill ? (
             <DropTextSkill>
               <TextImageWrap>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
                 </svg><SpanInText>닫기</SpanInText>
               </TextImageWrap>
-              <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#323232"/>
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="black" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#black"/>
               </svg>
             </DropTextSkill>
           ) : (
             <DropTextSkill>
               <TextImageWrap>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
                 </svg>
-
                 <SpanInText>스킬 및 스택</SpanInText>
               </TextImageWrap>
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#303032"/>
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="black" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#black"/>
                 </svg>
             </DropTextSkill>
           )}
@@ -219,23 +218,32 @@ function SelectCompo() {
 
   // 리턴 컴포넌트 최종(출력 구간)
   return (
-    <DropDownAllWrap>
-      <div>
-        <CompoWrap><App /> <DayPickerMain /> <AppSkill /> </CompoWrap>
-      </div>
-      <RecButtonWrap>
-        <RecritButton onClick={() => {navigate(`/recruitwrite`);}}>모집글 올리기</RecritButton>
-      </RecButtonWrap>
-    </DropDownAllWrap>
+    <BackGroundDiv>
+      <DropDownAllWrap>
+          <CompoWrap><App /> <DayPickerMain /> <AppSkill /> </CompoWrap>
+        <RecButtonWrap>
+          <RecritButton onClick={() => {navigate(`/recruitwrite`);}}>모집글 올리기</RecritButton>
+        </RecButtonWrap>
+      </DropDownAllWrap>
+    </BackGroundDiv>
   );
 }
 
 
+const BackGroundDiv = styled.div`
+    /* background-color: #303032; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 
 const DropDownAllWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 153vh;
-  margin-top: 50px;
+  /* border: 1px solid white; */
+  max-width: 1440px;
+  width: 100%;
+  height: 110px;
+  padding: 0px 100px 0px 100px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -251,9 +259,6 @@ const DropDownWrap = styled.div`
 `;
 
 const DropDownButton = styled.label`
-  /* border: 1px solid black; */
-  /* border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px; */
   outline: none;
   border: none;
   cursor: pointer;
@@ -277,9 +282,9 @@ const DropDownButtonSkill = styled.label`
   border: none;
   cursor: pointer;
   padding: 9px 10px 9px 10px;
-  width: 150px;
+  width: 145px;
   font-weight: bold;
-  /* border: 1px solid black; */
+  margin-left: 5px;
 `;
 
 const DropText = styled.div`
@@ -306,9 +311,6 @@ const SelectBoxWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-end;
-  /* border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px; */
   padding: 20px;
   position: absolute;
   background-color: white;
@@ -319,7 +321,6 @@ const SelectAllWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  /* margin-bottom: px; */
   width: 580px;
   padding: 10px;
   /* border: 1px solid black; */
@@ -419,9 +420,10 @@ const CompoWrap = styled.div`
   align-items: center;
   border: 1px solid black;
   border-radius: 5px;
-  width: 560px;
+  width: 608px;
   height: 36px;
-  /* border: 1px solid black; */
+  /* background-color: #1F1F1F; */
+  /* color: white; */
 `
 
 

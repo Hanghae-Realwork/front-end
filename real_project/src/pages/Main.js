@@ -11,18 +11,21 @@ function Main () {
 
     return(
         <>
-            <MainAllWrap className="MainBack">
-                <MaininTitleTopWrap>
-                    <HeadTitleWrap><TitleMain>사람과 아이디어의 조우<span style={{fontSize:"49px", fontWeight:"bold"}}>, renDev</span></TitleMain></HeadTitleWrap>
-                    <SubWrap><SubMain>우주항공용어로 랑데부(Rendez-Vous)란, 드넓은 우주를 유영하던 두 물체의 만남을 말합니다.
-                        개발자들은 물론, 디자이너까지, 아이디어의 우주를 헤엄치며 함께할 팀원을 찾는 여러분께 renDev가 협업을 위한 랑데부 포인트가 되어드리겠습니다.</SubMain></SubWrap>
-                    <MainButtonWrap>
-                        <PageButton onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 페이지로 가기</PageButton>
-                        <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>크루원 구하러 가기</PageButton2>
-                        </MainButtonWrap>
-                </MaininTitleTopWrap>
-            </MainAllWrap>
+            <BackGroundDiv className="MainBack">
+                <MainAllWrap >
+                    <MaininTitleTopWrap>
+                        <HeadTitleWrap><TitleMain>사람과 아이디어의 조우,<span style={{fontSize:"49px", fontWeight:"bold"}}> renDev</span></TitleMain></HeadTitleWrap>
+                        <SubWrap><SubMain>우주항공용어로 랑데부(Rendez-Vous)란, 드넓은 우주를 유영하던 두 물체의 만남을 말합니다.
+                            개발자들은 물론, 디자이너까지, 아이디어의 우주를 헤엄치며 함께할 팀원을 찾는 여러분께 renDev가 협업을 위한 랑데부 포인트가 되어드리겠습니다.</SubMain></SubWrap>
+                        <MainButtonWrap>
+                            <PageButton onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 페이지로 가기</PageButton>
+                            <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>크루원 구하러 가기</PageButton2>
+                            </MainButtonWrap>
+                    </MaininTitleTopWrap>
+                </MainAllWrap>
+            </BackGroundDiv>
                 
+            <BottomBackGround>    
             <MainTextBotWrap>
                 <MainBotText>
                     <MainTextTitle>
@@ -38,30 +41,38 @@ function Main () {
                     </MainTextTitle>
                 </MainBotText>
             </MainTextBotWrap>
+            </BottomBackGround>
         </>
 
     )
 
 }
 
+
+const BackGroundDiv = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 const MainAllWrap = styled.div`
   /* border: 1px solid black; */
   width: 100%;
-  height: 60vh;
-  padding: 20px;
-  background-color: #9595d2;
+  max-width: 1440px;
+  height: 670px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-end;
+  padding: 0px 0px 0px 110px ;
 `;
 
 const MaininTitleTopWrap = styled.div`
   /* border: 1px solid black; */
   width: 500px;
   height: 350px;
-  margin-left: 100px;
-  margin-bottom: 70px;
+  margin-bottom: 205px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -115,7 +126,6 @@ const PageButton2 = styled.button`
 `;
 
 const MainButtonWrap = styled.div`
-
     /* border: 1px solid black; */
     margin-top: 30px;
     display: flex;
@@ -134,8 +144,18 @@ const MainBotWrap = styled.div`
     align-items: center;
 `
 
+const BottomBackGround = styled.div`
+    background-color: #303032;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 const MainTextBotWrap = styled.div`
     width: 100%;
+    max-width: 1440px;
     height: 25vh;
     display: flex;
     flex-flow: row wrap;
