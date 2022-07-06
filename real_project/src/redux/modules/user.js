@@ -24,6 +24,7 @@ const initialState = {
 export function login(id) {
   return { type: LOGIN, id };
 }
+
 export function logOut(userInfo) {
   return { type: LOGOUT, userInfo };
 }
@@ -45,18 +46,8 @@ export const signupAxios = (
   allCheck
 ) => {
   return async function (dispatch) {
-    console.log(
-      "보내기 전:",
-      userId,
-      nickname,
-      name,
-      birth,
-      phoneNumber,
-      password,
-      passwordCheck,
-      allCheck
-    );
     let res = null;
+
     await apis
       .signup(
         userId,
@@ -72,7 +63,7 @@ export const signupAxios = (
         res = true;
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.errorMessage);
         res = false;
       });
     return res;
@@ -89,7 +80,6 @@ export const checkUserIdAxios = (userId) => {
         checksuccess = true;
       })
       .catch((err) => {
-        console.log(err);
         checksuccess = false;
       });
     return checksuccess;
@@ -142,6 +132,7 @@ export default function reducer(state = initialState, action = {}) {
           userInfo: state.userInfo,
         };
       }
+
       return state;
   }
 }
