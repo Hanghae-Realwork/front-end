@@ -27,6 +27,7 @@ function Join() {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
+
   //error
   const [userIdError, setUserIdError] = useState({ status: false, text: "" });
   const [nicknameError, setNickNameError] = useState({
@@ -137,6 +138,7 @@ function Join() {
       setNameError({ status: false, text: "" });
     }
   };
+
   //유효성검사:Birth
   const onChangeBirth = (e) => {
     const BirthRegex = /^[0-9\b -]{0,4}$/;
@@ -432,21 +434,8 @@ function Join() {
               {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
             </IdWrap>
             <IdWrap>
-              <input
-                name="year"
-                type="text"
-                maxLength="4"
-                placeholder="년(4자)"
-                onBlur={BlurYear}
-                value={year}
-                onChange={onChangeBirth}
-              />
-              <select
-                onChange={onChangeBirth}
-                value={month}
-                name="month"
-                onBlur={BlurYear}
-              >
+              <input name="year" type="text" maxLength="4" placeholder="년(4자)" onBlur={BlurYear} value={year} onChange={onChangeBirth}/>
+              <select onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
                 <option value="month">월</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -461,15 +450,7 @@ function Join() {
                 <option value="11">11</option>
                 <option value="12">12</option>
               </select>
-              <input
-                type="text"
-                maxLength="2"
-                placeholder="일"
-                value={day}
-                onChange={onChangeBirth}
-                onBlur={BlurYear}
-                name="day"
-              />
+              <input type="text" maxLength="2" placeholder="일" value={day} onChange={onChangeBirth} onBlur={BlurYear} name="day"/>
             </IdWrap>
             {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
             <IdWrap>
