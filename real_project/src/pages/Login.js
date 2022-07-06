@@ -36,7 +36,7 @@ function Login() {
     }}
 
 
-    //axios 연결 후 활성화 될 벨리데이션 체크 입니다.
+    // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
   //   document.getElementById("LoginBtn").disabled = true;
   //   try {
   //     await dispatch(
@@ -75,7 +75,7 @@ function Login() {
             <LoginButton>로그인</LoginButton>
           </ButtonWrap>
           <LoginText>랑데브가 처음인가요? 
-            <MovetoJoin onClick={() => {navigate(`/join`)}}>회원 가입하기</MovetoJoin></LoginText>
+            <MovetoJoin onClick={() => {navigate(`/join`)}} id="LoginBtn">회원 가입하기</MovetoJoin></LoginText>
         </AlignWrap>
       </LoginWrap>
     </>
