@@ -1,9 +1,12 @@
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { createRecruitApi } from "../redux/modules/postRecruit";
 
 import { DayPicker } from "react-day-picker";
 import { format, isValid, parse, isAfter } from "date-fns";
@@ -20,6 +23,7 @@ import { ko } from "date-fns/esm/locale";
 
 function RecruitWrite() {
   const dateref = useRef
+  const dispatch = useDispatch();
   const [selected, setSelected] = useState(new Date);
   // const [startdate, setStart] = useState(selected.from);
   const today = new Date();
@@ -35,25 +39,32 @@ function RecruitWrite() {
       end: enddate.slice(1, 11),
       email: null,
       phone: null,
-      schedule: null,
+      photos :[null,null],
+      schedule: [null,null],
     }
     await new Promise((r) => setTimeout(r, 1000));
-    alert(JSON.stringify(output));
-    axios({
-      method: "post",
-      url: "http://3.39.226.20/api/projects",
-      data: JSON.stringify(output),
-      headers: {
-        "content-type": `application/json`
-        // "Content-Type": "multipart/form-data"
-      }
-    })
-        .then((res) => {
-          alert("프로젝트 등록완료!")
-          console.log(res);
+    // alert(JSON.stringify(output));
 
-        })
-    console.log(data)
+    dispatch(
+      createRecruitApi({
+        ...output
+      })
+    );
+    // axios({
+    //   method: "post",
+    //   url: "http://3.39.226.20/api/projects",
+    //   data: JSON.stringify(output),
+    //   headers: {
+    //     "content-type": `application/json`
+    //     // "Content-Type": "multipart/form-data"
+    //   }
+    // })
+    //     .then((res) => {
+    //       alert("프로젝트 등록완료!")
+    //       console.log(res);
+
+    //     })
+    // console.log(data)
     console.log(output)
   }
 
@@ -66,7 +77,7 @@ function RecruitWrite() {
     formState: { isSubmitting, isDirty, errors }
   } = useForm();
 
-  
+
 
   // const 
   // const variables={
