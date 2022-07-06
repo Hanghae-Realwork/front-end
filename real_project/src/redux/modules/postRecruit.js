@@ -1,6 +1,7 @@
 import { apis } from "../../shared/api";
 
-const LOAD = "recruit/LOAD";
+const LOAD = 'recruit/LOAD';
+const CREATE = 'recruit/CREATE'
 
 const initialState = {
   list: {
@@ -17,18 +18,67 @@ const initialState = {
   },
 };
 
-export function load(discription) {
+export function loadRecruits(discription) {
   return { type: LOAD, discription };
 }
+
+export function createRecruit(discription) {
+  return { type: CREATE, discription };
+}
+
+//api연결
+
+export const loadRecruitsApi = () => {
+  return async function (dispatch) {
+    try {
+      console.log("프로젝트를 불러왔습니다!");
+      const data = await apis.projectsLoad();
+      dispatch(loadRecruits(data.data));
+      console.log(data)
+      console.log(data.data)
+    } catch (e) {
+      console.log(`포스팅 조회 오류 발생!${e}`);
+    }
+  };
+};
+  
+export const createRecruitApi = (post, userEmail) => {
+  // const token = localStorageGet("token");
+  // console.log("토큰", token);
+  return async function (dispatch, getState) {
+    // const user = getState().users.user;
+    // console.log("정보", getState().users.user);
+    const body = {
+      // users: user,
+      email: userEmail,
+    };
+    console.log(body);
+    try {
+      console.log("프로젝트 생성 완료");
+      const data = await apis.projectsCreate(post);
+      // const data = { id: docRef.id, ...post };
+      console.log(data);
+      dispatch(createRecruit(data));
+    } catch (e) {
+      console.log(`프로젝트 오류 발생!${e}`);
+    }
+  };
+};
 
 //Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case "recruit/LOAD": {
+    case 'recruit/LOAD': {
       return {
         list: action.discription,
       };
     }
+
+    case 'recruit/CREATE': {
+      const new_project_list = [...state, action.post];
+      return { list: new_project_list };
+    }
+
 
     default:
       return state;

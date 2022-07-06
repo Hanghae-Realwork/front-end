@@ -3,63 +3,48 @@ import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 
-function Header() {
-  const navigate = useNavigate();
-  // style={{fontWeight: ? "bold" : " "}}
 
-  return (
-    <HeaderWrap>
-      <HeaderConWrap>
-        <LogoWrap>
-          <HeaderFix
-            onClick={() => {
-              navigate(`/`);
-            }}
-          >
-            ren<span style={{ color: "#AE97E3" }}>D</span>ev
-          </HeaderFix>
-        </LogoWrap>
-        <HeaderLeftWrap>
-          <FindProject
-            style={{ fontWeight: "bold" }}
-            onClick={() => {
-              navigate(`/mainrecruit`);
-            }}
-          >
-            프로젝트 찾기
-          </FindProject>
 
-          <FindProject
-            onClick={() => {
-              navigate(`/mainemployment`);
-            }}
-          >
-            팀원 찾기
-          </FindProject>
-        </HeaderLeftWrap>
-        <HeaderRightWrap>
-          <LoginButton
-            onClick={() => {
-              navigate(`/login`);
-            }}
-          >
-            로그인
-          </LoginButton>
-          <CircleImage
-            onClick={() => {
-              navigate(`/addprofile`);
-            }}
-          ></CircleImage>
-        </HeaderRightWrap>
-      </HeaderConWrap>
-    </HeaderWrap>
-  );
+function Header () {
+
+    const navigate = useNavigate()
+    // style={{fontWeight: ? "bold" : " "}}
+
+    return (
+        <BackGroundDiv>
+            <HeaderWrap>
+                <HeaderConWrap>
+                    <LogoWrap>
+                        <HeaderFix onClick={() => {navigate(`/`)}}>ren<span style={{color:"#AE97E3"}}>D</span>ev</HeaderFix>
+                    </LogoWrap>
+                    <HeaderLeftWrap>
+                        <FindProject style={{fontWeight:"bold"}} onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
+                        <FindProject onClick={() => {navigate(`/mainemployment`)}}>팀원 찾기</FindProject>
+                    </HeaderLeftWrap>
+                    <HeaderRightWrap>
+                        <LoginButton onClick={() => {navigate(`/login`)}}>로그인</LoginButton>
+                        <CircleImage onClick={() => {navigate(`/addprofile`)}}></CircleImage>
+                    </HeaderRightWrap>
+                </HeaderConWrap>
+            </HeaderWrap>
+        </BackGroundDiv>
+    )
 }
 
-const HeaderWrap = styled.div`
 
-    /* border: 1px solid black; */
+
+const BackGroundDiv = styled.div`
+    background-color: #1F1F1F;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const HeaderWrap = styled.div`
+    /* border: 1px solid white; */
+    width: 100%;
+    max-width: 1440px;
     height: 100px;
     display: flex;
     flex-flow: row wrap;
@@ -72,7 +57,7 @@ const LogoWrap = styled.div`
     height: 48px;
     font-weight: 700;
     font-size: 32px;
-    margin: 26px 0px 26px 0px;
+    /* margin: 26px 0px 26px 0px; */
     cursor: pointer;
     /* border: 1px solid white; */
     display: flex;
@@ -155,6 +140,10 @@ const CircleImage = styled.div`
     background: linear-gradient(45deg, #AE97E3, #77C3E7);
     cursor: pointer;
 `
+
+
+
+
 
 export default Header
 

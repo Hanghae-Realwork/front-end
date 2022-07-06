@@ -1,58 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+// import _ from "lodash";
 import Tag from "./TagCompo"
+import { loadRecruitsApi } from "../redux/modules/postRecruit";
+// import { loadRecruitsApi } from "../redux/modules/postRecruit";
 
 
 
-const CardRecruit = () => {
+const CardRecruit = (props) => {
+const dispatch=useDispatch
+    // const navigate = useNavigate();
 
-    const navigate = useNavigate();
-  
-  return (
-    <>
-        <AllWrap>
-            <AllTopWrap>
-                <CardTopInfo>
-                    <CardWriteName>[작성자명]</CardWriteName>
-                    <CardWriteTime>[nn 시간 전]</CardWriteTime>
-                </CardTopInfo>
-                <CardTitleInfo>
-                    <CardTitleText>[게시글 제목이 들어갑니다]</CardTitleText>
-                </CardTitleInfo>
-                <CardMainTextInfo>
-                    <CardMainText>
-                        [여기에 내용이 노출 됩니다]
-                        <br/>
-                        [여기에 내용이 노출 됩니다]
-                    </CardMainText>
-                </CardMainTextInfo>
-                <CardJobTextWrap>
-                    <CardJobTitle>[구하는 직군]</CardJobTitle>
-                    <div style={{marginTop:"4px"}}><CardJobMainTitle>[구하는 직군 명]</CardJobMainTitle></div>
-                </CardJobTextWrap>
-                <CardTagWrap>
-                    <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br/>
-                    <TagWrap><Tag/><Tag/><Tag/><Tag/></TagWrap>
-                </CardTagWrap>
-            </AllTopWrap>
-            <CircleWrap>
-                <AllMidWrapOne/>
-                    <DashedLine/>
-                <AllMidWrapTwo/>
-            </CircleWrap>
-            <AllBotWrap>
-                <CardBotTopWrap>
-                    <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-                    <CardBotTextDateInfo> 22.06.20 ~ 22.08.15</CardBotTextDateInfo>
-                </CardBotTopWrap>
-                <CardViewButton>프로젝트 보러 가기</CardViewButton>
-            </AllBotWrap>
-        </AllWrap>
+    const cards_list = useSelector((state) => state)
+    const card_list = cards_list.postRecruit.list.projects
+    // useEffect(() => {
+    //     dispatch(loadRecruitsApi());
+    //   }, [dispatch]
+    
+    //   );
 
+    console.log(card_list)
+
+    return (
+        <>
+            {card_list && card_list.map((list, index) => {
+                return (
+                    <AllWrap>
+                        <AllTopWrap>
+                            <CardTopInfo>
+                                <CardWriteName>{list.userId}</CardWriteName>
+                                <CardWriteTime>{list.createdAt}</CardWriteTime>
+                            </CardTopInfo>
+                            <CardTitleInfo>
+                                <CardTitleText>{list.title}</CardTitleText>
+                            </CardTitleInfo>
+                            <CardMainTextInfo>
+                                <CardMainText>
+                                    [여기에 내용이 노출 됩니다]
+                                    <br />
+                                    {list.subscript}
+                                </CardMainText>
+                            </CardMainTextInfo>
+                            <CardJobTextWrap>
+                                <CardJobTitle>[구하는 직군]</CardJobTitle>
+                                <div style={{ marginTop: "4px" }}><CardJobMainTitle>{list.role}</CardJobMainTitle></div>
+                            </CardJobTextWrap>
+                            <CardTagWrap>
+                                <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br />
+                                <TagWrap>{list.skills}<Tag/><Tag /><Tag /><Tag /></TagWrap>
+                            </CardTagWrap>
+                        </AllTopWrap>
+                        <CircleWrap>
+                            <AllMidWrapOne />
+                            <DashedLine />
+                            <AllMidWrapTwo />
+                        </CircleWrap>
+                        <AllBotWrap>
+                            <CardBotTopWrap>
+                                <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+                                <CardBotTextDateInfo> {list.start} ~ 22.08.15</CardBotTextDateInfo>
+                            </CardBotTopWrap>
+                            <CardViewButton >프로젝트 보러 가기</CardViewButton>
+                        </AllBotWrap>
+                    </AllWrap>
+                )
+            })}
         </>
-  );
+    );
 };
 
 

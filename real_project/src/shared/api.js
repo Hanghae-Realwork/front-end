@@ -117,33 +117,13 @@ export const apis = {
 
   //  - 9. 프로젝트 등록
   projectsCreate: (
-    title,
-    details,
-    subscript,
-    role,
-    start,
-    end,
-    skills,
-    photos,
-    email,
-    phone,
-    schedule
+    data
   ) =>
     api.post("/api/projects", {
-      title: title,
-      details: details,
-      subscript: subscript,
-      role: role,
-      start: start,
-      end: end,
-      skills: skills,
-      photos: photos,
-      email: email,
-      phone: phone,
-      schedule: schedule,
+      ...data
     }),
   //  - 10. 프로젝트 조회
-  projectsLoad: () => api.get("/api/projects"),
+  projectsLoad: () => api.get("/api/projects?page=1&limit=9"),
 
   //  - 11. 프로젝트 상세조회
   projectsLoadDetail: (projectId) => api.get("/api/projects/${projectId}"),
