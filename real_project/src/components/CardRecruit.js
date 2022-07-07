@@ -222,7 +222,7 @@ const CardViewButton = styled.button`
   padding: 8px;
   margin-top: 20px;
   margin-bottom: 12.5px;
-  background: linear-gradient(45deg, #ae97e3, #77c3e7);
+  background-color: #303032; 
   border: none;
   outline: none;
   cursor: pointer;

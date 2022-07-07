@@ -145,7 +145,7 @@ function RecruitWrite() {
                 <RecTopRadio id="role" type="radio" name="RecRadio" value="graphicDesigner" {...register("role")}/>그래픽 디자이너</RecTopRadioLabel>
             </RecTopTextContentWrap>
           </RecruitWriteTopWrap>
-
+ 
           <RecruitWriteMidWrap>
             <RecTitleTextWrap>
               <RecTitleText>요구 스킬</RecTitleText>
