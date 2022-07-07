@@ -9,7 +9,7 @@ function SelectSkill () {
               <TitleTextTag>개발자</TitleTextTag>
               <SelectBoxTab>
                 <TecLabel> <CheckBox type="checkbox" id="skills" value="React"></CheckBox>React</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Vue.js</TecLabel>
+                  <TecLabel> <CheckBox type="checkbox" id="skills" value="React"></CheckBox>Vue.js</TecLabel>
                   <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
                   <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
                   <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
