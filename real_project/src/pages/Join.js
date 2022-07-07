@@ -7,8 +7,8 @@ import {
   checkUserNicknameAxios,
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
-import { flushSync } from "react-dom";
 
+import { useForm } from "react-hook-form";
 function Join() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,30 +18,49 @@ function Join() {
   const [nickname, setNickName] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
+  const [totalBirth, setTotalBirth] = useState("");
+  console.log(totalBirth);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
 
-  //error
-  const [userIdError, setUserIdError] = useState(false);
-  const [nicknameError, setNickNameError] = useState(false);
-  const [nameError, setNameError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [birthyearError, setBirthyear] = useState(true);
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
 
+  //error
+  const [userIdError, setUserIdError] = useState({ status: false, text: "" });
+  const [nicknameError, setNickNameError] = useState({
+    status: false,
+    text: "",
+  });
+  const [nameError, setNameError] = useState({
+    status: false,
+    text: "",
+  });
+  const [phoneError, setPhoneError] = useState({
+    status: false,
+    text: "",
+  });
+  const [passwordError, setPasswordError] = useState({
+    status: false,
+    text: "",
+  });
+  const [confirmPasswordError, setConfirmPasswordError] = useState({
+    status: false,
+    text: "",
+  });
+  const [yearError, setYearError] = useState({
+    status: false,
+    text: "",
+  });
+
+  //error name
   //이용약관:동의 비동의
   const [allCheck, setAllCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
-
-  //생일
-  useEffect(() => {
-    if (birth.length === 8) {
-      setBirth(birth.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
-    }
-  }, [birth]);
 
   //핸드폰
   useEffect(() => {
@@ -70,28 +89,37 @@ function Join() {
     }
   }, [ageCheck, useCheck, marketingCheck]);
 
-  //유효성검사:userID
+  //userId
   const onChangeUserId = (e) => {
+    setUserId(e.target.value);
+  };
+  //유효성검사:userId
+  const BlurUserId = (e) => {
     const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    if (!e.target.value || emailRegex.test(e.target.value))
-      setUserIdError(false);
-    else setUserIdError(true);
-    setUserId(e.target.value);
+
+    if (e.target.value.length <= 0) {
+      setUserIdError({ status: true, text: "필수 정보입니다." });
+      return;
+    }
+    if (e.target.value.length > 0 && !emailRegex.test(userId)) {
+      setUserIdError({ status: true, text: "이메일형식에 맞지 않습니다." });
+    } else setUserIdError({ status: false, text: "" });
   };
 
   //유효성검사:nickName
   const onChageNickName = (e) => {
-    if (e.target.value.length < 0) {
-      setNickNameError(true);
-      setNickName(e.target.value);
+    setNickName(e.target.value);
+  };
+  const BlurNickName = (e) => {
+    if (e.target.value.length <= 0) {
+      setNickNameError({ status: true, text: "필수 정보입니다." });
+      return;
     }
-    if (e.target.value.length <= 2) {
-      setNickNameError(false);
-      setNickName(e.target.value);
+    if (nickname.length === 1) {
+      setNickNameError({ status: true, text: "한글자 이상 입력해주세요!" });
     } else {
-      setNickNameError(true);
-      setNickName(e.target.value);
+      setNickNameError({ status: false, text: "" });
     }
   };
 
@@ -99,44 +127,126 @@ function Join() {
   const onChageName = (e) => {
     setName(e.target.value);
   };
+  const BlurName = (e) => {
+    if (e.target.value.length <= 0) {
+      setNameError({ status: true, text: "필수 정보입니다." });
+      return;
+    }
+    if (e.target.value.length === 1) {
+      setNameError({ status: true, text: "한글자 이상 입력해주세요!" });
+    } else {
+      setNameError({ status: false, text: "" });
+    }
+  };
 
   //유효성검사:Birth
   const onChangeBirth = (e) => {
-    const regex = /^[0-9\b -]{0,8}$/;
-    if (regex.test(e.target.value)) {
-      setBirth(e.target.value);
+    const BirthRegex = /^[0-9\b -]{0,4}$/;
+    const { name } = e.target;
+    if (name === "year") {
+      if (BirthRegex.test(e.target.value)) setYear(e.target.value);
+    } else if (name === "month") {
+      setMonth(e.target.value);
+    } else if (name === "day") {
+      if (BirthRegex.test(e.target.value)) setDay(e.target.value);
+    }
+  };
+
+  const BlurYear = (e) => {
+    if (year.length > 0) {
+      setYearError({ status: true, text: "태어난 월을 선택하세요." });
+      if (month.length > 0) {
+        setYearError({
+          status: true,
+          text: "태어난 일(날짜) 2자리를 정확하게 입력하세요.",
+        });
+      }
+      if (day.length > 0) {
+        setYearError({
+          status: false,
+          text: "",
+        });
+      }
+    }
+
+    if (year >= 2008) {
+      setYearError({
+        status: true,
+        text: "미래에서 오셨군요^^",
+      });
+    } else if (year <= 1922) {
+      setYearError({
+        status: true,
+        text: "정말이세요?",
+      });
+      return;
+    }
+
+    if (day >= 32) {
+      setYearError({
+        status: true,
+        text: "생년월일을 다시 확인해주세요.",
+      });
     }
   };
 
   //유효성검사:Number
   const OnChangephoneNumber = (e) => {
-    const regex = /^[0-9\b -]{0,13}$/;
-    if (regex.test(e.target.value)) {
-      setPhoneNumber(e.target.value);
-    }
+    const phoneRegex = /^[0-9\b -]{0,13}$/;
+    if (phoneRegex.test(e.target.value)) setPhoneNumber(e.target.value);
   };
-
+  const BlurNumber = (e) => {
+    if (e.target.value.length <= 0) {
+      setPhoneError({ status: true, text: "필수 정보입니다." });
+      return;
+    }
+    if (e.target.value.length < 13) {
+      setPhoneError({ status: true, text: "번호를 다시 확인해주세요!" });
+    } else setPhoneError({ status: false, text: "" });
+  };
   //유효성검사:Password
   const OnChangePassWord = (e) => {
+    setPassword(e.target.value);
+  };
+  const BlurPassWord = (e) => {
     const passwordRegex =
       /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-    if (!e.target.value || passwordRegex.test(e.target.value))
-      setPasswordError(false);
-    else setPasswordError(true);
-
-    if (!passwordCheck || e.target.value === passwordCheck)
-      setConfirmPasswordError(false);
-    else setConfirmPasswordError(true);
-    setPassword(e.target.value);
+    if (e.target.value.length <= 0) {
+      setPasswordError({ status: true, text: "필수 정보입니다." });
+    } else if (e.target.value.length > 0 && !passwordRegex.test(password)) {
+      setPasswordError({
+        status: true,
+        text: "영어, 숫자, 특수문자 포함 4~16자로 작성해주세요.",
+      });
+    } else {
+      setPasswordError({
+        status: false,
+        text: "",
+      });
+    }
   };
 
   //유효성검사:PasswordCheck
   const OnChangePassWordCheck = (e) => {
-    if (password === e.target.value) setConfirmPasswordError(false);
-    else setConfirmPasswordError(true);
     setPasswordCheck(e.target.value);
   };
-
+  const BlurPassWordCheck = (e) => {
+    if (e.target.value.length <= 0) {
+      setConfirmPasswordError({ status: true, text: "필수 정보입니다." });
+      return;
+    }
+    if (e.target.value.length > 0 && password !== e.target.value) {
+      setConfirmPasswordError({
+        status: true,
+        text: "비밀번호와 일치하지 않습니다.",
+      });
+    } else {
+      setConfirmPasswordError({
+        status: false,
+        text: "",
+      });
+    }
+  };
   //체크박스 : 전체동의 체크시 다른 체크박스 true
   const allBtnEvent = () => {
     if (allCheck === false) {
@@ -176,43 +286,88 @@ function Join() {
     }
   };
 
+  //아이디 중복체크
+  const onClickCheckUserId = async () => {
+    try {
+      await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
+        if (checksuccess === true) {
+          console.log("success");
+          setUserIdError({
+            status: true,
+            text: "사용 가능한 아이디 입니다.",
+          });
+        } else {
+          setUserIdError({
+            status: true,
+            text: "이미 사용중이거나 탈퇴한 아이디입니다.",
+          });
+        }
+      });
+    } catch (err) {
+      alert("err");
+    }
+  };
+  //닉네임 중복체크
+  const onClickChecknickname = async () => {
+    try {
+      await dispatch(checkUserNicknameAxios(nickname)).then((checksuccess) => {
+        if (checksuccess === true) {
+          console.log("success");
+          setNickNameError({
+            status: true,
+            text: "사용 가능한 닉네임입니다.",
+          });
+        } else {
+          console.log("error");
+          setNickNameError({
+            status: true,
+            text: "이미 사용중이거나 탈퇴한 닉네임입니다.",
+          });
+        }
+      });
+    } catch (err) {
+      alert("err");
+    }
+  };
   const signupFunction = async () => {
+    const birth = [year, month, day];
+    setBirth(birth);
+    const birthDay = birth.toString();
+
+    setTotalBirth(birthDay.replace(",", "-").replace(",", "-"));
+
     if (
       userId === "" ||
       nickname === "" ||
       name === "" ||
-      birth === "" ||
+      totalBirth === "" ||
       phoneNumber === "" ||
       password === "" ||
       passwordCheck === "" ||
       userId === " " ||
       nickname === " " ||
       name === " " ||
-      birth === " " ||
+      totalBirth === " " ||
       phoneNumber === " " ||
       password === " " ||
       passwordCheck === " "
     ) {
-      alert("빈칸을 입력해주세요.");
+      document.getElementById("userId").focus();
       return false;
     }
-    console.log(
-      userId,
-      nickname,
-      name,
-      birth,
-      phoneNumber,
-      password,
-      passwordCheck,
-      typeof allCheck
-    );
+
+    if (ageCheck === false && useCheck === false) {
+      alert("약관동의를 확인해주세요.");
+      return false;
+    }
+
     try {
       await dispatch(
         signupAxios(
           userId,
           nickname,
           name,
-          birth,
+          totalBirth,
           phoneNumber,
           password,
           passwordCheck,
@@ -223,41 +378,14 @@ function Join() {
           navigate("/login");
           alert("회원가입되었습니다!");
         } else {
-          console.log("다시 시도해주세요");
+          console.log("회원가입에 실패했습니다!");
         }
       });
     } catch (err) {
-      console.log("에러입니다!" + err.response);
-    }
-  };
-  //아이디 중복체크
-  const onClickCheckUserId = async () => {
-    try {
-      await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
-        if (checksuccess === true) {
-          console.log("success");
-        } else {
-          console.log("error");
-        }
-      });
-    } catch (err) {
-      alert("err");
+      console.log("에러입니다!");
     }
   };
 
-  const onClickChecknickname = async () => {
-    try {
-      await dispatch(checkUserNicknameAxios(nickname)).then((checksuccess) => {
-        if (checksuccess === true) {
-          console.log("success");
-        } else {
-          console.log("error");
-        }
-      });
-    } catch (err) {
-      alert("err");
-    }
-  };
   return (
     <>
       <JoinWrap>
@@ -268,28 +396,29 @@ function Join() {
           <InputJoinWrap>
             <IdWrap>
               <InputBar
-                repuiredtype="email"
+                type="email"
                 placeholder="아이디"
+                id="userId"
                 value={userId}
                 onChange={onChangeUserId}
+                onBlur={BlurUserId}
               ></InputBar>
               <button onClick={onClickCheckUserId}>중복버튼</button>
-              {userIdError && <ValiSpan>이메일 형식에 맞지 않습니다.</ValiSpan>}
+              {userIdError.status && <ValiSpan>{userIdError.text}</ValiSpan>}
             </IdWrap>
             <IdWrap>
               <InputBar
-                requiredtype="text"
+                type="text"
                 placeholder="닉네임"
                 minLength={2}
-                maxLength={15}
+                maxLength={8}
                 value={nickname}
                 onChange={onChageNickName}
+                onBlur={BlurNickName}
               ></InputBar>
               <button onClick={onClickChecknickname}>중복버튼</button>
-              {nicknameError ? (
-                ""
-              ) : (
-                <ValiSpan>두글자 이상 입력해주세요.</ValiSpan>
+              {nicknameError.status && (
+                <ValiSpan>{nicknameError.text}</ValiSpan>
               )}
             </IdWrap>
             <IdWrap>
@@ -297,23 +426,40 @@ function Join() {
                 requiredtype="text"
                 placeholder="이름"
                 minLength={2}
-                maxLength={15}
+                maxLength={10}
                 value={name}
                 onChange={onChageName}
+                onBlur={BlurName}
               ></InputBar>
+              {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
             </IdWrap>
-
             <IdWrap>
-              <ValiSpan>{setBirthyear ? "" : "false오류"}</ValiSpan>
+              <input name="year" type="text" maxLength="4" placeholder="년(4자)" onBlur={BlurYear} value={year} onChange={onChangeBirth}/>
+              <select onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
+                <option value="month">월</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <input type="text" maxLength="2" placeholder="일" value={day} onChange={onChangeBirth} onBlur={BlurYear} name="day"/>
             </IdWrap>
-
+            {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
             <IdWrap>
-              <InputBar
+              {/* <InputBar
                 requiredtype="text"
                 placeholder="생년월일 / 0000-00-00"
                 value={birth}
                 onChange={onChangeBirth}
-              ></InputBar>
+              ></InputBar> */}
             </IdWrap>
             <IdWrap>
               <InputBar
@@ -321,7 +467,10 @@ function Join() {
                 requiredtype="text"
                 onChange={OnChangephoneNumber}
                 value={phoneNumber}
+                onBlur={BlurNumber}
+                maxLength={13}
               ></InputBar>
+              {phoneError.status && <ValiSpan>{phoneError.text}</ValiSpan>}
             </IdWrap>
             <IdWrap>
               <InputBar
@@ -330,12 +479,10 @@ function Join() {
                 maxLength={16}
                 onChange={OnChangePassWord}
                 value={password}
+                onBlur={BlurPassWord}
               ></InputBar>
-              {passwordError && (
-                <ValiSpan>
-                  {" "}
-                  숫자, 영어, 특수문자 조합 8~16글자로 입력해주세요.
-                </ValiSpan>
+              {passwordError.status && (
+                <ValiSpan>{passwordError.text}</ValiSpan>
               )}
             </IdWrap>
             <IdWrap>
@@ -345,9 +492,10 @@ function Join() {
                 maxLength={16}
                 onChange={OnChangePassWordCheck}
                 value={passwordCheck}
+                onBlur={BlurPassWordCheck}
               ></InputBar>
-              {confirmPasswordError && (
-                <ValiSpan>비밀번호를 확인해주세요.</ValiSpan>
+              {confirmPasswordError.status && (
+                <ValiSpan>{confirmPasswordError.text}</ValiSpan>
               )}
             </IdWrap>
           </InputJoinWrap>
@@ -401,7 +549,11 @@ function Join() {
             </div>
           </PolicyWrap>
           <ButtonWrap>
-            <JoinButton id="IDID" onClick={signupFunction}>
+            <JoinButton
+              id="signBtnDisabled"
+              className="loginBtn"
+              onClick={signupFunction}
+            >
               회원가입
             </JoinButton>
           </ButtonWrap>
@@ -513,6 +665,10 @@ const JoinButton = styled.button`
   font-weight: bold;
   font-size: 20px;
   background-color: #685bc7;
+  :disabled {
+    cursor: not-allowed;
+    background-color: green;
+  }
 `;
 
 const AgreementWrap = styled.div`
