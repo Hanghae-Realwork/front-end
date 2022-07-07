@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import SelectSkill from "../components/SelectSkill";
 
 import axios from "axios";
 
@@ -137,35 +138,11 @@ function RecruitWrite() {
 
             <RecTopTextContentWrap>
               <RecTopRadioLabel>
-                <RecTopRadio
-                  id="role"
-                  type="radio"
-                  name="RecRadio"
-                  value="frontend"
-                  {...register("role")}
-                />
-                프론트엔드 개발자
-              </RecTopRadioLabel>
+                <RecTopRadio id="role" type="radio" name="RecRadio" value="frontend" {...register("role")}/>프론트엔드 개발자</RecTopRadioLabel>
               <RecTopRadioLabel>
-                <RecTopRadio
-                  id="role"
-                  type="radio"
-                  name="RecRadio"
-                  value="backend"
-                  {...register("role")}
-                />
-                백엔드 개발자
-              </RecTopRadioLabel>
+                <RecTopRadio id="role" type="radio" name="RecRadio" value="backend" {...register("role")}/>백엔드 개발자</RecTopRadioLabel>
               <RecTopRadioLabel>
-                <RecTopRadio
-                  id="role"
-                  type="radio"
-                  name="RecRadio"
-                  value="graphicDesigner"
-                  {...register("role")}
-                />
-                그래픽 디자이너
-              </RecTopRadioLabel>
+                <RecTopRadio id="role" type="radio" name="RecRadio" value="graphicDesigner" {...register("role")}/>그래픽 디자이너</RecTopRadioLabel>
             </RecTopTextContentWrap>
           </RecruitWriteTopWrap>
 
@@ -180,39 +157,10 @@ function RecruitWrite() {
               <MidContetWrap>
                 <ConLabel><InputCon id="skills" type="checkbox" value="React" {...register("skills")}/>React</ConLabel>
                 <ConLabel><InputCon id="skills" type="checkbox" value="Vue.js" {...register("skills")}/>Vue.js</ConLabel>
-                <ConLabel><InputCon id="skills" type="checkbox"
-                    value="JavaScript"
-                    {...register("skills")}
-                  />
-                  JavaScript
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Node.js"
-                    {...register("skills")}
-                  />
-                  Node.js
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Java"
-                    {...register("skills")}
-                  />
-                  Java
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Spring"
-                    {...register("skills")}
-                  />
-                  Spring
-                </ConLabel>
+                <ConLabel><InputCon id="skills" type="checkbox" value="JavaScript" {...register("skills")}/>JavaScript</ConLabel>
+                <ConLabel><InputCon id="skills" type="checkbox" value="Node.js" {...register("skills")}/>Node.js</ConLabel>
+                <ConLabel><InputCon id="skills" type="checkbox" value="Java" {...register("skills")}/>Java</ConLabel>
+                <ConLabel><InputCon id="skills" type="checkbox" value="Spring" {...register("skills")}/>Spring</ConLabel>
                 <ConLabel>
                   <InputCon
                     id="skills"
