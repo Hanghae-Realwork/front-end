@@ -178,28 +178,9 @@ function RecruitWrite() {
                 <MidText>개발자</MidText>
               </MidTextWrap>
               <MidContetWrap>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="React"
-                    {...register("skills")}
-                  />
-                  React
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Vue.js"
-                    {...register("skills")}
-                  />
-                  Vue.js
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
+                <ConLabel><InputCon id="skills" type="checkbox" value="React" {...register("skills")}/>React</ConLabel>
+                <ConLabel><InputCon id="skills" type="checkbox" value="Vue.js" {...register("skills")}/>Vue.js</ConLabel>
+                <ConLabel><InputCon id="skills" type="checkbox"
                     value="JavaScript"
                     {...register("skills")}
                   />

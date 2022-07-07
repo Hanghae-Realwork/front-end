@@ -19,6 +19,7 @@ function Join() {
   const [nickname, setNickName] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
+
   const [totalBirth, setTotalBirth] = useState("");
 
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -357,6 +358,7 @@ function Join() {
     const birth = [year, month, day];
     setBirth(birth);
     const birthDay = birth.toString();
+
 
     setTotalBirth(birthDay.replace(",", "-").replace(",", "-"));
 

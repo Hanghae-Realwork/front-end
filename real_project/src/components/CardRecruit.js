@@ -10,62 +10,56 @@ import { loadRecruitsApi } from "../redux/modules/postRecruit";
 import Recepit from "../image/recepie.svg";
 
 const CardRecruit = (props) => {
-  const dispatch = useDispatch();
 
-  const cards_list = useSelector((state) => state);
-  const card_list = cards_list.postRecruit.list.projects;
+    const dispatch = useDispatch();
 
-  return (
-    <>
-      {card_list &&
-        card_list.map((list, index) => {
-          return (
-            <AllWrap key={list.projectId}>
-              <AllTopWrap>
-                <CardTopInfo>
-                  <CardWriteName>{list.userId}</CardWriteName>
-                  <CardWriteTime>{list.createdAt}</CardWriteTime>
-                </CardTopInfo>
-                <CardTitleInfo>
-                  <CardTitleText>{list.title}</CardTitleText>
-                </CardTitleInfo>
-                <CardMainTextInfo>
-                  <CardMainText>
-                    {list.subscript}
-                    <br />
-                    {list.subscript}
-                  </CardMainText>
-                </CardMainTextInfo>
-                <CardJobTextWrap>
-                  <CardJobTitle>[구하는 직군]</CardJobTitle>
-                  <div style={{ marginTop: "4px" }}>
-                    <CardJobMainTitle>{list.role}</CardJobMainTitle>
-                  </div>
-                </CardJobTextWrap>
-                <CardTagWrap>
-                  <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
-                  <br />
-                  <TagWrap>
-                    <Tag />
-                    <Tag />
-                    <Tag />
-                    <Tag />
-                  </TagWrap>
-                </CardTagWrap>
-              </AllTopWrap>
-              <DashedLine />
-              <AllBotWrap>
-                <CardBotTopWrap>
-                  <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-                  <CardBotTextDateInfo> {list.start} </CardBotTextDateInfo>
-                </CardBotTopWrap>
-                <CardViewButton>프로젝트 보러 가기</CardViewButton>
-              </AllBotWrap>
-            </AllWrap>
-          );
-        })}
-    </>
-  );
+    const cards_list = useSelector((state) => state)
+    const card_list = cards_list.postRecruit.list.projects
+
+    console.log(card_list)
+
+    return (
+        <>
+            {card_list && card_list.map((list, index) => {
+                return (
+                    <AllWrap key={list.projectId}>
+                        <AllTopWrap>
+                            <CardTopInfo>
+                                <CardWriteName>{list.userId}</CardWriteName>
+                                <CardWriteTime>{list.createdAt}</CardWriteTime>
+                            </CardTopInfo>
+                            <CardTitleInfo>
+                                <CardTitleText>{list.title}</CardTitleText>
+                            </CardTitleInfo>
+                            <CardMainTextInfo>
+                                <CardMainText>
+                                    {list.subscript}
+                                    <br />
+                                    {list.subscript}
+                                </CardMainText>
+                            </CardMainTextInfo>
+                            <CardJobTextWrap>
+                                <CardJobTitle>[구하는 직군]</CardJobTitle>
+                                <div style={{ marginTop: "4px" }}><CardJobMainTitle>{list.role}</CardJobMainTitle></div>
+                            </CardJobTextWrap>
+                            <CardTagWrap>
+                                <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br />
+                                <TagWrap><Tag/><Tag /><Tag /><Tag /></TagWrap>
+                            </CardTagWrap>
+                        </AllTopWrap>
+                        <DashedLine />
+                        <AllBotWrap>
+                            <CardBotTopWrap>
+                                <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+                                <CardBotTextDateInfo> {list.start} </CardBotTextDateInfo>
+                            </CardBotTopWrap>
+                            <CardViewButton >프로젝트 보러 가기</CardViewButton>
+                        </AllBotWrap>
+                    </AllWrap>
+                )
+            })}
+        </>
+    );
 };
 
 //// 카드 전체 틀 관련 CSS 뭉치
