@@ -1,14 +1,16 @@
 import React, { useRef, useState } from "react";
-import { format, isValid, parse } from "date-fns";
+import { format, isValid, parse, startOfDay } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import styled from "styled-components";
 import { ko } from "date-fns/esm/locale";
 import "react-day-picker/dist/style.css";
 import "./day-picker.css";
 
+
 import up from "../image/toggle_up.svg";
 import down from "../image/toggle_down.svg";
 import calender from "../image/calender.svg"
+
 
 const DayPickerMain = () => {
   const [selected, setSelected] = useState("");
@@ -63,9 +65,11 @@ const DayPickerMain = () => {
       {footer}
       {toggle ? (
         <DayPicker className="dayPicker_container__divMain"
+
           styles={{caption: { fontSize: "13px", margin: "20px 0px 20px 0px"}}}
           mode="range" selected={selected} onSelect={setSelected} locale={ko} numberOfMonths={2} disabled={{ before: today }}>
           </DayPicker>
+
       ) : ("")}
     </DivDayPicker>
   );

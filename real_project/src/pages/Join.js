@@ -18,9 +18,7 @@ function Join() {
   const [userId, setUserId] = useState("");
   const [nickname, setNickName] = useState("");
   const [name, setName] = useState("");
-  const [birth, setBirth] = useState("");
-
-  const [totalBirth, setTotalBirth] = useState("");
+ 
 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -31,30 +29,12 @@ function Join() {
   const [day, setDay] = useState("");
   //error
   const [userIdError, setUserIdError] = useState({ status: false, text: "" });
-  const [nicknameError, setNickNameError] = useState({
-    status: false,
-    text: "",
-  });
-  const [nameError, setNameError] = useState({
-    status: false,
-    text: "",
-  });
-  const [phoneError, setPhoneError] = useState({
-    status: false,
-    text: "",
-  });
-  const [passwordError, setPasswordError] = useState({
-    status: false,
-    text: "",
-  });
-  const [confirmPasswordError, setConfirmPasswordError] = useState({
-    status: false,
-    text: "",
-  });
-  const [yearError, setYearError] = useState({
-    status: false,
-    text: "",
-  });
+  const [nicknameError, setNickNameError] = useState({ status: false, text: ""});
+  const [nameError, setNameError] = useState({status: false, text: ""});
+  const [phoneError, setPhoneError] = useState({status: false,text: ""});
+  const [passwordError, setPasswordError] = useState({status: false,text: ""});
+  const [confirmPasswordError, setConfirmPasswordError] = useState({status: false,text: ""});
+  const [yearError, setYearError] = useState({status: false,text: ""});
 
   //error name
   //이용약관:동의 비동의
@@ -63,6 +43,7 @@ function Join() {
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
 
+  
   //핸드폰: 하이픈 바 추가
   useEffect(() => {
     if (phoneNumber.length === 10) {
@@ -76,6 +57,7 @@ function Join() {
       );
     }
   }, [phoneNumber]);
+
 
   //체크박스
   useEffect(() => {
@@ -144,12 +126,17 @@ function Join() {
     const BirthRegex = /^[0-9\b -]{0,4}$/;
     const { name } = e.target;
     if (name === "year") {
-      if (BirthRegex.test(e.target.value)) setYear(e.target.value);
+      if (BirthRegex.test(e.target.value)) {
+        setYear(e.target.value);
+  
+      } 
     } else if (name === "month") {
       setMonth(e.target.value);
+ 
     } else if (name === "day") {
       if (BirthRegex.test(e.target.value)) {
         setDay(e.target.value);
+   
       }
     }
   };
@@ -159,7 +146,7 @@ function Join() {
     if (name === "day") {
       if (day < 10 && day.length === 1) {
         setDay(0 + e.target.value);
-      }
+      } 
     }
 
     if (year.length <= 0 && day.length <= 0) {
@@ -355,44 +342,42 @@ function Join() {
     }
   };
   const signupFunction = async () => {
-    const birth = [year, month, day];
-    setBirth(birth);
-    const birthDay = birth.toString();
+    //해당 콘솔을 찍은 부분 
 
-
-    setTotalBirth(birthDay.replace(",", "-").replace(",", "-"));
-
+ // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
       userId === "" ||
       nickname === "" ||
       name === "" ||
-      totalBirth === "" ||
+      year === "" ||
+      month === "" ||
+      day === "" ||
       phoneNumber === "" ||
       password === "" ||
       passwordCheck === "" ||
       userId === " " ||
       nickname === " " ||
       name === " " ||
-      totalBirth === " " ||
+      year === " " ||
+      month === " " ||
+      day === " " ||
       phoneNumber === " " ||
       password === " " ||
       passwordCheck === " "
     ) {
       return false;
     }
-
     if (ageCheck === false && useCheck === false) {
       alert("약관동의를 확인해주세요.");
       return false;
     }
-
     try {
       await dispatch(
         signupAxios(
           userId,
           nickname,
           name,
-          totalBirth,
+          year+"-"+month+"-"+day,
           phoneNumber,
           password,
           passwordCheck,
@@ -448,7 +433,7 @@ function Join() {
             </IdWrap>
             <IdWrap>
               <InputBar
-                requiredtype="text"
+                type="text"
                 placeholder="이름"
                 minLength={2}
                 maxLength={10}
@@ -510,7 +495,7 @@ function Join() {
             <IdWrap>
               <InputBar
                 placeholder="핸드폰 번호 / 010-0000-0000"
-                requiredtype="text"
+                type="text"
                 onChange={OnChangephoneNumber}
                 value={phoneNumber}
                 onBlur={BlurNumber}
@@ -521,7 +506,7 @@ function Join() {
             <IdWrap>
               <InputBar
                 placeholder="비밀번호"
-                requiredtype="password"
+                type="password"
                 maxLength={16}
                 onChange={OnChangePassWord}
                 value={password}
@@ -534,7 +519,7 @@ function Join() {
             <IdWrap>
               <InputBar
                 placeholder="비밀번호 확인"
-                requiredtype="password"
+                type="password"
                 maxLength={16}
                 onChange={OnChangePassWordCheck}
                 value={passwordCheck}

@@ -1,28 +1,40 @@
-import React, { useState, useRef } from "react";
-import SelectSkill from "../components/SelectSkill";
 
+
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-
 import styled from "styled-components";
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { createRecruitApi } from "../redux/modules/postRecruit";
 
 import { DayPicker } from "react-day-picker";
+import SelectSkill from "../components/SelectSkill";
 import { format, isValid, parse, isAfter } from "date-fns";
 import "react-day-picker/dist/style.css";
 import "../components/day-picker.css";
 import { ko } from "date-fns/esm/locale";
 
 
+
+
+
+
+
+
 function RecruitWrite() {
   const dateref = useRef
+  const dispatch = useDispatch();
   const [selected, setSelected] = useState(new Date);
   // const [startdate, setStart] = useState(selected.from);
   const today = new Date();
   const startdate = JSON.stringify(selected.from)
   const enddate = JSON.stringify(selected.to)
-
-
+  const highFunction = (e) => {
+    console.log(e);
+  }
+  console.log(highFunction)
 
 
   const onSubmit = async (data) => {
@@ -33,47 +45,61 @@ function RecruitWrite() {
       end: enddate.slice(1, 11),
       email: null,
       phone: null,
-      schedule: null,
+      photos: [null, null],
+      schedule: [null, null],
     }
     await new Promise((r) => setTimeout(r, 1000));
-    alert(JSON.stringify(output));
-    axios({
-      method: "post",
-      url: "http://3.39.226.20/api/projects",
-      data: JSON.stringify(output),
-      headers: {
-        "content-type": `application/json`
-        // "Content-Type": "multipart/form-data"
-      }
-    })
-        .then((res) => {
-          alert("프로젝트 등록완료!")
-          console.log(res);
-
-        })
-    console.log(data)
     console.log(output)
   }
 
 
 
-  // console.log(selected)
   const {
     register,
     handleSubmit,
+    control,
     formState: { isSubmitting, isDirty, errors },
   } = useForm();
 
-
-  
-
-  // const 
-  // const variables={
-  //   data:data,
-  //   date:selected
-  // }
-  // console.log(variables)
-
+  const dvelopSkills_list = [
+    { data: 'React' },
+    { data: 'Vue.js' },
+    { data: 'JavaScript' },
+    { data: 'Node.js' },
+    { data: 'Java' },
+    { data: 'Spring' },
+    { data: 'Python' },
+    { data: 'MongoDB' },
+    { data: 'MySQL' },
+    { data: 'Redis' },
+    { data: 'TypeScript' },
+    { data: 'Ruby' },
+    { data: 'AWS' },
+    { data: 'Go' },
+    { data: 'PHP' },
+    { data: 'Git' },
+    { data: '.NET' },
+    { data: 'React Native' },
+    { data: 'Django' },
+    { data: 'Flask' },
+    { data: 'Nest.JS' },
+    { data: 'Express.JS' },
+    { data: 'NoSQL' },
+    { data: 'SQL' },
+    { data: 'Swift' },
+    { data: 'Kotlin' },
+    { data: 'Android' },
+    { data: 'iOS' },
+  ]
+  const designerSkills_list = [
+    { data: 'Figma' },
+    { data: 'Adobe XD' },
+    { data: 'Adobe Illustrator' },
+    { data: 'Adobe PhotoShop' },
+    { data: 'Invision' },
+    { data: 'Sketch' },
+    { data: 'Protopie' },
+  ]
 
   let footer = (
     <p
@@ -138,11 +164,11 @@ function RecruitWrite() {
 
             <RecTopTextContentWrap>
               <RecTopRadioLabel>
-                <RecTopRadio id="role" type="radio" name="RecRadio" value="frontend" {...register("role")}/>프론트엔드 개발자</RecTopRadioLabel>
+                <RecTopRadio id="role" type="radio" name="RecRadio" value="frontend" {...register("role")} />프론트엔드 개발자</RecTopRadioLabel>
               <RecTopRadioLabel>
-                <RecTopRadio id="role" type="radio" name="RecRadio" value="backend" {...register("role")}/>백엔드 개발자</RecTopRadioLabel>
+                <RecTopRadio id="role" type="radio" name="RecRadio" value="backend" {...register("role")} />백엔드 개발자</RecTopRadioLabel>
               <RecTopRadioLabel>
-                <RecTopRadio id="role" type="radio" name="RecRadio" value="graphicDesigner" {...register("role")}/>그래픽 디자이너</RecTopRadioLabel>
+                <RecTopRadio id="role" type="radio" name="RecRadio" value="graphicDesigner" {...register("role")} />그래픽 디자이너</RecTopRadioLabel>
             </RecTopTextContentWrap>
           </RecruitWriteTopWrap>
  
@@ -152,122 +178,42 @@ function RecruitWrite() {
             </RecTitleTextWrap>
             <RecMidContentWrap>
               <MidTextWrap>
-                <MidText>개발자</MidText>
+                <RecTitleText>개발자</RecTitleText>
               </MidTextWrap>
               <MidContetWrap>
-                <ConLabel><InputCon id="skills" type="checkbox" value="React" {...register("skills")}/>React</ConLabel>
-                <ConLabel><InputCon id="skills" type="checkbox" value="Vue.js" {...register("skills")}/>Vue.js</ConLabel>
-                <ConLabel><InputCon id="skills" type="checkbox" value="JavaScript" {...register("skills")}/>JavaScript</ConLabel>
-                <ConLabel><InputCon id="skills" type="checkbox" value="Node.js" {...register("skills")}/>Node.js</ConLabel>
-                <ConLabel><InputCon id="skills" type="checkbox" value="Java" {...register("skills")}/>Java</ConLabel>
-                <ConLabel><InputCon id="skills" type="checkbox" value="Spring" {...register("skills")}/>Spring</ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Python"
-                    {...register("skills")}
-                  />
-                  Python
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="C"
-                    {...register("skills")}
-                  />
-                  C
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="C++"
-                    {...register("skills")}
-                  />
-                  C++
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="C#"
-                    {...register("skills")}
-                  />
-                  C#
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Swift"
-                    {...register("skills")}
-                  />
-                  Swift
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Kotlin"
-                    {...register("skills")}
-                  />
-                  Kotlin
-                </ConLabel>
+                {/* 셀렉트스킬컴포 */}
+                {/* <SelectSkill control={control}  ></SelectSkill> */}
+
+                {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                  return <ConLabel><InputCon id="skills" type="checkbox" value={list.data} {...register("skills")} />{list.data}</ConLabel>;
+                })}
+
+
               </MidContetWrap>
               <MidTextWrap>
-                <MidText>디자이너</MidText>
+                <RecTitleText>디자이너</RecTitleText>
               </MidTextWrap>
               <MidContetWrap>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Illustrator"
-                    {...register("skills")}
-                  />
-                  Illustrator
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="adobe XD"
-                    {...register("skills")}
-                  />
-                  adobe XD
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Figma"
-                    {...register("skills")}
-                  />
-                  Figma
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="3D MAX"
-                    {...register("skills")}
-                  />
-                  3D MAX
-                </ConLabel>
-                <ConLabel>
-                  <InputCon
-                    id="skills"
-                    type="checkbox"
-                    value="Blender"
-                    {...register("skills")}
-                  />
-                  Blender
-                </ConLabel>
+                {designerSkills_list && designerSkills_list.map((list, idx) => {
+                  return <ConLabel>
+                    <InputCon
+                      id="skills"
+                      type="checkbox"
+                      value={list.data}
+                      {...register("skills")}
+                    />
+                    {list.data}
+                  </ConLabel>;
+                })}
+
+                
               </MidContetWrap>
             </RecMidContentWrap>
           </RecruitWriteMidWrap>
+
+
+
+
 
           <RecTitleTextWrap>
             <RecTitleText htmlFor="title">제목</RecTitleText>
@@ -435,16 +381,26 @@ const InputCon = styled.input`
 `;
 
 const ConLabel = styled.label`
-  font-size: 13px;
+  font-size: 14px;
 `;
 
 const RecMainCon = styled.textarea`
-  margin: 20px;
-  padding: 10px;
-  width: 600px;
-  height: 400px;
-  outline: none;
-  resize: none;
+  appearance: none;
+  border: 0.5px solid gainsboro;
+  border-radius: 0.25rem;
+  width: 15px;
+  height: 15px;
+  margin-bottom: -3px;
+  margin-right: 5px;
+
+  &:checked {
+    border-color: transparent;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: #AE97E3;
+  }
 `;
 
 const RecTitleTextInput = styled.input`
