@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 // import _ from "lodash";
 import Tag from "./TagCompo"
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
+import Moment from "react-moment";
 // import { loadRecruitsApi } from "../redux/modules/postRecruit";
 
 
@@ -16,6 +17,9 @@ const dispatch=useDispatch
 
     const cards_list = useSelector((state) => state)
     const card_list = cards_list.postRecruit.list.projects
+    const nowTime = Date.now();
+    // const createdAt = cards_list.postRecruit.list.projects.createdAt
+    // console.log(createdAt)
     // useEffect(() => {
     //     dispatch(loadRecruitsApi());
     //   }, [dispatch]
@@ -27,6 +31,18 @@ const dispatch=useDispatch
     return (
         <>
             {card_list && card_list.map((list, index) => {
+                const createdAt = list.createdAt
+                const startTime = new Date(createdAt);
+                if (parseInt(startTime - nowTime) > -60000) {
+                    return <Moment format="방금 전">{startTime}</Moment>;
+                  }
+                  if (parseInt(startTime - nowTime) < -86400000) {
+                    return <Moment format="MMM D일">{startTime}</Moment>;
+                  }
+                  if (parseInt(startTime - nowTime) > -86400000) {
+                    return <Moment fromNow>{startTime}</Moment>;
+                  }
+                console.log(createdAt)
                 return (
                     <AllWrap>
                         <AllTopWrap>
