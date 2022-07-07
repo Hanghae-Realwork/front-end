@@ -22,6 +22,7 @@ const initialState = {
 };
 
 export function login(id) {
+  console.log(id)
   return { type: LOGIN, id };
 }
 
@@ -34,6 +35,7 @@ export function userInfo(infototal) {
 export function userId(checkId) {
   return { type: CheckUserId, checkId };
 }
+
 //middleWare
 export const signupAxios = (
   userId,
@@ -101,24 +103,26 @@ export const checkUserNicknameAxios = (nickname) => {
   };
 };
 
-// export const loginAxios = (userEmail, password) => {
-//   return async function (dispatch) {
-//     let success = null;
-//     await apis
-//       .login(userEmail, password)
-
-//       .then((res) => {
-//         localStorage.setItem("token", res.data.token);
-//         dispatch(login(userEmail));
-//         success = true;
-//       })
-//       .catch((err) => {
-//         success = false;
-//         console.log(err);
-//       });
-//     return success;
-//   };
-// };
+export const loginAxios = (userEmail, password) => {
+  return async function (dispatch) {
+    console.log(userEmail, password)
+    let success = null;
+    await apis
+      .login(userEmail, password)
+      .then((res) => {
+        
+        localStorage.setItem("token", res.data.token);
+      
+        dispatch(login(userEmail));
+        success = true;
+      })
+      .catch((err) => {
+        success = false;
+        ;
+      });
+    return success;
+  };
+};
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

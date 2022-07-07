@@ -5,16 +5,6 @@
 /* --rdp-background-color: 1개 선택시 background */
 /* --rdp-outline: 1개 선택시 테두리 */
 
-* {
-    --rdp-cell-size: 42px;
-    --rdp-accent-color: #77C3E7;
-    --rdp-background-color: #e7edff;
-    /* Switch to dark colors for dark themes */
-    /* Outline border for focused elements */
-    --rdp-outline: none;
-    /* Outline border for focused and selected elements */
-    --rdp-outline-selected: none;
-}
 
 .dayPicker_container__div {
     /* padding: 20px; */
@@ -25,52 +15,28 @@
     /* font-size: 53px; */
 }
 
-/* 오늘날짜 */
-/* .rdp-day_today:not(.rdp-day_outside) {
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.1);
+/* .rdp-day {
+    border-radius: 100%
 } */
 
-.rdp-day {
-    border-radius: 100%
-}
-
 /* 메인화면 캘린더*/
-.dayPicker_container__divMain {
+/* .dayPicker_container__divMain {
     position: absolute;
     display: flex;
     justify-content: center;
     font-size: 12px;
     top: 50px;
-}
+} */
 
-.rdp-months {
+/* .rdp-months {
     background-color: white;
     border: 3px solid #AE97E3;
     border-radius: 10px;
     /* padding: 5px; */
-}
 
-.rdp-head_cell {
-    background-color: #303032;
-    color: white;
-    font-size: 13px;
-    font-weight: bold;
-    /* margin-bottom: 5px; */
-}
 
-.rdp-cell{
-    padding: 2px;
-    font-size: 13px;
-    font-weight: bold;
-}
 
-.rdp-caption_start{
-    border-right: 1px dashed #AE97E3;
-    /* background-color: #303032; */
-    margin-right: -12px;
-}
 
-.rdp-tbody{
-    padding: 10px;
-}
+
+
+
