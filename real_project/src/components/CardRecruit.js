@@ -2,62 +2,70 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
 
-import Tag from "./TagCompo"
+import Tag from "./TagCompo";
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
 
-import Recepit from "../image/recepie.svg"
+import Recepit from "../image/recepie.svg";
 
 const CardRecruit = (props) => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const cards_list = useSelector((state) => state);
+  const card_list = cards_list.postRecruit.list.projects;
 
-    const cards_list = useSelector((state) => state)
-    const card_list = cards_list.postRecruit.list.projects
-
-    return (
-        <>
-            {card_list && card_list.map((list, index) => {
-                return (
-                    <AllWrap>
-                        <AllTopWrap>
-                            <CardTopInfo>
-                                <CardWriteName>{list.userId}</CardWriteName>
-                                <CardWriteTime>{list.createdAt}</CardWriteTime>
-                            </CardTopInfo>
-                            <CardTitleInfo>
-                                <CardTitleText>{list.title}</CardTitleText>
-                            </CardTitleInfo>
-                            <CardMainTextInfo>
-                                <CardMainText>
-                                    {list.subscript}
-                                    <br />
-                                    {list.subscript}
-                                </CardMainText>
-                            </CardMainTextInfo>
-                            <CardJobTextWrap>
-                                <CardJobTitle>[구하는 직군]</CardJobTitle>
-                                <div style={{ marginTop: "4px" }}><CardJobMainTitle>{list.role}</CardJobMainTitle></div>
-                            </CardJobTextWrap>
-                            <CardTagWrap>
-                                <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br />
-                                <TagWrap><Tag/><Tag /><Tag /><Tag /></TagWrap>
-                            </CardTagWrap>
-                        </AllTopWrap>
-                        <DashedLine />
-                        <AllBotWrap>
-                            <CardBotTopWrap>
-                                <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-                                <CardBotTextDateInfo> {list.start} </CardBotTextDateInfo>
-                            </CardBotTopWrap>
-                            <CardViewButton >프로젝트 보러 가기</CardViewButton>
-                        </AllBotWrap>
-                    </AllWrap>
-                )
-            })}
-        </>
-    );
-
+  return (
+    <>
+      {card_list &&
+        card_list.map((list, index) => {
+          return (
+            <AllWrap key={list.projectId}>
+              <AllTopWrap>
+                <CardTopInfo>
+                  <CardWriteName>{list.userId}</CardWriteName>
+                  <CardWriteTime>{list.createdAt}</CardWriteTime>
+                </CardTopInfo>
+                <CardTitleInfo>
+                  <CardTitleText>{list.title}</CardTitleText>
+                </CardTitleInfo>
+                <CardMainTextInfo>
+                  <CardMainText>
+                    {list.subscript}
+                    <br />
+                    {list.subscript}
+                  </CardMainText>
+                </CardMainTextInfo>
+                <CardJobTextWrap>
+                  <CardJobTitle>[구하는 직군]</CardJobTitle>
+                  <div style={{ marginTop: "4px" }}>
+                    <CardJobMainTitle>{list.role}</CardJobMainTitle>
+                  </div>
+                </CardJobTextWrap>
+                <CardTagWrap>
+                  <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
+                  <br />
+                  <TagWrap>
+                    <Tag />
+                    <Tag />
+                    <Tag />
+                    <Tag />
+                  </TagWrap>
+                </CardTagWrap>
+              </AllTopWrap>
+              <DashedLine />
+              <AllBotWrap>
+                <CardBotTopWrap>
+                  <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+                  <CardBotTextDateInfo> {list.start} </CardBotTextDateInfo>
+                </CardBotTopWrap>
+                <CardViewButton>프로젝트 보러 가기</CardViewButton>
+              </AllBotWrap>
+            </AllWrap>
+          );
+        })}
+    </>
+  );
 };
 
 //// 카드 전체 틀 관련 CSS 뭉치
@@ -91,8 +99,6 @@ const AllTopWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-
 
 const AllBotWrap = styled.div`
   border-top: none;
@@ -189,11 +195,9 @@ const TagWrap = styled.div`
 
 //// 센터 대쉬라인
 const DashedLine = styled.hr`
-
-    width: 300px;
-    border: 0.5px dashed #8D8D8D;
-`
-
+  width: 300px;
+  border: 0.5px dashed #8d8d8d;
+`;
 
 const CardBotTopWrap = styled.div`
   /* border: 1px solid black; */
@@ -213,26 +217,24 @@ const CardBotTextDate = styled.span`
 `;
 
 const CardBotTextDateInfo = styled.div`
-
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 21px;
-`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+`;
 
 const CardViewButton = styled.button`
-    width: 340px;
-    height: 40px;
-    padding: 8px;
-    margin-top: 20px;
-    margin-bottom: 12.5px;
-    background: linear-gradient(45deg, #AE97E3, #77C3E7);
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: white;
-    font-weight: 500;
-    font-size: 14px;
-`
+  width: 340px;
+  height: 40px;
+  padding: 8px;
+  margin-top: 20px;
+  margin-bottom: 12.5px;
+  background: linear-gradient(45deg, #ae97e3, #77c3e7);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+`;
 
 export default CardRecruit;
-
