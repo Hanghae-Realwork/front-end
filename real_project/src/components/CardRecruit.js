@@ -9,6 +9,7 @@ import Tag from "./TagCompo"
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
 
 import Recepit from "../image/recepie.svg"
+import Moment from "react-moment";
 
 const CardRecruit = (props) => {
 
@@ -16,16 +17,49 @@ const CardRecruit = (props) => {
 
     const cards_list = useSelector((state) => state)
     const card_list = cards_list.postRecruit.list.projects
+    const today = Date();
+    const nowTime = Date.now();
+    const stringNowTime = today.toString().split(" ")[4];
+    console.log(stringNowTime)
+    const todayHour = stringNowTime.split(":")[0];
+    console.log(todayHour)
+
+    // const displayCreatedAt = (createdAt) => {
+    //     const startTime = new Date(createdAt);
+    //     if (parseInt(startTime - nowTime) > -60000) {
+    //         return <Moment format="방금 전">{startTime}</Moment>;
+    //     }
+    //     if (parseInt(startTime - nowTime) < -86400000) {
+    //         return <Moment format="MMM D일">{startTime}</Moment>;
+    //     }
+    // };
+
 
     return (
         <>
             {card_list && card_list.map((list, index) => {
+                const createdAt = list.createdAt
+                const startTime = new Date(createdAt);
+                const stringStartTime = startTime.toString().split(" ")[4];
+                const startHour = stringStartTime.split(":")[0];
+                console.log(startHour)
+                const DisplayCreatedAt = () => {
+                    
+                    if (parseInt(startTime - nowTime) > -86400000) {
+                        return todayHour - startHour +"시간전";
+                    }
+                    if (parseInt(startTime - nowTime) < -86400000) {
+                        return <Moment format="MMM D일">{startTime}</Moment>;
+                    }
+                    
+                    console.log(createdAt)
+                };
                 return (
                     <AllWrap>
                         <AllTopWrap>
                             <CardTopInfo>
                                 <CardWriteName>{list.userId}</CardWriteName>
-                                <CardWriteTime>{list.createdAt}</CardWriteTime>
+                                <CardWriteTime><DisplayCreatedAt/></CardWriteTime>
                             </CardTopInfo>
                             <CardTitleInfo>
                                 <CardTitleText>{list.title}</CardTitleText>
@@ -43,7 +77,7 @@ const CardRecruit = (props) => {
                             </CardJobTextWrap>
                             <CardTagWrap>
                                 <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br />
-                                <TagWrap><Tag/><Tag /><Tag /><Tag /></TagWrap>
+                                <TagWrap><Tag /><Tag /><Tag /><Tag /></TagWrap>
                             </CardTagWrap>
                         </AllTopWrap>
                         <DashedLine />
