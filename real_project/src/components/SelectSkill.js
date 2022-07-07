@@ -1,26 +1,10 @@
-import React, { useState } from 'react';
+import styled from "styled-components"
 
-import styled from 'styled-components';
+function SelectSkill () {
 
-const modalMainRecruit = (props) => {
-  // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header } = props;
-
-  return (
-    // 모달이 열릴때 openModal 클래스가 생성된다.
-    <div className={open ? 'openModal modal' : 'modal'}>
-      {open ? (
-        <section>
-          <header>
-            {header}
-            <button className="close" onClick={close} >
-              선택취소 &times;
-            </button>
-          </header>
-          <main>
-                <SelectAllWrap>
-
-                <SelectBoxWrap>
+    return(
+        <>
+        <SelectBoxWrap>
             <SelectAllWrap>
               <TitleTextTag>개발자</TitleTextTag>
               <SelectBoxTab>
@@ -67,66 +51,41 @@ const modalMainRecruit = (props) => {
                 <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
               </SelectBoxTab>
             </SelectAllWrap>
-            <SelectButtonWrap>
-              <SelectButton> 선택 완료 </SelectButton>
-            </SelectButtonWrap>
           </SelectBoxWrap>
+        </>
+    )
+}
 
 
-                </SelectAllWrap>
-                <SelectButton> 적용 완료 </SelectButton>
-          </main>
-          <footer>
-            <button className="close" onClick={close}>
-              입력
-            </button>
-          </footer>
-        </section>
-      ) : null}
-    </div>
-  );
-};
 
-
-const SelectBoxWrap = styled.div`
-    border: 1px solid black;
-    width: 600px;
-    height: 300px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border-radius: 20px;
-    padding: 20px;
-`
-
-const SelectAllWrap = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-bottom: 12px;
-`
 
 const SelectBoxTab = styled.div`
-    /* border: 1px solid black; */
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 13px;
+`;
+
+const SelectBoxWrap = styled.div`
+  
+`;
+
+const SelectAllWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 580px;
+  padding: 10px;
+  /* border: 1px solid black; */
+`;
 
 const TecLabel = styled.label`
-    font-size: 14px;
-`
-
-const SelectButton = styled.div`
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: #C1C6C8;
-    color: white;
-    padding: 10px;
-    margin-top: 15px;
-    border-radius: 10px;
-    font-size: 14px;
-`
+  font-size: 14px;
+  /* border: 1px solid black; */
+`;
 
 const CheckBox = styled.input`
   appearance: none;
@@ -152,16 +111,5 @@ const TitleTextTag = styled.p`
   color: #AE97E3;
 `;
 
-const SelectButtonWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  /* gap: 15px; */
-`;
 
-
-
-export default modalMainRecruit;
-
+export default SelectSkill;

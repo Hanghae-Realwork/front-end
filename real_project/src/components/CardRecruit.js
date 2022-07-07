@@ -16,11 +16,13 @@ const CardRecruit = (props) => {
     const cards_list = useSelector((state) => state)
     const card_list = cards_list.postRecruit.list.projects
 
+    console.log(card_list)
+
     return (
         <>
             {card_list && card_list.map((list, index) => {
                 return (
-                    <AllWrap>
+                    <AllWrap key={list.projectId}>
                         <AllTopWrap>
                             <CardTopInfo>
                                 <CardWriteName>{list.userId}</CardWriteName>

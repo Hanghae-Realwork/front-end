@@ -3,32 +3,30 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import Card from "../components/CardRecruit";
+import CardEmpol from "../components/CardEmpol";
 import SelectCompo from "../components/SelectCompo"
 
 
 const MainEmployment = () => {
-    const  navigate =useNavigate();
-    
-    const Card_list = Array.from({ length: 24 }, (v, i) => i);
+  const navigate = useNavigate();
 
-    return (
-      <>
-        <TopCompoWrap>
-            <SelectCompo /> 
-        </TopCompoWrap>
-      <CardContainerWrap>
-        {Card_list === undefined ? null 
-        :Card_list.map((list, idx) => {
-          return (
-              <Card key={idx} />
-          );
-        })}
-      </CardContainerWrap>
+  const Card_Profile = Array.from({ length: 24 }, (v, i) => i);
+
+  return (
+    <>
+      <SelectCompo />
+      <CardBackGround>
+        <CardContainerWrap>
+          {Card_Profile === undefined
+            ? null
+            : Card_Profile.map((list, idx) => {
+                return <CardEmpol key={idx} />;
+              })}
+        </CardContainerWrap>
+      </CardBackGround>
     </>
-    )
-
-}
+  );
+};
 
 
 const CardContainerWrap = styled.div`
@@ -36,21 +34,16 @@ const CardContainerWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
-  max-width: 1400px;
-  margin-top: 30px;
+  max-width: 1440px;
+  padding: 33px 50px 0px 50px;
 `
 
-const TopCompoWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    width: 135vh;
-    max-width: 1400px;
-    gap: 20px;
-    /* border-bottom: 3px solid #685BC7; */
+const CardBackGround = styled.div`
+  background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 
