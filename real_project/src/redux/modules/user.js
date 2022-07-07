@@ -110,8 +110,9 @@ export const loginAxios = (userEmail, password) => {
     await apis
       .login(userEmail, password)
       .then((res) => {
-        console.log(res)
+        
         localStorage.setItem("token", res.data.token);
+      
         dispatch(login(userEmail));
         success = true;
       })

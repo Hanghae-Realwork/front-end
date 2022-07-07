@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { React, useRef } from "react";
 
-import { loginAxios} from "../redux/modules/user";
+import {loginAxios} from "../redux/modules/user";
+import DayPickerSingle from "../components/DayPickerSingle";
 
 function Login() {
   const loginidRef = useRef(null);
@@ -53,7 +54,7 @@ function Login() {
   return (
     <>
       <LoginWrap>
-
+<DayPickerSingle></DayPickerSingle>
         <AlignWrap>
           <LogoWrap>
             <p>renDev</p>
