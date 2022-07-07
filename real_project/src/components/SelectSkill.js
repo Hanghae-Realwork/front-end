@@ -4,77 +4,71 @@ import { useForm, Controller } from "react-hook-form";
 
 function SelectSkill({ control }) {
 
-  const [skills, setSkills] = useState([]);
+  const [dvelopSkills, setSkills] = useState([]);
   
-
-
+  const dvelopSkills_list =[
+    {data: 'React' },
+    {data: 'Vue.js' },
+    {data: 'JavaScript' },
+    {data: 'Node.js' },
+    {data: 'Java' },
+    {data: 'Spring' },
+    {data: 'Python' },
+    {data: 'MongoDB' },
+    {data: 'MySQL' },
+    {data: 'Redis' },
+    {data: 'TypeScript' },
+    {data: 'Ruby' },
+    {data: 'AWS' },
+    {data: 'Go' },
+    {data: 'PHP' },
+    {data: 'Git' },
+    {data: '.NET' },
+    {data: 'React Native' },
+    {data: 'Django' },
+    {data: 'Flask' },
+    {data: 'Nest.JS' },
+    {data: 'Express.JS' },
+    {data: 'NoSQL' },
+    {data: 'SQL' },
+    {data: 'Swift' },
+    {data: 'Kotlin' },
+    {data: 'Android' },
+    {data: 'iOS' },
+  ]
+  const designerSkills_list =[
+    {data:'Figma'},
+    {data:'Adobe XD'},
+    {data:'Adobe Illustrator'},
+    {data:'Adobe PhotoShop'},
+    {data:'Invision'},
+    {data:'Sketch'},
+    {data:'Protopie'},
+  ]
 
   return (
     <>
 
-      <Controller
-        control={control}
-        name="skills"
-        format={skills}
-        // render를 사용해서, field값을 복사하거나 꺼내 쓰면 된다.
-        // field안에는 value나 onBlur와 같은 함수도 있음
-        // render안의 onChange를 조작해, onChange안에 들어갈 값을
-        // 선택할 수 있다.
-        render={({ field: { onChange, value, name } }) => (
-          
           <SelectBoxWrap>
-
             <SelectAllWrap>
               <TitleTextTag>개발자</TitleTextTag>
               <SelectBoxTab>
-                {/* <TecLabel><CheckBox type="checkbox" value="React" checked={value} onChange={onChange} /></TecLabel>; */}
-                <TecLabel> <CheckBox type="checkbox" id="skills" value="React" onChange={value} ></CheckBox>React</TecLabel>
-                <TecLabel> <CheckBox type="checkbox" id="skills" value="Vue.js" onChange={(id) => {onChange(id);}}></CheckBox>Vue.js</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
+                
+              {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                return <TecLabel> <CheckBox type="checkbox" id="skills"  ></CheckBox>{list.data}</TecLabel>;})}
               </SelectBoxTab>
             </SelectAllWrap>
 
             <SelectAllWrap>
               <TitleTextTag>디자이너</TitleTextTag>
               <SelectBoxTab>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe Illustrator</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe PhotoShop</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Invision</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Sketch</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
+              {designerSkills_list && designerSkills_list.map((list, idx) => {
+                return <TecLabel> <CheckBox type="checkbox" id="skills"  ></CheckBox>{list.data}</TecLabel>;})}
               </SelectBoxTab>
             </SelectAllWrap>
 
           </SelectBoxWrap>
-        )}
-      />
+       
     </>
   )
 }

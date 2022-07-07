@@ -44,14 +44,17 @@ const CardRecruit = (props) => {
                 const startTime = new Date(createdAt);
                 const stringStartTime = startTime.toString().split(" ")[4];
                 const startHour = stringStartTime.split(":")[0];
-                console.log(startHour)
+                const thenHours = Math.floor((nowTime - startTime) / 3600000);
+                
                 const DisplayCreatedAt = () => {
                     
                     if (parseInt(startTime - nowTime) > -86400000) {
-                        return todayHour - startHour +"시간전";
+                        return (thenHours)+"시간전";
                     }
                     if (parseInt(startTime - nowTime) < -86400000) {
-                        return <Moment format="MMM D일">{startTime}</Moment>;
+                        return <Moment format="M월 D일">{startTime}</Moment>;
+                        // return (thenHours)+"시간전";
+
                     }
                     
                     console.log(createdAt)
