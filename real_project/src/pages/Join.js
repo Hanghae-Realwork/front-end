@@ -63,6 +63,7 @@ function Join() {
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
 
+  
   //핸드폰: 하이픈 바 추가
   useEffect(() => {
     if (phoneNumber.length === 10) {
@@ -76,6 +77,9 @@ function Join() {
       );
     }
   }, [phoneNumber]);
+  useEffect(() => {
+  
+},[totalBirth])
 
   //체크박스
   useEffect(() => {
@@ -144,12 +148,17 @@ function Join() {
     const BirthRegex = /^[0-9\b -]{0,4}$/;
     const { name } = e.target;
     if (name === "year") {
-      if (BirthRegex.test(e.target.value)) setYear(e.target.value);
+      if (BirthRegex.test(e.target.value)) {
+        setYear(e.target.value);
+  
+      } 
     } else if (name === "month") {
       setMonth(e.target.value);
+ 
     } else if (name === "day") {
       if (BirthRegex.test(e.target.value)) {
         setDay(e.target.value);
+   
       }
     }
   };
@@ -161,7 +170,6 @@ function Join() {
         setDay(0 + e.target.value);
       }
     }
-
     if (year.length <= 0 && day.length <= 0) {
       // console.log("년도 0 생일 0");
       setYearError({ status: true, text: "생년월일을 다시 확인해주세요." });
@@ -355,13 +363,22 @@ function Join() {
     }
   };
   const signupFunction = async () => {
-    const birth = [year, month, day];
-    setBirth(birth);
-    const birthDay = birth.toString();
+   const totalDate = [year, month, day];
+  setBirth(totalDate);
+  console.log(birth)
+  const birthDay = birth.toString();
+      setTotalBirth(birthDay.replace(",", "-").replace(",", "-"));
+    console.log(totalBirth)
+   
 
-
-    setTotalBirth(birthDay.replace(",", "-").replace(",", "-"));
-
+     console.log( userId,
+          nickname,
+          name,
+          totalBirth,
+          phoneNumber,
+          password,
+          passwordCheck,
+          allCheck)
     if (
       userId === "" ||
       nickname === "" ||

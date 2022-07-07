@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { React, useRef } from "react";
 
+import { loginAxios} from "../redux/modules/user";
 
 function Login() {
   const loginidRef = useRef(null);
@@ -14,6 +15,7 @@ function Login() {
 
   // 로그인 벨리데이션 체크 함수
   const loginFunction = async () => {
+    
     if (
       loginidRef.current.value === "" ||
       passwordRef.current.value === "" ||
@@ -24,28 +26,29 @@ function Login() {
     ) {
       alert("아이디, 비밀번호를 채워주세요!");
       return false;
+    }console.log("들어옴")
+      // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
+    document.getElementById("LoginBtn").disabled = true;
+    try {
+      await dispatch(
+        loginAxios(loginidRef.current.value, passwordRef.current.value)
+      ).then((success) => {
+        console.log(success);
+        if (success === true) {
+          navigate("/");
+          alert("로그인되었습니다!");
+        } else {
+          document.getElementById("LoginBtn").disabled = false;
+        }
+      });
+    } catch (err) {
+      console.log("Error >>", err);
+      document.getElementById("LoginBtn").disabled = false;
     }
   };
 
-  // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
-  //   document.getElementById("LoginBtn").disabled = true;
-  //   try {
-  //     await dispatch(
-  //       loginAxios(usernameRef.current.value, passwordRef.current.value)
-  //     ).then((success) => {
-  //       console.log(success);
-  //       if (success === true) {
-  //         navigate("/");
-  //         alert("로그인되었습니다!");
-  //       } else {
-  //         document.getElementById("LoginBtn").disabled = false;
-  //       }
-  //     });
-  //   } catch (err) {
-  //     console.log("Error >>", err);
-  //     document.getElementById("LoginBtn").disabled = false;
-  //   }
-  // };
+
+
 
   return (
     <>
@@ -64,12 +67,13 @@ function Login() {
             </PwWrap>
           </InpuLoginWrap>
           <ButtonWrap>
-            <LoginButton>로그인</LoginButton>
+            <LoginButton onClick={loginFunction}>로그인</LoginButton>
           </ButtonWrap>
           <LoginText>
             랑데브가 처음인가요?
             <MovetoJoin
               onClick={() => {
+               
                 navigate(`/join`);
               }}
               id="LoginBtn"
