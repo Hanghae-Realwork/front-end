@@ -2,24 +2,14 @@ import styled from "styled-components";
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {React, useRef} from "react"
+import { React, useRef } from "react";
 
 function Login() {
-  
   const loginidRef = useRef(null);
   const passwordRef = useRef(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
-  // 이벤트 리스너 (입력 완료 후 '엔터'키를 눌러서 로그인 할 수 있게 합니다.)
-  window.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-      loginFunction();
-    }
-  });
-
 
   // 로그인 벨리데이션 체크 함수
   const loginFunction = async () => {
@@ -33,10 +23,10 @@ function Login() {
     ) {
       alert("아이디, 비밀번호를 채워주세요!");
       return false;
-    }}
+    }
+  };
 
-
-    // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
+  // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
   //   document.getElementById("LoginBtn").disabled = true;
   //   try {
   //     await dispatch(
@@ -65,17 +55,34 @@ function Login() {
           </LogoWrap>
           <InpuLoginWrap>
             <IdWrap>
-              <InputBar ref={loginidRef} placeholder="아이디"></InputBar>
+              <InputBar
+                ref={loginidRef}
+                placeholder="이메일"
+                type="email"
+              ></InputBar>
             </IdWrap>
             <PwWrap>
-              <InputBar ref={passwordRef} placeholder="패스워드"></InputBar>
+              <InputBar
+                ref={passwordRef}
+                placeholder="패스워드"
+                type="password"
+              ></InputBar>
             </PwWrap>
           </InpuLoginWrap>
           <ButtonWrap>
             <LoginButton>로그인</LoginButton>
           </ButtonWrap>
-          <LoginText>랑데브가 처음인가요? 
-            <MovetoJoin onClick={() => {navigate(`/join`)}} id="LoginBtn">회원 가입하기</MovetoJoin></LoginText>
+          <LoginText>
+            랑데브가 처음인가요?
+            <MovetoJoin
+              onClick={() => {
+                navigate(`/join`);
+              }}
+              id="LoginBtn"
+            >
+              회원 가입하기
+            </MovetoJoin>
+          </LoginText>
         </AlignWrap>
       </LoginWrap>
     </>
@@ -112,7 +119,7 @@ const LogoWrap = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 30px;
-  color: #685BC7;
+  color: #685bc7;
 `;
 
 const InpuLoginWrap = styled.div`
@@ -169,20 +176,19 @@ const LoginButton = styled.button`
   color: white;
   font-weight: bold;
   font-size: 20px;
-  background-color: #685BC7;
+  background-color: #685bc7;
 `;
 
 const LoginText = styled.span`
   font-size: 14px;
-  margin-top:20px;
-`
+  margin-top: 20px;
+`;
 
 const MovetoJoin = styled.span`
-  color: #685BC7;
-  font-weight: bold; 
-  cursor: pointer; 
+  color: #685bc7;
+  font-weight: bold;
+  cursor: pointer;
   margin-left: 15px;
-`
-
+`;
 
 export default Login;
