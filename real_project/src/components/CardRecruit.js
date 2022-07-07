@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 import Tag from "./TagCompo";
-import { loadRecruitsApi } from "../redux/modules/postRecruit";
+
+import Recepit from "../image/recepie.svg"
 import Moment from "react-moment";
-// import { loadRecruitsApi } from "../redux/modules/postRecruit";
-
-
-import Recepit from "../image/recepie.svg";
 
 const CardRecruit = (props) => {
 
@@ -19,26 +16,12 @@ const CardRecruit = (props) => {
 
     const cards_list = useSelector((state) => state)
     const card_list = cards_list.postRecruit.list.projects
+    const today = Date();
     const nowTime = Date.now();
-    const displayCreatedAt = (createdAt) => {
-        const startTime = new Date(createdAt);
-        if (parseInt(startTime - nowTime) > -60000) {
-            return <Moment format="방금 전">{startTime}</Moment>;
-        }
-        if (parseInt(startTime - nowTime) < -86400000) {
-            return <Moment format="MMM D일">{startTime}</Moment>;
-        }
-        
-    };
-    // const createdAt = cards_list.postRecruit.list.projects.createdAt
-    // console.log(createdAt)
-    // useEffect(() => {
-    //     dispatch(loadRecruitsApi());
-    //   }, [dispatch]
-
-    //   );
-
-    console.log(card_list)
+    const stringNowTime = today.toString().split(" ")[4];
+    console.log(stringNowTime)
+    const todayHour = stringNowTime.split(":")[0];
+    console.log(todayHour)
 
     console.log(card_list)
 
@@ -46,20 +29,37 @@ const CardRecruit = (props) => {
         <>
             {card_list && card_list.map((list, index) => {
                 const createdAt = list.createdAt
-                console.log(createdAt)
+                const startTime = new Date(createdAt);
+                const stringStartTime = startTime.toString().split(" ")[4];
+                const startHour = stringStartTime.split(":")[0];
+                const thenHours = Math.floor((nowTime - startTime) / 3600000);
+                
+                const DisplayCreatedAt = () => {
+                    
+                    if (parseInt(startTime - nowTime) > -86400000) {
+                        return (thenHours)+"시간전";
+                    }
+                    if (parseInt(startTime - nowTime) < -86400000) {
+                        return <Moment format="M월 D일">{startTime}</Moment>;
+                        // return (thenHours)+"시간전";
+
+                    }
+                    
+                    console.log(createdAt)
+                };
                 return (
                     <AllWrap key={list.projectId}>
                         <AllTopWrap>
                             <CardTopInfo>
                                 <CardWriteName>{list.userId}</CardWriteName>
-                                <CardWriteTime>{displayCreatedAt}</CardWriteTime>
+                                <CardWriteTime><DisplayCreatedAt/></CardWriteTime>
                             </CardTopInfo>
                             <CardTitleInfo>
                                 <CardTitleText>{list.title}</CardTitleText>
                             </CardTitleInfo>
                             <CardMainTextInfo>
                                 <CardMainText>
-                                    {list.subscript}
+                                    [여기에 내용이 노출 됩니다]
                                     <br />
                                     {list.subscript}
                                 </CardMainText>
@@ -241,6 +241,7 @@ const CardBotTextDateInfo = styled.div`
   font-size: 14px;
   line-height: 21px;
 `;
+
 
 const CardViewButton = styled.button`
   width: 340px;
