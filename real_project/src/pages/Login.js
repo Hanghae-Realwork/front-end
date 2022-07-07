@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { React, useRef } from "react";
 
+
 function Login() {
   const loginidRef = useRef(null);
   const passwordRef = useRef(null);
@@ -49,24 +50,17 @@ function Login() {
   return (
     <>
       <LoginWrap>
+
         <AlignWrap>
           <LogoWrap>
             <p>renDev</p>
           </LogoWrap>
           <InpuLoginWrap>
             <IdWrap>
-              <InputBar
-                ref={loginidRef}
-                placeholder="이메일"
-                type="email"
-              ></InputBar>
+              <InputBar ref={loginidRef} placeholder="이메일" type="email"></InputBar>
             </IdWrap>
             <PwWrap>
-              <InputBar
-                ref={passwordRef}
-                placeholder="패스워드"
-                type="password"
-              ></InputBar>
+              <InputBar ref={passwordRef} placeholder="패스워드" type="password"></InputBar>
             </PwWrap>
           </InpuLoginWrap>
           <ButtonWrap>
