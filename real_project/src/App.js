@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
 //Pages 연결
-
 import AddProfile from "./pages/AddProfile";
 import Chat from "./pages/Chat";
 import EmploymentProfile from "./pages/EmploymentProfile";
@@ -12,16 +11,17 @@ import Join from "./pages/Join";
 import Login from "./pages/Login";
 import MainEmployment from "./pages/MainEmployment";
 import MainRecruit from "./pages/MainRecruit";
-import Recruit from "./pages/Recruit";
+import FindProject from "./pages/FindProject";
 import RecruitWrite from "./pages/RecruitWrite";
 import Main from "./pages/Main";
 // import Test from "./pages/Test";
 
 //Components 연결
-
 import Header from "./components/Header";
 import Loading from "./pages/Loading";
-import EmpoCard from "./components/CaredEmpol";
+import EmpoCard from "./components/CardEmpol";
+import FindProjectStep02 from "./components/FindProjectStep02";
+
 
 // import SelectBox from "./components/SelectBox";
 
@@ -30,7 +30,7 @@ function App() {
     <MainWrap>
       {/* <MainHeader> */}
       <Header />
-      <EmpoCard></EmpoCard>
+      {/* <EmpoCard></EmpoCard> */}
       {/* </MainHeader> */}
       {/* <AddProfile/> */}
       {/* <Test/> */}
@@ -40,7 +40,8 @@ function App() {
       {/* <Login/> '완료' */}
       {/* <MainEmployment/>
       <MainRecruit/> */}
-      {/* <Recruit/> */}
+      <FindProject/>
+      {/* <FindProjectStep02 /> */}
       {/* <RecruitWrite/> '완료' */}
       {/* <Loading/> '완료' */}
 
@@ -55,9 +56,10 @@ function App() {
         <Route path="/employmentprofile" element={<EmploymentProfile />} />
         <Route path="/addprofile" element={<AddProfile />} />
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
-        <Route path="/recruit" element={<Recruit />}></Route>
+        <Route path="/findproject" element={<FindProject />}></Route>
         <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
+        <Route path="/findprojectstep2" element={<FindProjectStep02 />}></Route>
       </Routes>
     </MainWrap>
   );
