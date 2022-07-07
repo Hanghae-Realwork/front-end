@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
-import Tag from "./TagCompo"
+import Tag from "./TagCompo";
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
 
 import Recepit from "../image/recepie.svg"
@@ -35,6 +35,8 @@ const CardRecruit = (props) => {
     // };
 
 
+    console.log(card_list)
+
     return (
         <>
             {card_list && card_list.map((list, index) => {
@@ -55,7 +57,7 @@ const CardRecruit = (props) => {
                     console.log(createdAt)
                 };
                 return (
-                    <AllWrap>
+                    <AllWrap key={list.projectId}>
                         <AllTopWrap>
                             <CardTopInfo>
                                 <CardWriteName>{list.userId}</CardWriteName>
@@ -93,7 +95,6 @@ const CardRecruit = (props) => {
             })}
         </>
     );
-
 };
 
 //// 카드 전체 틀 관련 CSS 뭉치
@@ -127,8 +128,6 @@ const AllTopWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-
 
 const AllBotWrap = styled.div`
   border-top: none;
@@ -225,11 +224,9 @@ const TagWrap = styled.div`
 
 //// 센터 대쉬라인
 const DashedLine = styled.hr`
-
-    width: 300px;
-    border: 0.5px dashed #8D8D8D;
-`
-
+  width: 300px;
+  border: 0.5px dashed #8d8d8d;
+`;
 
 const CardBotTopWrap = styled.div`
   /* border: 1px solid black; */
@@ -249,27 +246,25 @@ const CardBotTextDate = styled.span`
 `;
 
 const CardBotTextDateInfo = styled.div`
-
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 21px;
-`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+`;
 
 
 const CardViewButton = styled.button`
-    width: 340px;
-    height: 40px;
-    padding: 8px;
-    margin-top: 20px;
-    margin-bottom: 12.5px;
-    background: linear-gradient(45deg, #AE97E3, #77C3E7);
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: white;
-    font-weight: 500;
-    font-size: 14px;
-`
+  width: 340px;
+  height: 40px;
+  padding: 8px;
+  margin-top: 20px;
+  margin-bottom: 12.5px;
+  background: linear-gradient(45deg, #ae97e3, #77c3e7);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+`;
 
 export default CardRecruit;
-

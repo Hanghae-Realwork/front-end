@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
+import { flushSync } from "react-dom";
 function Join() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,8 +19,9 @@ function Join() {
   const [nickname, setNickName] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
+
   const [totalBirth, setTotalBirth] = useState("");
-  console.log(totalBirth);
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -27,7 +29,6 @@ function Join() {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
-
   //error
   const [userIdError, setUserIdError] = useState({ status: false, text: "" });
   const [nicknameError, setNickNameError] = useState({
@@ -62,7 +63,7 @@ function Join() {
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
 
-  //핸드폰
+  //핸드폰: 하이픈 바 추가
   useEffect(() => {
     if (phoneNumber.length === 10) {
       setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
@@ -89,11 +90,11 @@ function Join() {
     }
   }, [ageCheck, useCheck, marketingCheck]);
 
-  //userId
+  //유효성검사:userId
   const onChangeUserId = (e) => {
     setUserId(e.target.value);
   };
-  //유효성검사:userId
+
   const BlurUserId = (e) => {
     const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -138,7 +139,6 @@ function Join() {
       setNameError({ status: false, text: "" });
     }
   };
-
   //유효성검사:Birth
   const onChangeBirth = (e) => {
     const BirthRegex = /^[0-9\b -]{0,4}$/;
@@ -148,44 +148,69 @@ function Join() {
     } else if (name === "month") {
       setMonth(e.target.value);
     } else if (name === "day") {
-      if (BirthRegex.test(e.target.value)) setDay(e.target.value);
+      if (BirthRegex.test(e.target.value)) {
+        setDay(e.target.value);
+      }
     }
   };
 
   const BlurYear = (e) => {
-    if (year.length > 0) {
-      setYearError({ status: true, text: "태어난 월을 선택하세요." });
-      if (month.length > 0) {
+    const { name } = e.target;
+    if (name === "day") {
+      if (day < 10 && day.length === 1) {
+        setDay(0 + e.target.value);
+      }
+    }
+
+    if (year.length <= 0 && day.length <= 0) {
+      // console.log("년도 0 생일 0");
+      setYearError({ status: true, text: "생년월일을 다시 확인해주세요." });
+    } else if (year.length > 0 && day.length <= 0) {
+      console.log("년도 0 생일 x");
+      setYearError({
+        status: true,
+        text: "태어난 월과 일(날짜) 2자리를 정확하게 입력하세요. ",
+      });
+    } else if (year.length <= 0 && day.length > 0) {
+      // console.log("년도 0 생일 1");
+      setYearError({
+        status: true,
+        text: "태어난 년도 4자리를 정확하게 입력하세요. ",
+      });
+    } else if (year.length > 0 && day.length > 0) {
+      // console.log("들어와");
+      if (year >= 2008) {
         setYearError({
           status: true,
-          text: "태어난 일(날짜) 2자리를 정확하게 입력하세요.",
+          text: "미래에서 오셨군요^^",
         });
-      }
-      if (day.length > 0) {
+      } else if (year <= 1922) {
+        setYearError({
+          status: true,
+          text: "정말이세요?",
+        });
+      } else if (1922 <= year <= 2008) {
         setYearError({
           status: false,
           text: "",
         });
       }
-    }
-
-    if (year >= 2008) {
+      if (day >= 32) {
+        console.log("여기");
+        setYearError({
+          status: true,
+          text: "생년월일을 다시 확인해주세요.",
+        });
+      } else {
+        setYearError({
+          status: false,
+          text: "",
+        });
+      }
+    } else if (year.length > 0 && month.length > 0 > day.length) {
       setYearError({
-        status: true,
-        text: "미래에서 오셨군요^^",
-      });
-    } else if (year <= 1922) {
-      setYearError({
-        status: true,
-        text: "정말이세요?",
-      });
-      return;
-    }
-
-    if (day >= 32) {
-      setYearError({
-        status: true,
-        text: "생년월일을 다시 확인해주세요.",
+        status: false,
+        text: "",
       });
     }
   };
@@ -334,6 +359,7 @@ function Join() {
     setBirth(birth);
     const birthDay = birth.toString();
 
+
     setTotalBirth(birthDay.replace(",", "-").replace(",", "-"));
 
     if (
@@ -352,7 +378,6 @@ function Join() {
       password === " " ||
       passwordCheck === " "
     ) {
-      document.getElementById("userId").focus();
       return false;
     }
 
@@ -434,23 +459,44 @@ function Join() {
               {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
             </IdWrap>
             <IdWrap>
-              <input name="year" type="text" maxLength="4" placeholder="년(4자)" onBlur={BlurYear} value={year} onChange={onChangeBirth}/>
-              <select onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
+              <input
+                name="year"
+                type="text"
+                maxLength="4"
+                placeholder="년(4자)"
+                onBlur={BlurYear}
+                value={year}
+                onChange={onChangeBirth}
+              />
+              <select
+                onChange={onChangeBirth}
+                value={month}
+                name="month"
+                onBlur={BlurYear}
+              >
                 <option value="month">월</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
               </select>
-              <input type="text" maxLength="2" placeholder="일" value={day} onChange={onChangeBirth} onBlur={BlurYear} name="day"/>
+              <input
+                type="text"
+                maxLength="2"
+                placeholder="일"
+                value={day}
+                onChange={onChangeBirth}
+                onBlur={BlurYear}
+                name="day"
+              />
             </IdWrap>
             {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
             <IdWrap>

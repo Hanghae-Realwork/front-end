@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import Tag from "../components/TagCompo"
+import Tag from "./TagCompo"
 
 import BasicPhoto from "../image/astroman.svg"
 import Flip from "../image/flip.svg"
@@ -45,16 +45,15 @@ function CradEmpol () {
 
 const AllCardWrap = styled.div`
     border: 0.5px solid black;
-    border-radius: 1px;
+    border-radius: 2px;
     width: 384px;
     height: 250px;
-    margin: 50px;
+    margin: 50px 24px 24px 24px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-    /* clip-path: polygon(100% 0, 0% 50, 50% 50%); */
-
+    background-color: white;
 `
 
 const CardTopWrap = styled.div`
@@ -82,7 +81,7 @@ const ProfileTopWrap = styled.div`
 
 const CardTitle = styled.div`
     /* border: 1px solid black; */
-    width: 100px;
+    width: 120px;
     height: 27px;
     font-weight: 700;
     font-size: 18px;

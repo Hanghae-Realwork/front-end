@@ -225,7 +225,7 @@ function SelectCompo() {
       <DropDownAllWrap>
           <CompoWrap><App /> <DayPickerMain /> <AppSkill /> </CompoWrap>
         <RecButtonWrap>
-          <RecritButton onClick={() => {navigate(`/recruitwrite`);}}>모집글 올리기</RecritButton>
+          <RecritButton onClick={() => {navigate(`/recruitwrite`);}}>크루원 등록</RecritButton>
         </RecButtonWrap>
       </DropDownAllWrap>
     </BackGroundDiv>
