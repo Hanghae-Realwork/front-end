@@ -1,41 +1,61 @@
+import { useState } from "react";
 import styled from "styled-components"
+import { useForm, Controller } from "react-hook-form";
 
-function SelectSkill () {
+function SelectSkill({ control }) {
 
-    return(
-        <>
-        <SelectBoxWrap>
+  const [skills, setSkills] = useState([]);
+  
+
+
+
+  return (
+    <>
+
+      <Controller
+        control={control}
+        name="skills"
+        format={skills}
+        // render를 사용해서, field값을 복사하거나 꺼내 쓰면 된다.
+        // field안에는 value나 onBlur와 같은 함수도 있음
+        // render안의 onChange를 조작해, onChange안에 들어갈 값을
+        // 선택할 수 있다.
+        render={({ field: { onChange, value, name } }) => (
+          
+          <SelectBoxWrap>
+
             <SelectAllWrap>
               <TitleTextTag>개발자</TitleTextTag>
               <SelectBoxTab>
-                <TecLabel> <CheckBox type="checkbox" id="skills" value="React"></CheckBox>React</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox" id="skills" value="React"></CheckBox>Vue.js</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
+                {/* <TecLabel><CheckBox type="checkbox" value="React" checked={value} onChange={onChange} /></TecLabel>; */}
+                <TecLabel> <CheckBox type="checkbox" id="skills" value="React" onChange={value} ></CheckBox>React</TecLabel>
+                <TecLabel> <CheckBox type="checkbox" id="skills" value="Vue.js" onChange={(id) => {onChange(id);}}></CheckBox>Vue.js</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
+                <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
               </SelectBoxTab>
             </SelectAllWrap>
 
@@ -51,9 +71,12 @@ function SelectSkill () {
                 <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
               </SelectBoxTab>
             </SelectAllWrap>
+
           </SelectBoxWrap>
-        </>
-    )
+        )}
+      />
+    </>
+  )
 }
 
 
