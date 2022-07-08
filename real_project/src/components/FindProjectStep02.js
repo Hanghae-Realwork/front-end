@@ -28,11 +28,11 @@ const FindProjectStep02 = (props) => {
 
     await new Promise((r) => setTimeout(r, 1000));
     
-    dispatch(
-      createRecruitApi({
-        ...output
-      })
-    );
+    // dispatch(
+    //   createRecruitApi({
+    //     ...output
+    //   })
+    // );
     // navigate(`/findprojectstep2`)
     console.log(output)
   }
@@ -62,9 +62,11 @@ const FindProjectStep02 = (props) => {
         <div>
           <span>구하는 직군</span>
           <div>
+
             <label><input id="role" type="radio" value="frontend" {...register("role")}  name="Radio"/>FrontEnd</label>
             <label><input id="role" type="radio" name="Radio" value="backend" {...register("role")}/>BackEnd</label>
             <label><input id="role" type="radio" name="Radio" value="graphicDesigner" {...register("role")}/>Designer</label>
+
           </div>
         </div>
         <div>
@@ -84,9 +86,11 @@ const FindProjectStep02 = (props) => {
         </div>
         <div>
           <div><button onClick={() => {navigate(`/findprojectstep1`)}}>이전 단계로</button></div>
+
           <div><button type="submit" disabled={isSubmitting} onClick={() => {}}>등록하기</button></div>
         </div>
         </form>
+
       </FindProjectAllWrap>
     </>
   );

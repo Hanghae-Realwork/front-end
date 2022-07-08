@@ -148,6 +148,7 @@ const FindProjectAllWrap = styled.div`
   align-items: flex-start;
 `
 
+
 const FindProjectTitleText = styled.span`
   font-size: 20px;
   font-weight: 700;
@@ -176,10 +177,12 @@ const FindProjectStepGuideText2 = styled.span`
 
 const FindProjectStepWrap = styled.div`
   height: 67px;
+
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
+
   gap: 15px;
 `
 
@@ -188,15 +191,9 @@ const HeadLine = styled.hr`
   width: 1200px;
 `
 
-const FindProjectInputTitle = styled.div`
-  /* border: 1px solid black; */
-  margin: 40px 0px 16px 30px;
-  width: 1100px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-`
+
+
+
 
 const FindProjectInputDate = styled.div`
   margin: 40px 0px 16px 30px;
@@ -210,8 +207,23 @@ const FindProjectInputDate = styled.div`
 const ProjectTitleText = styled.span`
   font-size: 16px;
   font-weight: 500;
-  
+  gap: 15px;
 `
+
+
+
+const FindProjectInputTitle = styled.div`
+  /* border: 1px solid black; */
+  margin: 40px 0px 16px 30px;
+  width: 1100px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+
+
 
 const ProjectInput = styled.input`
   border: none;
