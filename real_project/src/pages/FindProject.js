@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Routes, Route } from "react-router-dom";
 
 import FindStep01 from "../components/FindProjectStep01"
 import FindStep02 from "../components/FindProjectStep02"
@@ -9,6 +11,7 @@ import SelectSkill from "../components/SelectSkill";
 
 
 const FindProject = (props) => {
+  const navigate = useNavigate();
 
   return (
     <>
@@ -17,11 +20,16 @@ const FindProject = (props) => {
                 <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
             </FindprojectTopWrap>
             <HeadLine/>
-            <FindProjectStepWrap>
-                <FindProjectStepGuideText>1. 프로젝트 설명하기 2.크루 모집하기</FindProjectStepGuideText>
-            </FindProjectStepWrap>
+              <FindProjectStepWrap>
+                  <FindProjectStepGuideText>1. 프로젝트 설명하기 2.크루 모집하기</FindProjectStepGuideText>
+              </FindProjectStepWrap>
             <HeadLine/>
-        <FindStep01/>
+            <FindStep01/>
+              <Routes>
+                <Route path="/findprojectstep2" element={<FindStep02 />}></Route>
+              </Routes>
+          <HeadLine/>
+        <div><button onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</button></div>
       </FindProjectAllWrap>
     </>
   );
