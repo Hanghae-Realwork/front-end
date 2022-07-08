@@ -36,7 +36,7 @@ export const loadRecruitsApi = () => {
        
         let list = [];
         let projects = response.data.projects;
-        console.log(response.data)
+       
         list = [...projects.reverse()]
 
         
@@ -77,7 +77,7 @@ export const loadRecruitsApi = () => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
-        console.log(action.discription);
+        
       return {projects : action.discription};
     }
     // case 'recruit/CREATE': {

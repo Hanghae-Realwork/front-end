@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Tag from "./TagCompo"
+import Tag from "./TagCompoEmp"
 
 import BasicPhoto from "../image/astroman.svg"
 import Flip from "../image/flip.svg"

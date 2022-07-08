@@ -11,7 +11,7 @@ import Recepit from "../image/recepie.svg"
 import Moment from "react-moment";
 
 const CardRecruit = ({data}) => {
-console.log(data.skills)
+
   //loadRecruit props
 
 

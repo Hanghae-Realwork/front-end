@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 function TagCompoRec({ skills }) {
-    console.log(skills)
+ 
     return <TagButton>{skills }</TagButton>;
 }
 
