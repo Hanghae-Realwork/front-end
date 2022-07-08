@@ -25,7 +25,7 @@ function Header() {
           </HeaderAlignWrap>
           <HeaderRightWrap>
             <LoginButton onClick={() => {navigate(`/login`);}}>로그인</LoginButton>
-            <CircleImage onClick={() => {navigate(`/addprofile`);}}><img src = {BasicPhoto} /></CircleImage>
+            <CircleImage onClick={() => {navigate(`/mypage`);}}><img src = {BasicPhoto} /></CircleImage>
           </HeaderRightWrap>
         </HeaderConWrap>
       </HeaderWrap>

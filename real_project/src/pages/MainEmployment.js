@@ -13,9 +13,6 @@ import { loadEmployAxios } from "../redux/modules/postEmploy";
 const MainEmployment = () => {
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.postEmploy.list);
-
-
-  
   
   useEffect(() => {
     dispatch(loadEmployAxios())
@@ -28,7 +25,7 @@ const MainEmployment = () => {
         <CardContainerWrap>
           {resumes === undefined
             ? null
-            : resumes.resumes.map((list, idx) => {
+            : resumes.map((list, idx) => {
                 return <CardEmpol key={idx} data={list} />;
               })}
         </CardContainerWrap>

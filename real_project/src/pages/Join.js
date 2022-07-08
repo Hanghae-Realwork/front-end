@@ -8,7 +8,7 @@ import {
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 
-import { useForm } from "react-hook-form";
+
 import { flushSync } from "react-dom";
 function Join() {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function Join() {
   //error name
   //이용약관:동의 비동의
   const [allCheck, setAllCheck] = useState(false);
-  const [ageCheck, setAgeCheck] = useState(false);
+ 
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
 
@@ -61,16 +61,16 @@ function Join() {
 
   //체크박스
   useEffect(() => {
-    if (ageCheck === true && useCheck === true && marketingCheck === true) {
+    if (useCheck === true && marketingCheck === true) {
       setAllCheck(true);
     } else if (
-      ageCheck === true &&
+      
       useCheck === true &&
       marketingCheck === false
     ) {
       setAllCheck(false);
     }
-  }, [ageCheck, useCheck, marketingCheck]);
+  }, [ useCheck, marketingCheck]);
 
   //유효성검사:userId
   const onChangeUserId = (e) => {
@@ -263,24 +263,18 @@ function Join() {
   const allBtnEvent = () => {
     if (allCheck === false) {
       setAllCheck(true);
-      setAgeCheck(true);
+   
       setUseCheck(true);
       setMarketingCheck(true);
     } else {
       setAllCheck(false);
-      setAgeCheck(false);
+  
       setUseCheck(false);
       setMarketingCheck(false);
     }
   };
 
-  const ageBtnEvent = () => {
-    if (ageCheck === false) {
-      setAgeCheck(true);
-    } else {
-      setAgeCheck(false);
-    }
-  };
+
 
   const useBtnEvent = () => {
     if (useCheck === false) {
@@ -367,7 +361,7 @@ function Join() {
     ) {
       return false;
     }
-    if (ageCheck === false && useCheck === false) {
+    if ( useCheck === false) {
       alert("약관동의를 확인해주세요.");
       return false;
     }
@@ -543,17 +537,7 @@ function Join() {
                   />
                   <AgreementText htmlFor="all-check">전체동의</AgreementText>
                 </div>
-                <div>
-                  <AgreementInput
-                    type="checkbox"
-                    id="check1"
-                    checked={ageCheck}
-                    onChange={ageBtnEvent}
-                  />
-                  <AgreementText htmlFor="check1">
-                    만 14세 이상입니다 (필수){" "}
-                  </AgreementText>
-                </div>
+
                 <div>
                   <AgreementInput
                     type="checkbox"

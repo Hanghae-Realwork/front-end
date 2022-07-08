@@ -27,15 +27,13 @@ function Login() {
     ) {
       alert("아이디, 비밀번호를 채워주세요!");
       return false;
-    } console.log("들어옴")
-    
+    } 
       // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
     document.getElementById("LoginBtn").disabled = true;
     try {
       await dispatch(
         loginAxios(loginidRef.current.value, passwordRef.current.value)
       ).then((success) => {
-        console.log(success);
         if (success === true) {
           navigate("/");
           alert("로그인되었습니다!");

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Tag from "../components/TagCompo"
+import Tag from "../components/TagCompoEmp"
 
 function EmploymentProfile() {
   return (

@@ -109,8 +109,8 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  // refresh: (nickname) =>
-  //   api.post("/api/users/refresh", ),
+  refresh: (nickname) =>
+    api.post("/api/users/refresh", ),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
