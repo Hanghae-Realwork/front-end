@@ -1,26 +1,35 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+
 
 import CardEmpol from "../components/CardEmpol";
 import SelectCompo from "../components/SelectCompo"
+import { useSelector } from "react-redux";
 
+import { useDispatch } from "react-redux";
+import { loadEmployAxios } from "../redux/modules/postEmploy";
 
 const MainEmployment = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const resumes = useSelector((state) => state.postEmploy.list);
 
-  const Card_Profile = Array.from({ length: 24 }, (v, i) => i);
 
+  
+  
+  useEffect(() => {
+    dispatch(loadEmployAxios())
+  }, [])
+  //수정중
   return (
     <>
       <SelectCompo />
       <CardBackGround>
         <CardContainerWrap>
-          {Card_Profile === undefined
+          {resumes === undefined
             ? null
-            : Card_Profile.map((list, idx) => {
-                return <CardEmpol key={idx} />;
+            : resumes.resumes.map((list, idx) => {
+                return <CardEmpol key={idx} data={list} />;
               })}
         </CardContainerWrap>
       </CardBackGround>

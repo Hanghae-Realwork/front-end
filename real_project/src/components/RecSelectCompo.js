@@ -1,84 +1,55 @@
 import "../App.css";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
-import up from "../image/up-fill.svg";
-import down from "../image/down-fill.svg";
 import { useNavigate } from "react-router-dom";
+import { format} from "date-fns";
+import { ko } from "date-fns/esm/locale";
+import { DayPicker } from "react-day-picker";
+
+import up from "../image/toggle_up.svg";
+import down from "../image/toggle_down.svg";
+import clipboard from "../image/clipboard.svg"
+import calender from "../image/calender.svg"
 import DayPickerMain from "./DayPickerMain";
+
 
 function RecSelectCompo() {
   const navigate = useNavigate();
+  const today = new Date();
 
-  const [modal, setModal] = useState(false);
 
   //드롭다운 스테이트 (전역)
-  //스택 선택 스테이트 (전역))
-  const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
-  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] =
-    React.useState(false);
+  //스택 선택 스테이트 (전역)
+  // 일정 선택 스테이트 (전역)
+  const [dropdownVisibility, setDropdownVisibility] = useState(false);
+  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = useState(false);
+  // const [dropdownVisibilityDate, setDropdownVisibilityDate] = useState(false);
+  
 
-  //드롭다운 컴포넌트 (자식 18 ~ 40)
+  //드롭다운 컴포넌트
   const Dropdown = (props) => {
-    const [visibilityAnimation, setVisibilityAnimation] = React.useState(false);
-    const [repeat, setRepeat] = React.useState(null);
+    const [visibilityAnimation, setVisibilityAnimation] = useState(false);
+    const [repeat, setRepeat] = useState(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (props.visibility) {
         clearTimeout(repeat);
         setRepeat(null);
         setVisibilityAnimation(true);
       } else {
         setRepeat(
-          setTimeout(() => {
-            setVisibilityAnimation(false);
+        setTimeout(() => {
+        setVisibilityAnimation(false);
           }, 400)
         );
       }
     }, [props.visibility]);
 
     return (
-      <article
-        className={`components-dropdown ${
-          props.visibility
-            ? "slide-fade-in-dropdown"
-            : "slide-fade-out-dropdown"
-        }`}
-      >
+      <article className={`components-dropdown ${
+        props.visibility ? "slide-fade-in-dropdown": "slide-fade-out-dropdown"}`}>
         {visibilityAnimation && props.children}
-      </article>
-    );
-  };
-
-  //스택 선택 드롭다운 (43 ~ 65)
-  const DropdownSkill = (props) => {
-    const [visibilityAni, setVisibilityAni] = React.useState(false);
-    const [repeatSkill, setRepeatSkill] = React.useState(null);
-
-    React.useEffect(() => {
-      if (props.visibility) {
-        clearTimeout(repeatSkill);
-        setRepeatSkill(null);
-        setVisibilityAni(true);
-      } else {
-        setRepeatSkill(
-          setTimeout(() => {
-            setVisibilityAni(false);
-          }, 400)
-        );
-      }
-    }, [props.visibility]);
-
-    return (
-      <article
-        className={`components-dropdown ${
-          props.visibility
-            ? "slide-fade-in-dropdown"
-            : "slide-fade-out-dropdown"
-        }`}
-      >
-        {visibilityAni && props.children}
       </article>
     );
   };
@@ -91,28 +62,16 @@ function RecSelectCompo() {
           {dropdownVisibility ? (
             <DropText>
               <TextImageWrap>
-                <svg width="15" height="18" viewBox="0 0 15 18" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="white"/>
-                <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="white"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="white"/>
-                </svg>
+              <img src = {clipboard} />  
               <SpanInText>닫기</SpanInText></TextImageWrap>
-                <svg width="17" height="11" viewBox="0 0 17 11" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#fff"/>
-                </svg>
+                <img src={up} />
             </DropText>
           ) : (
             <DropText>
               <TextImageWrap>
-                  <svg width="15" height="18" viewBox="0 0 15 18" fill="black" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="black"/>
-                    <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="black"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
-                  </svg>          
+                <img src = {clipboard} />          
                 <SpanInText>직군 선택하기</SpanInText></TextImageWrap>
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="black" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#black"/>
-                </svg>
+                <img src={down} />
             </DropText>
           )}
         </DropDownButton>
@@ -129,7 +88,6 @@ function RecSelectCompo() {
   };
 
   //스택 선택 드롭다운 컴포넌트 (본체 90 ~ 137)
-
   const AppSkill = (props) => {
     return (
       <DropDownWrap>
@@ -216,13 +174,80 @@ function RecSelectCompo() {
     );
   };
 
+  const DayPickerAnother = () => {
+    const [selected, setSelected] = useState(null);
+    const [toggle, setToggle] = useState(false);
+
+  const onClickToggle = () => {
+    setToggle((prev) => !prev);
+  };
+
+  let footer = (
+    <Container1 className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
+      <ContainerStartDateDiv1>
+        <DateFirstViewWrap>
+          <DateWrap>
+            <img src = {calender}/>
+            <ButtonName>프로젝트 기간</ButtonName>
+          </DateWrap> 
+            <img src = {down}/>
+        </DateFirstViewWrap>
+      </ContainerStartDateDiv1>
+    </Container1>
+  );
+  if (selected?.from) {
+    if (!selected.to) {
+      footer = (
+        <Container1 type="button" className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
+          <ContainerStartDateDiv1>
+            <img src = {calender}/>
+            <SelectedDate>{format(selected.from, "MM월 dd일 ")}</SelectedDate>
+            <img src = {down}/>
+          </ContainerStartDateDiv1>
+        </Container1>
+      );
+    } else if (selected?.to) {
+      footer = (
+        <Container1 type="button" className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
+          <ContainerStartDateDiv1>
+            <img src = {calender}/>
+              <SelectedDate>{format(selected.from, "MM월 dd일 ")}</SelectedDate>
+              <SelectedDateWave>{' ~ '}</SelectedDateWave>
+              <SelectedDate>{format(selected.to,  "MM월 dd일")}</SelectedDate>
+          </ContainerStartDateDiv1>
+        </Container1>
+      );
+    }
+  }
+
+  return (
+    <DivDayPicker>
+      {footer}
+      {toggle ? (
+        <DayPicker 
+          className="dayPicker_container__divMain"
+          styles={{caption: { fontSize: "13px", margin: "20px 0px 20px 0px"}}}
+          modifiersStyles={{ disabled: { fontSize: '85%' } }}
+          mode="range" 
+          selected={selected} 
+          onSelect={setSelected} 
+          locale={ko} 
+          numberOfMonths={2} 
+          disabled={{ before: today }}>
+          </DayPicker>
+      ) : ("")}
+    </DivDayPicker>
+  );
+};
+
+
   // 리턴 컴포넌트 최종(출력 구간)
   return (
     <BackGroundDiv>
       <DropDownAllWrap>
-          <CompoWrap><App /> <DayPickerMain /> <AppSkill /> </CompoWrap>
+          <CompoWrap><App /> <DayPickerAnother /> <AppSkill /> </CompoWrap>
         <RecButtonWrap>
-          <RecritButton onClick={() => {navigate(`/recruitwrite`);}}>모집글 올리기</RecritButton>
+          <RecritButton onClick={() => {navigate(`/findprojectstep1`);}}>모집글 올리기</RecritButton>
         </RecButtonWrap>
       </DropDownAllWrap>
     </BackGroundDiv>
@@ -304,7 +329,7 @@ const DropTextSkill = styled.div`
 `;
 
 const SelectBoxWrap = styled.div`
-  border: 3px solid #AE97E3;
+  border: 1px solid #323230;
   width: 600px;
   height: 380px;
   display: flex;
@@ -314,6 +339,7 @@ const SelectBoxWrap = styled.div`
   padding: 20px;
   position: absolute;
   background-color: white;
+  border-radius: 5px;
 `;
 
 const SelectAllWrap = styled.div`
@@ -428,6 +454,66 @@ const CompoWrap = styled.div`
 
 
 
+const SelectedDate = styled.span`
+  font-size: 13px;
+  margin-left: 5px;
+  margin-right: 10px;
+`;
+
+const SelectedDateWave = styled.div`
+  font-size: 14px;
+  margin-left: 3px;
+  margin-right: 3px;
+`
+
+const ContainerStartDateDiv1 = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 10px 0px 10px;
+`;
+
+const Container1 = styled.label`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  padding: 9px 12px 9px 10px;
+  border-right: 1px solid black;
+  width: 215px;
+`;
+
+const DateFirstViewWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  width:160px;
+`
+
+const ButtonName = styled.label`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 400;
+`;
+
+const DateWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+`
+
+const DivDayPicker = styled.div`
+  position: relative;
+`;
 
 export default RecSelectCompo;
 

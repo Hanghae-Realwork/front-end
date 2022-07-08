@@ -6,39 +6,47 @@ import BasicPhoto from "../image/astroman.svg"
 import Flip from "../image/flip.svg"
 
 
-function CradEmpol () {
+function CradEmpol ({data}) {
 
-    return(
-        <>
-            <AllCardWrap>
-                <CardTopWrap>
-                    <ProfileTopWrap>
-                        <ProfileWrap>
-                            <ProfileCircle></ProfileCircle>
-                        </ProfileWrap>
-                        <CardTextWrap>
-                            <CardTitle>[작성자이름]</CardTitle>
-                            <CardText>[FrontEnd개발자]</CardText>
-                        </CardTextWrap>
-                    </ProfileTopWrap>
-                    <FlipWrap></FlipWrap>
-                </CardTopWrap>
-                <CardMidWrap>
-                    <MidText>[자기소개 메세지가 노출 됩니다]</MidText>
-                    <br/>
-                    <MidText>[자기소개 메세지가 노출 됩니다]</MidText>
-                </CardMidWrap>
-                <CardMidMini>
-                    <MidDateText> [희망 프로젝트 기간이 노출 됩니다] </MidDateText>
-                </CardMidMini>
-                <CardBotTag>
-                    <div> <Tag/><Tag/><Tag/><Tag/><Tag/><Tag/> </div>
-                </CardBotTag>
-
-            </AllCardWrap>
-        </>
-
-    )
+    return (
+      <>
+        <AllCardWrap>
+          <CardTopWrap>
+            <ProfileTopWrap>
+              <ProfileWrap>
+                <ProfileCircle></ProfileCircle>
+              </ProfileWrap>
+              <CardTextWrap>
+                <CardTitle>[작성자이름]</CardTitle>
+                <CardText>[FrontEnd개발자]</CardText>
+              </CardTextWrap>
+            </ProfileTopWrap>
+            <FlipWrap></FlipWrap>
+          </CardTopWrap>
+          <CardMidWrap>
+            <MidText>{data.content}</MidText>
+            <br />
+           
+          </CardMidWrap>
+          <CardMidMini>
+            <MidDateText>
+              {" "}
+              {data.start_moment}~{data.end_moment}{" "}
+            </MidDateText>
+          </CardMidMini>
+          <CardBotTag>
+            <div>
+                        {data === undefined ? null : 
+                            data.skills.map((list, idx) => {
+                                return <Tag key={idx} skills={list} />;
+              })}
+              
+             
+            </div>
+          </CardBotTag>
+        </AllCardWrap>
+      </>
+    );
 }
 
 

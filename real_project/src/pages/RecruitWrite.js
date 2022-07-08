@@ -171,7 +171,7 @@ function RecruitWrite() {
                 <RecTopRadio id="role" type="radio" name="RecRadio" value="graphicDesigner" {...register("role")} />그래픽 디자이너</RecTopRadioLabel>
             </RecTopTextContentWrap>
           </RecruitWriteTopWrap>
-
+ 
           <RecruitWriteMidWrap>
             <RecTitleTextWrap>
               <RecTitleText>요구 스킬</RecTitleText>
@@ -264,12 +264,7 @@ function RecruitWrite() {
             </RecTitleTextWrap>
 
             <div>
-              <RecMainCon
-                id="details"
-                type="text"
-                placeholder="프로젝트의 내용을 입력해주세요"
-                {...register("details")}
-              />
+              <RecMainCon id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" {...register("details")}/>
             </div>
           </RecruitWriteTextBotWrap>
           <div>
@@ -385,22 +380,12 @@ const ConLabel = styled.label`
 `;
 
 const RecMainCon = styled.textarea`
-  appearance: none;
-  border: 0.5px solid gainsboro;
-  border-radius: 0.25rem;
-  width: 15px;
-  height: 15px;
-  margin-bottom: -3px;
-  margin-right: 5px;
-
-  &:checked {
-    border-color: transparent;
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
-    background-size: 100% 100%;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-color: #AE97E3;
-  }
+  margin: 20px; 
+  padding: 10px; 
+  width: 600px; 
+  height: 400px; 
+  outline: none; 
+  resize: none;
 `;
 
 const RecTitleTextInput = styled.input`

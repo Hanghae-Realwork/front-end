@@ -11,15 +11,16 @@ import Join from "./pages/Join";
 import Login from "./pages/Login";
 import MainEmployment from "./pages/MainEmployment";
 import MainRecruit from "./pages/MainRecruit";
-import FindProject from "./pages/FindProject";
 import RecruitWrite from "./pages/RecruitWrite";
 import Main from "./pages/Main";
+import MyPage from "./pages/MyPage"
 // import Test from "./pages/Test";
 
 //Components 연결
 import Header from "./components/Header";
 import Loading from "./pages/Loading";
 import EmpoCard from "./components/CardEmpol";
+import FindProjectStep01 from "./components/FindProjectStep01";
 import FindProjectStep02 from "./components/FindProjectStep02";
 
 
@@ -30,6 +31,7 @@ function App() {
     <MainWrap>
       {/* <MainHeader> */}
       <Header />
+      <MyPage />
       {/* <EmpoCard></EmpoCard> */}
       {/* </MainHeader> */}
       {/* <AddProfile/> */}
@@ -40,7 +42,7 @@ function App() {
       {/* <Login/> '완료' */}
       {/* <MainEmployment/>
       <MainRecruit/> */}
-      <FindProject/>
+      {/* <FindProject/>  - 해결중 */} 
       {/* <FindProjectStep02 /> */}
       {/* <RecruitWrite/> '완료' */}
       {/* <Loading/> '완료' */}
@@ -56,9 +58,10 @@ function App() {
         <Route path="/employmentprofile" element={<EmploymentProfile />} />
         <Route path="/addprofile" element={<AddProfile />} />
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
-        <Route path="/findproject" element={<FindProject />}></Route>
         <Route path="/recruitwrite" element={<RecruitWrite />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
+        <Route path="/mypage" element={<MyPage />}></Route>
+        <Route path="/findprojectstep1" element={<FindProjectStep01 />}></Route>
         <Route path="/findprojectstep2" element={<FindProjectStep02 />}></Route>
       </Routes>
     </MainWrap>
