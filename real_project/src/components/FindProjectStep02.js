@@ -27,6 +27,7 @@ const FindProjectStep02 = (props) => {
           </div>
         </div>
         <div>
+          {/* 셀렉트스킬 컴포넌트  */}
           <SelectSkill />
 
         </div>
