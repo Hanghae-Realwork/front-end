@@ -43,7 +43,7 @@ const CardRecruit = ({data}) => {
         <AllWrap>
           <AllTopWrap>
             <CardTopInfo>
-              <CardWriteName>이름</CardWriteName>
+              <CardWriteName></CardWriteName>
               <CardWriteTime>{/* <DisplayCreatedAt /> */}</CardWriteTime>
             </CardTopInfo>
             <CardTitleInfo>

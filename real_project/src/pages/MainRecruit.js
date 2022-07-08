@@ -14,8 +14,9 @@ const MainRecruit = (list) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const loadRecruits = useSelector((state) => state.postRecruit.projects);
- 
+  const loadRecruits = useSelector((state) => state);
+
+
   useEffect(() => {
     dispatch(loadRecruitsApi());
   }, [dispatch]
@@ -29,14 +30,11 @@ const MainRecruit = (list) => {
       <RecSelectCompo />
       <CardBackGround>
         <CardContainerWrap>
-
-          {loadRecruits === undefined ? null : 
-            loadRecruits.map((list,idx) => {
-              return <Card data={list} key={idx} />;
-            })
-            }
-          
-
+          {/* {loadRecruits=== undefined
+            ? null
+            : loadRecruits.map((list, idx) => {
+                return <Card data={list} key={idx} />;
+              })} */}
         </CardContainerWrap>
       </CardBackGround>
     </>
