@@ -77,6 +77,14 @@ const FindProjectStep01 = (props) => {
   return (
     <>
       <FindProjectAllWrap>
+        <FindprojectTopWrap>
+            <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
+        </FindprojectTopWrap>
+          <HeadLine/>
+          <FindProjectStepWrap>
+              <FindProjectStepGuideText><span>1. 프로젝트 설명하기</span> <span>2.크루 모집하기</span></FindProjectStepGuideText>
+          </FindProjectStepWrap>
+        <HeadLine/>
         <FindProjectInputTitle>
                 <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
                 <ProjectInput placeholder="제목을 입력해 주세요"></ProjectInput>
@@ -103,7 +111,7 @@ const FindProjectStep01 = (props) => {
         </div>
         <div>
             <ProjectTitleText>팀 상세 설명</ProjectTitleText>
-            <div><textarea></textarea></div>
+            <div><RecMainCon id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" {...register("details")}/></div>
         </div>
         <div><button onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</button></div>
       </FindProjectAllWrap>
@@ -114,6 +122,39 @@ const FindProjectStep01 = (props) => {
 
 const FindProjectAllWrap = styled.div`
   /* border: 1px solid black; */
+`
+
+const FindProjectTitleText = styled.span`
+  font-size: 20px;
+  font-weight: 700;
+  margin: 30px 0px 30px 32px;
+`
+
+const FindprojectTopWrap = styled.div`
+  height: 90px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+const FindProjectStepGuideText = styled.span`
+  font-size: 18px;
+  font-weight: 500;
+  margin: 17px 0px 23px 30px;
+`
+
+const FindProjectStepWrap = styled.div`
+  height: 67px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+const HeadLine = styled.hr`
+  border: 1px solid #D9D9D9;
+  width: 1200px;
 `
 
 const FindProjectInputTitle = styled.div`
@@ -147,5 +188,14 @@ const Ptag = styled.p`
   font-size: 13px;
   font-weight: 500;
 `
+
+const RecMainCon = styled.textarea`
+  margin: 20px; 
+  padding: 10px; 
+  width: 600px; 
+  height: 400px; 
+  outline: none; 
+  resize: none;
+`;
 
 export default FindProjectStep01;

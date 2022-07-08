@@ -247,7 +247,7 @@ function RecSelectCompo() {
       <DropDownAllWrap>
           <CompoWrap><App /> <DayPickerAnother /> <AppSkill /> </CompoWrap>
         <RecButtonWrap>
-          <RecritButton onClick={() => {navigate(`/recruitwrite`);}}>모집글 올리기</RecritButton>
+          <RecritButton onClick={() => {navigate(`/findprojectstep1`);}}>모집글 올리기</RecritButton>
         </RecButtonWrap>
       </DropDownAllWrap>
     </BackGroundDiv>
