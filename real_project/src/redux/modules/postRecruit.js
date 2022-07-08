@@ -30,18 +30,26 @@ export function createRecruit(discription) {
 
 export const loadRecruitsApi = () => {
   return async function (dispatch) {
-    try {
-      console.log("프로젝트를 불러왔습니다!");
-      const data = await apis.projectsLoad();
-      const postreverse = data.data.projects.reverse();
 
-      console.log(postreverse)
-      dispatch(loadRecruits(postreverse));
-      console.log(data)
-      // console.log(data.data)
-    } catch (e) {
+    await apis.projectsLoad().then((response)=>{
+      const list = []
+      const projects = response.data.projects;
+      list =[...projects.reverse()];
+      const reverseProjects = list;
+      dispatch(loadRecruits(reverseProjects));
+    })
+    // try {
+    //   console.log("프로젝트를 불러왔습니다!");
+    //   const data = await apis.projectsLoad();
+    //   const postreverse = data.data.projects.reverse();
+
+    //   console.log(data.data)
+    //   dispatch(loadRecruits(data.data));
+    //   console.log(data)
+    //   // console.log(data.data)
+    .catch((e) => {
       console.log(`포스팅 조회 오류 발생!${e}`);
-    }
+    })
   };
 };
   
@@ -73,7 +81,7 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
       return {
-        list: action.discription,
+        projects: action.discription,
       };
     }
 

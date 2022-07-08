@@ -34,19 +34,22 @@ const dispatch = useDispatch
   const onSubmit = async (data) => {
     const output = {
       ...data,
+
       start: startdate.slice(1, 11),
       end: enddate.slice(1, 11),
-      email: null,
-      phone: null,
-      schedule: null,
+      
+      photos: ["null", "null"],
+      schedule: ["2022-07-20","2022-07-25"]
     }
 
-    await new Promise((r) => setTimeout(r, 1000));
-    dispatch(
-      createRecruitApi({
-        ...output
-      })
-    );
+    // await new Promise((r) => setTimeout(r, 1000));
+    localStorage.setItem('obj', JSON.stringify(output))
+    // dispatch(
+    //   createRecruitApi({
+    //     ...output
+    //   })
+    // );
+    console.log(output)
   }
 
   const {
@@ -77,6 +80,7 @@ const dispatch = useDispatch
   return (
     <>
       <FindProjectAllWrap>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FindprojectTopWrap>
             <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
         </FindprojectTopWrap>
@@ -87,11 +91,21 @@ const dispatch = useDispatch
         <HeadLine/>
         <FindProjectInputTitle>
                 <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-                <ProjectInput placeholder="제목을 입력해 주세요"></ProjectInput>
+                <ProjectInput 
+                id="title"
+                type="text"
+                placeholder="제목을 입력해주세요"
+                {...register("title")}
+                ></ProjectInput>
         </FindProjectInputTitle>
         <FindProjectInputTitle>
             <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput placeholder="간단한 프로젝트 설명을 넣어주세요"></ProjectInput>
+            <ProjectInput 
+            id="subscript"
+            type="text"
+            placeholder="프로젝트를 설명해주세요"
+            {...register("subscript")}
+            ></ProjectInput>
         </FindProjectInputTitle>
           <div>
             <ProjectTitleText>프로젝트 기간</ProjectTitleText>
@@ -113,7 +127,10 @@ const dispatch = useDispatch
             <ProjectTitleText>팀 상세 설명</ProjectTitleText>
             <div><RecMainCon id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" {...register("details")}/></div>
         </div>
-        <div><button onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</button></div>
+        <div><button type="submit" disabled={isSubmitting} 
+        // onClick={() => {navigate(`/findprojectstep2`)}}
+        >다음 단계로</button></div>
+        </form>
       </FindProjectAllWrap>
     </>
   );
