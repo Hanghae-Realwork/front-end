@@ -33,6 +33,7 @@ export const loadRecruitsApi = () => {
     await apis
       .projectsLoad()
       .then((response) => {
+
         let list = [];
         let projects = response.data.projects;
         list = [...projects.reverse()];

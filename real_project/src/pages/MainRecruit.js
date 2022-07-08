@@ -15,7 +15,7 @@ const MainRecruit = (list) => {
   const dispatch = useDispatch();
 
   const loadRecruits = useSelector((state) => state.postRecruit.projects);
-
+ 
   useEffect(() => {
     dispatch(loadRecruitsApi());
   }, [dispatch]
@@ -32,7 +32,7 @@ const MainRecruit = (list) => {
 
           {loadRecruits === undefined ? null : 
             loadRecruits.map((list,idx) => {
-              return <Card data={list} key= {idx} />;
+              return <Card data={list} key={idx} />;
             })
             }
           

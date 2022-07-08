@@ -14,7 +14,7 @@ const MainEmployment = () => {
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.postEmploy.list);
 
-  const Card_Profile = Array.from({ length: 24 }, (v, i) => i);
+
   
   
   useEffect(() => {

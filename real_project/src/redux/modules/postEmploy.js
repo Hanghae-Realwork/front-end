@@ -27,7 +27,7 @@ export const loadEmployAxios = () => {
     await apis
       .resumesLoad()
       .then((response) => {
-        console.log(response);
+   
         let resumes = response.data;
         dispatch(loadEmploy(resumes));
       })
