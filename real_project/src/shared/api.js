@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import Cookies from "universal-cookie";
+axios.defaults.withCredentials = true;
 //이미지 데이터
 const imgApi = axios.create({
   baseURL: "http://3.39.226.20/",
@@ -16,6 +17,13 @@ const api = axios.create({
  
   },
 });
+
+// roomApi.interceptors.request.use(function (config) {
+//   const cookies = new Cookies();
+//   const token = cookies.get("token");
+//   config.headers.common["Authorization"] = `${token}`;
+//   return config;
+// });
 
 //토큰
 api.interceptors.request.use(function (config) {

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { React, useRef } from "react";
 
-import {loginAxios} from "../redux/modules/user";
+import { loginAxios } from "../redux/modules/user";
 import DayPickerSingle from "../components/DayPickerSingle";
 
 function Login() {
@@ -16,7 +16,6 @@ function Login() {
 
   // 로그인 벨리데이션 체크 함수
   const loginFunction = async () => {
-    
     if (
       loginidRef.current.value === "" ||
       passwordRef.current.value === "" ||
@@ -27,8 +26,8 @@ function Login() {
     ) {
       alert("아이디, 비밀번호를 채워주세요!");
       return false;
-    } 
-      // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
+    }
+    // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
     document.getElementById("LoginBtn").disabled = true;
     try {
       await dispatch(
@@ -38,7 +37,7 @@ function Login() {
           navigate("/");
           alert("로그인되었습니다!");
         } else {
-          console.log("로그인실패",success)
+          console.log("로그인실패", success);
           document.getElementById("LoginBtn").disabled = false;
         }
       });
@@ -48,23 +47,28 @@ function Login() {
     }
   };
 
-
-
-
   return (
     <>
       <LoginWrap>
-<DayPickerSingle></DayPickerSingle>
+        <DayPickerSingle></DayPickerSingle>
         <AlignWrap>
           <LogoWrap>
             <p>renDev</p>
           </LogoWrap>
           <InpuLoginWrap>
             <IdWrap>
-              <InputBar ref={loginidRef} placeholder="이메일" type="email"></InputBar>
+              <InputBar
+                ref={loginidRef}
+                placeholder="이메일"
+                type="email"
+              ></InputBar>
             </IdWrap>
             <PwWrap>
-              <InputBar ref={passwordRef} placeholder="패스워드" type="password"></InputBar>
+              <InputBar
+                ref={passwordRef}
+                placeholder="패스워드"
+                type="password"
+              ></InputBar>
             </PwWrap>
           </InpuLoginWrap>
           <ButtonWrap>
@@ -74,7 +78,6 @@ function Login() {
             랑데브가 처음인가요?
             <MovetoJoin
               onClick={() => {
-               
                 navigate(`/join`);
               }}
               id="LoginBtn"

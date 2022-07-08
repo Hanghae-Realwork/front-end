@@ -8,15 +8,25 @@ import phone from "../image/phone.svg"
 import RecCard from "../components/CardRecruit"
 import { useSelector, useDispatch } from "react-redux"; 
 import { checkUserValidation } from "../redux/modules/user";
+import { useNavigate } from "react-router-dom";
 function MyPage() {
-    const dispatch =useDispatch()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const My_card = Array.from({ length: 1 }, (v, i) => i);
-    const is_Login= useSelector((state)=>state.user)
-    console.log(is_Login)
     
-useEffect(()=>{
-    dispatch(checkUserValidation())
-},[])
+//     const isLogin = useSelector((state) => state.user.userInfo.is_login);
+//    console.log(isLogin)
+    
+//     useEffect(() => {
+//         if (isLogin === null) { 
+//  dispatch(checkUserValidation());
+//  return;
+//         }
+//         if (!isLogin) {
+//             navigate("/")
+//         }
+       
+// },[])
   return (
     <>
       <MypageAllWrap>
@@ -56,11 +66,11 @@ useEffect(()=>{
                     <MyMenuButton>내 이력서</MyMenuButton>
                 </RightTopWrap>
                 <RightCardWrap>
-                {My_card === undefined
+                {/* {My_card === undefined
                     ? null
                     : My_card.map((list, idx) => {
                         return <RecCard key={idx} />;
-                    })}
+                    })} */}
                 </RightCardWrap>
                 <div></div>
                 <div></div> 
