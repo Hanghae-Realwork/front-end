@@ -36,7 +36,7 @@ const FindProjectStep02 = (props) => {
         </div>
         <div>
           <div><button onClick={() => {navigate(`/findprojectstep1`)}}>이전 단계로</button></div>
-          <div><button onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</button></div>
+          <div><button onClick={() => {}}>등록하기</button></div>
         </div>
       </FindProjectAllWrap>
     </>
