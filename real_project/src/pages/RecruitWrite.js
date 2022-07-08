@@ -43,12 +43,18 @@ function RecruitWrite() {
 
       start: startdate.slice(1, 11),
       end: enddate.slice(1, 11),
-      email: null,
-      phone: null,
-      photos: [null, null],
-      schedule: [null, null],
+      email: "mymail@email.com",
+      phone: "010-5555-5555",
+      photos: ["null", "null"],
+      schedule: {"2022-07-01": {availabe:true}}
     }
+    
     await new Promise((r) => setTimeout(r, 1000));
+    dispatch(
+      createRecruitApi({
+        ...output
+      })
+    );
     console.log(output)
   }
 
