@@ -2,6 +2,10 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
+
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
 import { DayPicker } from "react-day-picker";
@@ -15,8 +19,11 @@ import FindStep02 from "../components/FindProjectStep02"
 
 import SelectSkill from "../components/SelectSkill";
 
+import { createRecruitApi } from "../redux/modules/postRecruit";
+
 
 const FindProjectStep01 = (props) => {
+  const dispatch = useDispatch
 
 
   const navigate = useNavigate()
@@ -31,22 +38,26 @@ const FindProjectStep01 = (props) => {
   const onSubmit = async (data) => {
     const output = {
       ...data,
+
+
       start: startdate.slice(1, 11),
       end: enddate.slice(1, 11),
-      email: null,
-      phone: null,
-      schedule: null,
+
+      photos: ["null", "null"],
+      schedule: ["2022-07-20", "2022-07-25"]
     }
 
-    await new Promise((r) => setTimeout(r, 1000));
-    alert(JSON.stringify(output));
-    axios({
-      method: "post",
-      url: "http://3.39.226.20/api/projects",
-      data: JSON.stringify(output),
-      headers: {"content-type": `application/json`}
-    })
-    .then((res) => {alert("프로젝트 등록완료!")})
+    // await new Promise((r) => setTimeout(r, 1000));
+    localStorage.setItem('obj', JSON.stringify(output))
+    // dispatch(
+    //   createRecruitApi({
+    //     ...output
+    //   })
+    // );
+    console.log(output)
+    navigate(`/findprojectstep2`)
+    
+
   }
 
   const {
@@ -77,28 +88,43 @@ const FindProjectStep01 = (props) => {
   return (
     <>
       <FindProjectAllWrap>
-        <FindprojectTopWrap>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FindprojectTopWrap>
             <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
-        </FindprojectTopWrap>
-          <HeadLine/>
+          </FindprojectTopWrap>
+          <HeadLine />
           <FindProjectStepWrap>
-                <FindProjectStepGuideText1>1. 프로젝트 설명하기</FindProjectStepGuideText1>
-                <FindProjectStepGuideText2>2.크루 모집하기</FindProjectStepGuideText2>
+            <FindProjectStepGuideText1>1. 프로젝트 설명하기</FindProjectStepGuideText1>
+            <FindProjectStepGuideText2>2.크루 모집하기</FindProjectStepGuideText2>
           </FindProjectStepWrap>
-        <HeadLine/>
-        <FindProjectInputTitle>
+          <HeadLine />
+          <FindProjectInputTitle>
             <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput placeholder="제목을 입력해 주세요"></ProjectInput>
-        </FindProjectInputTitle>
-        <FindProjectInputTitle>
+            <ProjectInput
+              id="title"
+              type="text"
+              placeholder="제목을 입력해주세요"
+              {...register("title")}
+            ></ProjectInput>
+          </FindProjectInputTitle>
+          <FindProjectInputTitle>
             <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput placeholder="간단한 프로젝트 설명을 넣어주세요"></ProjectInput>
-        </FindProjectInputTitle>
+            <ProjectInput
+              id="subscript"
+              type="text"
+              placeholder="프로젝트를 설명해주세요"
+              {...register("subscript")}
+            ></ProjectInput>
+          </FindProjectInputTitle>
+
           <FindProjectInputDate>
             <ProjectTitleText>프로젝트 기간</ProjectTitleText>
             <div>
               <DayPicker
-                styles={{caption: { fontSize: "13px", padding: "10px"}}}
+
+                styles={{ caption: { fontSize: "13px", padding: "10px" } }}
+
                 className="dayPicker_container__div"
                 mode="range"
                 selected={selected}
@@ -109,15 +135,17 @@ const FindProjectStep01 = (props) => {
               ></DayPicker>
               {footer}
             </div>
-        </FindProjectInputDate>
-        <FindProjectInputTitle>
+
+          </FindProjectInputDate>
+          <FindProjectInputTitle>
             <ProjectTitleText>팀 상세 설명</ProjectTitleText>
-            <TextAreaWrap>
-              <RecMainCon id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" {...register("details")}/>
-            </TextAreaWrap>
-        </FindProjectInputTitle>
-        <HeadLine/>
-        <div><NextStepButton onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</NextStepButton></div>
+            <div><RecMainCon id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" {...register("details")} /></div>
+          </FindProjectInputTitle>
+          <div><button type="submit" disabled={isSubmitting}
+          // onClick={() => {navigate(`/findprojectstep2`)}}
+          >다음 단계로</button></div>
+        </form>
+
       </FindProjectAllWrap>
     </>
   );
@@ -131,6 +159,7 @@ const FindProjectAllWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
 `
+
 
 const FindProjectTitleText = styled.span`
   font-size: 20px;
@@ -160,10 +189,12 @@ const FindProjectStepGuideText2 = styled.span`
 
 const FindProjectStepWrap = styled.div`
   height: 67px;
+
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
+
   gap: 15px;
 `
 
@@ -172,15 +203,9 @@ const HeadLine = styled.hr`
   width: 1200px;
 `
 
-const FindProjectInputTitle = styled.div`
-  /* border: 1px solid black; */
-  margin: 40px 0px 16px 30px;
-  width: 1100px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-`
+
+
+
 
 const FindProjectInputDate = styled.div`
   margin: 40px 0px 16px 30px;
@@ -194,8 +219,23 @@ const FindProjectInputDate = styled.div`
 const ProjectTitleText = styled.span`
   font-size: 16px;
   font-weight: 500;
-  
+  gap: 15px;
 `
+
+
+
+const FindProjectInputTitle = styled.div`
+  /* border: 1px solid black; */
+  margin: 40px 0px 16px 30px;
+  width: 1100px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+
+
 
 const ProjectInput = styled.input`
   border: none;

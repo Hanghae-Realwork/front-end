@@ -3,6 +3,10 @@
   display: none;
   }
 
+.App{
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
   .slide-fade-in-dropdown {
     overflow: hidden;
   }
@@ -120,3 +124,6 @@
     transform: rotate(360deg);
   }
 } */
+
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200;300;400;500;600;700&family=Noto+Sans+KR&display=swap');  
