@@ -45,7 +45,11 @@
     background-color: white;
     border: 1px solid #303032;
     border-radius: 5px;
+
      padding: 5px;
+
+
+
 }
 
 .rdp-head_cell {
@@ -60,10 +64,12 @@
   font-weight: bold; 
 }
 
-/* .rdp-caption_start{
-     border-right: 1px dashed #AE97E3; 
-   background-color: #303032;
-} */
+
+.rdp-caption_start{ 
+    border-right: 1px dashed #AE97E3; 
+     background-color: #303032;
+ }
+
 
 
 

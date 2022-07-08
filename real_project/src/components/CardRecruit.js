@@ -15,6 +15,7 @@ const CardRecruit = ({data}) => {
   //loadRecruit props
   const list = data;
 
+
     const today = Date();
     const nowTime = Date.now();
     const stringNowTime = today.toString().split(" ")[4];
@@ -85,6 +86,7 @@ const CardRecruit = ({data}) => {
               </AllWrap>
       </>
     );
+
 };
 
 //// 카드 전체 틀 관련 CSS 뭉치

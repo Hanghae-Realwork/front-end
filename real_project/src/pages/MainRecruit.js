@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useLinkClickHandler, useNavigate } from "react-router-dom";
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
+import Moment from "react-moment";
 
 import Card from "../components/CardRecruit";
 import RecSelectCompo from "../components/RecSelectCompo";
@@ -22,17 +23,20 @@ const MainRecruit = (list) => {
  
 
 
+
   return (
     <>
       <RecSelectCompo />
       <CardBackGround>
         <CardContainerWrap>
+
           {loadRecruits === undefined ? null : 
             loadRecruits.map((list,idx) => {
               return <Card data={list} key= {idx} />;
             })
             }
           
+
         </CardContainerWrap>
       </CardBackGround>
     </>
