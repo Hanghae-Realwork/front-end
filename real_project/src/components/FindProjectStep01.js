@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
 import { DayPicker } from "react-day-picker";
@@ -14,10 +16,11 @@ import FindStep01 from "../components/FindProjectStep01"
 import FindStep02 from "../components/FindProjectStep02"
 
 import SelectSkill from "../components/SelectSkill";
+import { createRecruitApi } from "../redux/modules/postRecruit";
 
 
 const FindProjectStep01 = (props) => {
-
+const dispatch = useDispatch
 
   const navigate = useNavigate()
 
@@ -39,14 +42,11 @@ const FindProjectStep01 = (props) => {
     }
 
     await new Promise((r) => setTimeout(r, 1000));
-    alert(JSON.stringify(output));
-    axios({
-      method: "post",
-      url: "http://3.39.226.20/api/projects",
-      data: JSON.stringify(output),
-      headers: {"content-type": `application/json`}
-    })
-    .then((res) => {alert("프로젝트 등록완료!")})
+    dispatch(
+      createRecruitApi({
+        ...output
+      })
+    );
   }
 
   const {

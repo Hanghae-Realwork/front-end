@@ -17,7 +17,8 @@ const MainRecruit = (list) => {
   const dispatch = useDispatch();
   const loadRecruits = useSelector((state) => state);
   // Array.from({ length: 25 }, (v, i) => i);
-  console.log(loadRecruits.postRecruit.list.projects);
+  // console.log(loadRecruits.postRecruit.list.projects);
+  console.log(loadRecruits.postRecruit);
   useEffect(() => {
    
     dispatch(loadRecruitsApi());

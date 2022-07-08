@@ -33,9 +33,12 @@ export const loadRecruitsApi = () => {
     try {
       console.log("프로젝트를 불러왔습니다!");
       const data = await apis.projectsLoad();
-      dispatch(loadRecruits(data.data));
+      const postreverse = data.data.projects.reverse();
+
+      console.log(postreverse)
+      dispatch(loadRecruits(postreverse));
       console.log(data)
-      console.log(data.data)
+      // console.log(data.data)
     } catch (e) {
       console.log(`포스팅 조회 오류 발생!${e}`);
     }
@@ -74,8 +77,11 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
+
+
+
     case 'recruit/CREATE': {
-      const new_project_list = [...state, action.post];
+      const new_project_list = [ ...state, action.post ];
       return { list: new_project_list };
     }
 

@@ -15,7 +15,7 @@ const CardRecruit = (props) => {
     const dispatch = useDispatch();
 
     const cards_list = useSelector((state) => state)
-    const card_list = cards_list.postRecruit.list.projects
+    const card_list = cards_list.postRecruit.list
     const today = Date();
     const nowTime = Date.now();
     const stringNowTime = today.toString().split(" ")[4];
@@ -23,7 +23,7 @@ const CardRecruit = (props) => {
     const todayHour = stringNowTime.split(":")[0];
     console.log(todayHour)
 
-    console.log(card_list)
+    console.log(cards_list.postRecruit.list)
 
     return (
         <>
