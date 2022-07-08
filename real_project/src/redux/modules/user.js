@@ -124,13 +124,6 @@ export const loginAxios = (userEmail, password) => {
   };
 };
 
-export const refreshAxios = () => {
-  return async function (dispatch) { 
-    await apis.refresh().then((res) => {
-      console.log(res)
-    })
-  }
-}
 export const checkUserValidation = () => {
   return async function (dispatch) {
     await apis
@@ -145,6 +138,13 @@ export const checkUserValidation = () => {
   };
 };
 
+export const refreshAxios = () => {
+  return async function (dispatch) {
+    await apis.refresh().then((res) => {
+      console.log(res);
+    });
+  };
+};
 
 
 export default function reducer(state = initialState, action = {}) {

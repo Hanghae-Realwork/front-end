@@ -12,7 +12,6 @@ import RecSelectCompo from "../components/RecSelectCompo";
 const MainRecruit = () => {
 
   const dispatch = useDispatch();
-
   const recruits = useSelector((state) => state.postRecruit.projects);
 
 
