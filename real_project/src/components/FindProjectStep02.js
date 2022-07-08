@@ -31,11 +31,11 @@ const FindProjectStep02 = (props) => {
 
     await new Promise((r) => setTimeout(r, 1000));
     
-    dispatch(
-      createRecruitApi({
-        ...output
-      })
-    );
+    // dispatch(
+    //   createRecruitApi({
+    //     ...output
+    //   })
+    // );
     // navigate(`/findprojectstep2`)
     console.log(output)
   }
