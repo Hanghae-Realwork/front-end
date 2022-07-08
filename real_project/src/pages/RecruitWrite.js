@@ -270,12 +270,7 @@ function RecruitWrite() {
             </RecTitleTextWrap>
 
             <div>
-              <RecMainCon
-                id="details"
-                type="text"
-                placeholder="프로젝트의 내용을 입력해주세요"
-                {...register("details")}
-              />
+              <RecMainCon id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" {...register("details")}/>
             </div>
           </RecruitWriteTextBotWrap>
           <div>
@@ -391,11 +386,11 @@ const ConLabel = styled.label`
 `;
 
 const RecMainCon = styled.textarea`
-    margin: 20px;
-  padding: 10px;
-  width: 600px;
-  height: 400px;
-  outline: none;
+  margin: 20px; 
+  padding: 10px; 
+  width: 600px; 
+  height: 400px; 
+  outline: none; 
   resize: none;
 `;
 
