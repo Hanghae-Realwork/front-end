@@ -74,7 +74,6 @@ export const createRecruitApi = (post, userEmail) => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
-  
       return {
         projects: action.discription,
       };

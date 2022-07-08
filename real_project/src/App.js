@@ -31,7 +31,7 @@ function App() {
     <MainWrap>
       {/* <MainHeader> */}
       <Header />
-      <MyPage />
+      {/* <MyPage /> */}
       {/* <EmpoCard></EmpoCard> */}
       {/* </MainHeader> */}
       {/* <AddProfile/> */}
