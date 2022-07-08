@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 
 import Tag from "./TagCompo";
-import { loadRecruitsApi } from "../redux/modules/postRecruit";
 
 import Recepit from "../image/recepie.svg"
 import Moment from "react-moment";
@@ -23,17 +22,6 @@ const CardRecruit = (props) => {
     console.log(stringNowTime)
     const todayHour = stringNowTime.split(":")[0];
     console.log(todayHour)
-
-    // const displayCreatedAt = (createdAt) => {
-    //     const startTime = new Date(createdAt);
-    //     if (parseInt(startTime - nowTime) > -60000) {
-    //         return <Moment format="방금 전">{startTime}</Moment>;
-    //     }
-    //     if (parseInt(startTime - nowTime) < -86400000) {
-    //         return <Moment format="MMM D일">{startTime}</Moment>;
-    //     }
-    // };
-
 
     console.log(card_list)
 
@@ -261,7 +249,7 @@ const CardViewButton = styled.button`
   padding: 8px;
   margin-top: 20px;
   margin-bottom: 12.5px;
-  background: linear-gradient(45deg, #ae97e3, #77c3e7);
+  background-color: #303032; 
   border: none;
   outline: none;
   cursor: pointer;

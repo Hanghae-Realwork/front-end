@@ -31,8 +31,6 @@ function RecruitWrite() {
   const today = new Date();
   const startdate = JSON.stringify(selected.from)
   const enddate = JSON.stringify(selected.to)
-  // const skills = useSelector((State) => State)
-  // console.log(skills)
   const highFunction = (e) => {
     console.log(e);
   }
@@ -51,34 +49,11 @@ function RecruitWrite() {
       schedule: [null, null],
     }
     await new Promise((r) => setTimeout(r, 1000));
-    // alert(JSON.stringify(output));
-
-    // dispatch(
-    //   createRecruitApi({
-    //     ...output
-    //   })
-    // );
-    // axios({
-    //   method: "post",
-    //   url: "http://3.39.226.20/api/projects",
-    //   data: JSON.stringify(output),
-    //   headers: {
-    //     "content-type": `application/json`
-    //     // "Content-Type": "multipart/form-data"
-    //   }
-    // })
-    //     .then((res) => {
-    //       alert("프로젝트 등록완료!")
-    //       console.log(res);
-
-    //     })
-    // console.log(data)
     console.log(output)
   }
 
 
 
-  // console.log(selected)
   const {
     register,
     handleSubmit,
@@ -86,13 +61,6 @@ function RecruitWrite() {
     formState: { isSubmitting, isDirty, errors },
   } = useForm();
 
-
-  // const 
-  // const variables={
-  //   data:data,
-  //   date:selected
-  // }
-  // console.log(variables)
   const dvelopSkills_list = [
     { data: 'React' },
     { data: 'Vue.js' },
@@ -203,7 +171,7 @@ function RecruitWrite() {
                 <RecTopRadio id="role" type="radio" name="RecRadio" value="graphicDesigner" {...register("role")} />그래픽 디자이너</RecTopRadioLabel>
             </RecTopTextContentWrap>
           </RecruitWriteTopWrap>
-
+ 
           <RecruitWriteMidWrap>
             <RecTitleTextWrap>
               <RecTitleText>요구 스킬</RecTitleText>

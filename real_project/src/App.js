@@ -40,7 +40,7 @@ function App() {
       {/* <Login/> '완료' */}
       {/* <MainEmployment/>
       <MainRecruit/> */}
-      <FindProject/>
+      {/* <FindProject/>  - 해결중 */} 
       {/* <FindProjectStep02 /> */}
       {/* <RecruitWrite/> '완료' */}
       {/* <Loading/> '완료' */}
