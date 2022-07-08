@@ -10,9 +10,13 @@ import Tag from "./TagCompo";
 import Recepit from "../image/recepie.svg"
 import Moment from "react-moment";
 
-const CardRecruit = ({data}) => {
+const CardRecruit = () => {
   const dispatch = useDispatch();
   //loadRecruit props
+
+  const CardInfo = useSelector((state) => state.postRecruit.projects);
+
+  console.log(CardInfo)
 
 
 
@@ -52,8 +56,6 @@ const CardRecruit = ({data}) => {
             <CardMainTextInfo>
               <CardMainText>
                 [여기에 내용이 노출 됩니다]
-                <br />
-                subscript
               </CardMainText>
             </CardMainTextInfo>
             <CardJobTextWrap>
@@ -99,30 +101,27 @@ const AllWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  /* border: 1px solid black; */
 
   background-image: url(${Recepit});
-
   background-position: center;
-  background-size: cover;
+  background-size: auto;
   background-repeat: none;
 `;
 
 const AllTopWrap = styled.div`
   border-bottom: none;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
   width: 384px;
-  height: 305px;
+  height: 280px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  /* border: 1px solid black; */
 `;
 
 const AllBotWrap = styled.div`
   border-top: none;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   width: 384px;
   height: 117px;
   display: flex;
@@ -183,7 +182,7 @@ const CardMainText = styled.span`
 const CardJobTextWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
-  margin: 26px 20px 0px 20px;
+  margin: 15px 20px 0px 20px;
   height: 50px;
 `;
 
