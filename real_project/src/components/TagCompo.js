@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 
-function TagCompo () {
+function TagCompo ({skills}) {
 
     return(
         <>
         <TagButton>
-            React
+            {skills}
         </TagButton>
 
         </>
