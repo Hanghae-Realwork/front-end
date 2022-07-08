@@ -10,81 +10,80 @@ import Tag from "./TagCompo";
 import Recepit from "../image/recepie.svg"
 import Moment from "react-moment";
 
-const CardRecruit = (props) => {
+const CardRecruit = ({data}) => {
+  const dispatch = useDispatch();
+  //loadRecruit props
+  const list = data;
 
-    const dispatch = useDispatch();
-
-    const cards_list = useSelector((state) => state)
-    const card_list = cards_list.postRecruit.list.projects
     const today = Date();
     const nowTime = Date.now();
     const stringNowTime = today.toString().split(" ")[4];
-    console.log(stringNowTime)
     const todayHour = stringNowTime.split(":")[0];
-    console.log(todayHour)
 
-    console.log(card_list)
+
+   const createdAt = list.createdAt;
+            const startTime = new Date(createdAt);
+            const stringStartTime = startTime.toString().split(" ")[4];
+            const startHour = stringStartTime.split(":")[0];
+            const thenHours = Math.floor((nowTime - startTime) / 3600000);
+
+  const DisplayCreatedAt = () => {
+    if (parseInt(startTime - nowTime) > -86400000) {
+      return thenHours + "시간전";
+    }
+    if (parseInt(startTime - nowTime) < -86400000) {
+      return <Moment format="M월 D일">{startTime}</Moment>;
+      // return (thenHours)+"시간전";
+    }
+  }
 
     return (
-        <>
-            {card_list && card_list.map((list, index) => {
-                const createdAt = list.createdAt
-                const startTime = new Date(createdAt);
-                const stringStartTime = startTime.toString().split(" ")[4];
-                const startHour = stringStartTime.split(":")[0];
-                const thenHours = Math.floor((nowTime - startTime) / 3600000);
-                
-                const DisplayCreatedAt = () => {
-                    
-                    if (parseInt(startTime - nowTime) > -86400000) {
-                        return (thenHours)+"시간전";
-                    }
-                    if (parseInt(startTime - nowTime) < -86400000) {
-                        return <Moment format="M월 D일">{startTime}</Moment>;
-                        // return (thenHours)+"시간전";
-
-                    }
-                    
-                    console.log(createdAt)
-                };
-                return (
-                    <AllWrap key={list.projectId}>
-                        <AllTopWrap>
-                            <CardTopInfo>
-                                <CardWriteName>{list.userId}</CardWriteName>
-                                <CardWriteTime><DisplayCreatedAt/></CardWriteTime>
-                            </CardTopInfo>
-                            <CardTitleInfo>
-                                <CardTitleText>{list.title}</CardTitleText>
-                            </CardTitleInfo>
-                            <CardMainTextInfo>
-                                <CardMainText>
-                                    [여기에 내용이 노출 됩니다]
-                                    <br />
-                                    {list.subscript}
-                                </CardMainText>
-                            </CardMainTextInfo>
-                            <CardJobTextWrap>
-                                <CardJobTitle>[구하는 직군]</CardJobTitle>
-                                <div style={{ marginTop: "4px" }}><CardJobMainTitle>{list.role}</CardJobMainTitle></div>
-                            </CardJobTextWrap>
-                            <CardTagWrap>
-                                <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br />
-                                <TagWrap><Tag /><Tag /><Tag /><Tag /></TagWrap>
-                            </CardTagWrap>
-                        </AllTopWrap>
-                        <DashedLine />
-                        <AllBotWrap>
-                            <CardBotTopWrap>
-                                <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-                                <CardBotTextDateInfo> {list.start} </CardBotTextDateInfo>
-                            </CardBotTopWrap>
-                            <CardViewButton >프로젝트 보러 가기</CardViewButton>
-                        </AllBotWrap>
-                    </AllWrap>
-                )
-            })}
-        </>
+      <>
+              <AllWrap key={list.projectId}>
+                <AllTopWrap>
+                  <CardTopInfo>
+                    <CardWriteName>{list.userId}</CardWriteName>
+                    <CardWriteTime>
+                      <DisplayCreatedAt />
+                    </CardWriteTime>
+                  </CardTopInfo>
+                  <CardTitleInfo>
+                    <CardTitleText>{list.title}</CardTitleText>
+                  </CardTitleInfo>
+                  <CardMainTextInfo>
+                    <CardMainText>
+                      [여기에 내용이 노출 됩니다]
+                      <br />
+                      {list.subscript}
+                    </CardMainText>
+                  </CardMainTextInfo>
+                  <CardJobTextWrap>
+                    <CardJobTitle>[구하는 직군]</CardJobTitle>
+                    <div style={{ marginTop: "4px" }}>
+                      <CardJobMainTitle>{list.role}</CardJobMainTitle>
+                    </div>
+                  </CardJobTextWrap>
+                  <CardTagWrap>
+                    <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
+                    <br />
+                    <TagWrap>
+                      <Tag />
+                      <Tag />
+                      <Tag />
+                      <Tag />
+                    </TagWrap>
+                  </CardTagWrap>
+                </AllTopWrap>
+                <DashedLine />
+                <AllBotWrap>
+                  <CardBotTopWrap>
+                    <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+                    <CardBotTextDateInfo> {list.start} </CardBotTextDateInfo>
+                  </CardBotTopWrap>
+                  <CardViewButton>프로젝트 보러 가기</CardViewButton>
+                </AllBotWrap>
+              </AllWrap>
+      </>
     );
 };
 
