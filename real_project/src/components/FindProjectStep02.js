@@ -21,9 +21,9 @@ const FindProjectStep02 = (props) => {
         <div>
           <span>구하는 직군</span>
           <div>
-            <label><input type="radio" name=""/>FrontEnd</label>
-            <label><input type="radio"/>BackEnd</label>
-            <label><input type="radio"/>Designer</label>
+            <label><input type="radio" name="Radio"/>FrontEnd</label>
+            <label><input type="radio" name="Radio"/>BackEnd</label>
+            <label><input type="radio" name="Radio"/>Designer</label>
           </div>
         </div>
         <div>
