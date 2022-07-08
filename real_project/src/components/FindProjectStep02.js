@@ -1,31 +1,39 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
+import { createRecruitApi } from "../redux/modules/postRecruit";
+import { useDispatch } from "react-redux";
 import SelectSkill from "./SelectSkill";
 import { useForm } from "react-hook-form";
 
 const FindProjectStep02 = (props) => {
+  const dispatch=useDispatch
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-    const storageData = localStorage.getItem(JSON.stringify('obj'))
+    const storageData = localStorage.getItem('obj')
+    console.log(storageData)
     const addData = JSON.parse(storageData);
     console.log(addData)
     const output = {
       ...data,
-
-      
+      details:addData.details,
+      end:addData.end,
+      start:addData.start,
+      photos:addData.photos,
+      subscript:addData.subscript,
+      title:addData.title,
+      schedule:addData.title
     }
 
-    // await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => setTimeout(r, 1000));
     
-    // dispatch(
-    //   createRecruitApi({
-    //     ...output
-    //   })
-    // );
-    navigate(`/findprojectstep2`)
+    dispatch(
+      createRecruitApi({
+        ...output
+      })
+    );
+    // navigate(`/findprojectstep2`)
     console.log(output)
   }
 
@@ -42,6 +50,7 @@ const FindProjectStep02 = (props) => {
   return (
     <>
       <FindProjectAllWrap>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FindprojectTopWrap>
             <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
         </FindprojectTopWrap>
@@ -62,6 +71,12 @@ const FindProjectStep02 = (props) => {
           {/* 셀렉트스킬 컴포넌트  */}
           <SelectSkill />
 
+
+
+
+
+
+
         </div>
         <div>
           캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
@@ -69,8 +84,9 @@ const FindProjectStep02 = (props) => {
         </div>
         <div>
           <div><button onClick={() => {navigate(`/findprojectstep1`)}}>이전 단계로</button></div>
-          <div><button onClick={() => {}}>등록하기</button></div>
+          <div><button type="submit" disabled={isSubmitting} onClick={() => {}}>등록하기</button></div>
         </div>
+        </form>
       </FindProjectAllWrap>
     </>
   );

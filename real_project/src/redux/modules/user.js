@@ -1,4 +1,5 @@
 import { apis } from "../../shared/api";
+import { setCookie, deleteCookie } from "../../shared/cookie";
 
 const LOGIN = "user/LOGIN";
 const LOGOUT = "user/LOGOUT";
@@ -103,16 +104,22 @@ export const checkUserNicknameAxios = (nickname) => {
   };
 };
 
+//로그인
 export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
     console.log(userEmail, password)
     let success = null;
     await apis
-      .login(userEmail, password)
+      .login(userEmail, password, {
+        headers: {
+          Cookies : setCookie("refreshtocken", userEmail)
+        }
+      })
       .then((res) => {
         
-        localStorage.setItem("token", res.data.token);
-      
+        setCookie("refreshtocken", res.data.token);
+        localStorage.setItem("accesstocken", res.data.token);
+
         dispatch(login(userEmail));
         success = true;
       })

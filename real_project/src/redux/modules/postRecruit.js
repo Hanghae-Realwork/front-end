@@ -30,28 +30,22 @@ export function createRecruit(discription) {
 
 export const loadRecruitsApi = () => {
   return async function (dispatch) {
+    await apis
+      .projectsLoad()
+      .then((response) => {
 
-    await apis.projectsLoad().then((response)=>{
-      const list = []
-      const projects = response.data.projects;
-      list =[...projects.reverse()];
-      const reverseProjects = list;
-      dispatch(loadRecruits(reverseProjects));
-    })
-    // try {
-    //   console.log("프로젝트를 불러왔습니다!");
-    //   const data = await apis.projectsLoad();
-    //   const postreverse = data.data.projects.reverse();
-
-    //   console.log(data.data)
-    //   dispatch(loadRecruits(data.data));
-    //   console.log(data)
-    //   // console.log(data.data)
-    .catch((e) => {
-      console.log(`포스팅 조회 오류 발생!${e}`);
-    })
+        let list = [];
+        let projects = response.data.projects;
+        list = [...projects.reverse()];
+        const reverseProjects = list;
+        dispatch(loadRecruits(reverseProjects));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } 
   };
-};
+
   
 export const createRecruitApi = (post, userEmail) => {
   // const token = localStorageGet("token");
@@ -68,7 +62,7 @@ export const createRecruitApi = (post, userEmail) => {
       console.log("프로젝트 생성 완료");
       const data = await apis.projectsCreate(post);
       // const data = { id: docRef.id, ...post };
-      console.log(data);
+   
       dispatch(createRecruit(data));
     } catch (e) {
       console.log(`프로젝트 오류 발생!${e}`);
@@ -80,6 +74,7 @@ export const createRecruitApi = (post, userEmail) => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
+  
       return {
         projects: action.discription,
       };

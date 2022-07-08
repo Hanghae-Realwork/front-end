@@ -2,54 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useLinkClickHandler, useNavigate } from "react-router-dom";
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
 import Moment from "react-moment";
 
 import Card from "../components/CardRecruit";
-
 import RecSelectCompo from "../components/RecSelectCompo";
 
 
 const MainRecruit = (list) => {
   const navigate = useNavigate();
-  // const [card_list, setCard_list] = useState()
-  // 배열 출력 테스트
   const dispatch = useDispatch();
-  const loadRecruits = useSelector((state) => state);
-  // Array.from({ length: 25 }, (v, i) => i);
-  // console.log(loadRecruits.postRecruit.list.projects);
-  console.log(loadRecruits.postRecruit);
+
+  const loadRecruits = useSelector((state) => state.postRecruit.projects);
+ 
   useEffect(() => {
-   
     dispatch(loadRecruitsApi());
   }, [dispatch]
   );
  
-  const card_list = Array.from({ length: 24 }, (v, i) => i);
 
-  // const cards_list = useSelector((state) => state)
-    // const card_list = cards_list.postRecruit.list.projects
-    // const today = Date();
-    // const nowTime = Date.now();
-    // const stringNowTime = today.toString().split(" ")[4];
-    // const todayHour = stringNowTime.split(":")[0];
-
-    // const createdAt = list.createdAt
-    // const startTime = new Date(createdAt);
-    // const stringStartTime = startTime.toString().split(" ")[4];
-    // const startHour = stringStartTime.split(":")[0];
-    // const thenHours = Math.floor((nowTime - startTime) / 3600000);
-    
-    // const DisplayCreatedAt = () => {
-        
-    //     if (parseInt(startTime - nowTime) > -86400000) {
-    //         return (thenHours)+"시간전";
-    //     }
-    //     if (parseInt(startTime - nowTime) < -86400000) {
-    //         return <Moment format="M월 D일">{startTime}</Moment>;
-    //         // return (thenHours)+"시간전";
-    //     }}
 
 
   return (
@@ -57,11 +29,14 @@ const MainRecruit = (list) => {
       <RecSelectCompo />
       <CardBackGround>
         <CardContainerWrap>
-        {card_list === undefined
-            ? null
-            : card_list.map((list, idx) => {
-              return <Card key={idx} />;
-            })}
+
+          {loadRecruits === undefined ? null : 
+            loadRecruits.map((list,idx) => {
+              return <Card data={list} key={idx} />;
+            })
+            }
+          
+
         </CardContainerWrap>
       </CardBackGround>
     </>

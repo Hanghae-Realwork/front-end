@@ -49,8 +49,9 @@ const FindProjectStep01 = (props) => {
     //     ...output
     //   })
     // );
-    navigate(`/findprojectstep2`)
     console.log(output)
+    navigate(`/findprojectstep2`)
+    
   }
 
   const {
