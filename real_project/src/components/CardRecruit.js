@@ -14,78 +14,55 @@ const CardRecruit = (props) => {
 
     const dispatch = useDispatch();
 
-    const cards_list = useSelector((state) => state)
-    const card_list = cards_list.postRecruit.list
-    const today = Date();
-    const nowTime = Date.now();
-    const stringNowTime = today.toString().split(" ")[4];
-    console.log(stringNowTime)
-    const todayHour = stringNowTime.split(":")[0];
-    console.log(todayHour)
+    // const cards_list = useSelector((state) => state)
+    // const card_list = cards_list.postRecruit.list
+    // const today = Date();
+    // const nowTime = Date.now();
+    // const stringNowTime = today.toString().split(" ")[4];
+    // console.log(stringNowTime)
+    // const todayHour = stringNowTime.split(":")[0];
+    // console.log(todayHour)
 
-    console.log(cards_list.postRecruit.list)
+    // console.log(cards_list.postRecruit.list)
 
+    
     return (
         <>
-            {card_list && card_list.map((list, index) => {
-                const createdAt = list.createdAt
-                const startTime = new Date(createdAt);
-                const stringStartTime = startTime.toString().split(" ")[4];
-                const startHour = stringStartTime.split(":")[0];
-                const thenHours = Math.floor((nowTime - startTime) / 3600000);
-                
-                const DisplayCreatedAt = () => {
-                    
-                    if (parseInt(startTime - nowTime) > -86400000) {
-                        return (thenHours)+"시간전";
-                    }
-                    if (parseInt(startTime - nowTime) < -86400000) {
-                        return <Moment format="M월 D일">{startTime}</Moment>;
-                        // return (thenHours)+"시간전";
-
-                    }
-                    
-                    console.log(createdAt)
-                };
-                return (
-                    <AllWrap key={list.projectId}>
-                        <AllTopWrap>
-                            <CardTopInfo>
-                                <CardWriteName>{list.userId}</CardWriteName>
-                                <CardWriteTime><DisplayCreatedAt/></CardWriteTime>
-                            </CardTopInfo>
-                            <CardTitleInfo>
-                                <CardTitleText>{list.title}</CardTitleText>
-                            </CardTitleInfo>
-                            <CardMainTextInfo>
-                                <CardMainText>
-                                    [여기에 내용이 노출 됩니다]
-                                    <br />
-                                    {list.subscript}
-                                </CardMainText>
-                            </CardMainTextInfo>
-                            <CardJobTextWrap>
-                                <CardJobTitle>[구하는 직군]</CardJobTitle>
-                                <div style={{ marginTop: "4px" }}><CardJobMainTitle>{list.role}</CardJobMainTitle></div>
-                            </CardJobTextWrap>
-                            <CardTagWrap>
-                                <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br />
-                                <TagWrap><Tag /><Tag /><Tag /><Tag /></TagWrap>
-                            </CardTagWrap>
-                        </AllTopWrap>
-                        <DashedLine />
-                        <AllBotWrap>
-                            <CardBotTopWrap>
-                                <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-                                <CardBotTextDateInfo> {list.start} </CardBotTextDateInfo>
-                            </CardBotTopWrap>
-                            <CardViewButton >프로젝트 보러 가기</CardViewButton>
-                        </AllBotWrap>
-                    </AllWrap>
-                )
-            })}
+          <AllWrap>
+              <AllTopWrap>
+                  <CardTopInfo>
+                      <CardWriteName>[작성자 닉네임]</CardWriteName>
+                      <CardWriteTime></CardWriteTime>
+                  </CardTopInfo>
+                  <CardTitleInfo>
+                      <CardTitleText>[게시물 제목]</CardTitleText>
+                  </CardTitleInfo>
+                  <CardMainTextInfo>
+                      <CardMainText>
+                          [여기에 내용이 노출 됩니다]
+                          <br />
+                      </CardMainText>
+                  </CardMainTextInfo>
+                  <CardJobTextWrap>
+                      <CardJobTitle>[구하는 직군]</CardJobTitle>
+                      <div style={{ marginTop: "4px" }}><CardJobMainTitle>[직군명]</CardJobMainTitle></div>
+                  </CardJobTextWrap>
+                  <CardTagWrap>
+                      <CardJobTitle>[원하는 보유 기술]</CardJobTitle><br />
+                      <TagWrap><Tag /><Tag /><Tag /><Tag /></TagWrap>
+                  </CardTagWrap>
+              </AllTopWrap>
+              <DashedLine />
+              <AllBotWrap>
+                  <CardBotTopWrap>
+                      <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+                      <CardBotTextDateInfo>  </CardBotTextDateInfo>
+                  </CardBotTopWrap>
+                  <CardViewButton >프로젝트 보러 가기</CardViewButton>
+              </AllBotWrap>
+          </AllWrap>
         </>
-    );
+    )
 };
 
 //// 카드 전체 틀 관련 CSS 뭉치

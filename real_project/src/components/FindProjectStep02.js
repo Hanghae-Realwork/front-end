@@ -3,9 +3,41 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import SelectSkill from "./SelectSkill";
+import { useForm } from "react-hook-form";
 
 const FindProjectStep02 = (props) => {
   const navigate = useNavigate()
+
+  const onSubmit = async (data) => {
+    const storageData = localStorage.getItem(JSON.stringify('obj'))
+    const addData = JSON.parse(storageData);
+    console.log(addData)
+    const output = {
+      ...data,
+
+      
+    }
+
+    // await new Promise((r) => setTimeout(r, 1000));
+    
+    // dispatch(
+    //   createRecruitApi({
+    //     ...output
+    //   })
+    // );
+    navigate(`/findprojectstep2`)
+    console.log(output)
+  }
+
+  const {
+    register, handleSubmit,
+    formState: { isSubmitting, isDirty, errors },
+  } = useForm();
+
+
+
+
+
 
   return (
     <>
@@ -21,12 +53,13 @@ const FindProjectStep02 = (props) => {
         <div>
           <span>구하는 직군</span>
           <div>
-            <label><input type="radio" name=""/>FrontEnd</label>
-            <label><input type="radio"/>BackEnd</label>
-            <label><input type="radio"/>Designer</label>
+            <label><input id="role" type="radio" value="frontend" {...register("role")}  name="Radio"/>FrontEnd</label>
+            <label><input id="role" type="radio" name="Radio" value="backend" {...register("role")}/>BackEnd</label>
+            <label><input id="role" type="radio" name="Radio" value="graphicDesigner" {...register("role")}/>Designer</label>
           </div>
         </div>
         <div>
+          {/* 셀렉트스킬 컴포넌트  */}
           <SelectSkill />
 
         </div>
@@ -36,7 +69,7 @@ const FindProjectStep02 = (props) => {
         </div>
         <div>
           <div><button onClick={() => {navigate(`/findprojectstep1`)}}>이전 단계로</button></div>
-          <div><button onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</button></div>
+          <div><button onClick={() => {}}>등록하기</button></div>
         </div>
       </FindProjectAllWrap>
     </>
