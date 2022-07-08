@@ -21,12 +21,13 @@ const FindProjectStep02 = (props) => {
         <div>
           <span>구하는 직군</span>
           <div>
-            <label><input type="radio" name=""/>FrontEnd</label>
-            <label><input type="radio"/>BackEnd</label>
-            <label><input type="radio"/>Designer</label>
+            <label><input type="radio" name="Radio"/>FrontEnd</label>
+            <label><input type="radio" name="Radio"/>BackEnd</label>
+            <label><input type="radio" name="Radio"/>Designer</label>
           </div>
         </div>
         <div>
+          {/* 셀렉트스킬 컴포넌트  */}
           <SelectSkill />
 
         </div>
@@ -36,7 +37,7 @@ const FindProjectStep02 = (props) => {
         </div>
         <div>
           <div><button onClick={() => {navigate(`/findprojectstep1`)}}>이전 단계로</button></div>
-          <div><button onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</button></div>
+          <div><button onClick={() => {}}>등록하기</button></div>
         </div>
       </FindProjectAllWrap>
     </>
