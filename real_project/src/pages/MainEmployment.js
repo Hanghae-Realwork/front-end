@@ -13,9 +13,6 @@ import { loadEmployAxios } from "../redux/modules/postEmploy";
 const MainEmployment = () => {
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.postEmploy.list);
-
-
-  
   
   useEffect(() => {
     dispatch(loadEmployAxios())
