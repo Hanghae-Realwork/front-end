@@ -1,12 +1,12 @@
 import styled from "styled-components"
-
-import Tag from "./TagCompo"
+import Tag from "./TagCompoEmp"
 
 import BasicPhoto from "../image/astroman.svg"
 import Flip from "../image/flip.svg"
 
-
-function CradEmpol ({data}) {
+function CradEmpol({ data }) {
+  const start = data.start_moment.replace("-", ".").replace("-", ".");
+  const end = data.end_moment.replace("-", ".").replace("-", ".");
 
     return (
       <>
@@ -17,7 +17,7 @@ function CradEmpol ({data}) {
                 <ProfileCircle></ProfileCircle>
               </ProfileWrap>
               <CardTextWrap>
-                <CardTitle>[작성자이름]</CardTitle>
+                <CardTitle>{data.nickname}</CardTitle>
                 <CardText>[FrontEnd개발자]</CardText>
               </CardTextWrap>
             </ProfileTopWrap>
@@ -26,22 +26,20 @@ function CradEmpol ({data}) {
           <CardMidWrap>
             <MidText>{data.content}</MidText>
             <br />
-           
           </CardMidWrap>
           <CardMidMini>
             <MidDateText>
               {" "}
-              {data.start_moment}~{data.end_moment}{" "}
+              {start}-{end}{" "}
             </MidDateText>
           </CardMidMini>
           <CardBotTag>
             <div>
-                        {data === undefined ? null : 
-                            data.skills.map((list, idx) => {
-                                return <Tag key={idx} skills={list} />;
-              })}
-              
-             
+              {data === undefined
+                ? null
+                : data.skills.map((list, idx) => {
+                    return <Tag key={idx} skills={list} />;
+                  })}
             </div>
           </CardBotTag>
         </AllCardWrap>

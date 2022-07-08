@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import astroman from "../image/astroman.svg"
@@ -6,13 +6,17 @@ import email from "../image/letter.svg"
 import phone from "../image/phone.svg"
 
 import RecCard from "../components/CardRecruit"
-
+import { useSelector, useDispatch } from "react-redux"; 
+import { checkUserValidation } from "../redux/modules/user";
 function MyPage() {
-
+    const dispatch =useDispatch()
     const My_card = Array.from({ length: 1 }, (v, i) => i);
-
-
-
+    const is_Login= useSelector((state)=>state.user)
+    console.log(is_Login)
+    
+useEffect(()=>{
+    dispatch(checkUserValidation())
+},[])
   return (
     <>
       <MypageAllWrap>

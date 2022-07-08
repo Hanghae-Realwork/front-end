@@ -27,9 +27,12 @@ export const loadEmployAxios = () => {
     await apis
       .resumesLoad()
       .then((response) => {
-   
-        let resumes = response.data;
-        dispatch(loadEmploy(resumes));
+        let list= []
+        let resumes = response.data.resumes
+        list = [...resumes.reverse()];
+
+      
+        dispatch(loadEmploy(list));
       })
       .catch((err) => {
         console.log(err);
