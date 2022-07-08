@@ -28,25 +28,25 @@
     /* font-size: 53px; */
 }
 
-/* .rdp-day {
+.rdp-day {
     border-radius: 100%
-} */
+}
 
 /* 메인화면 캘린더*/
-/* .dayPicker_container__divMain {
+.dayPicker_container__divMain {
     position: absolute;
     display: flex;
     justify-content: center;
     font-size: 12px;
     top: 50px;
-} */
+}
 
-/* .rdp-months {
+.rdp-months {
     background-color: white;
     border: 1px solid #303032;
     border-radius: 5px;
     /* padding: 5px; */
-
+}
 
 .rdp-head_cell {
     color: #303032;
@@ -60,10 +60,10 @@
     /* font-weight: bold; */
 }
 
-.rdp-caption_start{
+/* .rdp-caption_start{ */
     /* border-right: 1px dashed #AE97E3; */
     /* background-color: #303032; */
-}
+/* } */
 
 
 
