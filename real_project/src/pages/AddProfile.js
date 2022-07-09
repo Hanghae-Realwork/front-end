@@ -2,16 +2,18 @@ import React, {useState, useRef} from "react";
 import styled from "styled-components";
 
 import astroman from "../image/astroman.svg"
-
+import { useForm } from "react-hook-form";
 import SelectSkill from "../components/SelectSkill"
 import Phone from "../image/phone.svg"
 import Letter from "../image/letter.svg"
 
 
-function AddProfile() {
+function AddProfile(props) {
+  const {isChecked, handleToggle} = props;
 
   function AddInput() {
     let [inputTit, inputTitFunc] = useState([]);
+
     let [inputNum, inputNumFunc] = useState(0);
     let [newVal, newValFunc] = useState('');
 
@@ -42,11 +44,35 @@ function AddProfile() {
     );
   }
 
-  
+
+  // const onSubmit = async (data) => {
+  //   const career= AddInput.inputTit
+  //   const output = {
+  //     ...data,
+  //     ...career
+      
+      
+  //   }
+  //   await new Promise((r) => setTimeout(r, 1000));
+    
+  //   // dispatch(
+  //   //   사용할 api({
+  //   //     ...output
+  //   //   })
+  //   // );
+  //   console.log(output)
+    
+  // }
+  // const {
+  //   register, handleSubmit,
+  //   formState: { isSubmitting, isDirty, errors },
+  // } = useForm();
 
   return (
     <>
+    
       <AddProfileWrap>
+        
         <TitleDiv><TitleText>내 소개글 작성하기</TitleText></TitleDiv>
       <HeaderHeadLine/>
         <ProfileTopWrap>
@@ -56,8 +82,12 @@ function AddProfile() {
                   <ToggleTextWrap>
                     <TitleTextTag>이메일 공개</TitleTextTag>
                       <CheckBoxWrapperOne>
-                        <CheckBoxOne id="checkboxOne" type="checkbox" />
-                        <CheckBoxLabelOne htmlFor="checkbox" />
+                        <CheckBoxOne id={"checkboxOne"} type="checkbox" 
+                        checked={isChecked}
+                        onChange={handleToggle}
+                        
+                        />
+                        <CheckBoxLabelOne htmlFor={"checkboxOne"} />
                       </CheckBoxWrapperOne>
                     </ToggleTextWrap>
                 </ToggleBox>
@@ -110,7 +140,9 @@ function AddProfile() {
               <TitleTextTag>주요 경력 및 자기소개</TitleTextTag>
               <PointCraeer></PointCraeer>
             </SelfWrap>
+            {/* <div><button type="submit" disabled={isSubmitting}>등록하기</button></div> */}
       </AddProfileWrap>
+      
     </>
   );
 }
