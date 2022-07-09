@@ -33,8 +33,7 @@ function AddProfile() {
         <RightInputDiv>
         {inputTit.map( ( menu, idx )=>{
               return (
-                <CareerLabel onClick={ ()=>{ inputNumFunc(idx) } } key={idx} > { menu }</CareerLabel>
-              )
+                <CareerLabel onClick={ ()=>{ inputNumFunc(idx) } } key={idx} > { menu }</CareerLabel>)
             })
           }
         </RightInputDiv>
@@ -45,12 +44,13 @@ function AddProfile() {
   
 
   return (
-    <>
+    <BackgroundAllWrap>
       <AddProfileWrap>
         <TitleDiv><TitleText>내 소개글 작성하기</TitleText></TitleDiv>
       <HeaderHeadLine/>
         <ProfileTopWrap>
             <SelfWrap>
+              <NickNameBox>닉네임입니다</NickNameBox>
             <ToggleBox>
                   <PhoneNumberWrap><img src={Letter} style={{marginRight:"10px"}}></img><Contect>test@testman.com</Contect></PhoneNumberWrap>
                   <ToggleTextWrap>
@@ -80,6 +80,10 @@ function AddProfile() {
             </SelfWrap>
                 <ProfilePicWrap>
                     <CircleProfile></CircleProfile>
+                    <PhotoEditWrap>
+                      <PhotoText>삭제</PhotoText>
+                      <PhotoText>수정</PhotoText>
+                    </PhotoEditWrap>
                 </ProfilePicWrap>
         </ProfileTopWrap>
           <div>
@@ -110,10 +114,23 @@ function AddProfile() {
               <TitleTextTag>주요 경력 및 자기소개</TitleTextTag>
               <PointCraeer></PointCraeer>
             </SelfWrap>
+            <HeaderHeadLine/>
+              <SubmitButtonWrap>
+               <SubmitButton>소개글 등록하기</SubmitButton>
+              </SubmitButtonWrap>
       </AddProfileWrap>
-    </>
+    </BackgroundAllWrap>
   );
 }
+
+const BackgroundAllWrap = styled.div`
+    background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 
 const AddProfileWrap = styled.div`
     border: 1px solid black;
@@ -126,6 +143,7 @@ const AddProfileWrap = styled.div`
     height: auto;
     margin: 70px;
     width: 1200px;
+    background-color: white;
 `
 
 const SelfWrap = styled.div`
@@ -148,10 +166,11 @@ const ProfileInput = styled.input`
 const ProfilePicWrap = styled.div`
     /* border: 1px solid black; */
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     padding: 30px;
+    margin: 50px 150px 0px 0px;
 `
 
 const ProfileTopWrap = styled.div`
@@ -165,9 +184,9 @@ const ProfileTopWrap = styled.div`
 
 const CircleProfile = styled.div`
     /* border: 1px solid black; */
-    width: 180px;
-    height: 180px;
-    border-radius:180px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
     background-color: transparent;
     background-image: url(${astroman});
     background-position: center;
@@ -201,7 +220,6 @@ const PhoneNumberWrap = styled.div`
   align-items: center;
   /* border: 1px solid black; */
 `
-
 
 const RadioRoleWrap = styled.div`
   display: flex;
@@ -380,6 +398,7 @@ const RightInputDiv = styled.div`
   display: flex;
   flex-flow: row wrap;
   gap: 10px;
+  line-height: 21px;
   margin-top: 20px;
   overflow: scroll;
 `
@@ -402,7 +421,58 @@ const CareerLabel = styled.label`
 `
 
 
-const PointCraeer = styled.div`
+const PointCraeer = styled.textarea`
+  resize: none;
+  width: 1140px;
+  height: 400px;
+  border-radius: 4px;
 `
+
+const NickNameBox = styled.span`
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 50px;
+  margin-bottom: 40px;
+`
+
+const PhotoEditWrap = styled.div`
+  /* border: 1px solid black; */
+  width: auto;
+  margin-top: 24px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+`
+
+const PhotoText = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+`
+
+const SubmitButtonWrap = styled.div`
+  /* border: 1px solid black; */
+  width: 1140px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`
+
+const SubmitButton = styled.button`
+  width: 150px;
+  height: 45px;
+  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin: 30px 0px 30px 0px;
+  padding: 12px 28px;
+  color: white;
+  font-weight: 700;
+`
+
 
 export default AddProfile;

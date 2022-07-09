@@ -97,7 +97,7 @@ const MypageBackGround = styled.div`
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    width: 100%
+    width: 100%;
 `
 
 
