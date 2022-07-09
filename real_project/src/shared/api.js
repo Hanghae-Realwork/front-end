@@ -25,9 +25,7 @@ api.interceptors.request.use(function (config) {
   // config.headers.common["Authorization"] = `${token}`;
   
   const accessToken = `${localStorage.getItem("token")}`;
-  if (accessToken !== undefined) {
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  }
   return config;
 });
 
