@@ -50,11 +50,11 @@ function RecruitWrite() {
     
     await new Promise((r) => setTimeout(r, 1000));
     localStorage.setItem('obj', JSON.stringify(output))
-    // dispatch(
-    //   createRecruitApi({
-    //     ...output
-    //   })
-    // );
+    dispatch(
+      createRecruitApi({
+        ...output
+      })
+    );
     console.log(output)
   }
 

@@ -10,7 +10,7 @@ import axios from "axios";
 const FindProjectStep02 = (props) => {
   const dispatch = useDispatch
   const navigate = useNavigate()
-  const storageData = localStorage.getItem('obj')
+  const storageData = sessionStorage.getItem('obj')
   const addData = JSON.parse(storageData);
   const token = localStorage.getItem("accesstocken");
   console.log(addData)
@@ -27,12 +27,12 @@ const FindProjectStep02 = (props) => {
           ""],
       email: "mymail@email.com",
       phone: "010-5555-5555",
-      schedule: {"2022-07-01": {availabe:true}}
+      // schedule: {"2022-07-01": {availabe:true}}
     }
 
-    await new Promise((r) => setTimeout(r, 10000));
+    await new Promise((r) => setTimeout(r, 1000));
 
-    await new localStorage.removeItem('obj')((r) => setTimeout(r, 3600000));
+    // await new localStorage.removeItem('obj')((r) => setTimeout(r, 3600000));
 
     axios({
       method: "post",
@@ -46,7 +46,7 @@ const FindProjectStep02 = (props) => {
     })
       .then((res) => {
         alert("프로젝트 등록완료!")
-        localStorage.removeItem('obj')
+        sessionStorage.removeItem('obj')
         console.log(res);
       }).catch((err) => {
         console.log(err);
@@ -125,7 +125,7 @@ const FindProjectStep02 = (props) => {
             <span>구하는 직군</span>
             <div>
 
-              <label><input id="role" type="radio" value="frontend" {...register("role")} name="Radio" />FrontEnd</label>
+              <label><input id="role" type="radio" name="Radio"  value="frontend" {...register("role")} />FrontEnd</label>
               <label><input id="role" type="radio" name="Radio" value="backend" {...register("role")} />BackEnd</label>
               <label><input id="role" type="radio" name="Radio" value="graphicDesigner" {...register("role")} />Designer</label>
 

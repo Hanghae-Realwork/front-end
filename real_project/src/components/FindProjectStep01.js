@@ -44,7 +44,7 @@ const FindProjectStep01 = (props) => {
 
     await new Promise((r) => setTimeout(r, 1000));
     
-    localStorage.setItem('obj', JSON.stringify(output))
+    sessionStorage.setItem('obj', JSON.stringify(output))
     // dispatch(
     //   createRecruitApi({
     //     ...output
@@ -52,7 +52,7 @@ const FindProjectStep01 = (props) => {
     // );
     console.log(output)
     navigate(`/findprojectstep2`)
-    await new Promise((delStorage) => setTimeout(delStorage,  10000));
+    // await new Promise((delStorage) => setTimeout(delStorage,  10000));
   }
 
   const {

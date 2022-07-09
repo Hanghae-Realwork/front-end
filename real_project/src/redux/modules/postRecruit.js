@@ -50,28 +50,29 @@ export const loadRecruitsApi = () => {
   };
 
   
-// export const createRecruitApi = (post, userEmail) => {
-//   // const token = localStorageGet("token");
-//   // console.log("토큰", token);
-//   return async function (dispatch, getState) {
-//     // const user = getState().users.user;
-//     // console.log("정보", getState().users.user);
-//     const body = {
-//       // users: user,
-//       email: userEmail,
-//     };
-//     console.log(body);
-//     try {
-//       console.log("프로젝트 생성 완료");
-//       const data = await apis.projectsCreate(post);
-//       // const data = { id: docRef.id, ...post };
+export const createRecruitApi = (post, userEmail) => {
+  // const token = localStorageGet("token");
+  // console.log("토큰", token);
+  return async function (dispatch, getState) {
+    // const user = getState().users.user;
+    // console.log("정보", getState().users.user);
+    const body = {
+      // users: user,
+      email: userEmail,
+    };
+    console.log(body);
+    try {
+      
+      const data = await apis.projectsCreate(post);
+      // const data = { id: docRef.id, ...post };
    
-//       dispatch(createRecruit(data));
-//     } catch (e) {
-//       console.log(`프로젝트 오류 발생!${e}`);
-//     }
-//   };
-// };
+      dispatch(createRecruit(data));
+      console.log("프로젝트 생성 완료");
+    } catch (e) {
+      console.log(`프로젝트 오류 발생!${e}`);
+    }
+  };
+};
 
 //Reducer
 export default function reducer(state = initialState, action = {}) {
@@ -80,10 +81,10 @@ export default function reducer(state = initialState, action = {}) {
         
       return {projects : action.discription};
     }
-    // case 'recruit/CREATE': {
-    //   const new_project_list = [...state, action.post];
-    //   return { list: new_project_list };
-    // }
+    case 'recruit/CREATE': {
+      const new_project_list = [...state, action.post];
+      return { list: new_project_list };
+    }
 
 
     default:
