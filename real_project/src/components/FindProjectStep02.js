@@ -27,6 +27,7 @@ const FindProjectStep02 = (props) => {
       // schedule: {"2022-07-01": {availabe:true}}
     }
     await new Promise((r) => setTimeout(r, 1000));
+
     // await new localStorage.removeItem('obj')((r) => setTimeout(r, 3600000));
     axios({
       method: "post",
@@ -45,6 +46,7 @@ const FindProjectStep02 = (props) => {
       }).catch((err) => {
         console.log(err);
       });
+
     // dispatch(
     //   createRecruitApi({
     //     ...output

@@ -23,7 +23,7 @@ const initialState = {
 };
 
 export function login(id) {
-  console.log(id)
+
   return { type: LOGIN, id };
 }
 
@@ -50,7 +50,6 @@ export const signupAxios = (
 ) => {
   return async function (dispatch) {
     let res = null;
-
     await apis
       .signup(
         userId,
@@ -107,29 +106,50 @@ export const checkUserNicknameAxios = (nickname) => {
 //로그인
 export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
-    console.log(userEmail, password)
+    console.log(userEmail, password);
     let success = null;
     await apis
       .login(userEmail, password, {
-        headers: {
-          Cookies : setCookie("refreshtocken", userEmail)
-        }
+        authorization: userEmail,
       })
       .then((res) => {
-        
-        setCookie("refreshtocken", res.data.token);
+       
         localStorage.setItem("accesstocken", res.data.token);
 
+        console.log(res);
         dispatch(login(userEmail));
         success = true;
       })
       .catch((err) => {
         success = false;
-        ;
       });
     return success;
   };
 };
+
+export const refreshAxios = () => {
+
+  return async function (dispatch) {
+    await apis.refresh().then((res) => {
+      console.log(res);
+    });
+  };
+};
+
+export const checkUserValidation = () => {
+  return async function (dispatch) {
+    await apis
+      .checkUser()
+      .then((res) => {
+        dispatch(login(res));
+      })
+      .catch((err) => {
+        dispatch(logOut());
+        console.log(err);
+      });
+  };
+};
+
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

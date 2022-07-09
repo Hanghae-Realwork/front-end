@@ -173,8 +173,6 @@ const HeadLine = styled.hr`
 `
 
 
-
-
 const FindProjectInputDate = styled.div`
   margin: 40px 0px 16px 30px;
   width: 1100px;
@@ -199,7 +197,6 @@ const FindProjectInputTitle = styled.div`
   justify-content: flex-start;
   align-items: center;
 `
-
 
 
 const ProjectInput = styled.input`

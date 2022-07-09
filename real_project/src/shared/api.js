@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import Cookies from "universal-cookie";
+// axios.defaults.withCredentials = true;
 //이미지 데이터
 const imgApi = axios.create({
   baseURL: "http://3.39.226.20/",
@@ -13,12 +14,16 @@ const api = axios.create({
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
- 
   },
 });
 
 //토큰
 api.interceptors.request.use(function (config) {
+  //쿠키설정
+  // const cookies = new Cookies();
+  // const token = cookies.get("token");
+  // config.headers.common["Authorization"] = `${token}`;
+  
   const accessToken = `${localStorage.getItem("token")}`;
   if (accessToken !== undefined) {
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
@@ -109,19 +114,16 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  // refresh: (nickname) =>
-  //   api.post("/api/users/refresh", ),
+  refresh: (nickname) => api.post("/api/users/refresh"),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
   //////////////////////
 
   //  - 9. 프로젝트 등록
-  projectsCreate: (
-    data
-  ) =>
+  projectsCreate: (data) =>
     api.post("/api/projects", {
-      ...data
+      ...data,
     }),
   //  - 10. 프로젝트 조회
   projectsLoad: () => api.get("/api/projects?page=1&limit=9"),

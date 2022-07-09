@@ -1,45 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { useLinkClickHandler, useNavigate } from "react-router-dom";
 import { loadRecruitsApi } from "../redux/modules/postRecruit";
-import Moment from "react-moment";
+
 
 import Card from "../components/CardRecruit";
 import RecSelectCompo from "../components/RecSelectCompo";
 
 
-const MainRecruit = (list) => {
-  const navigate = useNavigate();
+const MainRecruit = () => {
+
   const dispatch = useDispatch();
 
-  const loadRecruits = useSelector((state) => state.postRecruit.projects);
- 
+  const recruits = useSelector((state) => state.postRecruit.projects);
+
+
   useEffect(() => {
     dispatch(loadRecruitsApi());
-  }, [dispatch]
-  );
- 
-
+  }, []);
 
 
   return (
-    <>
+    <div>
       <RecSelectCompo />
       <CardBackGround>
         <CardContainerWrap>
-
-          {loadRecruits === undefined ? null : 
-            loadRecruits.map((list,idx) => {
-              return <Card data={list} key={idx} />;
-            })
-            }
-          
-
+          {" "}
+          {recruits === undefined
+            ? null
+            : recruits.map((list, idx) => {
+                return <Card key={idx} data={list} />;
+              })}
         </CardContainerWrap>
       </CardBackGround>
-    </>
+    </div>
   );
 };
 

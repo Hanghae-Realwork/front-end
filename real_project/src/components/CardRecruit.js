@@ -5,21 +5,21 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
-import Tag from "./TagCompo";
+import Tag from "./TagCompoRec";
 
 import Recepit from "../image/recepie.svg"
 import Moment from "react-moment";
 
 const CardRecruit = ({data}) => {
-  const dispatch = useDispatch();
+
   //loadRecruit props
 
 
 
-    const today = Date();
-    const nowTime = Date.now();
-    const stringNowTime = today.toString().split(" ")[4];
-    const todayHour = stringNowTime.split(":")[0];
+    // const today = Date();
+    // const nowTime = Date.now();
+    // const stringNowTime = today.toString().split(" ")[4];
+    // const todayHour = stringNowTime.split(":")[0];
 
 
   //  const createdAt = list.createdAt;
@@ -39,50 +39,49 @@ const CardRecruit = ({data}) => {
   // }
 
     return (
-      <>
-        <AllWrap>
-          <AllTopWrap>
-            <CardTopInfo>
-              <CardWriteName>이름</CardWriteName>
-              <CardWriteTime>{/* <DisplayCreatedAt /> */}</CardWriteTime>
-            </CardTopInfo>
-            <CardTitleInfo>
-              <CardTitleText>title</CardTitleText>
-            </CardTitleInfo>
-            <CardMainTextInfo>
-              <CardMainText>
-                [여기에 내용이 노출 됩니다]
-                <br />
-                subscript
-              </CardMainText>
-            </CardMainTextInfo>
-            <CardJobTextWrap>
-              <CardJobTitle>[구하는 직군]</CardJobTitle>
-              <div style={{ marginTop: "4px" }}>
-                <CardJobMainTitle>role</CardJobMainTitle>
-              </div>
-            </CardJobTextWrap>
-            <CardTagWrap>
-              <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
+      <AllWrap>
+        <AllTopWrap>
+          <CardTopInfo>
+            <CardWriteName>{data.userId}</CardWriteName>
+            <CardWriteTime>{/* <DisplayCreatedAt /> */}</CardWriteTime>
+          </CardTopInfo>
+          <CardTitleInfo>
+            <CardTitleText>{data.title}</CardTitleText>
+          </CardTitleInfo>
+          <CardMainTextInfo>
+            <CardMainText>
+              {data.subscript}
               <br />
-              <TagWrap>
-                <Tag />
-                <Tag />
-                <Tag />
-                <Tag />
-              </TagWrap>
-            </CardTagWrap>
-          </AllTopWrap>
-          <DashedLine />
-          <AllBotWrap>
-            <CardBotTopWrap>
-              <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-              <CardBotTextDateInfo> start </CardBotTextDateInfo>
-            </CardBotTopWrap>
-            <CardViewButton>프로젝트 보러 가기</CardViewButton>
-          </AllBotWrap>
-        </AllWrap>
-      </>
+             
+            </CardMainText>
+          </CardMainTextInfo>
+          <CardJobTextWrap>
+            <CardJobTitle>{data.role}</CardJobTitle>
+            <div style={{ marginTop: "4px" }}>
+              <CardJobMainTitle>role</CardJobMainTitle>
+            </div>
+          </CardJobTextWrap>
+          <CardTagWrap>
+            <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
+            <br />
+            <TagWrap>
+              {data === undefined
+                ? null
+                : data.skills.map((list, idx) => {
+                    return <Tag key={idx} skills={list} />;
+                  })}
+            </TagWrap>
+          </CardTagWrap>
+        </AllTopWrap>
+        <DashedLine />
+        <AllBotWrap>
+          <CardBotTopWrap>
+            <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+            <CardBotTextDateInfo> start </CardBotTextDateInfo>
+          </CardBotTopWrap>
+          <CardViewButton>프로젝트 보러 가기</CardViewButton>
+        </AllBotWrap>
+      </AllWrap>
     );
 
 };

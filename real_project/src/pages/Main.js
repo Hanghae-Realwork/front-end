@@ -78,7 +78,7 @@ const MaininTitleTopWrap = styled.div`
 `;
 
 const TitleMain = styled.span`
-  font-size: 35px;
+  font-size: 33px;
   font-weight: bolder;
   color: white;
 `;

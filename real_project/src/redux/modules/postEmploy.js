@@ -2,6 +2,7 @@ import { apis } from "../../shared/api";
 
 
 const LOAD = 'employ/LOAD';
+const CREATE = "employ/CREATE";
 
 const initialState = {
   resumes : {
@@ -20,6 +21,9 @@ const initialState = {
 export function loadEmploy(load) {
   return { type: LOAD, load };
 }
+export function createEmploy(add) {
+  return { type: LOAD, add};
+}
 
 //middleware
 export const loadEmployAxios = () => {
@@ -27,9 +31,12 @@ export const loadEmployAxios = () => {
     await apis
       .resumesLoad()
       .then((response) => {
-   
-        let resumes = response.data;
-        dispatch(loadEmploy(resumes));
+        let list= []
+        let resumes = response.data.resumes
+        list = [...resumes.reverse()];
+
+      
+        dispatch(loadEmploy(list));
       })
       .catch((err) => {
         console.log(err);
@@ -41,7 +48,12 @@ export const loadEmployAxios = () => {
 //Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case 'employ/LOAD': {
+    case "employ/LOAD": {
+      return {
+        list: action.load,
+      };
+    }
+    case "employ/CREATE": {
       return {
         list: action.load,
       };
