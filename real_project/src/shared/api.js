@@ -1,7 +1,10 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
+
+//지정시 오류
 // axios.defaults.withCredentials = true;
 //이미지 데이터
+
+
 const imgApi = axios.create({
   baseURL: "http://3.39.226.20/",
   headers: {
