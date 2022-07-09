@@ -115,13 +115,17 @@ export const loginAxios = (userEmail, password) => {
       .then((res) => {
        
         localStorage.setItem("accesstocken", res.data.token);
+        setCookie("refreshtoken", res.data.refreshtoken)    
+        console.log(res)
 
-        console.log(res);
         dispatch(login(userEmail));
         success = true;
       })
       .catch((err) => {
         success = false;
+
+        alert("로그인에 실패했습니다");
+
       });
     return success;
   };
