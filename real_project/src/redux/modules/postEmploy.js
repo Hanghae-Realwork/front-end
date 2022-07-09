@@ -2,6 +2,7 @@ import { apis } from "../../shared/api";
 
 
 const LOAD = 'employ/LOAD';
+const CREATE = "employ/CREATE";
 
 const initialState = {
   resumes : {
@@ -19,6 +20,9 @@ const initialState = {
 
 export function loadEmploy(load) {
   return { type: LOAD, load };
+}
+export function createEmploy(add) {
+  return { type: LOAD, add};
 }
 
 //middleware
@@ -44,7 +48,12 @@ export const loadEmployAxios = () => {
 //Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case 'employ/LOAD': {
+    case "employ/LOAD": {
+      return {
+        list: action.load,
+      };
+    }
+    case "employ/CREATE": {
       return {
         list: action.load,
       };
