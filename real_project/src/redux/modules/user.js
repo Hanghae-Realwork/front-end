@@ -23,7 +23,7 @@ const initialState = {
 };
 
 export function login(id) {
-  console.log(id)
+
   return { type: LOGIN, id };
 }
 
@@ -106,31 +106,36 @@ export const checkUserNicknameAxios = (nickname) => {
 //로그인
 export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
-    console.log(userEmail, password)
+    console.log(userEmail, password);
     let success = null;
     await apis
-      .login(userEmail, password)
+      .login(userEmail, password, {
+        authorization: userEmail,
+      })
       .then((res) => {
+       
         localStorage.setItem("accesstocken", res.data.token);
-        console.log(res)
+
+        console.log(res);
         dispatch(login(userEmail));
         success = true;
       })
       .catch((err) => {
         success = false;
-        ;
       });
     return success;
   };
 };
 
 export const refreshAxios = () => {
-  return async function (dispatch) { 
+
+  return async function (dispatch) {
     await apis.refresh().then((res) => {
-      console.log(res)
-    })
-  }
-}
+      console.log(res);
+    });
+  };
+};
+
 export const checkUserValidation = () => {
   return async function (dispatch) {
     await apis
@@ -144,7 +149,6 @@ export const checkUserValidation = () => {
       });
   };
 };
-
 
 
 export default function reducer(state = initialState, action = {}) {
