@@ -109,23 +109,20 @@ export const loginAxios = (userEmail, password) => {
     console.log(userEmail, password);
     let success = null;
     await apis
-      .login(userEmail, password, {
-        authorization: userEmail,
-      })
-      .then((res) => {
-       
+      .login(userEmail, password)
+      .then((res) => { 
         localStorage.setItem("accesstocken", res.data.token);
-        setCookie("refreshtoken", res.data.refreshtoken)    
-        console.log(res)
+        // setCookie("refreshtoken", res.data.refreshtoken)    
 
         dispatch(login(userEmail));
         success = true;
       })
       .catch((err) => {
         success = false;
-
-        alert("로그인에 실패했습니다");
-
+        if (err.response.status) {
+          console.log(err)
+          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
       });
     return success;
   };

@@ -1,10 +1,6 @@
 import axios from "axios";
-
-//지정시 오류
 // axios.defaults.withCredentials = true;
 //이미지 데이터
-
-
 const imgApi = axios.create({
   baseURL: "http://3.39.226.20/",
   headers: {
@@ -21,14 +17,9 @@ const api = axios.create({
 });
 
 //토큰
-api.interceptors.request.use(function (config) {
-  //쿠키설정
-  // const cookies = new Cookies();
-  // const token = cookies.get("token");
-  // config.headers.common["Authorization"] = `${token}`;
-  
+api.interceptors.request.use(function (config) { 
   const accessToken = `${localStorage.getItem("token")}`;
-    config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  config.headers.common["authorization"] = `Bearer ${accessToken}`;
   return config;
 });
 
