@@ -20,9 +20,7 @@ const api = axios.create({
 //토큰
 api.interceptors.request.use(function (config) {
   const accessToken = `${localStorage.getItem("token")}`;
-  if (accessToken !== undefined) {
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  }
   return config;
 });
 
