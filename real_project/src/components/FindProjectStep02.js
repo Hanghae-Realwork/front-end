@@ -55,6 +55,7 @@ const FindProjectStep02 = (props) => {
     // navigate(`/findprojectstep2`)
     console.log(output)
   }
+
   const dvelopSkills_list = [
     { data: 'React' },
     { data: 'Vue.js' },
@@ -190,3 +191,4 @@ const HeadLine = styled.hr`
   width: 1200px;
 `
 export default FindProjectStep02;
+

@@ -14,8 +14,6 @@ const CardRecruit = ({data}) => {
 
   //loadRecruit props
 
-
-
     // const today = Date();
     // const nowTime = Date.now();
     // const stringNowTime = today.toString().split(" ")[4];
