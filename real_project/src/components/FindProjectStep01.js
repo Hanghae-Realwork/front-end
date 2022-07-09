@@ -30,11 +30,11 @@ const FindProjectStep01 = (props) => {
   const today = new Date();
   const startdate = JSON.stringify(selected.from)
   const enddate = JSON.stringify(selected.to)
+  const delStorage = localStorage.removeItem('obj')
 
   const onSubmit = async (data) => {
     const output = {
       ...data,
-
       start: startdate.slice(1, 11),
       end: enddate.slice(1, 11),
 
@@ -42,7 +42,8 @@ const FindProjectStep01 = (props) => {
       schedule: ["2022-07-20", "2022-07-25"]
     }
 
-    // await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => setTimeout(r, 1000));
+    
     localStorage.setItem('obj', JSON.stringify(output))
     // dispatch(
     //   createRecruitApi({
@@ -51,7 +52,7 @@ const FindProjectStep01 = (props) => {
     // );
     console.log(output)
     navigate(`/findprojectstep2`)
-    
+    await new Promise((delStorage) => setTimeout(delStorage,  10000));
   }
 
   const {
