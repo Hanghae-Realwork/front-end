@@ -18,63 +18,62 @@ const modalMainRecruit = (props) => {
             </button>
           </header>
           <main>
+            <SelectAllWrap>
+              <SelectBoxWrap>
                 <SelectAllWrap>
-
-                <SelectBoxWrap>
-            <SelectAllWrap>
-              <TitleTextTag>개발자</TitleTextTag>
-              <SelectBoxTab>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>React</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Vue.js</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
-              </SelectBoxTab>
-            </SelectAllWrap>
-
-            <SelectAllWrap>
-              <TitleTextTag>디자이너</TitleTextTag>
-              <SelectBoxTab>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe Illustrator</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe PhotoShop</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Invision</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Sketch</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
-              </SelectBoxTab>
-            </SelectAllWrap>
-            <SelectButtonWrap>
-              <SelectButton> 선택 완료 </SelectButton>
-            </SelectButtonWrap>
-          </SelectBoxWrap>
-
-
+                  <TitleTextTag>개발자</TitleTextTag>
+                  <SelectBoxTab>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>React</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Vue.js</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
+                    <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
+                  </SelectBoxTab>
                 </SelectAllWrap>
-                <SelectButton> 적용 완료 </SelectButton>
+
+                <SelectAllWrap>
+                  <TitleTextTag>디자이너</TitleTextTag>
+                  <SelectBoxTab>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe Illustrator</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe PhotoShop</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Invision</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Sketch</TecLabel>
+                    <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
+                  </SelectBoxTab>
+                </SelectAllWrap>
+                <SelectButtonWrap>
+                  <SelectButton> 선택 완료 </SelectButton>
+                </SelectButtonWrap>
+              </SelectBoxWrap>
+
+
+            </SelectAllWrap>
+            <SelectButton> 적용 완료 </SelectButton>
           </main>
           <footer>
             <button className="close" onClick={close}>
