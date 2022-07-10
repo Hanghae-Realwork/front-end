@@ -16,7 +16,7 @@ function Join() {
 
   //회원가입 변수
   const [userId, setUserId] = useState("");
-  const [nickname, setNickName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -26,7 +26,7 @@ function Join() {
 
   //error
   const [userIdError, setUserIdError] = useState({ status: false, text: "" });
-  const [nicknameError, setNickNameError] = useState({ status: false, text: ""});
+  const [nicknameError, setNicknameError] = useState({ status: false, text: ""});
   const [nameError, setNameError] = useState({status: false, text: ""});
   const [passwordError, setPasswordError] = useState({status: false,text: ""});
   const [confirmPasswordError, setConfirmPasswordError] = useState({status: false,text: ""});
@@ -37,7 +37,11 @@ function Join() {
   const [allCheck, setAllCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
-
+  
+  //아이디,비밀번호 중복체크
+  const [userIdCheck, setUserIdCheck] = useState(false)
+  const [nicknameCheck, setNicknameCheck] = useState(false)
+  
   //체크박스
   useEffect(() => {
     if (useCheck === true && marketingCheck === true) {
@@ -69,18 +73,18 @@ function Join() {
 
   //유효성검사:nickName
   const onChageNickName = (e) => {
-    setNickName(e.target.value);
+    setNickname(e.target.value);
   };
 
   const BlurNickName = (e) => {
     if (e.target.value.length <= 0) {
-      setNickNameError({ status: true, text: "필수 정보입니다." });
+      setNicknameError({ status: true, text: "필수 정보입니다." });
       return;
     }
     if (nickname.length === 1) {
-      setNickNameError({ status: true, text: "한글자 이상 입력해주세요!" });
+      setNicknameError({ status: true, text: "한글자 이상 입력해주세요!" });
     } else {
-      setNickNameError({ status: false, text: "" });
+      setNicknameError({ status: false, text: "" });
     }
   };
 
@@ -242,16 +246,18 @@ function Join() {
     try {
       await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
         if (checksuccess === true) {
-          console.log("success");
           setUserIdError({
             status: true,
             text: "사용 가능한 아이디 입니다.",
           });
+          setUserIdCheck(true)
+
         } else {
           setUserIdError({
             status: true,
             text: "이미 사용중이거나 탈퇴한 아이디입니다.",
           });
+          setUserIdCheck(false);
         }
       });
     } catch (err) {
@@ -263,17 +269,17 @@ function Join() {
     try {
       await dispatch(checkUserNicknameAxios(nickname)).then((checksuccess) => {
         if (checksuccess === true) {
-          console.log("success");
-          setNickNameError({
+          setNicknameError({
             status: true,
             text: "사용 가능한 닉네임입니다.",
           });
+          setNicknameCheck(true)
         } else {
-          console.log("error");
-          setNickNameError({
+          setNicknameError({
             status: true,
             text: "이미 사용중이거나 탈퇴한 닉네임입니다.",
           });
+          setNicknameCheck(false)
         }
       });
     } catch (err) {
@@ -281,8 +287,6 @@ function Join() {
     }
   };
   const signupFunction = async () => {
-    //해당 콘솔을 찍은 부분 
-
  // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
       userId === "" ||
@@ -291,7 +295,6 @@ function Join() {
       year === "" ||
       month === "" ||
       day === "" ||
-
       password === "" ||
       passwordCheck === "" ||
       userId === " " ||
@@ -300,15 +303,21 @@ function Join() {
       year === " " ||
       month === " " ||
       day === " " ||
-   
       password === " " ||
       passwordCheck === " "
     ) {
+      alert("빈칸을 확인해주세요.")
       return false;
     }
-    if ( useCheck === false) {
+    if (useCheck === false) {
       alert("약관동의를 확인해주세요.");
       return false;
+    }
+
+    if (!userIdCheck) {
+      alert("이메일 중복체크 부탁쓰!");
+    } else if (!nicknameCheck) {
+      alert("닉네임 중복체크 부탁쓰!");
     }
     try {
       await dispatch(
@@ -345,7 +354,7 @@ function Join() {
             <IdWrap>
               <InputBar
                 type="email"
-                placeholder="아이디"
+                placeholder="Email"
                 id="userId"
                 value={userId}
                 onChange={onChangeUserId}

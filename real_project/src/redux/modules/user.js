@@ -11,7 +11,6 @@ const initialState = {
     userId: null,
     nickname: null,
     name: null,
-    phone: null,
     password: null,
     passwordCheck: null,
     policy: false,
@@ -43,7 +42,6 @@ export const signupAxios = (
   nickname,
   name,
   birth,
-  phoneNumber,
   password,
   passwordCheck,
   allCheck
@@ -56,7 +54,6 @@ export const signupAxios = (
         nickname,
         name,
         birth,
-        phoneNumber,
         password,
         passwordCheck,
         allCheck
@@ -65,6 +62,7 @@ export const signupAxios = (
         res = true;
       })
       .catch((err) => {
+        console.log(err)
         res = false;
       });
     return res;
@@ -113,16 +111,12 @@ export const loginAxios = (userEmail, password) => {
       .then((res) => { 
         localStorage.setItem("accesstocken", res.data.token);
         // setCookie("refreshtoken", res.data.refreshtoken)    
-
         dispatch(login(userEmail));
         success = true;
       })
       .catch((err) => {
         success = false;
-        if (err.response.status) {
-          console.log(err)
-          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-        }
+        alert(err.response.data.errorMessage);
       });
     return success;
   };

@@ -44,7 +44,6 @@ export const apis = {
     nickname,
     name,
     birth,
-    phoneNumber,
     password,
     passwordCheck,
     allCheck
@@ -56,7 +55,6 @@ export const apis = {
       passwordCheck: passwordCheck,
       name: name,
       birth: birth,
-      phone: phoneNumber,
       policy: allCheck,
     }),
 
@@ -75,7 +73,6 @@ export const apis = {
     userId,
     nickname,
     name,
-    phone,
     birth,
     password,
     passwordCheck,
@@ -85,7 +82,6 @@ export const apis = {
       userId: userId,
       nickname: nickname,
       name: name,
-      phone: phone,
       birth: birth,
       password: password,
       passwordCheck: passwordCheck,
