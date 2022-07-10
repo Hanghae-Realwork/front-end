@@ -7,16 +7,12 @@ import SelectSkill from "../components/SelectSkill"
 import Phone from "../image/phone.svg"
 import Letter from "../image/letter.svg"
 
-
 function AddProfile() {
 
   function AddInput() {
     let [inputTit, inputTitFunc] = useState([]);
     let [inputNum, inputNumFunc] = useState(0);
     let [newVal, newValFunc] = useState('');
-
-  
-  
 
     function deleteInput(idx) {
       inputNum(inputNumFunc.filter(item => item.id !== idx))
