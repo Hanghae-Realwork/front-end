@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 import astroman from "../image/astroman.svg"
 import email from "../image/letter.svg"
 import phone from "../image/phone.svg"
-
-import Card from "../components/CardRecruit"
+import Check from "../image/check.svg"
 
 
 function MyPage() {
@@ -90,12 +89,11 @@ function MyPage() {
                         </InterviewButtonWrap>
                     </InterviewWrap>
                     <BeltWrap>
-                        <   ></>
-
-
-
-
-
+                        <CourseLabel>지원서 접수 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
+                        <ConectLine />
+                        <CourseLabel>면접 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
+                        <ConectLine />
+                        <CourseLabel>매칭 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
                     </BeltWrap>
                 </RightContentWrap>
                 </div>
@@ -405,8 +403,20 @@ const BeltWrap =styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 35px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    width: 380px;
+`
 
+const CourseLabel = styled.label`
+    padding: 8px 14px 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 20px;
+    background-color: white;
+`
+
+const ConectLine = styled.hr`
+    width: 14px;
 `
 
 export default MyPage;

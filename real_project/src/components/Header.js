@@ -31,7 +31,7 @@ function Header() {
           <HeaderAlignWrap>
             <LogoWrap onClick={() => {navigate(`/`);}}></LogoWrap>
             <HeaderLeftWrap>
-              <FindProject style={{ fontWeight: "bold" }} onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
+              <FindProject onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
               <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
               <FindMatching onClick={() => {navigate(`/`);}}>프로젝트 매칭</FindMatching>
               <FindProject onClick={() => {navigate(`/chatjoin`);}}>화상채팅(임시)</FindProject>
