@@ -32,7 +32,7 @@ const FindProjectStep01 = (props) => {
       start: startdate.slice(1, 11),
       end: enddate.slice(1, 11),
       photos: ["null", "null"],
-      schedule: ["2022-07-20", "2022-07-25"]
+      
     }
     await new Promise((r) => setTimeout(r, 1000));
     
@@ -84,21 +84,11 @@ const FindProjectStep01 = (props) => {
           <HeadLine />
           <FindProjectInputTitle>
             <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput
-              id="title"
-              type="text"
-              placeholder="제목을 입력해주세요"
-              {...register("title")}
-            ></ProjectInput>
+            <ProjectInput id="title" type="text" placeholder="제목을 입력해주세요" {...register("title")}></ProjectInput>
           </FindProjectInputTitle>
           <FindProjectInputTitle>
             <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput
-              id="subscript"
-              type="text"
-              placeholder="프로젝트를 설명해주세요"
-              {...register("subscript")}
-            ></ProjectInput>
+            <ProjectInput id="subscript" type="text" placeholder="프로젝트를 설명해주세요"{...register("subscript")}></ProjectInput>
           </FindProjectInputTitle>
           <FindProjectInputDate>
             <ProjectTitleText>프로젝트 기간</ProjectTitleText>
@@ -113,21 +103,22 @@ const FindProjectStep01 = (props) => {
                 numberOfMonths={2}
                 disabled={{ before: today }}
               ></DayPicker>
+              <div>
               {footer}
+              </div>
             </div>
           </FindProjectInputDate>
           <FindProjectInputTitle>
             <ProjectTitleText>팀 상세 설명</ProjectTitleText>
             <div><RecMainCon id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" {...register("details")} /></div>
           </FindProjectInputTitle>
-          <div><button type="submit" disabled={isSubmitting}
-          // onClick={() => {navigate(`/findprojectstep2`)}}
-          >다음 단계로</button></div>
+          <div><NextStepButton type="submit" disabled={isSubmitting} onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</NextStepButton></div>
         </form>
       </FindProjectAllWrap>
     </>
   );
 };
+
 
 const FindProjectAllWrap = styled.div`
   /* border: 1px solid black; */
@@ -171,7 +162,6 @@ const HeadLine = styled.hr`
   border: 1px solid #D9D9D9;
   width: 1200px;
 `
-
 
 const FindProjectInputDate = styled.div`
   margin: 40px 0px 16px 30px;
@@ -226,11 +216,23 @@ const TextAreaWrap = styled.div`
 const RecMainCon = styled.textarea`
   margin: 20px; 
   padding: 10px; 
-  width: 1000px; 
+  width: 1100px; 
   height: 500px; 
   outline: none; 
   resize: none;
+  border-radius: 4px;
 `;
 const NextStepButton = styled.button`
+  width: 150px;
+  height: 45px;
+  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin: 30px 0px 30px 0px;
+  padding: 12px 28px;
+  color: white;
+  font-weight: 700;
 `
 export default FindProjectStep01;

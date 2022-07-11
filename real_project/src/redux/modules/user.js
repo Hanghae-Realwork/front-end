@@ -17,7 +17,7 @@ const initialState = {
   },
   userInfo: {
     userEmail: null,
-    is_login: null,
+    is_login: false,
   },
 };
 
@@ -116,6 +116,7 @@ export const loginAxios = (userEmail, password) => {
       })
       .catch((error) => {
         success = false;
+
         console.log("에러나야함 refresh",error)
         if (error.response.status === 401) {
            console.log("401")
@@ -126,7 +127,7 @@ export const loginAxios = (userEmail, password) => {
            console.log("403")
            window.location.href = "/login";
          }
-      });
+
     return success;
   };
 };

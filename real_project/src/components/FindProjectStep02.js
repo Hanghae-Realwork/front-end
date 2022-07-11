@@ -19,12 +19,8 @@ const FindProjectStep02 = (props) => {
     const output = {
       ...data,
       ...addData,
-      photos:
-        ["",
-          ""],
-      email: "mymail@email.com",
-      phone: "010-5555-5555",
-      // schedule: {"2022-07-01": {availabe:true}}
+      
+      schedule: ["2022-07-20", "2022-07-25"]
     }
     await new Promise((r) => setTimeout(r, 1000));
 
@@ -118,16 +114,14 @@ const FindProjectStep02 = (props) => {
           </FindProjectStepWrap>
           <HeadLine />
           <div>
-            <span>구하는 직군</span>
+            <ProjectTitleText>구하는 직군</ProjectTitleText>
             <div>
               <label><input id="role" type="radio" name="Radio"  value="frontend" {...register("role")} />FrontEnd</label>
               <label><input id="role" type="radio" name="Radio" value="backend" {...register("role")} />BackEnd</label>
               <label><input id="role" type="radio" name="Radio" value="graphicDesigner" {...register("role")} />Designer</label>
             </div>
           </div>
-          <div>
-            {/* 셀렉트스킬 컴포넌트  */}
-            <SelectSkill />
+          <SelectSkillWrap>
             {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
               return <div><input id="skills" type="checkbox" value={list.data} {...register("skills")} />{list.data}</div>;
             })}
@@ -142,18 +136,14 @@ const FindProjectStep02 = (props) => {
                 {list.data}
               </div>;
             })}
-
-
-
-
-          </div>
+          </SelectSkillWrap>
           <div>
             캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
           </div>
-          <div>
-            <div><button onClick={() => { navigate(`/findprojectstep1`) }}>이전 단계로</button></div>
-            <div><button type="submit" disabled={isSubmitting}>등록하기</button></div>
-          </div>
+          <SubmitButtonWrap>
+            <BackButton onClick={() => { navigate(`/findprojectstep1`) }}>이전 단계로</BackButton>
+            <SubmitButton type="submit" disabled={isSubmitting}>등록하기</SubmitButton>
+          </SubmitButtonWrap>
         </form>
       </FindProjectAllWrap>
     </>
@@ -190,5 +180,59 @@ const HeadLine = styled.hr`
   border: 1px solid #D9D9D9;
   width: 1200px;
 `
+
+const SubmitButtonWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+`
+
+const BackButton = styled.button`
+  width: 150px;
+  height: 45px;
+  border-radius: 4px;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid;
+  border-image: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  border-image-slice: 1;
+  background-origin: border;
+  background-clip: content-box, border-box;
+  color: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  cursor: pointer;
+  margin: 30px 0px 30px 0px;
+  padding: 12px 28px;
+  font-weight: 700;
+`
+
+const SubmitButton = styled.button`
+  width: 150px;
+  height: 45px;
+  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin: 30px 0px 30px 0px;
+  padding: 12px 28px;
+  color: white;
+  font-weight: 700;
+`
+
+const SelectSkillWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const ProjectTitleText = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  gap: 15px;
+`
+
 export default FindProjectStep02;
 

@@ -7,34 +7,39 @@ import { useNavigate } from "react-router-dom";
 
 import Tag from "./TagCompoRec";
 
-import Recepit from "../image/recepie.svg"
+import Receipt from "../image/receipt.svg"
 import Moment from "react-moment";
 
-const CardRecruit = ({data}) => {
+const CardRecruit = ({ data }) => {
 
+  const navigate = useNavigate()
   //loadRecruit props
 
-    // const today = Date();
-    // const nowTime = Date.now();
-    // const stringNowTime = today.toString().split(" ")[4];
-    // const todayHour = stringNowTime.split(":")[0];
 
 
-  //  const createdAt = list.createdAt;
-  //           const startTime = new Date(createdAt);
-  //           const stringStartTime = startTime.toString().split(" ")[4];
-  //           const startHour = stringStartTime.split(":")[0];
-  //           const thenHours = Math.floor((nowTime - startTime) / 3600000);
+const today = Date();
+  const nowTime = Date.now();
+  const stringNowTime = today.toString().split(" ")[4];
+  const todayHour = stringNowTime.split(":")[0];
 
-  // const DisplayCreatedAt = () => {
-  //   if (parseInt(startTime - nowTime) > -86400000) {
-  //     return thenHours + "시간전";
-  //   }
-  //   if (parseInt(startTime - nowTime) < -86400000) {
-  //     return <Moment format="M월 D일">{startTime}</Moment>;
-  //     // return (thenHours)+"시간전";
-  //   }
-  // }
+
+  const createdAt = data.createdAt;
+  const startTime = new Date(createdAt);
+  const stringStartTime = startTime.toString().split(" ")[4];
+  const startHour = stringStartTime.split(":")[0];
+  const thenHours = Math.floor((nowTime - startTime) / 3600000);
+  const startDay= data.start
+  const start = startDay.slice(2, 10)
+  const end = data.end.slice(2, 10)
+  const DisplayCreatedAt = () => {
+    if (parseInt(startTime - nowTime) > -86400000) {
+      return thenHours + "시간전";
+    }
+    if (parseInt(startTime - nowTime) < -86400000) {
+      return <Moment format="M월 D일">{startTime}</Moment>;
+      // return (thenHours)+"시간전";
+    }
+  }
 
     return (
       <AllWrap>
@@ -50,14 +55,11 @@ const CardRecruit = ({data}) => {
             <CardMainText>
               {data.subscript}
               <br />
-             
             </CardMainText>
           </CardMainTextInfo>
           <CardJobTextWrap>
-            <CardJobTitle>{data.role}</CardJobTitle>
-            <div style={{ marginTop: "4px" }}>
-              <CardJobMainTitle>role</CardJobMainTitle>
-            </div>
+            <CardJobTitle>구하는 직군</CardJobTitle>
+                <CardJobMainTitle>{data.role}</CardJobMainTitle>
           </CardJobTextWrap>
           <CardTagWrap>
             <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
@@ -77,12 +79,13 @@ const CardRecruit = ({data}) => {
             <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
             <CardBotTextDateInfo> start </CardBotTextDateInfo>
           </CardBotTopWrap>
-          <CardViewButton>프로젝트 보러 가기</CardViewButton>
+          <CardViewButton onClick={() => {navigate(`/readproject`);}}>프로젝트 보러 가기</CardViewButton>
         </AllBotWrap>
       </AllWrap>
     );
-
 };
+
+
 
 //// 카드 전체 틀 관련 CSS 뭉치
 
@@ -91,13 +94,13 @@ const AllWrap = styled.div`
   border-top: none;
   border-bottom: none;
   width: 384px;
-  height: 426px;
+  height: 387px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 
-  background-image: url(${Recepit});
+  background-image: url(${Receipt});
 
   background-position: center;
   background-size: cover;
@@ -105,27 +108,23 @@ const AllWrap = styled.div`
 `;
 
 const AllTopWrap = styled.div`
-  border-bottom: none;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
   width: 384px;
-  height: 305px;
+  height: 310px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  /* border: 1px solid black; */
 `;
 
 const AllBotWrap = styled.div`
-  border-top: none;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   width: 384px;
-  height: 117px;
+  height: 120px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  /* border: 1px solid black; */
 `;
 
 //// 카드 내용 관련 CSS 뭉치
@@ -138,26 +137,23 @@ const CardTopInfo = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  margin: 23px 20px 0px 20px;
+  margin-top: 15px;
+  /* margin: 16px 0px 12px 0px; */
 `;
 
 const CardWriteName = styled.span`
   font-size: 12px;
-  width: 54px;
-  height: 18px;
 `;
 
 const CardWriteTime = styled.span`
   font-size: 12px;
-  width: 65px;
-  height: 18px;
   color: #8d8d8d;
 `;
 
 const CardTitleInfo = styled.div`
   /* border: 1px solid black; */
   width: 344px;
-  margin: 16px 20px 0px 20px;
+  margin: 10px 0px 12px 0px;
 `;
 
 const CardTitleText = styled.span`
@@ -168,29 +164,27 @@ const CardTitleText = styled.span`
 const CardMainTextInfo = styled.div`
   /* border: 1px solid black; */
   width: 344px;
-  height: 44px;
-  margin: 20px 20px 0px 20px;
+  height: 45px;
+  margin-bottom: 20px;
 `;
 
 const CardMainText = styled.span`
   font-size: 14px;
-  line-height: 21px;
+  font-weight: 400;
 `;
 
 const CardJobTextWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
-  margin: 26px 20px 0px 20px;
-  height: 50px;
+  display: flex;
+  flex-flow: column nowrap;
 `;
 
 const CardJobTitle = styled.span`
   font-size: 12px;
-  margin-bottom: 4px;
 `;
 
 const CardJobMainTitle = styled.span`
-  margin-top: 4px;
   font-weight: 700;
   font-size: 14px;
 `;
@@ -199,13 +193,11 @@ const CardTagWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
   height: 52px;
-  margin-top: 8px;
-  margin-bottom: 20px;
 `;
 
 const TagWrap = styled.div`
   /* border: 1px solid black; */
-  margin-top: 5px;
+  margin-bottom: 28px;
   height: 34px;
 `;
 
@@ -213,6 +205,7 @@ const TagWrap = styled.div`
 const DashedLine = styled.hr`
   width: 300px;
   border: 0.5px dashed #8d8d8d;
+  margin: 15px 0px 20px 0px;
 `;
 
 const CardBotTopWrap = styled.div`
@@ -223,7 +216,6 @@ const CardBotTopWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 18px;
 `;
 
 const CardBotTextDate = styled.span`
@@ -243,8 +235,6 @@ const CardViewButton = styled.button`
   width: 340px;
   height: 40px;
   padding: 8px;
-  margin-top: 20px;
-  margin-bottom: 12.5px;
   background-color: #303032; 
   border: none;
   outline: none;
@@ -252,6 +242,7 @@ const CardViewButton = styled.button`
   color: white;
   font-weight: 500;
   font-size: 14px;
+  margin-top: 20px;
 `;
 
 export default CardRecruit;
