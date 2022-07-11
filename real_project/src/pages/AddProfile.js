@@ -1,123 +1,181 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import styled from "styled-components";
-
 import astroman from "../image/astroman.svg"
-import { useForm } from "react-hook-form";
-import SelectSkill from "../components/SelectSkill"
-import Phone from "../image/phone.svg"
+
 import Letter from "../image/letter.svg"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { checkUserValidation } from "../redux/modules/user";
+import SelectSkill from "../components/SelectSkill";
+import {
+  dvelopSkills_list,
+  designerSkills_list,
+} from "../shared/developeSkills";
 
-
-
+import { useDispatch } from "react-redux";
 
 function AddProfile(props) {
-  const {isChecked, handleToggle} = props;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  //사진 파일 유무
+  const [filesImg, setFilesImg] = React.useState("");
+  const [checkList, setCheckList] = useState([]);
+  //로그인 유무
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+  //userId,nickname 정보
+  const userIdInfo = useSelector((state) => state.user.userInfo);
 
+  //onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
+  const onCheckedElement = (checked, item) => {
+    if (checked) {
+      setCheckList([...checkList, item]);
+      console.log(checkList);
+    } else if (!checked) {
+      setCheckList(checkList.filter((el) => el !== item));
+    }
+  };
+
+  React.useEffect(() => {
+    if (loginInfo === false) {
+      dispatch(checkUserValidation());
+    }
+  }, [loginInfo]);
 
   const introduceRef = useRef(null);
-  const [role, setRole] = useState("")
-
+  const linkRef = useRef(null);
+  const [role, setRole] = useState("");
 
   const onChangeRole = (e) => {
-    setRole(e.target.value)
-  }
+    setRole(e.target.value);
+  };
+  //저장하기
   const handleClick = () => {
-    console.log(role)
+    // console.log(content,resueImage,start,end,role,skill)
+    console.log(role);
     console.log(introduceRef.current.value);
- }
+    console.log(linkRef.current.value);
+    console.log();
+  };
+
   const onChangeCheck = (e) => {
-   console.log(e.target.value)
-  }
-  const 파일첨부칸 = () => { }
-  
+    console.log(e.target.value);
+  };
+  const 파일첨부칸 = () => {};
+
   return (
-
     <BackgroundAllWrap>
-
       <AddProfileWrap>
-
         <TitleDiv>
           <TitleText>내 소개글 작성하기</TitleText>
         </TitleDiv>
         <HeaderHeadLine />
 
         <ProfileTopWrap>
-
-            <SelfWrap>
-              <NickNameBox>닉네임님</NickNameBox>
+          <SelfWrap>
+            <NickNameBox>
+              {userIdInfo.length > 0 ? "" : userIdInfo.nickname}님
+            </NickNameBox>
             <ToggleBox>
-            <TitleTextTag>이메일 정보</TitleTextTag>
-                  <PhoneNumberWrap><img src={Letter} style={{marginRight:"10px"}}></img><Contect>test@testman.com</Contect></PhoneNumberWrap>
-                  {/* <ToggleTextWrap>
-                      <CheckBoxWrapperOne>
-                        <CheckBoxOne id="checkboxOne" type="checkbox" />
-                        <CheckBoxLabelOne htmlFor="checkbox" />
-                      </CheckBoxWrapperOne>
-                    </ToggleTextWrap> */}
-                {/* </ToggleBox>
-                <ToggleBox> */}
-                  {/* <PhoneNumberWrap><img src={Phone} style={{marginRight:"10px"}}></img><Contect>010-0000-000,000,000,000,000</Contect></PhoneNumberWrap> */}
-                  {/* <ToggleTextWrap>
-                    <TitleTextTag>연락처 공개</TitleTextTag>
-                      <CheckBoxWrapper>
-                        <CheckBox id="checkboxTwo" type="checkbox" />
-                        <CheckBoxLabel htmlFor="checkbox" />
-                      </CheckBoxWrapper>
-                    </ToggleTextWrap> */}
-                </ToggleBox>
-                <div>
-                    <TitleTextTag>간단한 자기 소개</TitleTextTag>
-                    <div>
-                <ProfileInput placeholder="간단한 인사말을 남겨 주세요">
-                  {/* <PhotoInput>파일첨부</PhotoInput> */}
-                        </ProfileInput>
-                    </div>
-                </div>
-            </SelfWrap>
+              <TitleTextTag>이메일 정보</TitleTextTag>
+              <PhoneNumberWrap>
+                <img src={Letter} style={{ marginRight: "10px" }}></img>
+                <Contect>
+                  {" "}
+                  {userIdInfo.length > 0 ? "" : userIdInfo.userId}
+                </Contect>
+              </PhoneNumberWrap>
+            </ToggleBox>
+            <div>
+              <TitleTextTag>간단한 자기 소개</TitleTextTag>
+              <div>
+                <ProfileInput
+                  placeholder="간단한 인사말을 남겨 주세요"
+                  ref={introduceRef}
+                ></ProfileInput>
+              </div>
+            </div>
+          </SelfWrap>
+
+          {/* 사진 */}
           <ProfilePicWrap>
-            
-            <CircleProfile onClick={파일첨부칸}></CircleProfile>
-                    <PhotoEditWrap>
-                      <PhotoText>삭제</PhotoText>
-                      <PhotoText>수정</PhotoText>
-                    </PhotoEditWrap>
-                </ProfilePicWrap>
+            <NoShowCircleProfile></NoShowCircleProfile>
+            <PhotoEditWrap>
+              <PhotoText>삭제</PhotoText>
+              <PhotoText>수정</PhotoText>
+            </PhotoEditWrap>
+          </ProfilePicWrap>
+
+          {/* 사진 */}
         </ProfileTopWrap>
-          <div>
-
-        {/* 캘린더 작업물이 들어갈 공간 입니다 */}
-
-          </div>
-            <SelectBoxWrap>
-                <SelectAllWrap>
-                  <SelfWrap>
-                    <TitleTextTag>내 직군</TitleTextTag>
-                    <RadioRoleWrap>
-                      <label><input id="role" type="radio" value="frontend" name="Radio"/>FrontEnd</label>
-                      <label><input id="role" type="radio" name="Radio" value="backend"/>BackEnd</label>
-                      <label><input id="role" type="radio" name="Radio" value="graphicDesigner"/>Designer</label>
-                    </RadioRoleWrap>
-                 </SelfWrap>
-                <SelfWrap>
-                    <SelectSkill/>
-                </SelfWrap>
-                </SelectAllWrap>
-            </SelectBoxWrap>
-            <PortfollioWrap>
-              <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
-              <ProfileInput placeholder="GitHub, Figma 등 링크를 적어 주세요"></ProfileInput>
-            </PortfollioWrap>
-
+        <div>{/* 캘린더 작업물이 들어갈 공간 입니다 */}</div>
+        <SelectBoxWrap>
+          <SelectAllWrap>
             <SelfWrap>
-              <textarea></textarea>
+              <TitleTextTag>내 직군</TitleTextTag>
+              <RadioRoleWrap>
+                <label>
+                  <input
+                    id="role"
+                    type="radio"
+                    value="frontend"
+                    name="role"
+                    onChange={onChangeRole}
+                  />
+                  FrontEnd
+                </label>
+                <label>
+                  <input
+                    id="role"
+                    type="radio"
+                    name="role"
+                    value="backend"
+                    onChange={onChangeRole}
+                  />
+                  BackEnd
+                </label>
+                <label>
+                  <input
+                    id="role"
+                    type="radio"
+                    name="role"
+                    value="designer"
+                    onChange={onChangeRole}
+                  />
+                  Designer
+                </label>
+              </RadioRoleWrap>
             </SelfWrap>
-            <HeaderHeadLine/>
-              <SubmitButtonWrap>
-               <SubmitButton onClick={handleClick}>소개글 등록하기</SubmitButton>
-              </SubmitButtonWrap>
+            <SelfWrap>
+
+
+
+{/* skill */}
+          <SelectSkill></SelectSkill>
+
+
+
+
+              
+            </SelfWrap>
+          </SelectAllWrap>
+        </SelectBoxWrap>
+        <PortfollioWrap>
+          <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
+          <ProfileInput
+            placeholder="GitHub, Figma 등 링크를 적어 주세요"
+            ref={linkRef}
+          ></ProfileInput>
+        </PortfollioWrap>
+
+        <SelfWrap>
+          <textarea></textarea>
+        </SelfWrap>
+        <HeaderHeadLine />
+        <SubmitButtonWrap>
+          <SubmitButton onClick={handleClick}>소개글 등록하기</SubmitButton>
+        </SubmitButtonWrap>
       </AddProfileWrap>
     </BackgroundAllWrap>
-
   );
 }
 
@@ -183,7 +241,7 @@ const ProfileTopWrap = styled.div`
     width: 100%;
 `
 
-const CircleProfile = styled.div`
+const NoShowCircleProfile = styled.div`
     /* border: 1px solid black; */
     width: 200px;
     height: 200px;
