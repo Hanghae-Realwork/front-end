@@ -30,7 +30,7 @@ function Header() {
         <HeaderConWrap>
           <HeaderAlignWrap>
             <LogoWrap>
-              <HeaderFix onClick={() => {navigate(`/`);}}><img src = {Logo} styled={{width:"5%"}}/></HeaderFix></LogoWrap>
+              <HeaderFix onClick={() => {navigate(`/`);}}></HeaderFix></LogoWrap>
             <HeaderLeftWrap>
               <FindProject style={{ fontWeight: "bold" }} onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
               <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
@@ -71,7 +71,7 @@ const HeaderWrap = styled.div`
 `
 
 const LogoWrap = styled.div`
-    width: 107px;
+    width: 180px;
     height: 48px;
     font-weight: 700;
     font-size: 32px;
@@ -82,6 +82,10 @@ const LogoWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    background-image: url(${Logo});
+    background-position: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
 `
 
 const HeaderFix = styled.label`
@@ -134,6 +138,7 @@ const FindProject = styled.label`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 
 `
 
