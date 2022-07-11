@@ -32,36 +32,14 @@ function Header() {
       <HeaderWrap>
         <HeaderConWrap>
           <HeaderAlignWrap>
-            <LogoWrap>
-              <HeaderFix
-                onClick={() => {
-                  navigate(`/`);
-                }}
-              ></HeaderFix>
-            </LogoWrap>
+
+            <LogoWrap onClick={() => {navigate(`/`);}}></LogoWrap>
             <HeaderLeftWrap>
-              <FindProject
-                style={{ fontWeight: "bold" }}
-                onClick={() => {
-                  navigate(`/mainrecruit`);
-                }}
-              >
-                프로젝트 찾기
-              </FindProject>
-              <FindProject
-                onClick={() => {
-                  navigate(`/mainemployment`);
-                }}
-              >
-                팀원 찾기
-              </FindProject>
-              <FindProject
-                onClick={() => {
-                  navigate(`/chatjoin`);
-                }}
-              >
-                화상채팅(임시)
-              </FindProject>
+              <FindProject style={{ fontWeight: "bold" }} onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
+              <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
+              <FindMatching onClick={() => {navigate(`/`);}}>프로젝트 매칭</FindMatching>
+              <FindProject onClick={() => {navigate(`/chatjoin`);}}>화상채팅(임시)</FindProject>
+
             </HeaderLeftWrap>
           </HeaderAlignWrap>
           <HeaderRightWrap>
@@ -116,26 +94,21 @@ const HeaderWrap = styled.div`
 `
 
 const LogoWrap = styled.div`
-    width: 180px;
+    width: 107px;
     height: 48px;
     font-weight: 700;
     font-size: 32px;
     /* margin: 26px 0px 26px 0px; */
     cursor: pointer;
-    /* border: 1px solid white; */
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     background-image: url(${Logo});
-    background-position: cover;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-`
-
-const HeaderFix = styled.label`
-    color: #fff;
-    cursor: pointer;
+    /* border: 1px solid white; */
 `
 
 const HeaderConWrap = styled.div`
@@ -179,12 +152,26 @@ const FindProject = styled.label`
     color: #FFF;
     font-weight: 500;
     padding: 8px 16px 8px 16px;
-    border-radius: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+`
 
+const FindMatching = styled.label`
+    /* border: 1px solid white; */
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    /* margin: 10px; */
+    font-size: 16px;
+    color: #FFF;
+    font-weight: 500;
+    padding: 8px 16px 8px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 `
 
 const HeaderRightWrap = styled.div`

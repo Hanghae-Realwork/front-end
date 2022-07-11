@@ -76,6 +76,7 @@ function AddProfile(props) {
               {userIdInfo.length > 0 ? "" : userIdInfo.nickname}님
             </NickNameBox>
             <ToggleBox>
+
               <TitleTextTag>이메일 정보</TitleTextTag>
               <PhoneNumberWrap>
                 <img src={Letter} style={{ marginRight: "10px" }}></img>
@@ -106,11 +107,13 @@ function AddProfile(props) {
           </ProfilePicWrap>
 
           {/* 사진 */}
+
         </ProfileTopWrap>
         <div>{/* 캘린더 작업물이 들어갈 공간 입니다 */}</div>
         <SelectBoxWrap>
           <SelectAllWrap>
             <SelfWrap>
+
               <TitleTextTag>내 직군</TitleTextTag>
               <RadioRoleWrap>
                 <label>
@@ -144,6 +147,7 @@ function AddProfile(props) {
                   Designer
                 </label>
               </RadioRoleWrap>
+
             </SelfWrap>
             <SelfWrap>
 
@@ -494,5 +498,8 @@ const SubmitButton = styled.button`
   font-weight: 700;
 `
 
+const PhotoInput = styled.input`
+  /* display: none; */
+`
 
 export default AddProfile;
