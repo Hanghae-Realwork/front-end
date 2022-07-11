@@ -2,18 +2,20 @@ import React, {useState, useRef} from "react";
 import styled from "styled-components";
 
 import astroman from "../image/astroman.svg"
-
+import { useForm } from "react-hook-form";
 import SelectSkill from "../components/SelectSkill"
 import Phone from "../image/phone.svg"
 import Letter from "../image/letter.svg"
 
 
-function AddProfile() {
+function AddProfile(props) {
+  const {isChecked, handleToggle} = props;
 
   // function AddInput() {
   //   let [inputTit, inputTitFunc] = useState([]);
   //   let [inputNum, inputNumFunc] = useState(0);
   //   let [newVal, newValFunc] = useState('');
+
 
   //   function deleteInput(idx) {
   //     inputNum(inputNumFunc.filter(item => item.id !== idx))
@@ -41,9 +43,32 @@ function AddProfile() {
   //   );
   // }
 
-  
+
+  // const onSubmit = async (data) => {
+  //   const career= AddInput.inputTit
+  //   const output = {
+  //     ...data,
+  //     ...career
+      
+      
+  //   }
+  //   await new Promise((r) => setTimeout(r, 1000));
+    
+  //   // dispatch(
+  //   //   사용할 api({
+  //   //     ...output
+  //   //   })
+  //   // );
+  //   console.log(output)
+    
+  // }
+  // const {
+  //   register, handleSubmit,
+  //   formState: { isSubmitting, isDirty, errors },
+  // } = useForm();
 
   return (
+
     <BackgroundAllWrap>
       <AddProfileWrap>
         <TitleDiv><TitleText>내 소개글 작성하기</TitleText></TitleDiv>
@@ -56,8 +81,12 @@ function AddProfile() {
                   <PhoneNumberWrap><img src={Letter} style={{marginRight:"10px"}}></img><Contect>test@testman.com</Contect></PhoneNumberWrap>
                   {/* <ToggleTextWrap>
                       <CheckBoxWrapperOne>
-                        <CheckBoxOne id="checkboxOne" type="checkbox" />
-                        <CheckBoxLabelOne htmlFor="checkbox" />
+                        <CheckBoxOne id={"checkboxOne"} type="checkbox" 
+                        checked={isChecked}
+                        onChange={handleToggle}
+                        
+                        />
+                        <CheckBoxLabelOne htmlFor={"checkboxOne"} />
                       </CheckBoxWrapperOne>
                     </ToggleTextWrap> */}
                 {/* </ToggleBox>
@@ -120,6 +149,7 @@ function AddProfile() {
               </SubmitButtonWrap>
       </AddProfileWrap>
     </BackgroundAllWrap>
+
   );
 }
 

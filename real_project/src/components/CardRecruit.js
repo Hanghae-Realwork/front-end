@@ -10,79 +10,82 @@ import Tag from "./TagCompoRec";
 import Receipt from "../image/receipt.svg"
 import Moment from "react-moment";
 
-const CardRecruit = ({data}) => {
+const CardRecruit = ({ data }) => {
 
   const navigate = useNavigate()
   //loadRecruit props
 
 
 
-    // const today = Date();
-    // const nowTime = Date.now();
-    // const stringNowTime = today.toString().split(" ")[4];
-    // const todayHour = stringNowTime.split(":")[0];
+  const today = Date();
+  const nowTime = Date.now();
+  const stringNowTime = today.toString().split(" ")[4];
+  const todayHour = stringNowTime.split(":")[0];
 
 
-  //  const createdAt = list.createdAt;
-  //           const startTime = new Date(createdAt);
-  //           const stringStartTime = startTime.toString().split(" ")[4];
-  //           const startHour = stringStartTime.split(":")[0];
-  //           const thenHours = Math.floor((nowTime - startTime) / 3600000);
+  const createdAt = data.createdAt;
+  const startTime = new Date(createdAt);
+  const stringStartTime = startTime.toString().split(" ")[4];
+  const startHour = stringStartTime.split(":")[0];
+  const thenHours = Math.floor((nowTime - startTime) / 3600000);
+  const startDay= data.start
+  const start = startDay.slice(2, 10)
+  const end = data.end.slice(2, 10)
+  const DisplayCreatedAt = () => {
+    if (parseInt(startTime - nowTime) > -86400000) {
+      return thenHours + "시간전";
+    }
+    if (parseInt(startTime - nowTime) < -86400000) {
+      return <Moment format="M월 D일">{startTime}</Moment>;
+      // return (thenHours)+"시간전";
+    }
+  }
 
-  // const DisplayCreatedAt = () => {
-  //   if (parseInt(startTime - nowTime) > -86400000) {
-  //     return thenHours + "시간전";
-  //   }
-  //   if (parseInt(startTime - nowTime) < -86400000) {
-  //     return <Moment format="M월 D일">{startTime}</Moment>;
-  //     // return (thenHours)+"시간전";
-  //   }
-  // }
-
-    return (
-      <AllWrap>
-        <AllTopWrap>
-          <CardTopInfo>
-            <CardWriteName>{data.userId}</CardWriteName>
-            <CardWriteTime>{/* <DisplayCreatedAt /> */}</CardWriteTime>
-          </CardTopInfo>
-          <CardTitleInfo>
-            <CardTitleText>{data.title}</CardTitleText>
-          </CardTitleInfo>
-          <CardMainTextInfo>
-            <CardMainText>
-              {data.subscript}
-              <br />
-            </CardMainText>
-          </CardMainTextInfo>
-          <CardJobTextWrap>
-            <CardJobTitle>구하는 직군</CardJobTitle>
-                <CardJobMainTitle>{data.role}</CardJobMainTitle>
-          </CardJobTextWrap>
-          <CardTagWrap>
-            <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
+  return (
+    <AllWrap>
+      <AllTopWrap>
+        <CardTopInfo>
+          <CardWriteName>{data.userId}</CardWriteName>
+          <CardWriteTime><DisplayCreatedAt /></CardWriteTime>
+        </CardTopInfo>
+        <CardTitleInfo>
+          <CardTitleText>{data.title}</CardTitleText>
+        </CardTitleInfo>
+        <CardMainTextInfo>
+          <CardMainText>
+            {data.subscript}
             <br />
-            <TagWrap>
-              {data === undefined
-                ? null
-                : data.skills.map((list, idx) => {
-                    return <Tag key={idx} skills={list} />;
-                  })}
-            </TagWrap>
-          </CardTagWrap>
-        </AllTopWrap>
-        <DashedLine />
-        <AllBotWrap>
-          <CardBotTopWrap>
-            <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-            <CardBotTextDateInfo> start </CardBotTextDateInfo>
-          </CardBotTopWrap>
-          <CardViewButton onClick={() => {navigate(`/readproject`);}}>프로젝트 보러 가기</CardViewButton>
-        </AllBotWrap>
-      </AllWrap>
-    );
-    
 
+          </CardMainText>
+        </CardMainTextInfo>
+        <CardJobTextWrap>
+          <CardJobTitle>{data.role}</CardJobTitle>
+          <div style={{ marginTop: "4px" }}>
+            <CardJobMainTitle>role</CardJobMainTitle>
+          </div>
+        </CardJobTextWrap>
+        <CardTagWrap>
+          <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
+          <br />
+          <TagWrap>
+            {data === undefined
+              ? null
+              : data.skills.map((list, idx) => {
+                return <Tag key={idx} skills={list} />;
+              })}
+          </TagWrap>
+        </CardTagWrap>
+      </AllTopWrap>
+      <DashedLine />
+      <AllBotWrap>
+        <CardBotTopWrap>
+          <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+          <CardBotTextDateInfo>{start} ~ {end}</CardBotTextDateInfo>
+        </CardBotTopWrap>
+        <CardViewButton>프로젝트 보러 가기</CardViewButton>
+      </AllBotWrap>
+    </AllWrap>
+  );
 };
 
 //// 카드 전체 틀 관련 CSS 뭉치
