@@ -16,22 +16,18 @@ function Join() {
 
   //회원가입 변수
   const [userId, setUserId] = useState("");
-  const [nickname, setNickName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [name, setName] = useState("");
- 
-
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-
   const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
+  const [month, setMonth] = useState("month");
   const [day, setDay] = useState("");
+
   //error
   const [userIdError, setUserIdError] = useState({ status: false, text: "" });
-  const [nicknameError, setNickNameError] = useState({ status: false, text: ""});
+  const [nicknameError, setNicknameError] = useState({ status: false, text: ""});
   const [nameError, setNameError] = useState({status: false, text: ""});
-  const [phoneError, setPhoneError] = useState({status: false,text: ""});
   const [passwordError, setPasswordError] = useState({status: false,text: ""});
   const [confirmPasswordError, setConfirmPasswordError] = useState({status: false,text: ""});
   const [yearError, setYearError] = useState({status: false,text: ""});
@@ -39,38 +35,24 @@ function Join() {
   //error name
   //이용약관:동의 비동의
   const [allCheck, setAllCheck] = useState(false);
- 
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
-
   
-  //핸드폰: 하이픈 바 추가
-  useEffect(() => {
-    if (phoneNumber.length === 10) {
-      setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-    }
-    if (phoneNumber.length === 13) {
-      setPhoneNumber(
-        phoneNumber
-          .replace(/-/g, "")
-          .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-      );
-    }
-  }, [phoneNumber]);
-
-
+  //아이디,비밀번호 중복체크
+  const [userIdCheck, setUserIdCheck] = useState(false)
+  const [nicknameCheck, setNicknameCheck] = useState(false)
+  
   //체크박스
   useEffect(() => {
     if (useCheck === true && marketingCheck === true) {
       setAllCheck(true);
     } else if (
-      
       useCheck === true &&
       marketingCheck === false
     ) {
       setAllCheck(false);
     }
-  }, [ useCheck, marketingCheck]);
+  }, [useCheck, marketingCheck]);
 
   //유효성검사:userId
   const onChangeUserId = (e) => {
@@ -80,7 +62,6 @@ function Join() {
   const BlurUserId = (e) => {
     const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
     if (e.target.value.length <= 0) {
       setUserIdError({ status: true, text: "필수 정보입니다." });
       return;
@@ -92,17 +73,18 @@ function Join() {
 
   //유효성검사:nickName
   const onChageNickName = (e) => {
-    setNickName(e.target.value);
+    setNickname(e.target.value);
   };
+
   const BlurNickName = (e) => {
     if (e.target.value.length <= 0) {
-      setNickNameError({ status: true, text: "필수 정보입니다." });
+      setNicknameError({ status: true, text: "필수 정보입니다." });
       return;
     }
     if (nickname.length === 1) {
-      setNickNameError({ status: true, text: "한글자 이상 입력해주세요!" });
+      setNicknameError({ status: true, text: "한글자 이상 입력해주세요!" });
     } else {
-      setNickNameError({ status: false, text: "" });
+      setNicknameError({ status: false, text: "" });
     }
   };
 
@@ -121,6 +103,7 @@ function Join() {
       setNameError({ status: false, text: "" });
     }
   };
+
   //유효성검사:Birth
   const onChangeBirth = (e) => {
     const BirthRegex = /^[0-9\b -]{0,4}$/;
@@ -128,94 +111,64 @@ function Join() {
     if (name === "year") {
       if (BirthRegex.test(e.target.value)) {
         setYear(e.target.value);
-  
       } 
     } else if (name === "month") {
       setMonth(e.target.value);
- 
     } else if (name === "day") {
       if (BirthRegex.test(e.target.value)) {
         setDay(e.target.value);
-   
       }
     }
   };
 
   const BlurYear = (e) => {
     const { name } = e.target;
+    //0~9 사이 숫자 입력 시 0번째에 0추가
     if (name === "day") {
       if (day < 10 && day.length === 1) {
         setDay(0 + e.target.value);
-      } 
+      }
     }
-
-    if (year.length <= 0 && day.length <= 0) {
-      // console.log("년도 0 생일 0");
-      setYearError({ status: true, text: "생년월일을 다시 확인해주세요." });
-    } else if (year.length > 0 && day.length <= 0) {
-      console.log("년도 0 생일 x");
+    //조건완료
+    if (year.length <= 0) {
       setYearError({
         status: true,
-        text: "태어난 월과 일(날짜) 2자리를 정확하게 입력하세요. ",
+        text: "태어난 년도 4자리를 정확하게 입력하세요.",
       });
-    } else if (year.length <= 0 && day.length > 0) {
-      // console.log("년도 0 생일 1");
+    } else if (month === "month") {
       setYearError({
         status: true,
-        text: "태어난 년도 4자리를 정확하게 입력하세요. ",
+        text: "태어난 월을 입력하세요.",
       });
-    } else if (year.length > 0 && day.length > 0) {
-      // console.log("들어와");
-      if (year >= 2008) {
-        setYearError({
-          status: true,
-          text: "미래에서 오셨군요 ^^",
-        });
-      } else if (year <= 1922) {
-        setYearError({
-          status: true,
-          text: "정말이세요?",
-        });
-      } else if (1922 <= year <= 2008) {
-        setYearError({
-          status: false,
-          text: "",
-        });
-      }
-      if (day >= 32) {
-        console.log("여기");
-        setYearError({
-          status: true,
-          text: "생년월일을 다시 확인해주세요.",
-        });
-      } else {
-        setYearError({
-          status: false,
-          text: "",
-        });
-      }
-    } else if (year.length > 0 && month.length > 0 > day.length) {
+
+    } else if (day.length <= 0) {
       setYearError({
-        status: false,
-        text: "",
+        status: true,
+        text: "태어난 일을 입력하세요.",
       });
-    }
+    } else if (year >= 2022) {
+      setYearError({
+        status: true,
+        text: "미래에서 오셨군요^^",
+      });
+    } else if (year <= 1922) {
+      setYearError({
+        status: true,
+        text: "정말이세요?",
+      });
+    } else if (day >= 32) {
+       setYearError({
+         status: true,
+         text: "날짜를 다시 확인해주세요.",
+       });
+     } else {
+       setYearError({
+         status: false,
+         text: "",
+       });
+     }     
   };
 
-  //유효성검사:Number
-  const OnChangephoneNumber = (e) => {
-    const phoneRegex = /^[0-9\b -]{0,13}$/;
-    if (phoneRegex.test(e.target.value)) setPhoneNumber(e.target.value);
-  };
-  const BlurNumber = (e) => {
-    if (e.target.value.length <= 0) {
-      setPhoneError({ status: true, text: "필수 정보입니다." });
-      return;
-    }
-    if (e.target.value.length < 13) {
-      setPhoneError({ status: true, text: "번호를 다시 확인해주세요!" });
-    } else setPhoneError({ status: false, text: "" });
-  };
   //유효성검사:Password
   const OnChangePassWord = (e) => {
     setPassword(e.target.value);
@@ -259,22 +212,19 @@ function Join() {
       });
     }
   };
+
   //체크박스 : 전체동의 체크시 다른 체크박스 true
   const allBtnEvent = () => {
     if (allCheck === false) {
       setAllCheck(true);
-   
       setUseCheck(true);
       setMarketingCheck(true);
     } else {
       setAllCheck(false);
-  
       setUseCheck(false);
       setMarketingCheck(false);
     }
   };
-
-
 
   const useBtnEvent = () => {
     if (useCheck === false) {
@@ -297,16 +247,18 @@ function Join() {
     try {
       await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
         if (checksuccess === true) {
-          console.log("success");
           setUserIdError({
             status: true,
             text: "사용 가능한 아이디 입니다.",
           });
+          setUserIdCheck(true)
+
         } else {
           setUserIdError({
             status: true,
             text: "이미 사용중이거나 탈퇴한 아이디입니다.",
           });
+          setUserIdCheck(false);
         }
       });
     } catch (err) {
@@ -318,17 +270,17 @@ function Join() {
     try {
       await dispatch(checkUserNicknameAxios(nickname)).then((checksuccess) => {
         if (checksuccess === true) {
-          console.log("success");
-          setNickNameError({
+          setNicknameError({
             status: true,
             text: "사용 가능한 닉네임입니다.",
           });
+          setNicknameCheck(true)
         } else {
-          console.log("error");
-          setNickNameError({
+          setNicknameError({
             status: true,
             text: "이미 사용중이거나 탈퇴한 닉네임입니다.",
           });
+          setNicknameCheck(false)
         }
       });
     } catch (err) {
@@ -336,8 +288,7 @@ function Join() {
     }
   };
   const signupFunction = async () => {
-    //해당 콘솔을 찍은 부분 
-
+    console.log(password)
  // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
       userId === "" ||
@@ -346,7 +297,6 @@ function Join() {
       year === "" ||
       month === "" ||
       day === "" ||
-      phoneNumber === "" ||
       password === "" ||
       passwordCheck === "" ||
       userId === " " ||
@@ -355,15 +305,23 @@ function Join() {
       year === " " ||
       month === " " ||
       day === " " ||
-      phoneNumber === " " ||
       password === " " ||
       passwordCheck === " "
     ) {
+      alert("빈칸을 확인해주세요.")
       return false;
     }
-    if ( useCheck === false) {
+    if (useCheck === false) {
       alert("약관동의를 확인해주세요.");
       return false;
+    }
+
+    if (!userIdCheck) {
+      alert("이메일 중복체크 부탁쓰!");
+      return false
+    } else if (!nicknameCheck) {
+      alert("닉네임 중복체크 부탁쓰!");
+      return false
     }
     try {
       await dispatch(
@@ -372,7 +330,6 @@ function Join() {
           nickname,
           name,
           year+"-"+month+"-"+day,
-          phoneNumber,
           password,
           passwordCheck,
           allCheck
@@ -399,6 +356,7 @@ function Join() {
           </LogoWrap>
           <InputJoinWrap>
             <IdWrap>
+
               <div>
                 <InputBar type="email" placeholder="아이디"
                   id="userId" value={userId}
@@ -406,6 +364,7 @@ function Join() {
                   autoFocus></InputBar>
                 <CheckButton onClick={onClickCheckUserId}>중복 확인</CheckButton>
               </div>
+
               {userIdError.status && <ValiSpan>{userIdError.text}</ValiSpan>}
             </IdWrap>
             <IdWrap>
@@ -445,15 +404,15 @@ function Join() {
                 <div>
               <select onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
                 <option value="month">월</option>
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
@@ -471,24 +430,9 @@ function Join() {
             </BirthWrap>
             {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
             <IdWrap>
-              {/* <InputBar
-                requiredtype="text"
-                placeholder="생년월일 / 0000-00-00"
-                value={birth}
-                onChange={onChangeBirth}
-              ></InputBar> */}
+
             </IdWrap>
-            <IdWrap>
-              <InputBar
-                placeholder="핸드폰 번호 / 010-0000-0000"
-                type="text"
-                onChange={OnChangephoneNumber}
-                value={phoneNumber}
-                onBlur={BlurNumber}
-                maxLength={13}
-              ></InputBar>
-              {phoneError.status && <ValiSpan>{phoneError.text}</ValiSpan>}
-            </IdWrap>
+
             <IdWrap>
               <InputBar
                 placeholder="비밀번호"

@@ -1,50 +1,27 @@
 import { useState } from "react";
 import styled from "styled-components"
 import { useForm, Controller } from "react-hook-form";
+import {
+  dvelopSkills_list,
+  designerSkills_list,
+} from "../shared/developeSkills";
 
-function SelectSkill({ control }) {
+function SelectSkill() {
+  const [checkList, setCheckList] = useState([])
 
-  const [dvelopSkills, setSkills] = useState([]);
-  
-  const dvelopSkills_list =[
-    {data: 'React' },
-    {data: 'Vue.js' },
-    {data: 'JavaScript' },
-    {data: 'Node.js' },
-    {data: 'Java' },
-    {data: 'Spring' },
-    {data: 'Python' },
-    {data: 'MongoDB' },
-    {data: 'MySQL' },
-    {data: 'Redis' },
-    {data: 'TypeScript' },
-    {data: 'Ruby' },
-    {data: 'AWS' },
-    {data: 'Go' },
-    {data: 'PHP' },
-    {data: 'Git' },
-    {data: '.NET' },
-    {data: 'React Native' },
-    {data: 'Django' },
-    {data: 'Flask' },
-    {data: 'Nest.JS' },
-    {data: 'Express.JS' },
-    {data: 'NoSQL' },
-    {data: 'SQL' },
-    {data: 'Swift' },
-    {data: 'Kotlin' },
-    {data: 'Android' },
-    {data: 'iOS' },
-  ]
-  const designerSkills_list =[
-    {data:'Figma'},
-    {data:'Adobe XD'},
-    {data:'Adobe Illustrator'},
-    {data:'Adobe PhotoShop'},
-    {data:'Invision'},
-    {data:'Sketch'},
-    {data:'Protopie'},
-  ]
+//onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
+  const onCheckedElement = (checked, item) => {
+    console.log(checked,item)
+    if (checked) {
+      setCheckList([...checkList, item])
+    } else if (!checked) {
+      setCheckList(checkList.filter(el=>el!==item));
+    }
+  }
+
+  // const onRemove = () => {
+  //   setCheckList(checkList.filter(el=>el !== item))
+  // }
 
   return (
     <>
@@ -55,7 +32,22 @@ function SelectSkill({ control }) {
               <SelectBoxTab>
                 
               {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
-                return <TecLabel> <CheckBox type="checkbox" id="skills"  ></CheckBox>{list.data}</TecLabel>;})}
+                return (
+                  <TecLabel>
+                    {" "}
+                    <CheckBox
+                      type="checkbox"
+                      id="skills"
+                      value={list.data}
+                      onChange={(e) => {
+                        //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다. 
+                        onCheckedElement(e.target.checked, e.target.value)
+                      }}
+                      checked={checkList.includes(list.data) ? true : false}
+                    ></CheckBox>
+                    {list.data}
+                  </TecLabel>
+                );})}
               </SelectBoxTab>
             </SelectAllWrap>
 
@@ -63,7 +55,20 @@ function SelectSkill({ control }) {
               <TitleTextTag>디자이너</TitleTextTag>
               <SelectBoxTab>
               {designerSkills_list && designerSkills_list.map((list, idx) => {
-                return <TecLabel> <CheckBox type="checkbox" id="skills"  ></CheckBox>{list.data}</TecLabel>;})}
+                return (
+                  <TecLabel>
+                    {" "}
+                    <CheckBox
+                      type="checkbox"
+                      id="skills"
+                      value={list.data}
+                      onChange={(e) => {
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                    ></CheckBox>
+                    {list.data}
+                  </TecLabel>
+                );})}
               </SelectBoxTab>
             </SelectAllWrap>
 

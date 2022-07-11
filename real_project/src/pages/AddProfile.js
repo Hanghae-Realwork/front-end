@@ -8,14 +8,16 @@ import Phone from "../image/phone.svg"
 import Letter from "../image/letter.svg"
 
 
+
 function AddProfile(props) {
   const {isChecked, handleToggle} = props;
+
+
 
   // function AddInput() {
   //   let [inputTit, inputTitFunc] = useState([]);
   //   let [inputNum, inputNumFunc] = useState(0);
   //   let [newVal, newValFunc] = useState('');
-
 
   //   function deleteInput(idx) {
   //     inputNum(inputNumFunc.filter(item => item.id !== idx))
@@ -44,36 +46,37 @@ function AddProfile(props) {
   // }
 
 
-  // const onSubmit = async (data) => {
-  //   const career= AddInput.inputTit
-  //   const output = {
-  //     ...data,
-  //     ...career
-      
-      
-  //   }
-  //   await new Promise((r) => setTimeout(r, 1000));
-    
-  //   // dispatch(
-  //   //   사용할 api({
-  //   //     ...output
-  //   //   })
-  //   // );
-  //   console.log(output)
-    
-  // }
-  // const {
-  //   register, handleSubmit,
-  //   formState: { isSubmitting, isDirty, errors },
-  // } = useForm();
 
+  const introduceRef = useRef(null);
+  const [role, setRole] = useState("")
+
+
+ 
+
+
+  const onChangeRole = (e) => {
+    setRole(e.target.value)
+  }
+  const handleClick = () => {
+    console.log(role)
+    console.log(introduceRef.current.value);
+ }
+  const onChangeCheck = (e) => {
+   console.log(e.target.value)
+ }
   return (
 
     <BackgroundAllWrap>
+
       <AddProfileWrap>
-        <TitleDiv><TitleText>내 소개글 작성하기</TitleText></TitleDiv>
-      <HeaderHeadLine/>
+
+        <TitleDiv>
+          <TitleText>내 소개글 작성하기</TitleText>
+        </TitleDiv>
+        <HeaderHeadLine />
+
         <ProfileTopWrap>
+
             <SelfWrap>
               <NickNameBox>닉네임님</NickNameBox>
             <ToggleBox>
@@ -81,12 +84,8 @@ function AddProfile(props) {
                   <PhoneNumberWrap><img src={Letter} style={{marginRight:"10px"}}></img><Contect>test@testman.com</Contect></PhoneNumberWrap>
                   {/* <ToggleTextWrap>
                       <CheckBoxWrapperOne>
-                        <CheckBoxOne id={"checkboxOne"} type="checkbox" 
-                        checked={isChecked}
-                        onChange={handleToggle}
-                        
-                        />
-                        <CheckBoxLabelOne htmlFor={"checkboxOne"} />
+                        <CheckBoxOne id="checkboxOne" type="checkbox" />
+                        <CheckBoxLabelOne htmlFor="checkbox" />
                       </CheckBoxWrapperOne>
                     </ToggleTextWrap> */}
                 {/* </ToggleBox>
@@ -139,19 +138,21 @@ function AddProfile(props) {
               <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
               <ProfileInput placeholder="GitHub, Figma 등 링크를 적어 주세요"></ProfileInput>
             </PortfollioWrap>
+
             <SelfWrap>
-              <TitleTextTag>주요 경력 및 자기소개</TitleTextTag>
-              <PointCraeer></PointCraeer>
+              <SelectSkill />
             </SelfWrap>
             <HeaderHeadLine/>
               <SubmitButtonWrap>
-               <SubmitButton>소개글 등록하기</SubmitButton>
+               <SubmitButton onClick={handleClick}>소개글 등록하기</SubmitButton>
               </SubmitButtonWrap>
       </AddProfileWrap>
     </BackgroundAllWrap>
 
   );
 }
+
+
 
 const BackgroundAllWrap = styled.div`
     background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);

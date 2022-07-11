@@ -17,7 +17,7 @@ const CardRecruit = ({ data }) => {
 
 
 
-  const today = Date();
+const today = Date();
   const nowTime = Date.now();
   const stringNowTime = today.toString().split(" ")[4];
   const todayHour = stringNowTime.split(":")[0];
@@ -41,52 +41,51 @@ const CardRecruit = ({ data }) => {
     }
   }
 
-  return (
-    <AllWrap>
-      <AllTopWrap>
-        <CardTopInfo>
-          <CardWriteName>{data.userId}</CardWriteName>
-          <CardWriteTime><DisplayCreatedAt /></CardWriteTime>
-        </CardTopInfo>
-        <CardTitleInfo>
-          <CardTitleText>{data.title}</CardTitleText>
-        </CardTitleInfo>
-        <CardMainTextInfo>
-          <CardMainText>
-            {data.subscript}
+    return (
+      <AllWrap>
+        <AllTopWrap>
+          <CardTopInfo>
+            <CardWriteName>{data.userId}</CardWriteName>
+            <CardWriteTime>{/* <DisplayCreatedAt /> */}</CardWriteTime>
+          </CardTopInfo>
+          <CardTitleInfo>
+            <CardTitleText>{data.title}</CardTitleText>
+          </CardTitleInfo>
+          <CardMainTextInfo>
+            <CardMainText>
+              {data.subscript}
+              <br />
+            </CardMainText>
+          </CardMainTextInfo>
+          <CardJobTextWrap>
+            <CardJobTitle>구하는 직군</CardJobTitle>
+                <CardJobMainTitle>{data.role}</CardJobMainTitle>
+          </CardJobTextWrap>
+          <CardTagWrap>
+            <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
             <br />
-
-          </CardMainText>
-        </CardMainTextInfo>
-        <CardJobTextWrap>
-          <CardJobTitle>{data.role}</CardJobTitle>
-          <div style={{ marginTop: "4px" }}>
-            <CardJobMainTitle>role</CardJobMainTitle>
-          </div>
-        </CardJobTextWrap>
-        <CardTagWrap>
-          <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
-          <br />
-          <TagWrap>
-            {data === undefined
-              ? null
-              : data.skills.map((list, idx) => {
-                return <Tag key={idx} skills={list} />;
-              })}
-          </TagWrap>
-        </CardTagWrap>
-      </AllTopWrap>
-      <DashedLine />
-      <AllBotWrap>
-        <CardBotTopWrap>
-          <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-          <CardBotTextDateInfo>{start} ~ {end}</CardBotTextDateInfo>
-        </CardBotTopWrap>
-        <CardViewButton>프로젝트 보러 가기</CardViewButton>
-      </AllBotWrap>
-    </AllWrap>
-  );
+            <TagWrap>
+              {data === undefined
+                ? null
+                : data.skills.map((list, idx) => {
+                    return <Tag key={idx} skills={list} />;
+                  })}
+            </TagWrap>
+          </CardTagWrap>
+        </AllTopWrap>
+        <DashedLine />
+        <AllBotWrap>
+          <CardBotTopWrap>
+            <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
+            <CardBotTextDateInfo> start </CardBotTextDateInfo>
+          </CardBotTopWrap>
+          <CardViewButton onClick={() => {navigate(`/readproject`);}}>프로젝트 보러 가기</CardViewButton>
+        </AllBotWrap>
+      </AllWrap>
+    );
 };
+
+
 
 //// 카드 전체 틀 관련 CSS 뭉치
 
