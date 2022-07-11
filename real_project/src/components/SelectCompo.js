@@ -94,7 +94,7 @@ function SelectCompo() {
                 <svg width="15" height="18" viewBox="0 0 15 18" fill="white" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="white"/>
                 <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="white"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="white"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="white"/>
                 </svg>
               <SpanInText>닫기</SpanInText></TextImageWrap>
                 <svg width="17" height="11" viewBox="0 0 17 11" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +107,7 @@ function SelectCompo() {
                   <svg width="15" height="18" viewBox="0 0 15 18" fill="black" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="black"/>
                     <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="black"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
+                    <path fillRule="evenodd" clipRule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
                   </svg>          
                 <SpanInText>직군 선택하기</SpanInText></TextImageWrap>
                 <svg width="16" height="10" viewBox="0 0 16 10" fill="black" xmlns="http://www.w3.org/2000/svg">
@@ -138,7 +138,7 @@ function SelectCompo() {
             <DropTextSkill>
               <TextImageWrap>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
                 </svg><SpanInText>닫기</SpanInText>
               </TextImageWrap>
               <svg width="17" height="11" viewBox="0 0 17 11" fill="black" xmlns="http://www.w3.org/2000/svg">
@@ -149,7 +149,7 @@ function SelectCompo() {
             <DropTextSkill>
               <TextImageWrap>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
                 </svg>
                 <SpanInText>스킬 및 스택</SpanInText>
               </TextImageWrap>

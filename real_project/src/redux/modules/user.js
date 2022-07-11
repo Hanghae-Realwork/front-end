@@ -11,19 +11,18 @@ const initialState = {
     userId: null,
     nickname: null,
     name: null,
-    phone: null,
     password: null,
     passwordCheck: null,
     policy: false,
   },
   userInfo: {
     userEmail: null,
-    is_login: null,
+    is_login: false,
   },
 };
 
 export function login(id) {
-  console.log(id)
+
   return { type: LOGIN, id };
 }
 
@@ -43,7 +42,6 @@ export const signupAxios = (
   nickname,
   name,
   birth,
-  phoneNumber,
   password,
   passwordCheck,
   allCheck
@@ -56,7 +54,6 @@ export const signupAxios = (
         nickname,
         name,
         birth,
-        phoneNumber,
         password,
         passwordCheck,
         allCheck
@@ -65,6 +62,7 @@ export const signupAxios = (
         res = true;
       })
       .catch((err) => {
+        console.log(err)
         res = false;
       });
     return res;
@@ -106,59 +104,78 @@ export const checkUserNicknameAxios = (nickname) => {
 //로그인
 export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
-    console.log(userEmail, password)
     let success = null;
     await apis
       .login(userEmail, password)
-      .then((res) => {
-        localStorage.setItem("accesstocken", res.data.token);
-        console.log(res)
+      .then((res) => { 
+        localStorage.setItem("token", res.data.token);  
         dispatch(login(userEmail));
         success = true;
       })
-      .catch((err) => {
+      .catch((error) => {
         success = false;
-        ;
       });
     return success;
   };
 };
 
 export const refreshAxios = () => {
-  return async function (dispatch) { 
-    await apis.refresh().then((res) => {
-      console.log(res)
+  return async function (dispatch) {
+    await apis.refresh().then((response) => {
+        if (response.data.accessToken) {
+          const user = JSON.parse(localStorage.getItem("user"));
+          user.accessToken = response.data.accessToken;
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+    }).catch((error) => {
+      console.log("server: " + JSON.stringify(error.response));
     })
-  }
-}
+  };
+};
+
 export const checkUserValidation = () => {
   return async function (dispatch) {
     await apis
       .checkUser()
       .then((res) => {
+        console.log(res)
         dispatch(login(res));
       })
       .catch((err) => {
-        dispatch(logOut());
-        console.log(err);
+        // dispatch(logOut());
+        console.log(err)
+        
       });
   };
 };
 
 
-
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    default:
-    case "user/USERINFO":
-      {
-        const newUserInfo = action.info;
-        return {
-          signup: newUserInfo,
-          userInfo: state.userInfo,
-        };
-      }
+    case "user/LOGIN": {
+      const newUserInfo = {
+        userEmail: action.id,
+        is_login: true,
+      };
+      return {
+        signup: state.info,
+        userInfo: newUserInfo,
+      };
+    }
+    case "user/LOGOUT": {
+      localStorage.removeItem("token");
+      const newUserInfo = {
+        userEmail: null,
+        is_login: false,
+      };
+      return {
+        signup: state.info,
+        userInfo: newUserInfo,
+      };
+    }
 
+
+    default:
       return state;
   }
 }
