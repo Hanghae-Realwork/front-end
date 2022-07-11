@@ -287,6 +287,7 @@ function Join() {
     }
   };
   const signupFunction = async () => {
+    console.log(password)
  // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
       userId === "" ||
@@ -316,8 +317,10 @@ function Join() {
 
     if (!userIdCheck) {
       alert("이메일 중복체크 부탁쓰!");
+      return false
     } else if (!nicknameCheck) {
       alert("닉네임 중복체크 부탁쓰!");
+      return false
     }
     try {
       await dispatch(
@@ -407,15 +410,15 @@ function Join() {
                 onBlur={BlurYear}
               >
                 <option value="month">월</option>
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
