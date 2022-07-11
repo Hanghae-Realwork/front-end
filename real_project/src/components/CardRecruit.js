@@ -45,8 +45,8 @@ const today = Date();
       <AllWrap>
         <AllTopWrap>
           <CardTopInfo>
-            <CardWriteName>{data.userId}</CardWriteName>
-            <CardWriteTime>{/* <DisplayCreatedAt /> */}</CardWriteTime>
+            <CardWriteName>{data.nickname}</CardWriteName>
+            <CardWriteTime><DisplayCreatedAt /></CardWriteTime>
           </CardTopInfo>
           <CardTitleInfo>
             <CardTitleText>{data.title}</CardTitleText>
@@ -77,7 +77,7 @@ const today = Date();
         <AllBotWrap>
           <CardBotTopWrap>
             <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-            <CardBotTextDateInfo> start </CardBotTextDateInfo>
+            <CardBotTextDateInfo> {start} ~ {end} </CardBotTextDateInfo>
           </CardBotTopWrap>
           <CardViewButton onClick={() => {navigate(`/readproject`);}}>프로젝트 보러 가기</CardViewButton>
         </AllBotWrap>
