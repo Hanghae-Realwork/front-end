@@ -22,7 +22,7 @@ function SelectSkill() {
   return (
     <>
       <SkillWrap>
-        <TitleTextTag>개발자</TitleTextTag>
+        <SkillTitleTextTag>개발자</SkillTitleTextTag>
         <SelectBoxTab>
           {dvelopSkills_list &&
             dvelopSkills_list.map((list, idx) => {
@@ -46,7 +46,7 @@ function SelectSkill() {
       </SkillWrap>
 
       <SkillWrap>
-        <TitleTextTag>디자이너</TitleTextTag>
+        <SkillTitleTextTag>디자이너</SkillTitleTextTag>
         <SelectBoxTab>
           {designerSkills_list &&
             designerSkills_list.map((list, idx) => {
@@ -119,7 +119,7 @@ const CheckBox = styled.input`
   }
 `;
 
-const TitleTextTag = styled.p`
+const SkillTitleTextTag = styled.p`
   font-weight: bold;
   color: #AE97E3;
 `;
