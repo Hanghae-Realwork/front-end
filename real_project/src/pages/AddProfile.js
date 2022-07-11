@@ -10,36 +10,36 @@ import Letter from "../image/letter.svg"
 
 function AddProfile() {
 
-  function AddInput() {
-    let [inputTit, inputTitFunc] = useState([]);
-    let [inputNum, inputNumFunc] = useState(0);
-    let [newVal, newValFunc] = useState('');
+  // function AddInput() {
+  //   let [inputTit, inputTitFunc] = useState([]);
+  //   let [inputNum, inputNumFunc] = useState(0);
+  //   let [newVal, newValFunc] = useState('');
 
-    function deleteInput(idx) {
-      inputNum(inputNumFunc.filter(item => item.id !== idx))
-    }
+  //   function deleteInput(idx) {
+  //     inputNum(inputNumFunc.filter(item => item.id !== idx))
+  //   }
 
-    function AddCareer(){
-      const CareerList = [...inputTit];
-      CareerList.push(newVal);
-      inputTitFunc( CareerList );
-    }
-    return (
-      <InputCareerWrap>
-        <div>
-          <CareerInput placeholder="전공, 학교, 자격증, 업무 경력 등" onChange={ (e)=>{ newValFunc(e.target.value) } }/>
-          <CareerInputButton onClick={ AddCareer }>입력</CareerInputButton>
-        </div>
-        <RightInputDiv>
-        {inputTit.map( ( menu, idx )=>{
-              return (
-                <CareerLabel onClick={ ()=>{ inputNumFunc(idx) } } key={idx} > { menu }</CareerLabel>)
-            })
-          }
-        </RightInputDiv>
-      </InputCareerWrap>
-    );
-  }
+  //   function AddCareer(){
+  //     const CareerList = [...inputTit];
+  //     CareerList.push(newVal);
+  //     inputTitFunc( CareerList );
+  //   }
+  //   return (
+  //     <InputCareerWrap>
+  //       <div>
+  //         <CareerInput placeholder="전공, 학교, 자격증, 업무 경력 등" onChange={ (e)=>{ newValFunc(e.target.value) } }/>
+  //         <CareerInputButton onClick={ AddCareer }>입력</CareerInputButton>
+  //       </div>
+  //       <RightInputDiv>
+  //       {inputTit.map( ( menu, idx )=>{
+  //             return (
+  //               <CareerLabel onClick={ ()=>{ inputNumFunc(idx) } } key={idx} > { menu }</CareerLabel>)
+  //           })
+  //         }
+  //       </RightInputDiv>
+  //     </InputCareerWrap>
+  //   );
+  // }
 
   
 
@@ -50,26 +50,26 @@ function AddProfile() {
       <HeaderHeadLine/>
         <ProfileTopWrap>
             <SelfWrap>
-              <NickNameBox>닉네임입니다</NickNameBox>
+              <NickNameBox>닉네임님</NickNameBox>
             <ToggleBox>
+            <TitleTextTag>이메일 정보</TitleTextTag>
                   <PhoneNumberWrap><img src={Letter} style={{marginRight:"10px"}}></img><Contect>test@testman.com</Contect></PhoneNumberWrap>
-                  <ToggleTextWrap>
-                    <TitleTextTag>이메일 공개</TitleTextTag>
+                  {/* <ToggleTextWrap>
                       <CheckBoxWrapperOne>
                         <CheckBoxOne id="checkboxOne" type="checkbox" />
                         <CheckBoxLabelOne htmlFor="checkbox" />
                       </CheckBoxWrapperOne>
-                    </ToggleTextWrap>
-                </ToggleBox>
-                <ToggleBox>
-                  <PhoneNumberWrap><img src={Phone} style={{marginRight:"10px"}}></img><Contect>010-0000-0000</Contect></PhoneNumberWrap>
-                  <ToggleTextWrap>
+                    </ToggleTextWrap> */}
+                {/* </ToggleBox>
+                <ToggleBox> */}
+                  {/* <PhoneNumberWrap><img src={Phone} style={{marginRight:"10px"}}></img><Contect>010-0000-000,000,000,000,000</Contect></PhoneNumberWrap> */}
+                  {/* <ToggleTextWrap>
                     <TitleTextTag>연락처 공개</TitleTextTag>
                       <CheckBoxWrapper>
                         <CheckBox id="checkboxTwo" type="checkbox" />
                         <CheckBoxLabel htmlFor="checkbox" />
                       </CheckBoxWrapper>
-                    </ToggleTextWrap>
+                    </ToggleTextWrap> */}
                 </ToggleBox>
                 <div>
                     <TitleTextTag>간단한 자기 소개</TitleTextTag>
@@ -106,10 +106,10 @@ function AddProfile() {
                 </SelfWrap>
                 </SelectAllWrap>
             </SelectBoxWrap>
-            <SelfWrap>
-              <TitleTextTag>본인의 경력을 소개해 주세요</TitleTextTag>
-              <AddInput/>
-            </SelfWrap>
+            <PortfollioWrap>
+              <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
+              <ProfileInput placeholder="GitHub, Figma 등 링크를 적어 주세요"></ProfileInput>
+            </PortfollioWrap>
             <SelfWrap>
               <TitleTextTag>주요 경력 및 자기소개</TitleTextTag>
               <PointCraeer></PointCraeer>
@@ -153,6 +153,7 @@ const SelfWrap = styled.div`
     justify-content: center;
     align-items: flex-start;
     padding: 30px;
+    height: auto;
 `
 
 const ProfileInput = styled.input`
@@ -303,54 +304,6 @@ const ToggleTextWrap = styled.div`
   align-items: center;
 `
 
-const CheckBoxWrapperOne = styled.div`
-  position: relative;
-  margin-top:10px;
-  margin-left: 20px;
-`;
-
-const CheckBoxLabelOne = styled.label`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 26px;
-  border-radius: 15px;
-  background: #bebebe;
-  cursor: pointer;
-  &::after {
-    content: "";
-    display: block;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    margin: 3px;
-    background: #ffffff;
-    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-    transition: 0.2s;
-  }
-`;
-
-const CheckBoxOne = styled.input`
-  opacity: 0;
-  z-index: 2;
-  border-radius: 15px;
-  width: 50px;
-  height: 26px;
-  &:checked + ${CheckBoxLabelOne} {
-    background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);;
-    &::after {
-      content: "";
-      display: block;
-      border-radius: 50%;
-      width: 19px;
-      height: 19px;
-      margin-left: 28px;
-      transition: 0.2s;
-    }
-  }
-`;
-
 const HeaderHeadLine =styled.hr`
   /* border: 1px solid #D9D9D9; */
   width: 1200px;
@@ -420,19 +373,28 @@ const CareerLabel = styled.label`
   padding: 4px;
 `
 
+const PortfollioWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 1140px;
+`
 
 const PointCraeer = styled.textarea`
   resize: none;
   width: 1140px;
   height: 400px;
   border-radius: 4px;
+  padding: 10px;
 `
 
 const NickNameBox = styled.span`
   font-size: 20px;
   font-weight: 700;
-  margin-top: 50px;
-  margin-bottom: 40px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  /* border: 1px solid black; */
 `
 
 const PhotoEditWrap = styled.div`

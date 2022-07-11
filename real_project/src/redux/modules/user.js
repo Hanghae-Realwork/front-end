@@ -18,7 +18,7 @@ const initialState = {
   },
   userInfo: {
     userEmail: null,
-    is_login: null,
+    is_login: false,
   },
 };
 

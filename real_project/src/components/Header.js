@@ -2,13 +2,26 @@ import React from "react";
 import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { checkUserValidation } from "../redux/modules/user";
 
 import BasicPhoto from "../image/astro-white.svg"
-
+import Logo from "../image/Logo.svg"
 
 
 function Header() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+  console.log(loginInfo)
+
+  React.useEffect(() => {
+    if (loginInfo === false) {
+      dispatch(checkUserValidation());
+    }
+  });
+
   // style={{fontWeight: ? "bold" : " "}}
 
   return (
@@ -17,14 +30,16 @@ function Header() {
         <HeaderConWrap>
           <HeaderAlignWrap>
             <LogoWrap>
-              <HeaderFix onClick={() => {navigate(`/`);}}>ren<span style={{ color: "#AE97E3" }}>D</span>ev</HeaderFix></LogoWrap>
+              <HeaderFix onClick={() => {navigate(`/`);}}><img src = {Logo} styled={{width:"5%"}}/></HeaderFix></LogoWrap>
             <HeaderLeftWrap>
               <FindProject style={{ fontWeight: "bold" }} onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
               <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
+              <FindProject onClick={() => {navigate(`/chatjoin`);}}>화상채팅(임시)</FindProject>
             </HeaderLeftWrap>
           </HeaderAlignWrap>
           <HeaderRightWrap>
             <LoginButton onClick={() => {navigate(`/login`);}}>로그인</LoginButton>
+            <LoginButton style={{ display: !loginInfo ? "none" : "" }}>로그아웃</LoginButton>
             <CircleImage onClick={() => {navigate(`/mypage`);}}><img src = {BasicPhoto} /></CircleImage>
           </HeaderRightWrap>
         </HeaderConWrap>
@@ -91,7 +106,7 @@ const HeaderAlignWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     /* border: 1px solid white; */
-    width: 410px;
+    width: auto;
 `
 
 const HeaderLeftWrap = styled.div`
@@ -102,7 +117,7 @@ const HeaderLeftWrap = styled.div`
     align-items: center;
     /* width: 108vh; */
     gap: 20px;
-    margin-bottom: 5px;
+    margin-left: 80px;
 `
 
 const FindProject = styled.label`
