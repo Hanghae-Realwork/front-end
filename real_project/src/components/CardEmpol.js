@@ -19,7 +19,7 @@ function CradEmpol({ data }) {
               </ProfileWrap>
               <CardTextWrap>
                 <CardTitle>{data.nickname}</CardTitle>
-                <CardText>[FrontEnd개발자]</CardText>
+                <CardText>{data.role}</CardText>
               </CardTextWrap>
             </ProfileTopWrap>
             <FlipWrap></FlipWrap>
