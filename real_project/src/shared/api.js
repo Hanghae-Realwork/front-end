@@ -1,6 +1,5 @@
 import axios from "axios";
-//credentials 설정을 밖에 할 경우 로그인~ 모든 기능 불가
-// axios.defaults.withCredentials = true;
+import { getCookie } from "./cookie";
 
 //이미지 데이터
 const imgApi = axios.create({
@@ -23,16 +22,22 @@ const api = axios.create({
 });
 
 
-
 // axios.defaults.withCredentials = true;
 
 
 //토큰
 api.interceptors.request.use(function (config) { 
 
-  const accessToken = `${localStorage.getItem("token")}`;
-  config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  return config;
+  // const accessToken = `${localStorage.getItem("token")}`;
+  // config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  // return config;
+   const atoken = getCookie("ACCESS_TOKEN");
+   const rtoken = getCookie("REFRESH_TOKEN");
+
+   config.headers.common["Authorization"] = `Bearer ${atoken}`;
+   config.headers.common["reAuthorization"] = `Bearer ${rtoken}`;
+
+   return config;
 });
 
 
