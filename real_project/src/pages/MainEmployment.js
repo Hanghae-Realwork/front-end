@@ -26,7 +26,7 @@ const MainEmployment = () => {
       <CardBackGround>
         <CardContainerWrap>
           {resumes===undefined ? null : resumes.map((list, idx) => {
-            return <CardEmpol key={idx} data={list } />;
+            return <CardEmpol key={idx} data={list} />;
               })}
         </CardContainerWrap>
       </CardBackGround>
