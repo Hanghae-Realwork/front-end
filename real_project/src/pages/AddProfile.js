@@ -2,15 +2,20 @@ import React, {useState, useRef} from "react";
 import styled from "styled-components";
 
 import astroman from "../image/astroman.svg"
-
+import { useForm } from "react-hook-form";
 import SelectSkill from "../components/SelectSkill"
 import Phone from "../image/phone.svg"
 import Letter from "../image/letter.svg"
 
-function AddProfile() {
+
+
+function AddProfile(props) {
+  const {isChecked, handleToggle} = props;
+
 
   function AddInput() {
     let [inputTit, inputTitFunc] = useState([]);
+
     let [inputNum, inputNumFunc] = useState(0);
     let [newVal, newValFunc] = useState('');
 
@@ -42,8 +47,12 @@ function AddProfile() {
     );
   }
 
+
   const introduceRef = useRef(null);
   const [role, setRole] = useState("")
+
+
+ 
 
 
   const onChangeRole = (e) => {
@@ -58,14 +67,18 @@ function AddProfile() {
  }
   return (
     <>
+    
       <AddProfileWrap>
+
         <TitleDiv>
           <TitleText>내 소개글 작성하기</TitleText>
         </TitleDiv>
         <HeaderHeadLine />
+
         <ProfileTopWrap>
           <SelfWrap>
             <ToggleBox>
+
               <PhoneNumberWrap>
                 <img src={Letter} style={{ marginRight: "10px" }}></img>
                 <Contect>test@testman.com</Contect>
@@ -108,6 +121,7 @@ function AddProfile() {
           <ProfilePicWrap>
             <CircleProfile></CircleProfile>
           </ProfilePicWrap>
+
         </ProfileTopWrap>
         <div>{/* 캘린더 작업물이 들어갈 공간 입니다 */}</div>
         <SelectBoxWrap>
@@ -150,6 +164,7 @@ function AddProfile() {
             <SelfWrap>
               <SelectSkill />
             </SelfWrap>
+
           </SelectAllWrap>
         </SelectBoxWrap>
         <SelfWrap>
@@ -161,7 +176,9 @@ function AddProfile() {
           <PointCraeer></PointCraeer>
         </SelfWrap>
         <button onClick={handleClick}>여기를 눌러주세요</button>
+
       </AddProfileWrap>
+      
     </>
   );
 }
