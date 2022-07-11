@@ -10,7 +10,7 @@ function SelectSkill() {
 
 //onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
   const onCheckedElement = (checked, item) => {
-    console.log(checked,item)
+
     if (checked) {
       setCheckList([...checkList, item])
       console.log(checkList)
@@ -21,57 +21,54 @@ function SelectSkill() {
 
   return (
     <>
+      <SkillWrap>
+        <TitleTextTag>개발자</TitleTextTag>
+        <SelectBoxTab>
+          {dvelopSkills_list &&
+            dvelopSkills_list.map((list, idx) => {
+              return (
+                <TecLabel key={idx}>
+                  <CheckBox
+                    type="checkbox"
+                    id="skills"
+                    value={list.data}
+                    onChange={(e) => {
+                      //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                      onCheckedElement(e.target.checked, e.target.value);
+                    }}
+                    checked={checkList.includes(list.data) ? true : false}
+                  ></CheckBox>
+                  {list.data}
+                </TecLabel>
+              );
+            })}
+        </SelectBoxTab>
+      </SkillWrap>
 
-          <SelectBoxWrap>
-            <SelectAllWrap>
-              <TitleTextTag>개발자</TitleTextTag>
-              <SelectBoxTab>
-                
-              {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
-                return (
-                  <TecLabel key={idx}>
-                  
-                    <CheckBox
-                      type="checkbox"
-                      id="skills"
-                      value={list.data}
-                      onChange={(e) => {
-                        //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다. 
-                        onCheckedElement(e.target.checked, e.target.value)
-                      }}
-                      checked={checkList.includes(list.data) ? true : false}
-                    ></CheckBox>
-                    {list.data}
-                  </TecLabel>
-                );})}
-              </SelectBoxTab>
-            </SelectAllWrap>
-
-            <SelectAllWrap>
-              <TitleTextTag>디자이너</TitleTextTag>
-              <SelectBoxTab>
-              {designerSkills_list && designerSkills_list.map((list, idx) => {
-                return (
-                  <TecLabel key={idx}>
-                    {" "}
-                    <CheckBox
-                      type="checkbox"
-                      id="skills"
-                      value={list.data}
-                      onChange={(e) => {
-                        onCheckedElement(e.target.checked, e.target.value);
-                      }}
-                    ></CheckBox>
-                    {list.data}
-                  </TecLabel>
-                );})}
-              </SelectBoxTab>
-            </SelectAllWrap>
-
-          </SelectBoxWrap>
-       
+      <SkillWrap>
+        <TitleTextTag>디자이너</TitleTextTag>
+        <SelectBoxTab>
+          {designerSkills_list &&
+            designerSkills_list.map((list, idx) => {
+              return (
+                <TecLabel key={idx}>
+                  {" "}
+                  <CheckBox
+                    type="checkbox"
+                    id="skills"
+                    value={list.data}
+                    onChange={(e) => {
+                      onCheckedElement(e.target.checked, e.target.value);
+                    }}
+                  ></CheckBox>
+                  {list.data}
+                </TecLabel>
+              );
+            })}
+        </SelectBoxTab>
+      </SkillWrap>
     </>
-  )
+  );
 }
 
 
@@ -86,11 +83,9 @@ const SelectBoxTab = styled.div`
   gap: 13px;
 `;
 
-const SelectBoxWrap = styled.div`
-  
-`;
 
-const SelectAllWrap = styled.div`
+
+const SkillWrap = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
