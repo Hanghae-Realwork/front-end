@@ -1,5 +1,5 @@
 import { apis } from "../../shared/api";
-import { setCookie, deleteCookie } from "../../shared/cookie";
+import { setCookie, deleteCookie,getCookie } from "../../shared/cookie";
 
 const LOGIN = "user/LOGIN";
 const LOGOUT = "user/LOGOUT";
@@ -123,6 +123,7 @@ export const loginAxios = (userEmail, password) => {
 };
 
 export const checkUserValidation = () => {
+ 
   return async function (dispatch) {
     await apis
       .checkUser()
@@ -140,6 +141,32 @@ export const checkUserValidation = () => {
       });
   };
 };
+
+
+// version 2 cookies
+// export const checkUserValidation = () => {
+//   const atoken = getCookie("ACCESS_TOKEN");
+//   const rtoken = getCookie("REFRESH_TOKEN");
+//   return async function (dispatch) {
+//     if ((atoken, rtoken)) {
+//       await apis
+//       .checkUser()
+//       .then((res) => {
+//         console.log("res", res);
+//         dispatch(login(res))
+//       }).catch((err) => {
+//         // dispatch(logOut());
+//         console.log("err", err);
+//         if (err.response.status === 401) {
+//           dispatch(refreshAxios());
+//           // window.location.reload()
+//         }
+//       });
+//     }
+//   };
+// };
+
+
 export const refreshAxios = () => {
   return async function (dispatch) {
     await apis
