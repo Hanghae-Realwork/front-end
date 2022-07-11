@@ -16,6 +16,7 @@ const CardRecruit = ({ data }) => {
 
 
 
+
   const today = Date();
   const nowTime = Date.now();
   const stringNowTime = today.toString().split(" ")[4];
@@ -53,6 +54,7 @@ const CardRecruit = ({ data }) => {
         <CardMainTextInfo>
           <CardMainText>
             {data.subscript}
+
             <br />
 
           </CardMainText>

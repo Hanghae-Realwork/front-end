@@ -8,8 +8,10 @@ import Phone from "../image/phone.svg"
 import Letter from "../image/letter.svg"
 
 
+
 function AddProfile(props) {
   const {isChecked, handleToggle} = props;
+
 
   function AddInput() {
     let [inputTit, inputTitFunc] = useState([]);
@@ -26,6 +28,7 @@ function AddProfile(props) {
       CareerList.push(newVal);
       inputTitFunc( CareerList );
     }
+
     return (
       <InputCareerWrap>
         <div>
@@ -45,102 +48,135 @@ function AddProfile(props) {
   }
 
 
-  // const onSubmit = async (data) => {
-  //   const career= AddInput.inputTit
-  //   const output = {
-  //     ...data,
-  //     ...career
-      
-      
-  //   }
-  //   await new Promise((r) => setTimeout(r, 1000));
-    
-  //   // dispatch(
-  //   //   사용할 api({
-  //   //     ...output
-  //   //   })
-  //   // );
-  //   console.log(output)
-    
-  // }
-  // const {
-  //   register, handleSubmit,
-  //   formState: { isSubmitting, isDirty, errors },
-  // } = useForm();
+  const introduceRef = useRef(null);
+  const [role, setRole] = useState("")
 
+
+ 
+
+
+  const onChangeRole = (e) => {
+    setRole(e.target.value)
+  }
+  const handleClick = () => {
+    console.log(role)
+    console.log(introduceRef.current.value);
+ }
+  const onChangeCheck = (e) => {
+   console.log(e.target.value)
+ }
   return (
     <>
     
       <AddProfileWrap>
-        
-        <TitleDiv><TitleText>내 소개글 작성하기</TitleText></TitleDiv>
-      <HeaderHeadLine/>
+
+        <TitleDiv>
+          <TitleText>내 소개글 작성하기</TitleText>
+        </TitleDiv>
+        <HeaderHeadLine />
+
         <ProfileTopWrap>
-            <SelfWrap>
+          <SelfWrap>
             <ToggleBox>
-                  <PhoneNumberWrap><img src={Letter} style={{marginRight:"10px"}}></img><Contect>test@testman.com</Contect></PhoneNumberWrap>
-                  <ToggleTextWrap>
-                    <TitleTextTag>이메일 공개</TitleTextTag>
-                      <CheckBoxWrapperOne>
-                        <CheckBoxOne id={"checkboxOne"} type="checkbox" 
-                        checked={isChecked}
-                        onChange={handleToggle}
-                        
-                        />
-                        <CheckBoxLabelOne htmlFor={"checkboxOne"} />
-                      </CheckBoxWrapperOne>
-                    </ToggleTextWrap>
-                </ToggleBox>
-                <ToggleBox>
-                  <PhoneNumberWrap><img src={Phone} style={{marginRight:"10px"}}></img><Contect>010-0000-0000</Contect></PhoneNumberWrap>
-                  <ToggleTextWrap>
-                    <TitleTextTag>연락처 공개</TitleTextTag>
-                      <CheckBoxWrapper>
-                        <CheckBox id="checkboxTwo" type="checkbox" />
-                        <CheckBoxLabel htmlFor="checkbox" />
-                      </CheckBoxWrapper>
-                    </ToggleTextWrap>
-                </ToggleBox>
-                <div>
-                    <TitleTextTag>간단한 자기 소개</TitleTextTag>
-                    <div>
-                        <ProfileInput placeholder="간단한 인사말을 남겨 주세요"></ProfileInput>
-                    </div>
-                </div>
-            </SelfWrap>
-                <ProfilePicWrap>
-                    <CircleProfile></CircleProfile>
-                </ProfilePicWrap>
+
+              <PhoneNumberWrap>
+                <img src={Letter} style={{ marginRight: "10px" }}></img>
+                <Contect>test@testman.com</Contect>
+              </PhoneNumberWrap>
+
+              <ToggleTextWrap>
+                <TitleTextTag>이메일 공개</TitleTextTag>
+                <CheckBoxWrapperOne>
+                  {/* 토글기록 */}
+                  <CheckBoxOne id="checkboxOne" type="checkbox" />
+                  <CheckBoxLabelOne htmlFor="checkbox" />
+                </CheckBoxWrapperOne>
+              </ToggleTextWrap>
+            </ToggleBox>
+            <ToggleBox>
+              <PhoneNumberWrap>
+                <img src={Phone} style={{ marginRight: "10px" }}></img>
+                <Contect>010-0000-0000</Contect>
+              </PhoneNumberWrap>
+              <ToggleTextWrap>
+                <TitleTextTag>연락처 공개</TitleTextTag>
+                {/* 토글기록 */}
+                <CheckBoxWrapper>
+                  <CheckBox id="checkboxTwo" type="checkbox" />
+                  <CheckBoxLabel htmlFor="checkbox" />
+                </CheckBoxWrapper>
+              </ToggleTextWrap>
+            </ToggleBox>
+            <div>
+              <TitleTextTag>간단한 자기 소개</TitleTextTag>
+              <div>
+                <ProfileInput
+                  placeholder="간단한 인사말을 남겨 주세요"
+                  ref={introduceRef}
+                  type="text"
+                ></ProfileInput>
+              </div>
+            </div>
+          </SelfWrap>
+          <ProfilePicWrap>
+            <CircleProfile></CircleProfile>
+          </ProfilePicWrap>
+
         </ProfileTopWrap>
-          <div>
-
-        {/* 캘린더 작업물이 들어갈 공간 입니다 */}
-
-          </div>
-            <SelectBoxWrap>
-                <SelectAllWrap>
-                  <SelfWrap>
-                    <TitleTextTag>내 직군</TitleTextTag>
-                    <RadioRoleWrap>
-                      <label><input id="role" type="radio" value="frontend" name="Radio"/>FrontEnd</label>
-                      <label><input id="role" type="radio" name="Radio" value="backend"/>BackEnd</label>
-                      <label><input id="role" type="radio" name="Radio" value="graphicDesigner"/>Designer</label>
-                    </RadioRoleWrap>
-                 </SelfWrap>
-                <SelfWrap>
-                    <SelectSkill/>
-                </SelfWrap>
-                </SelectAllWrap>
-            </SelectBoxWrap>
+        <div>{/* 캘린더 작업물이 들어갈 공간 입니다 */}</div>
+        <SelectBoxWrap>
+          <SelectAllWrap>
             <SelfWrap>
-              <TitleTextTag>본인의 경력을 소개해 주세요</TitleTextTag>
-              <AddInput/>
+              <TitleTextTag>내 직군</TitleTextTag>
+              <RadioRoleWrap>
+                <label>
+                  <input
+                    id="frontend"
+                    type="radio"
+                    value="frontend"
+                    name="role"
+                    onChange={onChangeRole}
+                  />
+                  FrontEnd
+                </label>
+                <label>
+                  <input
+                    id="backend"
+                    type="radio"
+                    name="role"
+                    value="backend"
+                    onChange={onChangeRole}
+                  />
+                  BackEnd
+                </label>
+                <label>
+                  <input
+                    id="designer"
+                    type="radio"
+                    name="role"
+                    value="designer"
+                    onChange={onChangeRole}
+                  />
+                  Designer
+                </label>
+              </RadioRoleWrap>
             </SelfWrap>
             <SelfWrap>
-              <TitleTextTag>주요 경력 및 자기소개</TitleTextTag>
-              <PointCraeer></PointCraeer>
+              <SelectSkill />
             </SelfWrap>
-            {/* <div><button type="submit" disabled={isSubmitting}>등록하기</button></div> */}
+
+          </SelectAllWrap>
+        </SelectBoxWrap>
+        <SelfWrap>
+          <TitleTextTag>본인의 경력을 소개해 주세요</TitleTextTag>
+          <AddInput />
+        </SelfWrap>
+        <SelfWrap>
+          <TitleTextTag>주요 경력 및 자기소개</TitleTextTag>
+          <PointCraeer></PointCraeer>
+        </SelfWrap>
+        <button onClick={handleClick}>여기를 눌러주세요</button>
+
       </AddProfileWrap>
       
     </>

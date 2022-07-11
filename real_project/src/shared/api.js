@@ -17,14 +17,9 @@ const api = axios.create({
 });
 
 //토큰
-api.interceptors.request.use(function (config) {
-  //쿠키설정
-  // const cookies = new Cookies();
-  // const token = cookies.get("token");
-  // config.headers.common["Authorization"] = `${token}`;
-  
+api.interceptors.request.use(function (config) { 
   const accessToken = `${localStorage.getItem("token")}`;
-    config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  config.headers.common["authorization"] = `Bearer ${accessToken}`;
   return config;
 });
 
@@ -49,7 +44,6 @@ export const apis = {
     nickname,
     name,
     birth,
-    phoneNumber,
     password,
     passwordCheck,
     allCheck
@@ -61,7 +55,6 @@ export const apis = {
       passwordCheck: passwordCheck,
       name: name,
       birth: birth,
-      phone: phoneNumber,
       policy: allCheck,
     }),
 
@@ -80,7 +73,6 @@ export const apis = {
     userId,
     nickname,
     name,
-    phone,
     birth,
     password,
     passwordCheck,
@@ -90,7 +82,6 @@ export const apis = {
       userId: userId,
       nickname: nickname,
       name: name,
-      phone: phone,
       birth: birth,
       password: password,
       passwordCheck: passwordCheck,
