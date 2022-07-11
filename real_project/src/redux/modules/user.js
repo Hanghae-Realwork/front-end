@@ -104,7 +104,7 @@ export const checkUserNicknameAxios = (nickname) => {
 //로그인
 export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
-    console.log(userEmail, password);
+ 
     let success = null;
     await apis
       .login(userEmail, password)
@@ -114,21 +114,34 @@ export const loginAxios = (userEmail, password) => {
         dispatch(login(userEmail));
         success = true;
       })
-      .catch((err) => {
+      .catch((error) => {
         success = false;
-        console.log(err)
-        alert(err.response.data.errorMessage);
+        console.log("에러나야함 refresh",error)
+        if (error.response.status === 401) {
+           console.log("401")
+           // if error response status was 401 then request a new token
+           dispatch(refreshAxios());
+           window.location.reload();
+         } else if (error.response.status === 403) {
+           console.log("403")
+           window.location.href = "/login";
+         }
       });
     return success;
   };
 };
 
 export const refreshAxios = () => {
-
   return async function (dispatch) {
-    await apis.refresh().then((res) => {
-      console.log(res);
-    });
+    await apis.refresh().then((response) => {
+        if (response.data.accessToken) {
+          const user = JSON.parse(localStorage.getItem("user"));
+          user.accessToken = response.data.accessToken;
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+    }).catch((error) => {
+      console.log("server: " + JSON.stringify(error.response));
+    })
   };
 };
 

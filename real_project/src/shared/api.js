@@ -12,7 +12,8 @@ const api = axios.create({
   baseURL: "http://3.39.226.20/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
-    accept: "application/json,",
+  accept: "application/json,",
+  withCredentials: true,
   },
 });
 
@@ -22,6 +23,8 @@ api.interceptors.request.use(function (config) {
   config.headers.common["authorization"] = `Bearer ${accessToken}`;
   return config;
 });
+
+
 
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {
@@ -102,7 +105,7 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  refresh: (nickname) => api.post("/api/users/refresh"),
+  refresh: () => api.post("/api/users/refresh"),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
