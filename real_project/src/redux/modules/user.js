@@ -104,31 +104,32 @@ export const checkUserNicknameAxios = (nickname) => {
 //로그인
 export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
-    console.log(userEmail, password);
     let success = null;
     await apis
       .login(userEmail, password)
       .then((res) => { 
-        localStorage.setItem("accesstocken", res.data.token);
-        // setCookie("refreshtoken", res.data.refreshtoken)    
+        localStorage.setItem("token", res.data.token);  
         dispatch(login(userEmail));
         success = true;
       })
-      .catch((err) => {
+      .catch((error) => {
         success = false;
-        console.log(err)
-        alert(err.response.data.errorMessage);
       });
     return success;
   };
 };
 
 export const refreshAxios = () => {
-
   return async function (dispatch) {
-    await apis.refresh().then((res) => {
-      console.log(res);
-    });
+    await apis.refresh().then((response) => {
+        if (response.data.accessToken) {
+          const user = JSON.parse(localStorage.getItem("user"));
+          user.accessToken = response.data.accessToken;
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+    }).catch((error) => {
+      console.log("server: " + JSON.stringify(error.response));
+    })
   };
 };
 
@@ -137,11 +138,13 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
+        console.log(res)
         dispatch(login(res));
       })
       .catch((err) => {
-        dispatch(logOut());
-        console.log(err);
+        // dispatch(logOut());
+        console.log(err)
+        
       });
   };
 };
@@ -149,16 +152,30 @@ export const checkUserValidation = () => {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    default:
-    case "user/USERINFO":
-      {
-        const newUserInfo = action.info;
-        return {
-          signup: newUserInfo,
-          userInfo: state.userInfo,
-        };
-      }
+    case "user/LOGIN": {
+      const newUserInfo = {
+        userEmail: action.id,
+        is_login: true,
+      };
+      return {
+        signup: state.info,
+        userInfo: newUserInfo,
+      };
+    }
+    case "user/LOGOUT": {
+      localStorage.removeItem("token");
+      const newUserInfo = {
+        userEmail: null,
+        is_login: false,
+      };
+      return {
+        signup: state.info,
+        userInfo: newUserInfo,
+      };
+    }
 
+
+    default:
       return state;
   }
 }
