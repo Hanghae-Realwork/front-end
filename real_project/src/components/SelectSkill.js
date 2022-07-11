@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components"
-import { useForm, Controller } from "react-hook-form";
 import {
   dvelopSkills_list,
   designerSkills_list,
@@ -14,14 +13,11 @@ function SelectSkill() {
     console.log(checked,item)
     if (checked) {
       setCheckList([...checkList, item])
+      console.log(checkList)
     } else if (!checked) {
-      setCheckList(checkList.filter(el=>el!==item));
+      setCheckList(checkList.filter(el => el !== item));
     }
   }
-
-  // const onRemove = () => {
-  //   setCheckList(checkList.filter(el=>el !== item))
-  // }
 
   return (
     <>
@@ -33,8 +29,8 @@ function SelectSkill() {
                 
               {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
                 return (
-                  <TecLabel>
-                    {" "}
+                  <TecLabel key={idx}>
+                  
                     <CheckBox
                       type="checkbox"
                       id="skills"
@@ -56,7 +52,7 @@ function SelectSkill() {
               <SelectBoxTab>
               {designerSkills_list && designerSkills_list.map((list, idx) => {
                 return (
-                  <TecLabel>
+                  <TecLabel key={idx}>
                     {" "}
                     <CheckBox
                       type="checkbox"

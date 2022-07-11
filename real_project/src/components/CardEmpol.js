@@ -5,8 +5,9 @@ import BasicPhoto from "../image/astroman.svg"
 import Flip from "../image/flip.svg"
 
 function CradEmpol({ data }) {
-  const start = data.start_moment.replace("-", ".").replace("-", ".");
-  const end = data.end_moment.replace("-", ".").replace("-", ".");
+
+  const start = data.start.replace("-", ".").replace("-", ".");
+  const end = data.end.replace("-", ".").replace("-", ".");
 
     return (
       <>
@@ -37,7 +38,7 @@ function CradEmpol({ data }) {
             <div>
               {data === undefined
                 ? null
-                : data.skills.map((list, idx) => {
+                : data.resumeskills.map((list, idx) => {
                     return <Tag key={idx} skills={list} />;
                   })}
             </div>

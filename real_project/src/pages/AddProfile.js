@@ -9,49 +9,13 @@ import Letter from "../image/letter.svg"
 
 
 
+
 function AddProfile(props) {
   const {isChecked, handleToggle} = props;
 
 
-
-  // function AddInput() {
-  //   let [inputTit, inputTitFunc] = useState([]);
-  //   let [inputNum, inputNumFunc] = useState(0);
-  //   let [newVal, newValFunc] = useState('');
-
-  //   function deleteInput(idx) {
-  //     inputNum(inputNumFunc.filter(item => item.id !== idx))
-  //   }
-
-  //   function AddCareer(){
-  //     const CareerList = [...inputTit];
-  //     CareerList.push(newVal);
-  //     inputTitFunc( CareerList );
-  //   }
-  //   return (
-  //     <InputCareerWrap>
-  //       <div>
-  //         <CareerInput placeholder="전공, 학교, 자격증, 업무 경력 등" onChange={ (e)=>{ newValFunc(e.target.value) } }/>
-  //         <CareerInputButton onClick={ AddCareer }>입력</CareerInputButton>
-  //       </div>
-  //       <RightInputDiv>
-  //       {inputTit.map( ( menu, idx )=>{
-  //             return (
-  //               <CareerLabel onClick={ ()=>{ inputNumFunc(idx) } } key={idx} > { menu }</CareerLabel>)
-  //           })
-  //         }
-  //       </RightInputDiv>
-  //     </InputCareerWrap>
-  //   );
-  // }
-
-
-
   const introduceRef = useRef(null);
   const [role, setRole] = useState("")
-
-
- 
 
 
   const onChangeRole = (e) => {
@@ -63,7 +27,9 @@ function AddProfile(props) {
  }
   const onChangeCheck = (e) => {
    console.log(e.target.value)
- }
+  }
+  const 파일첨부칸 = () => { }
+  
   return (
 
     <BackgroundAllWrap>
@@ -102,12 +68,15 @@ function AddProfile(props) {
                 <div>
                     <TitleTextTag>간단한 자기 소개</TitleTextTag>
                     <div>
-                        <ProfileInput placeholder="간단한 인사말을 남겨 주세요"></ProfileInput>
+                <ProfileInput placeholder="간단한 인사말을 남겨 주세요">
+                  {/* <PhotoInput>파일첨부</PhotoInput> */}
+                        </ProfileInput>
                     </div>
                 </div>
             </SelfWrap>
-                <ProfilePicWrap>
-                    <CircleProfile></CircleProfile>
+          <ProfilePicWrap>
+            
+            <CircleProfile onClick={파일첨부칸}></CircleProfile>
                     <PhotoEditWrap>
                       <PhotoText>삭제</PhotoText>
                       <PhotoText>수정</PhotoText>
@@ -140,7 +109,7 @@ function AddProfile(props) {
             </PortfollioWrap>
 
             <SelfWrap>
-              <SelectSkill />
+              <textarea></textarea>
             </SelfWrap>
             <HeaderHeadLine/>
               <SubmitButtonWrap>

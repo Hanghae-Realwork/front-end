@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 
 
@@ -11,22 +11,22 @@ import { useDispatch } from "react-redux";
 import { loadEmployAxios } from "../redux/modules/postEmploy";
 
 const MainEmployment = () => {
+  const [updata,setUpdate] = useState()
   const dispatch = useDispatch();
-  const resumes = useSelector((state) => state.postEmploy.list);
-  
+  const resumes = useSelector((state) => state.postEmploy.returnResumes);
+
   useEffect(() => {
-    dispatch(loadEmployAxios())
-  }, [])
+    dispatch(loadEmployAxios());
+  }, []);
+
   //수정중
   return (
     <>
       <SelectCompo />
       <CardBackGround>
         <CardContainerWrap>
-          {resumes === undefined
-            ? null
-            : resumes.map((list, idx) => {
-                return <CardEmpol key={idx} data={list} />;
+          {resumes===undefined ? null : resumes.map((list, idx) => {
+            return <CardEmpol key={idx} data={list } />;
               })}
         </CardContainerWrap>
       </CardBackGround>

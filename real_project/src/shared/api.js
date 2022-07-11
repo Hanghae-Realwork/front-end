@@ -7,20 +7,25 @@ const imgApi = axios.create({
   baseURL: "http://3.39.226.20/",
   headers: {
     "content-type": "multipart/form-data",
-    //  withCredentials: true,
+     withCredentials: true,
   },
 
 });
 //기존 api
 const api = axios.create({
   baseURL: "http://3.39.226.20/",
-  headers: {
-  "content-type": "application/json;charset=UTF-8",
-  accept: "application/json,",
-  // withCredentials: true,
-  },
 
+  headers: {
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json,",
+    withCredentials: true,
+  },
 });
+
+
+
+// axios.defaults.withCredentials = true;
+
 
 //토큰
 api.interceptors.request.use(function (config) { 
@@ -29,7 +34,6 @@ api.interceptors.request.use(function (config) {
   config.headers.common["authorization"] = `Bearer ${accessToken}`;
   return config;
 });
-
 
 
 //imgForm토큰

@@ -107,13 +107,16 @@ export const loginAxios = (userEmail, password) => {
     await apis
       .login(userEmail, password, { withCredentials: true })
       .then((res) => {
+       
         console.log(res)
         localStorage.setItem("token", res.data.token);
         dispatch(login(userEmail));
-        success = true;
+         success = true;
+        
       })
       .catch((error) => {
         success = false;
+        console.log(error)
       });
     return success;
   };
