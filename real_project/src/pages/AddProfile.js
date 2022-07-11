@@ -82,22 +82,6 @@ function AddProfile(props) {
             <ToggleBox>
             <TitleTextTag>이메일 정보</TitleTextTag>
                   <PhoneNumberWrap><img src={Letter} style={{marginRight:"10px"}}></img><Contect>test@testman.com</Contect></PhoneNumberWrap>
-                  {/* <ToggleTextWrap>
-                      <CheckBoxWrapperOne>
-                        <CheckBoxOne id="checkboxOne" type="checkbox" />
-                        <CheckBoxLabelOne htmlFor="checkbox" />
-                      </CheckBoxWrapperOne>
-                    </ToggleTextWrap> */}
-                {/* </ToggleBox>
-                <ToggleBox> */}
-                  {/* <PhoneNumberWrap><img src={Phone} style={{marginRight:"10px"}}></img><Contect>010-0000-000,000,000,000,000</Contect></PhoneNumberWrap> */}
-                  {/* <ToggleTextWrap>
-                    <TitleTextTag>연락처 공개</TitleTextTag>
-                      <CheckBoxWrapper>
-                        <CheckBox id="checkboxTwo" type="checkbox" />
-                        <CheckBoxLabel htmlFor="checkbox" />
-                      </CheckBoxWrapper>
-                    </ToggleTextWrap> */}
                 </ToggleBox>
                 <div>
                     <TitleTextTag>간단한 자기 소개</TitleTextTag>
@@ -107,7 +91,7 @@ function AddProfile(props) {
                 </div>
             </SelfWrap>
                 <ProfilePicWrap>
-                    <CircleProfile></CircleProfile>
+                <CircleProfile><PhotoInput type="file"></PhotoInput></CircleProfile>
                     <PhotoEditWrap>
                       <PhotoText>삭제</PhotoText>
                       <PhotoText>수정</PhotoText>
@@ -140,7 +124,8 @@ function AddProfile(props) {
             </PortfollioWrap>
 
             <SelfWrap>
-              <SelectSkill />
+              <textarea></textarea>
+
             </SelfWrap>
             <HeaderHeadLine/>
               <SubmitButtonWrap>
@@ -467,5 +452,8 @@ const SubmitButton = styled.button`
   font-weight: 700;
 `
 
+const PhotoInput = styled.input`
+  /* display: none; */
+`
 
 export default AddProfile;
