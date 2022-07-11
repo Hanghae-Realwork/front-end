@@ -91,7 +91,7 @@ function AddProfile(props) {
                 </div>
             </SelfWrap>
                 <ProfilePicWrap>
-                    <CircleProfile><PhotoInput></PhotoInput></CircleProfile>
+                <CircleProfile><PhotoInput type="file"></PhotoInput></CircleProfile>
                     <PhotoEditWrap>
                       <PhotoText>삭제</PhotoText>
                       <PhotoText>수정</PhotoText>
@@ -453,7 +453,7 @@ const SubmitButton = styled.button`
 `
 
 const PhotoInput = styled.input`
-
+  /* display: none; */
 `
 
 export default AddProfile;
