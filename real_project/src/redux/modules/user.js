@@ -104,30 +104,17 @@ export const checkUserNicknameAxios = (nickname) => {
 //로그인
 export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
- 
     let success = null;
     await apis
       .login(userEmail, password)
       .then((res) => { 
-        localStorage.setItem("accesstocken", res.data.token);
-        // setCookie("refreshtoken", res.data.refreshtoken)    
+        localStorage.setItem("token", res.data.token);  
         dispatch(login(userEmail));
         success = true;
       })
       .catch((error) => {
         success = false;
-
-        console.log("에러나야함 refresh",error)
-        if (error.response.status === 401) {
-           console.log("401")
-           // if error response status was 401 then request a new token
-           dispatch(refreshAxios());
-           window.location.reload();
-         } else if (error.response.status === 403) {
-           console.log("403")
-           window.location.href = "/login";
-         }
-
+      });
     return success;
   };
 };
@@ -151,11 +138,13 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
+        console.log(res)
         dispatch(login(res));
       })
       .catch((err) => {
-        dispatch(logOut());
-        console.log(err);
+        // dispatch(logOut());
+        console.log(err)
+        
       });
   };
 };
@@ -163,16 +152,30 @@ export const checkUserValidation = () => {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    default:
-    case "user/USERINFO":
-      {
-        const newUserInfo = action.info;
-        return {
-          signup: newUserInfo,
-          userInfo: state.userInfo,
-        };
-      }
+    case "user/LOGIN": {
+      const newUserInfo = {
+        userEmail: action.id,
+        is_login: true,
+      };
+      return {
+        signup: state.info,
+        userInfo: newUserInfo,
+      };
+    }
+    case "user/LOGOUT": {
+      localStorage.removeItem("token");
+      const newUserInfo = {
+        userEmail: null,
+        is_login: false,
+      };
+      return {
+        signup: state.info,
+        userInfo: newUserInfo,
+      };
+    }
 
+
+    default:
       return state;
   }
 }
