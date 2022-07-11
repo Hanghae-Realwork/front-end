@@ -17,22 +17,22 @@ const initialState = {
   },
   userInfo: {
     userEmail: null,
+    nickname:null,
     is_login: false,
   },
 };
 
-export function login(id) {
-
-  return { type: LOGIN, id };
+export function login(payload) {
+  return { type: LOGIN, payload };
 }
-export function logOut(userInfo) {
-  return { type: LOGOUT, userInfo };
+export function logOut(payload) {
+  return { type: LOGOUT, payload };
 }
 export function userInfo(infototal) {
   return { type: USERINFO, infototal };
 }
-export function userId(checkId) {
-  return { type: CheckUserId, checkId };
+export function userId(payload) {
+  return { type: CheckUserId, payload };
 }
 
 //middleWare
@@ -109,8 +109,10 @@ export const loginAxios = (userEmail, password) => {
       .then((res) => {
        
         console.log(res)
-        localStorage.setItem("token", res.data.token);
-        dispatch(login(userEmail));
+        // localStorage.setItem("token", res.data.token);
+        setCookie("ACCESS_TOKEN", res.data.token, 1);
+
+        dispatch(login({ userId:userEmail }));
          success = true;
         
       })
@@ -128,8 +130,13 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
-        console.log("res", res);
-        dispatch(login(res));
+
+        // localStorage.setItem("userId", res.data.userId);
+        // localStorage.setItem("nickname", res.data.nickname);
+        
+        dispatch(
+          login({ userId: res.data.userId, nickname: res.data.nickname })
+        );
       })
       .catch((err) => {
         // dispatch(logOut());
@@ -141,6 +148,7 @@ export const checkUserValidation = () => {
       });
   };
 };
+
 
 
 // version 2 cookies
@@ -191,8 +199,10 @@ export const refreshAxios = () => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "user/LOGIN": {
+      
       const newUserInfo = {
-        userEmail: action.id,
+        userId: action.payload.userId,
+        nickname:action.payload.nickname,
         is_login: true,
       };
       return {
@@ -201,9 +211,15 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "user/LOGOUT": {
+      console.log(action.payload)
       localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("nickname");
+      deleteCookie("ACCESS_TOKEN");
+      deleteCookie("REFRESH_TOKEN");
       const newUserInfo = {
         userEmail: null,
+        nickname:null,
         is_login: false,
       };
       return {
