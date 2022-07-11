@@ -1,24 +1,30 @@
 import axios from "axios";
+//credentials 설정을 밖에 할 경우 로그인~ 모든 기능 불가
 // axios.defaults.withCredentials = true;
+
 //이미지 데이터
 const imgApi = axios.create({
   baseURL: "http://3.39.226.20/",
   headers: {
     "content-type": "multipart/form-data",
+    //  withCredentials: true,
   },
+
 });
 //기존 api
 const api = axios.create({
   baseURL: "http://3.39.226.20/",
   headers: {
-    "content-type": "application/json;charset=UTF-8",
+  "content-type": "application/json;charset=UTF-8",
   accept: "application/json,",
-  withCredentials: true,
+  // withCredentials: true,
   },
+
 });
 
 //토큰
 api.interceptors.request.use(function (config) { 
+
   const accessToken = `${localStorage.getItem("token")}`;
   config.headers.common["authorization"] = `Bearer ${accessToken}`;
   return config;
@@ -29,6 +35,7 @@ api.interceptors.request.use(function (config) {
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {
   const accessToken = `${localStorage.getItem("token")}`;
+
   if (accessToken !== undefined) {
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
   }
@@ -42,15 +49,7 @@ export const apis = {
   ///////////////////////
 
   //  - 1. 회원가입
-  signup: (
-    userId,
-    nickname,
-    name,
-    birth,
-    password,
-    passwordCheck,
-    allCheck
-  ) =>
+  signup: (userId, nickname, name, birth, password, passwordCheck, allCheck) =>
     api.post("/api/users/signup", {
       userId: userId,
       nickname: nickname,
@@ -105,7 +104,8 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  refresh: () => api.post("/api/users/refresh"),
+  refresh: () =>
+    api.post("/api/users/refresh"),
 
   ///////////////////////
   ////<2. 프로젝트 API>////

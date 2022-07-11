@@ -25,7 +25,6 @@ export function login(id) {
 
   return { type: LOGIN, id };
 }
-
 export function logOut(userInfo) {
   return { type: LOGOUT, userInfo };
 }
@@ -106,9 +105,10 @@ export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
     let success = null;
     await apis
-      .login(userEmail, password)
-      .then((res) => { 
-        localStorage.setItem("token", res.data.token);  
+      .login(userEmail, password, { withCredentials: true })
+      .then((res) => {
+        console.log(res)
+        localStorage.setItem("token", res.data.token);
         dispatch(login(userEmail));
         success = true;
       })
@@ -119,35 +119,43 @@ export const loginAxios = (userEmail, password) => {
   };
 };
 
-export const refreshAxios = () => {
-  return async function (dispatch) {
-    await apis.refresh().then((response) => {
-        if (response.data.accessToken) {
-          const user = JSON.parse(localStorage.getItem("user"));
-          user.accessToken = response.data.accessToken;
-          localStorage.setItem("user", JSON.stringify(user));
-        }
-    }).catch((error) => {
-      console.log("server: " + JSON.stringify(error.response));
-    })
-  };
-};
-
 export const checkUserValidation = () => {
   return async function (dispatch) {
     await apis
       .checkUser()
       .then((res) => {
-        console.log(res)
+        console.log("res", res);
         dispatch(login(res));
       })
       .catch((err) => {
         // dispatch(logOut());
-        console.log(err)
-        
+        console.log("err", err);
+        if (err.response.status === 401) {
+          dispatch(refreshAxios());
+          // window.location.reload()
+        }
       });
   };
 };
+export const refreshAxios = () => {
+  return async function (dispatch) {
+    await apis
+      .refresh({ withCredentials: true })
+      .then((response) => {
+        console.log("refresh", response);
+        if (response.data.accessToken) {
+          const user = JSON.parse(localStorage.getItem("user"));
+          user.accessToken = response.data.accessToken;
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+      })
+      .catch((error) => {
+        console.log("server", error);
+      });
+  };
+};
+
+
 
 
 export default function reducer(state = initialState, action = {}) {
