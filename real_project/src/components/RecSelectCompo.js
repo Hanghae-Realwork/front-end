@@ -96,7 +96,7 @@ function RecSelectCompo() {
             <DropTextSkill>
               <TextImageWrap>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
                 </svg><SpanInText>닫기</SpanInText>
               </TextImageWrap>
               <svg width="17" height="11" viewBox="0 0 17 11" fill="black" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +107,7 @@ function RecSelectCompo() {
             <DropTextSkill>
               <TextImageWrap>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
                 </svg>
                 <SpanInText>스킬 및 스택</SpanInText>
               </TextImageWrap>

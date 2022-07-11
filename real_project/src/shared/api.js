@@ -12,21 +12,19 @@ const api = axios.create({
   baseURL: "http://3.39.226.20/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
-    accept: "application/json,",
+  accept: "application/json,",
+  withCredentials: true,
   },
 });
 
 //토큰
-api.interceptors.request.use(function (config) {
-  //쿠키설정
-  // const cookies = new Cookies();
-  // const token = cookies.get("token");
-  // config.headers.common["Authorization"] = `${token}`;
-  
+api.interceptors.request.use(function (config) { 
   const accessToken = `${localStorage.getItem("token")}`;
-    config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  config.headers.common["authorization"] = `Bearer ${accessToken}`;
   return config;
 });
+
+
 
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {
@@ -49,7 +47,6 @@ export const apis = {
     nickname,
     name,
     birth,
-    phoneNumber,
     password,
     passwordCheck,
     allCheck
@@ -61,7 +58,6 @@ export const apis = {
       passwordCheck: passwordCheck,
       name: name,
       birth: birth,
-      phone: phoneNumber,
       policy: allCheck,
     }),
 
@@ -80,7 +76,6 @@ export const apis = {
     userId,
     nickname,
     name,
-    phone,
     birth,
     password,
     passwordCheck,
@@ -90,7 +85,6 @@ export const apis = {
       userId: userId,
       nickname: nickname,
       name: name,
-      phone: phone,
       birth: birth,
       password: password,
       passwordCheck: passwordCheck,
@@ -111,7 +105,7 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  refresh: (nickname) => api.post("/api/users/refresh"),
+  refresh: () => api.post("/api/users/refresh"),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
