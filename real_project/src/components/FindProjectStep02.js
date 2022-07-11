@@ -19,12 +19,8 @@ const FindProjectStep02 = (props) => {
     const output = {
       ...data,
       ...addData,
-      photos:
-        ["",
-          ""],
-      email: "mymail@email.com",
-      phone: "010-5555-5555",
-      // schedule: {"2022-07-01": {availabe:true}}
+      
+      schedule: ["2022-07-20", "2022-07-25"]
     }
     await new Promise((r) => setTimeout(r, 1000));
 
@@ -55,6 +51,7 @@ const FindProjectStep02 = (props) => {
     // navigate(`/findprojectstep2`)
     console.log(output)
   }
+
   const dvelopSkills_list = [
     { data: 'React' },
     { data: 'Vue.js' },
@@ -238,3 +235,4 @@ const ProjectTitleText = styled.span`
 `
 
 export default FindProjectStep02;
+

@@ -10,34 +10,36 @@ import Tag from "./TagCompoRec";
 import Receipt from "../image/receipt.svg"
 import Moment from "react-moment";
 
-const CardRecruit = ({data}) => {
+const CardRecruit = ({ data }) => {
 
   const navigate = useNavigate()
   //loadRecruit props
 
 
 
-    // const today = Date();
-    // const nowTime = Date.now();
-    // const stringNowTime = today.toString().split(" ")[4];
-    // const todayHour = stringNowTime.split(":")[0];
+const today = Date();
+  const nowTime = Date.now();
+  const stringNowTime = today.toString().split(" ")[4];
+  const todayHour = stringNowTime.split(":")[0];
 
 
-  //  const createdAt = list.createdAt;
-  //           const startTime = new Date(createdAt);
-  //           const stringStartTime = startTime.toString().split(" ")[4];
-  //           const startHour = stringStartTime.split(":")[0];
-  //           const thenHours = Math.floor((nowTime - startTime) / 3600000);
-
-  // const DisplayCreatedAt = () => {
-  //   if (parseInt(startTime - nowTime) > -86400000) {
-  //     return thenHours + "시간전";
-  //   }
-  //   if (parseInt(startTime - nowTime) < -86400000) {
-  //     return <Moment format="M월 D일">{startTime}</Moment>;
-  //     // return (thenHours)+"시간전";
-  //   }
-  // }
+  const createdAt = data.createdAt;
+  const startTime = new Date(createdAt);
+  const stringStartTime = startTime.toString().split(" ")[4];
+  const startHour = stringStartTime.split(":")[0];
+  const thenHours = Math.floor((nowTime - startTime) / 3600000);
+  const startDay= data.start
+  const start = startDay.slice(2, 10)
+  const end = data.end.slice(2, 10)
+  const DisplayCreatedAt = () => {
+    if (parseInt(startTime - nowTime) > -86400000) {
+      return thenHours + "시간전";
+    }
+    if (parseInt(startTime - nowTime) < -86400000) {
+      return <Moment format="M월 D일">{startTime}</Moment>;
+      // return (thenHours)+"시간전";
+    }
+  }
 
     return (
       <AllWrap>
@@ -81,9 +83,9 @@ const CardRecruit = ({data}) => {
         </AllBotWrap>
       </AllWrap>
     );
-    
-
 };
+
+
 
 //// 카드 전체 틀 관련 CSS 뭉치
 

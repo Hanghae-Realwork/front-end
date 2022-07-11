@@ -32,7 +32,7 @@ const FindProjectStep01 = (props) => {
       start: startdate.slice(1, 11),
       end: enddate.slice(1, 11),
       photos: ["null", "null"],
-      schedule: ["2022-07-20", "2022-07-25"]
+      
     }
     await new Promise((r) => setTimeout(r, 1000));
     
