@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-
+import Sample from "../image/mainSample.svg"
 
 
 
@@ -11,7 +11,7 @@ function Main () {
 
     return(
         <>
-            <BackGroundDiv className="MainBack">
+            <BackGroundDiv >
                 <MainAllWrap >
                     <MaininTitleTopWrap>
                         <HeadTitleWrap><TitleMain>사람과 아이디어의 조우,<span style={{fontSize:"49px", fontWeight:"bold"}}> renDev</span></TitleMain></HeadTitleWrap>
@@ -51,13 +51,15 @@ const BackGroundDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(${Sample});
+    /* className="MainBack" */
 `
 
 const MainAllWrap = styled.div`
   /* border: 1px solid black; */
   width: 100%;
   max-width: 1440px;
-  height: 670px;
+  height: 602px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -89,7 +91,6 @@ const HeadTitleWrap = styled.div`
 `
 
 const SubWrap = styled.div`
-
     margin-top: 20px;
     /* border: 1px solid black; */
     text-align: justify;
@@ -143,7 +144,7 @@ const MainBotWrap = styled.div`
 `
 
 const BottomBackGround = styled.div`
-    background-color: #303032;
+    /* background-color: #303032; */
     width: 100%;
     height: 100%;
     display: flex;
@@ -159,17 +160,21 @@ const MainTextBotWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    background-color: #303032;
+    /* background-color: #303032; */
 `
 
 const MainBotText = styled.div`
     /* border: 1px solid black; */
     width: 155vh;
     height: 110px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 `
 
 const MainTextTitle = styled.div`
-    color: white;
+    /* color: white; */
 `
 
 const TitleSpan = styled.p`

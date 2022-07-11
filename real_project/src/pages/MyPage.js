@@ -5,14 +5,16 @@ import astroman from "../image/astroman.svg"
 import email from "../image/letter.svg"
 import phone from "../image/phone.svg"
 
-import RecCard from "../components/CardRecruit"
 import { useSelector, useDispatch } from "react-redux"; 
 import { checkUserValidation } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
+
+
+
 function MyPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const My_card = Array.from({ length: 1 }, (v, i) => i);
+    // const MyCard = Array.from({ length: 2 }, (v, i) => i);
     
 //     const isLogin = useSelector((state) => state.user.userInfo.is_login);
 //    console.log(isLogin)
@@ -30,52 +32,7 @@ function MyPage() {
   return (
     <>
       <MypageAllWrap>
-          <MypageBackGround>
-            <MyPageLeftWrap>
-                <MyPageProfileWrap>
-                    <MyPagePhotoWrap>
-                        <CircleProfile>
-                            <PictureCircle>
-                                <BasicImg src = {astroman}></BasicImg>
-                            </PictureCircle>
-                        </CircleProfile>
-                    </MyPagePhotoWrap>
-                    <NameMyPage>
-                        <NameText>[유저 닉네임]</NameText>
-                    </NameMyPage>
-                    <AdressWrap>
-                        <MypageTextWrap>
-                            <img src = {email} style={{marginRight:"13px"}}></img>
-                            <Mycall>email@email.com</Mycall>
-                        </MypageTextWrap>
-                        <MypageTextWrap>
-                            <img src = {phone} style={{marginRight:"13px"}}></img>
-                            <Mycall>010-0000-0000</Mycall>
-                        </MypageTextWrap>
-                    </AdressWrap>
-                    <MyPagePasswordWrap>
-                        <Mycall>비밀번호 변경</Mycall>
-                        <Mycall>회원 탈퇴</Mycall>
-                    </MyPagePasswordWrap>
-                </MyPageProfileWrap>
-            </MyPageLeftWrap>
-            <MyPageRightWrap>
-                <RightTopWrap>
-                    <MyMenuButton>내 지원 현황</MyMenuButton>
-                    <MyMenuButton>내 모집 현황</MyMenuButton>
-                    <MyMenuButton>내 이력서</MyMenuButton>
-                </RightTopWrap>
-                <RightCardWrap>
-                {/* {My_card === undefined
-                    ? null
-                    : My_card.map((list, idx) => {
-                        return <RecCard key={idx} />;
-                    })} */}
-                </RightCardWrap>
-                <div></div>
-                <div></div> 
-            </MyPageRightWrap>
-        </MypageBackGround>          
+         
       </MypageAllWrap>
     </>
   );
@@ -95,9 +52,21 @@ const MypageBackGround = styled.div`
     border: 1px solid black;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 100%
+    width: 100%;
+    height:713px;
+    z-index: -1;
+    background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
+`
+
+const MyPageMainWrap = styled.div`
+    border: 1px solid black;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
 `
 
 

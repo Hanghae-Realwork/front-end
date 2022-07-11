@@ -17,7 +17,7 @@ const initialState = {
   },
   userInfo: {
     userEmail: null,
-    is_login: null,
+    is_login: false,
   },
 };
 
@@ -116,6 +116,7 @@ export const loginAxios = (userEmail, password) => {
       })
       .catch((err) => {
         success = false;
+
         console.log(err)
         alert(err.response.data.errorMessage);
       });

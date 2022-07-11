@@ -1,4 +1,3 @@
-
 // const setCookie = (name, value, exp = 24) => {
 //   let date = new Date();
 //   date.setTime(date.getTime() + exp * 60 * 60 * 1000);

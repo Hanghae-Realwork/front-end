@@ -140,6 +140,7 @@ function Join() {
         status: true,
         text: "태어난 월을 입력하세요.",
       });
+
     } else if (day.length <= 0) {
       setYearError({
         status: true,
@@ -355,18 +356,19 @@ function Join() {
           </LogoWrap>
           <InputJoinWrap>
             <IdWrap>
-              <InputBar
-                type="email"
-                placeholder="Email"
-                id="userId"
-                value={userId}
-                onChange={onChangeUserId}
-                onBlur={BlurUserId}
-              ></InputBar>
-              <button onClick={onClickCheckUserId}>중복버튼</button>
+
+              <div>
+                <InputBar type="email" placeholder="아이디"
+                  id="userId" value={userId}
+                  onChange={onChangeUserId} onBlur={BlurUserId}
+                  autoFocus></InputBar>
+                <CheckButton onClick={onClickCheckUserId}>중복 확인</CheckButton>
+              </div>
+
               {userIdError.status && <ValiSpan>{userIdError.text}</ValiSpan>}
             </IdWrap>
             <IdWrap>
+              <div>
               <InputBar
                 type="text"
                 placeholder="닉네임"
@@ -376,7 +378,8 @@ function Join() {
                 onChange={onChageNickName}
                 onBlur={BlurNickName}
               ></InputBar>
-              <button onClick={onClickChecknickname}>중복버튼</button>
+              <CheckButton onClick={onClickChecknickname}>중복 확인</CheckButton>
+              </div>
               {nicknameError.status && (
                 <ValiSpan>{nicknameError.text}</ValiSpan>
               )}
@@ -393,22 +396,13 @@ function Join() {
               ></InputBar>
               {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
             </IdWrap>
-            <IdWrap>
-              <input
-                name="year"
-                type="text"
-                maxLength="4"
-                placeholder="년(4자)"
-                onBlur={BlurYear}
-                value={year}
-                onChange={onChangeBirth}
-              />
-              <select
-                onChange={onChangeBirth}
-                value={month}
-                name="month"
-                onBlur={BlurYear}
-              >
+            <BirthWrap>
+              <InpuBirthYear name="year" type="text"
+                maxLength="4" placeholder="년(4자)"
+                onBlur={BlurYear} value={year}
+                onChange={onChangeBirth}/>
+                <div>
+              <select onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
                 <option value="month">월</option>
                 <option value="01">1</option>
                 <option value="02">2</option>
@@ -423,7 +417,7 @@ function Join() {
                 <option value="11">11</option>
                 <option value="12">12</option>
               </select>
-              <input
+              <InpuBirth
                 type="text"
                 maxLength="2"
                 placeholder="일"
@@ -432,7 +426,8 @@ function Join() {
                 onBlur={BlurYear}
                 name="day"
               />
-            </IdWrap>
+              </div>
+            </BirthWrap>
             {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
             <IdWrap>
 
@@ -575,7 +570,7 @@ const IdWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin: 30px;
-  flex-direction: column;
+  flex-flow: column nowrap;
 `;
 
 const PolicyWrap = styled.div`
@@ -597,7 +592,7 @@ const InputBar = styled.input`
   border: none;
   border-bottom: 1px solid black;
   padding: 7px;
-  width: 400px;
+  width: 300px;
 `;
 
 const ButtonWrap = styled.div`
@@ -664,5 +659,42 @@ const AgreementInput = styled.input`
     background-color: #685bc7;
   }
 `;
+
+const CheckButton = styled.button`
+  background-color: #303032;
+  color: white;
+  padding: 5px 15px 5px 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 700;
+  margin-left: 20px;
+`
+
+const InpuBirth = styled.input`
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 7px;
+  width: 150px;
+`
+
+const InpuBirthYear = styled.input`
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 7px;
+  width: 190px;
+`
+
+const BirthWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+`
+
 
 export default Join;
