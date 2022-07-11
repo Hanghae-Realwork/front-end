@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUserValidation } from "../redux/modules/user";
+import { checkUserValidation, logOut } from "../redux/modules/user";
 
 import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo.svg"
@@ -14,7 +14,7 @@ function Header() {
   const dispatch = useDispatch();
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-  console.log(loginInfo)
+ 
 
   React.useEffect(() => {
     if (loginInfo === false) {
@@ -24,23 +24,46 @@ function Header() {
 
   // style={{fontWeight: ? "bold" : " "}}
 
+  const logoutClick = () => {
+   dispatch(logOut())
+  }
   return (
     <BackGroundDiv>
       <HeaderWrap>
         <HeaderConWrap>
           <HeaderAlignWrap>
+
             <LogoWrap onClick={() => {navigate(`/`);}}></LogoWrap>
             <HeaderLeftWrap>
               <FindProject onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
               <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
               <FindMatching onClick={() => {navigate(`/`);}}>프로젝트 매칭</FindMatching>
               <FindProject onClick={() => {navigate(`/chatjoin`);}}>화상채팅(임시)</FindProject>
+
             </HeaderLeftWrap>
           </HeaderAlignWrap>
           <HeaderRightWrap>
-            <LoginButton onClick={() => {navigate(`/login`);}}>로그인</LoginButton>
-            <LoginButton style={{ display: !loginInfo ? "none" : "" }}>로그아웃</LoginButton>
-            <CircleImage onClick={() => {navigate(`/mypage`);}}><img src = {BasicPhoto} /></CircleImage>
+            <LoginButton
+              onClick={() => {
+                navigate(`/login`);
+              }}
+              style={{ display: !loginInfo ? "" : "none" }}
+            >
+              로그인
+            </LoginButton>
+            <LoginButton
+              style={{ display: !loginInfo ? "none" : "" }}
+              onClick={logoutClick}
+            >
+              로그아웃
+            </LoginButton>
+            <CircleImage
+              onClick={() => {
+                navigate(`/mypage`);
+              }}
+            >
+              <img src={BasicPhoto} />
+            </CircleImage>
           </HeaderRightWrap>
         </HeaderConWrap>
       </HeaderWrap>

@@ -77,7 +77,6 @@ export const loadRecruitsApi = () => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
-        
       return {projects : action.discription};
     }
     // case 'recruit/CREATE': {

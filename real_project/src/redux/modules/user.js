@@ -1,5 +1,5 @@
 import { apis } from "../../shared/api";
-import { setCookie, deleteCookie } from "../../shared/cookie";
+import { setCookie, deleteCookie,getCookie } from "../../shared/cookie";
 
 const LOGIN = "user/LOGIN";
 const LOGOUT = "user/LOGOUT";
@@ -17,23 +17,22 @@ const initialState = {
   },
   userInfo: {
     userEmail: null,
+    nickname:null,
     is_login: false,
   },
 };
 
-export function login(id) {
-
-  return { type: LOGIN, id };
+export function login(payload) {
+  return { type: LOGIN, payload };
 }
-
-export function logOut(userInfo) {
-  return { type: LOGOUT, userInfo };
+export function logOut(payload) {
+  return { type: LOGOUT, payload };
 }
 export function userInfo(infototal) {
   return { type: USERINFO, infototal };
 }
-export function userId(checkId) {
-  return { type: CheckUserId, checkId };
+export function userId(payload) {
+  return { type: CheckUserId, payload };
 }
 
 //middleWare
@@ -106,55 +105,104 @@ export const loginAxios = (userEmail, password) => {
   return async function (dispatch) {
     let success = null;
     await apis
-      .login(userEmail, password)
-      .then((res) => { 
-        localStorage.setItem("token", res.data.token);  
-        dispatch(login(userEmail));
-        success = true;
+      .login(userEmail, password, { withCredentials: true })
+      .then((res) => {
+       
+        console.log(res)
+        // localStorage.setItem("token", res.data.token);
+        setCookie("ACCESS_TOKEN", res.data.token, 1);
+
+        dispatch(login({ userId:userEmail }));
+         success = true;
+        
       })
       .catch((error) => {
         success = false;
+        console.log(error)
       });
     return success;
   };
 };
 
-export const refreshAxios = () => {
-  return async function (dispatch) {
-    await apis.refresh().then((response) => {
-        if (response.data.accessToken) {
-          const user = JSON.parse(localStorage.getItem("user"));
-          user.accessToken = response.data.accessToken;
-          localStorage.setItem("user", JSON.stringify(user));
-        }
-    }).catch((error) => {
-      console.log("server: " + JSON.stringify(error.response));
-    })
-  };
-};
-
 export const checkUserValidation = () => {
+ 
   return async function (dispatch) {
     await apis
       .checkUser()
       .then((res) => {
-        console.log(res)
-        dispatch(login(res));
+
+        // localStorage.setItem("userId", res.data.userId);
+        // localStorage.setItem("nickname", res.data.nickname);
+        
+        dispatch(
+          login({ userId: res.data.userId, nickname: res.data.nickname })
+        );
       })
       .catch((err) => {
         // dispatch(logOut());
-        console.log(err)
-        
+        console.log("err", err);
+        if (err.response.status === 401) {
+          dispatch(refreshAxios());
+          // window.location.reload()
+        }
       });
   };
 };
 
 
+
+// version 2 cookies
+// export const checkUserValidation = () => {
+//   const atoken = getCookie("ACCESS_TOKEN");
+//   const rtoken = getCookie("REFRESH_TOKEN");
+//   return async function (dispatch) {
+//     if ((atoken, rtoken)) {
+//       await apis
+//       .checkUser()
+//       .then((res) => {
+//         console.log("res", res);
+//         dispatch(login(res))
+//       }).catch((err) => {
+//         // dispatch(logOut());
+//         console.log("err", err);
+//         if (err.response.status === 401) {
+//           dispatch(refreshAxios());
+//           // window.location.reload()
+//         }
+//       });
+//     }
+//   };
+// };
+
+
+export const refreshAxios = () => {
+  return async function (dispatch) {
+    await apis
+      .refresh({ withCredentials: true })
+      .then((response) => {
+        console.log("refresh", response);
+        if (response.data.accessToken) {
+          const user = JSON.parse(localStorage.getItem("user"));
+          user.accessToken = response.data.accessToken;
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+      })
+      .catch((error) => {
+        console.log("server", error);
+      });
+  };
+};
+
+
+
+
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "user/LOGIN": {
+      
       const newUserInfo = {
-        userEmail: action.id,
+        userId: action.payload.userId,
+        nickname:action.payload.nickname,
         is_login: true,
       };
       return {
@@ -163,9 +211,15 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "user/LOGOUT": {
+      console.log(action.payload)
       localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("nickname");
+      deleteCookie("ACCESS_TOKEN");
+      deleteCookie("REFRESH_TOKEN");
       const newUserInfo = {
         userEmail: null,
+        nickname:null,
         is_login: false,
       };
       return {
