@@ -30,7 +30,7 @@ export const loadEmployAxios = () => {
     await apis
       .resumesLoad()
       .then((response) => {
-          console.log(response.data.returnResumes);
+
         let list= []
         let resumes = response.data.returnResumes;
         list = [...resumes];

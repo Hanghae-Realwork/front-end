@@ -15,7 +15,8 @@ function Header() {
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
  
-
+  
+  
   React.useEffect(() => {
     if (loginInfo === false) {
       dispatch(checkUserValidation());
@@ -25,7 +26,15 @@ function Header() {
   // style={{fontWeight: ? "bold" : " "}}
 
   const logoutClick = () => {
-   dispatch(logOut())
+    const result = window.confirm("정말 로그아웃 하시겠습니까 ?");
+    if (result) {
+      alert("로그아웃 되었습니다.")
+       navigate("/");
+       dispatch(logOut());
+    }
+   
+
+   
   }
   return (
     <BackGroundDiv>
