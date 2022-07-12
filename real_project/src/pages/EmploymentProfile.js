@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Tag from "../components/TagCompoEmp"
 
 function EmploymentProfile() {
+  
   return (
     <>
       <EmploProfile>
@@ -28,9 +29,7 @@ function EmploymentProfile() {
                 <TextField>
                   연락처 정보 (이메일)
                 </TextField>
-                <TextField>
-                  연락처 정보 (휴대전화)
-                </TextField>
+
               </NameTitle>
             </NameWrap>
           </ProfileTopWrap>
