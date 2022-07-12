@@ -133,7 +133,7 @@ export const apis = {
 
   //  - 12. 프로젝트 수정
   projectsModify: (
-    
+
     projectId,
     title,
     details,
@@ -146,7 +146,6 @@ export const apis = {
     
   ) =>
     api.put(`/api/projects/${projectId}`, {
-      
       
       title: title,
       details: details,

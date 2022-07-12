@@ -29,20 +29,20 @@ function FindProjectStep02(props) {
   const onSubmit = async (data) => {
 
     const output = {
-      projectid:projectIdNum,
+      projectId: projectIdNum,
       ...data,
-      
+
       title: title,
       subscript: subscript,
       details: details,
       photos: photos,
       start: start,
       end: end,
-      schedule: ["2022-07-20", "2022-07-25"]
+
     }
     console.log(output)
-
-// props값이 없다면 생성, 값이 있으면 수정!
+    // schedule: ["2022-07-20", "2022-07-25"]
+    // props값이 없다면 생성, 값이 있으면 수정!
     if (projectIdNum === undefined) {
       store.dispatch(
         createRecruitApi({
@@ -56,7 +56,7 @@ function FindProjectStep02(props) {
       }).catch((err) => {
         console.log(err);
       });
-    }else if (projectIdNum ){
+    } else if (projectIdNum) {
       store.dispatch(
         editRecruitApi({
           ...output
@@ -139,27 +139,44 @@ function FindProjectStep02(props) {
           <HeadLine />
           <div>
             <ProjectTitleText>구하는 직군</ProjectTitleText>
-            <div>
+            <div >
               <label><input id="role" type="radio" name="Radio" value="frontend" {...register("role")} />FrontEnd</label>
               <label><input id="role" type="radio" name="Radio" value="backend" {...register("role")} />BackEnd</label>
               <label><input id="role" type="radio" name="Radio" value="graphicDesigner" {...register("role")} />Designer</label>
             </div>
           </div>
+
+          {/* <SelectSkillWrap> */}
+            <SkillWrap>
+              <ProjectTitleText>개발자</ProjectTitleText>
+              <SelectBoxTab>
+                {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                  return (<TecLabel>
+                    <CheckBox id="skills" type="checkbox" value={list.data} {...register("skills")} />{list.data}
+                  </TecLabel>)
+                })}
+              </SelectBoxTab>
+            </SkillWrap>
+          {/* </SelectSkillWrap> */}
+
           <SelectSkillWrap>
-            {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
-              return <div><input id="skills" type="checkbox" value={list.data} {...register("skills")} />{list.data}</div>;
-            })}
-            {designerSkills_list && designerSkills_list.map((list, idx) => {
-              return <div>
-                <input
-                  id="skills"
-                  type="checkbox"
-                  value={list.data}
-                  {...register("skills")}
-                />
-                {list.data}
-              </div>;
-            })}
+            <SkillWrap>
+              <ProjectTitleText>디자이너</ProjectTitleText>
+              <SelectBoxTab>
+                {designerSkills_list && designerSkills_list.map((list, idx) => {
+                  return (<TecLabel key={idx}>
+                    <CheckBox
+                      id="skills"
+                      type="checkbox"
+                      value={list.data}
+                      {...register("skills")}
+                    />
+                    {list.data}
+                  </TecLabel>
+                  )
+                })}
+              </SelectBoxTab>
+            </SkillWrap>
           </SelectSkillWrap>
           <div>
             캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
@@ -245,13 +262,59 @@ const SubmitButton = styled.button`
   font-weight: 700;
 `
 
+const SkillTitleTextTag = styled.p`
+  font-weight: bold;
+  color: #AE97E3;
+`;
+const SkillWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 580px;
+  padding: 10px;
+  /* border: 1px solid black; */
+`;
+
+
 const SelectSkillWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `
+const SelectBoxTab = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 13px;
+`;
 
+const TecLabel = styled.label`
+  font-size: 14px;
+  /* border: 1px solid black; */
+`;
+
+const CheckBox = styled.input`
+  appearance: none;
+  border: 0.5px solid gainsboro;
+  border-radius: 0.25rem;
+  width: 15px;
+  height: 15px;
+  margin-bottom: -3px;
+  margin-right: 5px;
+
+  &:checked {
+    border-color: transparent;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: #AE97E3;
+  }
+`;
 const ProjectTitleText = styled.span`
   font-size: 16px;
   font-weight: 500;

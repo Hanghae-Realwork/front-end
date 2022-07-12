@@ -99,12 +99,25 @@ export const editRecruitApi = (put) => {
   return async function (dispatch, getState) {
 
     try {
-      console.log("프로젝트 수정 완료");
       console.log(put);
-      const data = await apis.projectsModify(...put);
-      // const data = { id: docRef.id, ...post };
+      const projectId=put.projectId
+      const data = 
+      await apis.projectsModify(
+        projectId,
+        put.title,
+        put.details,
+        put.subscript,
+        put.role,
+        put.start,
+        put.end,
+        put.skills,
+        put.photos
 
+      );
+      // const data = { id: docRef.id, ...post };
+      
       dispatch(editRecruit(data));
+      console.log("프로젝트 수정 완료");
     } catch (e) {
 
       console.log(`수정중 오류 발생!${e}`);
