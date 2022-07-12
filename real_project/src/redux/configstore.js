@@ -6,13 +6,14 @@ import logger from "redux-logger";
 import user from "./modules/user";
 import postRecruit from "./modules/postRecruit";
 import postEmploy from "./modules/postEmploy";
-// reducers
+import userEmploy from "./modules/userEmploy"
+
 
 const rootReducer = combineReducers({
   user,
   postRecruit,
-  postEmploy
-
+  postEmploy,
+  userEmploy,
 });
 
 // logger 를 사용하는 경우, logger가 가장 마지막에 와야합니다.
