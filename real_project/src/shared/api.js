@@ -159,7 +159,7 @@ export const apis = {
     }),
 
   //  - 13. 프로젝트 삭제
-  projectsDelete: (projectId) => api.delete("/api/projects/${projectId}"),
+  projectsDelete: (projectId) => api.delete(`/api/projects/${projectId}`),
 
   /////////////////////////////////////////
   ////<3. 팀원 찾기 페이지 이력서(지원자) API>////

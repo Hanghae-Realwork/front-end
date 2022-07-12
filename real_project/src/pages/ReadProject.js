@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loadRecruitOneApi } from "../redux/modules/postRecruit";
+import { delPostApi, loadRecruitOneApi } from "../redux/modules/postRecruit";
 
 
 function ReadProject(props) {
@@ -84,8 +84,16 @@ function ReadProject(props) {
             <ButtonWrap>
                 <SubmitButton>지원하기</SubmitButton>
             </ButtonWrap>
-            
+            {/* 수정,삭제버튼 현재 유저의 email과 상세내용의 email이 같을시 버튼 활성화 */}
             <button data={data} onClick={() => {navigate(`/findprojectstep1/${projectIdNum}`)}}>프로젝트 수정하기 </button>
+            <button onClick={() => {
+                    const result =
+                      window.confirm("정말 이 프로젝트를 삭제할까요?");
+                    if (result) {
+                      dispatch(delPostApi(projectIdNum));
+                      navigate("/");
+                    }
+                  }}>삭제</button>
             </>
             
         ):null}

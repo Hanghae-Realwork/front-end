@@ -4,6 +4,7 @@ const LOAD = 'recruit/LOAD';
 const LOAD_ONE = 'recruitone/LOAD'
 const CREATE = 'recruit/CREATE'
 const EDIT = 'recruit/EDIT'
+const DELETE = 'recruit/DELETE'
 
 const initialState = {
   list: {
@@ -36,6 +37,9 @@ export function editRecruit(put) {
   return { type: EDIT, put };
 }
 
+export function delRecruit(post_index) {
+  return { type: DELETE, post_index };
+}
 
 // export fuction loadRecruit(discription)
 // 프로젝트 리스트 호출
@@ -75,7 +79,7 @@ export const loadRecruitOneApi = (projectid) => async (dispatch) => {
   };
 }
 
-
+// 프로젝트 생성
 export const createRecruitApi = (post) => {
 
   return async function (dispatch, getState) {
@@ -94,14 +98,14 @@ export const createRecruitApi = (post) => {
   };
 };
 
+
+//프로젝트 수정
 export const editRecruitApi = (put) => {
-
   return async function (dispatch, getState) {
-
     try {
       console.log(put);
       const projectId=put.projectId
-      const data = 
+      
       await apis.projectsModify(
         projectId,
         put.title,
@@ -116,7 +120,7 @@ export const editRecruitApi = (put) => {
       );
       // const data = { id: docRef.id, ...post };
       
-      dispatch(editRecruit(data));
+      
       console.log("프로젝트 수정 완료");
     } catch (e) {
 
@@ -126,7 +130,16 @@ export const editRecruitApi = (put) => {
 };
 
 
-
+//프로젝트 삭제
+export const delPostApi = (id) => {
+  return async function (dispatch, getState) {
+    try {
+      
+      console.log(id)
+      await apis.projectsDelete(id);
+    } catch (e) {}
+  };
+};
 
 
 //Reducer
