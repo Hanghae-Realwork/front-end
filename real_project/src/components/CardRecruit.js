@@ -25,6 +25,7 @@ const today = Date();
 
   const createdAt = data.createdAt;
   const startTime = new Date(createdAt);
+  const readNum = data.projectid
   const stringStartTime = startTime.toString().split(" ")[4];
   const startHour = stringStartTime.split(":")[0];
   const thenHours = Math.floor((nowTime - startTime) / 3600000);
@@ -79,7 +80,7 @@ const today = Date();
             <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
             <CardBotTextDateInfo> {start} ~ {end} </CardBotTextDateInfo>
           </CardBotTopWrap>
-          <CardViewButton onClick={() => {navigate(`/readproject`);}}>프로젝트 보러 가기</CardViewButton>
+          <CardViewButton onClick={() => {navigate(`/readproject/${readNum}`)}}>프로젝트 보러 가기</CardViewButton>
         </AllBotWrap>
       </AllWrap>
     );

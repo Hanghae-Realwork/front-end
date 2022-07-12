@@ -67,9 +67,11 @@ function App() {
         <Route path="/chat" element={<Chat />}></Route>
         <Route path="/mypage" element={<MyPage />}></Route>
         <Route path="/findprojectstep1" element={<FindProjectStep01 />}></Route>
+        <Route path="/findprojectstep1/:projectid" element={<FindProjectStep01 />}></Route>
         <Route path="/findprojectstep2" element={<FindProjectStep02 />}></Route>
+        <Route path="/findprojectstep2/:projectid" element={<FindProjectStep02 />}></Route>
         <Route path="/chatjoin" element={<ChatJoin />}></Route>
-        <Route path="/readproject" element={<ReadProject />}></Route>
+        <Route path="/readproject/:projectid" element={<ReadProject />}></Route>
         <Route path="/displaychatview" element={<DisplayChatView />}></Route>
       </Routes>
     </MainWrap>
