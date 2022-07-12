@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import React, { useState, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -14,9 +14,14 @@ import { ko } from "date-fns/esm/locale";
 import FindStep01 from "../components/FindProjectStep01"
 import FindStep02 from "../components/FindProjectStep02"
 import SelectSkill from "../components/SelectSkill";
-import { createRecruitApi } from "../redux/modules/postRecruit";
+import { createRecruitApi, loadRecruitOneApi } from "../redux/modules/postRecruit";
+import store from "../redux/configstore";
 
 const FindProjectStep01 = (props) => {
+  const params = useParams(null);
+  console.log(params)
+  const projectIdNum = (params?.projectid)
+  console.log(projectIdNum)
   const dispatch = useDispatch
   const navigate = useNavigate()
   const dateref = useRef
@@ -30,10 +35,17 @@ const FindProjectStep01 = (props) => {
 
   console.log(storageData)
 
+  
+  useEffect(() => {
+    
+    store.dispatch(loadRecruitOneApi(projectIdNum));
+}, []);
+  
   const onSubmit = async (data) => {
 
     const output = {
       ...data,
+      
       start: startdate.slice(1, 11),
       end: enddate.slice(1, 11),
       selected:selected,
@@ -45,7 +57,14 @@ const FindProjectStep01 = (props) => {
     sessionStorage.setItem('obj', JSON.stringify(output))
 
     console.log(output)
-    navigate("/findprojectstep2")
+    
+    if(projectIdNum === undefined) {
+     navigate(`/findprojectstep2`)
+    }else if (projectIdNum ){
+      navigate(`/findprojectstep2/${projectIdNum}`)
+    }
+
+    
     // await new Promise((delStorage) => setTimeout(delStorage,  10000));
   }
   const {
@@ -91,7 +110,7 @@ const FindProjectStep01 = (props) => {
                 id="title"
                 type="text"
                 placeholder="제목을 입력해주세요"
-                value={storageData.title}
+                defaultValue={storageData.title }
                 {...register("title", { required: true })}
               ></ProjectInput>
             ) : (
@@ -111,7 +130,7 @@ const FindProjectStep01 = (props) => {
                 id="subscript"
                 type="text"
                 placeholder="프로젝트를 설명해주세요"
-                value={storageData.subscript}
+                defaultValue={storageData.subscript}
                 {...register("subscript", { required: true })}
               ></ProjectInput>
             ) : (
@@ -162,7 +181,7 @@ const FindProjectStep01 = (props) => {
                 id="details"
                 type="text"
                 placeholder="프로젝트의 내용을 입력해주세요"
-                value={storageData.details}
+                defaultValue={storageData.details}
                 {...register("details")}
               />
               ) : (
