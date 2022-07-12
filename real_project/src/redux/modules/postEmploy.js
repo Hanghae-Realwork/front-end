@@ -30,7 +30,7 @@ export const loadEmployAxios = () => {
     await apis
       .resumesLoad()
       .then((response) => {
-
+console.log(response)
         let list= []
         let resumes = response.data.returnResumes;
         list = [...resumes];
@@ -42,19 +42,62 @@ export const loadEmployAxios = () => {
   };
 };
 
+export const projectsPhotosAxios = (frm) => {
+  return async function (dispatch) {
+    let success = null;
+    await apis
+      .projectsPhotos(frm)
+      .then((response) => {
+        const img = response.data.resumeImage;
+        success = img;
+      }).catch((err) => {
+        success = null;
+      })
+    return success; 
+  }
+}
 
+export const resumesCreateAxios = (
+  content,
+  resumeImage,
+  start,
+  end,
+  role,
+  skills,
+  content2,
+  content3
+) => {
+  return async function (dispatch) {
+    await apis
+      .resumesCreate(
+        content,
+        resumeImage,
+        start,
+        end,
+        role,
+        skills,
+        content2,
+        content3
+      )
+      .then((response) => {
+       
+        dispatch(createEmploy({content:content,resumeImage:resumeImage,start:start,end:end,role:role,skill:skills,content2:content2,content3:content3}));
+      });
+  };
+};
 
 //Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "employ/LOAD": {
-      return {
-        returnResumes: action.payload,
-      };
+  
+      return {returnResumes: action.payload};
     }
     case "employ/CREATE": {
-      console.log(action.payload)
-      return {state};
+
+      const newResumes = [action.payload, ...state.returnResumes];
+  
+      return {returnResumes: newResumes}
     }
     default:
       return state;
