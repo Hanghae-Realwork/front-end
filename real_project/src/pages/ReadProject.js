@@ -41,7 +41,7 @@ function ReadProject(props) {
                 <DivideLine/>
             <MainTextWrap>
                 <MainText>
-                    <MainTextSpan>{data.detail}</MainTextSpan>
+                    <MainTextSpan>{data.details}</MainTextSpan>
                 </MainText>
             </MainTextWrap>
             <FindRoleWrap>
