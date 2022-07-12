@@ -24,13 +24,18 @@ const FindProjectStep01 = (props) => {
   console.log(params)
   const projectIdNum = (params?.projectid)
   console.log(projectIdNum)
+
+  
   const dispatch = useDispatch
   const navigate = useNavigate()
   const dateref = useRef
+
+
   const callStorage = sessionStorage.getItem('obj')
   const storageData = JSON.parse(callStorage)
-  
   const [selected, setSelected] = useState(new Date);
+
+
   const projectDetail = useSelector((state)=> state.postRecruit.project)
   const data=projectDetail?.project
  

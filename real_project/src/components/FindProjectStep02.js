@@ -15,8 +15,12 @@ import store from "../redux/configstore";
 function FindProjectStep02(props) {
   const dispatch = useDispatch
   const navigate = useNavigate()
+
+//step1 에서 받은 props 유지
   const params = useParams(null);
   const projectIdNum = (params?.projectid)
+
+  //step1 에서 올린 세션스토리지 데이터
   const storageData = sessionStorage.getItem('obj')
   const addData = JSON.parse(storageData);
   const title = addData.title
@@ -53,6 +57,9 @@ function FindProjectStep02(props) {
     }
     console.log(output)
     // schedule: ["2022-07-20", "2022-07-25"]
+
+
+
     // props값이 없다면 생성, 값이 있으면 수정!
     if (projectIdNum === undefined) {
       store.dispatch(
@@ -67,6 +74,8 @@ function FindProjectStep02(props) {
       }).catch((err) => {
         console.log(err);
       });
+
+
     } else if (projectIdNum) {
       store.dispatch(
         editRecruitApi({
@@ -141,7 +150,7 @@ function FindProjectStep02(props) {
       <FindProjectAllWrap>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FindprojectTopWrap>
-            <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
+            <ProjectTitleText>새로운 크루 모집하기</ProjectTitleText>
           </FindprojectTopWrap>
           <HeadLine />
           <FindProjectStepWrap>
@@ -157,9 +166,9 @@ function FindProjectStep02(props) {
             </div>
           </div>
 
-          {/* <SelectSkillWrap> */}
+          <SelectSkillWrap>
             <SkillWrap>
-              <ProjectTitleText>개발자</ProjectTitleText>
+              <SkillTitleTextTag>개발자</SkillTitleTextTag>
               <SelectBoxTab>
                 {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
                   return (<TecLabel key={idx}>
@@ -168,11 +177,11 @@ function FindProjectStep02(props) {
                 })}
               </SelectBoxTab>
             </SkillWrap>
-          {/* </SelectSkillWrap> */}
+          </SelectSkillWrap>
 
           <SelectSkillWrap>
             <SkillWrap>
-              <ProjectTitleText>디자이너</ProjectTitleText>
+              <SkillTitleTextTag>디자이너</SkillTitleTextTag>
               <SelectBoxTab>
                 {designerSkills_list && designerSkills_list.map((list, idx) => {
                   return (<TecLabel key={idx}>
