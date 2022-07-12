@@ -30,7 +30,7 @@ function AddProfile(props) {
   const onCheckedElement = (checked, item) => {
     if (checked) {
       setCheckList([...checkList, item]);
-      console.log(checkList);
+    
     } else if (!checked) {
       setCheckList(checkList.filter((el) => el !== item));
     }
@@ -54,16 +54,18 @@ function AddProfile(props) {
   //저장하기
   const handleClick = () => {
     // console.log(content,resueImage,start,end,role,skill)
-    console.log(role);
-    console.log(introduceRef.current.value);
-    console.log(linkRef.current.value);
-    console.log();
-  };
+    console.log(
+      introduceRef.current.value,
+      role,
+      checkList,
+      linkRef.current.value
+    );
 
-  const onChangeCheck = (e) => {
-    console.log(e.target.value);
+
   };
-  const 파일첨부칸 = () => {};
+  const onClick = () => {
+  console.log("누름")
+}
 
   return (
     <BackgroundAllWrap>
@@ -100,8 +102,12 @@ function AddProfile(props) {
           </SelfWrap>
 
           {/* 사진 */}
+          <input type="file"></input>
+          <input type="file"></input>
           <ProfilePicWrap>
-            <NoShowCircleProfile></NoShowCircleProfile>
+            <NoShowCircleProfile>
+              
+            </NoShowCircleProfile>
             <PhotoEditWrap>
               <PhotoText>삭제</PhotoText>
               <PhotoText>수정</PhotoText>

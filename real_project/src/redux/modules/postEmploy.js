@@ -17,11 +17,11 @@ const initialState = {
   },
 };
 
-export function loadEmploy(load) {
-  return { type: LOAD, load };
+export function loadEmploy(payload) {
+  return { type: LOAD, payload };
 }
-export function createEmploy(add) {
-  return { type: CREATE, add };
+export function createEmploy(payload) {
+  return { type: CREATE, payload };
 }
 
 //middleware
@@ -48,16 +48,14 @@ export const loadEmployAxios = () => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "employ/LOAD": {
-    
       return {
-        returnResumes: action.load,
+        returnResumes: action.payload,
       };
     }
-    // case "employ/CREATE": {
-    //   return {
-    //     list: action.load,
-    //   };
-    // }
+    case "employ/CREATE": {
+      console.log(action.payload)
+      return {state};
+    }
     default:
       return state;
   }
