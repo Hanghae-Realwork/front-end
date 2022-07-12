@@ -3,29 +3,36 @@ import Tag from "./TagCompoEmp"
 
 import BasicPhoto from "../image/astroman.svg"
 import Flip from "../image/flip.svg"
-
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 function CradEmpol({ data }) {
+  const navigate = useNavigate()
+  const userResumes = useSelector((state) => state);
 
-  const start = data.start.replace("-", ".").replace("-", ".");
-  const end = data.end.replace("-", ".").replace("-", ".");
+  const start =
+    data > 0 ? "" : data.start.replace("-", ".").replace("-", ".");
+  const end =
+    data> 0 ? "" : data.end.replace("-", ".").replace("-", ".");
 
     return (
       <>
-        <AllCardWrap>
+        <AllCardWrap onClick={() => {
+          navigate("/employmentprofile");
+        }}>
           <CardTopWrap>
             <ProfileTopWrap>
               <ProfileWrap>
                 <ProfileCircle></ProfileCircle>
               </ProfileWrap>
               <CardTextWrap>
-                <CardTitle>{data.nickname}</CardTitle>
-                <CardText>{data.role}</CardText>
+                <CardTitle>{data.length > 0 ? "" : data.nickname}</CardTitle>
+                <CardText>{data.length > 0 ? "" : data.role}</CardText>
               </CardTextWrap>
             </ProfileTopWrap>
             <FlipWrap></FlipWrap>
           </CardTopWrap>
           <CardMidWrap>
-            <MidText>{data.content}</MidText>
+            <MidText>{data.length > 0 ? "" : data.content}</MidText>
             <br />
           </CardMidWrap>
           <CardMidMini>
@@ -36,7 +43,7 @@ function CradEmpol({ data }) {
           </CardMidMini>
           <CardBotTag>
             <div>
-              {data === undefined
+              {data.resumeskills === undefined
                 ? null
                 : data.resumeskills.map((list, idx) => {
                     return <Tag key={idx} skills={list} />;
