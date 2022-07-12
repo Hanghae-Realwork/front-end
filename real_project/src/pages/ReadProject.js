@@ -35,13 +35,13 @@ function ReadProject(props) {
         {data !== undefined ? (
             <>
             <TopWrap>
-                <TopTitle>랑데부 프로젝트 참가자 모집{data.title}</TopTitle>
-                <TopDateLimit>프로젝트 기간 : 대충 이맘 때 부터 이맘 때 까지{data.title}</TopDateLimit>
+                <TopTitle>{data.title}</TopTitle>
+                <TopDateLimit>프로젝트 기간 : {data.start} ~ {data.start}</TopDateLimit>
             </TopWrap>
                 <DivideLine/>
             <MainTextWrap>
                 <MainText>
-                    <MainTextSpan>대충 여기에 본문이 들어가는 자립니다.</MainTextSpan>
+                    <MainTextSpan>{data.detail}</MainTextSpan>
                 </MainText>
             </MainTextWrap>
             <FindRoleWrap>
