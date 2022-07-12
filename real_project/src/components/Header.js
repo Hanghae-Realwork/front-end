@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUserValidation } from "../redux/modules/user";
+import { checkUserValidation, logOut } from "../redux/modules/user";
 
 import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo.svg"
@@ -14,8 +14,9 @@ function Header() {
   const dispatch = useDispatch();
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-  console.log(loginInfo)
-
+ 
+  
+  
   React.useEffect(() => {
     if (loginInfo === false) {
       dispatch(checkUserValidation());
@@ -24,23 +25,54 @@ function Header() {
 
   // style={{fontWeight: ? "bold" : " "}}
 
+  const logoutClick = () => {
+    const result = window.confirm("정말 로그아웃 하시겠습니까 ?");
+    if (result) {
+      alert("로그아웃 되었습니다.")
+       navigate("/");
+       dispatch(logOut());
+    }
+   
+
+   
+  }
   return (
     <BackGroundDiv>
       <HeaderWrap>
         <HeaderConWrap>
           <HeaderAlignWrap>
-            <LogoWrap>
-              <HeaderFix onClick={() => {navigate(`/`);}}></HeaderFix></LogoWrap>
+
+            <LogoWrap onClick={() => {navigate(`/`);}}></LogoWrap>
             <HeaderLeftWrap>
-              <FindProject style={{ fontWeight: "bold" }} onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
+              <FindProject onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
               <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
+              <FindMatching onClick={() => {navigate(`/`);}}>프로젝트 매칭</FindMatching>
               <FindProject onClick={() => {navigate(`/chatjoin`);}}>화상채팅(임시)</FindProject>
+
             </HeaderLeftWrap>
           </HeaderAlignWrap>
           <HeaderRightWrap>
-            <LoginButton onClick={() => {navigate(`/login`);}}>로그인</LoginButton>
-            <LoginButton style={{ display: !loginInfo ? "none" : "" }}>로그아웃</LoginButton>
-            <CircleImage onClick={() => {navigate(`/mypage`);}}><img src = {BasicPhoto} /></CircleImage>
+            <LoginButton
+              onClick={() => {
+                navigate(`/login`);
+              }}
+              style={{ display: !loginInfo ? "" : "none" }}
+            >
+              로그인
+            </LoginButton>
+            <LoginButton
+              style={{ display: !loginInfo ? "none" : "" }}
+              onClick={logoutClick}
+            >
+              로그아웃
+            </LoginButton>
+            <CircleImage
+              onClick={() => {
+                navigate(`/mypage`);
+              }}
+            >
+              <img src={BasicPhoto} />
+            </CircleImage>
           </HeaderRightWrap>
         </HeaderConWrap>
       </HeaderWrap>
@@ -71,26 +103,21 @@ const HeaderWrap = styled.div`
 `
 
 const LogoWrap = styled.div`
-    width: 180px;
+    width: 107px;
     height: 48px;
     font-weight: 700;
     font-size: 32px;
     /* margin: 26px 0px 26px 0px; */
     cursor: pointer;
-    /* border: 1px solid white; */
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     background-image: url(${Logo});
-    background-position: cover;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-`
-
-const HeaderFix = styled.label`
-    color: #fff;
-    cursor: pointer;
+    /* border: 1px solid white; */
 `
 
 const HeaderConWrap = styled.div`
@@ -134,12 +161,26 @@ const FindProject = styled.label`
     color: #FFF;
     font-weight: 500;
     padding: 8px 16px 8px 16px;
-    border-radius: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+`
 
+const FindMatching = styled.label`
+    /* border: 1px solid white; */
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    /* margin: 10px; */
+    font-size: 16px;
+    color: #FFF;
+    font-weight: 500;
+    padding: 8px 16px 8px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 `
 
 const HeaderRightWrap = styled.div`

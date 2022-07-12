@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 
 //Pages 연결
 import AddProfile from "./pages/AddProfile";
-import Chat from "./pages/Chat";
+// import Chat from "./pages/Chat";
 import EmploymentProfile from "./pages/EmploymentProfile";
 import Join from "./pages/Join";
 import Login from "./pages/Login";
@@ -14,9 +14,9 @@ import MainRecruit from "./pages/MainRecruit";
 // import RecruitWrite from "./pages/RecruitWrite";
 import Main from "./pages/Main";
 import MyPage from "./pages/MyPage"
-import ChatJoin from "./pages/ChatPassword"
+// import ChatJoin from "./pages/ChatPassword"
 import ReadProject from "./pages/ReadProject"
-import DisplayChatView from "./pages/DisplayChatView";
+// import DisplayChatView from "./pages/DisplayChatView";
 // import Test from "./pages/Test";
 
 //Components 연결
@@ -64,15 +64,18 @@ function App() {
         <Route path="/addprofile" element={<AddProfile />} />
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
         {/* <Route path="/recruitwrite" element={<RecruitWrite />}></Route> */}
-        <Route path="/chat" element={<Chat />}></Route>
+        {/* <Route path="/chat" element={<Chat />}></Route> */}
         <Route path="/mypage" element={<MyPage />}></Route>
         <Route path="/findprojectstep1" element={<FindProjectStep01 />}></Route>
         <Route path="/findprojectstep1/:projectid" element={<FindProjectStep01 />}></Route>
         <Route path="/findprojectstep2" element={<FindProjectStep02 />}></Route>
         <Route path="/findprojectstep2/:projectid" element={<FindProjectStep02 />}></Route>
-        <Route path="/chatjoin" element={<ChatJoin />}></Route>
+        {/* <Route path="/chatjoin" element={<ChatJoin />}></Route> */}
         <Route path="/readproject/:projectid" element={<ReadProject />}></Route>
-        <Route path="/displaychatview" element={<DisplayChatView />}></Route>
+        {/* <Route path="/displaychatview" element={<DisplayChatView />}></Route> */}
+        {/* <Route path="/chatjoin" element={<ChatJoin />}></Route> */}
+        {/* <Route path="/readproject" element={<ReadProject />}></Route> */}
+        {/* <Route path="/displaychatview" element={<DisplayChatView />}></Route> */}
       </Routes>
     </MainWrap>
   );
