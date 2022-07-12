@@ -26,6 +26,17 @@ function FindProjectStep02(props) {
   const start = addData.start
   const end = addData.end
 
+  const [checkedItems, setCheckedItems] = useState(new Set());
+  const checkedItemHandler = (id, isChecked) => {
+    if (isChecked) {
+      checkedItems.add(id);
+      setCheckedItems(checkedItems);
+    } else if (!isChecked && checkedItems.has(id)) {
+      checkedItems.delete(id);
+      setCheckedItems(checkedItems);
+    }
+  };
+
   const onSubmit = async (data) => {
 
     const output = {
@@ -38,7 +49,7 @@ function FindProjectStep02(props) {
       photos: photos,
       start: start,
       end: end,
-
+      schedule: ["2022-07-01"]
     }
     console.log(output)
     // schedule: ["2022-07-20", "2022-07-25"]
@@ -151,8 +162,8 @@ function FindProjectStep02(props) {
               <ProjectTitleText>개발자</ProjectTitleText>
               <SelectBoxTab>
                 {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
-                  return (<TecLabel>
-                    <CheckBox id="skills" type="checkbox" value={list.data} {...register("skills")} />{list.data}
+                  return (<TecLabel key={idx}>
+                    <CheckBox  id="skills" type="checkbox" value={list.data} {...register("skills")} />{list.data}
                   </TecLabel>)
                 })}
               </SelectBoxTab>

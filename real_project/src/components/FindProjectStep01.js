@@ -18,6 +18,8 @@ import { createRecruitApi, loadRecruitOneApi } from "../redux/modules/postRecrui
 import store from "../redux/configstore";
 
 const FindProjectStep01 = (props) => {
+
+  
   const params = useParams(null);
   console.log(params)
   const projectIdNum = (params?.projectid)
@@ -27,9 +29,11 @@ const FindProjectStep01 = (props) => {
   const dateref = useRef
   const callStorage = sessionStorage.getItem('obj')
   const storageData = JSON.parse(callStorage)
+  
   const [selected, setSelected] = useState(new Date);
   const projectDetail = useSelector((state)=> state.postRecruit.project)
   const data=projectDetail?.project
+ 
   // const [startdate, setStart] = useState(selected.from);
   const today = new Date();
   const startdate = JSON.stringify(selected.from)
@@ -44,10 +48,11 @@ const FindProjectStep01 = (props) => {
 }, []);
   
   const onSubmit = async (data) => {
-
+    const addData=projectDetail?.project
     const output = {
+
+      ...addData,
       ...data,
-      
       start: startdate.slice(1, 11),
       end: enddate.slice(1, 11),
       selected:selected,
