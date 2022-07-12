@@ -1,27 +1,56 @@
 import styled from "styled-components"
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loadRecruitOneApi } from "../redux/modules/postRecruit";
 
-function ReadProject() {
 
+function ReadProject(props) {
+    
+    const params = useParams();
+    console.log(params)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    // const is_login = localStorage.getItem("token");
+
+    const projectIdNum = (params?.projectid)
+    const projectDetail = useSelector((state)=> state.postRecruit.project)
+
+    const data=projectDetail?.project
+   
+    console.log(data)
+    useEffect(() => {
+        dispatch(loadRecruitOneApi(projectIdNum));
+      }, []);
+    
+
+    
     return(
         <>
         <AllWrap>
+        {data !== undefined ? (
+            <>
             <TopWrap>
-                <TopTitle>랑데부 프로젝트 참가자 모집</TopTitle>
-                <TopDateLimit>프로젝트 기간 : 대충 이맘 때 부터 이맘 때 까지</TopDateLimit>
+                <TopTitle>{data.title}</TopTitle>
+                <TopDateLimit>프로젝트 기간 : {data.start} ~ {data.start}</TopDateLimit>
             </TopWrap>
                 <DivideLine/>
             <MainTextWrap>
                 <MainText>
-                    <MainTextSpan>대충 여기에 본문이 들어가는 자립니다.</MainTextSpan>
+                    <MainTextSpan>{data.detail}</MainTextSpan>
                 </MainText>
             </MainTextWrap>
             <FindRoleWrap>
                 <div><RoleTitle>찾는 직군</RoleTitle></div>
-                <div><span>frontend 개발자</span></div>
+                <div><span>{data.role}</span></div>
             </FindRoleWrap>
             <FindSkillWrap>
                 <div><RoleTitle>필요한 스킬 및 스텍</RoleTitle></div>
-                <div><span>frontend 개발자</span></div>
+                <div><span>{data.skills}</span></div>
             </FindSkillWrap>
                 <DivideLine/>
             <DateWrap>
@@ -55,6 +84,12 @@ function ReadProject() {
             <ButtonWrap>
                 <SubmitButton>지원하기</SubmitButton>
             </ButtonWrap>
+            
+            <button data={data} onClick={() => {navigate(`/findprojectstep1/${projectIdNum}`)}}>프로젝트 수정하기 </button>
+            </>
+            
+        ):null}
+
         </AllWrap>
         </>
     )

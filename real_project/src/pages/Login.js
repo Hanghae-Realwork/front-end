@@ -16,6 +16,7 @@ function Login() {
 
   // 로그인 벨리데이션 체크 함수
   const loginFunction = async () => {
+
     if (
       loginidRef.current.value === "" ||
       passwordRef.current.value === "" ||
@@ -27,7 +28,8 @@ function Login() {
       alert("아이디, 비밀번호를 채워주세요!");
       return false;
     }
-    // axios 연결 후 활성화 될 벨리데이션 체크 입니다.
+
+
     document.getElementById("LoginBtn").disabled = true;
     try {
       await dispatch(

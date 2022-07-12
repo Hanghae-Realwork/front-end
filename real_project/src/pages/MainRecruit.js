@@ -7,14 +7,16 @@ import { loadRecruitsApi } from "../redux/modules/postRecruit";
 
 import Card from "../components/CardRecruit";
 import RecSelectCompo from "../components/RecSelectCompo";
+import { useLocation } from "react-router-dom";
 
 
 const MainRecruit = () => {
-
+  let location = useLocation();
+  console.log(location);
   const dispatch = useDispatch();
 
   const recruits = useSelector((state) => state.postRecruit.projects);
-
+  
 
   useEffect(() => {
     dispatch(loadRecruitsApi());

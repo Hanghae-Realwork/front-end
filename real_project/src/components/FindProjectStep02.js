@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import SelectSkill from "./SelectSkill";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { add } from "lodash";
-import { createRecruitApi } from "../redux/modules/postRecruit";
+import { createRecruitApi, editRecruitApi } from "../redux/modules/postRecruit";
 import store from "../redux/configstore";
 
 
 
 
-function FindProjectStep02() {
+function FindProjectStep02(props) {
   const dispatch = useDispatch
   const navigate = useNavigate()
+  const params = useParams(null);
+  const projectIdNum = (params?.projectid)
   const storageData = sessionStorage.getItem('obj')
   const addData = JSON.parse(storageData);
   const title = addData.title
@@ -27,7 +29,9 @@ function FindProjectStep02() {
   const onSubmit = async (data) => {
 
     const output = {
+      projectid:projectIdNum,
       ...data,
+      
       title: title,
       subscript: subscript,
       details: details,
@@ -38,18 +42,36 @@ function FindProjectStep02() {
     }
     console.log(output)
 
-    store.dispatch(
-      createRecruitApi({
-        ...output
-      })
-    ).then((res) => {
-      alert("프로젝트 등록완료!")
-      sessionStorage.removeItem('obj')
-      console.log(res);
-      navigate(`/mainrecruit`)
-    }).catch((err) => {
-      console.log(err);
-    });
+// props값이 없다면 생성, 값이 있으면 수정!
+    if (projectIdNum === undefined) {
+      store.dispatch(
+        createRecruitApi({
+          ...output
+        })
+      ).then((res) => {
+        alert("프로젝트 등록완료!")
+        sessionStorage.removeItem('obj')
+        console.log(res);
+        navigate(`/mainrecruit`)
+      }).catch((err) => {
+        console.log(err);
+      });
+    }else if (projectIdNum ){
+      store.dispatch(
+        editRecruitApi({
+          ...output
+        })
+      ).then((res) => {
+        alert("프로젝트 수정완료!")
+        sessionStorage.removeItem('obj')
+        console.log(res);
+        navigate(`/mainrecruit`)
+      }).catch((err) => {
+        console.log(output);
+        console.log(err);
+      });
+
+    }
   }
   
   const {

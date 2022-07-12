@@ -1,34 +1,50 @@
 import axios from "axios";
-// axios.defaults.withCredentials = true;
+import { getCookie } from "./cookie";
+
 //이미지 데이터
 const imgApi = axios.create({
   baseURL: "http://3.39.226.20/",
   headers: {
     "content-type": "multipart/form-data",
+     withCredentials: true,
   },
+
 });
 //기존 api
 const api = axios.create({
   baseURL: "http://3.39.226.20/",
+
   headers: {
     "content-type": "application/json;charset=UTF-8",
-  accept: "application/json,",
-  withCredentials: true,
+    accept: "application/json,",
+    withCredentials: true,
   },
 });
 
+
+// axios.defaults.withCredentials = true;
+
+
 //토큰
 api.interceptors.request.use(function (config) { 
-  const accessToken = `${localStorage.getItem("token")}`;
-  config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  return config;
-});
 
+  // const accessToken = `${localStorage.getItem("token")}`;
+  // config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  // return config;
+   const atoken = getCookie("ACCESS_TOKEN");
+   const rtoken = getCookie("REFRESH_TOKEN");
+
+   config.headers.common["Authorization"] = `Bearer ${atoken}`;
+   config.headers.common["reAuthorization"] = `Bearer ${rtoken}`;
+
+   return config;
+});
 
 
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {
   const accessToken = `${localStorage.getItem("token")}`;
+
   if (accessToken !== undefined) {
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
   }
@@ -42,15 +58,7 @@ export const apis = {
   ///////////////////////
 
   //  - 1. 회원가입
-  signup: (
-    userId,
-    nickname,
-    name,
-    birth,
-    password,
-    passwordCheck,
-    allCheck
-  ) =>
+  signup: (userId, nickname, name, birth, password, passwordCheck, allCheck) =>
     api.post("/api/users/signup", {
       userId: userId,
       nickname: nickname,
@@ -105,7 +113,8 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  refresh: () => api.post("/api/users/refresh"),
+  refresh: () =>
+    api.post("/api/users/refresh"),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
@@ -117,13 +126,14 @@ export const apis = {
       ...data,
     }),
   //  - 10. 프로젝트 조회
-  projectsLoad: () => api.get("/api/projects?page=1&limit=9"),
+  projectsLoad: () => api.get(`/api/projects?page=1&limit=9`),
 
   //  - 11. 프로젝트 상세조회
-  projectsLoadDetail: (projectId) => api.get("/api/projects/${projectId}"),
+  projectsLoadDetail: (projectId) => api.get(`/api/projects/${projectId}`),
 
   //  - 12. 프로젝트 수정
   projectsModify: (
+    
     projectId,
     title,
     details,
@@ -133,11 +143,11 @@ export const apis = {
     end,
     skills,
     photos,
-    email,
-    phone,
-    schedule
+    
   ) =>
-    api.put("/api/projects/${projectId}", {
+    api.put(`/api/projects/${projectId}`, {
+      
+      
       title: title,
       details: details,
       subscript: subscript,
@@ -146,9 +156,7 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
-      email: email,
-      phone: phone,
-      schedule: schedule,
+     
     }),
 
   //  - 13. 프로젝트 삭제
