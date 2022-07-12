@@ -113,8 +113,7 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  refresh: () =>
-    api.post("/api/users/refresh"),
+  refresh: () => api.post("/api/users/refresh"),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
@@ -162,17 +161,15 @@ export const apis = {
 
   //  - 13. 프로젝트 삭제
   projectsDelete: (projectId) => api.delete("/api/projects/${projectId}"),
-
+  //  - ## 이미지 업로드
+  projectsPhotos: (frm) => api.post("/api/resumes/image", frm),
   /////////////////////////////////////////
   ////<3. 팀원 찾기 페이지 이력서(지원자) API>////
   /////////////////////////////////////////
 
   //  - 14. 팀원 찾기 등록
   resumesCreate: (
-    nickname,
     content,
-    userId,
-    phone,
     resumeImage,
     start,
     end,
@@ -182,15 +179,12 @@ export const apis = {
     content3
   ) =>
     api.post("/api/resumes", {
-      nickname: nickname,
       content: content,
-      userId: userId,
-      phone: phone,
       resumeImage: resumeImage,
       start: start,
       end: end,
       role: role,
-      skills: skills,
+      skill: skills,
       content2: content2,
       content3: content3,
     }),
