@@ -117,13 +117,14 @@ export const apis = {
       ...data,
     }),
   //  - 10. 프로젝트 조회
-  projectsLoad: () => api.get("/api/projects?page=1&limit=9"),
+  projectsLoad: () => api.get(`/api/projects?page=1&limit=9`),
 
   //  - 11. 프로젝트 상세조회
-  projectsLoadDetail: (projectId) => api.get("/api/projects/${projectId}"),
+  projectsLoadDetail: (projectId) => api.get(`/api/projects/${projectId}`),
 
   //  - 12. 프로젝트 수정
   projectsModify: (
+    
     projectId,
     title,
     details,
@@ -133,11 +134,11 @@ export const apis = {
     end,
     skills,
     photos,
-    email,
-    phone,
-    schedule
+    
   ) =>
-    api.put("/api/projects/${projectId}", {
+    api.put(`/api/projects/${projectId}`, {
+      
+      
       title: title,
       details: details,
       subscript: subscript,
@@ -146,9 +147,7 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
-      email: email,
-      phone: phone,
-      schedule: schedule,
+     
     }),
 
   //  - 13. 프로젝트 삭제
