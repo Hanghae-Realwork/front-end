@@ -64,33 +64,33 @@ export const createRecruitAxios = (
 ) => {
   return async function (dispatch) {
     await apis
-      .projectsCreate(
-        title,
-        details,
-        subscript,
-        role,
-        start,
-        end,
-        skills,
-        schedule
-      )
-      .then((res) => {
-        dispatch(
-          createRecruit({
-            title: title,
-            details: details,
-            subscript: subscript,
-            role: role,
-            start: start,
-            end: end,
-            skills: skills,
-            schedule: schedule,
-          })
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+  .projectsCreate(
+    title, 
+    details, 
+    subscript, 
+    role, 
+    start, 
+    end, 
+    skills, 
+    schedule
+    )
+  .then((res) => {
+    dispatch(createRecruit({
+      title: title,
+      details: details,
+      subscript: subscript,
+      role: role,
+      start: start,
+      end: end,
+      skills: skills,
+      schedule: schedule
+    }))
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
 };
 };
 
