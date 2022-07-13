@@ -28,15 +28,10 @@ const api = axios.create({
 //토큰
 api.interceptors.request.use(function (config) { 
 
-  // const accessToken = `${localStorage.getItem("token")}`;
-  // config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  // return config;
-   const atoken = getCookie("ACCESS_TOKEN");
-   const rtoken = getCookie("REFRESH_TOKEN");
-
-   config.headers.common["Authorization"] = `Bearer ${atoken}`;
-   config.headers.common["reAuthorization"] = `Bearer ${rtoken}`;
-
+  const accessToken = `${localStorage.getItem("token")}`;
+  if (accessToken !== undefined) {
+    config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  }
    return config;
 });
 
