@@ -402,7 +402,7 @@
 .react-datepicker__quarter--selected,
 .react-datepicker__quarter--in-selecting-range,
 .react-datepicker__quarter--in-range {
-  border-radius: 15px;
+  border-radius: 25px;
   background-color: #F3F3F3;
   color: #fff;
 }
@@ -433,7 +433,7 @@
 .react-datepicker__month-text:hover,
 .react-datepicker__quarter-text:hover,
 .react-datepicker__year-text:hover {
-  border-radius: 15px;
+  border-radius: 25px;
   background-color: #f0f0f0;
 }
 .react-datepicker__day--today,
@@ -499,8 +499,8 @@
 .react-datepicker__month-text--keyboard-selected,
 .react-datepicker__quarter-text--keyboard-selected,
 .react-datepicker__year-text--keyboard-selected {
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   border-color: 2px #000;
   outline: 2px #000;
   /* background-color: #ffffff; */
@@ -698,7 +698,7 @@
   cursor: pointer;
   background-color: #216ba5;
   color: #fff;
-  border-radius: 15px;
+  border-radius: 25px;
   height: 16px;
   width: 16px;
   padding: 2px;

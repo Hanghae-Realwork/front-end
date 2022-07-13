@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import styled from 'styled-components';
 import "./TestReactDatepicker.css"
-// import"./TestDatepicker.css";
+import"./TestDatepicker.css";
 import ko from 'date-fns/locale/ko';
 import { format, isValid, parse, isAfter } from "date-fns";
 registerLocale('ko', ko);
@@ -110,7 +110,7 @@ function TestDatePicker() {
       />
 
       <DatePickerWrapper
-        
+
         popperContainer={Popper}
         calendarContainer={Calendar}
         // dayClassName={Daystring}

@@ -1,13 +1,27 @@
 
 .react-datepicker {
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
+    
     padding: auto;
 
 }
 
+.react-datepicker__day-names, .react-datepicker__week {
+    white-space: nowrap;
+    margin-top: 10px;
+}
+
 .react-datepicker__current-month {
-    font-size: 1.4rem !important;
+    font-size: 1.2rem !important;
     
+}
+
+.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-color: 2px #000;
+    outline: 2px #000;
+    /* background-color: #ffffff; */
 }
 
 .react-datepicker__header {
@@ -22,23 +36,22 @@
 .react-datepicker__day,
 .react-datepicker__time-name {
     margin: 0rem !important;
-    /* font-size: 1rem; */
+    font-size: 1rem;
     width: 2.5rem;
-    margin-top: px;
+    
+    padding: 10px
 }
 
 
-.react-datepicker__day--keyboard-selected,
 
-
-.saturday {
+/* .saturday {
     color: rgb(0, 0, 255) !important;
-}
+} */
 
-.sunday {
+/* .sunday {
     color: rgb(255, 0, 0) !important;
-}
+} */
 
-.react-datepicker__day--disabled {
+/* .react-datepicker__day--disabled {
     color: #cccccc !important;
-}
+} */
