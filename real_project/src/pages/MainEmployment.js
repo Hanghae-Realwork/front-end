@@ -25,7 +25,7 @@ const MainEmployment = () => {
       <SelectCompo />
       <CardBackGround>
         <CardContainerWrap>
-          {resumes===undefined ? null : resumes.map((list, idx) => {
+          {resumes === undefined ? null : resumes.map((list, idx) => {
             return <CardEmpol key={idx} data={list} />;
               })}
         </CardContainerWrap>

@@ -79,7 +79,7 @@ function AddProfile(props) {
   //버튼 누르면 저장
   const handleClick = async() => {
 
-console.log(files[0])
+
     frm.append("resumeImage", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
