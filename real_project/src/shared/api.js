@@ -163,6 +163,7 @@ export const apis = {
   projectsDelete: (projectId) => api.delete("/api/projects/${projectId}"),
   //  - ## 이미지 업로드
   projectsPhotos: (frm) => api.post("/api/resumes/image", frm),
+  
   /////////////////////////////////////////
   ////<3. 팀원 찾기 페이지 이력서(지원자) API>////
   /////////////////////////////////////////
@@ -198,10 +199,7 @@ export const apis = {
   //  - 17. 팀원 찾기 수정
   resumesModify: (
     resumeId,
-    nickname,
     content,
-    userId,
-    phone,
     resumeImage,
     start,
     end,
@@ -210,22 +208,19 @@ export const apis = {
     content2,
     content3
   ) =>
-    api.put("/api/resumes/${resumeId}", {
-      nickname: nickname,
+    api.put(`/api/resumes/${resumeId}`, {
       content: content,
-      userId: userId,
-      phone: phone,
       resumeImage: resumeImage,
       start: start,
       end: end,
       role: role,
-      skills: skills,
+      skill: skills,
       content2: content2,
       content3: content3,
     }),
 
   //  - 18. 팀원 찾기 삭제
-  resumesDelete: (resumeId) => api.delete("/api/resumes/${resumeId}"),
+  resumesDelete: (resumeId) => api.delete(`/api/resumes/${resumeId}`),
 
   //  - 19. 팀원 찾기 프로필 이미지 편집(보류)
   //  - 20. 팀원 찾기 프로필 이미지 삭제(보류)
@@ -253,3 +248,6 @@ export const apis = {
   //  - 31. 이미지 업로드
   //[이미지업로드]
 };
+
+
+
