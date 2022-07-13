@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { delPostApi, loadRecruitOneApi } from "../redux/modules/postRecruit";
 
+import Tag from "../components/TagCompoRec";
+
 
 function ReadProject(props) {
     
@@ -19,12 +21,16 @@ function ReadProject(props) {
 
     const projectIdNum = (params?.projectid)
     const projectDetail = useSelector((state)=> state.postRecruit.project)
-
+    const userInfo = useSelector((state)=> state.user.uesrInfo)
     const data=projectDetail?.project
+    const userId=userInfo?.userId
+    console.log(data?.email)
+    console.log(userInfo)
    
     console.log(data)
     useEffect(() => {
         dispatch(loadRecruitOneApi(projectIdNum));
+
       }, []);
     
 
@@ -50,7 +56,13 @@ function ReadProject(props) {
             </FindRoleWrap>
             <FindSkillWrap>
                 <div><RoleTitle>필요한 스킬 및 스텍</RoleTitle></div>
-                <div><span>{data.skills}</span></div>
+                <div><TagWrap>
+              {data === undefined
+                ? null
+                : data.skills.map((list, idx) => {
+                    return <Tag key={idx} skills={list} />;
+                  })}
+            </TagWrap></div>
             </FindSkillWrap>
                 <DivideLine/>
             <DateWrap>
@@ -85,15 +97,37 @@ function ReadProject(props) {
                 <SubmitButton>지원하기</SubmitButton>
             </ButtonWrap>
             {/* 수정,삭제버튼 현재 유저의 email과 상세내용의 email이 같을시 버튼 활성화 */}
-            <button data={data} onClick={() => {navigate(`/findprojectstep1/${projectIdNum}`)}}>프로젝트 수정하기 </button>
+            <div>
+            {data.email === userId  ? (
+                <div>
+            <button data={data}  onClick={() => {navigate(`/findprojectstep1/${projectIdNum}`)}}>프로젝트 수정하기 </button>
             <button onClick={() => {
                     const result =
                       window.confirm("정말 이 프로젝트를 삭제할까요?");
                     if (result) {
                       dispatch(delPostApi(projectIdNum));
+                      
                       navigate("/");
                     }
                   }}>삭제</button>
+                  </div>
+            ):
+            (
+                <div>
+            <button data={data}  onClick={() => {navigate(`/findprojectstep1/${projectIdNum}`)}}>프로젝트 수정하기 </button>
+            <button onClick={() => {
+                    const result =
+                      window.confirm("정말 이 프로젝트를 삭제할까요?");
+                    if (result) {
+                      dispatch(delPostApi(projectIdNum));
+                      
+                      navigate("/");
+                    }
+                  }}>삭제</button>
+                  </div>
+            )
+            }
+            </div>
             </>
             
         ):null}
@@ -153,6 +187,13 @@ const FindSkillWrap = styled.div`
     margin-top: 30px;
     margin-bottom: 30px;
 `
+
+const TagWrap = styled.div`
+  /* border: 1px solid black; */
+  margin-bottom: 28px;
+  height: 34px;
+`;
+
 
 const DateWrap = styled.div`
     /* border: 1px solid black; */
