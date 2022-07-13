@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { loadEmployAxios } from "../redux/modules/postEmploy";
 
 const MainEmployment = () => {
-  const [updata,setUpdate] = useState()
+  const [updata, setUpdate] = useState();
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.postEmploy.returnResumes);
 
