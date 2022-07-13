@@ -110,8 +110,8 @@ export const loginAxios = (userEmail, password) => {
       .then((res) => {
        
         // console.log(res)
-        // localStorage.setItem("token", res.data.token);
-        setCookie("ACCESS_TOKEN", res.data.token, 1);
+        localStorage.setItem("token", res.data.token);
+        
         dispatch(checkUserValidation());
         // dispatch(login({ userId:userEmail }));
          success = true;

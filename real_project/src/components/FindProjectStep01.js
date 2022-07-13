@@ -72,6 +72,7 @@ const FindProjectStep01 = (props) => {
   const CompliteButton = async() => {
     frm.append("photos", files[0]);
     console.log(files[0])
+
     try {
         await dispatch(projectsPhotosAxios(frm)).then((success) => {
           dispatch(
@@ -94,6 +95,7 @@ const FindProjectStep01 = (props) => {
           console.log(err)
         }
       }
+
 
   return (
     <>
