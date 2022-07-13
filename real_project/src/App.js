@@ -16,8 +16,10 @@ import Main from "./pages/Main";
 import MyPage from "./pages/MyPage"
 // import ChatJoin from "./pages/ChatPassword"
 import ReadProject from "./pages/ReadProject"
+
 // import DisplayChatView from "./pages/DisplayChatView";
 // import Test from "./pages/Test";
+
 //Components 연결
 import Header from "./components/Header";
 import Loading from "./pages/Loading";
@@ -41,6 +43,7 @@ const dispatch = useDispatch()
     <MainWrap>
       {/* <MainHeader> */}
       <Header />
+      {/* <DatePickerTest/> */}
       {/* <ReadProject></ReadProject> */}
       {/* <ChatJoin /> */}
       {/* <MyPage /> */}

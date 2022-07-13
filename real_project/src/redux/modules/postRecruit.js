@@ -2,46 +2,32 @@ import { apis } from "../../shared/api";
 
 const LOAD = 'recruit/LOAD';
 const CREATE = 'recruit/CREATE'
+const EDIT = 'recruit/EDIT'
+const DELETE = 'recruit/DELETE'
 
 const initialState = {
-  list: {
-    title: null,
-    details: null,
-    subscript: null,
-    role: null,
-    start: null,
-    end: null,
-    skills: null,
-    email: null,
-    phone: null,
-    schedule: null,
-  },
+  reciveRecruit: [],
+  recruit: []
 };
 
-export function loadRecruits(discription) {
-  return { type: LOAD, discription };
+export function loadRecruit(loadfunction) {
+  return { type: LOAD, loadfunction };
 }
 
-export function createRecruit(post) {
-  return { type: CREATE, post };
+export function createRecruit(postfunction) {
+  return { type: CREATE, postfunction };
 }
 
-//api연결
-
-export const loadRecruitsApi = () => {
+//미들믿을
+export const loadRecruitAxios = () => {
   return async function (dispatch) {
     await apis
       .projectsLoad()
-      .then((response) => {
-       
+      .then((res) => {
         let list = [];
-        let projects = response.data.projects;
-       
-        list = [...projects.reverse()]
-
-        
-       
-        dispatch(loadRecruits(list));
+        let project = res.data.projects
+        list = [...project]
+        dispatch(loadRecruit(list));
       })
       .catch((err) => {
         console.log(err);
@@ -49,41 +35,83 @@ export const loadRecruitsApi = () => {
     } 
   };
 
-  
-// export const createRecruitApi = (post, userEmail) => {
-//   // const token = localStorageGet("token");
-//   // console.log("토큰", token);
-//   return async function (dispatch, getState) {
-//     // const user = getState().users.user;
-//     // console.log("정보", getState().users.user);
-//     const body = {
-//       // users: user,
-//       email: userEmail,
-//     };
-//     console.log(body);
-//     try {
-//       console.log("프로젝트 생성 완료");
-//       const data = await apis.projectsCreate(post);
-//       // const data = { id: docRef.id, ...post };
-   
-//       dispatch(createRecruit(data));
-//     } catch (e) {
-//       console.log(`프로젝트 오류 발생!${e}`);
-//     }
-//   };
-// };
+export const projectsPhotosAxios = (frm) => {
+  return async function (dispatch) {
+    let success = null;
+    await apis
+      .projectsPhotos(frm)
+      .then((res) => {
+        const img = res.data.projectsPhotos;
+        success = img;
+      }).catch((err) => {
+        success = null;
+      })
+    return success; 
+  }
+}
 
-//Reducer
+
+export const createRecruitAxios = (
+  title, 
+  details, 
+  subscript, 
+  role, 
+  start, 
+  end, 
+  skills, 
+  schedule
+) => {return async function (dispatch) {
+    await apis
+  .recruitCreate(
+    title, 
+    details, 
+    subscript, 
+    role, 
+    start, 
+    end, 
+    skills, 
+    schedule
+    )
+  .then((res) => {
+    dispatch(createRecruit({
+      title: title,
+      details: details,
+      subscript: subscript,
+      role: role,
+      start: start,
+      end: end,
+      skills: skills,
+      schedule: schedule
+    }))
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+};
+};
+
+
+//리듀서
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
-      return {projects : action.discription};
+      return {
+        reciveRecruit : action.loadfunction,
+        recruit: state.recruit
+      };
     }
-    // case 'recruit/CREATE': {
-    //   const new_project_list = [...state, action.post];
-    //   return { list: new_project_list };
-    // }
 
+    case 'recruit/CREATE' :{
+      const writeProject = [
+        action.postfunction,
+        ...state.reciveRecruit
+      ]
+
+      return{
+        reciveRecruit : writeProject,
+        recruit: state.recruit        
+      }
+    }
 
     default:
       return state;

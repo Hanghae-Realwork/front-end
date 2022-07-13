@@ -119,16 +119,36 @@ export const apis = {
   ////<2. 프로젝트 API>////
   //////////////////////
 
+
   //  - 9. 프로젝트 등록
-  projectsCreate: (data) =>
-    api.post("/api/projects", {
-      ...data,
+  projectsCreate: (
+    title,
+    details,
+    subscript,
+    role,
+    start,
+    end,
+    skills,
+    photos,
+    schedule
+    ) => api.post("/api/projects", {
+      title: title,
+      details: details,
+      subscript: subscript,
+      role: role,
+      start: start,
+      end: end,
+      skills: skills,
+      photos: photos,
+      schedule: schedule
     }),
+
+    
   //  - 10. 프로젝트 조회
-  projectsLoad: () => api.get("/api/projects?page=1&limit=9"),
+  projectsLoad: () => api.get("/api/projects"),
 
   //  - 11. 프로젝트 상세조회
-  projectsLoadDetail: (projectId) => api.get("/api/projects/${projectId}"),
+  projectsLoadDetail: (projectId) => api.get(`/api/projects/${projectId}`),
 
   //  - 12. 프로젝트 수정
   projectsModify: (
@@ -145,7 +165,7 @@ export const apis = {
     phone,
     schedule
   ) =>
-    api.put("/api/projects/${projectId}", {
+    api.put("/api/projects", {
       title: title,
       details: details,
       subscript: subscript,
@@ -160,10 +180,11 @@ export const apis = {
     }),
 
   //  - 13. 프로젝트 삭제
-  projectsDelete: (projectId) => api.delete("/api/projects/${projectId}"),
+  projectsDelete: (projectId) => api.delete(`/api/projects/${projectId}`),
   //  - ## 이미지 업로드
-  projectsPhotos: (frm) => api.post("/api/resumes/image", frm),
-  
+
+  projectsPhotos: (frm) => imgApi.post("/api/projects/photos", frm),
+
   /////////////////////////////////////////
   ////<3. 팀원 찾기 페이지 이력서(지원자) API>////
   /////////////////////////////////////////

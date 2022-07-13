@@ -137,7 +137,9 @@ export const checkUserValidation = () => {
         );
       })
       .catch((err) => {
+
         console.log("err", err);
+
 
       });
   };

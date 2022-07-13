@@ -1,5 +1,6 @@
 import { apis } from "../../shared/api";
 
+//코코미 리덕스
 
 const LOAD = 'employ/LOAD';
 const CREATE = "employ/CREATE";
@@ -7,10 +8,10 @@ const MODIFY = "employ/MODIFY";
 const DELETE = "employ/DELETE";
 //게시글 상세조회
 const LOAD_SINGLE = "employ/LOAD_SINGLE";
+
 const initialState = {
   returnResumes: [],
   resumes: []
-  
 };
 
 export function loadEmploy(payload) {
@@ -35,7 +36,6 @@ export const loadEmployAxios = () => {
     await apis
       .resumesLoad()
       .then((response) => {
-
         let list= []
         let resumes = response.data.returnResumes;
         list = [...resumes];
@@ -64,15 +64,15 @@ export const projectsPhotosAxios = (frm) => {
 }
 
 export const resumesCreateAxios = (
-  content,
-  resumeImage,
-  start,
-  end,
-  role,
-  skills,
-  content2,
+  content, 
+  resumeImage, 
+  start, 
+  end, 
+  role, 
+  skills, 
+  content2, 
   content3
-) => {
+  ) => {
   return async function (dispatch) {
     await apis
       .resumesCreate(
@@ -93,8 +93,6 @@ export const resumesCreateAxios = (
       })
   };
 };
-
-
 
 export const loadSingleEmployAxios = (resumeId) => {
   return async function (dispatch,useState) {
@@ -171,16 +169,22 @@ export const deleteEmployAxios = (resumeId) => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "employ/LOAD": {
+
       return { returnResumes: action.payload, resumes: state.resumes };
+
     }
+
     case "employ/CREATE": {
+
       const newResumes = [action.payload, ...state.returnResumes];
+
 
       return {
         returnResumes: newResumes,
         resumes: state.resumes,
       };
     }
+
 
     case "employ/MODIFY": {   
       return {
@@ -193,6 +197,7 @@ export default function reducer(state = initialState, action = {}) {
       const newResumes = [action.payload];
       return { returnResumes: action.state, resumes: newResumes };
     }
+
     default:
       return state;
   }
