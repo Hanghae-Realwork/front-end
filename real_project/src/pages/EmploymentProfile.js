@@ -1,27 +1,63 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 
 import TagCompoEmpPro from "../components/TagCompoEmpPro";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
-import { loadSingleEmployAxios } from "../redux/modules/postEmploy";
+import { deleteEmployAxios, loadSingleEmployAxios } from "../redux/modules/postEmploy";
+import { checkUserValidation } from "../redux/modules/user";
+import { useNavigation } from "react-day-picker";
 
 function EmploymentProfile() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { resumeId } = useParams();
-  
+  const navigate = useNavigate();
+
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+ 
+   const loginInfoName = useSelector((state) => state.user.userInfo.userId);
+
   const data = useSelector((state) => state.postEmploy.resumes);
 
-const start = data.length > 0 ? data[0].start.replace("-", ".").replace("-", ".") : "";
+  //id와 userId 비교하여 버튼 보이게 하기
+  // const modify = (loginInfoName === data[0]?.userId);
 
-  const end =
-    data.length > 0 ? data[0].end.replace("-", ".").replace("-", ".") : "";
+  const [modify, setModify] = useState(false);
+  let start =""
+  let end = ""
+  let href = ""
+          // start = data[0]?.start.replace("-", ".").replace("-", ".");
+          // end = data[0]?.end.replace("-", ".").replace("-", ".");
 
+          // href = data.length > 0 ? data[0].content2 : "";
+  // const img_In = data.length > 0 ? data[0].resumeImage &&  : "";
 
+ React.useEffect(() => {
+   if (loginInfo === false) {
+     dispatch(checkUserValidation());
+   }}, [loginInfo]);
+  
   useEffect(() => {
   dispatch(loadSingleEmployAxios(resumeId))
-  },[])
+  }, [])
 
+    useEffect(() => {
+      if (loginInfoName && data) {
+        if (loginInfoName === data[0]?.userId) {
+         setModify(true)
+       }
+      }
+      if (data) {
+        start = data[0]?.start.replace("-", ".").replace("-", ".");
+        end = data[0]?.end.replace("-", ".").replace("-", ".");
+
+        href = data.length > 0 ? data[0].content2 : "";
+      }
+    }, [loginInfoName, data]);
+  
+useState(data[0]?.role)
+ //undefined일때 null 처리 나머지 return 
+if(!data[0]) return null 
   return (
     <>
       <EmploProfile>
@@ -31,7 +67,7 @@ const start = data.length > 0 ? data[0].start.replace("-", ".").replace("-", "."
               <ProfileCircle
                 style={{
                   backgroundImage: `url(${
-                    data.length > 0 ? data[0].resumeImage : ""
+                     data[0].resumeImage 
                   })`,
                 }}
               ></ProfileCircle>
@@ -57,25 +93,51 @@ const start = data.length > 0 ? data[0].start.replace("-", ".").replace("-", "."
           </TitleTextWrap>
           <TitleTextWrap>
             <SubName>홈페이지</SubName>
-            <SelfText>{data.length > 0 ? data[0].content2 : ""}</SelfText>
+            <SelfText>
+              <a href={data.length > 0 ? data[0].content2 : ""} target="_blank">
+                {data.length > 0 ? data[0].content2 : ""}
+              </a>
+            </SelfText>
           </TitleTextWrap>
           <TitleTextWrap>
             <SubName>프로젝트 참여 가능 기간</SubName>
             <SelfText>
-              {start}~{end}
+              {data[0]?.start.replace("-", ".").replace("-", ".")}~
+              {data[0]?.end.replace("-", ".").replace("-", ".")}
             </SelfText>
           </TitleTextWrap>
           <TitleTextWrap>
             <StacTextWrap>
-              <StacText>[닉네임]님이 보유한 스택</StacText>
+              <StacText>
+                {data.length > 0 ? data[0].nickname : ""}님이 보유한 스택
+              </StacText>
             </StacTextWrap>
             <StacTagWrap>
-              <TagCompoEmpPro
-                skills={data.length > 0 ? data[0].resumeskills : ""}
-              />
+              {data.length > 0
+                ? data[0].resumeskills.map((list, idx) => {
+                    return <TagCompoEmpPro key={idx} skills={list} />;
+                  })
+                : ""}
             </StacTagWrap>
           </TitleTextWrap>
-          <DucButton>면접 신청하기</DucButton>
+          <div>
+            <DucButton>면접 신청하기</DucButton>
+            {modify ? (
+              <DucButton
+                onClick={() => {
+                  navigate("/aditprofile/" + `${data[0].resumeId}`);
+                }}
+              >
+                수정하기
+              </DucButton>
+            ) : (
+              <></>
+            )}
+            {modify ? <DucButton onClick={() => {
+              dispatch(deleteEmployAxios(resumeId));
+              navigate("/mainemployment");
+            }}>삭제하기</DucButton> : <></>}
+          </div>
         </NameFieldWrap>
       </EmploProfile>
     </>
@@ -211,6 +273,7 @@ const DucButton = styled.button`
     margin-top:  80px;
     font-weight: bold;
     font-size: 18px;
+    margin-left: 10px;
 
 `
 
