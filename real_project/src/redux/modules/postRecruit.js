@@ -6,16 +6,16 @@ const EDIT = 'recruit/EDIT'
 const DELETE = 'recruit/DELETE'
 
 const initialState = {
-  reciveRecruit: [],
+  receiveRecruit: [],
   recruit: []
 };
 
-export function loadRecruit(loadfunction) {
-  return { type: LOAD, loadfunction };
+export function loadRecruit(payload) {
+  return { type: LOAD, payload };
 }
 
-export function createRecruit(postfunction) {
-  return { type: CREATE, postfunction };
+export function createRecruit(payload) {
+  return { type: CREATE, payload };
 }
 
 export function editRecruit(editfunction) {
@@ -47,7 +47,7 @@ export const projectsPhotosAxios = (frm) => {
     await apis
       .projectsPhotos(frm)
       .then((res) => {
-        const img = res.data.projectsPhotos;
+        const img = res.data.photos;
         success = img;
       }).catch((err) => {
         success = null;
@@ -64,40 +64,55 @@ export const createRecruitAxios = (
   role, 
   start, 
   end, 
-  skills, 
-  schedule,
-  photos
+
+  skills,
+  photos,
+  schedule
+
 ) => {
+  console.log({
+    title: title,
+    details: details,
+    subscript: subscript,
+    role: role,
+    start: start,
+    end: end,
+    skills: skills,
+    photos: photos,
+    schedule: schedule,
+  });
   return async function (dispatch) {
     await apis
 
-  .projectsCreate(
-    title, 
-    details, 
-    subscript, 
-    role, 
-    start, 
-    end, 
-    skills, 
-    schedule,
-    photos
-    )
-  .then((res) => {
-    dispatch(createRecruit({
-      title: title,
-      details: details,
-      subscript: subscript,
-      role: role,
-      start: start,
-      end: end,
-      skills: skills,
-      schedule: schedule,
-      photos: photos
-    }))
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+      .projectsCreate(
+        title,
+        details,
+        subscript,
+        role,
+        start,
+        end,
+        skills,
+        photos,
+        schedule
+      )
+      .then((res) => {
+        dispatch(
+          createRecruit({
+            title: title,
+            details: details,
+            subscript: subscript,
+            role: role,
+            start: start,
+            end: end,
+            skills: skills,
+            photos:photos,
+            schedule: schedule,
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
 };
 };
@@ -107,17 +122,16 @@ export const createRecruitAxios = (
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
+ 
       return {
-        reciveRecruit : action.loadfunction,
+        receiveRecruit : action.payload,
         recruit: state.recruit
       };
     }
 
-    case 'recruit/CREATE' :{
-      const writeProject = [
-        action.postfunction,
-        ...state.reciveRecruit
-      ]
+    case 'recruit/CREATE': {
+      console.log(action.payload)
+      const writeProject = [action.payload, ...state.receiveRecruit];
 
       return{
         reciveRecruit : writeProject,

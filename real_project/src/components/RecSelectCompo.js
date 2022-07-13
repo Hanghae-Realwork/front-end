@@ -79,7 +79,6 @@ function RecSelectCompo() {
           <ul className="optionList">
             <li className="ListinOption">프론트엔드 엔지니어</li>
             <li className="ListinOption">백엔드 엔지니어</li>
-            {/* <li className="ListinOption">개발자</li> */}
             <li className="ListinOption">디자이너</li>
           </ul>
         </Dropdown>

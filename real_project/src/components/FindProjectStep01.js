@@ -79,9 +79,11 @@ const FindProjectStep01 = (props) => {
     frm.append("photos", files[0]);
     console.log(files[0])
 
+
     try {
         await dispatch(projectsPhotosAxios(frm)).then((success) => {
           console.log()
+
           dispatch(
             createRecruitAxios(
               titleRef.current.value,
@@ -92,9 +94,11 @@ const FindProjectStep01 = (props) => {
               end,
               checkList,
               success,
-              schedule,
-              )
+
+              ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
             )
+          );
+
           })
         navigate("/mainrecruit");
         } catch(err){
