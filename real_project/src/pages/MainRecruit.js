@@ -12,7 +12,7 @@ import RecSelectCompo from "../components/RecSelectCompo";
 const MainRecruit = () => {
 
   const dispatch = useDispatch();
-  const recruit = useSelector((state) => state.postRecruit.reciveRecruit);
+  const recruit = useSelector((state) => state.postRecruit.receiveRecruit);
 
   useEffect(() => {
     dispatch(loadRecruitAxios());

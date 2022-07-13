@@ -21,9 +21,7 @@ const api = axios.create({
   },
 });
 
-
 // axios.defaults.withCredentials = true;
-
 
 //토큰
 api.interceptors.request.use(function (config) { 
@@ -34,7 +32,6 @@ api.interceptors.request.use(function (config) {
   }
    return config;
 });
-
 
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {

@@ -70,30 +70,32 @@ const FindProjectStep01 = (props) => {
 
   // 저장 버튼
   const CompliteButton = async() => {
-    frm.append("resumeImage", files[0]);
+    frm.append("photos", files[0]);
     console.log(files[0])
     dispatch(projectsPhotosAxios(frm))
     console.log(frm)
-    // try {
-    //     await dispatch(projectsPhotosAxios(frm)).then((success) => {
-    //       dispatch(
-    //         createRecruitAxios(
-    //           titleRef.current.value,
-    //           success,
-    //           role,
-    //           checkList,
-    //           start,
-    //           end,
-    //           subscriptRef.current.value,
-    //           detailsRef.current.value,
-    //           )
-    //         )
-    //       })
-    //     navigate("/mainrecruit");
-    //     } catch(err){
-    //       alert("error")
-    //       console.log(err)
-    //     }
+    try {
+      await dispatch(projectsPhotosAxios(frm)).then((success) => {
+
+          dispatch(
+            createRecruitAxios(
+              titleRef.current.value,
+              detailsRef.current.value,
+              subscriptRef.current.value,
+              role,
+              start,
+              end,
+              checkList,
+              success,
+              ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
+            )
+          );
+          })
+        navigate("/mainrecruit");
+        } catch(err){
+          alert("error")
+          console.log(err)
+        }
       }
 
   return (
