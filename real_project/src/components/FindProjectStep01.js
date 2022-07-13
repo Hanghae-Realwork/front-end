@@ -72,26 +72,28 @@ const FindProjectStep01 = (props) => {
   const CompliteButton = async() => {
     frm.append("resumeImage", files[0]);
     console.log(files[0])
-    try {
-        await dispatch(projectsPhotosAxios(frm)).then((success) => {
-          dispatch(
-            createRecruitAxios(
-              titleRef.current.value,
-              success,
-              role,
-              checkList,
-              start,
-              end,
-              subscriptRef.current.value,
-              detailsRef.current.value,
-              )
-            )
-          })
-        navigate("/mainrecruit");
-        } catch(err){
-          alert("error")
-          console.log(err)
-        }
+    dispatch(projectsPhotosAxios(frm))
+    console.log(frm)
+    // try {
+    //     await dispatch(projectsPhotosAxios(frm)).then((success) => {
+    //       dispatch(
+    //         createRecruitAxios(
+    //           titleRef.current.value,
+    //           success,
+    //           role,
+    //           checkList,
+    //           start,
+    //           end,
+    //           subscriptRef.current.value,
+    //           detailsRef.current.value,
+    //           )
+    //         )
+    //       })
+    //     navigate("/mainrecruit");
+    //     } catch(err){
+    //       alert("error")
+    //       console.log(err)
+    //     }
       }
 
   return (
