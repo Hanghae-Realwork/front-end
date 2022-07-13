@@ -77,13 +77,14 @@ const FindProjectStep01 = (props) => {
           dispatch(
             createRecruitAxios(
               titleRef.current.value,
+              detailsRef.current.value,
               success,
               role,
-              checkList,
               start,
               end,
+              checkList,
               subscriptRef.current.value,
-              detailsRef.current.value,
+              "2022-07-01 02:02:02", "2022-07-02 03:03:03"
               )
             )
           })

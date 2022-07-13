@@ -62,7 +62,7 @@ export const createRecruitAxios = (
   schedule
 ) => {return async function (dispatch) {
     await apis
-  .recruitCreate(
+  .projectsCreate(
     title, 
     details, 
     subscript, 
