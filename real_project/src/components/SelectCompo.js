@@ -415,7 +415,7 @@ function SelectCompo() {
   };
   //로그인 유무
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-  console.log("loginInfo", loginInfo);
+
 
   // 리턴 컴포넌트 최종(출력 구간)
   return (
