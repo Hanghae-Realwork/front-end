@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 function TagCompoEmpPro({ skills }) {
+
   return <TagButton>{skills}</TagButton>;
 }
 

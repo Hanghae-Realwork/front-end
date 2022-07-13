@@ -26,6 +26,7 @@ export function login(payload) {
   return { type: LOGIN, payload };
 }
 export function logOut(payload) {
+
   return { type: LOGOUT, payload };
 }
 export function userInfo(infototal) {
@@ -111,8 +112,8 @@ export const loginAxios = (userEmail, password) => {
         // console.log(res)
         // localStorage.setItem("token", res.data.token);
         setCookie("ACCESS_TOKEN", res.data.token, 1);
-
-        dispatch(login({ userId:userEmail }));
+        dispatch(checkUserValidation());
+        // dispatch(login({ userId:userEmail }));
          success = true;
         
       })
@@ -130,22 +131,16 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
-
-        // localStorage.setItem("userId", res.data.userId);
-        // localStorage.setItem("nickname", res.data.nickname);
-        
+       
         dispatch(
           login({ userId: res.data.userId, nickname: res.data.nickname })
         );
       })
       .catch((err) => {
-        console.log("checkUserValidation",err)
-        dispatch(logOut());
-        // console.log("err", err);
-        if (err.response.status === 401) {
-          // dispatch(refreshAxios());
-          // window.location.reload()
-        }
+
+        console.log("err", err);
+
+
       });
   };
 };
@@ -213,6 +208,7 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "user/LOGOUT": {
+      console.log("Logout:reducer")
       // console.log(action.payload)
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
