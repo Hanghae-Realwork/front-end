@@ -193,7 +193,7 @@ export const apis = {
   resumesLoad: () => api.get("/api/resumes"),
 
   //  - 16. 팀원 찾기 상세조회
-  resumesLoadDetail: (resumeId) => api.get("/api/resumes/${resumeId}"),
+  resumesLoadDetail: (resumeId) => api.get(`/api/resumes/${resumeId}`),
 
   //  - 17. 팀원 찾기 수정
   resumesModify: (
