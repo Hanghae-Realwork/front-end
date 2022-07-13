@@ -2,7 +2,7 @@ import React, {useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { loadRecruitsApi } from "../redux/modules/postRecruit";
+import { loadRecruitAxios } from "../redux/modules/postRecruit";
 
 
 import Card from "../components/CardRecruit";
@@ -12,25 +12,19 @@ import RecSelectCompo from "../components/RecSelectCompo";
 const MainRecruit = () => {
 
   const dispatch = useDispatch();
-
-  const recruits = useSelector((state) => state.postRecruit.projects);
-
+  const recruit = useSelector((state) => state.postRecruit.reciveRecruit);
 
   useEffect(() => {
-    dispatch(loadRecruitsApi());
+    dispatch(loadRecruitAxios());
   }, []);
-
 
   return (
     <div>
       <RecSelectCompo />
       <CardBackGround>
         <CardContainerWrap>
-          {" "}
-          {recruits === undefined
-            ? null
-            : recruits.map((list, idx) => {
-                return <Card key={idx} data={list} />;
+          {recruit === undefined ? null : recruit.map((list, idx) => {
+            return <Card key={idx} data={list} />;
               })}
         </CardContainerWrap>
       </CardBackGround>
@@ -45,7 +39,7 @@ const CardContainerWrap = styled.div`
   align-items: center;
   max-width: 1440px;
   padding: 33px 50px 0px 50px;
-  border:1px solid black;
+  /* border:1px solid black; */
 `
 
 const CardBackGround = styled.div`
@@ -54,7 +48,7 @@ const CardBackGround = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `
 
 

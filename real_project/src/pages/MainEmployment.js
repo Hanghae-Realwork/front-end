@@ -1,14 +1,11 @@
 
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
-
-
 import CardEmpol from "../components/CardEmpol";
 import SelectCompo from "../components/SelectCompo"
-import { useSelector } from "react-redux";
-
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { loadEmployAxios } from "../redux/modules/postEmploy";
+
 
 const MainEmployment = () => {
   const [updata, setUpdate] = useState();
