@@ -3,6 +3,8 @@ import { apis } from "../../shared/api";
 
 const LOAD = 'employ/LOAD';
 const CREATE = "employ/CREATE";
+const MODIFY = "employ/MODIFY";
+const DELETE = "employ/DELETE";
 //게시글 상세조회
 const LOAD_SINGLE = "employ/LOAD_SINGLE";
 const initialState = {
@@ -17,7 +19,12 @@ export function loadEmploy(payload) {
 export function createEmploy(payload) {
   return { type: CREATE, payload };
 }
-
+export function modifyEmploy(payload) {
+  return { type: MODIFY, payload };
+}
+export function deleteEmploy(payload) {
+  return { type: DELETE, payload };
+}
 export function loadSingleEmploy(payload) {
   return { type: LOAD_SINGLE , payload};
 }
@@ -47,7 +54,6 @@ export const projectsPhotosAxios = (frm) => {
     await apis
       .projectsPhotos(frm)
       .then((response) => {
-        console.log("들어옴")
         const img = response.data.resumeImage;
         success = img;
       }).catch((err) => {
@@ -91,11 +97,11 @@ export const resumesCreateAxios = (
 
 
 export const loadSingleEmployAxios = (resumeId) => {
-  return async function (dispatch) {
+  return async function (dispatch,useState) {
     await apis
       .resumesLoadDetail(resumeId)
       .then((response) => {
-
+       
         dispatch(loadSingleEmploy(response.data.resumes));
         // dispatch(loadEmploy(list));
       })
@@ -104,27 +110,88 @@ export const loadSingleEmployAxios = (resumeId) => {
       });
   };
 };
+export const modifyEmployAxios = (
+  resumeId,
+  content,
+  resumeImage,
+  start,
+  end,
+  role,
+  skills,
+  content2,
+  content3
+) => {
+  return async function (dispatch) {
+    await apis
+      .resumesModify(
+        resumeId,
+        content,
+        resumeImage,
+        start,
+        end,
+        role,
+        skills,
+        content2,
+        content3
+      )
+      .then((response) => {
+        dispatch(
+          modifyEmploy({
+            resumeId: resumeId,
+            content: content,
+            resumeImage: resumeImage,
+            start: start,
+            end: end,
+            role: role,
+            skills: skills,
+            content2: content2,
+            content3: content3,
+          })
+        );
+      });
+  };
+};
+
+
+
+
+export const deleteEmployAxios = (resumeId) => {
+  return async function (dispatch) {
+    await apis
+      .resumesDelete(resumeId)
+      .then((response) => {
+       
+      }).catch((err) => {
+        console.log(err)
+      })
+  };
+};
 
 //Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "employ/LOAD": {
-      return { returnResumes: action.payload,resumes: state.resumes };
+      return { returnResumes: action.payload, resumes: state.resumes };
     }
     case "employ/CREATE": {
-
       const newResumes = [action.payload, ...state.returnResumes];
 
       return {
         returnResumes: newResumes,
-        resumes: state.resumes};
+        resumes: state.resumes,
+      };
+    }
+
+    case "employ/MODIFY": {   
+      return {
+        returnResumes: state.returnResumes,
+        resumes: action.payload,
+      };
     }
     case "employ/LOAD_SINGLE": {
-      console.log(action.payload)
-      const newResumes = [action.payload]
-      return {returnResumes : action.state,
-        resumes: newResumes
-      };
+      // console.log(action.payload);
+      const newResumes = [action.payload];
+      return { returnResumes: action.state, resumes: newResumes };
     }
     default:
       return state;
