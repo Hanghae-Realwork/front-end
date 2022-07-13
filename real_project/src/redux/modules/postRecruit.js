@@ -50,8 +50,8 @@ export const loadRecruitsApi = () => {
       .then((response) => {
 
         let list = [];
-        let projects = response.data.projects;
-
+        let projectsList = response.data.projects;
+        const projects = projectsList.sort((a,b) => a.projectid - b.projectid)
         list = [...projects.reverse()]
 
 
@@ -160,11 +160,11 @@ export default function reducer(state = initialState, action = {}) {
       return state;
     }
 
-    case 'recruit/EDIT': {
-      console.log(action.put);
-      const edit_porject_list = [action.put, ...state]
-      return state;
-    }
+    // case 'recruit/EDIT': {
+    //   console.log(action.put);
+    //   const edit_porject_list = [...state]
+    //   return state;
+    // }
 
     default:
       return state;
