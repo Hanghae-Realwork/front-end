@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
@@ -18,18 +18,25 @@ import MyPage from "./pages/MyPage"
 import ReadProject from "./pages/ReadProject"
 // import DisplayChatView from "./pages/DisplayChatView";
 // import Test from "./pages/Test";
-
 //Components 연결
 import Header from "./components/Header";
 import Loading from "./pages/Loading";
 import EmpoCard from "./components/CardEmpol";
 import FindProjectStep01 from "./components/FindProjectStep01";
 import FindProjectStep02 from "./components/FindProjectStep02";
-
+import EditProfile from "./pages/EditProfile";
 
 // import SelectBox from "./components/SelectBox";
 
-function App() {
+import { useDispatch } from "react-redux";
+import { checkUserValidation } from "./redux/modules/user";
+  function App() {
+  
+const dispatch = useDispatch()
+  useEffect(() => {
+   dispatch(checkUserValidation());
+  }, [])
+  
   return (
     <MainWrap>
       {/* <MainHeader> */}
@@ -54,6 +61,7 @@ function App() {
 
       {/* <CardRecruit/> '컴포넌트' */}
       {/* <SelectBox/> '컴포넌트' */}
+    
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -65,6 +73,7 @@ function App() {
           element={<EmploymentProfile />}
         />
         <Route path="/addprofile" element={<AddProfile />} />
+        <Route path="/aditprofile/:resumeId" element={<EditProfile />} />
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
         {/* <Route path="/recruitwrite" element={<RecruitWrite />}></Route> */}
         {/* <Route path="/chat" element={<Chat />}></Route> */}
