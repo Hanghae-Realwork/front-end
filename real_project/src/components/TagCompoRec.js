@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 function TagCompoRec({ skills }) {
- 
-    return <TagButton>{skills }</TagButton>;
+
+    return <TagButton>{skills}</TagButton>;
 }
 
 const TagButton = styled.button`

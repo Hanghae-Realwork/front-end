@@ -3,11 +3,14 @@ import Tag from "./TagCompoEmp"
 
 import BasicPhoto from "../image/astroman.svg"
 import Flip from "../image/flip.svg"
-import { useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useNavigate} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+
+
 function CradEmpol({ data }) {
-  const navigate = useNavigate()
-  const userResumes = useSelector((state) => state);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const userResumes = useSelector((state) => state);
 
   const start =
     data > 0 ? "" : data.start.replace("-", ".").replace("-", ".");
@@ -17,8 +20,10 @@ function CradEmpol({ data }) {
     return (
       <>
         <AllCardWrap onClick={() => {
-          navigate("/employmentprofile");
+          navigate("/employmentprofile/"+`${data.resumeId}`);
+   
         }}>
+
           <CardTopWrap>
             <ProfileTopWrap>
               <ProfileWrap>

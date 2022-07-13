@@ -3,8 +3,7 @@ import "../App.css";
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import up from "../image/up-fill.svg";
-import down from "../image/down-fill.svg";
+
 import { useNavigate } from "react-router-dom";
 import DayPickerMain from "./DayPickerMain";
 import { useDispatch,useSelector } from "react-redux";
