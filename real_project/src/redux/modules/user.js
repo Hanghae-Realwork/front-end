@@ -139,6 +139,7 @@ export const checkUserValidation = () => {
         );
       })
       .catch((err) => {
+        console.log("checkUserValidation",err)
         dispatch(logOut());
         // console.log("err", err);
         if (err.response.status === 401) {

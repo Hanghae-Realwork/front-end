@@ -21,7 +21,6 @@ function CradEmpol({ data }) {
       <>
         <AllCardWrap onClick={() => {
           navigate("/employmentprofile/"+`${data.resumeId}`);
-   
         }}>
 
           <CardTopWrap>
