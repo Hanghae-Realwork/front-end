@@ -26,14 +26,19 @@ const FindProjectStep01 = (props) => {
   const [start, setStart] = useState("2022-02-02")
   const [end, setEnd] = useState("2022-02-04")
 
+  const [schedule, setSchedule] = useState('2022-07-01 02:02:02', '2022-07-02 03:03:03')
+
+  
   //사진 파일 유무
-  const [filesImg, setFilesImg] = React.useState("");
-  const [files, setFiles] = React.useState("");
+  const [filesImg, setFilesImg] = useState("");
+  const [files, setFiles] = useState("");
+
 
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
+
 
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
@@ -43,6 +48,7 @@ const FindProjectStep01 = (props) => {
       setCheckList(checkList.filter((el) => el !== item));
     }
   };
+
 
   //fileReader
   const frm = new FormData();
@@ -75,17 +81,18 @@ const FindProjectStep01 = (props) => {
 
     try {
         await dispatch(projectsPhotosAxios(frm)).then((success) => {
+          console.log()
           dispatch(
             createRecruitAxios(
               titleRef.current.value,
               detailsRef.current.value,
-              success,
+              subscriptRef.current.value,
               role,
               start,
               end,
               checkList,
-              subscriptRef.current.value,
-              "2022-07-01 02:02:02", "2022-07-02 03:03:03"
+              success,
+              schedule,
               )
             )
           })
