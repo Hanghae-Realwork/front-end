@@ -36,6 +36,7 @@ export const loadRecruitAxios = () => {
   };
 
 export const projectsPhotosAxios = (frm) => {
+  console.log(frm)
   return async function (dispatch) {
     let success = null;
     await apis
@@ -60,33 +61,36 @@ export const createRecruitAxios = (
   end, 
   skills, 
   schedule
-) => {return async function (dispatch) {
+) => {
+  return async function (dispatch) {
     await apis
-  .recruitCreate(
-    title, 
-    details, 
-    subscript, 
-    role, 
-    start, 
-    end, 
-    skills, 
-    schedule
-    )
-  .then((res) => {
-    dispatch(createRecruit({
-      title: title,
-      details: details,
-      subscript: subscript,
-      role: role,
-      start: start,
-      end: end,
-      skills: skills,
-      schedule: schedule
-    }))
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+      .projectsCreate(
+        title,
+        details,
+        subscript,
+        role,
+        start,
+        end,
+        skills,
+        schedule
+      )
+      .then((res) => {
+        dispatch(
+          createRecruit({
+            title: title,
+            details: details,
+            subscript: subscript,
+            role: role,
+            start: start,
+            end: end,
+            skills: skills,
+            schedule: schedule,
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 };
 };
 
