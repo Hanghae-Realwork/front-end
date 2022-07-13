@@ -127,14 +127,14 @@ const ProfileCircle = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 70%;
-  height: 150%;
+  width: 150px;
+  height: 150px;
   /* object-fit: cover; */
 
   /* background-size: 100%; */
-  /* background-position: center;
+  /* background-position: center; */
   border-radius: 50%;
-  background-repeat: no-repeat; */
+  /* background-repeat: no-repeat; */
 
   /* display: inline-block;
   width: 100%;
@@ -147,6 +147,8 @@ const ProfileCircle = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-size: cover;
+  background-position: center;
 `;
 
 const NameWrap = styled.div`
