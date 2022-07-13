@@ -17,62 +17,62 @@ import SelectSkill from "../components/SelectSkill";
 import { createRecruitApi } from "../redux/modules/postRecruit";
 
 const FindProjectStep01 = (props) => {
+
   const dispatch = useDispatch
   const navigate = useNavigate()
   const dateref = useRef
   const [selected, setSelected] = useState(new Date);
   // const [startdate, setStart] = useState(selected.from);
-  const today = new Date();
-  const startdate = JSON.stringify(selected.from)
-  const enddate = JSON.stringify(selected.to)
-  const delStorage = localStorage.removeItem('obj')
-  const onSubmit = async (data) => {
-    const output = {
-      ...data,
-      start: startdate.slice(1, 11),
-      end: enddate.slice(1, 11),
-      photos: ["null", "null"],
-      
-    }
-    await new Promise((r) => setTimeout(r, 1000));
-    
-    sessionStorage.setItem('obj', JSON.stringify(output))
-    // dispatch(
-    //   createRecruitApi({
-    //     ...output
-    //   })
-    // );
-    console.log(output)
-    navigate(`/findprojectstep2`)
-    // await new Promise((delStorage) => setTimeout(delStorage,  10000));
-  }
-  const {
-    register, handleSubmit,
-    formState: { isSubmitting, isDirty, errors },
-  } = useForm();
-  let footer = (
-    <Ptag>시작날짜를 눌러주세요</Ptag>
-  );
-  if (selected?.from) {
-    if (!selected.to) {
-      footer = (
-        <Ptag>
-          {format(selected.from, "yyyy년 MM월 dd일")}
-        </Ptag>
-      );
-    } else if (selected?.to) {
-      footer = (
-        <Ptag>
-          {format(selected.from, "yyyy년 MM월 dd일 ")}~
-          {format(selected.to, " yyyy년 MM월 dd일")}
-        </Ptag>
-      );
-    }
-  }
+
+  const recruit_Title = useRef(null);
+  const recruit_Guide = useRef(null)
+  const recruit_Body = useRef(null);
+  const text_URL = React.useRef(null);
+
+  const dvelopSkills_list = [
+    { data: 'React' },
+    { data: 'Vue.js' },
+    { data: 'JavaScript' },
+    { data: 'Node.js' },
+    { data: 'Java' },
+    { data: 'Spring' },
+    { data: 'Python' },
+    { data: 'MongoDB' },
+    { data: 'MySQL' },
+    { data: 'Redis' },
+    { data: 'TypeScript' },
+    { data: 'Ruby' },
+    { data: 'AWS' },
+    { data: 'Go' },
+    { data: 'PHP' },
+    { data: 'Git' },
+    { data: '.NET' },
+    { data: 'React Native' },
+    { data: 'Django' },
+    { data: 'Flask' },
+    { data: 'Nest.JS' },
+    { data: 'Express.JS' },
+    { data: 'NoSQL' },
+    { data: 'SQL' },
+    { data: 'Swift' },
+    { data: 'Kotlin' },
+    { data: 'Android' },
+    { data: 'iOS' },
+  ]
+  const designerSkills_list = [
+    { data: 'Figma' },
+    { data: 'Adobe XD' },
+    { data: 'Adobe Illustrator' },
+    { data: 'Adobe PhotoShop' },
+    { data: 'Invision' },
+    { data: 'Sketch' },
+    { data: 'Protopie' },
+  ]
+
+
   return (
     <>
       <FindProjectAllWrap>
-        <form onSubmit={handleSubmit(onSubmit)}>
           <FindprojectTopWrap>
             <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
           </FindprojectTopWrap>
@@ -84,36 +84,55 @@ const FindProjectStep01 = (props) => {
           <HeadLine />
           <FindProjectInputTitle>
             <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput id="title" type="text" placeholder="제목을 입력해주세요" {...register("title")}></ProjectInput>
+            <ProjectInput ref={recruit_Title} id="title" type="text" placeholder="제목을 입력해주세요"></ProjectInput>
           </FindProjectInputTitle>
           <FindProjectInputTitle>
             <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput id="subscript" type="text" placeholder="프로젝트를 설명해주세요"{...register("subscript")}></ProjectInput>
+            <ProjectInput ref={recruit_Guide} id="subscript" type="text" placeholder="프로젝트를 설명해주세요"></ProjectInput>
           </FindProjectInputTitle>
           <FindProjectInputDate>
             <ProjectTitleText>프로젝트 기간</ProjectTitleText>
             <div>
-              <DayPicker
-                styles={{ caption: { fontSize: "13px", padding: "10px" } }}
-                className="dayPicker_container__div"
-                mode="range"
-                selected={selected}
-                onSelect={setSelected}
-                locale={ko}
-                numberOfMonths={2}
-                disabled={{ before: today }}
-              ></DayPicker>
+               달력이 들어갈 공간 입니다.
               <div>
-              {footer}
               </div>
             </div>
           </FindProjectInputDate>
           <FindProjectInputTitle>
             <ProjectTitleText>팀 상세 설명</ProjectTitleText>
-            <div><RecMainCon id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" {...register("details")} /></div>
+            <div><RecMainCon ref={recruit_Body} id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" /></div>
           </FindProjectInputTitle>
-          <div><NextStepButton type="submit" disabled={isSubmitting} onClick={() => {navigate(`/findprojectstep2`)}}>다음 단계로</NextStepButton></div>
-        </form>
+
+    
+          <FindProjectInputTitle>
+            <ProjectTitleText>구하는 직군</ProjectTitleText>
+            <div>
+              <label><input id="role" type="radio" name="Radio"  value="frontend" />FrontEnd</label>
+              <label><input id="role" type="radio" name="Radio" value="backend" />BackEnd</label>
+              <label><input id="role" type="radio" name="Radio" value="graphicDesigner" />Designer</label>
+            </div>
+          </FindProjectInputTitle>
+          <SelectSkillWrap>
+            {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+              return <div><input id="skills" type="checkbox" value={list.data}/>{list.data}</div>;
+            })}
+            {designerSkills_list && designerSkills_list.map((list, idx) => {
+              return <div>
+                <input
+                  id="skills"
+                  type="checkbox"
+                  value={list.data}
+                />
+                {list.data}
+              </div>;
+            })}
+          </SelectSkillWrap>
+          <div>
+            캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
+          </div>
+          <SubmitButtonWrap>
+            <SubmitButton type="submit">등록하기</SubmitButton>
+          </SubmitButtonWrap>
       </FindProjectAllWrap>
     </>
   );
@@ -171,12 +190,6 @@ const FindProjectInputDate = styled.div`
   justify-content: center;
   align-items: flex-start;
 `
-const ProjectTitleText = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  gap: 15px;
-`
-
 
 const FindProjectInputTitle = styled.div`
   /* border: 1px solid black; */
@@ -235,4 +248,66 @@ const NextStepButton = styled.button`
   color: white;
   font-weight: 700;
 `
+
+
+const FindProjectStepGuideText = styled.span`
+  font-size: 18px;
+  font-weight: 500;
+  margin: 17px 0px 23px 30px;
+`
+
+
+const SubmitButtonWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+`
+
+const BackButton = styled.button`
+  width: 150px;
+  height: 45px;
+  border-radius: 4px;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid;
+  border-image: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  border-image-slice: 1;
+  background-origin: border;
+  background-clip: content-box, border-box;
+  color: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  cursor: pointer;
+  margin: 30px 0px 30px 0px;
+  padding: 12px 28px;
+  font-weight: 700;
+`
+
+const SubmitButton = styled.button`
+  width: 150px;
+  height: 45px;
+  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin: 30px 0px 30px 0px;
+  padding: 12px 28px;
+  color: white;
+  font-weight: 700;
+`
+
+const SelectSkillWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const ProjectTitleText = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  gap: 15px;
+`
+
 export default FindProjectStep01;

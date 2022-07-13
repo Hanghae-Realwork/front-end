@@ -16,7 +16,7 @@ import Main from "./pages/Main";
 import MyPage from "./pages/MyPage"
 // import ChatJoin from "./pages/ChatPassword"
 import ReadProject from "./pages/ReadProject"
-import DatePickerTest from "./components/DatePickerTest";
+// import DatePickerTest from "./components/DatePickerTest";
 
 //Components 연결
 import Header from "./components/Header";
@@ -33,7 +33,7 @@ function App() {
     <MainWrap>
       {/* <MainHeader> */}
       <Header />
-      <DatePickerTest/>
+      {/* <DatePickerTest/> */}
       {/* <ReadProject></ReadProject> */}
       {/* <ChatJoin /> */}
       {/* <MyPage /> */}

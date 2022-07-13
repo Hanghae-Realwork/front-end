@@ -120,10 +120,28 @@ export const apis = {
   //////////////////////
 
   //  - 9. 프로젝트 등록
-  projectsCreate: (data) =>
-    api.post("/api/projects", {
-      ...data,
+  projectsCreate: (
+    title,
+    details,
+    subscript,
+    role,
+    start,
+    end,
+    skills,
+    photos,
+    schedule
+    ) => api.post("/api/projects", {
+      title: title,
+      details: details,
+      subscript: subscript,
+      role: role,
+      start: start,
+      end: end,
+      skills: skills,
+      photos: photos,
+      schedule: schedule
     }),
+    
   //  - 10. 프로젝트 조회
   projectsLoad: () => api.get("/api/projects?page=1&limit=9"),
 

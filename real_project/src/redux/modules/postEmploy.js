@@ -1,5 +1,6 @@
 import { apis } from "../../shared/api";
 
+//코코미 리덕스
 
 const LOAD = 'employ/LOAD';
 const CREATE = "employ/CREATE";
@@ -8,7 +9,6 @@ const LOAD_SINGLE = "employ/LOAD_SINGLE";
 const initialState = {
   returnResumes: [],
   resumes: []
-  
 };
 
 export function loadEmploy(payload) {
@@ -109,11 +109,17 @@ export const loadSingleEmployAxios = (resumeId) => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "employ/LOAD": {
-      return { returnResumes: action.payload,resumes: state.resumes };
+      return { 
+        returnResumes: action.payload,
+        resumes: state.resumes 
+      };
     }
     case "employ/CREATE": {
 
-      const newResumes = [action.payload, ...state.returnResumes];
+      const newResumes = [
+        action.payload, 
+        ...state.returnResumes
+      ];
 
       return {
         returnResumes: newResumes,

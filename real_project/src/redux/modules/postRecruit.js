@@ -2,6 +2,8 @@ import { apis } from "../../shared/api";
 
 const LOAD = 'recruit/LOAD';
 const CREATE = 'recruit/CREATE'
+const EDIT = 'recruit/EDIT'
+const DELETE = 'recruit/DELETE'
 
 const initialState = {
   list: {
@@ -18,29 +20,26 @@ const initialState = {
   },
 };
 
-export function loadRecruits(discription) {
-  return { type: LOAD, discription };
+export function loadRecruits(loadfunction) {
+  return { type: LOAD, loadfunction };
 }
 
-export function createRecruit(post) {
-  return { type: CREATE, post };
+export function createRecruit(postfunction) {
+  return { type: CREATE, postfunction };
 }
 
-//api연결
-
+//미들믿을
 export const loadRecruitsApi = () => {
   return async function (dispatch) {
     await apis
       .projectsLoad()
       .then((response) => {
-       
-        let list = [];
-        let projects = response.data.projects;
-       
-        list = [...projects.reverse()]
 
-        
-       
+        console.log(response)
+        let list = [];
+        let projects = response.data.list;
+        list = [...projects]
+
         dispatch(loadRecruits(list));
       })
       .catch((err) => {
@@ -77,12 +76,14 @@ export const loadRecruitsApi = () => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
-      return {projects : action.discription};
+      return {
+        list : action.loadfunction
+      };
     }
-    // case 'recruit/CREATE': {
-    //   const new_project_list = [...state, action.post];
-    //   return { list: new_project_list };
-    // }
+    case 'recruit/CREATE': {
+      const new_project_list = [...state, action.post];
+      return { list: new_project_list };
+    }
 
 
     default:
