@@ -18,6 +18,11 @@ export function createRecruit(postfunction) {
   return { type: CREATE, postfunction };
 }
 
+export function editRecruit(editfunction) {
+  return { type: EDIT, editfunction };
+}
+
+
 //미들믿을
 export const loadRecruitAxios = () => {
   return async function (dispatch) {
@@ -118,6 +123,13 @@ export default function reducer(state = initialState, action = {}) {
         reciveRecruit : writeProject,
         recruit: state.recruit        
       }
+    }
+
+    case "employ/MODIFY": {   
+      return {
+        reciveRecruit: state.reciveRecruit,
+        recruit: action.editfunction,
+      };
     }
 
     default:

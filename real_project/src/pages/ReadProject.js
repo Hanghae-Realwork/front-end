@@ -1,6 +1,16 @@
 import styled from "styled-components"
+import { useSelector,useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 function ReadProject() {
+    
+    const { RecruitId } = useParams();
+
+    const Value = useSelector((state) => state.postRecruit.recruit);
+
+    console.log(Value)
+
 
     return(
         <>

@@ -123,20 +123,13 @@ if(!data[0]) return null
           <div>
             <DucButton>면접 신청하기</DucButton>
             {modify ? (
-              <DucButton
-                onClick={() => {
-                  navigate("/aditprofile/" + `${data[0].resumeId}`);
-                }}
-              >
+              <DucButton onClick={() => {navigate("/aditprofile/" + `${data[0].resumeId}`);}}>
                 수정하기
               </DucButton>
-            ) : (
-              <></>
-            )}
+            ) : (<></>)}
             {modify ? <DucButton onClick={() => {
               dispatch(deleteEmployAxios(resumeId));
-              navigate("/mainemployment");
-            }}>삭제하기</DucButton> : <></>}
+              navigate("/mainemployment");}}>삭제하기</DucButton> : <></>}
           </div>
         </NameFieldWrap>
       </EmploProfile>
