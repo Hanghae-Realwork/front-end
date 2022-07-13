@@ -70,7 +70,7 @@ const FindProjectStep01 = (props) => {
 
   // 저장 버튼
   const CompliteButton = async() => {
-    frm.append("resumeImage", files[0]);
+    frm.append("photos", files[0]);
     console.log(files[0])
     try {
         await dispatch(projectsPhotosAxios(frm)).then((success) => {
