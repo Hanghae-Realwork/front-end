@@ -48,11 +48,6 @@ const FindProjectStep01 = (props) => {
   console.log(storageData)
 
   
-  useEffect(() => {
-    
-    store.dispatch(loadRecruitOneApi(projectIdNum));
-}, []);
-  
   const onSubmit = async (data) => {
     const addData=projectDetail?.project
     const output = {
