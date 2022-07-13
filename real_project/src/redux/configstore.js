@@ -6,12 +6,12 @@ import logger from "redux-logger";
 import user from "./modules/user";
 import postRecruit from "./modules/postRecruit";
 import postEmploy from "./modules/postEmploy";
-// reducers
+
 
 const rootReducer = combineReducers({
   user,
   postRecruit,
-  postEmploy
+  postEmploy,
 
 });
 

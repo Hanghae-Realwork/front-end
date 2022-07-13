@@ -47,7 +47,7 @@ function App() {
       {/* <Login/> '완료' */}
       {/* <MainEmployment/>
       <MainRecruit/> */}
-      {/* <FindProject/>  - 해결중 */} 
+      {/* <FindProject/>  - 해결중 */}
       {/* <FindProjectStep02 /> */}
       {/* <RecruitWrite/> '완료' */}
       {/* <Loading/> '완료' */}
@@ -60,7 +60,10 @@ function App() {
         <Route path="/mainrecruit" element={<MainRecruit />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/employmentprofile" element={<EmploymentProfile />} />
+        <Route
+          path="/employmentprofile/:resumeId"
+          element={<EmploymentProfile />}
+        />
         <Route path="/addprofile" element={<AddProfile />} />
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
         {/* <Route path="/recruitwrite" element={<RecruitWrite />}></Route> */}

@@ -108,7 +108,7 @@ export const loginAxios = (userEmail, password) => {
       .login(userEmail, password, { withCredentials: true })
       .then((res) => {
        
-        console.log(res)
+        // console.log(res)
         // localStorage.setItem("token", res.data.token);
         setCookie("ACCESS_TOKEN", res.data.token, 1);
 
@@ -139,10 +139,10 @@ export const checkUserValidation = () => {
         );
       })
       .catch((err) => {
-        // dispatch(logOut());
-        console.log("err", err);
+        dispatch(logOut());
+        // console.log("err", err);
         if (err.response.status === 401) {
-          dispatch(refreshAxios());
+          // dispatch(refreshAxios());
           // window.location.reload()
         }
       });
@@ -175,31 +175,32 @@ export const checkUserValidation = () => {
 // };
 
 
-export const refreshAxios = () => {
-  return async function (dispatch) {
-    await apis
-      .refresh({ withCredentials: true })
-      .then((response) => {
-        console.log("refresh", response);
-        if (response.data.accessToken) {
-          const user = JSON.parse(localStorage.getItem("user"));
-          user.accessToken = response.data.accessToken;
-          localStorage.setItem("user", JSON.stringify(user));
-        }
-      })
-      .catch((error) => {
-        console.log("server", error);
-      });
-  };
-};
+// export const refreshAxios = () => {
+//   return async function (dispatch) {
+//     await apis
+//       .refresh({ withCredentials: true })
+//       .then((response) => {
+//         console.log("refresh", response);
+//         if (response.data.accessToken) {
+//           const user = JSON.parse(localStorage.getItem("user"));
+//           user.accessToken = response.data.accessToken;
+//           localStorage.setItem("user", JSON.stringify(user));
+//         }
+//       })
+//       .catch((error) => {
+//         console.log("server", error);
+//       });
+//   };
+// };
 
 
 
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+
     case "user/LOGIN": {
-      
+      // console.log(action.payload)
       const newUserInfo = {
         userId: action.payload.userId,
         nickname:action.payload.nickname,
@@ -211,7 +212,7 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "user/LOGOUT": {
-      console.log(action.payload)
+      // console.log(action.payload)
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("nickname");

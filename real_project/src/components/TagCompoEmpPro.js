@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-function TagCompoRec({ skills }) {
-
-    return <TagButton>{skills}</TagButton>;
+function TagCompoEmpPro({ skills }) {
+  return <TagButton>{skills}</TagButton>;
 }
 
 const TagButton = styled.button`
@@ -18,4 +17,4 @@ const TagButton = styled.button`
   margin: 3px;
 `;
 
-export default TagCompoRec;
+export default TagCompoEmpPro;
