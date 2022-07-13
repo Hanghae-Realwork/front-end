@@ -60,7 +60,8 @@ export const createRecruitAxios = (
   start, 
   end, 
   skills, 
-  schedule
+  schedule,
+  photos
 ) => {
   return async function (dispatch) {
     await apis
@@ -73,7 +74,8 @@ export const createRecruitAxios = (
     start, 
     end, 
     skills, 
-    schedule
+    schedule,
+    photos
     )
   .then((res) => {
     dispatch(createRecruit({
@@ -84,7 +86,8 @@ export const createRecruitAxios = (
       start: start,
       end: end,
       skills: skills,
-      schedule: schedule
+      schedule: schedule,
+      photos: photos
     }))
   })
   .catch((err) => {
