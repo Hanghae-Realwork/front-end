@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useForm, useWatch } from "react-hook-form";
 import DayPickerSub from "../components/DayPickerSub";
 import { DayPicker } from "react-day-picker";
+import DatePicker from "react-datepicker";
 import { format, isValid, parse, isAfter } from "date-fns";
 import "react-day-picker/dist/style.css";
 import "../components/day-picker.css";
@@ -16,16 +17,17 @@ import FindStep02 from "../components/FindProjectStep02"
 import SelectSkill from "../components/SelectSkill";
 import { createRecruitApi, loadRecruitOneApi } from "../redux/modules/postRecruit";
 import store from "../redux/configstore";
+import TestDatePicker from "./TestDatepicker";
 
 const FindProjectStep01 = (props) => {
 
-  
+
   const params = useParams(null);
   console.log(params)
   const projectIdNum = (params?.projectid)
   console.log(projectIdNum)
 
-  
+
   const dispatch = useDispatch
   const navigate = useNavigate()
   const dateref = useRef
@@ -36,27 +38,38 @@ const FindProjectStep01 = (props) => {
   const [selected, setSelected] = useState(new Date);
 
 
-  const projectDetail = useSelector((state)=> state.postRecruit.project)
-  const data=projectDetail?.project
- 
+  const projectDetail = useSelector((state) => state.postRecruit.project)
+  const data = projectDetail?.project
+
   // const [startdate, setStart] = useState(selected.from);
   const today = new Date();
-  const startdate = JSON.stringify(selected.from)
-  const enddate = JSON.stringify(selected.to)
+  const startdate = JSON.stringify(selected?.from)
+  const enddate = JSON.stringify(selected?.to)
   const delStorage = localStorage.removeItem('obj')
+
+  //datepicker테스트
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState()
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+  console.log(startDate, endDate)
+
 
   console.log(storageData)
 
-  
+
   const onSubmit = async (data) => {
-    const addData=projectDetail?.project
+    const addData = projectDetail?.project
     const output = {
 
       ...addData,
       ...data,
-      start: startdate.slice(1, 11),
-      end: enddate.slice(1, 11),
-      selected:selected,
+      // start: startdate?.slice(1, 11),
+      // end: enddate?.slice(1, 11),
+      selected: selected,
       photos: ["null", "null"],
 
     }
@@ -65,14 +78,14 @@ const FindProjectStep01 = (props) => {
     sessionStorage.setItem('obj', JSON.stringify(output))
 
     console.log(output)
-    
-    if(projectIdNum === undefined) {
-     navigate(`/findprojectstep2`)
-    }else if (projectIdNum ){
+
+    if (projectIdNum === undefined) {
+      navigate(`/findprojectstep2`)
+    } else if (projectIdNum) {
       navigate(`/findprojectstep2/${projectIdNum}`)
     }
 
-    
+
     // await new Promise((delStorage) => setTimeout(delStorage,  10000));
   }
   const {
@@ -98,228 +111,250 @@ const FindProjectStep01 = (props) => {
       );
     }
   }
+
+
+
+
   return (
     <>
       <FindProjectAllWrap>
-      {data !== undefined ? (
-      
-      <form onSubmit={handleSubmit(onSubmit)}>
-          <FindprojectTopWrap>
-            <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
-          </FindprojectTopWrap>
-          <HeadLine />
-          <FindProjectStepWrap>
-            <FindProjectStepGuideText1>1. 프로젝트 설명하기</FindProjectStepGuideText1>
-            <FindProjectStepGuideText2>2.크루 모집하기</FindProjectStepGuideText2>
-          </FindProjectStepWrap>
-          <HeadLine />
-          <FindProjectInputTitle>
-            <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-            {storageData ? (
-              <ProjectInput
-                id="title"
-                type="text"
-                placeholder="제목을 입력해주세요"
-                defaultValue={storageData.title }
-                {...register("title", { required: true })}
-              ></ProjectInput>
-            ) : (
-              <ProjectInput
-                id="title"
-                type="text"
-                placeholder="제목을 입력해주세요"
-                defaultValue={data.title }
-                {...register("title", { required: true })}
-              ></ProjectInput>
-            )}
-          </FindProjectInputTitle>
+        {data !== undefined ? (
 
-          <FindProjectInputTitle>
-            <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-            {storageData ? (
-              <ProjectInput
-                id="subscript"
-                type="text"
-                placeholder="프로젝트를 설명해주세요"
-                defaultValue={storageData.subscript}
-                {...register("subscript", { required: true })}
-              ></ProjectInput>
-            ) : (
-              <ProjectInput
-                id="subscript"
-                type="text"
-                placeholder="프로젝트를 설명해주세요"
-                defaultValue={data.subscript }
-                {...register("subscript", { required: true })}
-              ></ProjectInput>
-            )}
-          </FindProjectInputTitle>
-          <FindProjectInputDate>
-            <ProjectTitleText>프로젝트 기간</ProjectTitleText>
-            <div>
-            {storageData ? (
-              <DayPicker
-                styles={{ caption: { fontSize: "13px", padding: "10px" } }}
-                className="dayPicker_container__div"
-                mode="range"
-                selected={selected}
-                onSelect={setSelected}
-                locale={ko}
-                numberOfMonths={2}
-                disabled={{ before: today }}
-                defaultValue={storageData.selected}
-              ></DayPicker>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FindprojectTopWrap>
+              <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
+            </FindprojectTopWrap>
+            <HeadLine />
+            <FindProjectStepWrap>
+              <FindProjectStepGuideText1>1. 프로젝트 설명하기</FindProjectStepGuideText1>
+              <FindProjectStepGuideText2>2.크루 모집하기</FindProjectStepGuideText2>
+            </FindProjectStepWrap>
+            <HeadLine />
+            <FindProjectInputTitle>
+              <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
+              {storageData ? (
+                <ProjectInput
+                  id="title"
+                  type="text"
+                  placeholder="제목을 입력해주세요"
+                  defaultValue={storageData.title}
+                  {...register("title", { required: true })}
+                ></ProjectInput>
               ) : (
-                <DayPicker
-                styles={{ caption: { fontSize: "13px", padding: "10px" } }}
-                className="dayPicker_container__div"
-                mode="range"
-                selected={selected}
-                onSelect={setSelected}
-                locale={ko}
-                numberOfMonths={2}
-                disabled={{ before: today }}
-                defaultValue={data.selected }
-              ></DayPicker>
+                <ProjectInput
+                  id="title"
+                  type="text"
+                  placeholder="제목을 입력해주세요"
+                  defaultValue={data.title}
+                  {...register("title", { required: true })}
+                ></ProjectInput>
               )}
-              {footer}
-              </div>
-            
-          </FindProjectInputDate>
-          <FindProjectInputTitle>
-            <ProjectTitleText>팀 상세 설명</ProjectTitleText>
-            <div>
-            {storageData ? (
-              <RecMainCon
-                id="details"
-                type="text"
-                placeholder="프로젝트의 내용을 입력해주세요"
-                defaultValue={storageData.details}
-                {...register("details")}
-              />
-              ) : (
-                <RecMainCon
-                id="details"
-                type="text"
-                placeholder="프로젝트의 내용을 입력해주세요"
-                defaultValue={data.details }
-                {...register("details")}
-              />
-              )}
-            </div>
-          </FindProjectInputTitle>
-          <div><NextStepButton type="submit" disabled={isSubmitting} >다음 단계로</NextStepButton></div>
-        </form>
-        ):(
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FindprojectTopWrap>
-            <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
-          </FindprojectTopWrap>
-          <HeadLine />
-          <FindProjectStepWrap>
-            <FindProjectStepGuideText1>1. 프로젝트 설명하기</FindProjectStepGuideText1>
-            <FindProjectStepGuideText2>2.크루 모집하기</FindProjectStepGuideText2>
-          </FindProjectStepWrap>
-          <HeadLine />
-          <FindProjectInputTitle>
-            <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-            {storageData ? (
-              <ProjectInput
-                id="title"
-                type="text"
-                placeholder="제목을 입력해주세요"
-                defaultValue={storageData.title }
-                {...register("title", { required: true })}
-              ></ProjectInput>
-            ) : (
-              <ProjectInput
-                id="title"
-                type="text"
-                placeholder="제목을 입력해주세요"
-                {...register("title", { required: true })}
-              ></ProjectInput>
-            )}
-          </FindProjectInputTitle>
+            </FindProjectInputTitle>
 
-          <FindProjectInputTitle>
-            <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-            {storageData ? (
-              <ProjectInput
-                id="subscript"
-                type="text"
-                placeholder="프로젝트를 설명해주세요"
-                defaultValue={storageData.subscript}
-                {...register("subscript", { required: true })}
-              ></ProjectInput>
-            ) : (
-              <ProjectInput
-                id="subscript"
-                type="text"
-                placeholder="프로젝트를 설명해주세요"
-                {...register("subscript", { required: true })}
-              ></ProjectInput>
-            )}
-          </FindProjectInputTitle>
-          <FindProjectInputDate>
-            <ProjectTitleText>프로젝트 기간</ProjectTitleText>
-            <div>
-            {storageData ? (
-              <DayPicker
-                styles={{ caption: { fontSize: "13px", padding: "10px" } }}
-                className="dayPicker_container__div"
-                mode="range"
-                selected={selected}
-                onSelect={setSelected}
-                locale={ko}
-                numberOfMonths={2}
-                disabled={{ before: today }}
-                defaultValue={storageData.selected}
-              ></DayPicker>
+            <FindProjectInputTitle>
+              <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
+              {storageData ? (
+                <ProjectInput
+                  id="subscript"
+                  type="text"
+                  placeholder="프로젝트를 설명해주세요"
+                  defaultValue={storageData.subscript}
+                  {...register("subscript", { required: true })}
+                ></ProjectInput>
               ) : (
-                <DayPicker
-                styles={{ caption: { fontSize: "13px", padding: "10px" } }}
-                className="dayPicker_container__div"
-                mode="range"
-                selected={selected}
-                onSelect={setSelected}
-                locale={ko}
-                numberOfMonths={2}
-                disabled={{ before: today }}
-              ></DayPicker>
+                <ProjectInput
+                  id="subscript"
+                  type="text"
+                  placeholder="프로젝트를 설명해주세요"
+                  defaultValue={data.subscript}
+                  {...register("subscript", { required: true })}
+                ></ProjectInput>
               )}
-              {footer}
+            </FindProjectInputTitle>
+            <FindProjectInputDate>
+              <ProjectTitleText>프로젝트 기간</ProjectTitleText>
+              <div>
+                {storageData ? (
+                  <DayPicker
+                    styles={{ caption: { fontSize: "13px", padding: "10px" } }}
+                    className="dayPicker_container__div"
+                    mode="range"
+                    selected={selected}
+                    onSelect={setSelected}
+                    locale={ko}
+                    numberOfMonths={2}
+                    disabled={{ before: today }}
+                    defaultValue={storageData.selected}
+                  ></DayPicker>
+                ) : (
+                  <DayPicker
+                    styles={{ caption: { fontSize: "13px", padding: "10px" } }}
+                    className="dayPicker_container__div"
+                    mode="range"
+                    selected={selected}
+                    onSelect={setSelected}
+                    locale={ko}
+                    numberOfMonths={2}
+                    disabled={{ before: today }}
+                    defaultValue={data.selected}
+                  ></DayPicker>
+                )}
+                {footer}
+
               </div>
-            
-          </FindProjectInputDate>
-          <FindProjectInputTitle>
-            <ProjectTitleText>팀 상세 설명</ProjectTitleText>
-            <div>
-            {storageData ? (
-              <RecMainCon
-                id="details"
-                type="text"
-                placeholder="프로젝트의 내용을 입력해주세요"
-                defaultValue={storageData.details}
-                {...register("details")}
-              />
+
+            </FindProjectInputDate>
+            <FindProjectInputTitle>
+              <ProjectTitleText>팀 상세 설명</ProjectTitleText>
+              <div>
+                {storageData ? (
+                  <RecMainCon
+                    id="details"
+                    type="text"
+                    placeholder="프로젝트의 내용을 입력해주세요"
+                    defaultValue={storageData.details}
+                    {...register("details")}
+                  />
+                ) : (
+                  <RecMainCon
+                    id="details"
+                    type="text"
+                    placeholder="프로젝트의 내용을 입력해주세요"
+                    defaultValue={data.details}
+                    {...register("details")}
+                  />
+                )}
+              </div>
+            </FindProjectInputTitle>
+            <div><NextStepButton type="submit" disabled={isSubmitting} >다음 단계로</NextStepButton></div>
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FindprojectTopWrap>
+              <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
+            </FindprojectTopWrap>
+            <HeadLine />
+            <FindProjectStepWrap>
+              <FindProjectStepGuideText1>1. 프로젝트 설명하기</FindProjectStepGuideText1>
+              <FindProjectStepGuideText2>2.크루 모집하기</FindProjectStepGuideText2>
+            </FindProjectStepWrap>
+            <HeadLine />
+            <FindProjectInputTitle>
+              <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
+              {storageData ? (
+                <ProjectInput
+                  id="title"
+                  type="text"
+                  placeholder="제목을 입력해주세요"
+                  defaultValue={storageData.title}
+                  {...register("title", { required: true })}
+                ></ProjectInput>
               ) : (
-                <RecMainCon
-                id="details"
-                type="text"
-                placeholder="프로젝트의 내용을 입력해주세요"
-                {...register("details")}
-              />
+                <ProjectInput
+                  id="title"
+                  type="text"
+                  placeholder="제목을 입력해주세요"
+                  {...register("title", { required: true })}
+                ></ProjectInput>
               )}
+            </FindProjectInputTitle>
+
+            <FindProjectInputTitle>
+              <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
+              {storageData ? (
+                <ProjectInput
+                  id="subscript"
+                  type="text"
+                  placeholder="프로젝트를 설명해주세요"
+                  defaultValue={storageData.subscript}
+                  {...register("subscript", { required: true })}
+                ></ProjectInput>
+              ) : (
+                <ProjectInput
+                  id="subscript"
+                  type="text"
+                  placeholder="프로젝트를 설명해주세요"
+                  {...register("subscript", { required: true })}
+                ></ProjectInput>
+              )}
+            </FindProjectInputTitle>
+            <FindProjectInputDate>
+              <ProjectTitleText>프로젝트 기간</ProjectTitleText>
+              <div>
+                {storageData ? (
+                  <DayPicker
+                    styles={{ caption: { fontSize: "13px", padding: "10px" } }}
+                    className="dayPicker_container__div"
+                    mode="range"
+                    selected={selected}
+                    onSelect={setSelected}
+                    locale={ko}
+                    numberOfMonths={2}
+                    disabled={{ before: today }}
+                    defaultValue={storageData.selected}
+                  ></DayPicker>
+                ) : (
+                  <DayPicker
+                    styles={{ caption: { fontSize: "13px", padding: "10px" } }}
+                    className="dayPicker_container__div"
+                    mode="range"
+                    selected={selected}
+                    onSelect={setSelected}
+                    locale={ko}
+                    numberOfMonths={2}
+                    disabled={{ before: today }}
+                  ></DayPicker>
+                )}
+                {footer}
+              </div>
+
+
+            </FindProjectInputDate>
+
+
+            <div className="Daterange">
+              <TestDatePicker
+                selected={startDate}
+                onChange={onChange}
+                startDate={startDate}
+                endDate={endDate}
+              ></TestDatePicker>
             </div>
-          </FindProjectInputTitle>
-          <div><NextStepButton type="submit" disabled={isSubmitting} >다음 단계로</NextStepButton></div>
-        </form>
-      )
-      }
+
+
+
+
+            <FindProjectInputTitle>
+              <ProjectTitleText>팀 상세 설명</ProjectTitleText>
+              <div>
+                {storageData ? (
+                  <RecMainCon
+                    id="details"
+                    type="text"
+                    placeholder="프로젝트의 내용을 입력해주세요"
+                    defaultValue={storageData.details}
+                    {...register("details")}
+                  />
+                ) : (
+                  <RecMainCon
+                    id="details"
+                    type="text"
+                    placeholder="프로젝트의 내용을 입력해주세요"
+                    {...register("details")}
+                  />
+                )}
+              </div>
+            </FindProjectInputTitle>
+            <div><NextStepButton type="submit" disabled={isSubmitting} >다음 단계로</NextStepButton></div>
+          </form>
+        )
+        }
       </FindProjectAllWrap>
     </>
   );
 };
+
+
 
 
 const FindProjectAllWrap = styled.div`
