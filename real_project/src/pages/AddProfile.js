@@ -6,64 +6,103 @@ import Letter from "../image/letter.svg"
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { checkUserValidation } from "../redux/modules/user";
-import SelectSkill from "../components/SelectSkill";
 import {
   dvelopSkills_list,
   designerSkills_list,
 } from "../shared/developeSkills";
 
 import { useDispatch } from "react-redux";
+import { projectsPhotosAxios,resumesCreateAxios } from "../redux/modules/postEmploy";
 
 function AddProfile(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //사진 파일 유무
   const [filesImg, setFilesImg] = React.useState("");
+  const [files, setFiles] = React.useState("");
   const [checkList, setCheckList] = useState([]);
-  //로그인 유무
-  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-  console.log(loginInfo);
+
+  //저장데이터
+  const introduceRef = useRef(null);
+  const content2Ref = useRef(null);
+  const content3Ref = useRef(null);
+  const [role, setRole] = useState("");
+//캘린더 (22.07.12 추가 전)
+  const [start, setStart] = useState("2022-02-02")
+  const [end,setEnd]=useState("2022-02-04")
   //userId,nickname 정보
   const userIdInfo = useSelector((state) => state.user.userInfo);
-
-  //onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
-  const onCheckedElement = (checked, item) => {
-    if (checked) {
-      setCheckList([...checkList, item]);
-      console.log(checkList);
-    } else if (!checked) {
-      setCheckList(checkList.filter((el) => el !== item));
-    }
-  };
-
+  //로그인 유무
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+  //fileReader
+  const frm = new FormData();
+  //fileReader
+  const reader = new FileReader();
+  //로그인 useEffect
   React.useEffect(() => {
     if (loginInfo === false) {
       dispatch(checkUserValidation());
     }
   }, [loginInfo]);
 
+  //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
+  const onCheckedElement = (checked, item) => {
+    if (checked) {
+      setCheckList([...checkList, item]);
+    } else if (!checked) {
+      setCheckList(checkList.filter((el) => el !== item));
+    }
+  };
 
-
-  const introduceRef = useRef(null);
-  const linkRef = useRef(null);
-  const [role, setRole] = useState("");
-
+  //Role 값
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
-  //저장하기
-  const handleClick = () => {
-    // console.log(content,resueImage,start,end,role,skill)
-    console.log(role);
-    console.log(introduceRef.current.value);
-    console.log(linkRef.current.value);
-    console.log();
+
+  const onChangeImg = (e) => {
+    //파일 유무
+    const file = e.target.files;
+    setFiles(file);
+
+    //fileReader
+    setFilesImg(e.target.files[0]);
+    reader.readAsDataURL(e.target.files[0]);
+
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setFilesImg(reader.result);
+        resolve();
+      };
+    });
   };
 
-  const onChangeCheck = (e) => {
-    console.log(e.target.value);
+  //버튼 누르면 저장
+  const handleClick = async() => {
+
+console.log(files[0])
+    frm.append("resumeImage", files[0]);
+    try {
+      await dispatch(projectsPhotosAxios(frm)).then((success) => {
+         dispatch(
+          resumesCreateAxios(
+            introduceRef.current.value,
+            success,
+            start,
+            end,
+            role,
+            checkList,
+            content2Ref.current.value,
+            content3Ref.current.value
+          )
+        )
+      })
+      navigate("/mainemployment");
+     } catch (err) {
+      console.log(err)
+}
+   
+
   };
-  const 파일첨부칸 = () => {};
 
   return (
     <BackgroundAllWrap>
@@ -101,10 +140,41 @@ function AddProfile(props) {
 
           {/* 사진 */}
           <ProfilePicWrap>
-            <NoShowCircleProfile></NoShowCircleProfile>
+            {filesImg ? (
+              <ShowCircleProfile alt="sample" id="showImg" src={filesImg} />
+            ) : (
+              <NoShowCircleProfile></NoShowCircleProfile>
+            )}
+            <PhotoEditWrap>
+              {filesImg ? (
+                <PhotoText>
+                  수정하기
+                  <input
+                    name="imgUpload"
+                    type="file"
+                    id="add_img"
+                    accept="image/*"
+                    onChange={onChangeImg}
+                  />
+                </PhotoText>
+              ) : (
+                <PhotoText>
+                  등록하기
+                  <input
+                    name="imgUpload"
+                    type="file"
+                    id="add_img"
+                    accept="image/*"
+                    onChange={onChangeImg}
+                  />
+                </PhotoText>
+              )}
+            </PhotoEditWrap>
+          </ProfilePicWrap>
+
+          <ProfilePicWrap>
             <PhotoEditWrap>
               <PhotoText>삭제</PhotoText>
-              <PhotoText>수정</PhotoText>
             </PhotoEditWrap>
           </ProfilePicWrap>
 
@@ -211,12 +281,12 @@ function AddProfile(props) {
           <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
           <ProfileInput
             placeholder="GitHub, Figma 등 링크를 적어 주세요"
-            ref={linkRef}
+            ref={content2Ref}
           ></ProfileInput>
         </PortfollioWrap>
 
         <SelfWrap>
-          <textarea></textarea>
+          <textarea ref={content3Ref}></textarea>
         </SelfWrap>
         <HeaderHeadLine />
         <SubmitButtonWrap>
@@ -290,7 +360,7 @@ const ProfileTopWrap = styled.div`
 `
 
 const NoShowCircleProfile = styled.div`
-    /* border: 1px solid black; */
+    border: 1px solid black;
     width: 200px;
     height: 200px;
     border-radius: 100%;
@@ -299,6 +369,18 @@ const NoShowCircleProfile = styled.div`
     background-position: center;
     background-size: cover;
 `
+
+const ShowCircleProfile = styled.img`
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  background-color: transparent;
+`;
 
 const SelectBoxWrap = styled.div`
   /* border: 1px solid black; */
@@ -594,4 +676,7 @@ const SkillTitleTextTag = styled.p`
   font-weight: bold;
   color: #ae97e3;
 `;
+
+
+
 export default AddProfile;

@@ -1,59 +1,78 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import Tag from "../components/TagCompoEmp"
+import TagCompoEmpPro from "../components/TagCompoEmpPro";
+import { useParams } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { loadSingleEmployAxios } from "../redux/modules/postEmploy";
 
 function EmploymentProfile() {
+  const dispatch = useDispatch()
+  const { resumeId } = useParams();
+  
+  const data = useSelector((state) => state.postEmploy.resumes);
+
+const start = data.length > 0 ? data[0].start.replace("-", ".").replace("-", ".") : "";
+
+  const end =
+    data.length > 0 ? data[0].end.replace("-", ".").replace("-", ".") : "";
+
+
+  useEffect(() => {
+  dispatch(loadSingleEmployAxios(resumeId))
+  },[])
+
   return (
     <>
       <EmploProfile>
         <NameFieldWrap>
           <ProfileTopWrap>
             <ProfileCircleWrap>
-              <ProfileCircle></ProfileCircle>
+              <ProfileCircle
+                style={{
+                  backgroundImage: `url(${
+                    data.length > 0 ? data[0].resumeImage : ""
+                  })`,
+                }}
+              ></ProfileCircle>
             </ProfileCircleWrap>
             <NameWrap>
               <NameTitle>
-                <TitleName>[닉네임]</TitleName>
+                <TitleName>{data.length > 0 ? data[0].nickname : ""}</TitleName>
               </NameTitle>
               <NameTitle>
-                <SubName>[직군 이름]</SubName>
+                <SubName>{data.length > 0 ? data[0].role : ""}</SubName>
               </NameTitle>
               <NameTitle>
-                <TextField>
-                  자기 소개 입니다. 서머리 카드에 있는 내용입니다.
-                </TextField>
+                <TextField>{data.length > 0 ? data[0].userId : ""}</TextField>
               </NameTitle>
               <NameTitle>
-                <TextField>
-                  연락처 정보 (이메일)
-                </TextField>
-                <TextField>
-                  연락처 정보 (휴대전화)
-                </TextField>
+                <TextField>{data.length > 0 ? data[0].content : ""}</TextField>
               </NameTitle>
             </NameWrap>
           </ProfileTopWrap>
           <TitleTextWrap>
-            <SubName>교육 및 업무 경력</SubName>
-            <SelfText>자기소개 및 각종 사항이 출력 됩니다.</SelfText> 
+            <SubName>소개글</SubName>
+            <SelfText>{data.length > 0 ? data[0].content3 : ""}</SelfText>
           </TitleTextWrap>
           <TitleTextWrap>
-            <SubName>그 외 활동 이력</SubName>
-            <SelfText>자기소개 및 각종 사항이 출력 됩니다.</SelfText> 
+            <SubName>홈페이지</SubName>
+            <SelfText>{data.length > 0 ? data[0].content2 : ""}</SelfText>
           </TitleTextWrap>
           <TitleTextWrap>
             <SubName>프로젝트 참여 가능 기간</SubName>
-            <SelfText>프로젝트 참여 가능 기간이 출력 됩니다.</SelfText> 
+            <SelfText>
+              {start}~{end}
+            </SelfText>
           </TitleTextWrap>
           <TitleTextWrap>
-              <StacTextWrap>
-            <StacText>[닉네임]님이 보유한 스택</StacText>
+            <StacTextWrap>
+              <StacText>[닉네임]님이 보유한 스택</StacText>
             </StacTextWrap>
             <StacTagWrap>
-              <Tag /> <Tag /> <Tag /> <Tag /> <Tag />
-              <Tag /> <Tag /> <Tag /> <Tag /> <Tag />
-              <Tag />
+              <TagCompoEmpPro
+                skills={data.length > 0 ? data[0].resumeskills : ""}
+              />
             </StacTagWrap>
           </TitleTextWrap>
           <DucButton>면접 신청하기</DucButton>
@@ -93,17 +112,42 @@ const ProfileTopWrap = styled.div`
 `
 
 const ProfileCircleWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 150px;
-    margin-right: 40px;
-`
+  /* border: 1px solid black; */
+  width: 150px;
+  height: 150px;
+  margin-right: 40px;
+ 
+  overflow: hidden;
+  position: relative;
+`;
 
 const ProfileCircle = styled.div`
-    width: 150px;
-    height: 150px;
-    border-radius: 150px;
-    background-color: #685BC7;
-`
+  /* width: 150px;
+  height: 150px; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 150%;
+  /* object-fit: cover; */
+
+  /* background-size: 100%; */
+  /* background-position: center;
+  border-radius: 50%;
+  background-repeat: no-repeat; */
+
+  /* display: inline-block;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  object-fit: cover; */
+  position: absolute;
+  width: 100%;
+  /* height: 100%; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 const NameWrap = styled.div`
     /* border: 1px solid black; */
