@@ -1,53 +1,24 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 
 import Tag from "./TagCompoRec";
 
 import Receipt from "../image/receipt.svg"
-import Moment from "react-moment";
+
+
 
 const CardRecruit = ({ data }) => {
 
-  const navigate = useNavigate()
-  //loadRecruit props
-
-
-
-const today = Date();
-  const nowTime = Date.now();
-  const stringNowTime = today.toString().split(" ")[4];
-  const todayHour = stringNowTime.split(":")[0];
-
-
-  const createdAt = data.createdAt;
-  const startTime = new Date(createdAt);
-  const readNum = data.projectid
-  const stringStartTime = startTime.toString().split(" ")[4];
-  const startHour = stringStartTime.split(":")[0];
-  const thenHours = Math.floor((nowTime - startTime) / 3600000);
-  const startDay= data.start
-  const start = startDay.slice(2, 10)
-  const end = data.end.slice(2, 10)
-  const DisplayCreatedAt = () => {
-    if (parseInt(startTime - nowTime) > -86400000) {
-      return thenHours + "시간전";
-    }
-    if (parseInt(startTime - nowTime) < -86400000) {
-      return <Moment format="M월 D일">{startTime}</Moment>;
-      // return (thenHours)+"시간전";
-    }
-  }
+  const navigate = useNavigate();
 
     return (
       <AllWrap>
         <AllTopWrap>
           <CardTopInfo>
-            <CardWriteName>{data.nickname}</CardWriteName>
-            <CardWriteTime><DisplayCreatedAt /></CardWriteTime>
+            <CardWriteName>{data.userId}</CardWriteName>
+            <CardWriteTime>시간 값이 들어갑니다</CardWriteTime>
           </CardTopInfo>
           <CardTitleInfo>
             <CardTitleText>{data.title}</CardTitleText>
@@ -78,9 +49,11 @@ const today = Date();
         <AllBotWrap>
           <CardBotTopWrap>
             <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-            <CardBotTextDateInfo> {start} ~ {end} </CardBotTextDateInfo>
+            <CardBotTextDateInfo>  </CardBotTextDateInfo>
           </CardBotTopWrap>
-          <CardViewButton onClick={() => {navigate(`/readproject/${readNum}`)}}>프로젝트 보러 가기</CardViewButton>
+          <CardViewButton 
+          // onClick={() => {navigate(`/readproject/${readNum}`)}}
+          >프로젝트 보러 가기</CardViewButton>
         </AllBotWrap>
       </AllWrap>
     );

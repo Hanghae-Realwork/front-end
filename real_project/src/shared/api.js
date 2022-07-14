@@ -21,25 +21,17 @@ const api = axios.create({
   },
 });
 
-
 // axios.defaults.withCredentials = true;
-
 
 //토큰
 api.interceptors.request.use(function (config) { 
 
-  // const accessToken = `${localStorage.getItem("token")}`;
-  // config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  // return config;
-   const atoken = getCookie("ACCESS_TOKEN");
-   const rtoken = getCookie("REFRESH_TOKEN");
-
-   config.headers.common["Authorization"] = `Bearer ${atoken}`;
-   config.headers.common["reAuthorization"] = `Bearer ${rtoken}`;
-
+  const accessToken = `${localStorage.getItem("token")}`;
+  if (accessToken !== undefined) {
+    config.headers.common["authorization"] = `Bearer ${accessToken}`;
+  }
    return config;
 });
-
 
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {
@@ -113,20 +105,39 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  refresh: () =>
-    api.post("/api/users/refresh"),
+  refresh: () => api.post("/api/users/refresh"),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
   //////////////////////
 
+
   //  - 9. 프로젝트 등록
-  projectsCreate: (data) =>
-    api.post("/api/projects", {
-      ...data,
+  projectsCreate: (
+    title,
+    details,
+    subscript,
+    role,
+    start,
+    end,
+    skills,
+    photos,
+    schedule
+    ) => api.post("/api/projects", {
+      title: title,
+      details: details,
+      subscript: subscript,
+      role: role,
+      start: start,
+      end: end,
+      skills: skills,
+      photos: photos,
+      schedule: schedule
     }),
+
+    
   //  - 10. 프로젝트 조회
-  projectsLoad: () => api.get(`/api/projects?page=1&limit=9`),
+  projectsLoad: () => api.get("/api/projects"),
 
   //  - 11. 프로젝트 상세조회
   projectsLoadDetail: (projectId) => api.get(`/api/projects/${projectId}`),
@@ -145,8 +156,7 @@ export const apis = {
     photos,
     
   ) =>
-    api.put(`/api/projects/${projectId}`, {
-      
+    api.put("/api/projects", {
       title: title,
       details: details,
       subscript: subscript,
@@ -160,6 +170,9 @@ export const apis = {
 
   //  - 13. 프로젝트 삭제
   projectsDelete: (projectId) => api.delete(`/api/projects/${projectId}`),
+  //  - ## 이미지 업로드
+
+  projectsPhotos: (frm) => imgApi.post("/api/projects/photos", frm),
 
   /////////////////////////////////////////
   ////<3. 팀원 찾기 페이지 이력서(지원자) API>////
@@ -167,10 +180,7 @@ export const apis = {
 
   //  - 14. 팀원 찾기 등록
   resumesCreate: (
-    nickname,
     content,
-    userId,
-    phone,
     resumeImage,
     start,
     end,
@@ -180,15 +190,12 @@ export const apis = {
     content3
   ) =>
     api.post("/api/resumes", {
-      nickname: nickname,
       content: content,
-      userId: userId,
-      phone: phone,
       resumeImage: resumeImage,
       start: start,
       end: end,
       role: role,
-      skills: skills,
+      skill: skills,
       content2: content2,
       content3: content3,
     }),
@@ -197,15 +204,12 @@ export const apis = {
   resumesLoad: () => api.get("/api/resumes"),
 
   //  - 16. 팀원 찾기 상세조회
-  resumesLoadDetail: (resumeId) => api.get("/api/resumes/${resumeId}"),
+  resumesLoadDetail: (resumeId) => api.get(`/api/resumes/${resumeId}`),
 
   //  - 17. 팀원 찾기 수정
   resumesModify: (
     resumeId,
-    nickname,
     content,
-    userId,
-    phone,
     resumeImage,
     start,
     end,
@@ -214,22 +218,19 @@ export const apis = {
     content2,
     content3
   ) =>
-    api.put("/api/resumes/${resumeId}", {
-      nickname: nickname,
+    api.put(`/api/resumes/${resumeId}`, {
       content: content,
-      userId: userId,
-      phone: phone,
       resumeImage: resumeImage,
       start: start,
       end: end,
       role: role,
-      skills: skills,
+      skill: skills,
       content2: content2,
       content3: content3,
     }),
 
   //  - 18. 팀원 찾기 삭제
-  resumesDelete: (resumeId) => api.delete("/api/resumes/${resumeId}"),
+  resumesDelete: (resumeId) => api.delete(`/api/resumes/${resumeId}`),
 
   //  - 19. 팀원 찾기 프로필 이미지 편집(보류)
   //  - 20. 팀원 찾기 프로필 이미지 삭제(보류)
@@ -257,3 +258,6 @@ export const apis = {
   //  - 31. 이미지 업로드
   //[이미지업로드]
 };
+
+
+

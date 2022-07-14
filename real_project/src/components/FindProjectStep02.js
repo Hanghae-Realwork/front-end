@@ -200,6 +200,7 @@ function FindProjectStep02(props) {
           </SelectSkillWrap>
           <div>
             캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
+            {/* <TimeContainer onChange={action} /> */}
           </div>
           <SubmitButtonWrap>
             <BackButton onClick={() => { navigate(`/findprojectstep1`) }}>이전 단계로</BackButton>

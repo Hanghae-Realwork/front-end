@@ -15,7 +15,7 @@ function Header() {
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
  
-  
+
   
   React.useEffect(() => {
     if (loginInfo === false) {

@@ -1,17 +1,14 @@
 
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
-
-
 import CardEmpol from "../components/CardEmpol";
 import SelectCompo from "../components/SelectCompo"
-import { useSelector } from "react-redux";
-
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { loadEmployAxios } from "../redux/modules/postEmploy";
 
+
 const MainEmployment = () => {
-  const [updata,setUpdate] = useState()
+  const [updata, setUpdate] = useState();
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.postEmploy.returnResumes);
 
@@ -25,7 +22,7 @@ const MainEmployment = () => {
       <SelectCompo />
       <CardBackGround>
         <CardContainerWrap>
-          {resumes===undefined ? null : resumes.map((list, idx) => {
+          {resumes === undefined ? null : resumes.map((list, idx) => {
             return <CardEmpol key={idx} data={list} />;
               })}
         </CardContainerWrap>
