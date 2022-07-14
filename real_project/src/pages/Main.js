@@ -144,7 +144,7 @@ const MainBotWrap = styled.div`
 
 const BottomBackGround = styled.div`
     /* background-color: #303032; */
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
