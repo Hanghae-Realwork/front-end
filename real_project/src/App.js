@@ -91,7 +91,7 @@ const dispatch = useDispatch()
 
         <Route path="mypage/:nickname/*" element={<MyPage />}>
           <Route path="project" element={<Recruitment />}></Route>
-          <Route path="resumes" element={<Application />}></Route>
+          <Route path="apply" element={<Application />}></Route>
         </Route>
       </Routes>
     </MainWrap>
