@@ -52,7 +52,7 @@ function Login() {
   return (
     <>
       <LoginWrap>
-        <DayPickerSingle></DayPickerSingle>
+      
         <AlignWrap>
           <LogoWrap>
             <p>renDev</p>

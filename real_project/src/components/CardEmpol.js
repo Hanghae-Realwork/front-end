@@ -15,7 +15,7 @@ function CradEmpol({ data }) {
   const start =
     data > 0 ? "" : data.start.replace("-", ".").replace("-", ".");
   const end =
-    data> 0 ? "" : data.end.replace("-", ".").replace("-", ".");
+    data > 0 ? "" : data.end.replace("-", ".").replace("-", ".");
 
     return (
       <>
