@@ -213,8 +213,9 @@ export default function reducer(state = initialState, action = {}) {
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("nickname");
-      deleteCookie("ACCESS_TOKEN");
-      deleteCookie("REFRESH_TOKEN");
+      localStorage.removeItem("token");
+      // deleteCookie("ACCESS_TOKEN");
+      // deleteCookie("REFRESH_TOKEN");
       const newUserInfo = {
         userEmail: null,
         nickname:null,

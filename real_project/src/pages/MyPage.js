@@ -1,105 +1,120 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux"; 
 import { checkUserValidation } from "../redux/modules/user";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import astroman from "../image/astroman.svg"
 import email from "../image/letter.svg"
 import Check from "../image/check.svg"
+import Application from "../components/Mypage/Application";
+import Recruitment from "../components/Mypage/Recruitment";
 
 
 function MyPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const MyCard = Array.from({ length: 2 }, (v, i) => i);
+    const params = useParams()
+   
     
-
+    const MyCard = Array.from({ length: 2 }, (v, i) => i);
+    const loginInfo = useSelector((state) => state.user.userInfo);
+    const [userId, setUserId] = useState("")
+    const [nickname, setNickname] = useState("")
+    
+    console.log(loginInfo)
+    useEffect(() => {
+        if (loginInfo) { 
+            setUserId(loginInfo?.userId);
+            setNickname(loginInfo?.nickname);
+            
+        }
+    },[userId,nickname])
   return (
     <>
-         <MypageBackGround>
-         <MyPageMainWrap>
-            <MyPageLeftWrap>
-                <MyPageProfileWrap>
-                    <MyPagePhotoWrap></MyPagePhotoWrap>
-                    <NameMyPage>
-                        <NameText>사용자 이름</NameText>
-                    </NameMyPage>
-                </MyPageProfileWrap>
-                <MypageTextWrap>
-                        <Mycall>Email@Email.com</Mycall>
-                </MypageTextWrap>
-                <MyPagePasswordWrap>
-                    <span>비밀번호 변경</span>
-                    <span>회원탈퇴</span>
-                </MyPagePasswordWrap>
-            </MyPageLeftWrap>
-            <MyPageRightWrap>
-                <RightTopWrap>
-                    <MyMenuButton>내 지원 현황</MyMenuButton>
-                    <MyMenuButton>내 모집 현황</MyMenuButton>
-                    <MyMenuButton>내 이력서</MyMenuButton>
-                </RightTopWrap>
-                <RightMapingWrap>
-                    <RightContentWrap>
-                        <RightCardWrap>
+      <MypageBackGround>
+        <MyPageMainWrap>
+          <MyPageLeftWrap>
+            <MyPageProfileWrap>
+              <MyPagePhotoWrap></MyPagePhotoWrap>
+              <NameMyPage>
+                <NameText>{nickname}</NameText>
+              </NameMyPage>
+            </MyPageProfileWrap>
+            <MypageTextWrap>
+              <Mycall>{userId}</Mycall>
+            </MypageTextWrap>
+            <MyPagePasswordWrap>
+              <span>비밀번호 변경</span>
+              <span>회원탈퇴</span>
+            </MyPagePasswordWrap>
+          </MyPageLeftWrap>
+          <MyPageRightWrap>
+            <RightTopWrap>
+              <MyMenuButton>내 지원 현황</MyMenuButton>
+              <MyMenuButton>내 모집 현황</MyMenuButton>
+              <MyMenuButton>내 이력서</MyMenuButton>
+            </RightTopWrap>
+            <Outlet />
+            {/* <div>
+                <RightContentWrap>
+                    <RightCardWrap>
 
-                            <CardAllWrap>
-                                <CardTotalWrap>
-                                <TopWrap>
-                                    <UserText>사용자 이름</UserText>
-                                    <UserText>작성 시간</UserText>
-                                </TopWrap>
-                                <TitleWrap>
-                                    <TitleText>게시물 제목이 들어갑니다</TitleText>
-                                </TitleWrap>
-                                <TitleWrap>
-                                    <ContentText>요약 된 콘텐츠 내용이 여기에 반영 됩니다</ContentText>
-                                    <ContentText>요약 된 콘텐츠 내용이 여기에 반영 됩니다</ContentText>
-                                </TitleWrap>
-                                <RoleWrap>
-                                    <UserText>구하는 직군</UserText>
-                                    <RoleText>백엔드 엔지니어</RoleText>
-                                </RoleWrap>
-                                <RoleWrap>
-                                    <UserText>보유 기술</UserText>
-                                    <RoleText>백엔드 엔지니어</RoleText>
-                                </RoleWrap>
-                                    <ProjectLimit>
-                                        <DateLimitText>프로젝트 러닝 기간 :</DateLimitText>
-                                        <DateText>2222.02.22 ~ 2222.03.22</DateText>
-                                    </ProjectLimit>
-                                </CardTotalWrap>
-                            </CardAllWrap>
+                        <CardAllWrap>
+                            <CardTotalWrap>
+                            <TopWrap>
+                                <UserText>사용자 이름</UserText>
+                                <UserText>작성 시간</UserText>
+                            </TopWrap>
+                            <TitleWrap>
+                                <TitleText>게시물 제목이 들어갑니다</TitleText>
+                            </TitleWrap>
+                            <TitleWrap>
+                                <ContentText>요약 된 콘텐츠 내용이 여기에 반영 됩니다</ContentText>
+                                <ContentText>요약 된 콘텐츠 내용이 여기에 반영 됩니다</ContentText>
+                            </TitleWrap>
+                            <RoleWrap>
+                                <UserText>구하는 직군</UserText>
+                                <RoleText>백엔드 엔지니어</RoleText>
+                            </RoleWrap>
+                            <RoleWrap>
+                                <UserText>보유 기술</UserText>
+                                <RoleText>백엔드 엔지니어</RoleText>
+                            </RoleWrap>
+                                <ProjectLimit>
+                                    <DateLimitText>프로젝트 러닝 기간 :</DateLimitText>
+                                    <DateText>2222.02.22 ~ 2222.03.22</DateText>
+                                </ProjectLimit>
+                            </CardTotalWrap>
+                        </CardAllWrap>
 
-                        </RightCardWrap>
-                        <InterviewWrap>
-                            <InterviewButtonWrap>
-                                <ButtonWrap>
-                                <InterviewButton>면접 보기</InterviewButton>
-                                <InterviewDateWrap>
-                                    <InterviewTimeText>0000년 00월 00일</InterviewTimeText>
-                                    <InterviewTimeText>시간: 분 </InterviewTimeText>
-                                </InterviewDateWrap>
-                                </ButtonWrap>
-                                <InterviewDateWrap>
-                                    <CodeText>면접 코드: 123-123</CodeText>
-                                </InterviewDateWrap>
-                            </InterviewButtonWrap>
-                        </InterviewWrap>
-                        <BeltWrap>
-                            <CourseLabel>지원서 접수 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
-                            <ConectLine />
-                            <CourseLabel>면접 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
-                            <ConectLine />
-                            <CourseLabel>매칭 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
-                        </BeltWrap>
-                    </RightContentWrap>
-                </RightMapingWrap>
-            </MyPageRightWrap>
-        
+                    </RightCardWrap>
+                    <InterviewWrap>
+                        <InterviewButtonWrap>
+                            <ButtonWrap>
+                            <InterviewButton>면접 보기</InterviewButton>
+                            <InterviewDateWrap>
+                                <InterviewTimeText>0000년 00월 00일</InterviewTimeText>
+                                <InterviewTimeText>시간: 분 </InterviewTimeText>
+                            </InterviewDateWrap>
+                            </ButtonWrap>
+                            <InterviewDateWrap>
+                                <CodeText>면접 코드: 123-123</CodeText>
+                            </InterviewDateWrap>
+                        </InterviewButtonWrap>
+                    </InterviewWrap>
+                    <BeltWrap>
+                        <CourseLabel>지원서 접수 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
+                        <ConectLine />
+                        <CourseLabel>면접 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
+                        <ConectLine />
+                        <CourseLabel>매칭 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
+                    </BeltWrap>
+                </RightContentWrap>
+                </div> */}
+          </MyPageRightWrap>
         </MyPageMainWrap>
-        </MypageBackGround>
+      </MypageBackGround>
     </>
   );
 }

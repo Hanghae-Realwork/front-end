@@ -23,14 +23,11 @@ function EmploymentProfile() {
   // const modify = (loginInfoName === data[0]?.userId);
 
   const [modify, setModify] = useState(false);
+  
   let start =""
   let end = ""
   let href = ""
-          // start = data[0]?.start.replace("-", ".").replace("-", ".");
-          // end = data[0]?.end.replace("-", ".").replace("-", ".");
 
-          // href = data.length > 0 ? data[0].content2 : "";
-  // const img_In = data.length > 0 ? data[0].resumeImage &&  : "";
 
   useEffect(() => {
    if (loginInfo === false) {
