@@ -15,7 +15,7 @@ function EmploymentProfile() {
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
  
-   const loginInfoName = useSelector((state) => state.user.userInfo.userId);
+  const loginInfoName = useSelector((state) => state.user.userInfo.userId);
 
   const data = useSelector((state) => state.postEmploy.resumes);
 
@@ -32,7 +32,7 @@ function EmploymentProfile() {
           // href = data.length > 0 ? data[0].content2 : "";
   // const img_In = data.length > 0 ? data[0].resumeImage &&  : "";
 
- React.useEffect(() => {
+  useEffect(() => {
    if (loginInfo === false) {
      dispatch(checkUserValidation());
    }}, [loginInfo]);
@@ -57,7 +57,8 @@ function EmploymentProfile() {
   
 useState(data[0]?.role)
  //undefined일때 null 처리 나머지 return 
-if(!data[0]) return null 
+
+ if(!data[0]) return null 
   return (
     <>
       <EmploProfile>
@@ -65,12 +66,7 @@ if(!data[0]) return null
           <ProfileTopWrap>
             <ProfileCircleWrap>
               <ProfileCircle
-                style={{
-                  backgroundImage: `url(${
-                     data[0].resumeImage 
-                  })`,
-                }}
-              ></ProfileCircle>
+                style={{backgroundImage: `url(${data[0].resumeImage})`}}></ProfileCircle>
             </ProfileCircleWrap>
             <NameWrap>
               <NameTitle>
@@ -123,7 +119,7 @@ if(!data[0]) return null
           <div>
             <DucButton>면접 신청하기</DucButton>
             {modify ? (
-              <DucButton onClick={() => {navigate("/aditprofile/" + `${data[0].resumeId}`);}}>
+              <DucButton onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
                 수정하기
               </DucButton>
             ) : (<></>)}

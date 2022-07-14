@@ -21,13 +21,9 @@ const FindProjectStep01 = (props) => {
   const [checkList, setCheckList] = useState([]);
 
 
-
   //캘린더 (22.07.12 추가 전 / 코코미 코드)
   const [start, setStart] = useState("2022-02-02")
   const [end, setEnd] = useState("2022-02-04")
-
-  const [schedule, setSchedule] = useState('2022-07-01 02:02:02', '2022-07-02 03:03:03')
-
   
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
@@ -77,9 +73,6 @@ const FindProjectStep01 = (props) => {
   // 저장 버튼
   const CompliteButton = async() => {
     frm.append("photos", files[0]);
-    console.log(files[0])
-
-
     try {
         await dispatch(projectsPhotosAxios(frm)).then((success) => {
           console.log()
@@ -94,7 +87,6 @@ const FindProjectStep01 = (props) => {
               end,
               checkList,
               success,
-
               ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
             )
           );

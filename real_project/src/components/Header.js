@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkUserValidation, logOut } from "../redux/modules/user";
 
 import BasicPhoto from "../image/astro-white.svg"
-import Logo from "../image/Logo.svg"
+import Logo from "../image/Logo_vertical.svg"
 
 
 function Header() {
@@ -115,7 +115,7 @@ const LogoWrap = styled.div`
     align-items: center;
     background-image: url(${Logo});
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     /* border: 1px solid white; */
 `

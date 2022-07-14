@@ -1,158 +1,240 @@
-import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { createRecruitApi } from "../redux/modules/postRecruit";
-import { useDispatch } from "react-redux";
-import SelectSkill from "./SelectSkill";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-const FindProjectStep02 = (props) => {
-  const dispatch = useDispatch
-  const navigate = useNavigate()
-  const storageData = sessionStorage.getItem('obj')
-  const addData = JSON.parse(storageData);
-  const token = localStorage.getItem("accesstocken");
-  console.log(addData)
+import { useSelector, useDispatch } from "react-redux";
 
-  const onSubmit = async (data) => {
-    console.log(data)
-    const output = {
-      ...data,
-      ...addData,
-      
-      schedule: ["2022-07-20", "2022-07-25"]
+import { checkUserValidation } from "../redux/modules/user";
+import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
+import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+import { LoadDetailAxios, editRecruitAxios, loadEmployAxios } from "../redux/modules/postRecruit";
+
+
+
+import addimage from "../image/addimage.svg"
+
+const FindProjectStep01 = (props) => {
+
+  const { projectId } = useParams();
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const titleRef = useRef(null);
+  const subscriptRef = useRef(null);
+  const detailsRef = useRef(null);
+
+  const [role, setRole] = useState("");
+  
+
+  //캘린더 (22.07.12 추가 전 / 코코미 코드)
+  const [start, setStart] = useState("2022-02-02")
+  const [end, setEnd] = useState("2022-02-04")
+  
+  //사진 파일 유무
+  const [filesImg, setFilesImg] = useState("");
+  const [files, setFiles] = useState("");
+  const [checkList, setCheckList] = useState([]);
+
+ 
+  //Role 값 (코코미 코드)
+  const onChangeRole = (e) => {
+    setRole(e.target.value);
+  };
+
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+  const userEdit = useSelector((state) => state.postRecruit.project);
+
+  console.log(userEdit)
+
+  //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
+  const onCheckedElement = (checked, item) => {
+    if (checked) {
+      setCheckList([...checkList, item]);
+    } else if (!checked) {
+      setCheckList(checkList.filter((el) => el !== item));
     }
-    await new Promise((r) => setTimeout(r, 1000));
+  };
 
-    // await new localStorage.removeItem('obj')((r) => setTimeout(r, 3600000));
-    axios({
-      method: "post",
-      url: "http://3.39.226.20/api/projects",
-      data: JSON.stringify(output),
-      headers: {
-        "content-type": `application/json`,
-        "Authorization": `Bearer ${token}`
-        // "Content-Type": "multipart/form-data"
+  useEffect(() => {
+    if (loginInfo === false) {
+      dispatch(checkUserValidation());
+    }
+  }, [loginInfo]);
+
+     useEffect(() => {
+       dispatch(LoadDetailAxios(projectId));
+     }, []); 
+
+
+  //fileReader
+  const frm = new FormData();
+  const reader = new FileReader();
+
+
+  //이미지 파일 코드(코코코코코코미)
+  const onChangeImg = (e) => {
+    const file = e.target.files;
+    setFiles(file);
+
+
+    //fileReader
+    setFilesImg(e.target.files[0]);
+    reader.readAsDataURL(e.target.files[0]);
+
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setFilesImg(reader.result);
+        resolve();
+      };
+    });
+  };
+
+
+  // 저장 버튼
+  const CompliteEdit = async() => {
+    frm.append("photos", files[0]);
+    try {
+        await dispatch(projectsPhotosAxios(frm)).then((success) => {
+          console.log()
+
+          dispatch(
+            editRecruitAxios(
+              titleRef.current.value,
+              detailsRef.current.value,
+              subscriptRef.current.value,
+              role,
+              start,
+              end,
+              checkList,
+              success,
+              ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
+            )
+          );
+
+          })
+        navigate("/mainrecruit");
+        } catch(err){
+          alert("error")
+          console.log(err)
+        }
       }
-    })
-      .then((res) => {
-        alert("프로젝트 등록완료!")
-        sessionStorage.removeItem('obj')
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      });
-
-    // dispatch(
-    //   createRecruitApi({
-    //     ...output
-    //   })
-    // );
-    // navigate(`/findprojectstep2`)
-    console.log(output)
-  }
-
-  const dvelopSkills_list = [
-    { data: 'React' },
-    { data: 'Vue.js' },
-    { data: 'JavaScript' },
-    { data: 'Node.js' },
-    { data: 'Java' },
-    { data: 'Spring' },
-    { data: 'Python' },
-    { data: 'MongoDB' },
-    { data: 'MySQL' },
-    { data: 'Redis' },
-    { data: 'TypeScript' },
-    { data: 'Ruby' },
-    { data: 'AWS' },
-    { data: 'Go' },
-    { data: 'PHP' },
-    { data: 'Git' },
-    { data: '.NET' },
-    { data: 'React Native' },
-    { data: 'Django' },
-    { data: 'Flask' },
-    { data: 'Nest.JS' },
-    { data: 'Express.JS' },
-    { data: 'NoSQL' },
-    { data: 'SQL' },
-    { data: 'Swift' },
-    { data: 'Kotlin' },
-    { data: 'Android' },
-    { data: 'iOS' },
-  ]
-  const designerSkills_list = [
-    { data: 'Figma' },
-    { data: 'Adobe XD' },
-    { data: 'Adobe Illustrator' },
-    { data: 'Adobe PhotoShop' },
-    { data: 'Invision' },
-    { data: 'Sketch' },
-    { data: 'Protopie' },
-  ]
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting, isDirty, errors },
-  } = useForm();
-
-
-
 
 
   return (
     <>
       <FindProjectAllWrap>
-        <form onSubmit={handleSubmit(onSubmit)}>
           <FindprojectTopWrap>
             <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
           </FindprojectTopWrap>
           <HeadLine />
-          <FindProjectStepWrap>
-            <FindProjectStepGuideText>1. 프로젝트 설명하기 2.크루 모집하기</FindProjectStepGuideText>
-          </FindProjectStepWrap>
-          <HeadLine />
-          <div>
+          <FindProjectInputTitle>
+            <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
+            <ProjectInput ref={titleRef} id="title" type="text" defaultValue={userEdit[0]?.title}></ProjectInput>
+          </FindProjectInputTitle>
+          <FindProjectInputTitle>
+            <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
+            <ProjectInput ref={subscriptRef} id="subscript" type="text" defaultValue={userEdit[0]?.subscript}></ProjectInput>
+          </FindProjectInputTitle>
+          <FindProjectInputDate>
+            <ProjectTitleText>프로젝트 기간</ProjectTitleText>
+            <div>
+               달력이 들어갈 공간 입니다.
+              <div>
+              </div>
+            </div>
+          </FindProjectInputDate>
+          <FindProjectInputTitle>
+            <ProjectTitleText>팀 상세 설명</ProjectTitleText>
+            <ReMainConWrap>
+              <RecMainCon ref={detailsRef} id="details" type="text" defaultValue={userEdit[0]?.details} />
+                <PhotoUPloadWrap>
+                  {filesImg ? (<UpPhotoArea alt="sample" id="showImg" src={filesImg} />
+                ) : (<DisablePhotoWrap></DisablePhotoWrap>)}
+                  <EditWrapPhoto>
+                    {filesImg ? (
+                      <PhotoText>수정하기 <input name="imgUpload" type="file" id="add_img"
+                          accept="image/*" onChange={onChangeImg}/>
+                      </PhotoText>
+                    ) : (
+                      <PhotoText>등록하기 <input name="imgUpload" type="file" id="add_img"
+                          accept="image/*" onChange={onChangeImg}/>
+                      </PhotoText>
+                    )}
+                  </EditWrapPhoto>
+                </PhotoUPloadWrap>
+            </ReMainConWrap>
+          </FindProjectInputTitle>
+          <FindProjectInputTitle>
             <ProjectTitleText>구하는 직군</ProjectTitleText>
             <div>
-              <label><input id="role" type="radio" name="Radio"  value="frontend" {...register("role")} />FrontEnd</label>
-              <label><input id="role" type="radio" name="Radio" value="backend" {...register("role")} />BackEnd</label>
-              <label><input id="role" type="radio" name="Radio" value="graphicDesigner" {...register("role")} />Designer</label>
+              <label><input id="role" type="radio" name="Radio"  value="frontend" onChange={onChangeRole} />FrontEnd</label>
+              <label><input id="role" type="radio" name="Radio" value="backend" onChange={onChangeRole} />BackEnd</label>
+              <label><input id="role" type="radio" name="Radio" value="designer" onChange={onChangeRole} />Designer</label>
             </div>
-          </div>
-          <SelectSkillWrap>
-            {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
-              return <div><input id="skills" type="checkbox" value={list.data} {...register("skills")} />{list.data}</div>;
-            })}
-            {designerSkills_list && designerSkills_list.map((list, idx) => {
-              return <div>
-                <input
-                  id="skills"
-                  type="checkbox"
-                  value={list.data}
-                  {...register("skills")}
-                />
-                {list.data}
-              </div>;
-            })}
-          </SelectSkillWrap>
+          </FindProjectInputTitle>
+          
+          <SkillWrap>
+                <SkillTitleTextTag>개발자</SkillTitleTextTag>
+                <SelectBoxTab>
+                  {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                      return (
+                        <TecLabel key={idx}>
+                          <CheckBox type="checkbox" id="skills" value={list.data}
+                            onChange={(e) => {
+                              //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                              onCheckedElement(
+                                e.target.checked,
+                                e.target.value
+                              );
+                            }}
+                            checked={ checkList.includes(list.data) ? true : false }
+                          ></CheckBox>
+                          {list.data}
+                        </TecLabel>
+                      );
+                    })}
+                    </SelectBoxTab>
+                    </SkillWrap>
+                    <SkillWrap>
+                <SkillTitleTextTag>디자이너</SkillTitleTextTag>
+                <SelectBoxTab>
+                  {designerSkills_list && designerSkills_list.map((list, idx) => {
+                      return (
+                        <TecLabel key={idx}>
+                          <CheckBox type="checkbox" id="skills" value={list.data}
+                            onChange={(e) => {
+                              onCheckedElement(
+                                e.target.checked,
+                                e.target.value
+                              );
+                            }}
+                          ></CheckBox>
+                          {list.data}
+                        </TecLabel>
+                      );
+                    })}
+                </SelectBoxTab>
+              </SkillWrap>
           <div>
             캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
-            {/* <TimeContainer onChange={action} /> */}
           </div>
           <SubmitButtonWrap>
-            <BackButton onClick={() => { navigate(`/findprojectstep1`) }}>이전 단계로</BackButton>
-            <SubmitButton type="submit" disabled={isSubmitting}>등록하기</SubmitButton>
+            <SubmitButton >등록하기</SubmitButton>
           </SubmitButtonWrap>
-        </form>
       </FindProjectAllWrap>
     </>
   );
 };
 
+
 const FindProjectAllWrap = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
 `
+
 const FindProjectTitleText = styled.span`
   font-size: 20px;
   font-weight: 700;
@@ -165,22 +247,60 @@ const FindprojectTopWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
 `
-const FindProjectStepGuideText = styled.span`
-  font-size: 18px;
-  font-weight: 500;
-  margin: 17px 0px 23px 30px;
+
+const HeadLine = styled.hr`
+  border: 1px solid #D9D9D9;
+  width: 1200px;
 `
-const FindProjectStepWrap = styled.div`
-  height: 67px;
+
+const FindProjectInputDate = styled.div`
+  margin: 40px 0px 16px 30px;
+  width: 1100px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+`
+
+const FindProjectInputTitle = styled.div`
+  /* border: 1px solid black; */
+  margin: 40px 0px 16px 30px;
+  width: 1100px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
 `
-const HeadLine = styled.hr`
-  border: 1px solid #D9D9D9;
-  width: 1200px;
+
+
+const ProjectInput = styled.input`
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  padding: 8px;
+  width: 1000px;
+  margin-top: 16px;
 `
+
+const SkillWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 580px;
+  padding: 10px;
+  /* border: 1px solid black; */
+`;
+
+
+const SelectBoxTab = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 13px;
+`;
 
 const SubmitButtonWrap = styled.div`
   display: flex;
@@ -188,24 +308,6 @@ const SubmitButtonWrap = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 30px;
-`
-
-const BackButton = styled.button`
-  width: 150px;
-  height: 45px;
-  border-radius: 4px;
-  outline: none;
-  background-color: transparent;
-  border: 1px solid;
-  border-image: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
-  border-image-slice: 1;
-  background-origin: border;
-  background-clip: content-box, border-box;
-  color: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
-  cursor: pointer;
-  margin: 30px 0px 30px 0px;
-  padding: 12px 28px;
-  font-weight: 700;
 `
 
 const SubmitButton = styled.button`
@@ -222,18 +324,105 @@ const SubmitButton = styled.button`
   font-weight: 700;
 `
 
-const SelectSkillWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-`
-
 const ProjectTitleText = styled.span`
   font-size: 16px;
   font-weight: 500;
   gap: 15px;
 `
 
-export default FindProjectStep02;
+const SkillTitleTextTag = styled.p`
+  font-weight: bold;
+  color: #ae97e3;
+`;
 
+const TecLabel = styled.label`
+  font-size: 14px;
+  /* border: 1px solid black; */
+`;
+
+const CheckBox = styled.input`
+  appearance: none;
+  border: 0.5px solid gainsboro;
+  border-radius: 0.25rem;
+  width: 15px;
+  height: 15px;
+  margin-bottom: -3px;
+  margin-right: 5px;
+
+  &:checked {
+    border-color: transparent;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-color: #ae97e3;
+  }
+`;
+
+const UpPhotoArea =styled.img`
+  /* border: 1px solid black; */
+  width: 120px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+`
+
+const DisablePhotoWrap = styled.div`
+  /* border: 1px solid black; */
+  background-image: url(${addimage});
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+`
+
+const EditWrapPhoto = styled.div`
+  /* border: 1px solid black; */
+  width: 150px;
+  height: 90px;
+  background-position: center;
+  background-size: cover;
+`
+
+const PhotoText = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+`
+const ReMainConWrap = styled.div`
+  border: 1px solid black;
+  width: 1000px; 
+  height: 500px;
+  border-radius: 4px;  
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+`
+
+const RecMainCon = styled.textarea`
+  /* margin: 20px;  */
+  padding: 10px; 
+  width: 975px; 
+  height: 350px; 
+  outline: none; 
+  border: none;
+  resize: none;
+  /* border-radius: 4px; */
+`;
+
+const PhotoUPloadWrap = styled.div`
+  /* border: 1px solid black; */
+  padding: 10px;
+  width: 975px;
+  height: 100px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+
+export default FindProjectStep01;

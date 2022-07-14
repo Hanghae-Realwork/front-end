@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loadRecruitAxios } from "../redux/modules/postRecruit";
 
-
 import Card from "../components/CardRecruit";
 import RecSelectCompo from "../components/RecSelectCompo";
 

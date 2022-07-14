@@ -2,7 +2,7 @@ import { apis } from "../../shared/api";
 
 //코코미 리덕스
 
-const LOAD = 'employ/LOAD';
+const LOAD = "employ/LOAD";
 const CREATE = "employ/CREATE";
 const MODIFY = "employ/MODIFY";
 const DELETE = "employ/DELETE";
@@ -39,7 +39,6 @@ export const loadEmployAxios = () => {
         let list= []
         let resumes = response.data.returnResumes;
         list = [...resumes];
-      
         dispatch(loadEmploy(list));
       })
       .catch((err) => {
@@ -86,7 +85,6 @@ export const resumesCreateAxios = (
         content3
       )
       .then((response) => {
-       
         dispatch(createEmploy({content:content,resumeImage:resumeImage,start:start,end:end,role:role,skill:skills,content2:content2,content3:content3}));
       }).catch((err) => {
         console.log(err)
@@ -99,7 +97,6 @@ export const loadSingleEmployAxios = (resumeId) => {
     await apis
       .resumesLoadDetail(resumeId)
       .then((response) => {
-       
         dispatch(loadSingleEmploy(response.data.resumes));
         // dispatch(loadEmploy(list));
       })
@@ -108,6 +105,7 @@ export const loadSingleEmployAxios = (resumeId) => {
       });
   };
 };
+
 export const modifyEmployAxios = (
   resumeId,
   content,
@@ -150,15 +148,11 @@ export const modifyEmployAxios = (
   };
 };
 
-
-
-
 export const deleteEmployAxios = (resumeId) => {
   return async function (dispatch) {
     await apis
       .resumesDelete(resumeId)
       .then((response) => {
-       
       }).catch((err) => {
         console.log(err)
       })
@@ -168,23 +162,18 @@ export const deleteEmployAxios = (resumeId) => {
 //Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+
     case "employ/LOAD": {
-
       return { returnResumes: action.payload, resumes: state.resumes };
-
     }
 
     case "employ/CREATE": {
-
       const newResumes = [action.payload, ...state.returnResumes];
-
-
       return {
         returnResumes: newResumes,
         resumes: state.resumes,
       };
     }
-
 
     case "employ/MODIFY": {   
       return {
@@ -192,8 +181,9 @@ export default function reducer(state = initialState, action = {}) {
         resumes: action.payload,
       };
     }
+
     case "employ/LOAD_SINGLE": {
-      // console.log(action.payload);
+      console.log(action.payload);
       const newResumes = [action.payload];
       return { returnResumes: action.state, resumes: newResumes };
     }
