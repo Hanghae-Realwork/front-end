@@ -47,9 +47,8 @@ function CradEmpol({ data }) {
           </CardMidMini>
           <CardBotTag>
             <div>
-              {data.resumeskills === undefined
-                ? null
-                : data.resumeskills.map((list, idx) => {
+              {
+                 data.resumeskills?.map((list, idx) => {
                     return <Tag key={idx} skills={list} />;
                   })}
             </div>
