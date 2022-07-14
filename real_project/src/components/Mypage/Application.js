@@ -1,73 +1,97 @@
 import React from "react"
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
-// import Check from "../image/check.svg";
+import { useSelector } from "react-redux";
+
 import Check from "../../image/check.svg"
 const Application = () => {
-
-    const param = useParams();
-
+ const data = useSelector((state)=>state)
+    const Card_list = Array.from({ length: 3 }, (v, i) => i);
+    
     return (
-
-                <RightContentWrap>
-                    <RightCardWrap>
-
-                        <CardAllWrap>
-                            <CardTotalWrap>
-                            <TopWrap>
-                                <UserText>사용자 이름</UserText>
-                                <UserText>작성 시간</UserText>
-                            </TopWrap>
-                            <TitleWrap>
-                                <TitleText>게시물 제목이 들어갑니다</TitleText>
-                            </TitleWrap>
-                            <TitleWrap>
-                                <ContentText>요약 된 콘텐츠 내용이 여기에 반영 됩니다</ContentText>
-                                <ContentText>요약 된 콘텐츠 내용이 여기에 반영 됩니다</ContentText>
-                            </TitleWrap>
-                            <RoleWrap>
-                                <UserText>구하는 직군</UserText>
-                                <RoleText>백엔드 엔지니어</RoleText>
-                            </RoleWrap>
-                            <RoleWrap>
-                                <UserText>보유 기술</UserText>
-                                <RoleText>백엔드 엔지니어</RoleText>
-                            </RoleWrap>
-                                <ProjectLimit>
-                                    <DateLimitText>프로젝트 러닝 기간 :</DateLimitText>
-                                    <DateText>2222.02.22 ~ 2222.03.22</DateText>
-                                </ProjectLimit>
-                            </CardTotalWrap>
-                        </CardAllWrap>
-
-                    </RightCardWrap>
-                    <InterviewWrap>
-                        <InterviewButtonWrap>
-                            <ButtonWrap>
-                            <InterviewButton>면접 보기</InterviewButton>
-                            <InterviewDateWrap>
-                                <InterviewTimeText>0000년 00월 00일</InterviewTimeText>
-                                <InterviewTimeText>시간: 분 </InterviewTimeText>
-                            </InterviewDateWrap>
-                            </ButtonWrap>
-                            <InterviewDateWrap>
-                                <CodeText>면접 코드: 123-123</CodeText>
-                            </InterviewDateWrap>
-                        </InterviewButtonWrap>
-                    </InterviewWrap>
-                    <BeltWrap>
-                        <CourseLabel>지원서 접수 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
-                        <ConectLine />
-                        <CourseLabel>면접 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
-                        <ConectLine />
-                        <CourseLabel>매칭 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
-                    </BeltWrap>
+      <RightMapingWrap>
+        {Card_list === undefined
+          ? null
+          : Card_list.map((list, idx) => {
+              return (
+                  <RightContentWrap key={idx }>
+                  <RightCardWrap>
+                    <CardAllWrap>
+                      <CardTotalWrap>
+                        <TopWrap>
+                          <UserText>사용자 이름</UserText>
+                          <UserText>작성 시간</UserText>
+                        </TopWrap>
+                        <TitleWrap>
+                          <TitleText>게시물 제목이 들어갑니다</TitleText>
+                        </TitleWrap>
+                        <TitleWrap>
+                          <ContentText>
+                            요약 된 콘텐츠 내용이 여기에 반영 됩니다
+                          </ContentText>
+                          <ContentText>
+                            요약 된 콘텐츠 내용이 여기에 반영 됩니다
+                          </ContentText>
+                        </TitleWrap>
+                        <RoleWrap>
+                          <UserText>구하는 직군</UserText>
+                          <RoleText>백엔드 엔지니어</RoleText>
+                        </RoleWrap>
+                        <RoleWrap>
+                          <UserText>보유 기술</UserText>
+                          <RoleText>백엔드 엔지니어</RoleText>
+                        </RoleWrap>
+                        <ProjectLimit>
+                          <DateLimitText>프로젝트 러닝 기간 :</DateLimitText>
+                          <DateText>2222.02.22 ~ 2222.03.22</DateText>
+                        </ProjectLimit>
+                      </CardTotalWrap>
+                    </CardAllWrap>
+                  </RightCardWrap>
+                  <InterviewWrap>
+                    <InterviewButtonWrap>
+                      <ButtonWrap>
+                        <InterviewButton>면접 보기</InterviewButton>
+                        <InterviewDateWrap>
+                          <InterviewTimeText>
+                            0000년 00월 00일
+                          </InterviewTimeText>
+                          <InterviewTimeText>시간: 분 </InterviewTimeText>
+                        </InterviewDateWrap>
+                      </ButtonWrap>
+                      <InterviewDateWrap>
+                        <CodeText>면접 코드: 123-123</CodeText>
+                      </InterviewDateWrap>
+                    </InterviewButtonWrap>
+                  </InterviewWrap>
+                  <BeltWrap>
+                    <CourseLabel>
+                      지원서 접수{" "}
+                      <img src={Check} style={{ marginLeft: "6px" }}></img>
+                    </CourseLabel>
+                    <ConectLine />
+                    <CourseLabel>
+                      면접 완료{" "}
+                      <img src={Check} style={{ marginLeft: "6px" }}></img>
+                    </CourseLabel>
+                    <ConectLine />
+                    <CourseLabel>
+                      매칭 완료{" "}
+                      <img src={Check} style={{ marginLeft: "6px" }}></img>
+                    </CourseLabel>
+                  </BeltWrap>
                 </RightContentWrap>
- 
+              );
+            })}
+      </RightMapingWrap>
     );
 }
 
-
+const RightMapingWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 const RightCardWrap = styled.div`
   /* border: 1px solid black; */
@@ -75,6 +99,7 @@ const RightCardWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+ 
 `;
 
 const InterviewWrap = styled.div`
@@ -124,11 +149,17 @@ const ButtonWrap = styled.div`
 `;
 
 const RightContentWrap = styled.div`
+
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: flex-start;
   width: 390px;
+  margin-bottom: 100px;
+  
+
+
+  
   /* border: 1px solid black; */
 `;
 
@@ -142,6 +173,9 @@ const CardAllWrap = styled.div`
   height: 307px;
   background-color: white;
   border-radius: 4px;
+
+
+
 `;
 
 const TopWrap = styled.div`
