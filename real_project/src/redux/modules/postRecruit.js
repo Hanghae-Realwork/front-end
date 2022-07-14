@@ -59,9 +59,11 @@ export const createRecruitAxios = (
   role, 
   start, 
   end, 
+
   skills,
   photos,
   schedule
+
 ) => {
   console.log({
     title: title,
@@ -76,6 +78,7 @@ export const createRecruitAxios = (
   });
   return async function (dispatch) {
     await apis
+
       .projectsCreate(
         title,
         details,
@@ -105,6 +108,7 @@ export const createRecruitAxios = (
       .catch((err) => {
         console.log(err);
       });
+
 };
 };
 
