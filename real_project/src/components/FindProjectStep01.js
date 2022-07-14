@@ -29,12 +29,10 @@ const FindProjectStep01 = (props) => {
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
 
-
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
-
 
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
@@ -45,17 +43,14 @@ const FindProjectStep01 = (props) => {
     }
   };
 
-
   //fileReader
   const frm = new FormData();
   const reader = new FileReader();
-
 
   //이미지 파일 코드(코코코코코코미)
   const onChangeImg = (e) => {
     const file = e.target.files;
     setFiles(file);
-
 
     //fileReader
     setFilesImg(e.target.files[0]);
@@ -68,7 +63,6 @@ const FindProjectStep01 = (props) => {
       };
     });
   };
-
 
   // 저장 버튼
   const CompliteButton = async() => {
@@ -98,7 +92,6 @@ const FindProjectStep01 = (props) => {
           console.log(err)
         }
       }
-
 
   return (
     <>
