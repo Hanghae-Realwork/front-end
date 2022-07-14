@@ -16,7 +16,8 @@ import Main from "./pages/Main";
 import MyPage from "./pages/MyPage"
 // import ChatJoin from "./pages/ChatPassword"
 import ReadProject from "./pages/ReadProject"
-
+import Application from "./components/Mypage/Application";
+import Recruitment from "./components/Mypage/Recruitment";
 // import DisplayChatView from "./pages/DisplayChatView";
 // import Test from "./pages/Test";
 
@@ -32,6 +33,7 @@ import EditProfile from "./pages/EditProfile";
 
 import { useDispatch } from "react-redux";
 import { checkUserValidation } from "./redux/modules/user";
+
   function App() {
   
 const dispatch = useDispatch()
@@ -64,7 +66,6 @@ const dispatch = useDispatch()
 
       {/* <CardRecruit/> '컴포넌트' */}
       {/* <SelectBox/> '컴포넌트' */}
-    
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -80,12 +81,18 @@ const dispatch = useDispatch()
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
         {/* <Route path="/recruitwrite" element={<RecruitWrite />}></Route> */}
         {/* <Route path="/chat" element={<Chat />}></Route> */}
-        <Route path="/mypage" element={<MyPage />}></Route>
+
         <Route path="/findprojectstep1" element={<FindProjectStep01 />}></Route>
         <Route path="/findprojectstep2" element={<FindProjectStep02 />}></Route>
         {/* <Route path="/chatjoin" element={<ChatJoin />}></Route> */}
         <Route path="/readproject" element={<ReadProject />}></Route>
+
         {/* <Route path="/displaychatview" element={<DisplayChatView />}></Route> */}
+
+        <Route path="mypage/:nickname/*" element={<MyPage />}>
+          <Route path="project" element={<Recruitment />}></Route>
+          <Route path="resumes" element={<Application />}></Route>
+        </Route>
       </Routes>
     </MainWrap>
   );
