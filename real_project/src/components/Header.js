@@ -68,7 +68,7 @@ function Header() {
             </LoginButton>
             <CircleImage
               onClick={() => {
-                navigate(`/mypage/${nickname}/project`);
+                navigate(`/mypage/${nickname}/apply`);
               
 
               }}
