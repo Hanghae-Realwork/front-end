@@ -27,4 +27,4 @@ const TagButton = styled.button`
 `
 
 
-export default TagCompo
+export default TagCompo;

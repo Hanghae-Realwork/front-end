@@ -104,6 +104,7 @@ console.log(checkList);
            )
          );
       })
+      alert("게시글을 등록하시겠습니까 ?");
       navigate("/mainemployment");
      } catch (err) {
       console.log(err)
