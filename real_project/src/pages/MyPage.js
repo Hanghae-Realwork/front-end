@@ -142,7 +142,7 @@ const MyPageMainWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    width: 1200px;
+
     position: absolute;
     margin-top: -150px;
 `
