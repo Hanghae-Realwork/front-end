@@ -112,6 +112,7 @@ export const apis = {
     api.put("/api/users/details/${nickname}/delete", {
       password: password,
     }),
+  
   //  - 10. 내 Project 조회
   userProjects: (nickname) =>
     api.get("/api/users/details/${nickname}/projects"),
@@ -121,8 +122,10 @@ export const apis = {
 
   //  - 12. 내 지원정보 조회
   userApply: (nickname) => api.get("/api/users/detatils/${nickname}/apply"),
+
   //  - 13. 내 모집현황
   userRecruit: (nickname) => api.get("/api/users/detatils/${nickname}/recruit"),
+  
   //  - 14. 프로필 이미지
   userPhotos: (frm, nickname) =>
     imgApi.post("/api/users/detatils/${nickname}/image", frm),

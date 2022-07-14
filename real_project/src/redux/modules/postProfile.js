@@ -21,7 +21,7 @@ export const loadApplyAxios = () => {
         let resumes = response.data.returnResumes;
         list = [...resumes];
 
-        dispatch(loadEmploy(list));
+        
       })
       .catch((err) => {
         console.log(err);
