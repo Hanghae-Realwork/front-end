@@ -14,7 +14,7 @@ function Header() {
   const dispatch = useDispatch();
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
- 
+   const nickname = useSelector((state) => state.user.userInfo.nickname);
 
   
   React.useEffect(() => {
@@ -68,7 +68,9 @@ function Header() {
             </LoginButton>
             <CircleImage
               onClick={() => {
-                navigate(`/mypage`);
+                navigate(`/mypage/${nickname}/project`);
+              
+
               }}
             >
               <img src={BasicPhoto} />
