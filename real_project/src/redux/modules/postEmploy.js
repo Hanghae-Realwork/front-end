@@ -114,6 +114,7 @@ export const resumesCreateAxios = (
             nickname: _nickname
           })
         );
+       
       }).catch((err) => {
         console.log(err)
       })

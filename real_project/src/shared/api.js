@@ -210,6 +210,7 @@ export const apis = {
     content2,
     content3
   ) =>
+
     api.post("/api/resumes", {
       content: content,
       resumeImage: resumeImage,
