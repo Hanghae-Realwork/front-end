@@ -27,11 +27,12 @@ const api = axios.create({
 api.interceptors.request.use(function (config) { 
 
   const accessToken = `${localStorage.getItem("token")}`;
-  if (accessToken !== undefined) {
+
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  }
+ 
    return config;
 });
+
 
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {
