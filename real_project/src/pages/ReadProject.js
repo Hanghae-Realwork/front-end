@@ -5,7 +5,7 @@ import React, { useEffect,useState } from "react";
 import { LoadDetailAxios } from "../redux/modules/postRecruit"
 import { checkUserValidation } from "../redux/modules/user";
 
-import TagCompoEmpPro from "../components/TagCompoEmpPro";
+import TagCompoEmpPro from "../components/TagCompoRecPro";
 
 import letter from "../image/letter.svg"
 

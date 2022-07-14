@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import Check from "../../image/check.svg"
 const Application = () => {
  const data = useSelector((state)=>state)
-    const Card_list = Array.from({ length: 3 }, (v, i) => i);
+    const Card_list = Array.from({ length: 2 }, (v, i) => i);
     
     return (
       <RightMapingWrap>
@@ -91,6 +91,7 @@ const RightMapingWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 `;
 
 const RightCardWrap = styled.div`
@@ -116,7 +117,6 @@ const InterviewButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid black; */
   width: 384px;
   margin-top: 20px;
 `;
@@ -137,7 +137,6 @@ const InterviewDateWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
 `;
 
 const ButtonWrap = styled.div`
@@ -145,26 +144,18 @@ const ButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
+  margin-top: 15px;
 `;
 
 const RightContentWrap = styled.div`
-
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: flex-start;
   width: 390px;
-  margin-bottom: 100px;
-  
-
-
-  
-  /* border: 1px solid black; */
 `;
 
 const CardAllWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -173,9 +164,6 @@ const CardAllWrap = styled.div`
   height: 307px;
   background-color: white;
   border-radius: 4px;
-
-
-
 `;
 
 const TopWrap = styled.div`
@@ -199,8 +187,7 @@ const TitleWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 350px;
-  /* border: 1px solid black; */
-  margin-top: 12px;
+  margin-top: 15px;
 `;
 
 const TitleText = styled.span`
@@ -219,7 +206,7 @@ const RoleWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   /* border: 1px solid black; */
-  margin-top: 10px;
+  margin-top: 20px;
   width: 350px;
 `;
 

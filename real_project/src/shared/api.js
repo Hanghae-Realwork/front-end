@@ -177,7 +177,7 @@ export const apis = {
     photos,
     schedule
   ) =>
-    api.put("/api/projects", {
+    api.put(`/api/projects/${projectId}`, {
       title: title,
       details: details,
       subscript: subscript,

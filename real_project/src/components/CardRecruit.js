@@ -34,7 +34,7 @@ const CardRecruit = ({ data }) => {
                 <CardJobMainTitle>{data.role}</CardJobMainTitle>
           </CardJobTextWrap>
           <CardTagWrap>
-            <CardJobTitle>[원하는 보유 기술]</CardJobTitle>
+            <CardJobTitle>원하는 보유 기술</CardJobTitle>
             <br />
             <TagWrap>
               {data === undefined

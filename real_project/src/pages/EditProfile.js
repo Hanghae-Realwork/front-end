@@ -1,21 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import astroman from "../image/astroman.svg";
-
-import Letter from "../image/letter.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { checkUserValidation } from "../redux/modules/user";
-import { loadSingleEmployAxios,modifyEmployAxios,loadEmployAxios } from "../redux/modules/postEmploy";
+import { 
+  loadSingleEmployAxios,
+  modifyEmployAxios,
+  loadEmployAxios,
+  projectsPhotosAxios, 
+ } from "../redux/modules/postEmploy";
 import { dvelopSkills_list, designerSkills_list } from "../shared/developeSkills";
 
-import { useDispatch } from "react-redux";
-import {
-  projectsPhotosAxios,
-  resumesCreateAxios,
-} from "../redux/modules/postEmploy";
+import Letter from "../image/letter.svg";
+import astroman from "../image/astroman.svg";
+
+
 
 function EditProfile() {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { resumeId } = useParams();

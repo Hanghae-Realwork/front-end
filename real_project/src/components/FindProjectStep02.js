@@ -1,18 +1,19 @@
-import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { checkUserValidation } from "../redux/modules/user";
-import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
+import { 
+  projectsPhotosAxios,
+  LoadDetailAxios, 
+  editRecruitAxios, 
+ } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import { LoadDetailAxios, editRecruitAxios, loadEmployAxios } from "../redux/modules/postRecruit";
-
-
 
 import addimage from "../image/addimage.svg"
 
-const FindProjectStep01 = (props) => {
+
+function FindProjectStep01 (props) {
 
   const { projectId } = useParams();
 
@@ -77,14 +78,14 @@ const FindProjectStep01 = (props) => {
     setFiles(file);
 
 
-    //fileReader
-    setFilesImg(e.target.files[0]);
-    reader.readAsDataURL(e.target.files[0]);
+  //fileReader
+  setFilesImg(e.target.files[0]);
+  reader.readAsDataURL(e.target.files[0]);
 
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setFilesImg(reader.result);
-        resolve();
+  return new Promise((resolve) => {
+    reader.onload = () => {
+      setFilesImg(reader.result);
+      resolve();
       };
     });
   };
@@ -219,7 +220,7 @@ const FindProjectStep01 = (props) => {
             캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
           </div>
           <SubmitButtonWrap>
-            <SubmitButton >등록하기</SubmitButton>
+            <SubmitButton onClick={CompliteEdit} >등록하기</SubmitButton>
           </SubmitButtonWrap>
       </FindProjectAllWrap>
     </>
@@ -272,7 +273,6 @@ const FindProjectInputTitle = styled.div`
   align-items: center;
 `
 
-
 const ProjectInput = styled.input`
   border: none;
   outline: none;
@@ -291,7 +291,6 @@ const SkillWrap = styled.div`
   padding: 10px;
   /* border: 1px solid black; */
 `;
-
 
 const SelectBoxTab = styled.div`
   /* border: 1px solid black; */
