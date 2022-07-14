@@ -29,12 +29,11 @@ function Main () {
             <MainTextBotWrap>
                 <MainBotText>
                     <MainTextTitle>
+                        <CircleMainIcon></CircleMainIcon>
                         <ContentSpan>저 멀리 시대에 뒤쳐진 은하계 서쪽 소용돌이의 끝, 
-                            지도에도 나와 있지 않은 그 변두리 지역에 아무도 주목하지 않는 작은 노란색 항성이 하나 있다.
-                            <SubSpan> ~은하수를 여행하는 히치하이커를 위한 안내서~ (더글라스 애덤스)</SubSpan>
-                            <br/>은하수를 여행하는 히치하이커 라는 작품을 아시나요?
-                            프로젝트를 함께할 사람들을 기다리는 히치하이커들을 위한 공간, 신선한 아이디어의 프로젝트와 준비된 크루원들이 모이는 이곳은 renDev입니다.
-                        </ContentSpan>
+                            지도에도 나와 있지 않은 그 변두리 지역에 아무도 주목하지 않는 작은 노란색 항성이 하나 있다.<SubSpan> ~은하수를 여행하는 히치하이커를 위한 안내서~ (더글라스 애덤스)</SubSpan></ContentSpan>
+                        <ContentSpan>은하수를 여행하는 히치하이커 라는 작품을 아시나요?
+                            프로젝트를 함께할 사람들을 기다리는 히치하이커들을 위한 공간, 신선한 아이디어의 프로젝트와 준비된 크루원들이 모이는 이곳은 renDev입니다.</ContentSpan>
                     </MainTextTitle>
                 </MainBotText>
             </MainTextBotWrap>
@@ -71,12 +70,12 @@ const MaininTitleTopWrap = styled.div`
   /* border: 1px solid black; */
   width: 500px;
   height: 350px;
-  margin-bottom: 205px;
+  margin: 144px 0px 200px 120px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 120px;
+
 `;
 
 const TitleMain = styled.span`
@@ -145,11 +144,11 @@ const MainBotWrap = styled.div`
 
 const BottomBackGround = styled.div`
     /* background-color: #303032; */
-    width: 100%;
-    height: 100%;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* margin-bottom: 120px; */
 `
 
 const MainTextBotWrap = styled.div`
@@ -175,6 +174,11 @@ const MainBotText = styled.div`
 
 const MainTextTitle = styled.div`
     /* color: white; */
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 `
 
 const TitleSpan = styled.p`
@@ -189,6 +193,15 @@ const ContentSpan = styled.span`
 const SubSpan = styled.span`
     font-size: 12px;
     color: #B4B5DF;
+`
+
+const CircleMainIcon = styled.div`
+    width: 140px;
+    height: 140px;
+    border-radius: 100%;
+    border: 1px solid black;
+    margin-top: 40px;
+    margin-bottom: 40px;
 `
 
 

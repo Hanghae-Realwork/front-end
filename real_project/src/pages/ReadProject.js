@@ -1,27 +1,70 @@
 import styled from "styled-components"
+import { useSelector,useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect,useState } from "react";
+import { LoadDetailAxios } from "../redux/modules/postRecruit"
+import { checkUserValidation } from "../redux/modules/user";
+
+import TagCompoEmpPro from "../components/TagCompoEmpPro";
+
+import letter from "../image/letter.svg"
+
 
 function ReadProject() {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {projectId} = useParams();
+
+    const [modify, setModify] = useState(false);
+
+    let start =""
+    let end = ""
+    let href = ""
+
+
+    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+    const loginInfoName = useSelector((state) => state.user.userInfo.userId);
+
+    const Value = useSelector((state) => state.postRecruit.project);
+    // console.log(Value[0])
+    // console.log(Value.length)
+    // const [title, setTitle] = useState('')
+
+    useEffect(() => {
+        if (loginInfo === false) {
+          dispatch(checkUserValidation());
+        }}, [loginInfo]);
+
+    useEffect(() => {
+        dispatch(LoadDetailAxios(projectId))
+    }, [])
 
     return(
         <>
         <AllWrap>
             <TopWrap>
-                <TopTitle>랑데부 프로젝트 참가자 모집</TopTitle>
-                <TopDateLimit>프로젝트 기간 : 대충 이맘 때 부터 이맘 때 까지</TopDateLimit>
+                <TopTitle>
+                {Value && Value[0]?.title}
+                </TopTitle>
+                <TopDateLimit>{Value && Value[0]?.start} 
+                ~ {Value && Value[0]?.end}</TopDateLimit>
             </TopWrap>
                 <DivideLine/>
             <MainTextWrap>
                 <MainText>
-                    <MainTextSpan>대충 여기에 본문이 들어가는 자립니다.</MainTextSpan>
+                    <MainTextSpan>{Value && Value[0]?.details}</MainTextSpan>
                 </MainText>
             </MainTextWrap>
             <FindRoleWrap>
                 <div><RoleTitle>찾는 직군</RoleTitle></div>
-                <div><span>frontend 개발자</span></div>
+                <div><span>{Value && Value[0]?.role}</span></div>
             </FindRoleWrap>
             <FindSkillWrap>
                 <div><RoleTitle>필요한 스킬 및 스텍</RoleTitle></div>
-                <div><span>frontend 개발자</span></div>
+                <div><span>
+                    {Value && Value[0]?.skills.map((list, idx) => {
+                         return <TagCompoEmpPro key={idx} skills={list} />})}</span></div>
             </FindSkillWrap>
                 <DivideLine/>
             <DateWrap>
@@ -37,23 +80,21 @@ function ReadProject() {
                 <div>
                     <RoleTitle>작성자 프로필</RoleTitle>
                 </div>
-                <div>
-                    <div>
-                        <div>
-                        </div>
-                    </div>
-                    <div>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+                <ProfileDetailWrap>
+                    <ProfilePhoto></ProfilePhoto>
+                    <UserNameWrap>
+                        <span>{Value && Value[0]?.nickname}</span>
+                        <span>직군</span>
+                    </UserNameWrap>
+                    <UserMailWrap>
+                        <img src = {letter}></img><span>{Value && Value[0]?.email}</span>
+                    </UserMailWrap>
+                </ProfileDetailWrap>
             </ProfileWrap>
             <ButtonWrap>
                 <SubmitButton>지원하기</SubmitButton>
+                <SubmitButton onClick={() => {navigate("/findprojectstep2/" + `${Value[0].projectId}`);}}>수정하기</SubmitButton>
+                <SubmitButton>삭제하기</SubmitButton>
             </ButtonWrap>
         </AllWrap>
         </>
@@ -123,12 +164,12 @@ const DateWrap = styled.div`
 `
 
 const ProfileWrap = styled.div`
-    /* border: 1px solid black; */
+    border: 1px solid black;
     width: 1200px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 30px;
 `
 
@@ -136,11 +177,12 @@ const ButtonWrap = styled.div`
     /* border: 1px solid black; */
     width: 1200px;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     margin-top: 60px;
     margin-bottom: 80px;
+    gap: 20px;
 `
 
 const SubmitButton = styled.button`
@@ -155,11 +197,9 @@ const SubmitButton = styled.button`
     font-weight: 700;
 `
 
-
 const DivideLine = styled.hr`
     width: 1200px;
 `
-
 
 const TopTitle = styled.span`
     font-size: 24px;
@@ -186,6 +226,28 @@ const MainTextSpan = styled.span`
 const RoleTitle = styled.span`
     font-size: 16px;
     font-weight: 700;
+`
+
+const ProfileDetailWrap = styled.div`
+    /* border: 1px solid black; */
+    height: 100px;
+`
+
+const ProfilePhoto = styled.div`
+    background-position: center;
+    background-size: cover;
+`
+
+const UserNameWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+`
+
+const UserMailWrap = styled.div`
+    /* border: 1px solid black; */
 `
 
 export default ReadProject

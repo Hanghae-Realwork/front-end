@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import astroman from "../image/astroman.svg"
 import email from "../image/letter.svg"
-import phone from "../image/phone.svg"
 import Check from "../image/check.svg"
 import Application from "../components/Mypage/Application";
 import Recruitment from "../components/Mypage/Recruitment";
@@ -142,7 +141,6 @@ const MyPageMainWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-
     position: absolute;
     margin-top: -150px;
 `
@@ -165,7 +163,7 @@ const MyPageRightWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    margin-left: 120px;
+    margin-left: 110px;
 `
 
 
@@ -306,7 +304,7 @@ const RightContentWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
-    width: 390px;
+    width: 385px;
     /* border: 1px solid black; */
 `
 
@@ -432,6 +430,14 @@ const CourseLabel = styled.label`
 
 const ConectLine = styled.hr`
     width: 14px;
+`
+
+const RightMapingWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 `
 
 export default MyPage;

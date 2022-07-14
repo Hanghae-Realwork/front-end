@@ -17,8 +17,8 @@ const CardRecruit = ({ data }) => {
       <AllWrap>
         <AllTopWrap>
           <CardTopInfo>
-            <CardWriteName>{data.userId}</CardWriteName>
-            <CardWriteTime>시간 값이 들어갑니다</CardWriteTime>
+            <CardWriteName>{data.nickname}</CardWriteName>
+            <CardWriteTime>{data.createdAt}</CardWriteTime>
           </CardTopInfo>
           <CardTitleInfo>
             <CardTitleText>{data.title}</CardTitleText>
@@ -49,9 +49,9 @@ const CardRecruit = ({ data }) => {
         <AllBotWrap>
           <CardBotTopWrap>
             <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-            <CardBotTextDateInfo> start </CardBotTextDateInfo>
+            <CardBotTextDateInfo> {data.start} ~ {data.end} </CardBotTextDateInfo>
           </CardBotTopWrap>
-          <CardViewButton onClick={() => {navigate(`/readproject`);}}>프로젝트 보러 가기</CardViewButton>
+          <CardViewButton onClick={() => {navigate('/readproject/'+`${data.projectid}`);}}>프로젝트 보러 가기</CardViewButton>
         </AllBotWrap>
       </AllWrap>
     );
