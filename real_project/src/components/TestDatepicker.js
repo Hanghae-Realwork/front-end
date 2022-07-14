@@ -2,25 +2,39 @@ import React, { useState } from 'react'
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import styled from 'styled-components';
 import "./TestReactDatepicker.css"
-import"./TestDatepicker.css";
+import "./TestDatepicker.css";
 import ko from 'date-fns/locale/ko';
 import { format, isValid, parse, isAfter } from "date-fns";
-registerLocale('ko', ko);
+import { useRef } from 'react';
 
-function TestDatePicker() {
+
+import Timeit from "react-timeit";
+import getYear from "date-fns/getYear";
+import getMonth from "date-fns/getMonth";
+
+registerLocale('ko', ko);
+let timeInit = 0;
+let minInit = 0;
+const TestDatePicker = ({ contextDatePicker }) => {
   // 달력 날짜 변경 시 기준점이 되는 날짜
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date();
- 
+
   const [endDate, setEndDate] = useState(null);
+
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
-    console.log(JSON.stringify(start),JSON.stringify(end))
+    console.log(JSON.stringify(start), JSON.stringify(end))
   }
 
-  console.log(startDate, endDate)
+  //시작/끝 시간값 JSON으로 출력
+  const start = JSON.stringify(startDate)
+  const end = JSON.stringify(endDate)
+
+  console.log(start)
+  console.log(end)
 
   const [selected, setSelected] = useState(new Date());
   const [fromValue, setFromValue] = useState("");
@@ -28,9 +42,40 @@ function TestDatePicker() {
   const [beforeDay, setBeforeDay] = useState("");
   console.log(selected)
 
-  // https://reactdatepicker.com/ 참고
-  
 
+
+
+  //timeit 테스트
+  const [time, setTime] = useState(0);
+  const [minite, setMinite] = useState(0)
+  // const 
+
+  const timeIncrease = () => {
+    setTime(time + 1);
+  }
+  const timeDecrease = () => {
+    setTime(time - 1);
+  }
+  const minIncrease = () => {
+    setMinite(minite + 1);
+  }
+  const minDecrease = () => {
+    setMinite(minite - 1);
+  }
+  console.log(time, minite)
+
+  const timeHandle = (e) => {
+    console.log(e)
+    console.log('timeHandle: ' + e.target.value)
+    timeInit = e.target.value
+  }
+  const minHandle = (e) => {
+    console.log(e)
+    console.log('minHandle: ' + e.target.value)
+    minInit = e.target.value
+  }
+
+  // https://reactdatepicker.com/ 참고
 
   let footer = (
     <p
@@ -47,8 +92,8 @@ function TestDatePicker() {
       시작날짜를 눌러주세요
     </p>
   );
-  if (selected?.from) {
-    if (!selected.to) {
+  if (start && start) {
+    if (!end) {
       footer = (
         <p
           style={{
@@ -61,10 +106,10 @@ function TestDatePicker() {
             fontSize: "13px",
           }}
         >
-          {format(selected.from, "yyyy년 MM월 dd일")}
+          {start}
         </p>
       );
-    } else if (selected?.to) {
+    } else if (end && end) {
       footer = (
         <p
           style={{
@@ -77,25 +122,31 @@ function TestDatePicker() {
             fontSize: "13px",
           }}
         >
-          {format(selected.from, "yyyy년 MM월 dd일 ")}~
-          {format(selected.to, " yyyy년 MM월 dd일")}
+          {start}~
+          {end}
         </p>
       );
     }
   }
+
 
   return (
     <>
 
 
       <DatePicker
+        popperContainer={Popper}
+        calendarContainer={Calendar}
+        controls={['calendar']}
+        dateFormat="YYYY-MM-DD"
         locale="ko" // 달력 한글화
         selected={startDate}
         onChange={onChange}
         startDate={startDate}
+        rangeHighlight={true}
+        showRangeLabels={false}
         endDate={endDate}
-        selectsRange
-        disabled={today}
+
         inline />
 
       <DatePicker
@@ -109,31 +160,48 @@ function TestDatePicker() {
         inline
       />
 
-      <DatePickerWrapper
+      {/* <TimeContainer /> */}
 
+
+      <DatePickerWrapper
         popperContainer={Popper}
         calendarContainer={Calendar}
-        // dayClassName={Daystring}
         controls={['calendar']}
         dateFormat="YYYY-MM-DD"
         locale="ko" // 달력 한글화
         selected={startDate}
-        // onSelect={setSelected}
         onChange={onChange}
         startDate={startDate}
         rangeHighlight={true}
         showRangeLabels={false}
-        // rangeStartHelp="Set dates"
-        // rangeEndHelp="Set dates"
         endDate={endDate}
         monthsShown={2}
         selectsRange
-        // filterDate={filterPassedDay}
-        // disabled={today}
         inline
 
+
+
       />
+
+
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        showTimeSelect
+        showTimeSelectOnly
+        timeIntervals={60}
+        timeCaption="Time"
+        dateFormat="hh"
+        inline
+      />
+
+
+
       {footer}
+
+      
+
+      
 
     </>
 

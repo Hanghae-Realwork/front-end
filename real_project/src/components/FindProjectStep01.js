@@ -6,8 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list } from "../shared/developeSkills";
 
+
+
 import addimage from "../image/addimage.svg"
-import TestDatePicker from "./testDatepicker";
+import TestDatePicker from "./TestDatepicker";
 
 const FindProjectStep01 = (props) => {
 
@@ -148,6 +150,7 @@ const FindProjectStep01 = (props) => {
                 endDate={endDate}
               ></TestDatePicker>
             </div>
+          
           </div>
 
         </FindProjectInputDate>
