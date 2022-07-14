@@ -70,8 +70,22 @@ export const resumesCreateAxios = (
   role, 
   skills, 
   content2, 
-  content3
-  ) => {
+  content3,
+   _resumeId,
+   _nickname
+) => {
+  console.log(
+    content,
+    resumeImage,
+    start,
+    end,
+    role,
+    skills,
+    content2,
+    content3,
+    _resumeId,
+    _nickname
+  );
   return async function (dispatch) {
     await apis
       .resumesCreate(
@@ -85,7 +99,21 @@ export const resumesCreateAxios = (
         content3
       )
       .then((response) => {
-        dispatch(createEmploy({content:content,resumeImage:resumeImage,start:start,end:end,role:role,skill:skills,content2:content2,content3:content3}));
+        
+        dispatch(
+          createEmploy({
+            content: content,
+            resumeImage: resumeImage,
+            start: start,
+            end: end,
+            role: role,
+            skill: skills,
+            content2: content2,
+            content3: content3,
+            resumeId: _resumeId,
+            nickname: _nickname
+          })
+        );
       }).catch((err) => {
         console.log(err)
       })
@@ -169,6 +197,7 @@ export default function reducer(state = initialState, action = {}) {
 
     case "employ/CREATE": {
       const newResumes = [action.payload, ...state.returnResumes];
+      console.log(newResumes)
       return {
         returnResumes: newResumes,
         resumes: state.resumes,
@@ -183,7 +212,6 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case "employ/LOAD_SINGLE": {
-      console.log(action.payload);
       const newResumes = [action.payload];
       return { returnResumes: action.state, resumes: newResumes };
     }
