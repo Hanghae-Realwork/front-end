@@ -27,11 +27,11 @@ const api = axios.create({
 api.interceptors.request.use(function (config) { 
 
   const accessToken = `${localStorage.getItem("token")}`;
-  if (accessToken !== undefined) {
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  }
+ 
    return config;
 });
+
 
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {
@@ -107,10 +107,32 @@ export const apis = {
   // 재발급 과정 스터디 필요
   refresh: () => api.post("/api/users/refresh"),
 
+  //  - 9. 회원탈퇴
+  userDelete: (nickname, password) =>
+    api.put("/api/users/details/${nickname}/delete", {
+      password: password,
+    }),
+  
+  //  - 10. 내 Project 조회
+  userProjects: (nickname) =>
+    api.get("/api/users/details/${nickname}/projects"),
+
+  //  - 11. 내 Resume 조회
+  userResumes: (nickname) => api.get("/api/users/details/${nickname}/resumes"),
+
+  //  - 12. 내 지원정보 조회
+  userApply: (nickname) => api.get("/api/users/detatils/${nickname}/apply"),
+
+  //  - 13. 내 모집현황
+  userRecruit: (nickname) => api.get("/api/users/detatils/${nickname}/recruit"),
+  
+  //  - 14. 프로필 이미지
+  userPhotos: (frm, nickname) =>
+    imgApi.post("/api/users/detatils/${nickname}/image", frm),
+
   ///////////////////////
   ////<2. 프로젝트 API>////
   //////////////////////
-
 
   //  - 9. 프로젝트 등록
   projectsCreate: (
@@ -123,7 +145,8 @@ export const apis = {
     skills,
     photos,
     schedule
-    ) => api.post("/api/projects", {
+  ) =>
+    api.post("/api/projects", {
       title: title,
       details: details,
       subscript: subscript,
@@ -132,10 +155,9 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
-      schedule: schedule
+      schedule: schedule,
     }),
 
-    
   //  - 10. 프로젝트 조회
   projectsLoad: () => api.get("/api/projects"),
 

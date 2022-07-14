@@ -192,6 +192,7 @@ export default function reducer(state = initialState, action = {}) {
         resumes: action.payload,
       };
     }
+      
     case "employ/LOAD_SINGLE": {
       // console.log(action.payload);
       const newResumes = [action.payload];

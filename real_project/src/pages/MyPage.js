@@ -1,47 +1,63 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux"; 
 import { checkUserValidation } from "../redux/modules/user";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import astroman from "../image/astroman.svg"
 import email from "../image/letter.svg"
 import phone from "../image/phone.svg"
 import Check from "../image/check.svg"
+import Application from "../components/Mypage/Application";
+import Recruitment from "../components/Mypage/Recruitment";
 
 
 function MyPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const MyCard = Array.from({ length: 2 }, (v, i) => i);
+    const params = useParams()
+   
     
-
+    const MyCard = Array.from({ length: 2 }, (v, i) => i);
+    const loginInfo = useSelector((state) => state.user.userInfo);
+    const [userId, setUserId] = useState("")
+    const [nickname, setNickname] = useState("")
+    
+    console.log(loginInfo)
+    useEffect(() => {
+        if (loginInfo) { 
+            setUserId(loginInfo?.userId);
+            setNickname(loginInfo?.nickname);
+            
+        }
+    },[userId,nickname])
   return (
     <>
-         <MypageBackGround>
-         <MyPageMainWrap>
-            <MyPageLeftWrap>
-                <MyPageProfileWrap>
-                    <MyPagePhotoWrap></MyPagePhotoWrap>
-                    <NameMyPage>
-                        <NameText>사용자 이름</NameText>
-                    </NameMyPage>
-                </MyPageProfileWrap>
-                <MypageTextWrap>
-                        <Mycall>Email@Email.com</Mycall>
-                </MypageTextWrap>
-                <MyPagePasswordWrap>
-                    <span>비밀번호 변경</span>
-                    <span>회원탈퇴</span>
-                </MyPagePasswordWrap>
-            </MyPageLeftWrap>
-            <MyPageRightWrap>
-                <RightTopWrap>
-                    <MyMenuButton>내 지원 현황</MyMenuButton>
-                    <MyMenuButton>내 모집 현황</MyMenuButton>
-                    <MyMenuButton>내 이력서</MyMenuButton>
-                </RightTopWrap>
-                <div>
+      <MypageBackGround>
+        <MyPageMainWrap>
+          <MyPageLeftWrap>
+            <MyPageProfileWrap>
+              <MyPagePhotoWrap></MyPagePhotoWrap>
+              <NameMyPage>
+                <NameText>{nickname}</NameText>
+              </NameMyPage>
+            </MyPageProfileWrap>
+            <MypageTextWrap>
+              <Mycall>{userId}</Mycall>
+            </MypageTextWrap>
+            <MyPagePasswordWrap>
+              <span>비밀번호 변경</span>
+              <span>회원탈퇴</span>
+            </MyPagePasswordWrap>
+          </MyPageLeftWrap>
+          <MyPageRightWrap>
+            <RightTopWrap>
+              <MyMenuButton>내 지원 현황</MyMenuButton>
+              <MyMenuButton>내 모집 현황</MyMenuButton>
+              <MyMenuButton>내 이력서</MyMenuButton>
+            </RightTopWrap>
+            <Outlet />
+            {/* <div>
                 <RightContentWrap>
                     <RightCardWrap>
 
@@ -96,11 +112,10 @@ function MyPage() {
                         <CourseLabel>매칭 완료 <img src={Check} style={{marginLeft:"6px"}}></img></CourseLabel>
                     </BeltWrap>
                 </RightContentWrap>
-                </div>
-            </MyPageRightWrap>
-        
+                </div> */}
+          </MyPageRightWrap>
         </MyPageMainWrap>
-        </MypageBackGround>
+      </MypageBackGround>
     </>
   );
 }
@@ -127,7 +142,7 @@ const MyPageMainWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    width: 1200px;
+
     position: absolute;
     margin-top: -150px;
 `
