@@ -24,52 +24,6 @@ const DatePickerSingle = ( props ) => {
     // console.log(start)
     // console.log(end)
 
-    let footer = (
-        <p
-          style={{
-            margin: "10px",
-            padding: "10px",
-            width: "180px",
-            textAlign: "center",
-            fontSize: "13px",
-          }}
-        >
-          시작날짜를 눌러주세요
-        </p>
-      );
-      if (start && start) {
-        if (!end) {
-          footer = (
-            <p
-              style={{
-                margin: "10px",
-                padding: "10px",
-                width: "150px",
-                textAlign: "center",
-                fontSize: "13px",
-              }}
-            >
-              {start}
-            </p>
-          );
-        } else if (end && end) {
-          footer = (
-            <p
-              style={{
-                margin: "10px",
-                padding: "10px",
-                width: "260px",
-                textAlign: "center",
-                fontSize: "13px",
-              }}
-            >
-              {start.slice(3,11)}~
-              {end.slice(3,11)}
-            </p>
-          );
-        }
-      }
-
       return (
         <>
         <DatePickerWrapper
@@ -82,16 +36,10 @@ const DatePickerSingle = ( props ) => {
         onChange={onChange}
         startDate={startDate}
         minDate={new Date()}
-        // rangeHighlight={true}
-        // showRangeLabels={false}
         endDate={endDate}
-        
         selectsRange
         inline
       />
-      <CalendarInfoWrap>
-       {footer}
-      </CalendarInfoWrap>
 </>
 );
 }
@@ -121,8 +69,8 @@ const DatePickerWrapper = styled(({ TestClass, ...props }) => (
   `;
 
 const CalendarInfoWrap = styled.div`
-border: 1px solid black;
-width: 297px;
+/* border: 1px solid black; */
+width: 150px;
 height: 43px;
 display: flex;
 justify-content: center;

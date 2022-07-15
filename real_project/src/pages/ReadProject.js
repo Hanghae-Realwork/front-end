@@ -8,6 +8,7 @@ import { checkUserValidation } from "../redux/modules/user";
 import TagCompoEmpPro from "../components/TagCompoRecPro";
 
 import letter from "../image/letter.svg"
+import astroman from "../image/astroman.svg"
 
 
 function ReadProject() {
@@ -77,20 +78,24 @@ function ReadProject() {
             </DateWrap>
                 <DivideLine/>
             <ProfileWrap>
-                <div>
+                <ProfileTitleWrap>
                     <RoleTitle>작성자 프로필</RoleTitle>
-                </div>
-                <ProfileDetailWrap>
+                </ProfileTitleWrap>
+                <ProfileDetailWrap>   
                     <ProfilePhoto></ProfilePhoto>
-                    <UserNameWrap>
-                        <span>{Value && Value[0]?.nickname}</span>
-                        <span>직군</span>
-                    </UserNameWrap>
-                    <UserMailWrap>
-                        <img src = {letter}></img><span>{Value && Value[0]?.email}</span>
-                    </UserMailWrap>
+                    <UserAllWrap>
+                        <UserNameWrap>
+                            <UserText>{Value && Value[0]?.nickname}</UserText>
+                            <UserText>직군</UserText>
+                        </UserNameWrap>
+                        <UserMailWrap>
+                            <LetterImg src = {letter}></LetterImg>
+                            <UserMailAdress>{Value && Value[0]?.email}</UserMailAdress>
+                        </UserMailWrap>
+                    </UserAllWrap>
                 </ProfileDetailWrap>
             </ProfileWrap>
+            <DivideLine/>
             <ButtonWrap>
                 <SubmitButton>지원하기</SubmitButton>
                 <SubmitButton onClick={() => {navigate("/findprojectstep2/" + `${Value[0].projectId}`);}}>수정하기</SubmitButton>
@@ -164,13 +169,14 @@ const DateWrap = styled.div`
 `
 
 const ProfileWrap = styled.div`
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 1200px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
     margin-top: 30px;
+    margin-bottom: 40px;
 `
 
 const ButtonWrap = styled.div`
@@ -231,11 +237,19 @@ const RoleTitle = styled.span`
 const ProfileDetailWrap = styled.div`
     /* border: 1px solid black; */
     height: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 `
 
 const ProfilePhoto = styled.div`
+    width: 100px;
+    height: 100px;
+    background-image: url(${astroman});
     background-position: center;
     background-size: cover;
+    /* border: 1px solid black; */
 `
 
 const UserNameWrap = styled.div`
@@ -243,11 +257,43 @@ const UserNameWrap = styled.div`
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 `
 
 const UserMailWrap = styled.div`
     /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+`
+
+const UserAllWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 20px;
+`
+
+const UserText = styled.span`
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+`
+const UserMailAdress = styled.span`
+    font-size: 15px;
+    font-weight: 500;
+`
+
+const LetterImg = styled.img`
+    width: 20px;
+    margin-right: 10px;
+`
+
+const ProfileTitleWrap = styled.div`
+    margin-bottom: 15px;
 `
 
 export default ReadProject

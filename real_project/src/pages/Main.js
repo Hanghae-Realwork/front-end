@@ -21,7 +21,7 @@ function Main () {
                         <MainButtonWrap>
                             <PageButton onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 페이지로 가기</PageButton>
                             <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>크루원 구하러 가기</PageButton2>
-                            </MainButtonWrap>
+                        </MainButtonWrap>
                     </MaininTitleTopWrap>
                 </MainAllWrap>
             </BackGroundDiv>
