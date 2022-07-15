@@ -40,7 +40,7 @@ export const loadRecruitAxios = () => {
       .projectsLoad()
       .then((res) => {
         let list = [];
-        let project = res.data.projects
+        let project = res.data.projects.reverse()
         list = [...project]
         dispatch(loadRecruit(list));
       })
