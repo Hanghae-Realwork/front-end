@@ -68,7 +68,7 @@ export const apis = {
   checkUser: () => api.get("/api/users/auth"),
 
   //  - 4. 유저정보 받기(불필요한 경우 삭제)
-  userInformation: () => api.get("/api/users/details/${nickname}"),
+  userInformation: (nickname) => api.get(`/api/users/details/${nickname}`),
 
   //  - 5. 비밀번호 변경
   userInformationModify: (
@@ -108,7 +108,7 @@ export const apis = {
 
   //  - 9. 회원탈퇴
   userDelete: (nickname, password) =>
-    api.put("/api/users/details/${nickname}/delete", {
+    api.put(`/api/users/details/${nickname}/delete`, {
       password: password,
     }),
   
@@ -261,7 +261,7 @@ export const apis = {
   //////////////////////////////
   //[면접]
 
-  interviews: (projectId) => api.post("/api/interviews/${projectId}"),
+  interviews: (projectId) => api.post(`/api/interviews/${projectId}`),
 
   //  - 20. 면접요청 취소
   //  - 21. (팀장) 면접 승낙

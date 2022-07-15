@@ -5,8 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+import TestDate from "../components/Date/TestDatePicker"
 
 import addimage from "../image/addimage.svg"
+
 
 const FindProjectStep01 = (props) => {
 
@@ -189,7 +191,7 @@ const FindProjectStep01 = (props) => {
                 </SelectBoxTab>
               </SkillWrap>
           <div>
-            캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
+            {/* <TestDate /> */}
           </div>
           <SubmitButtonWrap>
             <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>

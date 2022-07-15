@@ -388,68 +388,6 @@ const CompoWrap = styled.div`
 `
 
 
-
-const SelectedDate = styled.span`
-  font-size: 13px;
-  margin-left: 5px;
-  margin-right: 10px;
-`;
-
-const SelectedDateWave = styled.div`
-  font-size: 14px;
-  margin-left: 3px;
-  margin-right: 3px;
-`
-
-const ContainerStartDateDiv1 = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0px 10px 0px 10px;
-`;
-
-const Container1 = styled.label`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-  outline: none;
-  cursor: pointer;
-  padding: 9px 12px 9px 10px;
-  border-right: 1px solid black;
-  width: 215px;
-`;
-
-const DateFirstViewWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  width:160px;
-`
-
-const ButtonName = styled.label`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 13px;
-  font-weight: 400;
-`;
-
-const DateWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  width: 100px;
-`
-
-const DivDayPicker = styled.div`
-  position: relative;
-`;
-
 export default RecSelectCompo;
 
 // return (
