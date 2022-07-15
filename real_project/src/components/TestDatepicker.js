@@ -8,14 +8,15 @@ import { format, isValid, parse, isAfter } from "date-fns";
 import { useRef } from 'react';
 
 
-import Timeit from "react-timeit";
+
+
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 
 registerLocale('ko', ko);
 let timeInit = 0;
 let minInit = 0;
-const TestDatePicker = ({ contextDatePicker }) => {
+const TestDatePicker = ( props ) => {
   // 달력 날짜 변경 시 기준점이 되는 날짜
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date();
@@ -27,6 +28,7 @@ const TestDatePicker = ({ contextDatePicker }) => {
     setStartDate(start);
     setEndDate(end);
     console.log(JSON.stringify(start), JSON.stringify(end))
+    props.datePickerData(dates)
   }
 
   //시작/끝 시간값 JSON으로 출력
@@ -134,7 +136,7 @@ const TestDatePicker = ({ contextDatePicker }) => {
     <>
 
 
-      {/* <DatePicker
+      <DatePicker
         popperContainer={Popper}
         calendarContainer={Calendar}
         controls={['calendar']}
@@ -158,12 +160,13 @@ const TestDatePicker = ({ contextDatePicker }) => {
         showTimeSelect
         dateFormat="Pp"
         inline
-      /> */}
+      />
 
       {/* <TimeContainer /> */}
 
 
       <DatePickerWrapper
+        
         popperContainer={Popper}
         calendarContainer={Calendar}
         controls={['calendar']}
@@ -180,7 +183,6 @@ const TestDatePicker = ({ contextDatePicker }) => {
         inline
 
 
-
       />
 
 
@@ -194,6 +196,13 @@ const TestDatePicker = ({ contextDatePicker }) => {
         dateFormat="hh"
         inline
       />
+
+      <div>
+        <input />
+        
+      </div>
+
+
 
 
 

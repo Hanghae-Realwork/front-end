@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { delPostApi, loadRecruitOneApi } from "../redux/modules/postRecruit";
+// import { delPostApi, loadRecruitOneApi } from "../redux/modules/postRecruit";
 
 import Tag from "../components/TagCompoRec";
 
@@ -27,11 +27,11 @@ function ReadProject(props) {
     console.log(data?.email)
     console.log(userInfo)
    
-    console.log(data)
-    useEffect(() => {
-        dispatch(loadRecruitOneApi(projectIdNum));
+    // console.log(data)
+    // useEffect(() => {
+    //     dispatch(loadRecruitOneApi(projectIdNum));
 
-      }, []);
+    //   }, []);
     
 
     
@@ -98,7 +98,7 @@ function ReadProject(props) {
             </ButtonWrap>
             {/* 수정,삭제버튼 현재 유저의 email과 상세내용의 email이 같을시 버튼 활성화 */}
             <div>
-            {data.email === userId  ? (
+            {/* {data.email === userId  ? (
                 <div>
             <button data={data}  onClick={() => {navigate(`/findprojectstep1/${projectIdNum}`)}}>프로젝트 수정하기 </button>
             <button onClick={() => {
@@ -126,7 +126,7 @@ function ReadProject(props) {
                   }}>삭제</button>
                   </div>
             )
-            }
+            } */}
             </div>
             </>
             
