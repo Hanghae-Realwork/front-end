@@ -78,8 +78,8 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
                 fontSize: "13px",
               }}
             >
-              {start.slice(3,11)}~
-              {end.slice(3,11)}
+              {start.slice(2,11)}~
+              {end.slice(2,11)}
             </p>
           );
         }

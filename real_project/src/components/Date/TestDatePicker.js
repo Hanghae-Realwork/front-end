@@ -40,8 +40,7 @@ const TestDatePicker = ({ contextDatePicker }) => {
   const [toValue, setToValue] = useState("");
   const [beforeDay, setBeforeDay] = useState("");
   console.log(selected)
-
-
+  
   // https://reactdatepicker.com/ 참고
 
   let footer = (
