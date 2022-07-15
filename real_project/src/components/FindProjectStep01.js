@@ -32,11 +32,12 @@ const FindProjectStep01 = (props) => {
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
 
-  //MVP 스케쥴 
-  const [date, setDate] = useState("")
-  const [time, setTime] = useState("")
-
-
+  //MVP 스케쥴
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  //MVP
+  const [schedule, SetSchedule] = useState([]);
+const [seeDate,setSeeDate] =useState("")
   useEffect(() => {
     if (date.length === 8) {
       setDate(date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
@@ -48,14 +49,17 @@ const FindProjectStep01 = (props) => {
     }
   }, [time]);
 
+
+  
+  console.log(seeDate)
   const onChangeDate = (e) => {
-    setDate(e.target.value)
-    console.log(e.target.value)
-  }
+    setDate(e.target.value);
+
+  };
   const onChangeTime = (e) => {
     setTime(e.target.value);
-    console.log(e.target.value)
-  }
+
+  };
 
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
@@ -102,21 +106,17 @@ const FindProjectStep01 = (props) => {
   const start = JSON.stringify(startDate).slice(1, 11);
   const end = JSON.stringify(endDate).slice(1, 11);
 
-  //스케쥴 데이터 
- 
-  
-  const [schedule,SetSchedule] = useState([]);
-  var i = [date, time].join(" ");
+  //스케쥴 데이터
 
+  var i = [date, time].join(" ");
   const onClickSchedule = () => {
     schedule.push(i);
-}
-console.log(schedule);
+  };
 
 
   // 저장 버튼
   const CompliteButton = async () => {
-console.log(schedule)
+    console.log(schedule)
     frm.append("photos", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
@@ -297,7 +297,6 @@ console.log(schedule)
         </SkillWrap>
         {/* <SingleDateWrap> */}
         <FindProjectInputTitle>
-
           <H3>면접 가능 시간</H3>
           <Div>
             <InputEx
@@ -316,7 +315,7 @@ console.log(schedule)
             />
             <div>
               {schedule.map((list, idx) => {
-                return <h3 key={idx}>{list}</h3>;
+                return <h3 key={idx}> {seeDate} </h3>;
               })}
             </div>
 
