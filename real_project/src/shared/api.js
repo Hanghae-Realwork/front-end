@@ -3,7 +3,7 @@ import { getCookie } from "./cookie";
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "http://3.39.226.20/",
+  baseURL: "http://13.125.145.26/",
   headers: {
     "content-type": "multipart/form-data",
      withCredentials: true,
@@ -12,7 +12,7 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "http://3.39.226.20/",
+  baseURL: "http://13.125.145.26/",
 
   headers: {
     "content-type": "application/json;charset=UTF-8",
@@ -69,7 +69,7 @@ export const apis = {
   checkUser: () => api.get("/api/users/auth"),
 
   //  - 4. 유저정보 받기(불필요한 경우 삭제)
-  userInformation: () => api.get("/api/users/details/${nickname}"),
+  userInformation: (nickname) => api.get(`/api/users/details/${nickname}`),
 
   //  - 5. 비밀번호 변경
   userInformationModify: (
@@ -81,7 +81,7 @@ export const apis = {
     passwordCheck,
     allCheck
   ) =>
-    api.put("/api/users/details/${nickname}/upadatepw", {
+    api.put(`/api/users/details/${nickname}/upadatepw`, {
       userId: userId,
       nickname: nickname,
       name: name,
@@ -109,26 +109,26 @@ export const apis = {
 
   //  - 9. 회원탈퇴
   userDelete: (nickname, password) =>
-    api.put("/api/users/details/${nickname}/delete", {
+    api.put(`/api/users/details/${nickname}/delete`, {
       password: password,
     }),
   
   //  - 10. 내 Project 조회
   userProjects: (nickname) =>
-    api.get("/api/users/details/${nickname}/projects"),
+    api.get(`/api/users/details/${nickname}/projects`),
 
   //  - 11. 내 Resume 조회
-  userResumes: (nickname) => api.get("/api/users/details/${nickname}/resumes"),
+  userResumes: (nickname) => api.get(`/api/users/details/${nickname}/resumes`),
 
   //  - 12. 내 지원정보 조회
-  userApply: (nickname) => api.get("/api/users/detatils/${nickname}/apply"),
+  userApply: (nickname) => api.get(`/api/users/detatils/${nickname}/apply`),
 
   //  - 13. 내 모집현황
-  userRecruit: (nickname) => api.get("/api/users/detatils/${nickname}/recruit"),
+  userRecruit: (nickname) => api.get(`/api/users/detatils/${nickname}/recruit`),
   
   //  - 14. 프로필 이미지
   userPhotos: (frm, nickname) =>
-    imgApi.post("/api/users/detatils/${nickname}/image", frm),
+    imgApi.post(`/api/users/detatils/${nickname}/image`, frm),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
@@ -262,7 +262,7 @@ export const apis = {
   //////////////////////////////
   //[면접]
 
-  interviews: (projectId) => api.post("/api/interviews/${projectId}"),
+  interviews: (projectId) => api.post(`/api/interviews/${projectId}`),
 
   //  - 20. 면접요청 취소
   //  - 21. (팀장) 면접 승낙

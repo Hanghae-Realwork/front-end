@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
-import styled from 'styled-components';
-import "./TestReactDatepicker.css"
-import "./TestDatepicker.css";
 import ko from 'date-fns/locale/ko';
 import { format, isValid, parse, isAfter } from "date-fns";
-import { useRef } from 'react';
 
+import styled from 'styled-components';
+import "./TestReactDatePicker.css"
+import "./TestDatePicker.css";
 
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 
+
 registerLocale('ko', ko);
-let timeInit = 0;
-let minInit = 0;
-const TestDatePicker = ({ contextDatePicker }) => {
+    let timeInit = 0;
+    let minInit = 0;
+    const TestDatePicker = ({ contextDatePicker }) => {
   // 달력 날짜 변경 시 기준점이 되는 날짜
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date();
 
-  const [endDate, setEndDate] = useState(null);
+  const [endDate, setEndDate] = useState('');
 
   const onChange = (dates) => {
     const [start, end] = dates;
@@ -42,52 +42,12 @@ const TestDatePicker = ({ contextDatePicker }) => {
   console.log(selected)
 
 
-
-
-  //timeit 테스트
-  const [time, setTime] = useState(0);
-  const [minite, setMinite] = useState(0)
-  // const 
-
-  const timeIncrease = () => {
-    setTime(time + 1);
-  }
-  const timeDecrease = () => {
-    setTime(time - 1);
-  }
-  const minIncrease = () => {
-    setMinite(minite + 1);
-  }
-  const minDecrease = () => {
-    setMinite(minite - 1);
-  }
-  console.log(time, minite)
-
-  const timeHandle = (e) => {
-    console.log(e)
-    console.log('timeHandle: ' + e.target.value)
-    timeInit = e.target.value
-  }
-  const minHandle = (e) => {
-    console.log(e)
-    console.log('minHandle: ' + e.target.value)
-    minInit = e.target.value
-  }
-
   // https://reactdatepicker.com/ 참고
 
   let footer = (
-    <p
-      style={{
-        margin: "10px",
-        padding: "10px",
-        border: "1px solid black",
-        borderRadius: "10px",
-        width: "180px",
-        textAlign: "center",
-        fontSize: "13px",
-      }}
-    >
+    <p style={{margin: "10px", padding: "10px", border: "1px solid black",
+        borderRadius: "10px", width: "180px", textAlign: "center",
+        fontSize: "13px"}}>
       시작날짜를 눌러주세요
     </p>
   );
@@ -131,37 +91,6 @@ const TestDatePicker = ({ contextDatePicker }) => {
 
   return (
     <>
-
-
-      {/* <DatePicker
-        popperContainer={Popper}
-        calendarContainer={Calendar}
-        controls={['calendar']}
-        dateFormat="YYYY-MM-DD"
-        locale="ko" // 달력 한글화
-        selected={startDate}
-        onChange={onChange}
-        startDate={startDate}
-        rangeHighlight={true}
-        showRangeLabels={false}
-        endDate={endDate}
-
-        inline />
-
-      <DatePicker
-        locale="ko" // 달력 한글화
-        selected={startDate}
-        onChange={onChange}
-        startDate={startDate}
-        endDate={endDate}
-        showTimeSelect
-        dateFormat="Pp"
-        inline
-      /> */}
-
-      {/* <TimeContainer /> */}
-
-
       <DatePickerWrapper
         popperContainer={Popper}
         calendarContainer={Calendar}
@@ -176,35 +105,20 @@ const TestDatePicker = ({ contextDatePicker }) => {
         endDate={endDate}
         monthsShown={2}
         selectsRange
-        inline
+        inline/>
 
 
-
-      />
-
-
-      <DatePicker
-        selected={startDate}
+      <DatePicker 
+        selected={startDate} 
         onChange={(date) => setStartDate(date)}
-        showTimeSelect
+        showTimeSelect 
         showTimeSelectOnly
         timeIntervals={60}
         timeCaption="Time"
         dateFormat="hh"
-        inline
-      />
-
-
-
+        inline/>
       {footer}
-
-     
-
-      
-
     </>
-
-
   );
 }
 
@@ -217,8 +131,8 @@ const DatePickerWrapper = styled(({ className, ...props }) => (
 const Daystring = styled.div`
 /* font-size: large; */
 `
+
 const Calendar = styled.div`
-  /* width : 706px; */
   border-radius: 4px;
   overflow: hidden;
 `;
