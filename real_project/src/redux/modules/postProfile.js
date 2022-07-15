@@ -13,15 +13,13 @@ export function loadApply(payload) {
 //middleware
 //내 지원정보 조회
 export const loadApplyAxios = (nickname) => {
-  console.log(nickname)
+  console.log(nickname);
   return async function (dispatch) {
     await apis
-      .userApply()
+      .userApply(nickname)
       .then((response) => {
-        console.log(response.data);
-        // let list = [];
-        // let resumes = response.data.returnResumes;
-        // list = [...resumes];
+   dispatch(loadApply(response.data));
+
       })
       .catch((err) => {
         console.log(err);
@@ -49,6 +47,7 @@ export const loadApplyAxios = (nickname) => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "userpage/LOADAPPLY": {
+  
       return { Applications: action.payload };
     }
 
