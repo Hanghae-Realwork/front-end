@@ -2,8 +2,8 @@
 .react-datepicker__year-read-view--down-arrow,
 .react-datepicker__month-read-view--down-arrow,
 .react-datepicker__month-year-read-view--down-arrow, .react-datepicker__navigation-icon::before {
-  border-color: #ccc;
-  border-style: solid;
+  border-color: #323232;  /* 월 넘기는 화살표 컬러 지정(지우면 안됩니다 */
+  border-style: solid; /* 월 넘기는 화살표(지우면 안됩니다 */
   border-width: 3px 3px 0 0;
   content: "";
   display: block;
@@ -72,7 +72,7 @@
 }
 
 .react-datepicker {
-  font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
   font-size: 0.8rem;
   background-color: #fff;
   color: #000;
@@ -132,7 +132,7 @@
   background-color: #ffffff;
   border-bottom: 1px solid #ffffff;
   border-top-left-radius: 0.3rem;
-  padding: 8px 0;
+  padding: 13px 0;
   position: relative;
 }
 .react-datepicker__header--time {
