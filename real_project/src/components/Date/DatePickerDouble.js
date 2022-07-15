@@ -7,38 +7,19 @@ import ko from 'date-fns/locale/ko';
 registerLocale('ko', ko);
 
 
-const DatePickerDouble = ( { contextDatePicker } ) => {
-    // 달력 날짜 변경 시 기준점이 되는 날짜
-    const [startDate, setStartDate] = useState('');
-    const today = new Date();
-    const [endDate, setEndDate] = useState('');
-    const [dateStart, setDateStart] =useState()
-    const [DateEnd, setDateEnd] =useState()
-    
-  
-    const onChange = (dates) => {
-      const [start, end] = dates;
-      setStartDate(start);
-      setEndDate(end);
-      console.log(start, end)
-    }
+const DatePickerDouble = ({ start,end }) => {
 
 
-    //시작/끝 시간값 JSON으로 출력
-  const start = JSON.stringify(startDate).slice(1, 11)
   const start_year = start.substring(2, 4)
   const start_month = start.substring(5, 7);
   const start_day = start.substring(8);
 
-  
-  const end = JSON.stringify(endDate).slice(1, 11)
     const end_year = end.substring(2, 4);
     const end_month = end.substring(5, 7);
     const end_day = end.substring(8);
     const footerStart = start
     const footerEnd = end
-    console.log(start)
-    console.log(end)
+ 
 
     let footer = (
         <span
@@ -88,24 +69,6 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
 
       return (
         <>
-
-          <DatePickerWrapper
-            popperContainer={Popper}
-            calendarContainer={Calendar}
-            controls={["calendar"]}
-            dateFormat="YYYY-MM-DD"
-            locale="ko" // 달력 한글화
-            selected={startDate}
-            onChange={onChange}
-            startDate={startDate}
-            minDate={new Date()}
-            // rangeHighlight={true}
-            // showRangeLabels={false}
-            endDate={endDate}
-            monthsShown={2}
-            selectsRange
-            inline
-          />
           {footer}
         </>
       );
@@ -113,12 +76,6 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
 }
 
 
-const DatePickerWrapper = styled(({ className, ...props }) => (
-    <DatePicker {...props} wrapperClassName={className} />
-  ))`
-    width: 100%;
-  `;
-  
   const Daystring = styled.div`
   /* font-size: large; */
   `
