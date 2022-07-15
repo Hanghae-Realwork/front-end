@@ -10,8 +10,11 @@ import { projectsPhotosAxios,resumesCreateAxios } from "../redux/modules/postEmp
 import astroman from "../image/astroman.svg"
 import Letter from "../image/letter.svg"
 
-import TestDate from "../components/Date/DatePickerDouble";
 
+
+//DatePicker
+import DatePicker from "react-datepicker";
+import TestDate from "../components/Date/DatePickerDouble";
 function AddProfile(props) {
 
   const navigate = useNavigate();
@@ -28,9 +31,9 @@ function AddProfile(props) {
   const content3Ref = useRef(null);
   const [role, setRole] = useState("");
 
-//캘린더 (22.07.12 추가 전)
-  const [start, setStart] = useState("2022-02-02")
-  const [end,setEnd]=useState("2022-02-04")
+//캘린더 (22.07.15 추가 후 )
+  const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
 
   //userId,nickname 정보
   const userIdInfo = useSelector((state) => state.user.userInfo);
@@ -60,7 +63,7 @@ function AddProfile(props) {
       setCheckList(checkList.filter((el) => el !== item));
     }
   };
-console.log(checkList);
+
   //Role 값
   const onChangeRole = (e) => {
     setRole(e.target.value);
@@ -82,6 +85,17 @@ console.log(checkList);
       };
     });
   };
+  
+//캘린더
+      const onChange = (dates) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+        console.log(start, end);
+        
+      };
+  const start = JSON.stringify(startDate).slice(1, 11);
+  const end = JSON.stringify(endDate).slice(1, 11);
 
   //버튼 누르면 저장
   const handleClick = async() => {
@@ -192,12 +206,29 @@ console.log(checkList);
         </ProfileTopWrap>
         {/* 사진에 대한 모든 것 end */}
 
-        <div>{/* 캘린더 작업물이 들어갈 공간 입니다 */}</div>
+        <div>{/*🗓 캘린더 작업물시작*/}</div>
         <SelectAllWrap>
           <SelfWrap>
             <TitleTextTag>프로젝트 기간</TitleTextTag>
             <div>
-              <TestDate />
+              <DatePickerWrapper
+                popperContainer={Popper}
+                calendarContainer={Calendar}
+                controls={["calendar"]}
+                dateFormat="YYYY-MM-DD"
+                locale="ko" // 달력 한글화
+                selected={startDate}
+                onChange={onChange}
+                startDate={startDate}
+                minDate={new Date()}
+                // rangeHighlight={true}
+                // showRangeLabels={false}
+                endDate={endDate}
+                monthsShown={2}
+                selectsRange
+                inline
+              />
+              <TestDate start={start} end={end}></TestDate>
             </div>
           </SelfWrap>
         </SelectAllWrap>
@@ -317,7 +348,27 @@ console.log(checkList);
     </BackgroundAllWrap>
   );
 }
+//datePicker
+const DatePickerWrapper = styled(({ className, ...props }) => (
+  <DatePicker {...props} wrapperClassName={className} />
+))`
+  width: 100%;
+`;
+ const Popper = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   margin: 20px;
+   z-index: 2;
+ `;
 
+const Calendar = styled.div`
+  /* width : 706px; */
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
+//
 const FindProjectInputDate = styled.div`
   margin: 40px 0px 16px 30px;
   width: 1100px;
