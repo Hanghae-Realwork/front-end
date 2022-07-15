@@ -1,48 +1,76 @@
-import React from "react"
+import React, { useDebugValue, useEffect, useState } from "react"
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-
 import Check from "../../image/check.svg"
+import { useDispatch } from "react-redux";
+import { loadApplyAxios } from "../../redux/modules/postProfile";
+import TagCompoApp from "./TagCompoApp";
 const Application = () => {
- const data = useSelector((state)=>state)
-    const Card_list = Array.from({ length: 2 }, (v, i) => i);
-    
+    // const userId =useSelector((state)=>state)
+    const dispatch = useDispatch();
+    const userInfo = useSelector((state) => state.user.userInfo);
+    const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+
+    const [_nickname,setNickname]=useState('')
+    const data = useSelector((state) => state.postProfile.Applications);
+  
+
+
+    useEffect(() => {
+        if (!(nickname_Info === undefined || nickname_Info === null)) {
+            dispatch(loadApplyAxios(nickname_Info));
+            
+      }
+    }, [nickname_Info]);
+
+
     return (
       <RightMapingWrap>
-        {Card_list === undefined
+        {data === undefined
           ? null
-          : Card_list.map((list, idx) => {
+          : data.map((list, idx) => {
               return (
-                  <RightContentWrap key={idx }>
+                <RightContentWrap key={idx}>
                   <RightCardWrap>
                     <CardAllWrap>
                       <CardTotalWrap>
                         <TopWrap>
-                          <UserText>사용자 이름</UserText>
+                          <UserText>{data && data[idx].nickname}</UserText>
                           <UserText>작성 시간</UserText>
                         </TopWrap>
                         <TitleWrap>
-                          <TitleText>게시물 제목이 들어갑니다</TitleText>
+                          <TitleText>{data && data[idx].title}</TitleText>
                         </TitleWrap>
                         <TitleWrap>
-                          <ContentText>
+                          <ContentText>{data && data[idx].details}</ContentText>
+                          {/* <ContentText>
                             요약 된 콘텐츠 내용이 여기에 반영 됩니다
-                          </ContentText>
-                          <ContentText>
-                            요약 된 콘텐츠 내용이 여기에 반영 됩니다
-                          </ContentText>
+                          </ContentText> */}
                         </TitleWrap>
                         <RoleWrap>
                           <UserText>구하는 직군</UserText>
-                          <RoleText>백엔드 엔지니어</RoleText>
+                          <RoleText>{data && data[idx].role}</RoleText>
                         </RoleWrap>
                         <RoleWrap>
                           <UserText>보유 기술</UserText>
-                          <RoleText>백엔드 엔지니어</RoleText>
+                          <RoleText>
+                                          {data && data[idx].ProjectSkills.map((list,idx) => {
+                                              return <TagCompoApp key={idx} skills={list} />
+                            })}
+                            
+                          </RoleText>
                         </RoleWrap>
                         <ProjectLimit>
                           <DateLimitText>프로젝트 러닝 기간 :</DateLimitText>
-                          <DateText>2222.02.22 ~ 2222.03.22</DateText>
+                          <DateText>
+                            {data &&
+                              data[idx].start
+                                .replace("-", ".")
+                                .replace("-", ".")}{" "}
+                            ~{" "}
+                            {data &&
+                              data[idx].end.replace("-", ".").replace("-", ".")}
+                          </DateText>
                         </ProjectLimit>
                       </CardTotalWrap>
                     </CardAllWrap>
