@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { checkUserValidation } from "../redux/modules/user";
+import { checkUserValidation, login } from "../redux/modules/user";
 import { useNavigate, useParams } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import astroman from "../image/astroman.svg";
@@ -18,16 +18,12 @@ function MyPage() {
 
   const MyCard = Array.from({ length: 2 }, (v, i) => i);
   const loginInfo = useSelector((state) => state.user.userInfo);
-  const [userId, setUserId] = useState("");
-  const [nickname, setNickname] = useState("");
 
-  console.log(loginInfo);
-  useEffect(() => {
-    if (loginInfo) {
-      setUserId(loginInfo?.userId);
-      setNickname(loginInfo?.nickname);
-    }
-  }, [userId, nickname]);
+
+
+  // console.log(loginInfo);
+
+
   return (
     <>
       <MyButton />
@@ -37,11 +33,11 @@ function MyPage() {
           <MyPageProfileWrap>
             <MyPagePhotoWrap></MyPagePhotoWrap>
             <NameMyPage>
-              <NameText>{nickname}</NameText>
+              <NameText>{loginInfo.nickname}</NameText>
             </NameMyPage>
           </MyPageProfileWrap>
           <MypageTextWrap>
-            <Mycall>{userId}</Mycall>
+            <Mycall>{loginInfo.userId}</Mycall>
           </MypageTextWrap>
           <MyPagePasswordWrap>
             <span>비밀번호 변경</span>

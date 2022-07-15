@@ -39,7 +39,9 @@ export const loadEmployAxios = () => {
         let list= []
         let resumes = response.data.returnResumes;
         list = [...resumes];
+       
         dispatch(loadEmploy(list));
+
       })
       .catch((err) => {
         console.log(err);
@@ -74,18 +76,18 @@ export const resumesCreateAxios = (
    _resumeId,
    _nickname
 ) => {
-  console.log(
-    content,
-    resumeImage,
-    start,
-    end,
-    role,
-    skills,
-    content2,
-    content3,
-    _resumeId,
-    _nickname
-  );
+  // console.log(
+  //   content,
+  //   resumeImage,
+  //   start,
+  //   end,
+  //   role,
+  //   skills,
+  //   content2,
+  //   content3,
+  //   _resumeId,
+  //   _nickname
+  // );
   return async function (dispatch) {
     await apis
       .resumesCreate(
@@ -198,7 +200,7 @@ export default function reducer(state = initialState, action = {}) {
 
     case "employ/CREATE": {
       const newResumes = [action.payload, ...state.returnResumes];
-      console.log(newResumes)
+      // console.log(newResumes)
       return {
         returnResumes: newResumes,
         resumes: state.resumes,

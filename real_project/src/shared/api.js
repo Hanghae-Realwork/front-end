@@ -6,9 +6,8 @@ const imgApi = axios.create({
   baseURL: "http://13.125.145.26/",
   headers: {
     "content-type": "multipart/form-data",
-     withCredentials: true,
+    withCredentials: true,
   },
-
 });
 //기존 api
 const api = axios.create({
@@ -112,7 +111,7 @@ export const apis = {
     api.put(`/api/users/details/${nickname}/delete`, {
       password: password,
     }),
-  
+
   //  - 10. 내 Project 조회
   userProjects: (nickname) =>
     api.get(`/api/users/details/${nickname}/projects`),
@@ -121,14 +120,14 @@ export const apis = {
   userResumes: (nickname) => api.get(`/api/users/details/${nickname}/resumes`),
 
   //  - 12. 내 지원정보 조회
-  userApply: (nickname) => api.get(`/api/users/detatils/${nickname}/apply`),
+  userApply: (nickname) => api.get(`/api/users/details/${nickname}/apply`),
 
   //  - 13. 내 모집현황
-  userRecruit: (nickname) => api.get(`/api/users/detatils/${nickname}/recruit`),
-  
+  userRecruit: (nickname) => api.get(`/api/users/details/${nickname}/recruit`),
+
   //  - 14. 프로필 이미지
   userPhotos: (frm, nickname) =>
-    imgApi.post(`/api/users/detatils/${nickname}/image`, frm),
+    imgApi.post(`/api/users/details/${nickname}/image`, frm),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
@@ -210,7 +209,6 @@ export const apis = {
     content2,
     content3
   ) =>
-
     api.post("/api/resumes", {
       content: content,
       resumeImage: resumeImage,

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function TagCompoRec({ skills }) {
+function TagCompoApp({ skills }) {
 
     return <TagButton>{skills}</TagButton>;
 }
@@ -18,4 +18,4 @@ const TagButton = styled.button`
   margin: 3px;
 `;
 
-export default TagCompoRec;
+export default TagCompoApp;
