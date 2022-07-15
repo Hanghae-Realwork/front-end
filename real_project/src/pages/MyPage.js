@@ -21,7 +21,7 @@ function MyPage() {
   const [userId, setUserId] = useState("");
   const [nickname, setNickname] = useState("");
 
-  console.log(loginInfo);
+  // console.log(loginInfo);
   useEffect(() => {
     if (loginInfo) {
       setUserId(loginInfo?.userId);

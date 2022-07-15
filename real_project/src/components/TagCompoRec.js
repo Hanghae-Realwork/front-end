@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 function TagCompoRec({ skills }) {
-console.log("들어옴")
+
     return <TagButton>{skills}</TagButton>;
 }
 

@@ -122,6 +122,7 @@ useState(data[0]?.role)
             ) : (<></>)}
             {modify ? <DucButton onClick={() => {
               dispatch(deleteEmployAxios(resumeId));
+              alert("정말 삭제하시는 겁니까 ?")
               navigate("/mainemployment");}}>삭제하기</DucButton> : <></>}
           </div>
         </NameFieldWrap>

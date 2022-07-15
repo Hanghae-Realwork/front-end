@@ -39,8 +39,9 @@ export const loadRecruitAxios = () => {
     await apis
       .projectsLoad()
       .then((res) => {
+
         let list = [];
-        let project = res.data.projects
+        let project = res.data.projects.reverse()
         list = [...project]
         dispatch(loadRecruit(list));
       })
@@ -183,7 +184,7 @@ export const editRecruitAxios = (
   };
 };
 
-
+ 
 //리듀서
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

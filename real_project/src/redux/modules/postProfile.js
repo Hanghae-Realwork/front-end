@@ -12,16 +12,16 @@ export function loadApply(payload) {
 
 //middleware
 //내 지원정보 조회
-export const loadApplyAxios = () => {
+export const loadApplyAxios = (nickname) => {
+  console.log(nickname)
   return async function (dispatch) {
     await apis
-      .resumesLoad()
+      .userApply()
       .then((response) => {
-        let list = [];
-        let resumes = response.data.returnResumes;
-        list = [...resumes];
-
-        
+        console.log(response.data);
+        // let list = [];
+        // let resumes = response.data.returnResumes;
+        // list = [...resumes];
       })
       .catch((err) => {
         console.log(err);

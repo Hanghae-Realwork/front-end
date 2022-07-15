@@ -1,12 +1,24 @@
-import React from "react"
+import React, { useDebugValue, useEffect } from "react"
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-
 import Check from "../../image/check.svg"
+import { useDispatch } from "react-redux";
+import { loadApplyAxios } from "../../redux/modules/postProfile";
+
 const Application = () => {
+    // const userId =useSelector((state)=>state)
+    const dispatch = useDispatch();
+const userInfo_nickname = useSelector((state) => state.user.userInfo);
  const data = useSelector((state)=>state)
     const Card_list = Array.from({ length: 2 }, (v, i) => i);
-    
+  
+
+    useEffect(() => {
+        // if (userInfo_nickname >= 0 ? ) {
+        //   dispatch(loadApplyAxios(nickname));
+        // }
+     
+    },[])
     return (
       <RightMapingWrap>
         {Card_list === undefined
