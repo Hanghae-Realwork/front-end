@@ -14,6 +14,7 @@ import addimage from "../image/addimage.svg"
 
 import TimeTest1 from "../components/Date/TestTimePicker"
 import TimeTest2 from "../components/Date/TestTimePicker2"
+import "../components/Date/TimePicker.css"
 
 
 
@@ -161,25 +162,18 @@ const FindProjectStep01 = (props) => {
             <div></div>
           </div>
         </FindProjectInputDate>
-        <FindProjectInputTitle>
+        <InputMainTextWrap>
           <ProjectTitleText>팀 상세 설명</ProjectTitleText>
           <ReMainConWrap>
-            <RecMainCon
-              ref={detailsRef}
-              id="details"
-              type="text"
-              placeholder="프로젝트의 내용을 입력해주세요"
-            />
+            <RecMainCon ref={detailsRef} id="details" type="text"
+              placeholder="프로젝트의 내용을 입력해주세요"/>
             <PhotoUPloadWrap>
-              {filesImg ? (
-                <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
-              ) : (
-                <DisablePhotoWrap></DisablePhotoWrap>
-              )}
+              {filesImg ? (<UpPhotoArea alt="sample" id="showImg" src={filesImg} />
+              ) : (<DisablePhotoWrap></DisablePhotoWrap>)}
               <EditWrapPhoto>
                 {filesImg ? (
                   <PhotoText>
-                    수정하기{" "}
+                    수정하기
                     <input
                       name="imgUpload"
                       type="file"
@@ -190,7 +184,7 @@ const FindProjectStep01 = (props) => {
                   </PhotoText>
                 ) : (
                   <PhotoText>
-                    등록하기{" "}
+                    등록하기
                     <input
                       name="imgUpload"
                       type="file"
@@ -203,8 +197,8 @@ const FindProjectStep01 = (props) => {
               </EditWrapPhoto>
             </PhotoUPloadWrap>
           </ReMainConWrap>
-        </FindProjectInputTitle>
-        <FindProjectInputTitle>
+        </InputMainTextWrap>
+        <InputMainTextWrap>
           <ProjectTitleText>구하는 직군</ProjectTitleText>
           <div>
             <label>
@@ -238,10 +232,10 @@ const FindProjectStep01 = (props) => {
               Designer
             </label>
           </div>
-        </FindProjectInputTitle>
+        </InputMainTextWrap>
 
         <SkillWrap>
-          <SkillTitleTextTag>개발자</SkillTitleTextTag>
+          <ProjectTitleText>개발자</ProjectTitleText>
           <SelectBoxTab>
             {dvelopSkills_list &&
               dvelopSkills_list.map((list, idx) => {
@@ -264,7 +258,7 @@ const FindProjectStep01 = (props) => {
           </SelectBoxTab>
         </SkillWrap>
         <SkillWrap>
-          <SkillTitleTextTag>디자이너</SkillTitleTextTag>
+          <ProjectTitleText>디자이너</ProjectTitleText>
           <SelectBoxTab>
             {designerSkills_list &&
               designerSkills_list.map((list, idx) => {
@@ -287,6 +281,7 @@ const FindProjectStep01 = (props) => {
         <SingleDateWrap>
           <DateSingle />
         </SingleDateWrap>
+
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
         </SubmitButtonWrap>
@@ -341,6 +336,15 @@ const FindProjectInputTitle = styled.div`
   align-items: center;
 `
 
+const InputMainTextWrap = styled.div`
+  /* border: 1px solid black; */
+  margin: 40px 0px 16px 30px;
+  width: 1100px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+`
 
 const ProjectInput = styled.input`
   border: none;
@@ -397,6 +401,7 @@ const ProjectTitleText = styled.span`
   font-size: 16px;
   font-weight: 500;
   gap: 15px;
+  margin-bottom: 20px;
 `
 
 const SkillTitleTextTag = styled.p`
