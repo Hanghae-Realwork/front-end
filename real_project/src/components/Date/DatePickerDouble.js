@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import "./TestReactDatePicker.css"
 import "./TestDatePicker.css";
 import ko from 'date-fns/locale/ko';
+import Moment from "react-moment";
 registerLocale('ko', ko);
 
 
-const DatePickerDouble = ( { contextDatePicker } ) => {
+const DatePickerDouble = (  ) => {
     // 달력 날짜 변경 시 기준점이 되는 날짜
     const [startDate, setStartDate] = useState('');
     const today = new Date();
@@ -25,20 +26,12 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
 
 
     //시작/끝 시간값 JSON으로 출력
-  const start = JSON.stringify(startDate).slice(1, 11)
-  const start_year = start.substring(2, 4)
-  const start_month = start.substring(5, 7);
-  const start_day = start.substring(8);
-
-  
-  const end = JSON.stringify(endDate).slice(1, 11)
-    const end_year = end.substring(2, 4);
-    const end_month = end.substring(5, 7);
-    const end_day = end.substring(8);
+  const start = Date.parse(startDate&&startDate)
+  const end = Date.parse(endDate&&endDate)
     const footerStart = start
     const footerEnd = end
-    console.log(start)
-    console.log(end)
+    console.log(footerStart)
+    console.log(footerEnd)
 
     let footer = (
         <span
@@ -65,7 +58,7 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
                 fontSize: "13px",
               }}
             >
-              {start_year}년 {start_month}월 {start_day}일
+             <Moment format="YY년 M월 D일">{footerStart}</Moment>;
             </p>
           );
         } else if (footerEnd && footerEnd) {
@@ -79,8 +72,8 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
                 fontSize: "13px",
               }}
             >
-              {start_year}년 {start_month}월 {start_day}일 ~ {end_year}년{" "}
-              {end_month}월 {end_day}일
+              <Moment format="YY년 M월 D일">{footerStart}</Moment> ~ 
+              <Moment format="YY년 M월 D일">{footerEnd}</Moment>
             </p>
           );
         }
