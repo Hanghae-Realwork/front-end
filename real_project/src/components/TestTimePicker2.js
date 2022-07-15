@@ -10,12 +10,12 @@ var __extends = (this && this.__extends) || (function () {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        console.log(d, b)   
+        
     };
-    
+
 })();
 var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
@@ -30,49 +30,58 @@ var React = require("react");
 var TimeInput_1 = require("@y0c/react-datepicker/lib/components/TimeInput.js");
 var FunctionUtil_1 = require("@y0c/react-datepicker/lib/utils/FunctionUtil.js");
 var TimeContainer = /** @class */ (function (_super) {
-    console.log(_super)  
+    console.log(_super)
     __extends(TimeContainer, _super);
     function TimeContainer() {
+
+        // const [timepicker, setTimpicker] = ("")
+        // console.log(timepicker)
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
             hour: _this.props.hour || 0,
             minute: _this.props.minute || 0,
-            
+
         };
-        console.log(_super)  
-        console.log(TimeContainer)   
-        _this.handleChange = function (item) { return function (e) {
-            var _a;
-            var min = 0;
-            var max = item === 'hour' ? 23 : 59;
-            var value = parseInt(e.currentTarget.value, 10);
-            if (isNaN(value)) {
-                value = 0;
-            }
-            if (max < value) {
-                value = max;
-            }
-            if (min > value) {
-                value = min;
-            }
-            _this.setState(__assign({}, _this.state, (_a = {}, _a[item] = value, _a)), function () { return _this.invokeOnChange(); });
-            console.log(value) 
-            console.log(_super)  
-            console.log(item)  
-        };  };
-        console.log(_this.handleChange) 
-        _this.handleUp = function (item) { return function () {
-            var _a;
-            var max = item === 'hour' ? 23 : 59;
-            var value = _this.state[item];
-            _this.setState(__assign({}, _this.state, (_a = {}, _a[item] = Math.min(value + 1, max), _a)), function () { return _this.invokeOnChange(); });
-        }; };
-        _this.handleDown = function (item) { return function () {
-            var _a;
-            var min = 0;
-            var value = _this.state[item];
-            _this.setState(__assign({}, _this.state, (_a = {}, _a[item] = Math.max(value - 1, min), _a)), function () { return _this.invokeOnChange(); });
-        }; };
+        console.log(_this.state)
+        _this.handleChange = function (item) {
+            return function (e) {
+                var _a;
+                var min = 0;
+                var max = item === 'hour' ? 23 : 59;
+                var value = parseInt(e.currentTarget.value, 10);
+                if (isNaN(value)) {
+                    value = 0;
+                }
+                if (max < value) {
+                    value = max;
+                }
+                if (min > value) {
+                    value = min;
+                }
+                _this.setState(__assign({}, _this.state, (_a = {}, _a[item] = value, _a)), function () { return _this.invokeOnChange(); });
+                console.log(value)
+                console.log(_this.state)
+                console.log(item)
+                console.log(_this.invokeOnChange)
+            };
+        };
+       
+        _this.handleUp = function (item) {
+            return function () {
+                var _a;
+                var max = item === 'hour' ? 23 : 59;
+                var value = _this.state[item];
+                _this.setState(__assign({}, _this.state, (_a = {}, _a[item] = Math.min(value + 1, max), _a)), function () { return _this.invokeOnChange(); });
+            };
+        };
+        _this.handleDown = function (item) {
+            return function () {
+                var _a;
+                var min = 0;
+                var value = _this.state[item];
+                _this.setState(__assign({}, _this.state, (_a = {}, _a[item] = Math.max(value - 1, min), _a)), function () { return _this.invokeOnChange(); });
+            };
+        };
         _this.handleBlur = function () {
             var onBlur = _this.props.onBlur;
             var _a = _this.state, hour = _a.hour, minute = _a.minute;
@@ -82,23 +91,25 @@ var TimeContainer = /** @class */ (function (_super) {
             var onChange = _this.props.onChange;
             var _a = _this.state, hour = _a.hour, minute = _a.minute;
             FunctionUtil_1.ifExistCall(onChange, hour, minute);
+            console.log(_a)
+            // setTimpicker(_a)
         };
-        console.log(_super)  
+
         return _this;
-        
+
     }
-    console.log()  
+    console.log()
     TimeContainer.prototype.render = function () {
         var _a = this.state, hour = _a.hour, minute = _a.minute;
         return (React.createElement("div", { className: "time__container" },
             React.createElement(TimeInput_1.default, { onUp: this.handleUp('hour'), onDown: this.handleDown('hour'), onChange: this.handleChange('hour'), onBlur: this.handleBlur, value: hour }),
             React.createElement("div", { className: "time__container__div" }, ":"),
             React.createElement(TimeInput_1.default, { onUp: this.handleUp('minute'), onDown: this.handleDown('minute'), onChange: this.handleChange('minute'), onBlur: this.handleBlur, value: minute })));
-             
-        };
-        console.log() 
-        console.log(_super)  
-        
+
+    };
+    console.log()
+    console.log(_super)
+
     return TimeContainer;
 }(React.Component));
 exports.default = TimeContainer;
