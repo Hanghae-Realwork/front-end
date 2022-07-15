@@ -3,28 +3,34 @@ import "../App.css";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { format} from "date-fns";
-import { ko } from "date-fns/esm/locale";
-import { DayPicker } from "react-day-picker";
-
+import DayPickerMain from "./DayPickerMain";
 import up from "../image/toggle_up.svg";
 import down from "../image/toggle_down.svg";
 import clipboard from "../image/clipboard.svg"
 import calender from "../image/calender.svg"
-import DayPickerMain from "./DayPickerMain";
+import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
 
 
 function RecSelectCompo() {
   const navigate = useNavigate();
   const today = new Date();
 
+  const onCheckedElement = (checked, item) => {
+    if (checked) {
+      setCheckList([...checkList, item]);
+    } else if (!checked) {
+      setCheckList(checkList.filter((el) => el !== item));
+    }
+  };
+
+  const [checkList, setCheckList] = useState([]);
+
 
   //드롭다운 스테이트 (전역)
   //스택 선택 스테이트 (전역)
-  // 일정 선택 스테이트 (전역)
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
   const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = useState(false);
-  // const [dropdownVisibilityDate, setDropdownVisibilityDate] = useState(false);
+
   
 
   //드롭다운 컴포넌트
@@ -48,7 +54,7 @@ function RecSelectCompo() {
 
     return (
       <article className={`components-dropdown ${
-        props.visibility ? "slide-fade-in-dropdown": "slide-fade-out-dropdown"}`}>
+        props.visibility ? "slide-fade-in-dropdown" : "slide-fade-out-dropdown"}`}>
         {visibilityAnimation && props.children}
       </article>
     );
@@ -120,49 +126,46 @@ function RecSelectCompo() {
           <SelectBoxWrap>
             <SelectAllWrap>
               <TitleTextTag>개발자</TitleTextTag>
+              
               <SelectBoxTab>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>React</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Vue.js</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
-              </SelectBoxTab>
+                    {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                        return (
+                          <TecLabel key={idx}>
+                            <CheckBox type="checkbox" id="skills" value={list.data}
+                              onChange={(e) => {
+                                //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                                onCheckedElement(
+                                  e.target.checked,
+                                  e.target.value
+                                );
+                              }}
+                              checked={ checkList.includes(list.data) ? true : false }
+                            ></CheckBox>
+                            {list.data}
+                          </TecLabel>
+                        );
+                      })}
+                      </SelectBoxTab>
             </SelectAllWrap>
-
             <SelectAllWrap>
               <TitleTextTag>디자이너</TitleTextTag>
               <SelectBoxTab>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe Illustrator</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe PhotoShop</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Invision</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Sketch</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
-              </SelectBoxTab>
+                  {designerSkills_list && designerSkills_list.map((list, idx) => {
+                      return (
+                        <TecLabel key={idx}>
+                          <CheckBox type="checkbox" id="skills" value={list.data}
+                            onChange={(e) => {
+                              onCheckedElement(
+                                e.target.checked,
+                                e.target.value
+                              );
+                            }}
+                          ></CheckBox>
+                          {list.data}
+                        </TecLabel>
+                      );
+                    })}
+                </SelectBoxTab>
             </SelectAllWrap>
             <SelectButtonWrap>
               <SelectButton> 선택 완료 </SelectButton>
@@ -173,78 +176,11 @@ function RecSelectCompo() {
     );
   };
 
-  const DayPickerAnother = () => {
-    const [selected, setSelected] = useState(null);
-    const [toggle, setToggle] = useState(false);
-
-  const onClickToggle = () => {
-    setToggle((prev) => !prev);
-  };
-
-  let footer = (
-    <Container1 className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
-      <ContainerStartDateDiv1>
-        <DateFirstViewWrap>
-          <DateWrap>
-            <img src = {calender}/>
-            <ButtonName>프로젝트 기간</ButtonName>
-          </DateWrap> 
-            <img src = {down}/>
-        </DateFirstViewWrap>
-      </ContainerStartDateDiv1>
-    </Container1>
-  );
-  if (selected?.from) {
-    if (!selected.to) {
-      footer = (
-        <Container1 type="button" className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
-          <ContainerStartDateDiv1>
-            <img src = {calender}/>
-            <SelectedDate>{format(selected.from, "MM월 dd일 ")}</SelectedDate>
-            <img src = {down}/>
-          </ContainerStartDateDiv1>
-        </Container1>
-      );
-    } else if (selected?.to) {
-      footer = (
-        <Container1 type="button" className="pa2 bg-white button-reset ba" aria-label="Pick a date" onClick={onClickToggle}>
-          <ContainerStartDateDiv1>
-            <img src = {calender}/>
-              <SelectedDate>{format(selected.from, "MM월 dd일 ")}</SelectedDate>
-              <SelectedDateWave>{' ~ '}</SelectedDateWave>
-              <SelectedDate>{format(selected.to,  "MM월 dd일")}</SelectedDate>
-          </ContainerStartDateDiv1>
-        </Container1>
-      );
-    }
-  }
-
-  return (
-    <DivDayPicker>
-      {footer}
-      {toggle ? (
-        <DayPicker 
-          className="dayPicker_container__divMain"
-          styles={{caption: { fontSize: "13px", margin: "20px 0px 20px 0px"}}}
-          modifiersStyles={{ disabled: { fontSize: '85%' } }}
-          mode="range" 
-          selected={selected} 
-          onSelect={setSelected} 
-          locale={ko} 
-          numberOfMonths={2} 
-          disabled={{ before: today }}>
-          </DayPicker>
-      ) : ("")}
-    </DivDayPicker>
-  );
-};
-
-
   // 리턴 컴포넌트 최종(출력 구간)
   return (
     <BackGroundDiv>
       <DropDownAllWrap>
-          <CompoWrap><App /> <DayPickerAnother /> <AppSkill /> </CompoWrap>
+          <CompoWrap><App /> <AppSkill /> <DayPickerMain /> </CompoWrap>
         <RecButtonWrap>
           <RecritButton onClick={() => {navigate(`/findprojectstep1`);}}>모집글 올리기</RecritButton>
         </RecButtonWrap>

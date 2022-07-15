@@ -2,27 +2,39 @@ import "../App.css";
 
 import React, { useState } from "react";
 import styled from "styled-components";
-
-
 import { useNavigate } from "react-router-dom";
 import DayPickerMain from "./DayPickerMain";
 import { useDispatch,useSelector } from "react-redux";
 import { checkUserValidation } from "../redux/modules/user";
+import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+
 
 function SelectCompo() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
 
+
+
+  const onCheckedElement = (checked, item) => {
+    if (checked) {
+      setCheckList([...checkList, item]);
+    } else if (!checked) {
+      setCheckList(checkList.filter((el) => el !== item));
+    }
+  };
+
+  const [checkList, setCheckList] = useState([]);
+
+
   //드롭다운 스테이트 (전역)
   //스택 선택 스테이트 (전역))
-  const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
-  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] =
-    React.useState(false);
+  const [dropdownVisibility, setDropdownVisibility] = useState(false);
+  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = useState(false);
 
   //드롭다운 컴포넌트 (자식 18 ~ 40)
   const Dropdown = (props) => {
-    const [visibilityAnimation, setVisibilityAnimation] = React.useState(false);
+    const [visibilityAnimation, setVisibilityAnimation] = useState(false);
     const [repeat, setRepeat] = React.useState(null);
 
     React.useEffect(() => {
@@ -42,11 +54,7 @@ function SelectCompo() {
     return (
       <article
         className={`components-dropdown ${
-          props.visibility
-            ? "slide-fade-in-dropdown"
-            : "slide-fade-out-dropdown"
-        }`}
-      >
+          props.visibility ? "slide-fade-in-dropdown" : "slide-fade-out-dropdown"}`}>
         {visibilityAnimation && props.children}
       </article>
     );
@@ -177,7 +185,7 @@ function SelectCompo() {
           <ul className="optionList">
             <li className="ListinOption">프론트엔드 엔지니어</li>
             <li className="ListinOption">백엔드 엔지니어</li>
-            {/* <li className="ListinOption">개발자</li> */}
+
             <li className="ListinOption">디자이너</li>
           </ul>
         </Dropdown>
@@ -263,147 +271,47 @@ function SelectCompo() {
           <SelectBoxWrap>
             <SelectAllWrap>
               <TitleTextTag>개발자</TitleTextTag>
-              <SelectBoxTab>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>React
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Vue.js
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>JavaScript
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Node.js
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Java
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Spring
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Python
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>MongoDB
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>MySQL
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Redis
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>TypeScript
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Ruby
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>AWS
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Go
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>PHP
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Git
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>.NET
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>React Native
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Django
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Flask
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Nest.JS
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Express.JS
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>NoSQL
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>SQL
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Swift
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Kotlin
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>Android
-                </TecLabel>
-                <TecLabel>
-                  {" "}
-                  <CheckBox type="checkbox"></CheckBox>iOS
-                </TecLabel>
-              </SelectBoxTab>
+             
+                <SelectBoxTab>
+                    {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                        return (
+                          <TecLabel key={idx}>
+                            <CheckBox type="checkbox" id="skills" value={list.data}
+                              onChange={(e) => {
+                                //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                                onCheckedElement(
+                                  e.target.checked,
+                                  e.target.value
+                                );
+                              }}
+                              checked={ checkList.includes(list.data) ? true : false }
+                            ></CheckBox>
+                            {list.data}
+                          </TecLabel>
+                        );
+                      })}
+                      </SelectBoxTab>
             </SelectAllWrap>
 
             <SelectAllWrap>
               <TitleTextTag>디자이너</TitleTextTag>
               <SelectBoxTab>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Figma
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Adobe XD
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Adobe Illustrator
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Adobe PhotoShop
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Invision
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Sketch
-                </TecLabel>
-                <TecLabel>
-                  <CheckBox type="checkbox"></CheckBox>Protopie
-                </TecLabel>
-              </SelectBoxTab>
+                  {designerSkills_list && designerSkills_list.map((list, idx) => {
+                      return (
+                        <TecLabel key={idx}>
+                          <CheckBox type="checkbox" id="skills" value={list.data}
+                            onChange={(e) => {
+                              onCheckedElement(
+                                e.target.checked,
+                                e.target.value
+                              );
+                            }}
+                          ></CheckBox>
+                          {list.data}
+                        </TecLabel>
+                      );
+                    })}
+                </SelectBoxTab>
             </SelectAllWrap>
             <SelectButtonWrap>
               <SelectButton> 선택 완료 </SelectButton>
@@ -422,22 +330,13 @@ function SelectCompo() {
     <BackGroundDiv>
       <DropDownAllWrap>
         <CompoWrap>
-          <App /> <DayPickerMain /> <AppSkill />{" "}
+          <App /> <DayPickerMain /> <AppSkill />
         </CompoWrap>
         <RecButtonWrap>
-          <RecritButton
-            onClick={() => {
-              if (loginInfo === false) {
-                alert("로그인을 해주세요!");
-                return false
-              }
-              if (loginInfo === true) {
-                dispatch(checkUserValidation())
-                navigate(`/addprofile`);
-              }
-              
-            }}
-          >
+          <RecritButton onClick={() => {if (loginInfo === false) {alert("로그인을 해주세요!");
+                return false}if (loginInfo === true) {dispatch(checkUserValidation())
+                navigate(`/addprofile`);}
+              }}>
             크루원 등록
           </RecritButton>
         </RecButtonWrap>
