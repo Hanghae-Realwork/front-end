@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Tag from "./TagCompoRec";
-
 import Receipt from "../image/receipt.svg"
 import Moment from "react-moment";
 
