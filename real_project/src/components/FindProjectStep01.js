@@ -2,14 +2,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-
+import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list } from "../shared/developeSkills";
 
 
 
 import addimage from "../image/addimage.svg"
-import TestDatePicker from "./TestDatepicker";
+import DatePickerDouble from "./DatePickerDouble";
+import DatePickerSingle from "./DatePickerSingle";
+import DatePickerExample from "./TestTimePicker";
+
 
 const FindProjectStep01 = (props) => {
 
@@ -31,17 +34,7 @@ const FindProjectStep01 = (props) => {
 
   const [schedule, setSchedule] = useState('2022-07-01 02:02:02', '2022-07-02 03:03:03')
 
-  //데이트 피커 테스트
-  const [startDate, setStartDate] = useState(new Date());
-  const today = new Date();
-  const [endDate, setEndDate] = useState(null);
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-    console.log(JSON.stringify(start), JSON.stringify(end))
-  }
-
+  
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
@@ -143,17 +136,20 @@ const FindProjectStep01 = (props) => {
             <p />
             데이트피커 테스트
             <div className="Daterange">
-              <TestDatePicker
-                selected={startDate}
-                onChange={onChange}
-                startDate={startDate}
-                endDate={endDate}
-              ></TestDatePicker>
+            <DatePickerDouble/>
             </div>
-          
+            <div>
+              <DatePickerSingle/>
+            </div>
+            <div>
+              {/* <TimePicker/> */}
+            </div>
           </div>
-
+        <DatePickerExample/>
         </FindProjectInputDate>
+
+
+        
         {/* <FindProjectInputTitle>
               <ProjectTitleText>팀 상세 설명</ProjectTitleText>
               <div>
@@ -550,4 +546,21 @@ const PhotoUPloadWrap = styled.div`
 `
 
 
+
+const Daystring = styled.div`
+/* font-size: large; */
+`
+const Calendar = styled.div`
+  /* width : 706px; */
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
+const Popper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  z-index: 2;
+`;
 export default FindProjectStep01;
