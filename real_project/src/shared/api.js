@@ -264,7 +264,9 @@ export const apis = {
   interviews: (projectId) => api.post(`/api/interviews/${projectId}`),
 
   //  - 20. 면접요청 취소
-  //  - 21. (팀장) 면접 승낙
+  //  - 21. 프로젝트 면접 예약
+  appointmentProject: (projectId, applicationId) => api.put(`/api/applications/${projectId}/${applicationId}`)
+  
   //  - 22. 면접요청 취소
   //  - 23. (팀장) 면접 승낙
   //  - 24. 승낙 취소

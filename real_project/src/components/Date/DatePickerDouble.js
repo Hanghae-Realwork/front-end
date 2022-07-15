@@ -1,37 +1,16 @@
-import React, { useState } from 'react'
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+
 import styled from 'styled-components';
-import "./TestReactDatePicker.css"
-import "./TestDatePicker.css";
-import ko from 'date-fns/locale/ko';
 import Moment from "react-moment";
-registerLocale('ko', ko);
+import "./DatePickerDouble.css"
 
 
-const DatePickerDouble = (  ) => {
-    // 달력 날짜 변경 시 기준점이 되는 날짜
-    const [startDate, setStartDate] = useState('');
-    const today = new Date();
-    const [endDate, setEndDate] = useState('');
-    const [dateStart, setDateStart] =useState()
-    const [DateEnd, setDateEnd] =useState()
-    
-  
-    const onChange = (dates) => {
-      const [start, end] = dates;
-      setStartDate(start);
-      setEndDate(end);
-      console.log(start, end)
-    }
+const DatePickerDouble = ({start,end}) => { 
+  console.log(start,end)
+  const footerStart = Date.parse(start&&start)
+  const footerEnd = Date.parse(end&&end)
+ 
 
 
-    //시작/끝 시간값 JSON으로 출력
-  const start = Date.parse(startDate&&startDate)
-  const end = Date.parse(endDate&&endDate)
-    const footerStart = start
-    const footerEnd = end
-    console.log(footerStart)
-    console.log(footerEnd)
 
     let footer = (
         <span
@@ -40,9 +19,8 @@ const DatePickerDouble = (  ) => {
             padding: "10px",
             width: "180px",
             textAlign: "center",
-            fontSize: "13px",
-          }}
-        >
+            fontSize: "14px",
+          }}>
           시작날짜를 눌러주세요
         </span>
       );
@@ -55,7 +33,7 @@ const DatePickerDouble = (  ) => {
                 padding: "10px",
                 width: "150px",
                 textAlign: "center",
-                fontSize: "13px",
+                fontSize: "14px",
               }}
             >
              <Moment format="YY년 M월 D일">{footerStart}</Moment>;
@@ -69,7 +47,7 @@ const DatePickerDouble = (  ) => {
                 padding: "10px",
                 width: "260px",
                 textAlign: "center",
-                fontSize: "13px",
+                fontSize: "14px",
               }}
             >
               <Moment format="YY년 M월 D일">{footerStart}</Moment> ~ 
@@ -81,24 +59,6 @@ const DatePickerDouble = (  ) => {
 
       return (
         <>
-
-          <DatePickerWrapper
-            popperContainer={Popper}
-            calendarContainer={Calendar}
-            controls={["calendar"]}
-            dateFormat="YYYY-MM-DD"
-            locale="ko" // 달력 한글화
-            selected={startDate}
-            onChange={onChange}
-            startDate={startDate}
-            minDate={new Date()}
-            // rangeHighlight={true}
-            // showRangeLabels={false}
-            endDate={endDate}
-            monthsShown={2}
-            selectsRange
-            inline
-          />
           {footer}
         </>
       );
@@ -106,32 +66,4 @@ const DatePickerDouble = (  ) => {
 }
 
 
-const DatePickerWrapper = styled(({ className, ...props }) => (
-    <DatePicker {...props} wrapperClassName={className} />
-  ))`
-    width: 100%;
-  `;
-  
-  const Daystring = styled.div`
-  /* font-size: large; */
-  `
-  const Calendar = styled.div`
-    /* width : 706px; */
-    border-radius: 4px;
-    overflow: hidden;
-  `;
-  
-  const Popper = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 20px;
-    z-index: 2;
-  `;
-
-  const CalenderWrap =styled.div`
-    margin-top: 30px;
-    margin-bottom: 30px;
-  `
-  
 export default DatePickerDouble
