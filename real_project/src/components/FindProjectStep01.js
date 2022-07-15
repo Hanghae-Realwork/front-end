@@ -9,8 +9,13 @@ import DateDouble from "../components/Date/DatePickerDouble"
 import DateSingle from "../components/Date/DatePickerSingle"
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 
-
 import addimage from "../image/addimage.svg"
+
+
+import TimeTest1 from "../components/Date/TestTimePicker"
+import TimeTest2 from "../components/Date/TestTimePicker2"
+
+
 
 
 const FindProjectStep01 = (props) => {
@@ -283,7 +288,16 @@ const FindProjectStep01 = (props) => {
                 </SelectBoxTab>
               </SkillWrap>
           <SingleDateWrap>
+
+
             <DateSingle />
+            <TimeWrap>
+              <Time2Wrap>
+             <TimeTest2/>
+            </Time2Wrap>
+          </TimeWrap>
+
+
 
           </SingleDateWrap>
           <SubmitButtonWrap>
@@ -500,9 +514,30 @@ const SingleDateWrap = styled.div`
   align-items: flex-start;
 `
 
-const DatePickerWrapper = styled(({ className, ...props }) => (
-  <DatePicker {...props} wrapperClassName={className} />
-))`
+const TimeWrap = styled.div`
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const Time1Wrap = styled.div`
+  border: 1px solid black;
+`
+
+const Time2Wrap = styled.div`
+  border: 1px solid black;
+`
+
+
+
+
+
+const DatePickerWrapper = styled(
+  ({ className, ...props }) => 
+  (<DatePicker {...props} 
+    wrapperClassName={className} />))`
   width: 100%;
 `;
  const Popper = styled.div`
@@ -519,32 +554,32 @@ const Calendar = styled.div`
   overflow: hidden;
 `;
 
-  const Daystring = styled.div`
-  /* font-size: large; */
-  `
+const Daystring = styled.div`
+/* font-size: large; */
+`
 
-  const CalendarWrap =styled.div`
-    border: 1px solid black;
-    border-radius: 4px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 700px;
-    height: 330px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  `
+const CalendarWrap =styled.div`
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 700px;
+  height: 330px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+`
 
-  const CalendarInfoWrap = styled.div`
-    border: 1px solid black;
-    width: 297px;
-    height: 43px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
+const CalendarInfoWrap = styled.div`
+  border: 1px solid black;
+  width: 297px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
 
-  `
+`
 
 
 export default FindProjectStep01;
