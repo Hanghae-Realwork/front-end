@@ -127,7 +127,6 @@ export const createRecruitAxios = (
 
 export const LoadDetailAxios = (projectId) => {
   return async function(dispatch, useState) {
-    console.log(projectId)
     await apis
     .projectsLoadDetail(projectId)
     .then((res) => {

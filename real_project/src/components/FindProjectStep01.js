@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import TestDate from "../components/Date/TestDatePicker"
+import TestDate from "../components/Date/DatePickerDouble"
 
 import addimage from "../image/addimage.svg"
 
@@ -113,7 +113,7 @@ const FindProjectStep01 = (props) => {
           <FindProjectInputDate>
             <ProjectTitleText>프로젝트 기간</ProjectTitleText>
             <div>
-               달력이 들어갈 공간 입니다.
+              <TestDate />
               <div>
               </div>
             </div>
@@ -191,7 +191,7 @@ const FindProjectStep01 = (props) => {
                 </SelectBoxTab>
               </SkillWrap>
           <div>
-            {/* <TestDate /> */}
+            
           </div>
           <SubmitButtonWrap>
             <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>

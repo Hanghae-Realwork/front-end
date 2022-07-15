@@ -137,7 +137,7 @@ const CardMainTextInfo = styled.div`
   /* border: 1px solid black; */
   width: 344px;
   height: 45px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const CardMainText = styled.span`
@@ -148,6 +148,7 @@ const CardMainText = styled.span`
 const CardJobTextWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
+  margin-bottom: 5px;
   display: flex;
   flex-flow: column nowrap;
 `;
@@ -164,13 +165,15 @@ const CardJobMainTitle = styled.span`
 const CardTagWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
-  height: 52px;
+  height: 55px;
 `;
 
 const TagWrap = styled.div`
   /* border: 1px solid black; */
-  margin-bottom: 28px;
-  height: 34px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 37px;
+  overflow: scroll;
 `;
 
 //// 센터 대쉬라인
