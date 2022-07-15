@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Moment from "react-moment";
 
 import Tag from "./TagCompoRec";
 
 import Receipt from "../image/receipt.svg"
+
 
 
 const CardRecruit = ({ data }) => {
@@ -32,7 +34,7 @@ const CardRecruit = ({ data }) => {
         <AllTopWrap>
           <CardTopInfo>
             <CardWriteName>{data.nickname}</CardWriteName>
-            <CardWriteTime>{data.createdAt}</CardWriteTime>
+            <CardWriteTime><DisplayCreatedAt /></CardWriteTime>
           </CardTopInfo>
           <CardTitleInfo>
             <CardTitleText>{data.title}</CardTitleText>
