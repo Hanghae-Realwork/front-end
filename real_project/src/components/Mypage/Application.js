@@ -1,11 +1,13 @@
 import React, { useDebugValue, useEffect, useState } from "react"
+import Moment from "react-moment"
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Check from "../../image/check.svg"
 import { useDispatch } from "react-redux";
 import { loadApplyAxios } from "../../redux/modules/postProfile";
 import TagCompoApp from "./TagCompoApp";
-import Moment from "react-moment";
+
+
 const Application = () => {
   // const userId =useSelector((state)=>state)
   const dispatch = useDispatch();
@@ -20,24 +22,9 @@ const Application = () => {
   useEffect(() => {
     if (!(nickname_Info === undefined || nickname_Info === null)) {
       dispatch(loadApplyAxios(nickname_Info));
+    }})
 
-    }
-  }, [nickname_Info]);
-
-  // const nowTime = Date.now();
-  // const createdAt = data.createdAt;
-  // const startTime = new Date(createdAt);
-  // const thenHours = Math.floor((nowTime - startTime) / 3600000);
-  // const DisplayCreatedAt = () => {
-  //   if (parseInt(startTime - nowTime) > -86400000) {
-  //     return thenHours + "시간전";
-  //   }
-  //   if (parseInt(startTime - nowTime) < -86400000) {
-  //     return <Moment format="M월 D일">{startTime}</Moment>;
-  //     // return (thenHours)+"시간전";
-  //   }
-  // }
-
+    
   return (
     <RightMapingWrap>
       {data === undefined
@@ -53,7 +40,7 @@ const Application = () => {
               return thenHours + "시간전";
             }
             if (parseInt(startTime - nowTime) < -86400000) {
-              return <Moment format="M월 D일">{startTime}</Moment>;           
+              return <Moment format="M월 D일">{startTime}</Moment>;
             }
           }
 
@@ -139,6 +126,7 @@ const Application = () => {
           );
         })}
     </RightMapingWrap>
+
   );
 }
 

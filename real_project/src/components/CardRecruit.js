@@ -2,32 +2,34 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Moment from "react-moment";
 
 import Tag from "./TagCompoRec";
-import Receipt from "../image/receipt.svg"
-import Moment from "react-moment";
+import Receipt from "../image/receipt.svg";
+
 
 
 
 const CardRecruit = ({ data }) => {
 
+    //작성시간 함수
+    const nowTime = Date.now();
+    const createdAt = data.createdAt;
+    const startTime = new Date(createdAt);
+    const thenHours = Math.floor((nowTime - startTime) / 3600000);
+    const DisplayCreatedAt = () => {
+      if (parseInt(startTime - nowTime) > -86400000) {
+        return thenHours + "시간전";
+      }
+      if (parseInt(startTime - nowTime) < -86400000) {
+        return <Moment format="M월 D일">{startTime}</Moment>;
+      }
+    }
+
+
   const navigate = useNavigate();
 
 
-  //작성시간 함수
-  const nowTime = Date.now();
-  const createdAt = data.createdAt;
-  const startTime = new Date(createdAt);
-  const thenHours = Math.floor((nowTime - startTime) / 3600000);
-  const DisplayCreatedAt = () => {
-    if (parseInt(startTime - nowTime) > -86400000) {
-      return thenHours + "시간전";
-    }
-    if (parseInt(startTime - nowTime) < -86400000) {
-      return <Moment format="M월 D일">{startTime}</Moment>;
-      // return (thenHours)+"시간전";
-    }
-  }
 
   
   console.log(parseInt(thenHours))
@@ -36,7 +38,7 @@ const CardRecruit = ({ data }) => {
         <AllTopWrap>
           <CardTopInfo>
             <CardWriteName>{data.nickname}</CardWriteName>
-            <CardWriteTime><DisplayCreatedAt/></CardWriteTime>
+            <CardWriteTime><DisplayCreatedAt /></CardWriteTime>
           </CardTopInfo>
           <CardTitleInfo>
             <CardTitleText>{data.title}</CardTitleText>
@@ -155,7 +157,7 @@ const CardMainTextInfo = styled.div`
   /* border: 1px solid black; */
   width: 344px;
   height: 45px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const CardMainText = styled.span`
@@ -166,6 +168,7 @@ const CardMainText = styled.span`
 const CardJobTextWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
+  margin-bottom: 5px;
   display: flex;
   flex-flow: column nowrap;
 `;
@@ -182,13 +185,15 @@ const CardJobMainTitle = styled.span`
 const CardTagWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
-  height: 52px;
+  height: 55px;
 `;
 
 const TagWrap = styled.div`
   /* border: 1px solid black; */
-  margin-bottom: 28px;
-  height: 34px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 37px;
+  overflow: scroll;
 `;
 
 //// 센터 대쉬라인

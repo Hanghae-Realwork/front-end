@@ -4,23 +4,19 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
 
-
-
 .react-datepicker {
-    font-size: 1rem !important;
-    
+    font-size: 13px !important;
     padding: auto;
-
 }
 
 .react-datepicker__day-names, .react-datepicker__week {
     white-space: nowrap;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
+ /* 월 표시되는 폰트 사이즈 */
 .react-datepicker__current-month {
-    font-size: 1.2rem !important;
-    
+    font-size: 14px !important;
 }
 
 .react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
@@ -32,11 +28,12 @@ input::-webkit-inner-spin-button {
 }
 
 .react-datepicker__header {
-    padding-top: 6px !important;
+    padding-top: 5px !important;
 }
 
+ /* 다음달 넘어가는 화살표 css */
 .react-datepicker__navigation {
-    top: 13px !important;
+    top: 14px !important;
 }
 
 .react-datepicker__day-name,

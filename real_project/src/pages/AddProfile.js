@@ -10,6 +10,7 @@ import { projectsPhotosAxios,resumesCreateAxios } from "../redux/modules/postEmp
 import astroman from "../image/astroman.svg"
 import Letter from "../image/letter.svg"
 
+import TestDate from "../components/Date/DatePickerDouble";
 
 function AddProfile(props) {
 
@@ -104,7 +105,7 @@ console.log(checkList);
            )
          );
       })
-      alert("게시글을 등록하시겠습니까 ?");
+      alert("게시글을 등록하시겠습니까 ? ");
       navigate("/mainemployment");
      } catch (err) {
       console.log(err)
@@ -147,39 +148,60 @@ console.log(checkList);
             </div>
           </SelfWrap>
 
-          {/* 사진 */}
+          {/* 사진에 대한 모든 것 start */}
           <ProfilePicWrap>
-            {filesImg ? (
+            <NoShowCircleProfile />
+
+            {/* {filesImg ? (
               <ShowCircleProfile alt="sample" id="showImg" src={filesImg} />
             ) : (
-              <NoShowCircleProfile></NoShowCircleProfile>
-            )}
+              <NoShowCircleProfile />
+            )} */}
             <PhotoEditWrap>
-              {filesImg ? (
+              {/* {filesImg ? (
                 <PhotoText>
                   수정하기
-                  <input name="imgUpload" type="file" id="add_img"
-                    accept="image/*" onChange={onChangeImg}/>
+                  <input
+                    name="imgUpload"
+                    type="file"
+                    id="add_img"
+                    accept="image/*"
+                    onChange={onChangeImg}
+                  />
                 </PhotoText>
               ) : (
                 <PhotoText>
                   등록하기
-                  <input name="imgUpload" type="file" id="add_img"
-                    accept="image/*" onChange={onChangeImg}/>
+                  <input
+                    name="imgUpload"
+                    type="file"
+                    id="add_img"
+                    accept="image/*"
+                    onChange={onChangeImg}
+                  />
                 </PhotoText>
-              )}
+              )} */}
             </PhotoEditWrap>
           </ProfilePicWrap>
-
+          {/* 
           <ProfilePicWrap>
             <PhotoEditWrap>
               <PhotoText>삭제</PhotoText>
             </PhotoEditWrap>
-          </ProfilePicWrap>
-
-          {/* 사진 */}
+          </ProfilePicWrap> */}
         </ProfileTopWrap>
+        {/* 사진에 대한 모든 것 end */}
+
         <div>{/* 캘린더 작업물이 들어갈 공간 입니다 */}</div>
+        <SelectAllWrap>
+          <SelfWrap>
+            <TitleTextTag>프로젝트 기간</TitleTextTag>
+            <div>
+              <TestDate />
+            </div>
+          </SelfWrap>
+        </SelectAllWrap>
+
         <SelectBoxWrap>
           <SelectAllWrap>
             <SelfWrap>
@@ -296,7 +318,14 @@ console.log(checkList);
   );
 }
 
-
+const FindProjectInputDate = styled.div`
+  margin: 40px 0px 16px 30px;
+  width: 1100px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+`;
 
 const BackgroundAllWrap = styled.div`
     background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);
