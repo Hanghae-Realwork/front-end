@@ -753,3 +753,88 @@
 .react-datepicker__portal .react-datepicker-time__header {
   font-size: 1.44rem;
 }
+
+
+
+
+/*두개로 분리 된 CSS 하나로 합체*/
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/* 리액트 데이트피커 전체  wrap*/ 
+.react-datepicker {
+  font-size: 13px !important;
+  /* padding: auto; */
+  border: none;
+  width: 700px;
+  /* height: 370px; */
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.react-datepicker__day-names, .react-datepicker__week {
+  white-space: nowrap;
+  margin-top: 10px; /*달력 날짜 한줄 한줄의 간격을 조정하는 옵션*/
+  /* border: 1px solid black; */
+}
+
+/* 월 표시되는 폰트 사이즈 */
+.react-datepicker__current-month {
+  font-size: 14px !important;
+  margin-bottom: 10px;
+  /* border: 1px solid black; */
+
+}
+
+.react-datepicker__day--keyboard-selected, 
+.react-datepicker__month-text--keyboard-selected, 
+.react-datepicker__quarter-text--keyboard-selected, 
+.react-datepicker__year-text--keyboard-selected {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-color: 2px #000;
+  outline: 2px #000;
+  /* background-color: #ffffff; */
+}
+
+.react-datepicker__header {
+  padding-top: 20px !important;
+}
+
+/* 다음달 넘어가는 화살표 css */
+.react-datepicker__navigation {
+  top: 23px !important;
+}
+
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  margin: 0px !important;
+  font-size: 14px;  /* 달력 숫자 폰트 사이즈 */
+  width: 34px;  
+  /* padding: 5px */
+      /* border: 1px solid black; */
+  /* 달력 날짜 하나 하나를 지정해 줋 수 있는 컨테이너 (요일 포함)*/
+}
+
+/* 0rem */
+
+/* .saturday {
+  color: rgb(0, 0, 255) !important;
+} */
+
+/* .sunday {
+  color: rgb(255, 0, 0) !important;
+} */
+
+/* .react-datepicker__day--disabled {
+  color: #cccccc !important;
+} */

@@ -5,7 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import TestDate from "../components/Date/DatePickerDouble"
+import DateDouble from "../components/Date/DatePickerDouble"
+import DateSingle from "../components/Date/DatePickerSingle"
+import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+
 
 import addimage from "../image/addimage.svg"
 
@@ -24,8 +27,8 @@ const FindProjectStep01 = (props) => {
 
 
   //캘린더 (22.07.12 추가 전 / 코코미 코드)
-  const [start, setStart] = useState("2022-02-02")
-  const [end, setEnd] = useState("2022-02-04")
+  // const [start, setStart] = useState("2022-02-02")
+  // const [end, setEnd] = useState("2022-02-04")
   
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
@@ -95,6 +98,74 @@ const FindProjectStep01 = (props) => {
         }
       }
 
+      const [startDate, setStartDate] = useState(""); 
+      const [endDate, setEndDate] = useState("");
+    
+      const onChange = (dates) => { 
+      const [start, end] = dates; setStartDate(start); setEndDate(end); 
+    
+        console.log(start, end); }; 
+    
+      const start = JSON.stringify(startDate).slice(1, 11); 
+      const end = JSON.stringify(endDate).slice(1, 11);
+    
+      const start_year = start.substring(2, 4)
+      const start_month = start.substring(5, 7);
+      const start_day = start.substring(8);
+    
+      const end_year = end.substring(2, 4);
+      const end_month = end.substring(5, 7);
+      const end_day = end.substring(8);
+      const footerStart = start
+      const footerEnd = end
+     
+    
+        let footer = (
+            <span
+              style={{
+                margin: "10px",
+                padding: "10px",
+                width: "180px",
+                textAlign: "center",
+                fontSize: "14px",
+              }}>
+              시작날짜를 눌러주세요
+            </span>
+          );
+          if (footerStart && footerStart) {
+            if (footerEnd==="ull") {
+              footer = (
+                <p
+                  style={{ 
+                    margin: "10px",  
+                    padding: "10px",
+                    width: "150px",
+                    textAlign: "center",
+                    fontSize: "14px",
+                  }}
+                >
+                  {start_year}년 {start_month}월 {start_day}일
+                </p>
+              );
+            } else if (footerEnd && footerEnd) {
+              footer = (
+                <p
+                  style={{
+                    margin: "10px",
+                    padding: "10px",
+                    width: "260px",
+                    textAlign: "center",
+                    fontSize: "14px",
+                  }}
+                >
+                  {start_year}년 {start_month}월 {start_day}일 ~ {end_year}년{" "}
+                  {end_month}월 {end_day}일
+                </p>
+              );
+            }
+          }
+
+
   return (
     <>
       <FindProjectAllWrap>
@@ -113,7 +184,28 @@ const FindProjectStep01 = (props) => {
           <FindProjectInputDate>
             <ProjectTitleText>프로젝트 기간</ProjectTitleText>
             <div>
-              <TestDate />
+            <CalendarWrap>
+                <DatePickerWrapper
+                  popperContainer={Popper}
+                  calendarContainer={Calendar}
+                  controls={["calendar"]}
+                  dateFormat="YYYY-MM-DD"
+                  locale="ko" // 달력 한글화
+                  selected={startDate}
+                  onChange={onChange}
+                  startDate={startDate}
+                  minDate={new Date()}
+                  // rangeHighlight={true}
+                  // showRangeLabels={false}
+                  endDate={endDate}
+                  monthsShown={2}
+                  selectsRange
+                  inline
+                />
+                </CalendarWrap>
+                <CalendarInfoWrap>
+                {footer}
+                </CalendarInfoWrap>
               <div>
               </div>
             </div>
@@ -190,10 +282,10 @@ const FindProjectStep01 = (props) => {
                     })}
                 </SelectBoxTab>
               </SkillWrap>
-          <div>
-            
-            
-          </div>
+          <SingleDateWrap>
+            <DateSingle />
+
+          </SingleDateWrap>
           <SubmitButtonWrap>
             <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
           </SubmitButtonWrap>
@@ -399,6 +491,60 @@ const PhotoUPloadWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
 `
+
+const SingleDateWrap = styled.div`
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+`
+
+const DatePickerWrapper = styled(({ className, ...props }) => (
+  <DatePicker {...props} wrapperClassName={className} />
+))`
+  width: 100%;
+`;
+ const Popper = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   margin: 20px;
+   z-index: 2;
+ `;
+
+const Calendar = styled.div`
+  /* width : 706px; */
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
+  const Daystring = styled.div`
+  /* font-size: large; */
+  `
+
+  const CalendarWrap =styled.div`
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 700px;
+    height: 330px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  `
+
+  const CalendarInfoWrap = styled.div`
+    border: 1px solid black;
+    width: 297px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+
+  `
 
 
 export default FindProjectStep01;
