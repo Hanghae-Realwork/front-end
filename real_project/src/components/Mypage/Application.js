@@ -21,7 +21,6 @@ const Application = () => {
     useEffect(() => {
         if (!(nickname_Info === undefined || nickname_Info === null)) {
             dispatch(loadApplyAxios(nickname_Info));
-            
       }
     }, [nickname_Info]);
 
@@ -59,9 +58,6 @@ const Application = () => {
                     </TitleWrap>
                     <TitleWrap>
                       <ContentText>{data && data[idx].details}</ContentText>
-                      {/* <ContentText>
-                            요약 된 콘텐츠 내용이 여기에 반영 됩니다
-                          </ContentText> */}
                     </TitleWrap>
                     <RoleWrap>
                       <UserText>구하는 직군</UserText>

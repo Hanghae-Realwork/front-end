@@ -1,11 +1,14 @@
 import styled from "styled-components"
 import { useSelector,useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Outlet } from "react-router-dom";
 import React, { useEffect,useState } from "react";
 import { LoadDetailAxios } from "../redux/modules/postRecruit"
 import { checkUserValidation } from "../redux/modules/user";
+import { loadApplyAxios } from "../redux/modules/postProfile";
+import Cardempol from "../components/CardEmpol"
 
 import TagCompoEmpPro from "../components/TagCompoRecPro";
+import MiniResume from "../components/MiniResume";
 
 import letter from "../image/letter.svg"
 import astroman from "../image/astroman.svg"
@@ -23,14 +26,19 @@ function ReadProject() {
     let end = ""
     let href = ""
 
-
+    // 로그인 유저별 resume card 용
     const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+    const loginUser = useSelector((state) => state.user.userInfo);
     const loginInfoName = useSelector((state) => state.user.userInfo.userId);
+    const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+
+    console.log(loginUser) // 해당 로그인 유저 정보
+    console.log(loginInfo) //로그인 true, false
+    console.log(loginInfoName) // 로그인 유저 메일 주소
+
 
     const Value = useSelector((state) => state.postRecruit.project);
-    // console.log(Value[0])
-    // console.log(Value.length)
-    // const [title, setTitle] = useState('')
+
 
     useEffect(() => {
         if (loginInfo === false) {
@@ -40,6 +48,14 @@ function ReadProject() {
     useEffect(() => {
         dispatch(LoadDetailAxios(projectId))
     }, [])
+
+    useEffect(() => {
+        if (!(nickname_Info === undefined || nickname_Info === null)) {
+            dispatch(loadApplyAxios(nickname_Info));
+      }
+    }, [nickname_Info]);
+
+
 
     return(
         <>
@@ -70,10 +86,7 @@ function ReadProject() {
                 <DivideLine/>
             <DateWrap>
             <div>
-                달력이 들어갈 공간 입니다.
-            </div>
-            <div>
-                시간이 들어갈 공간 입니다.
+
             </div>
             </DateWrap>
                 <DivideLine/>
@@ -95,6 +108,10 @@ function ReadProject() {
                     </UserAllWrap>
                 </ProfileDetailWrap>
             </ProfileWrap>
+            <DivideLine/>
+            <MiniResumeWrap>
+                <MiniResume /> 
+            </MiniResumeWrap>
             <DivideLine/>
             <ButtonWrap>
                 <SubmitButton>지원하기</SubmitButton>
@@ -295,5 +312,17 @@ const LetterImg = styled.img`
 const ProfileTitleWrap = styled.div`
     margin-bottom: 15px;
 `
+
+const MiniResumeWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 1200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 30px;
+    margin-bottom: 30px;
+`
+
+
 
 export default ReadProject

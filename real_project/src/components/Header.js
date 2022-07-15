@@ -10,20 +10,19 @@ import Logo from "../image/Logo_vertical.svg"
 
 
 function Header() {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-   const nickname = useSelector((state) => state.user.userInfo.nickname);
+  const nickname = useSelector((state) => state.user.userInfo.nickname);
+
+  const [currentClick, setCurrentClick] = React.useState(null);
+  const [prevClick, setPrevClick] = React.useState(null);
 
   
   React.useEffect(() => {
-    if (loginInfo === false) {
-      dispatch(checkUserValidation());
-    }
-  });
-
-  // style={{fontWeight: ? "bold" : " "}}
+    if (loginInfo === false) {dispatch(checkUserValidation());}});
 
   const logoutClick = () => {
     const result = window.confirm("정말 로그아웃 하시겠습니까 ?");
@@ -31,11 +30,34 @@ function Header() {
       alert("로그아웃 되었습니다.")
        navigate("/");
        dispatch(logOut());
-    }
-   
-
-   
+    } 
   }
+
+
+  const PushClick = (e) => {
+      setCurrentClick(e.target.id);
+  };
+
+  React.useEffect(
+      (e) => {
+      if (currentClick !== null) {
+          let current = document.getElementById(currentClick);
+          current.style.color = "black";
+          current.style.border = "none";
+          current.style.backgroundColor = "white";
+      }
+      if (prevClick !== null) {
+          let prev = document.getElementById(prevClick);
+          prev.style.color = "#bebcbc";
+          prev.style.border = "1px solid black"
+          prev.style.backgroundColor = "#F3F3F3";
+      }
+      setPrevClick(currentClick);
+      },
+      [currentClick]
+  );
+
+
   return (
     <BackGroundDiv>
       <HeaderWrap>
@@ -44,7 +66,7 @@ function Header() {
 
             <LogoWrap onClick={() => {navigate(`/`);}}></LogoWrap>
             <HeaderLeftWrap>
-              <FindProject onClick={() => {navigate(`/mainrecruit`);}}>프로젝트 찾기</FindProject>
+              <FindProject onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
               <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
               <FindMatching onClick={() => {navigate(`/`);}}>프로젝트 매칭</FindMatching>
               <FindProject onClick={() => {navigate(`/chatjoin`);}}>화상채팅(임시)</FindProject>
@@ -53,31 +75,22 @@ function Header() {
           </HeaderAlignWrap>
           <HeaderRightWrap>
             <LoginButton
-              onClick={() => {
-                navigate(`/login`);
-              }}
-              style={{ display: !loginInfo ? "" : "none" }}
-            >
+              onClick={() => {navigate(`/login`);}} 
+              style={{ display: !loginInfo ? "" : "none" }}>
               로그인
             </LoginButton>
             <LoginButton
               style={{ display: !loginInfo ? "none" : "" }}
-              onClick={logoutClick}
-            >
+              onClick={logoutClick}>
               로그아웃
             </LoginButton>
             <CircleImage
-              onClick={() => {
-                if (loginInfo) {
+              onClick={() => {if (loginInfo) {
                   navigate(`/mypage/${nickname}/apply`);
                 } else {
                   alert("로그인을 해주세요!")
                 }
-                
-              
-
-              }}
-            >
+              }}>
               <img src={BasicPhoto} />
             </CircleImage>
           </HeaderRightWrap>
