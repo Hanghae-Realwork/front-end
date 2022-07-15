@@ -4,14 +4,14 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
-import { dvelopSkills_list, designerSkills_list } from "../shared/developeSkills";
-
-
+import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+import TestDate from "../components/Date/TestDatePicker"
 
 import addimage from "../image/addimage.svg"
 import DatePickerDouble from "./DatePickerDouble";
 import DatePickerSingle from "./DatePickerSingle";
 import DatePickerExample from "./TestTimePicker";
+
 
 
 
@@ -28,24 +28,18 @@ const FindProjectStep01 = (props) => {
   const [checkList, setCheckList] = useState([]);
 
 
-
   //캘린더 (22.07.12 추가 전 / 코코미 코드)
   const [start, setStart] = useState("2022-02-02")
   const [end, setEnd] = useState("2022-02-04")
-
-  const [schedule, setSchedule] = useState('2022-07-01 02:02:02', '2022-07-02 03:03:03')
-
   
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
 
-
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
-
 
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
@@ -56,17 +50,14 @@ const FindProjectStep01 = (props) => {
     }
   };
 
-
   //fileReader
   const frm = new FormData();
   const reader = new FileReader();
-
 
   //이미지 파일 코드(코코코코코코미)
   const onChangeImg = (e) => {
     const file = e.target.files;
     setFiles(file);
-
 
     //fileReader
     setFilesImg(e.target.files[0]);
@@ -80,31 +71,26 @@ const FindProjectStep01 = (props) => {
     });
   };
 
-
   // 저장 버튼
   const CompliteButton = async () => {
     frm.append("photos", files[0]);
-    console.log(files[0])
-
-
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
         console.log()
 
-        dispatch(
-          createRecruitAxios(
-            titleRef.current.value,
-            detailsRef.current.value,
-            subscriptRef.current.value,
-            role,
-            start,
-            end,
-            checkList,
-            success,
-
-            ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
-          )
-        );
+          dispatch(
+            createRecruitAxios(
+              titleRef.current.value,
+              detailsRef.current.value,
+              subscriptRef.current.value,
+              role,
+              start,
+              end,
+              checkList,
+              success,
+              ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
+            )
+          );
 
       })
       navigate("/mainrecruit");
@@ -113,7 +99,6 @@ const FindProjectStep01 = (props) => {
       console.log(err)
     }
   }
-
 
   return (
     <>
@@ -133,18 +118,7 @@ const FindProjectStep01 = (props) => {
         <FindProjectInputDate>
           <ProjectTitleText>프로젝트 기간</ProjectTitleText>
           <div>
-            달력이 들어갈 공간 입니다.
-            <p />
-            데이트피커 테스트
-            <div className="Daterange">
-            <DatePickerDouble/>
-            </div>
-            <div>
-              <DatePickerSingle/>
-            </div>
-            <div>
-              {/* <TimePicker/> */}
-            </div>
+            {/* <TestDate /> */}
           </div>
         <DatePickerExample/>
         

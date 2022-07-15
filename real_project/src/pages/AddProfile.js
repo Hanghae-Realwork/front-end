@@ -33,6 +33,9 @@ function AddProfile(props) {
 
   //userId,nickname 정보
   const userIdInfo = useSelector((state) => state.user.userInfo);
+  const _resumeId = useSelector((state) => state.user.userInfo.userId);
+  const _nickname = useSelector((state) => state.user.userInfo.nickname);
+
   //로그인 유무
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
 
@@ -56,7 +59,7 @@ function AddProfile(props) {
       setCheckList(checkList.filter((el) => el !== item));
     }
   };
-
+console.log(checkList);
   //Role 값
   const onChangeRole = (e) => {
     setRole(e.target.value);
@@ -87,18 +90,21 @@ function AddProfile(props) {
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
          dispatch(
-          resumesCreateAxios(
-            introduceRef.current.value,
-            success,
-            start,
-            end,
-            role,
-            checkList,
-            content2Ref.current.value,
-            content3Ref.current.value
-          )
-        )
+           resumesCreateAxios(
+             introduceRef.current.value,
+             success,
+             start,
+             end,
+             role,
+             checkList,
+             content2Ref.current.value,
+             content3Ref.current.value,
+             _resumeId,
+             _nickname
+           )
+         );
       })
+      alert("게시글을 등록하시겠습니까 ?");
       navigate("/mainemployment");
      } catch (err) {
       console.log(err)

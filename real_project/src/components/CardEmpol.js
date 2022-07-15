@@ -15,7 +15,7 @@ function CradEmpol({ data }) {
   const start =
     data > 0 ? "" : data.start.replace("-", ".").replace("-", ".");
   const end =
-    data> 0 ? "" : data.end.replace("-", ".").replace("-", ".");
+    data > 0 ? "" : data.end.replace("-", ".").replace("-", ".");
 
     return (
       <>
@@ -47,9 +47,8 @@ function CradEmpol({ data }) {
           </CardMidMini>
           <CardBotTag>
             <div>
-              {data.resumeskills === undefined
-                ? null
-                : data.resumeskills.map((list, idx) => {
+              {
+                 data.resumeskills?.map((list, idx) => {
                     return <Tag key={idx} skills={list} />;
                   })}
             </div>

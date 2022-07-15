@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import Sample from "../image/mainSample.svg"
+import Space from "../image/space.svg"
 
 
 
@@ -24,21 +25,18 @@ function Main () {
                     </MaininTitleTopWrap>
                 </MainAllWrap>
             </BackGroundDiv>
-                
-            <BottomBackGround>    
-            <MainTextBotWrap>
-                <MainBotText>
-                    <MainTextTitle>
-                        <ContentSpan>저 멀리 시대에 뒤쳐진 은하계 서쪽 소용돌이의 끝, 
-                            지도에도 나와 있지 않은 그 변두리 지역에 아무도 주목하지 않는 작은 노란색 항성이 하나 있다.
-                            <SubSpan> ~은하수를 여행하는 히치하이커를 위한 안내서~ (더글라스 애덤스)</SubSpan>
-                            <br/>은하수를 여행하는 히치하이커 라는 작품을 아시나요?
-                            프로젝트를 함께할 사람들을 기다리는 히치하이커들을 위한 공간, 신선한 아이디어의 프로젝트와 준비된 크루원들이 모이는 이곳은 renDev입니다.
-                        </ContentSpan>
-                    </MainTextTitle>
-                </MainBotText>
-            </MainTextBotWrap>
-            </BottomBackGround>
+
+            <BackgroundBot>
+                <MainTextTitle>
+                    <CircleMainIcon>
+                        <CircleImage />
+                    </CircleMainIcon>
+                    <ContentSpan>저 멀리 시대에 뒤쳐진 은하계 서쪽 소용돌이의 끝, 
+                        지도에도 나와 있지 않은 그 변두리 지역에 아무도 주목하지 않는 작은 노란색 항성이 하나 있다.<SubSpan> ~은하수를 여행하는 히치하이커를 위한 안내서~ (더글라스 애덤스)</SubSpan></ContentSpan>
+                    <ContentSpan>은하수를 여행하는 히치하이커 라는 작품을 아시나요?
+                        프로젝트를 함께할 사람들을 기다리는 히치하이커들을 위한 공간, 신선한 아이디어의 프로젝트와 준비된 크루원들이 모이는 이곳은 renDev입니다.</ContentSpan>
+                </MainTextTitle>
+            </BackgroundBot>
         </>
 
     )
@@ -51,7 +49,7 @@ const BackGroundDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(${Sample});
+    background-color: #303032;
     /* className="MainBack" */
 `
 
@@ -64,6 +62,7 @@ const MainAllWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-end;
+  background-image: url(${Sample});
   /* margin: 0px 0px 0px 110px ; */
 `;
 
@@ -71,12 +70,12 @@ const MaininTitleTopWrap = styled.div`
   /* border: 1px solid black; */
   width: 500px;
   height: 350px;
-  margin-bottom: 205px;
+  margin: 144px 0px 200px 120px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 120px;
+
 `;
 
 const TitleMain = styled.span`
@@ -133,53 +132,13 @@ const MainButtonWrap = styled.div`
     gap: 20px;
 `
 
-const MainBotWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 100%;
-    height: 25vh;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-`
-
-const BottomBackGround = styled.div`
-    /* background-color: #303032; */
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-const MainTextBotWrap = styled.div`
-    width: 100%;
-    max-width: 1440px;
-    height: 25vh;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    /* background-color: #303032; */
-`
-
-const MainBotText = styled.div`
-    /* border: 1px solid black; */
-    width: 155vh;
-    height: 110px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-`
-
 const MainTextTitle = styled.div`
     /* color: white; */
-`
-
-const TitleSpan = styled.p`
-    font-weight: bold;
-    font-size: 16px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 `
 
 const ContentSpan = styled.span`
@@ -189,6 +148,35 @@ const ContentSpan = styled.span`
 const SubSpan = styled.span`
     font-size: 12px;
     color: #B4B5DF;
+`
+
+const CircleMainIcon = styled.div`
+    width: 140px;
+    height: 140px;
+    border-radius: 100%;
+    /* border: 1px solid black; */
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F3F3F3;
+`
+
+const CircleImage = styled.div`
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    /* border: 1px solid black; */
+    background-image: url(${Space});
+`
+
+const BackgroundBot = styled.div`
+    /* border: 1px solid black; */
+    width: 100%;
+    margin-bottom: 80px;
+    margin-top: 40px;
+
 `
 
 

@@ -3,7 +3,7 @@ import { getCookie } from "./cookie";
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "http://3.39.226.20/",
+  baseURL: "http://13.125.145.26/",
   headers: {
     "content-type": "multipart/form-data",
      withCredentials: true,
@@ -12,7 +12,7 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "http://3.39.226.20/",
+  baseURL: "http://13.125.145.26/",
 
   headers: {
     "content-type": "application/json;charset=UTF-8",
@@ -27,11 +27,11 @@ const api = axios.create({
 api.interceptors.request.use(function (config) { 
 
   const accessToken = `${localStorage.getItem("token")}`;
-  if (accessToken !== undefined) {
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  }
+ 
    return config;
 });
+
 
 //imgForm토큰
 imgApi.interceptors.request.use(function (config) {
@@ -69,7 +69,7 @@ export const apis = {
   checkUser: () => api.get("/api/users/auth"),
 
   //  - 4. 유저정보 받기(불필요한 경우 삭제)
-  userInformation: () => api.get("/api/users/details/${nickname}"),
+  userInformation: (nickname) => api.get(`/api/users/details/${nickname}`),
 
   //  - 5. 비밀번호 변경
   userInformationModify: (
@@ -81,7 +81,7 @@ export const apis = {
     passwordCheck,
     allCheck
   ) =>
-    api.put("/api/users/details/${nickname}/upadatepw", {
+    api.put(`/api/users/details/${nickname}/upadatepw`, {
       userId: userId,
       nickname: nickname,
       name: name,
@@ -107,10 +107,32 @@ export const apis = {
   // 재발급 과정 스터디 필요
   refresh: () => api.post("/api/users/refresh"),
 
+  //  - 9. 회원탈퇴
+  userDelete: (nickname, password) =>
+    api.put(`/api/users/details/${nickname}/delete`, {
+      password: password,
+    }),
+  
+  //  - 10. 내 Project 조회
+  userProjects: (nickname) =>
+    api.get(`/api/users/details/${nickname}/projects`),
+
+  //  - 11. 내 Resume 조회
+  userResumes: (nickname) => api.get(`/api/users/details/${nickname}/resumes`),
+
+  //  - 12. 내 지원정보 조회
+  userApply: (nickname) => api.get(`/api/users/detatils/${nickname}/apply`),
+
+  //  - 13. 내 모집현황
+  userRecruit: (nickname) => api.get(`/api/users/detatils/${nickname}/recruit`),
+  
+  //  - 14. 프로필 이미지
+  userPhotos: (frm, nickname) =>
+    imgApi.post(`/api/users/detatils/${nickname}/image`, frm),
+
   ///////////////////////
   ////<2. 프로젝트 API>////
   //////////////////////
-
 
   //  - 9. 프로젝트 등록
   projectsCreate: (
@@ -123,7 +145,8 @@ export const apis = {
     skills,
     photos,
     schedule
-    ) => api.post("/api/projects", {
+  ) =>
+    api.post("/api/projects", {
       title: title,
       details: details,
       subscript: subscript,
@@ -132,10 +155,9 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
-      schedule: schedule
+      schedule: schedule,
     }),
 
-    
   //  - 10. 프로젝트 조회
   projectsLoad: () => api.get("/api/projects"),
 
@@ -154,9 +176,9 @@ export const apis = {
     end,
     skills,
     photos,
-    
+    schedule
   ) =>
-    api.put("/api/projects", {
+    api.put(`/api/projects/${projectId}`, {
       title: title,
       details: details,
       subscript: subscript,
@@ -165,13 +187,13 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
-     
+      schedule: schedule,
     }),
 
   //  - 13. 프로젝트 삭제
   projectsDelete: (projectId) => api.delete(`/api/projects/${projectId}`),
-  //  - ## 이미지 업로드
 
+  //  - ## 이미지 업로드
   projectsPhotos: (frm) => imgApi.post("/api/projects/photos", frm),
 
   /////////////////////////////////////////
@@ -189,6 +211,7 @@ export const apis = {
     content2,
     content3
   ) =>
+
     api.post("/api/resumes", {
       content: content,
       resumeImage: resumeImage,
@@ -240,7 +263,7 @@ export const apis = {
   //////////////////////////////
   //[면접]
 
-  interviews: (projectId) => api.post("/api/interviews/${projectId}"),
+  interviews: (projectId) => api.post(`/api/interviews/${projectId}`),
 
   //  - 20. 면접요청 취소
   //  - 21. (팀장) 면접 승낙

@@ -1,24 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import astroman from "../image/astroman.svg";
-
-import Letter from "../image/letter.svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { checkUserValidation } from "../redux/modules/user";
-import { loadSingleEmployAxios,modifyEmployAxios,loadEmployAxios } from "../redux/modules/postEmploy";
-import {
-  dvelopSkills_list,
-  designerSkills_list,
-} from "../shared/developeSkills";
+import { 
+  loadSingleEmployAxios,
+  modifyEmployAxios,
+  loadEmployAxios,
+  projectsPhotosAxios, 
+ } from "../redux/modules/postEmploy";
+import { dvelopSkills_list, designerSkills_list } from "../shared/developeSkills";
 
-import { useDispatch } from "react-redux";
-import {
-  projectsPhotosAxios,
-  resumesCreateAxios,
-} from "../redux/modules/postEmploy";
+import Letter from "../image/letter.svg";
+import astroman from "../image/astroman.svg";
+
+
 
 function EditProfile() {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { resumeId } = useParams();
@@ -34,9 +33,11 @@ function EditProfile() {
   const content2Ref = useRef(null);
   const content3Ref = useRef(null);
   const [role, setRole] = useState("");
+
   //캘린더 (22.07.12 추가 전)
   const [start, setStart] = useState("2022-02-02");
   const [end, setEnd] = useState("2022-02-04");
+
   //userId,nickname 정보
     const userIdInfo = useSelector((state) => state.user.userInfo);
  
@@ -48,8 +49,9 @@ function EditProfile() {
 
   //formData
   const frm = new FormData();
+  
   //fileReader
-    const reader = new FileReader();
+  const reader = new FileReader();
     
   //로그인 useEffect
  useEffect(() => {

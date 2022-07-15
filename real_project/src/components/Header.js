@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkUserValidation, logOut } from "../redux/modules/user";
 
 import BasicPhoto from "../image/astro-white.svg"
-import Logo from "../image/Logo.svg"
+import Logo from "../image/Logo_vertical.svg"
 
 
 function Header() {
@@ -14,7 +14,7 @@ function Header() {
   const dispatch = useDispatch();
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
- 
+   const nickname = useSelector((state) => state.user.userInfo.nickname);
 
   
   React.useEffect(() => {
@@ -68,7 +68,9 @@ function Header() {
             </LoginButton>
             <CircleImage
               onClick={() => {
-                navigate(`/mypage`);
+                navigate(`/mypage/${nickname}/apply`);
+              
+
               }}
             >
               <img src={BasicPhoto} />
@@ -115,7 +117,7 @@ const LogoWrap = styled.div`
     align-items: center;
     background-image: url(${Logo});
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     /* border: 1px solid white; */
 `
