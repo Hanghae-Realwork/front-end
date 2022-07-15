@@ -7,8 +7,7 @@ registerLocale('ko', ko);
 const DatePickerSingle = ( props ) => {
     // 달력 날짜 변경 시 기준점이 되는 날짜
     const [startDate, setStartDate] = useState(new Date());
-    const today = new Date();
-  
+
     const [endDate, setEndDate] = useState("");
   
     const onChange = (dates) => {
@@ -22,8 +21,8 @@ const DatePickerSingle = ( props ) => {
     const start = JSON.stringify(startDate)
     const end = JSON.stringify(endDate)
   
-    console.log(start)
-    console.log(end)
+    // console.log(start)
+    // console.log(end)
 
     let footer = (
         <p
