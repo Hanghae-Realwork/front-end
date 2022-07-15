@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Moment from "react-moment";
 
 import Tag from "./TagCompoRec";
 
@@ -11,6 +12,21 @@ import Receipt from "../image/receipt.svg"
 
 const CardRecruit = ({ data }) => {
 
+    //작성시간 함수
+    const nowTime = Date.now();
+    const createdAt = data.createdAt;
+    const startTime = new Date(createdAt);
+    const thenHours = Math.floor((nowTime - startTime) / 3600000);
+    const DisplayCreatedAt = () => {
+      if (parseInt(startTime - nowTime) > -86400000) {
+        return thenHours + "시간전";
+      }
+      if (parseInt(startTime - nowTime) < -86400000) {
+        return <Moment format="M월 D일">{startTime}</Moment>;
+      }
+    }
+
+
   const navigate = useNavigate();
 
     return (
@@ -18,7 +34,7 @@ const CardRecruit = ({ data }) => {
         <AllTopWrap>
           <CardTopInfo>
             <CardWriteName>{data.nickname}</CardWriteName>
-            <CardWriteTime>{data.createdAt}</CardWriteTime>
+            <CardWriteTime><DisplayCreatedAt /></CardWriteTime>
           </CardTopInfo>
           <CardTitleInfo>
             <CardTitleText>{data.title}</CardTitleText>

@@ -10,9 +10,9 @@ let timeInit = 0;
 let minInit = 0;
 const DatePickerDouble = ( { contextDatePicker } ) => {
     // 달력 날짜 변경 시 기준점이 되는 날짜
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState('');
     const today = new Date();
-    const [endDate, setEndDate] = useState(null);
+    const [endDate, setEndDate] = useState('');
     const [dateStart, setDateStart] =useState()
     const [DateEnd, setDateEnd] =useState()
     
@@ -34,29 +34,25 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
     console.log(end)
 
     let footer = (
-        <p
+        <span
           style={{
             margin: "10px",
             padding: "10px",
-            border: "1px solid black",
-            borderRadius: "10px",
             width: "180px",
             textAlign: "center",
             fontSize: "13px",
           }}
         >
           시작날짜를 눌러주세요
-        </p>
+        </span>
       );
       if (footerStart && footerStart) {
         if (!footerEnd) {
           footer = (
             <p
-              style={{
-                margin: "10px",
+              style={{ 
+                margin: "10px",  
                 padding: "10px",
-                border: "1px solid black",
-                borderRadius: "10px",
                 width: "150px",
                 textAlign: "center",
                 fontSize: "13px",
@@ -71,8 +67,6 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
               style={{
                 margin: "10px",
                 padding: "10px",
-                border: "1px solid black",
-                borderRadius: "10px",
                 width: "260px",
                 textAlign: "center",
                 fontSize: "13px",
@@ -87,22 +81,24 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
 
       return (
         <>
+        <CalenderWrap>
         <DatePickerWrapper
-        popperContainer={Popper}
-        calendarContainer={Calendar}
-        controls={['calendar']}
-        dateFormat="YYYY-MM-DD"
-        locale="ko" // 달력 한글화
-        selected={startDate}
-        onChange={onChange}
-        startDate={startDate}
-        // rangeHighlight={true}
-        // showRangeLabels={false}
-        endDate={endDate}
-        monthsShown={2}
-        selectsRange
-        inline
+          popperContainer={Popper}
+          calendarContainer={Calendar}
+          controls={['calendar']}
+          dateFormat="YYYY-MM-DD"
+          locale="ko" // 달력 한글화
+          selected={startDate}
+          onChange={onChange}
+          startDate={startDate}
+          // rangeHighlight={true}
+          // showRangeLabels={false}
+          endDate={endDate}
+          monthsShown={2}
+          selectsRange
+          inline
       />
+      </CalenderWrap>
        {footer}
 </>
 );
@@ -131,5 +127,10 @@ const DatePickerWrapper = styled(({ className, ...props }) => (
     margin: 20px;
     z-index: 2;
   `;
+
+  const CalenderWrap =styled.div`
+    margin-top: 30px;
+    margin-bottom: 30px;
+  `
   
 export default DatePickerDouble
