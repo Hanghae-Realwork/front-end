@@ -83,8 +83,8 @@ const TestDatePicker = ({ contextDatePicker }) => {
             fontSize: "13px",
           }}
         >
-          {start}~
-          {end}
+          {start.slice(3, 11)}~
+          {end.slice(3, 11)}
         </p>
       );
     }
