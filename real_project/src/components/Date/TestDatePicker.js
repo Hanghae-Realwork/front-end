@@ -11,15 +11,30 @@ import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
 
 
-registerLocale('ko', ko);
-    let timeInit = 0;
-    let minInit = 0;
-    const TestDatePicker = ({ contextDatePicker }) => {
-  // 달력 날짜 변경 시 기준점이 되는 날짜
-  const [startDate, setStartDate] = useState(new Date());
-  const today = new Date();
 
-  const [endDate, setEndDate] = useState('');
+const TestDatePicker = ({ contextDatePicker }) => {
+
+  registerLocale('ko', ko);
+  let timeInit = 0;
+  let minInit = 0; 
+
+  // 달력 날짜 변경 시 기준점이 되는 날짜
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
+    //시작/끝 시간값 JSON으로 출력
+    const start = JSON.stringify(startDate)
+    const end = JSON.stringify(endDate)
+
+    // const test1 = start.substring(1,11) 
+    // const test2 = end.substring(1,11)
+
+    // console.log(test1)
+    // console.log(test2)
+
+    const [selected, setSelected] = useState(new Date());
+    console.log(selected)
+
 
   const onChange = (dates) => {
     const [start, end] = dates;
@@ -28,62 +43,27 @@ registerLocale('ko', ko);
     console.log(JSON.stringify(start), JSON.stringify(end))
   }
 
-  //시작/끝 시간값 JSON으로 출력
-  const start = JSON.stringify(startDate)
-  const end = JSON.stringify(endDate)
-
-  console.log(start)
-  console.log(end)
-
-  const [selected, setSelected] = useState(new Date());
-  const [fromValue, setFromValue] = useState("");
-  const [toValue, setToValue] = useState("");
-  const [beforeDay, setBeforeDay] = useState("");
-  console.log(selected)
-
-
   // https://reactdatepicker.com/ 참고
 
   let footer = (
-    <p style={{margin: "10px", padding: "10px", border: "1px solid black",
-        borderRadius: "10px", width: "180px", textAlign: "center",
-        fontSize: "13px"}}>
+    <p style={{margin: "10px", textAlign: "center", fontSize: "13px"}}>
       시작날짜를 눌러주세요
-    </p>
-  );
+    </p>);
   if (start && start) {
     if (!end) {
       footer = (
-        <p
-          style={{
-            margin: "10px",
-            padding: "10px",
-            border: "1px solid black",
-            borderRadius: "10px",
-            width: "150px",
-            textAlign: "center",
-            fontSize: "13px",
-          }}
-        >
+        <span
+          style={{padding: "10px", textAlign: "center", fontSize: "13px"}}>
           {start}
-        </p>
+        </span>
       );
     } else if (end && end) {
       footer = (
-        <p
-          style={{
-            margin: "10px",
-            padding: "10px",
-            border: "1px solid black",
-            borderRadius: "10px",
-            width: "260px",
-            textAlign: "center",
-            fontSize: "13px",
-          }}
-        >
+        <span
+          style={{padding: "10px", textAlign: "center", fontSize: "13px"}}>
           {start}~
           {end}
-        </p>
+        </span>
       );
     }
   }
@@ -91,7 +71,8 @@ registerLocale('ko', ko);
 
   return (
     <>
-      <DatePickerWrapper
+    <TestWrap>
+      <DatePickerWrap
         popperContainer={Popper}
         calendarContainer={Calendar}
         controls={['calendar']}
@@ -106,31 +87,19 @@ registerLocale('ko', ko);
         monthsShown={2}
         selectsRange
         inline/>
-
-
-      <DatePicker 
-        selected={startDate} 
-        onChange={(date) => setStartDate(date)}
-        showTimeSelect 
-        showTimeSelectOnly
-        timeIntervals={60}
-        timeCaption="Time"
-        dateFormat="hh"
-        inline/>
-      {footer}
+     </TestWrap>
+     <TimeWrap>   
+        {footer}
+     </TimeWrap>
     </>
   );
 }
 
-const DatePickerWrapper = styled(({ className, ...props }) => (
+const DatePickerWrap = styled(({ className, ...props }) => (
   <DatePicker {...props} wrapperClassName={className} />
 ))`
   width: 100%;
 `;
-
-const Daystring = styled.div`
-/* font-size: large; */
-`
 
 const Calendar = styled.div`
   border-radius: 4px;
@@ -144,5 +113,19 @@ const Popper = styled.div`
   margin: 20px;
   z-index: 2;
 `;
+
+const TestWrap = styled.div`
+   /* border: 1px solid black; */
+   margin-bottom: 30px;
+   margin-top: 30px;
+`
+
+const TimeWrap = styled.div`
+    border: 1px solid black;
+    width: 279px;
+    height: 44px;
+    border-radius: 4px;
+
+`
 
 export default TestDatePicker
