@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -31,6 +31,31 @@ const FindProjectStep01 = (props) => {
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
+
+  //MVP 스케쥴 
+  const [date, setDate] = useState("")
+  const [time, setTime] = useState("")
+
+
+  useEffect(() => {
+    if (date.length === 8) {
+      setDate(date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+    }
+  }, [date]);
+  useEffect(() => {
+    if (time.length === 6) {
+      setTime(time.replace(/(\d{2})(\d{2})(\d{2})/, "$1:$2:$3"));
+    }
+  }, [time]);
+
+  const onChangeDate = (e) => {
+    setDate(e.target.value)
+    console.log(e.target.value)
+  }
+  const onChangeTime = (e) => {
+    setTime(e.target.value);
+    console.log(e.target.value)
+  }
 
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
@@ -76,10 +101,22 @@ const FindProjectStep01 = (props) => {
 
   const start = JSON.stringify(startDate).slice(1, 11);
   const end = JSON.stringify(endDate).slice(1, 11);
- console.log(start,end)
+
+  //스케쥴 데이터 
+ 
   
+  const [schedule,SetSchedule] = useState([]);
+  var i = [date, time].join(" ");
+
+  const onClickSchedule = () => {
+    
+    schedule.push(i);
+
+}
+console.log(schedule);
   // 저장 버튼
   const CompliteButton = async () => {
+console.log(schedule)
     frm.append("photos", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
@@ -95,7 +132,7 @@ const FindProjectStep01 = (props) => {
             end,
             checkList,
             success,
-            ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
+            schedule
           )
         );
       });
@@ -160,11 +197,18 @@ const FindProjectStep01 = (props) => {
         <InputMainTextWrap>
           <ProjectTitleText>팀 상세 설명</ProjectTitleText>
           <ReMainConWrap>
-            <RecMainCon ref={detailsRef} id="details" type="text"
-              placeholder="프로젝트의 내용을 입력해주세요"/>
+            <RecMainCon
+              ref={detailsRef}
+              id="details"
+              type="text"
+              placeholder="프로젝트의 내용을 입력해주세요"
+            />
             <PhotoUPloadWrap>
-              {filesImg ? (<UpPhotoArea alt="sample" id="showImg" src={filesImg} />
-              ) : (<DisablePhotoWrap></DisablePhotoWrap>)}
+              {filesImg ? (
+                <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
+              ) : (
+                <DisablePhotoWrap></DisablePhotoWrap>
+              )}
               <EditWrapPhoto>
                 {filesImg ? (
                   <PhotoText>
@@ -273,9 +317,34 @@ const FindProjectStep01 = (props) => {
               })}
           </SelectBoxTab>
         </SkillWrap>
-        <SingleDateWrap>
-          <DateSingle />
-        </SingleDateWrap>
+        {/* <SingleDateWrap> */}
+        <FindProjectInputTitle>
+
+          <H3>면접 가능 시간</H3>
+          <Div>
+            <InputEx
+              requiredtype="text"
+              placeholder="2022-01-01"
+              value={date}
+              maxLength={8}
+              onChange={onChangeDate}
+            />
+            <InputEx
+              requiredtype="text"
+              placeholder="02:02:02"
+              value={time}
+              maxLength={6}
+              onChange={onChangeTime}
+            />
+            <div>
+              {schedule.map((list, idx) => {
+                return <h3 key={idx}>{list}</h3>;
+              })}
+            </div>
+
+            <button onClick={onClickSchedule}>등록하기</button>
+          </Div>
+        </FindProjectInputTitle>
 
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
@@ -517,8 +586,24 @@ const Time1Wrap = styled.div`
 const Time2Wrap = styled.div`
   border: 1px solid black;
 `
+//MVP CSS
 
+const H3 = styled.h3`
+margin-right:40px;`
 
+const InputEx = styled.input`
+
+margin-bottom:20px;
+padding:15px;
+font-size: 15px;
+`
+
+const Div = styled.div`
+display : flex;
+flex-direction: column;
+justify-content:center;
+
+`
 
 
 

@@ -1,43 +1,40 @@
 import React, { useState } from 'react'
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import styled from 'styled-components';
 import ko from 'date-fns/locale/ko';
+
 registerLocale('ko', ko);
 
 const DatePickerSingle = ( props ) => {
     // 달력 날짜 변경 시 기준점이 되는 날짜
-    const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [users, setUsers] = useState([]);
+  let copy = [];
 
-    const [endDate, setEndDate] = useState("");
-  
-    const onChange = (dates) => {
-      const [start, end] = dates;
-      setStartDate(start);
-      setEndDate(end);
-      console.log(JSON.stringify(start), JSON.stringify(end))
-    }
-  
-    //시작/끝 시간값 JSON으로 출력
-    const start = JSON.stringify(startDate)
-    const end = JSON.stringify(endDate)
-  
-    // console.log(start)
-    // console.log(end)
 
+  const onChange = (date) => {
+  
+console.log(date);
+    setStartDate(date)
+  
+   copy.push(date);
+   console.log(copy);
+    
+      // setUsers(users.concate(date))
+      // console.log(users);
+  }
+    console.log(users);
+ 
+console.log(users)
       return (
         <>
         <DatePickerWrapper
-        popperContainer={Popper}
-        calendarContainer={Calendar}
-        controls={['calendar']}
+        popperContainer={Popper}  
         dateFormat="YYYY-MM-DD"
         locale="ko" // 달력 한글화
         selected={startDate}
         onChange={onChange}
-        startDate={startDate}
         minDate={new Date()}
-        endDate={endDate}
-        selectsRange
         inline
       />
 </>
