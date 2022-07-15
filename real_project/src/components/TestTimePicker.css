@@ -1,0 +1,21 @@
+
+.time-input__text{
+    
+    width: 25px;
+    
+    width: 25px;
+
+
+}
+  .time__container__div{
+    margin-top: 25px;
+  }
+  .time__container {
+    display: flex;
+}
+
+
+.inline-center {
+    display: inline-flex;
+    align-items: center;
+  }
