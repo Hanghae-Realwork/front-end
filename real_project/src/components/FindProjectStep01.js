@@ -12,10 +12,6 @@ import DatePicker from "react-datepicker";
 import addimage from "../image/addimage.svg"
 
 
-import TimeTest1 from "../components/Date/TestTimePicker"
-import TimeTest2 from "../components/Date/TestTimePicker2"
-
-
 
 
 const FindProjectStep01 = (props) => {
@@ -81,13 +77,14 @@ const FindProjectStep01 = (props) => {
 
   const start = JSON.stringify(startDate).slice(1, 11);
   const end = JSON.stringify(endDate).slice(1, 11);
-
+ console.log(start,end)
+  
   // 저장 버튼
   const CompliteButton = async () => {
     frm.append("photos", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
-        console.log();
+    
 
         dispatch(
           createRecruitAxios(
@@ -525,8 +522,7 @@ const Time2Wrap = styled.div`
 const DatePickerWrapper = styled(
   ({ className, ...props }) => 
   (<DatePicker {...props} 
-    wrapperClassName={className} />))`
-  width: 100%;
+    wrapperClassName={className} />))`  width: 100%;
 `;
  const Popper = styled.div`
    position: absolute;
@@ -564,5 +560,6 @@ const Calendar = styled.div`
     border-radius: 4px;
 
   `
+
 
 
