@@ -287,6 +287,9 @@ const FindProjectStep01 = (props) => {
         <SingleDateWrap>
           <DateSingle />
         </SingleDateWrap>
+          <TimeWrap>
+            <TimeTest2/>
+          </TimeWrap>
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
         </SubmitButtonWrap>

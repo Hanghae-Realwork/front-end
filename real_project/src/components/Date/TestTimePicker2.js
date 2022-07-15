@@ -1,6 +1,8 @@
 "use strict";
+
 var __extends =
   (this && this.__extends) ||
+
   (function () {
     var extendStatics = function (d, b) {
       extendStatics =
@@ -47,14 +49,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var TimeInput_1 = require("@y0c/react-datepicker/lib/components/TimeInput.js");
 var FunctionUtil_1 = require("@y0c/react-datepicker/lib/utils/FunctionUtil.js");
+
 var TimeContainer = /** @class */ (function (_super) {
+
   __extends(TimeContainer, _super);
   function TimeContainer() {
+    
     var _this = (_super !== null && _super.apply(this, arguments)) || this;
     _this.state = {
       hour: _this.props.hour || 0,
       minute: _this.props.minute || 0,
     };
+
     _this.handleChange = function (item) {
       return function (e) {
         var _a;
@@ -70,6 +76,7 @@ var TimeContainer = /** @class */ (function (_super) {
         if (min > value) {
           value = min;
         }
+    
         _this.setState(
           __assign({}, _this.state, ((_a = {}), (_a[item] = value), _a)),
           function () {
@@ -78,6 +85,7 @@ var TimeContainer = /** @class */ (function (_super) {
         );
       };
     };
+    
     _this.handleUp = function (item) {
       return function () {
         var _a;
@@ -95,6 +103,7 @@ var TimeContainer = /** @class */ (function (_super) {
         );
       };
     };
+   
     _this.handleDown = function (item) {
       return function () {
         var _a;
@@ -112,6 +121,7 @@ var TimeContainer = /** @class */ (function (_super) {
         );
       };
     };
+   
     _this.handleBlur = function () {
       var onBlur = _this.props.onBlur;
       var _a = _this.state,
@@ -123,7 +133,7 @@ var TimeContainer = /** @class */ (function (_super) {
       FunctionUtil_1.ifExistCall(onBlur, hour, minute);
     };
 
-    
+
     _this.invokeOnChange = function () {
       var onChange = _this.props.onChange;
       var _a = _this.state,
