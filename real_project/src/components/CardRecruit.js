@@ -8,8 +8,22 @@ import Tag from "./TagCompoRec";
 import Receipt from "../image/receipt.svg"
 
 
-
 const CardRecruit = ({ data }) => {
+
+    //작성시간 함수
+    const nowTime = Date.now();
+    const createdAt = data.createdAt;
+    const startTime = new Date(createdAt);
+    const thenHours = Math.floor((nowTime - startTime) / 3600000);
+    const DisplayCreatedAt = () => {
+      if (parseInt(startTime - nowTime) > -86400000) {
+        return thenHours + "시간전";
+      }
+      if (parseInt(startTime - nowTime) < -86400000) {
+        return <Moment format="M월 D일">{startTime}</Moment>;
+      }
+    }
+
 
   const navigate = useNavigate();
 
