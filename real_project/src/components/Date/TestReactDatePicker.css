@@ -2,14 +2,13 @@
 .react-datepicker__year-read-view--down-arrow,
 .react-datepicker__month-read-view--down-arrow,
 .react-datepicker__month-year-read-view--down-arrow, .react-datepicker__navigation-icon::before {
-  border-color: #323232;  /* 월 넘기는 화살표 컬러 지정(지우면 안됩니다 */
-  border-style: solid; /* 월 넘기는 화살표(지우면 안됩니다 */
-  border-width: 3px 3px 0 0;
+  border-color: #323232;  /* 월 넘기는 화살표 컬러 지정(지우면 안됩니다) */
+  border-style: solid; /* 월 넘기는 화살표(지우면 안됩니다) */
+  border-width: 3px 3px 0px 0px;
   content: "";
   display: block;
   height: 9px;
   position: absolute;
-  top: 6px;
   width: 9px;
 }
 .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle, .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {
@@ -223,6 +222,7 @@
   font-size: 20px;
   width: 0;
 }
+
 .react-datepicker__navigation-icon--next {
   left: -2px;
 }
@@ -238,9 +238,12 @@
   right: -7px;
 }
 
+/* 캘린더 한 덩어리의 margin 값을 조정할 수 있는 CSS 컨테이너*/
 .react-datepicker__month-container {
   float: left;
-  margin: 15px;
+  margin-left: 25px;
+  margin-right: 25px;
+  /* border: 1px solid black; */
 }
 
 .react-datepicker__year {
