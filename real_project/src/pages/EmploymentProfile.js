@@ -1,62 +1,129 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 
-import Tag from "../components/TagCompoEmp"
+import TagCompoEmpPro from "../components/TagCompoEmpPro";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { deleteEmployAxios, loadSingleEmployAxios } from "../redux/modules/postEmploy";
+import { checkUserValidation } from "../redux/modules/user";
+import { useNavigation } from "react-day-picker";
 
 function EmploymentProfile() {
+  const dispatch = useDispatch();
+  const { resumeId } = useParams();
+  const navigate = useNavigate();
+
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+ 
+  const loginInfoName = useSelector((state) => state.user.userInfo.userId);
+
+  const data = useSelector((state) => state.postEmploy.resumes);
+
+  //id와 userId 비교하여 버튼 보이게 하기
+  // const modify = (loginInfoName === data[0]?.userId);
+
+  const [modify, setModify] = useState(false);
+  
+  let start =""
+  let end = ""
+  let href = ""
+
+
+  useEffect(() => {
+   if (loginInfo === false) {
+     dispatch(checkUserValidation());
+   }}, [loginInfo]);
+  
+  useEffect(() => {
+  dispatch(loadSingleEmployAxios(resumeId))
+  }, [])
+
+    useEffect(() => {
+      if (loginInfoName && data) {
+        if (loginInfoName === data[0]?.userId) {
+         setModify(true)
+       }
+      }
+      if (data) {
+        start = data[0]?.start.replace("-", ".").replace("-", ".");
+        end = data[0]?.end.replace("-", ".").replace("-", ".");
+
+        href = data.length > 0 ? data[0].content2 : "";
+      }
+    }, [loginInfoName, data]);
+  
+useState(data[0]?.role)
+ //undefined일때 null 처리 나머지 return 
+
+ if(!data[0]) return null 
   return (
     <>
       <EmploProfile>
         <NameFieldWrap>
           <ProfileTopWrap>
             <ProfileCircleWrap>
-              <ProfileCircle></ProfileCircle>
+              <ProfileCircle
+                style={{backgroundImage: `url(${data[0].resumeImage})`}}></ProfileCircle>
             </ProfileCircleWrap>
             <NameWrap>
               <NameTitle>
-                <TitleName>[닉네임]</TitleName>
+                <TitleName>{data.length > 0 ? data[0].nickname : ""}</TitleName>
               </NameTitle>
               <NameTitle>
-                <SubName>[직군 이름]</SubName>
+                <SubName>{data.length > 0 ? data[0].role : ""}</SubName>
               </NameTitle>
               <NameTitle>
-                <TextField>
-                  자기 소개 입니다. 서머리 카드에 있는 내용입니다.
-                </TextField>
+                <TextField>{data.length > 0 ? data[0].userId : ""}</TextField>
               </NameTitle>
               <NameTitle>
-                <TextField>
-                  연락처 정보 (이메일)
-                </TextField>
-                <TextField>
-                  연락처 정보 (휴대전화)
-                </TextField>
+                <TextField>{data.length > 0 ? data[0].content : ""}</TextField>
               </NameTitle>
             </NameWrap>
           </ProfileTopWrap>
           <TitleTextWrap>
-            <SubName>교육 및 업무 경력</SubName>
-            <SelfText>자기소개 및 각종 사항이 출력 됩니다.</SelfText> 
+            <SubName>소개글</SubName>
+            <SelfText>{data.length > 0 ? data[0].content3 : ""}</SelfText>
           </TitleTextWrap>
           <TitleTextWrap>
-            <SubName>그 외 활동 이력</SubName>
-            <SelfText>자기소개 및 각종 사항이 출력 됩니다.</SelfText> 
+            <SubName>홈페이지</SubName>
+            <SelfText>
+              <a href={data.length > 0 ? data[0].content2 : ""} target="_blank">
+                {data.length > 0 ? data[0].content2 : ""}
+              </a>
+            </SelfText>
           </TitleTextWrap>
           <TitleTextWrap>
             <SubName>프로젝트 참여 가능 기간</SubName>
-            <SelfText>프로젝트 참여 가능 기간이 출력 됩니다.</SelfText> 
+            <SelfText>
+              {data[0]?.start.replace("-", ".").replace("-", ".")}~
+              {data[0]?.end.replace("-", ".").replace("-", ".")}
+            </SelfText>
           </TitleTextWrap>
           <TitleTextWrap>
-              <StacTextWrap>
-            <StacText>[닉네임]님이 보유한 스택</StacText>
+            <StacTextWrap>
+              <StacText>
+                {data.length > 0 ? data[0].nickname : ""}님이 보유한 스택
+              </StacText>
             </StacTextWrap>
             <StacTagWrap>
-              <Tag /> <Tag /> <Tag /> <Tag /> <Tag />
-              <Tag /> <Tag /> <Tag /> <Tag /> <Tag />
-              <Tag />
+              {data.length > 0
+                ? data[0].resumeskills.map((list, idx) => {
+                    return <TagCompoEmpPro key={idx} skills={list} />;
+                  })
+                : ""}
             </StacTagWrap>
           </TitleTextWrap>
-          <DucButton>면접 신청하기</DucButton>
+          <div>
+            <DucButton>면접 신청하기</DucButton>
+            {modify ? (
+              <DucButton onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
+                수정하기
+              </DucButton>
+            ) : (<></>)}
+            {modify ? <DucButton onClick={() => {
+              dispatch(deleteEmployAxios(resumeId));
+              navigate("/mainemployment");}}>삭제하기</DucButton> : <></>}
+          </div>
         </NameFieldWrap>
       </EmploProfile>
     </>
@@ -93,17 +160,44 @@ const ProfileTopWrap = styled.div`
 `
 
 const ProfileCircleWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 150px;
-    margin-right: 40px;
-`
+  /* border: 1px solid black; */
+  width: 150px;
+  height: 150px;
+  margin-right: 40px;
+ 
+  overflow: hidden;
+  position: relative;
+`;
 
 const ProfileCircle = styled.div`
-    width: 150px;
-    height: 150px;
-    border-radius: 150px;
-    background-color: #685BC7;
-`
+  /* width: 150px;
+  height: 150px; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  /* object-fit: cover; */
+
+  /* background-size: 100%; */
+  /* background-position: center; */
+  border-radius: 50%;
+  /* background-repeat: no-repeat; */
+
+  /* display: inline-block;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  object-fit: cover; */
+  position: absolute;
+  width: 100%;
+  /* height: 100%; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  background-position: center;
+`;
 
 const NameWrap = styled.div`
     /* border: 1px solid black; */
@@ -165,6 +259,7 @@ const DucButton = styled.button`
     margin-top:  80px;
     font-weight: bold;
     font-size: 18px;
+    margin-left: 10px;
 
 `
 

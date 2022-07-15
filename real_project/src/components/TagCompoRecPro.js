@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-function TagCompoRec({ skills }) {
-console.log("들어옴")
+function TagCompoRecPro({ skills }) {
+
     return <TagButton>{skills}</TagButton>;
 }
 
@@ -18,4 +18,4 @@ const TagButton = styled.button`
   margin: 3px;
 `;
 
-export default TagCompoRec;
+export default TagCompoRecPro;

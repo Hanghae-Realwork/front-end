@@ -1,68 +1,72 @@
 import styled from "styled-components"
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { delPostApi, loadRecruitOneApi } from "../redux/modules/postRecruit";
+import { useSelector,useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect,useState } from "react";
+import { LoadDetailAxios } from "../redux/modules/postRecruit"
+import { checkUserValidation } from "../redux/modules/user";
+
+import TagCompoEmpPro from "../components/TagCompoRecPro";
+
+import letter from "../image/letter.svg"
+
 
 import Tag from "../components/TagCompoRec";
-
-
 function ReadProject(props) {
-    
-    const params = useParams();
-    console.log(params)
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {projectId} = useParams();
 
-    // const is_login = localStorage.getItem("token");
+    const [modify, setModify] = useState(false);
 
-    const projectIdNum = (params?.projectid)
-    const projectDetail = useSelector((state)=> state.postRecruit.project)
-    const userInfo = useSelector((state)=> state.user.uesrInfo)
-    const data=projectDetail?.project
-    const userId=userInfo?.userId
-    console.log(data?.email)
-    console.log(userInfo)
-   
-    console.log(data)
+    let start =""
+    let end = ""
+    let href = ""
+
+
+    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+    const loginInfoName = useSelector((state) => state.user.userInfo.userId);
+
+    const Value = useSelector((state) => state.postRecruit.project);
+    // console.log(Value[0])
+    // console.log(Value.length)
+    // const [title, setTitle] = useState('')
+
     useEffect(() => {
-        dispatch(loadRecruitOneApi(projectIdNum));
+        if (loginInfo === false) {
+          dispatch(checkUserValidation());
+        }}, [loginInfo]);
 
-      }, []);
-    
+    useEffect(() => {
+        dispatch(LoadDetailAxios(projectId))
+    }, [])
 
-    
     return(
-        <>
+        
         <AllWrap>
-        {data !== undefined ? (
-            <>
+        
+            
             <TopWrap>
-                <TopTitle>{data.title}</TopTitle>
-                <TopDateLimit>프로젝트 기간 : {data.start} ~ {data.start}</TopDateLimit>
+                <TopTitle>
+                {Value && Value[0]?.title}
+                </TopTitle>
+                <TopDateLimit>{Value && Value[0]?.start} 
+                ~ {Value && Value[0]?.end}</TopDateLimit>
             </TopWrap>
                 <DivideLine/>
             <MainTextWrap>
                 <MainText>
-                    <MainTextSpan>{data.details}</MainTextSpan>
+                    <MainTextSpan>{Value && Value[0]?.details}</MainTextSpan>
                 </MainText>
             </MainTextWrap>
             <FindRoleWrap>
                 <div><RoleTitle>찾는 직군</RoleTitle></div>
-                <div><span>{data.role}</span></div>
+                <div><span>{Value && Value[0]?.role}</span></div>
             </FindRoleWrap>
             <FindSkillWrap>
                 <div><RoleTitle>필요한 스킬 및 스텍</RoleTitle></div>
-                <div><TagWrap>
-              {data === undefined
-                ? null
-                : data.skills.map((list, idx) => {
-                    return <Tag key={idx} skills={list} />;
-                  })}
-            </TagWrap></div>
+                <div><span>
+                    {Value && Value[0]?.skills.map((list, idx) => {
+                         return <TagCompoEmpPro key={idx} skills={list} />})}</span></div>
             </FindSkillWrap>
                 <DivideLine/>
             <DateWrap>
@@ -78,62 +82,25 @@ function ReadProject(props) {
                 <div>
                     <RoleTitle>작성자 프로필</RoleTitle>
                 </div>
-                <div>
-                    <div>
-                        <div>
-                        </div>
-                    </div>
-                    <div>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+                <ProfileDetailWrap>
+                    <ProfilePhoto></ProfilePhoto>
+                    <UserNameWrap>
+                        <span>{Value && Value[0]?.nickname}</span>
+                        <span>직군</span>
+                    </UserNameWrap>
+                    <UserMailWrap>
+                        <img src = {letter}></img><span>{Value && Value[0]?.email}</span>
+                    </UserMailWrap>
+                </ProfileDetailWrap>
             </ProfileWrap>
             <ButtonWrap>
                 <SubmitButton>지원하기</SubmitButton>
+                <SubmitButton onClick={() => {navigate("/findprojectstep2/" + `${Value[0].projectId}`);}}>수정하기</SubmitButton>
+                <SubmitButton>삭제하기</SubmitButton>
             </ButtonWrap>
-            {/* 수정,삭제버튼 현재 유저의 email과 상세내용의 email이 같을시 버튼 활성화 */}
-            <div>
-            {data.email === userId  ? (
-                <div>
-            <button data={data}  onClick={() => {navigate(`/findprojectstep1/${projectIdNum}`)}}>프로젝트 수정하기 </button>
-            <button onClick={() => {
-                    const result =
-                      window.confirm("정말 이 프로젝트를 삭제할까요?");
-                    if (result) {
-                      dispatch(delPostApi(projectIdNum));
-                      
-                      navigate("/");
-                    }
-                  }}>삭제</button>
-                  </div>
-            ):
-            (
-                <div>
-            <button data={data}  onClick={() => {navigate(`/findprojectstep1/${projectIdNum}`)}}>프로젝트 수정하기 </button>
-            <button onClick={() => {
-                    const result =
-                      window.confirm("정말 이 프로젝트를 삭제할까요?");
-                    if (result) {
-                      dispatch(delPostApi(projectIdNum));
-                      
-                      navigate("/");
-                    }
-                  }}>삭제</button>
-                  </div>
-            )
-            }
-            </div>
-            </>
-            
-        ):null}
-
+        
         </AllWrap>
-        </>
+        
     )
 }
 
@@ -207,12 +174,12 @@ const DateWrap = styled.div`
 `
 
 const ProfileWrap = styled.div`
-    /* border: 1px solid black; */
+    border: 1px solid black;
     width: 1200px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 30px;
 `
 
@@ -220,11 +187,12 @@ const ButtonWrap = styled.div`
     /* border: 1px solid black; */
     width: 1200px;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     margin-top: 60px;
     margin-bottom: 80px;
+    gap: 20px;
 `
 
 const SubmitButton = styled.button`
@@ -239,11 +207,9 @@ const SubmitButton = styled.button`
     font-weight: 700;
 `
 
-
 const DivideLine = styled.hr`
     width: 1200px;
 `
-
 
 const TopTitle = styled.span`
     font-size: 24px;
@@ -270,6 +236,28 @@ const MainTextSpan = styled.span`
 const RoleTitle = styled.span`
     font-size: 16px;
     font-weight: 700;
+`
+
+const ProfileDetailWrap = styled.div`
+    /* border: 1px solid black; */
+    height: 100px;
+`
+
+const ProfilePhoto = styled.div`
+    background-position: center;
+    background-size: cover;
+`
+
+const UserNameWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+`
+
+const UserMailWrap = styled.div`
+    /* border: 1px solid black; */
 `
 
 export default ReadProject

@@ -3,7 +3,7 @@ import { getCookie } from "./cookie";
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "http://3.39.226.20/",
+  baseURL: "http://13.125.145.26/",
   headers: {
     "content-type": "multipart/form-data",
      withCredentials: true,
@@ -12,7 +12,7 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "http://3.39.226.20/",
+  baseURL: "http://13.125.145.26/",
 
   headers: {
     "content-type": "application/json;charset=UTF-8",
@@ -21,22 +21,14 @@ const api = axios.create({
   },
 });
 
-
 // axios.defaults.withCredentials = true;
-
 
 //토큰
 api.interceptors.request.use(function (config) { 
 
-  // const accessToken = `${localStorage.getItem("token")}`;
-  // config.headers.common["authorization"] = `Bearer ${accessToken}`;
-  // return config;
-   const atoken = getCookie("ACCESS_TOKEN");
-   const rtoken = getCookie("REFRESH_TOKEN");
-
-   config.headers.common["Authorization"] = `Bearer ${atoken}`;
-   config.headers.common["reAuthorization"] = `Bearer ${rtoken}`;
-
+  const accessToken = `${localStorage.getItem("token")}`;
+    config.headers.common["authorization"] = `Bearer ${accessToken}`;
+ 
    return config;
 });
 
@@ -77,7 +69,7 @@ export const apis = {
   checkUser: () => api.get("/api/users/auth"),
 
   //  - 4. 유저정보 받기(불필요한 경우 삭제)
-  userInformation: () => api.get("/api/users/details/${nickname}"),
+  userInformation: (nickname) => api.get(`/api/users/details/${nickname}`),
 
   //  - 5. 비밀번호 변경
   userInformationModify: (
@@ -89,7 +81,7 @@ export const apis = {
     passwordCheck,
     allCheck
   ) =>
-    api.put("/api/users/details/${nickname}/upadatepw", {
+    api.put(`/api/users/details/${nickname}/upadatepw`, {
       userId: userId,
       nickname: nickname,
       name: name,
@@ -113,20 +105,61 @@ export const apis = {
 
   //  - 8. 토큰 재발급
   // 재발급 과정 스터디 필요
-  refresh: () =>
-    api.post("/api/users/refresh"),
+  refresh: () => api.post("/api/users/refresh"),
+
+  //  - 9. 회원탈퇴
+  userDelete: (nickname, password) =>
+    api.put(`/api/users/details/${nickname}/delete`, {
+      password: password,
+    }),
+  
+  //  - 10. 내 Project 조회
+  userProjects: (nickname) =>
+    api.get(`/api/users/details/${nickname}/projects`),
+
+  //  - 11. 내 Resume 조회
+  userResumes: (nickname) => api.get(`/api/users/details/${nickname}/resumes`),
+
+  //  - 12. 내 지원정보 조회
+  userApply: (nickname) => api.get(`/api/users/detatils/${nickname}/apply`),
+
+  //  - 13. 내 모집현황
+  userRecruit: (nickname) => api.get(`/api/users/detatils/${nickname}/recruit`),
+  
+  //  - 14. 프로필 이미지
+  userPhotos: (frm, nickname) =>
+    imgApi.post(`/api/users/detatils/${nickname}/image`, frm),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
   //////////////////////
 
   //  - 9. 프로젝트 등록
-  projectsCreate: (data) =>
+  projectsCreate: (
+    title,
+    details,
+    subscript,
+    role,
+    start,
+    end,
+    skills,
+    photos,
+    schedule
+  ) =>
     api.post("/api/projects", {
-      ...data,
+      title: title,
+      details: details,
+      subscript: subscript,
+      role: role,
+      start: start,
+      end: end,
+      skills: skills,
+      photos: photos,
+      schedule: schedule,
     }),
+
   //  - 10. 프로젝트 조회
-  projectsLoad: () => api.get(`/api/projects?page=1&limit=9`),
+  projectsLoad: () => api.get("/api/projects"),
 
   //  - 11. 프로젝트 상세조회
   projectsLoadDetail: (projectId) => api.get(`/api/projects/${projectId}`),
@@ -143,10 +176,9 @@ export const apis = {
     end,
     skills,
     photos,
-    
+    schedule
   ) =>
     api.put(`/api/projects/${projectId}`, {
-      
       title: title,
       details: details,
       subscript: subscript,
@@ -155,11 +187,14 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
-     
+      schedule: schedule,
     }),
 
   //  - 13. 프로젝트 삭제
   projectsDelete: (projectId) => api.delete(`/api/projects/${projectId}`),
+
+  //  - ## 이미지 업로드
+  projectsPhotos: (frm) => imgApi.post("/api/projects/photos", frm),
 
   /////////////////////////////////////////
   ////<3. 팀원 찾기 페이지 이력서(지원자) API>////
@@ -167,10 +202,7 @@ export const apis = {
 
   //  - 14. 팀원 찾기 등록
   resumesCreate: (
-    nickname,
     content,
-    userId,
-    phone,
     resumeImage,
     start,
     end,
@@ -179,16 +211,14 @@ export const apis = {
     content2,
     content3
   ) =>
+
     api.post("/api/resumes", {
-      nickname: nickname,
       content: content,
-      userId: userId,
-      phone: phone,
       resumeImage: resumeImage,
       start: start,
       end: end,
       role: role,
-      skills: skills,
+      skill: skills,
       content2: content2,
       content3: content3,
     }),
@@ -197,15 +227,12 @@ export const apis = {
   resumesLoad: () => api.get("/api/resumes"),
 
   //  - 16. 팀원 찾기 상세조회
-  resumesLoadDetail: (resumeId) => api.get("/api/resumes/${resumeId}"),
+  resumesLoadDetail: (resumeId) => api.get(`/api/resumes/${resumeId}`),
 
   //  - 17. 팀원 찾기 수정
   resumesModify: (
     resumeId,
-    nickname,
     content,
-    userId,
-    phone,
     resumeImage,
     start,
     end,
@@ -214,22 +241,19 @@ export const apis = {
     content2,
     content3
   ) =>
-    api.put("/api/resumes/${resumeId}", {
-      nickname: nickname,
+    api.put(`/api/resumes/${resumeId}`, {
       content: content,
-      userId: userId,
-      phone: phone,
       resumeImage: resumeImage,
       start: start,
       end: end,
       role: role,
-      skills: skills,
+      skill: skills,
       content2: content2,
       content3: content3,
     }),
 
   //  - 18. 팀원 찾기 삭제
-  resumesDelete: (resumeId) => api.delete("/api/resumes/${resumeId}"),
+  resumesDelete: (resumeId) => api.delete(`/api/resumes/${resumeId}`),
 
   //  - 19. 팀원 찾기 프로필 이미지 편집(보류)
   //  - 20. 팀원 찾기 프로필 이미지 삭제(보류)
@@ -239,7 +263,7 @@ export const apis = {
   //////////////////////////////
   //[면접]
 
-  interviews: (projectId) => api.post("/api/interviews/${projectId}"),
+  interviews: (projectId) => api.post(`/api/interviews/${projectId}`),
 
   //  - 20. 면접요청 취소
   //  - 21. (팀장) 면접 승낙
@@ -257,3 +281,6 @@ export const apis = {
   //  - 31. 이미지 업로드
   //[이미지업로드]
 };
+
+
+

@@ -1,62 +1,48 @@
+import { sk } from "date-fns/locale";
 import { apis } from "../../shared/api";
 
 const LOAD = 'recruit/LOAD';
-const LOAD_ONE = 'recruitone/LOAD'
-const CREATE = 'recruit/CREATE'
-const EDIT = 'recruit/EDIT'
-const DELETE = 'recruit/DELETE'
+const CREATE = 'recruit/CREATE';
+const EDIT = 'recruit/EDIT';
+const DETAIL = 'recruit/DETAIL';
+const DELETE = 'recruit/DELETE';
 
 const initialState = {
-  list: {
-    title: null,
-    details: null,
-    subscript: null,
-    role: null,
-    start: null,
-    end: null,
-    skills: null,
-    email: null,
-    phone: null,
-    schedule: null,
-  },
+  receiveRecruit: [],
+  project: []
 };
 
-export function loadRecruits(discription) {
-  return { type: LOAD, discription };
+export function loadRecruit(payload) {
+  return { type: LOAD, payload };
 }
 
-export function loadRecruitOne(discription) {
-  return { type: LOAD_ONE, discription };
+export function createRecruit(payload) {
+  return { type: CREATE, payload };
 }
 
-export function createRecruit(post) {
-  return { type: CREATE, post };
+export function editRecruit(payload) {
+  return { type: EDIT, payload };
 }
 
-export function editRecruit(put) {
-  return { type: EDIT, put };
+export function detailRecruit(payload) {
+  return { type: DETAIL, payload };
 }
 
-export function delRecruit(post_index) {
-  return { type: DELETE, post_index };
+export function deleteRecruit(payload){
+  return { type: DELETE, payload};
 }
 
-// export fuction loadRecruit(discription)
-// 프로젝트 리스트 호출
-export const loadRecruitsApi = () => {
+
+//미들믿을
+export const loadRecruitAxios = () => {
   return async function (dispatch) {
     await apis
       .projectsLoad()
-      .then((response) => {
-
+      .then((res) => {
         let list = [];
-        let projectsList = response.data.projects;
-        const projects = projectsList.sort((a,b) => a.projectid - b.projectid)
-        list = [...projects.reverse()]
-
-
-
-        dispatch(loadRecruits(list));
+        let project = res.data.projects.reverse()
+        list = [...project]
+        dispatch(loadRecruit(list));
       })
       .catch((err) => {
         console.log(err);
@@ -142,29 +128,172 @@ export const delPostApi = (id) => {
 };
 
 
-//Reducer
+export const projectsPhotosAxios = (frm) => {
+  console.log(frm)
+  return async function (dispatch) {
+    let success = null;
+    await apis
+      .projectsPhotos(frm)
+      .then((res) => {
+        const img = res.data.photos;
+        success = img;
+      }).catch((err) => {
+        success = null;
+      })
+    return success; 
+  }
+}
+
+
+export const createRecruitAxios = (
+  title, 
+  details, 
+  subscript, 
+  role, 
+  start, 
+  end, 
+  skills,
+  photos,
+  schedule
+) => {
+  console.log({
+    title: title,
+    details: details,
+    subscript: subscript,
+    role: role,
+    start: start,
+    end: end,
+    skills: skills,
+    photos: photos,
+    schedule: schedule,
+  });
+  return async function (dispatch) {
+    await apis
+      .projectsCreate(
+        title,
+        details,
+        subscript,
+        role,
+        start,
+        end,
+        skills,
+        photos,
+        schedule
+      )
+      .then((res) => {
+        dispatch(
+          createRecruit({
+            title: title,
+            details: details,
+            subscript: subscript,
+            role: role,
+            start: start,
+            end: end,
+            skills: skills,
+            photos:photos,
+            schedule: schedule,
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const LoadDetailAxios = (projectId) => {
+  return async function(dispatch, useState) {
+    console.log(projectId)
+    await apis
+    .projectsLoadDetail(projectId)
+    .then((res) => {
+      // console.log(res.data.project)
+      dispatch(detailRecruit(res.data.project))
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+}
+
+
+export const editRecruitAxios = (
+  title,
+  details,
+  subscript,
+  role,
+  start,
+  end,
+  skills,
+  photos,
+  schedule
+) => {
+  return async function(dispatch) {
+    await apis
+    .projectsModify(
+      title,
+      details,
+      subscript,
+      role,
+      start,
+      end,
+      skills,
+      photos,
+      schedule
+    )
+    .then((res) => {
+      console.log('res res res')
+      dispatch(
+        detailRecruit({
+          title: title,
+          details: details,
+          subscript: subscript,
+          role: role,
+          start: start,
+          end: end,
+          skills: skills,
+          photos: photos,
+          schedule: schedule
+        })
+      );
+    });
+  };
+};
+
+
+//리듀서
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
-
-      return { projects: action.discription };
+      return {
+        receiveRecruit : action.payload,
+        recruit: state.recruit
+      };
     }
 
-    case 'recruitone/LOAD':{
-      return { project: action.discription };
+    case 'recruit/DETAIL':{
+      
+      const projects = [action.payload]
+      // console.log(projects)
+      return { 
+        receiveRecruit: action.state, 
+        project: projects}
     }
 
     case 'recruit/CREATE': {
-      console.log(action.post);
-      const new_project_list = [action.post, ...state];
-      return state;
+      const writeProject = [action.payload, ...state.receiveRecruit];
+      return{
+        reciveRecruit : writeProject,
+        recruit: state.recruit        
+      }
     }
 
-    // case 'recruit/EDIT': {
-    //   console.log(action.put);
-    //   const edit_porject_list = [...state]
-    //   return state;
-    // }
+    case 'recruit/EDIT': {   
+      return {
+        reciveRecruit: state.receiveRecruit,
+        recruit: action.payload,
+      };
+    }
 
     default:
       return state;

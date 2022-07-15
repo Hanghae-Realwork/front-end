@@ -1,24 +1,31 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { checkUserValidation } from "../redux/modules/user";
-import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import { projectsPhotosAxios,resumesCreateAxios } from "../redux/modules/postEmploy";
+import { 
+  loadSingleEmployAxios,
+  modifyEmployAxios,
+  loadEmployAxios,
+  projectsPhotosAxios, 
+ } from "../redux/modules/postEmploy";
+import { dvelopSkills_list, designerSkills_list } from "../shared/developeSkills";
 
-import astroman from "../image/astroman.svg"
-import Letter from "../image/letter.svg"
+import Letter from "../image/letter.svg";
+import astroman from "../image/astroman.svg";
 
 
-function AddProfile(props) {
 
+function EditProfile() {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { resumeId } = useParams();
+ 
 
   //사진 파일 유무
-  const [filesImg, setFilesImg] = React.useState("");
-  const [files, setFiles] = React.useState("");
+  const [filesImg, setFilesImg] = useState("");
+  const [files, setFiles] = useState("");
   const [checkList, setCheckList] = useState([]);
 
   //저장데이터
@@ -27,30 +34,40 @@ function AddProfile(props) {
   const content3Ref = useRef(null);
   const [role, setRole] = useState("");
 
-//캘린더 (22.07.12 추가 전)
-  const [start, setStart] = useState("2022-02-02")
-  const [end,setEnd]=useState("2022-02-04")
+  //캘린더 (22.07.12 추가 전)
+  const [start, setStart] = useState("2022-02-02");
+  const [end, setEnd] = useState("2022-02-04");
 
   //userId,nickname 정보
-  const userIdInfo = useSelector((state) => state.user.userInfo);
-  const _resumeId = useSelector((state) => state.user.userInfo.userId);
-  const _nickname = useSelector((state) => state.user.userInfo.nickname);
-
+    const userIdInfo = useSelector((state) => state.user.userInfo);
+ 
   //로그인 유무
-  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+    //기존 내용
+    const userDescription = useSelector((state) => state.postEmploy.resumes);
+    const _userDiscription = useSelector((state) => state.postEmploy)
 
-  //fileReader
+  //formData
   const frm = new FormData();
+  
   //fileReader
   const reader = new FileReader();
-
+    
   //로그인 useEffect
-  React.useEffect(() => {
+ useEffect(() => {
     if (loginInfo === false) {
       dispatch(checkUserValidation());
     }
   }, [loginInfo]);
 
+     useEffect(() => {
+       dispatch(loadSingleEmployAxios(resumeId));
+     }, []); 
+
+    
+    useEffect(() => {
+        dispatch(loadEmployAxios());
+    },[])
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
   const onCheckedElement = (checked, item) => {
     if (checked) {
@@ -59,7 +76,7 @@ function AddProfile(props) {
       setCheckList(checkList.filter((el) => el !== item));
     }
   };
-console.log(checkList);
+
   //Role 값
   const onChangeRole = (e) => {
     setRole(e.target.value);
@@ -83,41 +100,41 @@ console.log(checkList);
   };
 
   //버튼 누르면 저장
-  const handleClick = async() => {
-
-
+  const handleClick = async () => {
+   
     frm.append("resumeImage", files[0]);
     try {
-      await dispatch(projectsPhotosAxios(frm)).then((success) => {
-         dispatch(
-           resumesCreateAxios(
-             introduceRef.current.value,
-             success,
-             start,
-             end,
-             role,
-             checkList,
-             content2Ref.current.value,
-             content3Ref.current.value,
-             _resumeId,
-             _nickname
-           )
-         );
-      })
-      alert("게시글을 등록하시겠습니까 ?");
+        await dispatch(projectsPhotosAxios(frm)).then((success) => {
+            console.log(success)
+            
+        dispatch(
+            modifyEmployAxios(
+            resumeId,
+            introduceRef.current.value,
+            success,
+            start,
+            end,
+            role,
+            checkList,
+            content2Ref.current.value,
+            content3Ref.current.value
+          )
+        );
+      });
+        
       navigate("/mainemployment");
-     } catch (err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-   
-
   };
+    
+  
 
   return (
     <BackgroundAllWrap>
       <AddProfileWrap>
         <TitleDiv>
-          <TitleText>내 소개글 작성하기</TitleText>
+          <TitleText>내 소개글 수정하기</TitleText>
         </TitleDiv>
         <HeaderHeadLine />
 
@@ -129,7 +146,7 @@ console.log(checkList);
             <ToggleBox>
               <TitleTextTag>이메일 정보</TitleTextTag>
               <PhoneNumberWrap>
-                <img src={Letter} style={{ marginRight: "10px" }}></img>
+                {/* <img src={Letter} style={{ marginRight: "10px" }}></img> */}
                 <Contect>
                   {" "}
                   {userIdInfo.length > 0 ? "" : userIdInfo.userId}
@@ -140,7 +157,7 @@ console.log(checkList);
               <TitleTextTag>간단한 자기 소개</TitleTextTag>
               <div>
                 <ProfileInput
-                  placeholder="간단한 인사말을 남겨 주세요"
+                  placeholder={userDescription[0]?.content}
                   ref={introduceRef}
                 ></ProfileInput>
               </div>
@@ -158,14 +175,24 @@ console.log(checkList);
               {filesImg ? (
                 <PhotoText>
                   수정하기
-                  <input name="imgUpload" type="file" id="add_img"
-                    accept="image/*" onChange={onChangeImg}/>
+                  <input
+                    name="imgUpload"
+                    type="file"
+                    id="add_img"
+                    accept="image/*"
+                    onChange={onChangeImg}
+                  />
                 </PhotoText>
               ) : (
                 <PhotoText>
                   등록하기
-                  <input name="imgUpload" type="file" id="add_img"
-                    accept="image/*" onChange={onChangeImg}/>
+                  <input
+                    name="imgUpload"
+                    type="file"
+                    id="add_img"
+                    accept="image/*"
+                    onChange={onChangeImg}
+                  />
                 </PhotoText>
               )}
             </PhotoEditWrap>
@@ -191,6 +218,7 @@ console.log(checkList);
                     type="radio"
                     value="frontend"
                     name="role"
+                    // checked={userDescription[0]?.role === "frontend"}
                     onChange={onChangeRole}
                   />
                   FrontEnd
@@ -201,6 +229,7 @@ console.log(checkList);
                     type="radio"
                     name="role"
                     value="backend"
+                    // checked={userDescription[0]?.role === "backend"}
                     onChange={onChangeRole}
                   />
                   BackEnd
@@ -211,6 +240,7 @@ console.log(checkList);
                     type="radio"
                     name="role"
                     value="designer"
+                    // checked={userDescription[0]?.role === "designer"}
                     onChange={onChangeRole}
                   />
                   Designer
@@ -237,9 +267,10 @@ console.log(checkList);
                                 e.target.value
                               );
                             }}
-                            checked={
-                              checkList.includes(list.data) ? true : false
-                            }
+                            // checked={
+                            //   checkList.includes(list.data) ? true : false
+                            // }
+                          
                           ></CheckBox>
                           {list.data}
                         </TecLabel>
@@ -266,6 +297,7 @@ console.log(checkList);
                                 e.target.value
                               );
                             }}
+                  
                           ></CheckBox>
                           {list.data}
                         </TecLabel>
@@ -279,13 +311,16 @@ console.log(checkList);
         <PortfollioWrap>
           <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
           <ProfileInput
-            placeholder="GitHub, Figma 등 링크를 적어 주세요"
+            placeholder={userDescription[0]?.content2}
             ref={content2Ref}
           ></ProfileInput>
         </PortfollioWrap>
 
         <SelfWrap>
-          <textarea ref={content3Ref}></textarea>
+          <textarea
+            ref={content3Ref}
+            placeholder={userDescription[0]?.content3}
+          ></textarea>
         </SelfWrap>
         <HeaderHeadLine />
         <SubmitButtonWrap>
@@ -296,78 +331,86 @@ console.log(checkList);
   );
 }
 
-
-
 const BackgroundAllWrap = styled.div`
-    background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
+  background: linear-gradient(
+      0deg,
+      rgba(217, 217, 217, 0.1),
+      rgba(217, 217, 217, 0.1)
+    ),
+    linear-gradient(
+      93.14deg,
+      rgba(174, 151, 227, 0.15) 0.24%,
+      rgba(119, 195, 231, 0.15) 34.73%,
+      rgba(174, 151, 227, 0.15) 67.67%,
+      rgba(119, 195, 231, 0.15) 95.47%
+    );
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const AddProfileWrap = styled.div`
-    border: 1px solid black;
-    border-radius: 20px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: auto;
-    margin: 70px;
-    width: 1200px;
-    background-color: white;
-`
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin: 70px;
+  width: 1200px;
+  background-color: white;
+`;
 
 const SelfWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 30px;
-    height: auto;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  height: auto;
+`;
 
 const ProfileInput = styled.input`
-    padding: 10px;
-    outline: none;
-    border: none;
-    width: 555px;
-    border-bottom: 1px solid black;
-`
+  padding: 10px;
+  outline: none;
+  border: none;
+  width: 555px;
+  border-bottom: 1px solid black;
+`;
 
 const ProfilePicWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    margin: 50px 150px 0px 0px;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  margin: 50px 150px 0px 0px;
+`;
 
 const ProfileTopWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+`;
 
 const NoShowCircleProfile = styled.div`
-    border: 1px solid black;
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    background-color: transparent;
-    background-image: url(${astroman});
-    background-position: center;
-    background-size: cover;
-`
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: transparent;
+  background-image: url(${astroman});
+  background-position: center;
+  background-size: cover;
+`;
 
 const ShowCircleProfile = styled.img`
   position: relative;
@@ -400,14 +443,13 @@ const SelectAllWrap = styled.div`
   /* border: 1px solid black; */
 `;
 
-
 const PhoneNumberWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
   /* border: 1px solid black; */
-`
+`;
 
 const RadioRoleWrap = styled.div`
   display: flex;
@@ -416,12 +458,12 @@ const RadioRoleWrap = styled.div`
   align-items: center;
   /* border: 1px solid black; */
   gap: 25px;
-`
+`;
 
 const TitleTextTag = styled.p`
-    font-weight: bold;
-    color: #323230;
-`
+  font-weight: bold;
+  color: #323230;
+`;
 
 // const CheckBoxWrapper = styled.div`
 //   position: relative;
@@ -474,14 +516,14 @@ const TitleTextTag = styled.p`
 const Contect = styled.span`
   font-size: 16px;
   font-weight: 400;
-`
+`;
 
 const ToggleBox = styled.div`
   /* border: 1px solid black; */
   width: auto;
   margin: 30px 0px 30px 0px;
   /* margin-left: 20px; */
-`
+`;
 
 // const ToggleTextWrap = styled.div`
 //   /* border: 1px solid black; */
@@ -491,10 +533,10 @@ const ToggleBox = styled.div`
 //   align-items: center;
 // `
 
-const HeaderHeadLine =styled.hr`
+const HeaderHeadLine = styled.hr`
   /* border: 1px solid #D9D9D9; */
   width: 1200px;
-`
+`;
 
 const TitleDiv = styled.div`
   display: flex;
@@ -503,13 +545,13 @@ const TitleDiv = styled.div`
   align-items: center;
   width: 1200px;
   /* border: 1px solid black; */
-`
+`;
 
 const TitleText = styled.span`
   font-size: 20px;
   font-weight: 700;
   margin: 30px 0px 30px 30px;
-`
+`;
 
 // const CareerInput = styled.input`
 //   width: 550px;
@@ -566,7 +608,7 @@ const PortfollioWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 1140px;
-`
+`;
 
 // const PointCraeer = styled.textarea`
 //   resize: none;
@@ -582,7 +624,7 @@ const NickNameBox = styled.span`
   margin-top: 20px;
   margin-bottom: 10px;
   /* border: 1px solid black; */
-`
+`;
 
 const PhotoEditWrap = styled.div`
   /* border: 1px solid black; */
@@ -593,13 +635,13 @@ const PhotoEditWrap = styled.div`
   justify-content: center;
   align-items: center;
   gap: 24px;
-`
+`;
 
 const PhotoText = styled.span`
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
-`
+`;
 
 const SubmitButtonWrap = styled.div`
   /* border: 1px solid black; */
@@ -607,12 +649,12 @@ const SubmitButtonWrap = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-`
+`;
 
 const SubmitButton = styled.button`
   width: 150px;
   height: 45px;
-  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
   border-radius: 4px;
   outline: none;
   border: none;
@@ -621,7 +663,7 @@ const SubmitButton = styled.button`
   padding: 12px 28px;
   color: white;
   font-weight: 700;
-`
+`;
 
 // const PhotoInput = styled.input`
 //   /* display: none; */
@@ -676,6 +718,4 @@ const SkillTitleTextTag = styled.p`
   color: #ae97e3;
 `;
 
-
-
-export default AddProfile;
+export default EditProfile;

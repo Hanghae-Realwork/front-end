@@ -2,26 +2,39 @@ import "../App.css";
 
 import React, { useState } from "react";
 import styled from "styled-components";
-
-import up from "../image/up-fill.svg";
-import down from "../image/down-fill.svg";
 import { useNavigate } from "react-router-dom";
 import DayPickerMain from "./DayPickerMain";
+import { useDispatch,useSelector } from "react-redux";
+import { checkUserValidation } from "../redux/modules/user";
+import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+
 
 function SelectCompo() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
+
+
+
+  const onCheckedElement = (checked, item) => {
+    if (checked) {
+      setCheckList([...checkList, item]);
+    } else if (!checked) {
+      setCheckList(checkList.filter((el) => el !== item));
+    }
+  };
+
+  const [checkList, setCheckList] = useState([]);
+
 
   //드롭다운 스테이트 (전역)
   //스택 선택 스테이트 (전역))
-  const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
-  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] =
-    React.useState(false);
+  const [dropdownVisibility, setDropdownVisibility] = useState(false);
+  const [dropdownVisibilitySkill, setDropdownVisibilitySkill] = useState(false);
 
   //드롭다운 컴포넌트 (자식 18 ~ 40)
   const Dropdown = (props) => {
-    const [visibilityAnimation, setVisibilityAnimation] = React.useState(false);
+    const [visibilityAnimation, setVisibilityAnimation] = useState(false);
     const [repeat, setRepeat] = React.useState(null);
 
     React.useEffect(() => {
@@ -41,11 +54,7 @@ function SelectCompo() {
     return (
       <article
         className={`components-dropdown ${
-          props.visibility
-            ? "slide-fade-in-dropdown"
-            : "slide-fade-out-dropdown"
-        }`}
-      >
+          props.visibility ? "slide-fade-in-dropdown" : "slide-fade-out-dropdown"}`}>
         {visibilityAnimation && props.children}
       </article>
     );
@@ -87,32 +96,88 @@ function SelectCompo() {
   const App = (props) => {
     return (
       <DropDownWrap>
-        <DropDownButton onClick={(e) => setDropdownVisibility(!dropdownVisibility)}>
+        <DropDownButton
+          onClick={(e) => setDropdownVisibility(!dropdownVisibility)}
+        >
           {dropdownVisibility ? (
             <DropText>
               <TextImageWrap>
-                <svg width="15" height="18" viewBox="0 0 15 18" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="white"/>
-                <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="white"/>
-                <path fillRule="evenodd" clipRule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="white"/>
+                <svg
+                  width="15"
+                  height="18"
+                  viewBox="0 0 15 18"
+                  fill="white"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.69238 12H10.6155V13.3846H3.69238V12Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z"
+                    fill="white"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z"
+                    fill="white"
+                  />
                 </svg>
-              <SpanInText>닫기</SpanInText></TextImageWrap>
-                <svg width="17" height="11" viewBox="0 0 17 11" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#fff"/>
-                </svg>
+                <SpanInText>닫기</SpanInText>
+              </TextImageWrap>
+              <svg
+                width="17"
+                height="11"
+                viewBox="0 0 17 11"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z"
+                  fill="#fff"
+                />
+              </svg>
             </DropText>
           ) : (
             <DropText>
               <TextImageWrap>
-                  <svg width="15" height="18" viewBox="0 0 15 18" fill="black" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.69238 12H10.6155V13.3846H3.69238V12Z" fill="black"/>
-                    <path d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z" fill="black"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z" fill="black"/>
-                  </svg>          
-                <SpanInText>직군 선택하기</SpanInText></TextImageWrap>
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="black" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#black"/>
+                <svg
+                  width="15"
+                  height="18"
+                  viewBox="0 0 15 18"
+                  fill="black"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.69238 12H10.6155V13.3846H3.69238V12Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M8.76931 8.30786H3.69238V9.69248H8.76931V8.30786Z"
+                    fill="black"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M10.6154 0H3.69231V2.76923H0V18H14.3077V2.76923H10.6154V0ZM10.6154 4.15385V6H3.69231V4.15385H1.38462V16.6154H12.9231V4.15385H10.6154ZM5.07692 4.61538V1.38462H9.23077V4.61538H5.07692Z"
+                    fill="black"
+                  />
                 </svg>
+                <SpanInText>직군 선택하기</SpanInText>
+              </TextImageWrap>
+              <svg
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="black"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z"
+                  fill="#black"
+                />
+              </svg>
             </DropText>
           )}
         </DropDownButton>
@@ -120,7 +185,7 @@ function SelectCompo() {
           <ul className="optionList">
             <li className="ListinOption">프론트엔드 엔지니어</li>
             <li className="ListinOption">백엔드 엔지니어</li>
-            {/* <li className="ListinOption">개발자</li> */}
+
             <li className="ListinOption">디자이너</li>
           </ul>
         </Dropdown>
@@ -133,29 +198,72 @@ function SelectCompo() {
   const AppSkill = (props) => {
     return (
       <DropDownWrap>
-        <DropDownButtonSkill onClick={(e) => setDropdownVisibilitySkill(!dropdownVisibilitySkill)}>
+        <DropDownButtonSkill
+          onClick={(e) => setDropdownVisibilitySkill(!dropdownVisibilitySkill)}
+        >
           {dropdownVisibilitySkill ? (
             <DropTextSkill>
               <TextImageWrap>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
-                </svg><SpanInText>닫기</SpanInText>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="black"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z"
+                    fill="black"
+                  />
+                </svg>
+                <SpanInText>닫기</SpanInText>
               </TextImageWrap>
-              <svg width="17" height="11" viewBox="0 0 17 11" fill="black" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z" fill="#black"/>
+              <svg
+                width="17"
+                height="11"
+                viewBox="0 0 17 11"
+                fill="black"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.1324 10.5916L16.6074 9.11655L8.35742 0.866552L0.107422 9.11655L1.58242 10.5916L8.35742 3.81655L15.1324 10.5916Z"
+                  fill="#black"
+                />
               </svg>
             </DropTextSkill>
           ) : (
             <DropTextSkill>
               <TextImageWrap>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z" fill="black"/>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="black"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M11.3053 0L16 4.69473L4.69473 16H0V11.3053L11.3053 0ZM11.3053 1.87789L9.73255 3.45062L12.5494 6.26745L14.1221 4.69473L11.3053 1.87789ZM11.6105 7.20641L8.79365 4.38956L1.32787 11.8554V14.6721H4.1447L11.6105 7.20641Z"
+                    fill="black"
+                  />
                 </svg>
                 <SpanInText>스킬 및 스택</SpanInText>
               </TextImageWrap>
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="black" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z" fill="#black"/>
-                </svg>
+              <svg
+                width="16"
+                height="10"
+                viewBox="0 0 16 10"
+                fill="black"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.7375 0.737549L8 6.46255L2.2625 0.737549L0.5 2.50005L8 10L15.5 2.50005L13.7375 0.737549Z"
+                  fill="#black"
+                />
+              </svg>
             </DropTextSkill>
           )}
         </DropDownButtonSkill>
@@ -163,49 +271,47 @@ function SelectCompo() {
           <SelectBoxWrap>
             <SelectAllWrap>
               <TitleTextTag>개발자</TitleTextTag>
-              <SelectBoxTab>
-                <TecLabel> <CheckBox type="checkbox"></CheckBox>React</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Vue.js</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>JavaScript</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Node.js</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Java</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Spring</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Python</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MongoDB</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>MySQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Redis</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>TypeScript</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Ruby</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>AWS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Go</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>PHP</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Git</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>.NET</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>React Native</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Django</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Flask</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Nest.JS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Express.JS</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>NoSQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>SQL</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Swift</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Kotlin</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>Android</TecLabel>
-                  <TecLabel> <CheckBox type="checkbox"></CheckBox>iOS</TecLabel>
-              </SelectBoxTab>
+             
+                <SelectBoxTab>
+                    {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                        return (
+                          <TecLabel key={idx}>
+                            <CheckBox type="checkbox" id="skills" value={list.data}
+                              onChange={(e) => {
+                                //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                                onCheckedElement(
+                                  e.target.checked,
+                                  e.target.value
+                                );
+                              }}
+                              checked={ checkList.includes(list.data) ? true : false }
+                            ></CheckBox>
+                            {list.data}
+                          </TecLabel>
+                        );
+                      })}
+                      </SelectBoxTab>
             </SelectAllWrap>
 
             <SelectAllWrap>
               <TitleTextTag>디자이너</TitleTextTag>
               <SelectBoxTab>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Figma</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe XD</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe Illustrator</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Adobe PhotoShop</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Invision</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Sketch</TecLabel>
-                <TecLabel><CheckBox type="checkbox"></CheckBox>Protopie</TecLabel>
-              </SelectBoxTab>
+                  {designerSkills_list && designerSkills_list.map((list, idx) => {
+                      return (
+                        <TecLabel key={idx}>
+                          <CheckBox type="checkbox" id="skills" value={list.data}
+                            onChange={(e) => {
+                              onCheckedElement(
+                                e.target.checked,
+                                e.target.value
+                              );
+                            }}
+                          ></CheckBox>
+                          {list.data}
+                        </TecLabel>
+                      );
+                    })}
+                </SelectBoxTab>
             </SelectAllWrap>
             <SelectButtonWrap>
               <SelectButton> 선택 완료 </SelectButton>
@@ -215,6 +321,9 @@ function SelectCompo() {
       </DropDownWrap>
     );
   };
+  //로그인 유무
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+
 
 
 
@@ -223,9 +332,16 @@ function SelectCompo() {
   return (
     <BackGroundDiv>
       <DropDownAllWrap>
-          <CompoWrap><App /> <DayPickerMain /> <AppSkill /> </CompoWrap>
+        <CompoWrap>
+          <App /> <DayPickerMain /> <AppSkill />
+        </CompoWrap>
         <RecButtonWrap>
-          <RecritButton onClick={() => {navigate(`/addprofile`);}}>크루원 등록</RecritButton>
+          <RecritButton onClick={() => {if (loginInfo === false) {alert("로그인을 해주세요!");
+                return false}if (loginInfo === true) {dispatch(checkUserValidation())
+                navigate(`/addprofile`);}
+              }}>
+            크루원 등록
+          </RecritButton>
         </RecButtonWrap>
       </DropDownAllWrap>
     </BackGroundDiv>
