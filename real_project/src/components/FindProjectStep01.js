@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import TestDate from "../components/Date/TestDatePicker"
+import TestDate from "../components/Date/DatePickerDouble"
 
 import addimage from "../image/addimage.svg"
-import DatePickerDouble from "./DatePickerDouble";
-import DatePickerSingle from "./DatePickerSingle";
+import DatePickerDouble from "./Date/DatePickerDouble";
+import DatePickerSingle from "./Date/DatePickerSingle";
 import DatePickerExample from "./TestTimePicker";
 
 
@@ -118,7 +118,7 @@ const FindProjectStep01 = (props) => {
         <FindProjectInputDate>
           <ProjectTitleText>프로젝트 기간</ProjectTitleText>
           <div>
-            {/* <TestDate /> */}
+            <TestDate />
           </div>
         <DatePickerExample/>
         

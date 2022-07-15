@@ -12,9 +12,9 @@ import getMonth from "date-fns/getMonth";
 
 
 registerLocale('ko', ko);
-    let timeInit = 0;
-    let minInit = 0;
-    const TestDatePicker = ({ contextDatePicker }) => {
+let timeInit = 0;
+let minInit = 0;
+const TestDatePicker = ({ contextDatePicker }) => {
   // 달력 날짜 변경 시 기준점이 되는 날짜
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date();
@@ -45,9 +45,11 @@ registerLocale('ko', ko);
   // https://reactdatepicker.com/ 참고
 
   let footer = (
-    <p style={{margin: "10px", padding: "10px", border: "1px solid black",
-        borderRadius: "10px", width: "180px", textAlign: "center",
-        fontSize: "13px"}}>
+    <p style={{
+      margin: "10px", padding: "10px", border: "1px solid black",
+      borderRadius: "10px", width: "180px", textAlign: "center",
+      fontSize: "13px"
+    }}>
       시작날짜를 눌러주세요
     </p>
   );
@@ -105,18 +107,18 @@ registerLocale('ko', ko);
         endDate={endDate}
         monthsShown={2}
         selectsRange
-        inline/>
+        inline />
 
 
-      <DatePicker 
-        selected={startDate} 
+      <DatePicker
+        selected={startDate}
         onChange={(date) => setStartDate(date)}
-        showTimeSelect 
+        showTimeSelect
         showTimeSelectOnly
         timeIntervals={60}
         timeCaption="Time"
         dateFormat="hh"
-        inline/>
+        inline />
       {footer}
     </>
   );
