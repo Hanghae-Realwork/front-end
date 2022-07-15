@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import TestDate from "../components/Date/TestDatePicker"
+import TestDate from "../components/Date/DatePickerDouble"
 
 import addimage from "../image/addimage.svg"
 
