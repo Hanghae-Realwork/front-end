@@ -25,14 +25,7 @@ const CardRecruit = ({ data }) => {
         return <Moment format="M월 D일">{startTime}</Moment>;
       }
     }
-
-
   const navigate = useNavigate();
-
-
-
-  
-  console.log(parseInt(thenHours))
     return (
       <AllWrap>
         <AllTopWrap>
