@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import styled from 'styled-components';
-import "./TestReactDatepicker.css"
-import "./TestDatepicker.css";
+import "./TestReactDatePicker.css"
+import "./TestDatePicker.css";
 import ko from 'date-fns/locale/ko';
 registerLocale('ko', ko);
 
-const DatePickerDouble = ( props ) => {
+let timeInit = 0;
+let minInit = 0;
+const DatePickerDouble = ( { contextDatePicker } ) => {
     // 달력 날짜 변경 시 기준점이 되는 날짜
     const [startDate, setStartDate] = useState(new Date());
     const today = new Date();
