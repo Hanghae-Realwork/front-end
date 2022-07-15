@@ -1,6 +1,6 @@
 // import Calendar Component 
 import React, { Component } from 'react';
-import { DatePicker  } from '@y0c/react-datepicker';
+import { DatePicker ,action } from '@y0c/react-datepicker';
 import TimeContainer from './TestTimePicker2';
 // import calendar style 
 // You can customize style by copying asset folder.
@@ -24,14 +24,28 @@ class DatePickerExample extends Component {
 
   render() {
     return (
-      <div inline>
+      <div>
         <DatePicker 
-        
-        inline
-        showTimeOnly 
+        show={false}
+        position
+        autoFocus={true}
+        showContents
+        // readOnly
+        showTimeOnly
         locale="ko" 
         onChange={this.onChange} />
-        <TimeContainer></TimeContainer>
+        <TimeContainer>
+          
+        
+        </TimeContainer>
+
+        <div header="DatePicker Include Time">
+        <DatePicker
+          includeTime
+          showToday
+          // onChange={onChange("DatePicker include time")}
+        />
+      </div>
       </div>
 
       
