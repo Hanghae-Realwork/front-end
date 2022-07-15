@@ -28,7 +28,7 @@ const DatePickerDouble = ({ start,end }) => {
             padding: "10px",
             width: "180px",
             textAlign: "center",
-            fontSize: "13px",
+            fontSize: "14px",
           }}
         >
           시작날짜를 눌러주세요
@@ -43,7 +43,7 @@ const DatePickerDouble = ({ start,end }) => {
                 padding: "10px",
                 width: "150px",
                 textAlign: "center",
-                fontSize: "13px",
+                fontSize: "14px",
               }}
             >
               {start_year}년 {start_month}월 {start_day}일
@@ -57,7 +57,7 @@ const DatePickerDouble = ({ start,end }) => {
                 padding: "10px",
                 width: "260px",
                 textAlign: "center",
-                fontSize: "13px",
+                fontSize: "14px",
               }}
             >
               {start_year}년 {start_month}월 {start_day}일 ~ {end_year}년{" "}
@@ -69,7 +69,30 @@ const DatePickerDouble = ({ start,end }) => {
 
       return (
         <>
+
+          {/* <CalendarWrap>
+          <DatePickerWrapper
+            popperContainer={Popper}
+            calendarContainer={Calendar}
+            controls={["calendar"]}
+            dateFormat="YYYY-MM-DD"
+            locale="ko" // 달력 한글화
+            selected={startDate}
+            onChange={onChange}
+            startDate={startDate}
+            minDate={new Date()}
+            // rangeHighlight={true}
+            // showRangeLabels={false}
+            endDate={endDate}
+            monthsShown={2}
+            selectsRange
+            inline
+          />
+          </CalendarWrap> */}
+          <CalendarInfoWrap>
+
           {footer}
+          </CalendarInfoWrap>
         </>
       );
 
@@ -93,9 +116,26 @@ const DatePickerDouble = ({ start,end }) => {
     z-index: 2;
   `;
 
-  const CalenderWrap =styled.div`
+  const CalendarWrap =styled.div`
+    /* border: 1px solid black; */
     margin-top: 30px;
     margin-bottom: 30px;
+    width: 570px;
+    height: 325px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  `
+
+  const CalendarInfoWrap = styled.div`
+    border: 1px solid black;
+    width: 297px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+
   `
   
 export default DatePickerDouble
