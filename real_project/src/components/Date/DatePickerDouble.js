@@ -4,21 +4,33 @@ import styled from 'styled-components';
 import "./TestReactDatePicker.css"
 import "./TestDatePicker.css";
 import ko from 'date-fns/locale/ko';
-registerLocale('ko', ko);
 
 
-const DatePickerDouble = ({ start,end }) => {
 
+const DatePickerDouble = () => {
+
+  registerLocale('ko', ko);
+
+  const [startDate, setStartDate] = useState(""); 
+  const [endDate, setEndDate] = useState("");
+
+  const onChange = (dates) => { 
+  const [start, end] = dates; setStartDate(start); setEndDate(end); 
+
+    console.log(start, end); }; 
+
+  const start = JSON.stringify(startDate).slice(1, 11); 
+  const end = JSON.stringify(endDate).slice(1, 11);
 
   const start_year = start.substring(2, 4)
   const start_month = start.substring(5, 7);
   const start_day = start.substring(8);
 
-    const end_year = end.substring(2, 4);
-    const end_month = end.substring(5, 7);
-    const end_day = end.substring(8);
-    const footerStart = start
-    const footerEnd = end
+  const end_year = end.substring(2, 4);
+  const end_month = end.substring(5, 7);
+  const end_day = end.substring(8);
+  const footerStart = start
+  const footerEnd = end
  
 
     let footer = (
@@ -29,8 +41,7 @@ const DatePickerDouble = ({ start,end }) => {
             width: "180px",
             textAlign: "center",
             fontSize: "14px",
-          }}
-        >
+          }}>
           시작날짜를 눌러주세요
         </span>
       );
@@ -70,7 +81,7 @@ const DatePickerDouble = ({ start,end }) => {
       return (
         <>
 
-          {/* <CalendarWrap>
+          <CalendarWrap>
           <DatePickerWrapper
             popperContainer={Popper}
             calendarContainer={Calendar}
@@ -88,9 +99,8 @@ const DatePickerDouble = ({ start,end }) => {
             selectsRange
             inline
           />
-          </CalendarWrap> */}
+          </CalendarWrap>
           <CalendarInfoWrap>
-
           {footer}
           </CalendarInfoWrap>
         </>
@@ -98,33 +108,39 @@ const DatePickerDouble = ({ start,end }) => {
 
 }
 
+const DatePickerWrapper = styled(({ className, ...props }) => (
+  <DatePicker {...props} wrapperClassName={className} />
+))`
+  width: 100%;
+`;
+ const Popper = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   margin: 20px;
+   z-index: 2;
+ `;
+
+const Calendar = styled.div`
+  /* width : 706px; */
+  border-radius: 4px;
+  overflow: hidden;
+`;
 
   const Daystring = styled.div`
   /* font-size: large; */
   `
-  const Calendar = styled.div`
-    /* width : 706px; */
-    border-radius: 4px;
-    overflow: hidden;
-  `;
-  
-  const Popper = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 20px;
-    z-index: 2;
-  `;
 
   const CalendarWrap =styled.div`
-    /* border: 1px solid black; */
+    border: 1px solid black;
+    border-radius: 4px;
     margin-top: 30px;
     margin-bottom: 30px;
-    width: 570px;
-    height: 325px;
+    width: 700px;
+    height: 330px;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
   `
 
   const CalendarInfoWrap = styled.div`
