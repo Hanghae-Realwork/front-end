@@ -68,6 +68,7 @@ function EditProfile() {
     useEffect(() => {
         dispatch(loadEmployAxios());
     },[])
+    
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
   const onCheckedElement = (checked, item) => {
     if (checked) {

@@ -109,19 +109,17 @@ const FindProjectStep01 = (props) => {
   var i = [date, time].join(" ");
 
   const onClickSchedule = () => {
-    
     schedule.push(i);
-
 }
 console.log(schedule);
+
+
   // 저장 버튼
   const CompliteButton = async () => {
 console.log(schedule)
     frm.append("photos", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
-    
-
         dispatch(
           createRecruitAxios(
             titleRef.current.value,
@@ -213,13 +211,8 @@ console.log(schedule)
                 {filesImg ? (
                   <PhotoText>
                     수정하기
-                    <input
-                      name="imgUpload"
-                      type="file"
-                      id="add_img"
-                      accept="image/*"
-                      onChange={onChangeImg}
-                    />
+                    <input name="imgUpload" type="file" id="add_img"
+                      accept="image/*" onChange={onChangeImg}/>
                   </PhotoText>
                 ) : (
                   <PhotoText>
@@ -241,33 +234,18 @@ console.log(schedule)
           <ProjectTitleText>구하는 직군</ProjectTitleText>
           <div>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="frontend"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="frontend" onChange={onChangeRole}/>
               FrontEnd
             </label>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="backend"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="backend" onChange={onChangeRole}/>
               BackEnd
             </label>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="designer"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="designer" onChange={onChangeRole}/>
               Designer
             </label>
           </div>
