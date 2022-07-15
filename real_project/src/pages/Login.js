@@ -1,10 +1,12 @@
 import styled from "styled-components";
-
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { React, useRef } from "react";
-
 import { loginAxios } from "../redux/modules/user";
+
+import Logo from "../image/Logo_vertical.svg"
+
+
 
 function Login() {
   const loginidRef = useRef(null);
@@ -50,27 +52,29 @@ function Login() {
 
   return (
     <>
-      <LoginWrap>
-        <AlignWrap>
-          <LogoWrap>
-            <p>renDev</p>
-          </LogoWrap>
-          <InpuLoginWrap>
-            <IdWrap>
-              <InputBar ref={loginidRef} placeholder="이메일" type="email" autoFocus></InputBar>
-            </IdWrap>
-            <PwWrap>
-              <InputBar ref={passwordRef} placeholder="패스워드" type="password"></InputBar>
-            </PwWrap>
-          </InpuLoginWrap>
-          <ButtonWrap>
-            <LoginButton onClick={loginFunction}>로그인</LoginButton>
-          </ButtonWrap>
-          <LoginText>랑데브가 처음인가요?
-            <MovetoJoin onClick={() => {navigate(`/join`);}} id="LoginBtn">회원 가입하기</MovetoJoin>
-          </LoginText>
-        </AlignWrap>
-      </LoginWrap>
+    <LoginBackgroundWrap>
+        <LoginWrap>
+          <AlignWrap>
+            <LogoWrap>
+              <MainLogo/>
+            </LogoWrap>
+            <InpuLoginWrap>
+              <IdWrap>
+                <InputBar ref={loginidRef} placeholder="이메일" type="email" autoFocus></InputBar>
+              </IdWrap>
+              <PwWrap>
+                <InputBar ref={passwordRef} placeholder="패스워드" type="password"></InputBar>
+              </PwWrap>
+            </InpuLoginWrap>
+            <ButtonWrap>
+              <LoginButton onClick={loginFunction}>로그인</LoginButton>
+            </ButtonWrap>
+            <LoginText>랑데브가 처음인가요?
+              <MovetoJoin onClick={() => {navigate(`/join`);}} id="LoginBtn">회원 가입하기</MovetoJoin>
+            </LoginText>
+          </AlignWrap>
+        </LoginWrap>
+      </LoginBackgroundWrap>
     </>
   );
 }
@@ -83,7 +87,8 @@ const LoginWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 70px;
+  position: relative;
+  top: -150px;
 `;
 
 const AlignWrap = styled.div`
@@ -97,15 +102,13 @@ const AlignWrap = styled.div`
 `;
 
 const LogoWrap = styled.div`
-  /* border: 1px solid black; */
+  /* border: 1px solid white; */
   width: 400px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 30px;
-  color: #685bc7;
 `;
 
 const InpuLoginWrap = styled.div`
@@ -137,9 +140,11 @@ const PwWrap = styled.div`
 const InputBar = styled.input`
   outline: none;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   padding: 7px;
   width: 400px;
+  color: white;
+  background-color: #1F1F1F;
 `;
 
 const ButtonWrap = styled.div`
@@ -149,6 +154,7 @@ const ButtonWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 60px;
 `;
 
 const LoginButton = styled.button`
@@ -158,23 +164,43 @@ const LoginButton = styled.button`
   width: 400px;
   height: 60px;
   margin: 30px;
-  border-radius: 10px;
+  border-radius: 4px;
   color: white;
   font-weight: bold;
   font-size: 20px;
-  background-color: #685bc7;
+  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
 `;
 
 const LoginText = styled.span`
   font-size: 14px;
   margin-top: 20px;
+  color: white;
 `;
 
 const MovetoJoin = styled.span`
-  color: #685bc7;
+  color: white;
   font-weight: bold;
   cursor: pointer;
   margin-left: 15px;
 `;
+
+const LoginBackgroundWrap = styled.div`
+  background-color: #1F1F1F;
+  width: 100%;
+  height: 1080px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const MainLogo = styled.div`
+  width: 170px;
+  height: 45px;
+  margin-bottom: 120px;
+  background-image: url(${Logo});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`
 
 export default Login;

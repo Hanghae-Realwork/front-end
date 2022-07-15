@@ -49,7 +49,7 @@ const BackGroundDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ;
+    background-color: #303032;
     /* className="MainBack" */
 `
 
