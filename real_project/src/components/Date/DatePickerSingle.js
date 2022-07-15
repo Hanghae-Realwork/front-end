@@ -37,8 +37,6 @@ const DatePickerSingle = ( props ) => {
         onChange={onChange}
         startDate={startDate}
         minDate={new Date()}
-        // rangeHighlight={true}
-        // showRangeLabels={false}
         endDate={endDate}
         selectsRange
         inline
@@ -72,8 +70,8 @@ const DatePickerWrapper = styled(({ TestClass, ...props }) => (
   `;
 
 const CalendarInfoWrap = styled.div`
-border: 1px solid black;
-width: 297px;
+/* border: 1px solid black; */
+width: 150px;
 height: 43px;
 display: flex;
 justify-content: center;
