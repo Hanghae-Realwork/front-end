@@ -28,17 +28,34 @@ function ReadProject() {
 
     // 로그인 유저별 resume card 용
     const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-    const loginUser = useSelector((state) => state.user.userInfo);
-    const loginInfoName = useSelector((state) => state.user.userInfo.userId);
+
     const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
 
-    console.log(loginUser) // 해당 로그인 유저 정보
-    console.log(loginInfo) //로그인 true, false
-    console.log(loginInfoName) // 로그인 유저 메일 주소
+    const [schedule,setSchedule]=useState("")
 
+    const onClick = (e) => {
+        const { value, name } = e.target
+        if (name === "one") { 
+            console.log(value);
+        } else if (name === "two") {
+            console.log(value);
+        }
+       
+        
+}
 
-    const Value = useSelector((state) => state.postRecruit.project);
-
+    const Value = useSelector(
+      (state) => state.postRecruit.project
+    );
+  
+    useEffect(() => {
+        if (Value) {
+        
+                setSchedule();
+        }
+     },
+    [schedule])
+    
 
     useEffect(() => {
         if (loginInfo === false) {
@@ -57,70 +74,101 @@ function ReadProject() {
 
 
 
-    return(
-        <>
+    return (
+      <>
         <AllWrap>
-            <TopWrap>
-                <TopTitle>
-                {Value && Value[0]?.title}
-                </TopTitle>
-                <TopDateLimit>{Value && Value[0]?.start} 
-                ~ {Value && Value[0]?.end}</TopDateLimit>
-            </TopWrap>
-                <DivideLine/>
-            <MainTextWrap>
-                <MainText>
-                    <MainTextSpan>{Value && Value[0]?.details}</MainTextSpan>
-                </MainText>
-            </MainTextWrap>
-            <FindRoleWrap>
-                <div><RoleTitle>찾는 직군</RoleTitle></div>
-                <div><span>{Value && Value[0]?.role}</span></div>
-            </FindRoleWrap>
-            <FindSkillWrap>
-                <div><RoleTitle>필요한 스킬 및 스텍</RoleTitle></div>
-                <div><span>
-                    {Value && Value[0]?.skills.map((list, idx) => {
-                         return <TagCompoEmpPro key={idx} skills={list} />})}</span></div>
-            </FindSkillWrap>
-                <DivideLine/>
-            <DateWrap>
+          <TopWrap>
+            <TopTitle>{Value && Value[0]?.title}</TopTitle>
+            <TopDateLimit>
+              {Value && Value[0]?.start}~ {Value && Value[0]?.end}
+            </TopDateLimit>
+          </TopWrap>
+          <DivideLine />
+          <MainTextWrap>
+            <MainText>
+              <MainTextSpan>{Value && Value[0]?.details}</MainTextSpan>
+            </MainText>
+          </MainTextWrap>
+          <FindRoleWrap>
             <div>
-
+              <RoleTitle>찾는 직군</RoleTitle>
             </div>
-            </DateWrap>
-                <DivideLine/>
-            <ProfileWrap>
-                <ProfileTitleWrap>
-                    <RoleTitle>작성자 프로필</RoleTitle>
-                </ProfileTitleWrap>
-                <ProfileDetailWrap>   
-                    <ProfilePhoto></ProfilePhoto>
-                    <UserAllWrap>
-                        <UserNameWrap>
-                            <UserText>{Value && Value[0]?.nickname}</UserText>
-                            <UserText>직군</UserText>
-                        </UserNameWrap>
-                        <UserMailWrap>
-                            <LetterImg src = {letter}></LetterImg>
-                            <UserMailAdress>{Value && Value[0]?.email}</UserMailAdress>
-                        </UserMailWrap>
-                    </UserAllWrap>
-                </ProfileDetailWrap>
-            </ProfileWrap>
-            <DivideLine/>
-            <MiniResumeWrap>
-                <MiniResume /> 
-            </MiniResumeWrap>
-            <DivideLine/>
-            <ButtonWrap>
-                <SubmitButton>지원하기</SubmitButton>
-                <SubmitButton onClick={() => {navigate("/findprojectstep2/" + `${Value[0].projectId}`);}}>수정하기</SubmitButton>
-                <SubmitButton>삭제하기</SubmitButton>
-            </ButtonWrap>
+            <div>
+              <span>{Value && Value[0]?.role}</span>
+            </div>
+          </FindRoleWrap>
+          <FindSkillWrap>
+            <div>
+              <RoleTitle>필요한 스킬 및 스텍</RoleTitle>
+            </div>
+            <div>
+              <span>
+                {Value &&
+                  Value[0]?.skills.map((list, idx) => {
+                    return <TagCompoEmpPro key={idx} skills={list} />;
+                  })}
+              </span>
+            </div>
+          </FindSkillWrap>
+
+          <DivideLine />
+
+          <DateWrap>
+            <div>
+              <button
+                value={Value[0]?.applications[0]?.schedule}
+                name="one"
+                onClick={onClick}
+              >
+                {Value && Value[0]?.applications[0]?.schedule}
+              </button>
+              <button
+                value={Value[0]?.applications[1]?.schedule}
+                name="two"
+                onClick={onClick}
+              >
+                {Value && Value[0]?.applications[1]?.schedule}
+              </button>
+            </div>
+          </DateWrap>
+          <DivideLine />
+          <ProfileWrap>
+            <ProfileTitleWrap>
+              <RoleTitle>작성자 프로필</RoleTitle>
+            </ProfileTitleWrap>
+            <ProfileDetailWrap>
+              <ProfilePhoto></ProfilePhoto>
+              <UserAllWrap>
+                <UserNameWrap>
+                  <UserText>{Value && Value[0]?.nickname}</UserText>
+                  <UserText>직군</UserText>
+                </UserNameWrap>
+                <UserMailWrap>
+                  <LetterImg src={letter}></LetterImg>
+                  <UserMailAdress>{Value && Value[0]?.email}</UserMailAdress>
+                </UserMailWrap>
+              </UserAllWrap>
+            </ProfileDetailWrap>
+          </ProfileWrap>
+          <DivideLine />
+          <MiniResumeWrap>
+            <MiniResume />
+          </MiniResumeWrap>
+          <DivideLine />
+          <ButtonWrap>
+            <SubmitButton>지원하기</SubmitButton>
+            <SubmitButton
+              onClick={() => {
+                navigate("/findprojectstep2/" + `${Value[0].projectId}`);
+              }}
+            >
+              수정하기
+            </SubmitButton>
+            <SubmitButton>삭제하기</SubmitButton>
+          </ButtonWrap>
         </AllWrap>
-        </>
-    )
+      </>
+    );
 }
 
 
