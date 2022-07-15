@@ -38,8 +38,6 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
           style={{
             margin: "10px",
             padding: "10px",
-            border: "1px solid black",
-            borderRadius: "10px",
             width: "180px",
             textAlign: "center",
             fontSize: "13px",
@@ -52,9 +50,9 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
         if (!footerEnd) {
           footer = (
             <p
-              style={{ margin: "10px",  padding: "10px",
-                border: "1px solid black",
-                borderRadius: "10px",
+              style={{ 
+                margin: "10px",  
+                padding: "10px",
                 width: "150px",
                 textAlign: "center",
                 fontSize: "13px",
@@ -69,8 +67,6 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
               style={{
                 margin: "10px",
                 padding: "10px",
-                border: "1px solid black",
-                borderRadius: "10px",
                 width: "260px",
                 textAlign: "center",
                 fontSize: "13px",

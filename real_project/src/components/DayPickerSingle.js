@@ -10,21 +10,21 @@ const DayPickerSingle = () => {
     //배열형태
   const [selected, setSelected] = useState([]);
 
-
-
-
-
     const footer = selected && selected.length > 0 ?
         <p>{selected.length} </p> :
         <p>원하는 날짜를 지정해주세요.</p>
 
-
-
-
   return (
     <div>
-          <DayPicker mode="multiple" min={1} selected={selected} onSelect={setSelected} footer={footer} max={7} locale={ ko} />
-
+          <DayPicker 
+          mode="multiple" 
+          min={1} 
+          selected={selected} 
+          onSelect={setSelected} 
+          footer={footer} 
+          max={7} 
+          locale={ ko} 
+          />
     </div>
   );
 };
