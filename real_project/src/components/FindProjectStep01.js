@@ -191,7 +191,7 @@ const FindProjectStep01 = (props) => {
                 </SelectBoxTab>
               </SkillWrap>
           <div>
-            <TestDate />
+            {/* <TestDate /> */}
           </div>
           <SubmitButtonWrap>
             <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
