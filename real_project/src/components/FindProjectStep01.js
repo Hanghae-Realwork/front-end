@@ -9,8 +9,13 @@ import Footer from "../components/Date/DatePickerDouble"
 import DateSingle from "../components/Date/DatePickerSingle"
 import DatePicker from "react-datepicker";
 
-
 import addimage from "../image/addimage.svg"
+
+
+import TimeTest1 from "../components/Date/TestTimePicker"
+import TimeTest2 from "../components/Date/TestTimePicker2"
+
+
 
 
 const FindProjectStep01 = (props) => {
@@ -497,9 +502,30 @@ const SingleDateWrap = styled.div`
 `
 export default FindProjectStep01;
 
-const DatePickerWrapper = styled(({ className, ...props }) => (
-  <DatePicker {...props} wrapperClassName={className} />
-))`
+const TimeWrap = styled.div`
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const Time1Wrap = styled.div`
+  border: 1px solid black;
+`
+
+const Time2Wrap = styled.div`
+  border: 1px solid black;
+`
+
+
+
+
+
+const DatePickerWrapper = styled(
+  ({ className, ...props }) => 
+  (<DatePicker {...props} 
+    wrapperClassName={className} />))`
   width: 100%;
 `;
  const Popper = styled.div`
@@ -538,6 +564,5 @@ const Calendar = styled.div`
     border-radius: 4px;
 
   `
-
 
 
