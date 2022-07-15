@@ -13,7 +13,7 @@ const Application = () => {
 
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
-  
+
 
 
     useEffect(() => {
@@ -54,8 +54,8 @@ const Application = () => {
                         <RoleWrap>
                           <UserText>보유 기술</UserText>
                           <RoleText>
-                                          {data && data[idx].ProjectSkills.map((list,idx) => {
-                                              return <TagCompoApp key={idx} skills={list} />
+                           {data && data[idx].ProjectSkills.map((list,idx) => {
+                            return <TagCompoApp key={idx} skills={list} />
                             })}
                             
                           </RoleText>
