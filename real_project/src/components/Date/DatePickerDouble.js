@@ -47,7 +47,7 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
             padding: "10px",
             width: "180px",
             textAlign: "center",
-            fontSize: "13px",
+            fontSize: "14px",
           }}
         >
           시작날짜를 눌러주세요
@@ -62,7 +62,7 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
                 padding: "10px",
                 width: "150px",
                 textAlign: "center",
-                fontSize: "13px",
+                fontSize: "14px",
               }}
             >
               {start_year}년 {start_month}월 {start_day}일
@@ -76,7 +76,7 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
                 padding: "10px",
                 width: "260px",
                 textAlign: "center",
-                fontSize: "13px",
+                fontSize: "14px",
               }}
             >
               {start_year}년 {start_month}월 {start_day}일 ~ {end_year}년{" "}
@@ -88,7 +88,7 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
 
       return (
         <>
-
+          <CalendarWrap>
           <DatePickerWrapper
             popperContainer={Popper}
             calendarContainer={Calendar}
@@ -106,7 +106,10 @@ const DatePickerDouble = ( { contextDatePicker } ) => {
             selectsRange
             inline
           />
+          </CalendarWrap>
+          <CalendarInfoWrap>
           {footer}
+          </CalendarInfoWrap>
         </>
       );
 
@@ -136,9 +139,26 @@ const DatePickerWrapper = styled(({ className, ...props }) => (
     z-index: 2;
   `;
 
-  const CalenderWrap =styled.div`
+  const CalendarWrap =styled.div`
+    /* border: 1px solid black; */
     margin-top: 30px;
     margin-bottom: 30px;
+    width: 570px;
+    height: 325px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  `
+
+  const CalendarInfoWrap = styled.div`
+    border: 1px solid black;
+    width: 297px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+
   `
   
 export default DatePickerDouble
