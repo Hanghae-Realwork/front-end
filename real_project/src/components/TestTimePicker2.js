@@ -1,4 +1,5 @@
 "use strict";
+// const { useState } = require("react");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -29,12 +30,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var TimeInput_1 = require("@y0c/react-datepicker/lib/components/TimeInput.js");
 var FunctionUtil_1 = require("@y0c/react-datepicker/lib/utils/FunctionUtil.js");
-var TimeContainer = /** @class */ (function (_super) {
-    console.log(_super)
-    __extends(TimeContainer, _super);
-    function TimeContainer() {
 
-        // const [timepicker, setTimpicker] = ("")
+var TimeContainer = /** @class */ (function (_super) {
+    
+    __extends(TimeContainer, _super);
+    
+    function TimeContainer() {
+        
+        
         // console.log(timepicker)
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
@@ -42,7 +45,7 @@ var TimeContainer = /** @class */ (function (_super) {
             minute: _this.props.minute || 0,
 
         };
-        console.log(_this.state)
+        
         _this.handleChange = function (item) {
             return function (e) {
                 var _a;
@@ -59,10 +62,7 @@ var TimeContainer = /** @class */ (function (_super) {
                     value = min;
                 }
                 _this.setState(__assign({}, _this.state, (_a = {}, _a[item] = value, _a)), function () { return _this.invokeOnChange(); });
-                console.log(value)
-                console.log(_this.state)
-                console.log(item)
-                console.log(_this.invokeOnChange)
+                
             };
         };
        
@@ -91,25 +91,24 @@ var TimeContainer = /** @class */ (function (_super) {
             var onChange = _this.props.onChange;
             var _a = _this.state, hour = _a.hour, minute = _a.minute;
             FunctionUtil_1.ifExistCall(onChange, hour, minute);
-            console.log(_a)
-            // setTimpicker(_a)
+            
         };
-
+        
+        
         return _this;
 
     }
-    console.log()
+    //최종 return. 프롭 적용 시점
     TimeContainer.prototype.render = function () {
         var _a = this.state, hour = _a.hour, minute = _a.minute;
-        return (React.createElement("div", { className: "time__container" },
+        console.log(_a)
+        return (React.createElement("div", { className: "time__container" }, 
             React.createElement(TimeInput_1.default, { onUp: this.handleUp('hour'), onDown: this.handleDown('hour'), onChange: this.handleChange('hour'), onBlur: this.handleBlur, value: hour }),
             React.createElement("div", { className: "time__container__div" }, ":"),
             React.createElement(TimeInput_1.default, { onUp: this.handleUp('minute'), onDown: this.handleDown('minute'), onChange: this.handleChange('minute'), onBlur: this.handleBlur, value: minute })));
 
     };
-    console.log()
-    console.log(_super)
-
+   
     return TimeContainer;
 }(React.Component));
 exports.default = TimeContainer;
