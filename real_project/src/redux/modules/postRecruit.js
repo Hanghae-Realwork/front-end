@@ -47,85 +47,8 @@ export const loadRecruitAxios = () => {
       .catch((err) => {
         console.log(err);
       });
-  }
-};
-
-// 프로젝트 디테일 호출
-
-export const loadRecruitOneApi = (projectid) => async (dispatch) => {
-  try {
-    console.log(projectid);
-    const { data } = await apis.projectsLoadDetail(projectid);
-    console.log(data)
-    dispatch(loadRecruitOne(data));
-    console.log(data)
-  }
-  catch (err) {
-    console.log(err);
+    } 
   };
-}
-
-// 프로젝트 생성
-export const createRecruitApi = (post) => {
-
-  return async function (dispatch, getState) {
-
-    try {
-      console.log("프로젝트 생성 완료");
-      console.log(post);
-      const data = await apis.projectsCreate(post);
-      // const data = { id: docRef.id, ...post };
-
-      dispatch(createRecruit(data));
-    } catch (e) {
-
-      console.log(`프로젝트 오류 발생!${e}`);
-    }
-  };
-};
-
-
-//프로젝트 수정
-export const editRecruitApi = (put) => {
-  return async function (dispatch, getState) {
-    try {
-      console.log(put);
-      const projectId=put.projectId
-      
-      await apis.projectsModify(
-        projectId,
-        put.title,
-        put.details,
-        put.subscript,
-        put.role,
-        put.start,
-        put.end,
-        put.skills,
-        put.photos
-
-      );
-      // const data = { id: docRef.id, ...post };
-      
-      
-      console.log("프로젝트 수정 완료");
-    } catch (e) {
-
-      console.log(`수정중 오류 발생!${e}`);
-    }
-  };
-};
-
-
-//프로젝트 삭제
-export const delPostApi = (id) => {
-  return async function (dispatch, getState) {
-    try {
-      
-      console.log(id)
-      await apis.projectsDelete(id);
-    } catch (e) {}
-  };
-};
 
 
 export const projectsPhotosAxios = (frm) => {
