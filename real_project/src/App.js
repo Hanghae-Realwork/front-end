@@ -18,7 +18,7 @@ import ReadProject from "./pages/ReadProject"
 
 import Application from "./components/Mypage/Application";
 import Recruitment from "./components/Mypage/Recruitment";
-
+import Resumes from "./components/Mypage/Resumes";
 
 //Components 연결
 import Header from "./components/Header";
@@ -65,25 +65,31 @@ const dispatch = useDispatch()
       {/* <CardRecruit/> '컴포넌트' */}
       {/* <SelectBox/> '컴포넌트' */}
 
-
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/employmentprofile/:resumeId" element={<EmploymentProfile />}/>
+        <Route
+          path="/employmentprofile/:resumeId"
+          element={<EmploymentProfile />}
+        />
         <Route path="/addprofile" element={<AddProfile />} />
         <Route path="/editprofile/:resumeId" element={<EditProfile />} />
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
 
         <Route path="/mypage" element={<MyPage />}></Route>
         <Route path="/findprojectstep1" element={<FindProjectStep01 />}></Route>
-        <Route path="/findprojectstep2/:projectId" element={<FindProjectStep02 />}></Route>
+        <Route
+          path="/findprojectstep2/:projectId"
+          element={<FindProjectStep02 />}
+        ></Route>
         <Route path="/readproject/:projectId" element={<ReadProject />}></Route>
 
         <Route path="mypage/:nickname/*" element={<MyPage />}>
-          <Route path="project" element={<Recruitment />}></Route>
           <Route path="apply" element={<Application />}></Route>
+          <Route path="project" element={<Recruitment />}></Route>
+          <Route path="resumes" element={<Resumes />}></Route>
         </Route>
       </Routes>
     </MainWrap>

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import "./DatePickerDouble.css"
 
 
-const DatePickerDouble = ({start,end}) => {
+const DatePickerDouble = ({ start, end }) => {
+  
   const start_year = start.substring(2, 4)
   const start_month = start.substring(5, 7);
   const start_day = start.substring(8);

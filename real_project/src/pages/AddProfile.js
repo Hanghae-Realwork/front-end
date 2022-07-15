@@ -730,7 +730,6 @@ const SkillTitleTextTag = styled.p`
   font-weight: bold;
   color: #ae97e3;
 `;
-
 export default AddProfile;
 
 const DatePickerWrapper = styled(({ className, ...props }) => (
