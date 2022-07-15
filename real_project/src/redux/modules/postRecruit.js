@@ -6,6 +6,7 @@ const CREATE = 'recruit/CREATE';
 const EDIT = 'recruit/EDIT';
 const DETAIL = 'recruit/DETAIL';
 const DELETE = 'recruit/DELETE';
+const APPOINT = 'recruit/APPOINT';
 
 const initialState = {
   receiveRecruit: [],
@@ -28,8 +29,12 @@ export function detailRecruit(payload) {
   return { type: DETAIL, payload };
 }
 
-export function deleteRecruit(payload){
+export function deleteRecruit(payload) { 
   return { type: DELETE, payload};
+}
+
+export function appointRecruit(payload) {
+  return { typpe: APPOINT, payload };
 }
 
 
@@ -183,6 +188,32 @@ export const editRecruitAxios = (
   };
 };
 
+
+
+//예약 미들웨어
+export const appointmentRecruitAxios = (
+  projectId, 
+  applicationId
+  ) => {
+    return async function(dispatch) {
+    await apis
+    .appointmentProject(
+      projectId, 
+      applicationId
+    )
+    .then((res) => {
+      dispatch(
+        appointRecruit({
+          projectId: projectId,
+          applicationId: applicationId
+        })
+      );
+    });
+  };
+}
+
+
+
  
 //리듀서
 export default function reducer(state = initialState, action = {}) {
@@ -216,6 +247,13 @@ export default function reducer(state = initialState, action = {}) {
         reciveRecruit: state.receiveRecruit,
         recruit: action.payload,
       };
+    }
+
+    case 'recruit/APPOINT': {
+      return{
+        reciveRecruit: state.receiveRecruit,
+        recruit: action.payload,
+      }
     }
 
     default:

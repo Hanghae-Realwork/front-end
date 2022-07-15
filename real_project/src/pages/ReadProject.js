@@ -1,20 +1,20 @@
-import styled from "styled-components"
-import { useSelector,useDispatch } from "react-redux";
+import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams, Outlet } from "react-router-dom";
-import React, { useEffect,useState } from "react";
-import { LoadDetailAxios } from "../redux/modules/postRecruit"
+import React, { useEffect, useState } from "react";
+import { LoadDetailAxios } from "../redux/modules/postRecruit";
 import { checkUserValidation } from "../redux/modules/user";
 import { loadApplyAxios } from "../redux/modules/postProfile";
-import Cardempol from "../components/CardEmpol"
+import { appointmentRecruitAxios } from "../redux/modules/postRecruit"
 
 import TagCompoEmpPro from "../components/TagCompoRecPro";
 import MiniResume from "../components/MiniResume";
 
-import letter from "../image/letter.svg"
-import astroman from "../image/astroman.svg"
-
+import letter from "../image/letter.svg";
+import astroman from "../image/astroman.svg";
 
 function ReadProject() {
+
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -171,206 +171,203 @@ function ReadProject() {
     );
 }
 
-
 const AllWrap = styled.div`
-    border: 1px solid black;
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-`
+  border: 1px solid black;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 const TopWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 1200px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 55px;
-`
+  /* border: 1px solid black; */
+  width: 1200px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 55px;
+`;
 
 const MainTextWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 1200px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-`
+  /* border: 1px solid black; */
+  width: 1200px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 const FindRoleWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 1200px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 77px;
-    gap: 12px;
-`
+  /* border: 1px solid black; */
+  width: 1200px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 77px;
+  gap: 12px;
+`;
 
 const FindSkillWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 1200px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 30px;
-    margin-bottom: 30px;
-`
+  /* border: 1px solid black; */
+  width: 1200px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+  margin-bottom: 30px;
+`;
 
 const DateWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 1200px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 30px;
-    margin-bottom: 40px;
-`
+  /* border: 1px solid black; */
+  width: 1200px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+  margin-bottom: 40px;
+`;
 
 const ProfileWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 1200px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 30px;
-    margin-bottom: 40px;
-`
+  /* border: 1px solid black; */
+  width: 1200px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+  margin-bottom: 40px;
+`;
 
 const ButtonWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 1200px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 60px;
-    margin-bottom: 80px;
-    gap: 20px;
-`
+  /* border: 1px solid black; */
+  width: 1200px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  margin-bottom: 80px;
+  gap: 20px;
+`;
 
 const SubmitButton = styled.button`
-    background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
-    border-radius: 4px;
-    color: white;
-    padding: 10px 45px 10px 45px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 700;
-`
+  background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
+  border-radius: 4px;
+  color: white;
+  padding: 10px 45px 10px 45px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+`;
 
 const DivideLine = styled.hr`
-    width: 1200px;
-`
+  width: 1200px;
+`;
 
 const TopTitle = styled.span`
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 12px;
-`
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+`;
 
 const TopDateLimit = styled.span`
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 24px;
-`
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 24px;
+`;
 
 const MainText = styled.div`
-    width: 1200px;
-    margin-top: 32px;
-    /* border: 1px solid black; */
-`
+  width: 1200px;
+  margin-top: 32px;
+  /* border: 1px solid black; */
+`;
 const MainTextSpan = styled.span`
-    font-size: 16px;
-    font-weight: 400;
-`
+  font-size: 16px;
+  font-weight: 400;
+`;
 
 const RoleTitle = styled.span`
-    font-size: 16px;
-    font-weight: 700;
-`
+  font-size: 16px;
+  font-weight: 700;
+`;
 
 const ProfileDetailWrap = styled.div`
-    /* border: 1px solid black; */
-    height: 100px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-`
+  /* border: 1px solid black; */
+  height: 100px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ProfilePhoto = styled.div`
-    width: 100px;
-    height: 100px;
-    background-image: url(${astroman});
-    background-position: center;
-    background-size: cover;
-    /* border: 1px solid black; */
-`
+  width: 100px;
+  height: 100px;
+  background-image: url(${astroman});
+  background-position: center;
+  background-size: cover;
+  /* border: 1px solid black; */
+`;
 
 const UserNameWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+`;
 
 const UserMailWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 const UserAllWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-left: 20px;
-`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 20px;
+`;
 
 const UserText = styled.span`
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 8px;
-`
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+`;
 const UserMailAdress = styled.span`
-    font-size: 15px;
-    font-weight: 500;
-`
+  font-size: 15px;
+  font-weight: 500;
+`;
 
 const LetterImg = styled.img`
-    width: 20px;
-    margin-right: 10px;
-`
+  width: 20px;
+  margin-right: 10px;
+`;
 
 const ProfileTitleWrap = styled.div`
-    margin-bottom: 15px;
-`
+  margin-bottom: 15px;
+`;
 
 const MiniResumeWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 1200px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: 30px;
-    margin-bottom: 30px;
-`
+  /* border: 1px solid black; */
+  width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 30px;
+  margin-bottom: 30px;
+`;
 
-
-
-export default ReadProject
+export default ReadProject;

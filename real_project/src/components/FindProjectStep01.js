@@ -113,6 +113,7 @@ const [seeDate,setSeeDate] =useState("")
     schedule.push(i);
   };
 
+
   // 저장 버튼
   const CompliteButton = async () => {
     console.log(schedule)
@@ -210,13 +211,8 @@ const [seeDate,setSeeDate] =useState("")
                 {filesImg ? (
                   <PhotoText>
                     수정하기
-                    <input
-                      name="imgUpload"
-                      type="file"
-                      id="add_img"
-                      accept="image/*"
-                      onChange={onChangeImg}
-                    />
+                    <input name="imgUpload" type="file" id="add_img"
+                      accept="image/*" onChange={onChangeImg}/>
                   </PhotoText>
                 ) : (
                   <PhotoText>
@@ -238,33 +234,18 @@ const [seeDate,setSeeDate] =useState("")
           <ProjectTitleText>구하는 직군</ProjectTitleText>
           <div>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="frontend"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="frontend" onChange={onChangeRole}/>
               FrontEnd
             </label>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="backend"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="backend" onChange={onChangeRole}/>
               BackEnd
             </label>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="designer"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="designer" onChange={onChangeRole}/>
               Designer
             </label>
           </div>
