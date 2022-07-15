@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import styled from 'styled-components';
-import "./TestReactDatePicker.css"
-import "./TestDatePicker.css";
+import "./DatePickerDouble.css"
 import ko from 'date-fns/locale/ko';
 
 
@@ -80,78 +79,12 @@ const DatePickerDouble = () => {
 
       return (
         <>
-
-          <CalendarWrap>
-          <DatePickerWrapper
-            popperContainer={Popper}
-            calendarContainer={Calendar}
-            controls={["calendar"]}
-            dateFormat="YYYY-MM-DD"
-            locale="ko" // 달력 한글화
-            selected={startDate}
-            onChange={onChange}
-            startDate={startDate}
-            minDate={new Date()}
-            // rangeHighlight={true}
-            // showRangeLabels={false}
-            endDate={endDate}
-            monthsShown={2}
-            selectsRange
-            inline
-          />
-          </CalendarWrap>
-          <CalendarInfoWrap>
-          {footer}
-          </CalendarInfoWrap>
+          
         </>
       );
 
 }
 
-const DatePickerWrapper = styled(({ className, ...props }) => (
-  <DatePicker {...props} wrapperClassName={className} />
-))`
-  width: 100%;
-`;
- const Popper = styled.div`
-   position: absolute;
-   top: 0;
-   left: 0;
-   margin: 20px;
-   z-index: 2;
- `;
 
-const Calendar = styled.div`
-  /* width : 706px; */
-  border-radius: 4px;
-  overflow: hidden;
-`;
-
-  const Daystring = styled.div`
-  /* font-size: large; */
-  `
-
-  const CalendarWrap =styled.div`
-    border: 1px solid black;
-    border-radius: 4px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 700px;
-    height: 330px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  `
-
-  const CalendarInfoWrap = styled.div`
-    border: 1px solid black;
-    width: 297px;
-    height: 43px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-
-  `
   
 export default DatePickerDouble

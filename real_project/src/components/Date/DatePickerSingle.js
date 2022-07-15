@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import styled from 'styled-components';
-import "./TestReactDatePicker.css"
-import "./TestDatePicker.css";
 import ko from 'date-fns/locale/ko';
 registerLocale('ko', ko);
 
@@ -32,8 +30,6 @@ const DatePickerSingle = ( props ) => {
           style={{
             margin: "10px",
             padding: "10px",
-            border: "1px solid black",
-            borderRadius: "10px",
             width: "180px",
             textAlign: "center",
             fontSize: "13px",
@@ -49,8 +45,6 @@ const DatePickerSingle = ( props ) => {
               style={{
                 margin: "10px",
                 padding: "10px",
-                border: "1px solid black",
-                borderRadius: "10px",
                 width: "150px",
                 textAlign: "center",
                 fontSize: "13px",
@@ -65,8 +59,6 @@ const DatePickerSingle = ( props ) => {
               style={{
                 margin: "10px",
                 padding: "10px",
-                border: "1px solid black",
-                borderRadius: "10px",
                 width: "260px",
                 textAlign: "center",
                 fontSize: "13px",
@@ -90,6 +82,7 @@ const DatePickerSingle = ( props ) => {
         selected={startDate}
         onChange={onChange}
         startDate={startDate}
+        minDate={new Date()}
         // rangeHighlight={true}
         // showRangeLabels={false}
         endDate={endDate}
@@ -97,14 +90,16 @@ const DatePickerSingle = ( props ) => {
         selectsRange
         inline
       />
+      <CalendarInfoWrap>
        {footer}
+      </CalendarInfoWrap>
 </>
 );
 }
 
 
-const DatePickerWrapper = styled(({ className, ...props }) => (
-    <DatePicker {...props} wrapperClassName={className} />
+const DatePickerWrapper = styled(({ TestClass, ...props }) => (
+    <DatePicker {...props} wrapperClassName={TestClass} />
   ))`
     width: 100%;
   `;
@@ -125,5 +120,16 @@ const DatePickerWrapper = styled(({ className, ...props }) => (
     margin: 20px;
     z-index: 2;
   `;
+
+const CalendarInfoWrap = styled.div`
+border: 1px solid black;
+width: 297px;
+height: 43px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 4px;
+
+`
   
 export default DatePickerSingle
