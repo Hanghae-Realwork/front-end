@@ -11,12 +11,11 @@ import astroman from "../image/astroman.svg"
 import Letter from "../image/letter.svg"
 
 
-
 //DatePicker
 import DatePicker from "react-datepicker";
 import TestDate from "../components/Date/DatePickerDouble";
+import { getYear } from "date-fns";
 function AddProfile(props) {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,9 +30,9 @@ function AddProfile(props) {
   const content3Ref = useRef(null);
   const [role, setRole] = useState("");
 
-//캘린더 (22.07.15 추가 후 )
+  //캘린더 (22.07.15 추가 후 )
   const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   //userId,nickname 정보
   const userIdInfo = useSelector((state) => state.user.userInfo);
@@ -85,47 +84,42 @@ function AddProfile(props) {
       };
     });
   };
-  
-//캘린더
-      const onChange = (dates) => {
-        const [start, end] = dates;
-        setStartDate(start);
-        setEndDate(end);
-        console.log(start, end);
-        
-      };
+
+  //캘린더
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
   const start = JSON.stringify(startDate).slice(1, 11);
   const end = JSON.stringify(endDate).slice(1, 11);
 
   //버튼 누르면 저장
-  const handleClick = async() => {
-
-
+  const handleClick = async () => {
     frm.append("resumeImage", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
-         dispatch(
-           resumesCreateAxios(
-             introduceRef.current.value,
-             success,
-             start,
-             end,
-             role,
-             checkList,
-             content2Ref.current.value,
-             content3Ref.current.value,
-             _resumeId,
-             _nickname
-           )
-         );
-      })
+        dispatch(
+          resumesCreateAxios(
+            introduceRef.current.value,
+            success,
+            start,
+            end,
+            role,
+            checkList,
+            content2Ref.current.value,
+            content3Ref.current.value,
+            _resumeId,
+            _nickname
+          )
+        );
+      });
       alert("게시글을 등록하시겠습니까 ? ");
       navigate("/mainemployment");
-     } catch (err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-   
-
   };
 
   return (
@@ -221,8 +215,6 @@ function AddProfile(props) {
                 onChange={onChange}
                 startDate={startDate}
                 minDate={new Date()}
-                // rangeHighlight={true}
-                // showRangeLabels={false}
                 endDate={endDate}
                 monthsShown={2}
                 selectsRange
