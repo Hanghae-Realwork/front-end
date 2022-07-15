@@ -68,7 +68,12 @@ function Header() {
             </LoginButton>
             <CircleImage
               onClick={() => {
-                navigate(`/mypage/${nickname}/apply`);
+                if (loginInfo) {
+                  navigate(`/mypage/${nickname}/apply`);
+                } else {
+                  alert("로그인을 해주세요!")
+                }
+                
               
 
               }}

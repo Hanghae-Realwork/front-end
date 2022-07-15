@@ -16,7 +16,7 @@ const Application = () => {
 
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
-  
+
 
     useEffect(() => {
         if (!(nickname_Info === undefined || nickname_Info === null)) {
@@ -127,6 +127,7 @@ const Application = () => {
           );
         })}
     </RightMapingWrap>
+
     );
 }
 
