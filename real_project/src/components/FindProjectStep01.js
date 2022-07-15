@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import DateDouble from "../components/Date/DatePickerDouble"
+import Footer from "../components/Date/DatePickerDouble"
 import DateSingle from "../components/Date/DatePickerSingle"
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import DatePicker from "react-datepicker";
 
 import addimage from "../image/addimage.svg"
 
@@ -19,7 +19,6 @@ import TimeTest2 from "../components/Date/TestTimePicker2"
 
 
 const FindProjectStep01 = (props) => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,11 +29,10 @@ const FindProjectStep01 = (props) => {
   const [role, setRole] = useState("");
   const [checkList, setCheckList] = useState([]);
 
+  //캘린더 (22.07.12 추가 후)
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
-  //캘린더 (22.07.12 추가 전 / 코코미 코드)
-  // const [start, setStart] = useState("2022-02-02")
-  // const [end, setEnd] = useState("2022-02-04")
-  
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
@@ -74,235 +72,224 @@ const FindProjectStep01 = (props) => {
     });
   };
 
+  //캘린더
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
+  const start = JSON.stringify(startDate).slice(1, 11);
+  const end = JSON.stringify(endDate).slice(1, 11);
+
   // 저장 버튼
-  const CompliteButton = async() => {
+  const CompliteButton = async () => {
     frm.append("photos", files[0]);
     try {
-        await dispatch(projectsPhotosAxios(frm)).then((success) => {
-          console.log()
+      await dispatch(projectsPhotosAxios(frm)).then((success) => {
+        console.log();
 
-          dispatch(
-            createRecruitAxios(
-              titleRef.current.value,
-              detailsRef.current.value,
-              subscriptRef.current.value,
-              role,
-              start,
-              end,
-              checkList,
-              success,
-              ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
-            )
-          );
-
-          })
-        navigate("/mainrecruit");
-        } catch(err){
-          alert("error")
-          console.log(err)
-        }
-      }
-
-      const [startDate, setStartDate] = useState(""); 
-      const [endDate, setEndDate] = useState("");
-    
-      const onChange = (dates) => { 
-      const [start, end] = dates; setStartDate(start); setEndDate(end); 
-    
-        console.log(start, end); }; 
-    
-      const start = JSON.stringify(startDate).slice(1, 11); 
-      const end = JSON.stringify(endDate).slice(1, 11);
-    
-      const start_year = start.substring(2, 4)
-      const start_month = start.substring(5, 7);
-      const start_day = start.substring(8);
-    
-      const end_year = end.substring(2, 4);
-      const end_month = end.substring(5, 7);
-      const end_day = end.substring(8);
-      const footerStart = start
-      const footerEnd = end
-     
-    
-        let footer = (
-            <span
-              style={{
-                margin: "10px",
-                padding: "10px",
-                width: "180px",
-                textAlign: "center",
-                fontSize: "14px",
-              }}>
-              시작날짜를 눌러주세요
-            </span>
-          );
-          if (footerStart && footerStart) {
-            if (footerEnd==="ull") {
-              footer = (
-                <p
-                  style={{ 
-                    margin: "10px",  
-                    padding: "10px",
-                    width: "150px",
-                    textAlign: "center",
-                    fontSize: "14px",
-                  }}
-                >
-                  {start_year}년 {start_month}월 {start_day}일
-                </p>
-              );
-            } else if (footerEnd && footerEnd) {
-              footer = (
-                <p
-                  style={{
-                    margin: "10px",
-                    padding: "10px",
-                    width: "260px",
-                    textAlign: "center",
-                    fontSize: "14px",
-                  }}
-                >
-                  {start_year}년 {start_month}월 {start_day}일 ~ {end_year}년{" "}
-                  {end_month}월 {end_day}일
-                </p>
-              );
-            }
-          }
-
+        dispatch(
+          createRecruitAxios(
+            titleRef.current.value,
+            detailsRef.current.value,
+            subscriptRef.current.value,
+            role,
+            start,
+            end,
+            checkList,
+            success,
+            ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
+          )
+        );
+      });
+      navigate("/mainrecruit");
+    } catch (err) {
+      alert("error");
+      console.log(err);
+    }
+  };
 
   return (
     <>
       <FindProjectAllWrap>
-          <FindprojectTopWrap>
-            <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
-          </FindprojectTopWrap>
-          <HeadLine />
-          <FindProjectInputTitle>
-            <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput ref={titleRef} id="title" type="text" placeholder="제목을 입력해주세요"></ProjectInput>
-          </FindProjectInputTitle>
-          <FindProjectInputTitle>
-            <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput ref={subscriptRef} id="subscript" type="text" placeholder="프로젝트를 설명해주세요"></ProjectInput>
-          </FindProjectInputTitle>
-          <FindProjectInputDate>
-            <ProjectTitleText>프로젝트 기간</ProjectTitleText>
-            <div>
+        <FindprojectTopWrap>
+          <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
+        </FindprojectTopWrap>
+        <HeadLine />
+        <FindProjectInputTitle>
+          <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
+          <ProjectInput
+            ref={titleRef}
+            id="title"
+            type="text"
+            placeholder="제목을 입력해주세요"
+          ></ProjectInput>
+        </FindProjectInputTitle>
+        <FindProjectInputTitle>
+          <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
+          <ProjectInput
+            ref={subscriptRef}
+            id="subscript"
+            type="text"
+            placeholder="프로젝트를 설명해주세요"
+          ></ProjectInput>
+        </FindProjectInputTitle>
+        <FindProjectInputDate>
+          <ProjectTitleText>프로젝트 기간</ProjectTitleText>
+          <div>
             <CalendarWrap>
-                <DatePickerWrapper
-                  popperContainer={Popper}
-                  calendarContainer={Calendar}
-                  controls={["calendar"]}
-                  dateFormat="YYYY-MM-DD"
-                  locale="ko" // 달력 한글화
-                  selected={startDate}
-                  onChange={onChange}
-                  startDate={startDate}
-                  minDate={new Date()}
-                  // rangeHighlight={true}
-                  // showRangeLabels={false}
-                  endDate={endDate}
-                  monthsShown={2}
-                  selectsRange
-                  inline
-                />
-                </CalendarWrap>
-                <CalendarInfoWrap>
-                {footer}
-                </CalendarInfoWrap>
-              <div>
-              </div>
-            </div>
-          </FindProjectInputDate>
-          <FindProjectInputTitle>
-            <ProjectTitleText>팀 상세 설명</ProjectTitleText>
-            <ReMainConWrap>
-              <RecMainCon ref={detailsRef} id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요" />
-                <PhotoUPloadWrap>
-                  {filesImg ? (<UpPhotoArea alt="sample" id="showImg" src={filesImg} />
-                ) : (<DisablePhotoWrap></DisablePhotoWrap>)}
-                  <EditWrapPhoto>
-                    {filesImg ? (
-                      <PhotoText>수정하기 <input name="imgUpload" type="file" id="add_img"
-                          accept="image/*" onChange={onChangeImg}/>
-                      </PhotoText>
-                    ) : (
-                      <PhotoText>등록하기 <input name="imgUpload" type="file" id="add_img"
-                          accept="image/*" onChange={onChangeImg}/>
-                      </PhotoText>
-                    )}
-                  </EditWrapPhoto>
-                </PhotoUPloadWrap>
-            </ReMainConWrap>
-          </FindProjectInputTitle>
-          <FindProjectInputTitle>
-            <ProjectTitleText>구하는 직군</ProjectTitleText>
-            <div>
-              <label><input id="role" type="radio" name="Radio"  value="frontend" onChange={onChangeRole} />FrontEnd</label>
-              <label><input id="role" type="radio" name="Radio" value="backend" onChange={onChangeRole} />BackEnd</label>
-              <label><input id="role" type="radio" name="Radio" value="designer" onChange={onChangeRole} />Designer</label>
-            </div>
-          </FindProjectInputTitle>
-          
-          <SkillWrap>
-                <SkillTitleTextTag>개발자</SkillTitleTextTag>
-                <SelectBoxTab>
-                  {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
-                      return (
-                        <TecLabel key={idx}>
-                          <CheckBox type="checkbox" id="skills" value={list.data}
-                            onChange={(e) => {
-                              //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
-                              onCheckedElement(
-                                e.target.checked,
-                                e.target.value
-                              );
-                            }}
-                            checked={ checkList.includes(list.data) ? true : false }
-                          ></CheckBox>
-                          {list.data}
-                        </TecLabel>
-                      );
-                    })}
-                    </SelectBoxTab>
-                    </SkillWrap>
-                    <SkillWrap>
-                <SkillTitleTextTag>디자이너</SkillTitleTextTag>
-                <SelectBoxTab>
-                  {designerSkills_list && designerSkills_list.map((list, idx) => {
-                      return (
-                        <TecLabel key={idx}>
-                          <CheckBox type="checkbox" id="skills" value={list.data}
-                            onChange={(e) => {
-                              onCheckedElement(
-                                e.target.checked,
-                                e.target.value
-                              );
-                            }}
-                          ></CheckBox>
-                          {list.data}
-                        </TecLabel>
-                      );
-                    })}
-                </SelectBoxTab>
-              </SkillWrap>
-          <SingleDateWrap>
+              <DatePickerWrapper
+                popperContainer={Popper}
+                calendarContainer={Calendar}
+                controls={["calendar"]}
+                dateFormat="YYYY-MM-DD"
+                locale="ko" // 달력 한글화
+                selected={startDate}
+                onChange={onChange}
+                startDate={startDate}
+                minDate={new Date()}
+                endDate={endDate}
+                monthsShown={2}
+                selectsRange
+                inline
+              />
+            </CalendarWrap>
+            <CalendarInfoWrap>
+              <Footer start={start} end={end} />
+            </CalendarInfoWrap>
+            <div></div>
+          </div>
+        </FindProjectInputDate>
+        <FindProjectInputTitle>
+          <ProjectTitleText>팀 상세 설명</ProjectTitleText>
+          <ReMainConWrap>
+            <RecMainCon
+              ref={detailsRef}
+              id="details"
+              type="text"
+              placeholder="프로젝트의 내용을 입력해주세요"
+            />
+            <PhotoUPloadWrap>
+              {filesImg ? (
+                <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
+              ) : (
+                <DisablePhotoWrap></DisablePhotoWrap>
+              )}
+              <EditWrapPhoto>
+                {filesImg ? (
+                  <PhotoText>
+                    수정하기{" "}
+                    <input
+                      name="imgUpload"
+                      type="file"
+                      id="add_img"
+                      accept="image/*"
+                      onChange={onChangeImg}
+                    />
+                  </PhotoText>
+                ) : (
+                  <PhotoText>
+                    등록하기{" "}
+                    <input
+                      name="imgUpload"
+                      type="file"
+                      id="add_img"
+                      accept="image/*"
+                      onChange={onChangeImg}
+                    />
+                  </PhotoText>
+                )}
+              </EditWrapPhoto>
+            </PhotoUPloadWrap>
+          </ReMainConWrap>
+        </FindProjectInputTitle>
+        <FindProjectInputTitle>
+          <ProjectTitleText>구하는 직군</ProjectTitleText>
+          <div>
+            <label>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="frontend"
+                onChange={onChangeRole}
+              />
+              FrontEnd
+            </label>
+            <label>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="backend"
+                onChange={onChangeRole}
+              />
+              BackEnd
+            </label>
+            <label>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="designer"
+                onChange={onChangeRole}
+              />
+              Designer
+            </label>
+          </div>
+        </FindProjectInputTitle>
 
-
-            <DateSingle />
-            <TimeWrap>
-              <Time2Wrap>
-             <TimeTest2/>
-            </Time2Wrap>
-          </TimeWrap>
-
-
-
-          </SingleDateWrap>
-          <SubmitButtonWrap>
-            <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
-          </SubmitButtonWrap>
+        <SkillWrap>
+          <SkillTitleTextTag>개발자</SkillTitleTextTag>
+          <SelectBoxTab>
+            {dvelopSkills_list &&
+              dvelopSkills_list.map((list, idx) => {
+                return (
+                  <TecLabel key={idx}>
+                    <CheckBox
+                      type="checkbox"
+                      id="skills"
+                      value={list.data}
+                      onChange={(e) => {
+                        //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                      checked={checkList.includes(list.data) ? true : false}
+                    ></CheckBox>
+                    {list.data}
+                  </TecLabel>
+                );
+              })}
+          </SelectBoxTab>
+        </SkillWrap>
+        <SkillWrap>
+          <SkillTitleTextTag>디자이너</SkillTitleTextTag>
+          <SelectBoxTab>
+            {designerSkills_list &&
+              designerSkills_list.map((list, idx) => {
+                return (
+                  <TecLabel key={idx}>
+                    <CheckBox
+                      type="checkbox"
+                      id="skills"
+                      value={list.data}
+                      onChange={(e) => {
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                    ></CheckBox>
+                    {list.data}
+                  </TecLabel>
+                );
+              })}
+          </SelectBoxTab>
+        </SkillWrap>
+        <SingleDateWrap>
+          <DateSingle />
+        </SingleDateWrap>
+        <SubmitButtonWrap>
+          <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
+        </SubmitButtonWrap>
       </FindProjectAllWrap>
     </>
   );
@@ -513,6 +500,7 @@ const SingleDateWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 `
+export default FindProjectStep01;
 
 const TimeWrap = styled.div`
   border: 1px solid black;
@@ -554,32 +542,27 @@ const Calendar = styled.div`
   overflow: hidden;
 `;
 
-const Daystring = styled.div`
-/* font-size: large; */
-`
+  const CalendarWrap =styled.div`
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 700px;
+    height: 330px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  `
 
-const CalendarWrap =styled.div`
-  border: 1px solid black;
-  border-radius: 4px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  width: 700px;
-  height: 330px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-`
+  const CalendarInfoWrap = styled.div`
+    border: 1px solid black;
+    width: 297px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
 
-const CalendarInfoWrap = styled.div`
-  border: 1px solid black;
-  width: 297px;
-  height: 43px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-
-`
+  `
 
 
-export default FindProjectStep01;

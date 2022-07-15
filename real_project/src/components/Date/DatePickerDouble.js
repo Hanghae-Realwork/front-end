@@ -1,26 +1,9 @@
-import React, { useState } from 'react'
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+
 import styled from 'styled-components';
 import "./DatePickerDouble.css"
-import ko from 'date-fns/locale/ko';
 
 
-
-const DatePickerDouble = () => {
-
-  registerLocale('ko', ko);
-
-  const [startDate, setStartDate] = useState(""); 
-  const [endDate, setEndDate] = useState("");
-
-  const onChange = (dates) => { 
-  const [start, end] = dates; setStartDate(start); setEndDate(end); 
-
-    console.log(start, end); }; 
-
-  const start = JSON.stringify(startDate).slice(1, 11); 
-  const end = JSON.stringify(endDate).slice(1, 11);
-
+const DatePickerDouble = ({start,end}) => {
   const start_year = start.substring(2, 4)
   const start_month = start.substring(5, 7);
   const start_day = start.substring(8);
@@ -79,12 +62,11 @@ const DatePickerDouble = () => {
 
       return (
         <>
-          
+          {footer}
         </>
       );
 
 }
 
 
-  
 export default DatePickerDouble

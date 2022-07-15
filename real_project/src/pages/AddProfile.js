@@ -13,8 +13,8 @@ import Letter from "../image/letter.svg"
 
 //DatePicker
 import DatePicker from "react-datepicker";
-import TestDate from "../components/Date/DatePickerDouble";
-import { getYear } from "date-fns";
+import Footer from "../components/Date/DatePickerDouble";
+
 function AddProfile(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function AddProfile(props) {
   const content3Ref = useRef(null);
   const [role, setRole] = useState("");
 
-  //캘린더 (22.07.15 추가 후 )
+  //캘린더 (22.07.15 추가 후)
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -204,13 +204,13 @@ function AddProfile(props) {
         <SelectAllWrap>
           <SelfWrap>
             <TitleTextTag>프로젝트 기간</TitleTextTag>
-            <div>
+            <CalendarWrap>
               <DatePickerWrapper
                 popperContainer={Popper}
                 calendarContainer={Calendar}
                 controls={["calendar"]}
                 dateFormat="YYYY-MM-DD"
-                locale="ko" // 달력 한글화
+                locale="ko"
                 selected={startDate}
                 onChange={onChange}
                 startDate={startDate}
@@ -220,8 +220,10 @@ function AddProfile(props) {
                 selectsRange
                 inline
               />
-              <TestDate start={start} end={end}></TestDate>
-            </div>
+            </CalendarWrap>
+            <CalendarInfoWrap>
+              <Footer start={start} end={end} />
+            </CalendarInfoWrap>
           </SelfWrap>
         </SelectAllWrap>
 
@@ -341,26 +343,7 @@ function AddProfile(props) {
   );
 }
 //datePicker
-const DatePickerWrapper = styled(({ className, ...props }) => (
-  <DatePicker {...props} wrapperClassName={className} />
-))`
-  width: 100%;
-`;
- const Popper = styled.div`
-   position: absolute;
-   top: 0;
-   left: 0;
-   margin: 20px;
-   z-index: 2;
- `;
 
-const Calendar = styled.div`
-  /* width : 706px; */
-  border-radius: 4px;
-  overflow: hidden;
-`;
-
-//
 const FindProjectInputDate = styled.div`
   margin: 40px 0px 16px 30px;
   width: 1100px;
@@ -748,6 +731,48 @@ const SkillTitleTextTag = styled.p`
   color: #ae97e3;
 `;
 
-
-
 export default AddProfile;
+
+const DatePickerWrapper = styled(({ className, ...props }) => (
+  <DatePicker {...props} wrapperClassName={className} />
+))`
+  width: 100%;
+`;
+const Popper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  z-index: 2;
+`;
+
+const Calendar = styled.div`
+  /* width : 706px; */
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
+const CalendarWrap = styled.div`
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 700px;
+  height: 330px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const CalendarInfoWrap = styled.div`
+  border: 1px solid black;
+  width: 297px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+`;
+
+
+
