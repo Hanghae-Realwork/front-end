@@ -1,12 +1,15 @@
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
-
-import TagCompoEmpPro from "../components/TagCompoEmpPro";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { deleteEmployAxios, loadSingleEmployAxios } from "../redux/modules/postEmploy";
 import { checkUserValidation } from "../redux/modules/user";
 import { useNavigation } from "react-day-picker";
+
+import TagDes from "../components/Tag/TagCompoDes"
+import TagDev from "../components/Tag/TagCompoDev"
+
+
 
 function EmploymentProfile() {
   const dispatch = useDispatch();
@@ -108,7 +111,7 @@ useState(data[0]?.role)
             <StacTagWrap>
               {data.length > 0
                 ? data[0].resumeskills.map((list, idx) => {
-                    return <TagCompoEmpPro key={idx} skills={list} />;
+                    return <TagDev key={idx} skills={list} />;
                   })
                 : ""}
             </StacTagWrap>

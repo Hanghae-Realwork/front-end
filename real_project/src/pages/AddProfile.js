@@ -2,7 +2,6 @@ import React, {useState, useRef, useEffect} from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { checkUserValidation } from "../redux/modules/user";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
 import { projectsPhotosAxios,resumesCreateAxios } from "../redux/modules/postEmploy";

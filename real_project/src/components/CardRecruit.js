@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Moment from "react-moment";
 
-import Tag from "./TagCompoRec";
+import TagDev from "./Tag/TagCompoDev"
+import TagDes from "./Tag/TagCompoDes"
 
 import Receipt from "../image/receipt.svg"
 
@@ -56,7 +57,7 @@ const CardRecruit = ({ data }) => {
               {data === undefined
                 ? null
                 : data.skills.map((list, idx) => {
-                    return <Tag key={idx} skills={list} />;
+                    return <TagDev key={idx} skills={list} />;
                   })}
             </TagWrap>
           </CardTagWrap>
