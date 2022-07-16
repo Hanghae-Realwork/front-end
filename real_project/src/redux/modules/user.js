@@ -137,8 +137,13 @@ export const checkUserValidation = () => {
         );
       })
       .catch((err) => {
-
-        console.log("err", err);
+        
+        if (err) {
+          console.log(err)
+          logOut();
+          alert("토큰이 만료되셨네요🥹");
+          return
+        }
 
 
       });

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { checkUserValidation, login } from "../redux/modules/user";
-import { useNavigate, useParams } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { useNavigate, useParams, Outlet } from "react-router-dom";
 import astroman from "../image/astroman.svg";
 import email from "../image/letter.svg";
 import Check from "../image/check.svg";
@@ -16,14 +15,9 @@ function MyPage() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const MyCard = Array.from({ length: 2 }, (v, i) => i);
   const loginInfo = useSelector((state) => state.user.userInfo);
 
-
-
-  // console.log(loginInfo);
-
-
+  
   return (
     <>
       <MyButton />

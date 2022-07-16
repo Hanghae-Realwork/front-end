@@ -20,9 +20,7 @@ function CradEmpol({ data }) {
     return (
       <>
         <AllCardWrap onClick={() => {
-          navigate("/employmentprofile/"+`${data.resumeId}`);
-        }}>
-
+          navigate("/employmentprofile/"+`${data.resumeId}`);}}>
           <CardTopWrap>
             <ProfileTopWrap>
               <ProfileWrap>
@@ -47,8 +45,7 @@ function CradEmpol({ data }) {
           </CardMidMini>
           <CardBotTag>
             <div>
-              {
-                 data.resumeskills?.map((list, idx) => {
+              {data.resumeskills?.map((list, idx) => {
                     return <Tag key={idx} skills={list} />;
                   })}
             </div>

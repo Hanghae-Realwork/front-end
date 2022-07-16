@@ -13,7 +13,7 @@ export function loadApply(payload) {
 //middleware
 //내 지원정보 조회
 export const loadApplyAxios = (nickname) => {
-  console.log(nickname);
+
   return async function (dispatch) {
     await apis
       .userApply(nickname)

@@ -1,5 +1,5 @@
-import { useNavigate, useParams } from "react-router-dom";
-import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useRef,useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -10,11 +10,6 @@ import DateSingle from "../components/Date/DatePickerSingle"
 import DatePicker from "react-datepicker";
 
 import addimage from "../image/addimage.svg"
-
-
-import TimeTest1 from "../components/Date/TestTimePicker"
-import TimeTest2 from "../components/Date/TestTimePicker2"
-
 
 
 
@@ -36,6 +31,35 @@ const FindProjectStep01 = (props) => {
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
+
+  //MVP 스케쥴
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  //MVP
+  const [schedule, SetSchedule] = useState([]);
+const [seeDate,setSeeDate] =useState("")
+  useEffect(() => {
+    if (date.length === 8) {
+      setDate(date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+    }
+  }, [date]);
+  useEffect(() => {
+    if (time.length === 6) {
+      setTime(time.replace(/(\d{2})(\d{2})(\d{2})/, "$1:$2:$3"));
+    }
+  }, [time]);
+
+
+  
+  console.log(seeDate)
+  const onChangeDate = (e) => {
+    setDate(e.target.value);
+
+  };
+  const onChangeTime = (e) => {
+    setTime(e.target.value);
+
+  };
 
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
@@ -82,13 +106,20 @@ const FindProjectStep01 = (props) => {
   const start = startDate
   const end = endDate
 
+  //스케쥴 데이터
+
+  var i = [date, time].join(" ");
+  const onClickSchedule = () => {
+    schedule.push(i);
+  };
+
+
   // 저장 버튼
   const CompliteButton = async () => {
+    console.log(schedule)
     frm.append("photos", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
-        console.log();
-
         dispatch(
           createRecruitAxios(
             titleRef.current.value,
@@ -99,7 +130,7 @@ const FindProjectStep01 = (props) => {
             end,
             checkList,
             success,
-            ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
+            schedule
           )
         );
       });
@@ -161,7 +192,7 @@ const FindProjectStep01 = (props) => {
             <div></div>
           </div>
         </FindProjectInputDate>
-        <FindProjectInputTitle>
+        <InputMainTextWrap>
           <ProjectTitleText>팀 상세 설명</ProjectTitleText>
           <ReMainConWrap>
             <RecMainCon
@@ -179,18 +210,13 @@ const FindProjectStep01 = (props) => {
               <EditWrapPhoto>
                 {filesImg ? (
                   <PhotoText>
-                    수정하기{" "}
-                    <input
-                      name="imgUpload"
-                      type="file"
-                      id="add_img"
-                      accept="image/*"
-                      onChange={onChangeImg}
-                    />
+                    수정하기
+                    <input name="imgUpload" type="file" id="add_img"
+                      accept="image/*" onChange={onChangeImg}/>
                   </PhotoText>
                 ) : (
                   <PhotoText>
-                    등록하기{" "}
+                    등록하기
                     <input
                       name="imgUpload"
                       type="file"
@@ -203,45 +229,30 @@ const FindProjectStep01 = (props) => {
               </EditWrapPhoto>
             </PhotoUPloadWrap>
           </ReMainConWrap>
-        </FindProjectInputTitle>
-        <FindProjectInputTitle>
+        </InputMainTextWrap>
+        <InputMainTextWrap>
           <ProjectTitleText>구하는 직군</ProjectTitleText>
           <div>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="frontend"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="frontend" onChange={onChangeRole}/>
               FrontEnd
             </label>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="backend"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="backend" onChange={onChangeRole}/>
               BackEnd
             </label>
             <label>
-              <input
-                id="role"
-                type="radio"
-                name="Radio"
-                value="designer"
-                onChange={onChangeRole}
-              />
+              <input id="role" type="radio" name="Radio"
+                value="designer" onChange={onChangeRole}/>
               Designer
             </label>
           </div>
-        </FindProjectInputTitle>
+        </InputMainTextWrap>
 
         <SkillWrap>
-          <SkillTitleTextTag>개발자</SkillTitleTextTag>
+          <ProjectTitleText>개발자</ProjectTitleText>
           <SelectBoxTab>
             {dvelopSkills_list &&
               dvelopSkills_list.map((list, idx) => {
@@ -264,7 +275,7 @@ const FindProjectStep01 = (props) => {
           </SelectBoxTab>
         </SkillWrap>
         <SkillWrap>
-          <SkillTitleTextTag>디자이너</SkillTitleTextTag>
+          <ProjectTitleText>디자이너</ProjectTitleText>
           <SelectBoxTab>
             {designerSkills_list &&
               designerSkills_list.map((list, idx) => {
@@ -284,9 +295,34 @@ const FindProjectStep01 = (props) => {
               })}
           </SelectBoxTab>
         </SkillWrap>
-        <SingleDateWrap>
-          <DateSingle />
-        </SingleDateWrap>
+        {/* <SingleDateWrap> */}
+        <FindProjectInputTitle>
+          <H3>면접 가능 시간</H3>
+          <Div>
+            <InputEx
+              requiredtype="text"
+              placeholder="2022-01-01"
+              value={date}
+              maxLength={8}
+              onChange={onChangeDate}
+            />
+            <InputEx
+              requiredtype="text"
+              placeholder="02:02:02"
+              value={time}
+              maxLength={6}
+              onChange={onChangeTime}
+            />
+            <div>
+              {schedule.map((list, idx) => {
+                return <h3 key={idx}> {seeDate} </h3>;
+              })}
+            </div>
+
+            <button onClick={onClickSchedule}>등록하기</button>
+          </Div>
+        </FindProjectInputTitle>
+
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
         </SubmitButtonWrap>
@@ -341,6 +377,15 @@ const FindProjectInputTitle = styled.div`
   align-items: center;
 `
 
+const InputMainTextWrap = styled.div`
+  /* border: 1px solid black; */
+  margin: 40px 0px 16px 30px;
+  width: 1100px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+`
 
 const ProjectInput = styled.input`
   border: none;
@@ -397,6 +442,7 @@ const ProjectTitleText = styled.span`
   font-size: 16px;
   font-weight: 500;
   gap: 15px;
+  margin-bottom: 20px;
 `
 
 const SkillTitleTextTag = styled.p`
@@ -517,16 +563,31 @@ const Time1Wrap = styled.div`
 const Time2Wrap = styled.div`
   border: 1px solid black;
 `
+//MVP CSS
 
+const H3 = styled.h3`
+margin-right:40px;`
 
+const InputEx = styled.input`
+
+margin-bottom:20px;
+padding:15px;
+font-size: 15px;
+`
+
+const Div = styled.div`
+display : flex;
+flex-direction: column;
+justify-content:center;
+
+`
 
 
 
 const DatePickerWrapper = styled(
   ({ className, ...props }) => 
   (<DatePicker {...props} 
-    wrapperClassName={className} />))`
-  width: 100%;
+    wrapperClassName={className} />))`  width: 100%;
 `;
  const Popper = styled.div`
    position: absolute;
@@ -564,5 +625,6 @@ const Calendar = styled.div`
     border-radius: 4px;
 
   `
+
 
 

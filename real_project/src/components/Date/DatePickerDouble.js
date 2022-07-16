@@ -4,10 +4,17 @@ import Moment from "react-moment";
 import "./DatePickerDouble.css"
 
 
-const DatePickerDouble = ({start,end}) => { 
-  console.log(start,end)
-  const footerStart = Date.parse(start&&start)
-  const footerEnd = Date.parse(end&&end)
+const DatePickerDouble = ({ start, end }) => {
+  
+  const start_year = start.substring(2, 4)
+  const start_month = start.substring(5, 7);
+  const start_day = start.substring(8);
+
+  const end_year = end.substring(2, 4);
+  const end_month = end.substring(5, 7);
+  const end_day = end.substring(8);
+  const footerStart = start
+  const footerEnd = end
  
 
 

@@ -1,15 +1,26 @@
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function ButtonLine() {
+  const navigate = useNavigate()
+  const nickname = useSelector((state) => state.user.userInfo.nickname);
+  
   return (
     <>
       <OnlyBackgroundWrap>
         <BackgroundAllWrap>
           {/* <LeftTopWrap></LeftTopWrap> */}
           <RightTopWrap>
-            <MyMenuButton>내 지원 현황</MyMenuButton>
-            <MyMenuButton>내 모집 현황</MyMenuButton>
-            <MyMenuButton>내 이력서</MyMenuButton>
+            <MyMenuButton onClick={() => {
+              navigate(`/mypage/${nickname}/apply`);
+            }}>내 지원 현황</MyMenuButton>
+            <MyMenuButton onClick={() => {
+                 navigate(`/mypage/${nickname}/project`);
+            }}
+            >내 모집 현황</MyMenuButton>
+            <MyMenuButton onClick={() => {
+              navigate(`/mypage/${nickname}/resumes`);
+            }}>내 이력서</MyMenuButton>
           </RightTopWrap>
         </BackgroundAllWrap>
       </OnlyBackgroundWrap>
