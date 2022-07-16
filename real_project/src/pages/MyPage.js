@@ -3,12 +3,15 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { checkUserValidation, login } from "../redux/modules/user";
 import { useNavigate, useParams, Outlet } from "react-router-dom";
-import astroman from "../image/astroman.svg";
-import email from "../image/letter.svg";
-import Check from "../image/check.svg";
+
 import Application from "../components/Mypage/Application";
 import Recruitment from "../components/Mypage/Recruitment";
 import MyButton from "../components/Mypage/MyPageButton";
+
+import astroman from "../image/astroman.svg";
+import email from "../image/letter.svg";
+import Check from "../image/check.svg";
+
 
 function MyPage() {
   const dispatch = useDispatch();

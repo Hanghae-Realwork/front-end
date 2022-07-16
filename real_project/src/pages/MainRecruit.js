@@ -5,7 +5,8 @@ import styled from "styled-components";
 import { loadRecruitAxios } from "../redux/modules/postRecruit";
 
 import Card from "../components/CardRecruit";
-import RecSelectCompo from "../components/RecSelectCompo";
+import TagCompoDes from "../components/Tag/TagCompoDes";
+import TagCompoDev from "../components/Tag/TagCompoDev";
 
 
 const MainRecruit = () => {
@@ -19,7 +20,7 @@ const MainRecruit = () => {
 
   return (
     <div>
-      <RecSelectCompo />
+      {/* <RecSelectCompo /> */}
       <CardBackGround>
         <CardContainerWrap>
           {recruit === undefined ? null : recruit.map((list, idx) => {

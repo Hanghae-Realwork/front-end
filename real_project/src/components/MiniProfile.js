@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { useSelector,useDispatch } from "react-redux";
 import { deleteEmployAxios, loadSingleEmployAxios } from "../redux/modules/postEmploy";
 
-import TagCompo from "./TagCompoEmp";
+import TagDev from "./Tag/TagCompoDev"
+import TagDes from "./Tag/TagCompoDes"
 
 import astroman from "../image/astroman.svg"
 
@@ -42,7 +43,7 @@ function MiniResume() {
         <TecWrap>
             보유한 기술
             <TecMiniWrap>
-                <TagCompo/>
+                <TagDev/>
             </TecMiniWrap>
         </TecWrap>
       </MiniCardAllWrap>

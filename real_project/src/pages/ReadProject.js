@@ -7,8 +7,11 @@ import { checkUserValidation } from "../redux/modules/user";
 import { loadApplyAxios } from "../redux/modules/postProfile";
 import { appointmentRecruitAxios } from "../redux/modules/postRecruit"
 
-import TagCompoEmpPro from "../components/TagCompoRecPro";
-import MiniResume from "../components/MiniResume";
+import TagDev from "../components/Tag/TagCompoDev"
+import TagDes from "../components/Tag/TagCompoDes"
+
+
+import MiniResume from "../components/MiniProfile";
 
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
@@ -105,7 +108,7 @@ function ReadProject() {
               <span>
                 {Value &&
                   Value[0]?.skills.map((list, idx) => {
-                    return <TagCompoEmpPro key={idx} skills={list} />;
+                    return <TagDev key={idx} skills={list} />;
                   })}
               </span>
             </div>
@@ -115,10 +118,10 @@ function ReadProject() {
 
           <DateWrap>
             <div>
-              <button
-                value={Value[0]?.applications[0]?.schedule}
-                name="one"
-                onClick={onClick}
+              {/* <button
+                // value={Value[0]?.applications[0]?.schedule}
+                // name="one"
+                // onClick={onClick}
               >
                 {Value && Value[0]?.applications[0]?.schedule}
               </button>
@@ -128,7 +131,7 @@ function ReadProject() {
                 onClick={onClick}
               >
                 {Value && Value[0]?.applications[1]?.schedule}
-              </button>
+              </button> */}
             </div>
           </DateWrap>
           <DivideLine />

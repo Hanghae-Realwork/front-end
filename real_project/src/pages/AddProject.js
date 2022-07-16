@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useRef,useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+
 import Footer from "../components/Date/DatePickerDouble"
 import DateSingle from "../components/Date/DatePickerSingle"
 import DatePicker from "react-datepicker";
