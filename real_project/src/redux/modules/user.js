@@ -108,8 +108,6 @@ export const loginAxios = (userEmail, password) => {
     await apis
       .login(userEmail, password, { withCredentials: true })
       .then((res) => {
-       
-        // console.log(res)
         localStorage.setItem("token", res.data.token);
         
         dispatch(checkUserValidation());
