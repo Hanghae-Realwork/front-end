@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
 
-import Footer from "../components/Date/DatePickerDouble"
+import Footer from "../components/Date/Footer"
 import DateSingle from "../components/Date/DatePickerSingle"
 import DatePicker from "react-datepicker";
 
