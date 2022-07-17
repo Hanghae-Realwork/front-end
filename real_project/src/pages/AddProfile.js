@@ -12,7 +12,8 @@ import Letter from "../image/letter.svg"
 
 //DatePicker
 import DatePicker from "react-datepicker";
-import Footer from "../components/Date/DatePickerDouble";
+import Footer from "../components/Date/Footer";
+import { parse } from "date-fns";
 
 function AddProfile(props) {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function AddProfile(props) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+
   //userId,nickname 정보
   const userIdInfo = useSelector((state) => state.user.userInfo);
   const _resumeId = useSelector((state) => state.user.userInfo.userId);
@@ -47,12 +49,17 @@ function AddProfile(props) {
   const reader = new FileReader();
 
   //로그인 useEffect
-  React.useEffect(() => {
+  useEffect(() => {
     if (loginInfo === false) {
       dispatch(checkUserValidation());
     }
   }, [loginInfo]);
 
+  useEffect(() => {
+    if (startDate && startDate) {
+
+    }
+  },[startDate])
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
   const onCheckedElement = (checked, item) => {
     if (checked) {
@@ -86,13 +93,11 @@ function AddProfile(props) {
 
   //캘린더
   const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
+    const [startDate, endDate] = dates;
+    setStartDate(startDate); 
+    setEndDate(endDate);  
   };
-
-  const start = JSON.stringify(startDate).slice(1, 11);
-  const end = JSON.stringify(endDate).slice(1, 11);
+ 
 
   //버튼 누르면 저장
   const handleClick = async () => {
@@ -103,8 +108,12 @@ function AddProfile(props) {
           resumesCreateAxios(
             introduceRef.current.value,
             success,
-            start,
-            end,
+            startDate.getFullYear()+"-"+
+            (startDate.getMonth() + 1)+"-"+
+            startDate.getDate(),
+            endDate.getFullYear()+"-"+
+            (endDate.getMonth() + 1)+"-"+
+            endDate.getDate(),
             role,
             checkList,
             content2Ref.current.value,
@@ -222,7 +231,7 @@ function AddProfile(props) {
               />
             </CalendarWrap>
             <CalendarInfoWrap>
-              <Footer start={start} end={end} />
+              <Footer start={startDate} end={endDate} />
             </CalendarInfoWrap>
           </SelfWrap>
         </SelectAllWrap>
