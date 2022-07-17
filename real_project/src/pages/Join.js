@@ -129,7 +129,7 @@ function Join() {
         setDay(0 + e.target.value);
       }
     }
-    //조건완료
+    //조건
     if (year.length <= 0) {
       setYearError({
         status: true,
@@ -156,17 +156,57 @@ function Join() {
         status: true,
         text: "정말이세요?",
       });
-    } else if (day >= 32) {
-       setYearError({
-         status: true,
-         text: "날짜를 다시 확인해주세요.",
-       });
-     } else {
-       setYearError({
-         status: false,
-         text: "",
-       });
-     }     
+    } else if (
+      (month === "04" || month === "06" || month === "09" || month === "11")) {
+      if (day >= 31) {
+        setYearError({
+          status: true,
+          text: "날짜를 다시 확인해주세요.",
+        });
+      } else { 
+        setYearError({
+          status: false,
+          text: "",
+        });
+      }
+    } else if (month === "02") { 
+      if (year % 4 === 0) {
+                 if (day >= 30) {
+                   setYearError({
+                     status: true,
+                     text: "날짜를 다시 확인해주세요.",
+                   });
+                 } else {
+                   setYearError({
+                     status: false,
+                     text: "",
+                   });
+                 }
+      } else { 
+        if (day >= 29) {
+          setYearError({
+            status: true,
+            text: "날짜를 다시 확인해주세요.",
+          });
+        } else { 
+           setYearError({
+             status: false,
+             text: "",
+           });
+        }
+      }
+    }
+    else if (day >= 32) {
+      setYearError({
+        status: true,
+        text: "날짜를 다시 확인해주세요.",
+      });
+    } else {
+      setYearError({
+        status: false,
+        text: "",
+      });
+    }     
   };
 
   //유효성검사:Password
