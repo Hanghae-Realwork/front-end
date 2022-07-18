@@ -173,37 +173,11 @@ function EditProfile() {
               <NoShowCircleProfile></NoShowCircleProfile>
             )}
             <PhotoEditWrap>
-              {filesImg ? (
-                <PhotoText>
-                  수정하기
-                  <input
-                    name="imgUpload"
-                    type="file"
-                    id="add_img"
-                    accept="image/*"
-                    onChange={onChangeImg}
-                  />
-                </PhotoText>
-              ) : (
-                <PhotoText>
-                  등록하기
-                  <input
-                    name="imgUpload"
-                    type="file"
-                    id="add_img"
-                    accept="image/*"
-                    onChange={onChangeImg}
-                  />
-                </PhotoText>
-              )}
+
             </PhotoEditWrap>
           </ProfilePicWrap>
 
-          <ProfilePicWrap>
-            <PhotoEditWrap>
-              <PhotoText>삭제</PhotoText>
-            </PhotoEditWrap>
-          </ProfilePicWrap>
+  
 
           {/* 사진 */}
         </ProfileTopWrap>

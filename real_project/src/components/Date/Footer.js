@@ -1,20 +1,8 @@
 
-import styled from 'styled-components';
-import "./DatePickerDouble.css"
+import "./Footer.css"
 
 
-const DatePickerDouble = ({ start, end }) => {
-  
-  const start_year = start.substring(2, 4)
-  const start_month = start.substring(5, 7);
-  const start_day = start.substring(8);
-
-  const end_year = end.substring(2, 4);
-  const end_month = end.substring(5, 7);
-  const end_day = end.substring(8);
-  const footerStart = start
-  const footerEnd = end
- 
+const Footer = ({ start, end }) => {
 
     let footer = (
         <span
@@ -28,8 +16,9 @@ const DatePickerDouble = ({ start, end }) => {
           시작날짜를 눌러주세요
         </span>
       );
-      if (footerStart && footerStart) {
-        if (footerEnd==="ull") {
+  if (start && start) {
+   
+        if (end === null) {
           footer = (
             <p
               style={{ 
@@ -40,10 +29,10 @@ const DatePickerDouble = ({ start, end }) => {
                 fontSize: "14px",
               }}
             >
-              {start_year}년 {start_month}월 {start_day}일
+              {start.getFullYear()}년 {start.getMonth()}월 {start.getDate()}일
             </p>
           );
-        } else if (footerEnd && footerEnd) {
+        } else if (end && end) {
           footer = (
             <p
               style={{
@@ -54,8 +43,8 @@ const DatePickerDouble = ({ start, end }) => {
                 fontSize: "14px",
               }}
             >
-              {start_year}년 {start_month}월 {start_day}일 ~ {end_year}년{" "}
-              {end_month}월 {end_day}일
+              {start.getFullYear()}년 {start.getMonth()}월 {start.getDate()}일 ~{" "}
+              {end.getFullYear()}년 {end.getMonth()}월 {end.getDate()}일
             </p>
           );
         }
@@ -70,4 +59,4 @@ const DatePickerDouble = ({ start, end }) => {
 }
 
 
-export default DatePickerDouble
+export default Footer;
