@@ -1,4 +1,4 @@
-import { sk } from "date-fns/locale";
+
 import { apis } from "../../shared/api";
 
 const LOAD = 'recruit/LOAD';
@@ -118,7 +118,7 @@ export const createRecruitAxios = (
             start: start,
             end: end,
             skills: skills,
-            photos:photos,
+            photos: photos,
             schedule: schedule,
           })
         );
@@ -154,7 +154,7 @@ export const editRecruitAxios = (
   end,
   skills,
   photos,
-  schedule
+  // schedule
 ) => {
   return async function(dispatch) {
     await apis
@@ -168,11 +168,12 @@ export const editRecruitAxios = (
       end,
       skills,
       photos,
-      schedule
+      // schedule
     )
     .then((res) => {
       dispatch(
         editRecruit({
+          projectId:projectId,
           title: title,
           details: details,
           subscript: subscript,
@@ -181,7 +182,7 @@ export const editRecruitAxios = (
           end: end,
           skills: skills,
           photos: photos,
-          schedule: schedule,
+          // schedule: schedule,
         })
       );
     }).catch((err) => {
@@ -232,13 +233,12 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'recruit/LOAD': {
       return {
-        receiveRecruit : action.payload,
-        recruit: state.recruit
+        receiveRecruit: action.payload,
+        project: state.recruit,
       };
     }
 
     case 'recruit/DETAIL':{
-      
       const projects = [action.payload]
       // console.log(projects)
       return { 
@@ -248,13 +248,13 @@ export default function reducer(state = initialState, action = {}) {
 
     case 'recruit/CREATE': {
       const writeProject = [action.payload, ...state.receiveRecruit];
-      return{
-        reciveRecruit : writeProject,
-        recruit : state.recruit        
-      }
+      return {
+        reciveRecruit: writeProject,
+        project: state.recruit,
+      };
     }
 
-    case 'recruit/EDIT': {   
+    case 'recruit/EDIT': {  
       return {
         reciveRecruit: state.receiveRecruit,
         project: action.payload,

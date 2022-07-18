@@ -11,8 +11,6 @@ import DatePicker from "react-datepicker";
 
 import addimage from "../image/addimage.svg"
 
-
-
 const FindProjectStep01 = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,6 +26,11 @@ const FindProjectStep01 = (props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+  const [startMonth, setStartMonth] = useState("")
+  const [startDay, setStartDay] = useState("")
+  
+  const [endMonth, setEndMonth] = useState("")
+  const [endDay,setEndDay] = useState("")
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
@@ -35,6 +38,7 @@ const FindProjectStep01 = (props) => {
   //MVP 스케쥴
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+
   //MVP
   const [schedule, SetSchedule] = useState([]);
 const [seeDate,setSeeDate] =useState("")
@@ -97,14 +101,20 @@ const [seeDate,setSeeDate] =useState("")
   };
 
   //캘린더
+  // const [startMonth, setStartMonth] = useState("");
+  // const [startDay, setStartDay] = useState("");
+
+  // const [endMonth, setEndMonth] = useState("");
+  // const [endDay, setEndDay] = useState("");
+
+
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
-    setEndDate(end);
+      setEndDate(end);
   };
 
-  const start = JSON.stringify(startDate).slice(1, 11);
-  const end = JSON.stringify(endDate).slice(1, 11);
+
 
   //스케쥴 데이터
 
@@ -112,11 +122,11 @@ const [seeDate,setSeeDate] =useState("")
   const onClickSchedule = () => {
     schedule.push(i);
   };
-
+ 
 
   // 저장 버튼
   const CompliteButton = async () => {
-    console.log(schedule)
+  
     frm.append("photos", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
@@ -126,11 +136,19 @@ const [seeDate,setSeeDate] =useState("")
             detailsRef.current.value,
             subscriptRef.current.value,
             role,
-            start,
-            end,
+            startDate.getFullYear() +
+              "-" +
+              (startDate.getMonth() + 1) +
+              "-" +
+              startDate.getDate(),
+            endDate.getFullYear() +
+              "-" +
+              (endDate.getMonth() + 1) +
+              "-" +
+              endDate.getDate(),
             checkList,
             success,
-            schedule
+            ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
           )
         );
       });
