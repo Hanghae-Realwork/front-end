@@ -5,6 +5,7 @@ import { React, useRef } from "react";
 import { loginAxios } from "../redux/modules/user";
 
 import Logo from "../image/Logo_vertical.svg"
+import Time from "../components/Time";
 
 
 
@@ -52,7 +53,7 @@ function Login() {
 
   return (
     <>
-    <LoginBackgroundWrap>
+      <LoginBackgroundWrap>
         <LoginWrap>
           <AlignWrap>
             <LogoWrap>
