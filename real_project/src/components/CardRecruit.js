@@ -79,7 +79,7 @@ const CardRecruit = ({ data }) => {
 //// 카드 전체 틀 관련 CSS 뭉치
 
 const AllWrap = styled.div`
-  margin: 0px 24px 19px 0px;
+  /* margin: 0px 24px 19px 0px; */
   border-top: none;
   border-bottom: none;
   width: 384px;
@@ -88,9 +88,7 @@ const AllWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-
   background-image: url(${Receipt});
-
   background-position: center;
   background-size: cover;
   background-repeat: none;

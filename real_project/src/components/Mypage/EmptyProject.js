@@ -1,20 +1,20 @@
 import React from "react"
 import styled from "styled-components"
 
-import EmptyAstroman from "../../image/emptyAstroman.svg"
+import EmptySolaSystem from "../../image/solasystem.svg"
 
-function EmptyCard() {
+function EmptyProject() {
 
     return(
         <>
             <EmptyBackWrap>
                 <EmptyCardInnerWrap>
                     <EmptyCardTop>
-                        <EmptyText>아직 지원한 프로젝트가 없어요...ㅠㅠ</EmptyText>
-                        <EmptyText>renDev의 다양한 아이디어의 프로젝트에 지원해보세요!</EmptyText>
+                        <EmptyText>아직 모집중인 프로젝트가 없어요...ㅠㅠ</EmptyText>
+                        <EmptyText>뛰어난 아이디어의 프로젝트를 등록해보세요!</EmptyText>
                     </EmptyCardTop>
                     <EmptyCardBot>
-                        <img src={EmptyAstroman}/>
+                        <img src={EmptySolaSystem}/>
                     </EmptyCardBot>
                 </EmptyCardInnerWrap>
             </EmptyBackWrap>
@@ -45,7 +45,7 @@ const EmptyCardTop = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    margin: 30px 20px 30px 20px;
+    margin: 50px 20px 30px 20px;
 `
 
 const EmptyCardBot = styled.div`
@@ -61,4 +61,4 @@ const EmptyText = styled.span`
     font-weight: 500;
 `
 
-export default EmptyCard
+export default EmptyProject

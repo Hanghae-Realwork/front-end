@@ -26,7 +26,8 @@ import EmpoCard from "./components/CardEmpol";
 import Application from "./components/Mypage/Application";
 import Recruitment from "./components/Mypage/Recruitment";
 import Resumes from "./components/Mypage/Resumes";
-
+import EmptyCard from "./components/Mypage/EmptyCard";
+import EmptyProject from "./components/Mypage/EmptyProject";
 
 import { useDispatch } from "react-redux";
 import { checkUserValidation } from "./redux/modules/user";
@@ -43,6 +44,8 @@ function App() {
   return (
     <MainWrap>
       <Header />
+      {/* <EmptyCard></EmptyCard>
+      <EmptyProject></EmptyProject> */}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />

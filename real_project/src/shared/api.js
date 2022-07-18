@@ -3,7 +3,7 @@ import axios from "axios";
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "http://rendev.link/",
+  baseURL: "http://13.125.145.26/",
   headers: {
     "content-type": "multipart/form-data",
     withCredentials: true,
@@ -11,7 +11,8 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "http://rendev.link/",
+
+  baseURL: "http://13.125.145.26/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
