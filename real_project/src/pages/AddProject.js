@@ -107,14 +107,11 @@ const [seeDate,setSeeDate] =useState("")
   // const [endMonth, setEndMonth] = useState("");
   // const [endDay, setEndDay] = useState("");
 
-
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
       setEndDate(end);
   };
-
-
 
   //스케쥴 데이터
 
@@ -205,7 +202,7 @@ const [seeDate,setSeeDate] =useState("")
               />
             </CalendarWrap>
             <CalendarInfoWrap>
-              {/* <Footer start={start} end={end} /> */}
+              <Footer start={startDate} end={endDate} />
             </CalendarInfoWrap>
             <div></div>
           </div>
