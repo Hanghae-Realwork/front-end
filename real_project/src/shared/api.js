@@ -20,6 +20,17 @@ const api = axios.create({
   },
 });
 
+
+
+// const logApi = axios.create({
+//   baseURL: "https://43.200.119.149/",
+
+//   headers: {
+//     "content-type": "application/json;charset=UTF-8",
+//     accept: "application/json,",
+//     withCredentials: true,
+//   },
+// });
 // axios.defaults.withCredentials = true;
 
 //토큰
