@@ -11,7 +11,6 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-
   baseURL: "http://52.78.205.196/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
@@ -20,10 +19,13 @@ const api = axios.create({
   },
 });
 
-// 현재 테스트코드
+// 테스트(재영님)
 // baseURL: "http://13.125.145.26/",
-  // 주혁님 코드 : https
 
+// 테스트(형진님)
+// baseURL: "http://52.78.205.196/",
+
+// 주혁님 코드 : https
   // baseURL: "https://43.200.119.149/",
   // baseURL: "https://rendev.link/",
 

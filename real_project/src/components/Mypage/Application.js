@@ -6,6 +6,7 @@ import Check from "../../image/check.svg"
 import { useDispatch } from "react-redux";
 import { loadApplyAxios } from "../../redux/modules/postProfile";
 import TagCompoApp from "./TagCompoApp";
+import EmptyCard from "./EmptyCard";
 
 
 const Application = () => {
@@ -17,17 +18,22 @@ const Application = () => {
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
 
-
+// console.log(data)
     useEffect(() => {
         if (!(nickname_Info === undefined || nickname_Info === null)) {
             dispatch(loadApplyAxios(nickname_Info));
       }
     }, [nickname_Info]);
+  
 
+  
+  
+  
 
-    return (
-      <RightMapingWrap>
-      {data === undefined
+  return (
+
+    <RightMapingWrap>
+      { data.length > 0 ?       data === undefined
         ? null
         : data.map((list, idx) => {
           //작성시간 함수
@@ -51,7 +57,9 @@ const Application = () => {
                   <CardTotalWrap>
                     <TopWrap>
                       <UserText>{data && data[idx].nickname}</UserText>
-                      <UserText><DisplayCreatedAt /></UserText>
+                      <UserText>
+                        <DisplayCreatedAt />
+                      </UserText>
                     </TopWrap>
                     <TitleWrap>
                       <TitleText>{data && data[idx].title}</TitleText>
@@ -66,10 +74,10 @@ const Application = () => {
                     <RoleWrap>
                       <UserText>보유 기술</UserText>
                       <RoleText>
-                        {data && data[idx].ProjectSkills.map((list, idx) => {
-                          return <TagCompoApp key={idx} skills={list} />
-                        })}
-
+                        {data &&
+                          data[idx].ProjectSkills.map((list, idx) => {
+                            return <TagCompoApp key={idx} skills={list} />;
+                          })}
                       </RoleText>
                     </RoleWrap>
                     <ProjectLimit>
@@ -87,41 +95,56 @@ const Application = () => {
                   </CardTotalWrap>
                 </CardAllWrap>
               </RightCardWrap>
-
-                <InterviewButtonWrap>
-                  <ButtonWrap>
-                    <InterviewButton>면접 보기</InterviewButton>
-                    <InterviewDateWrap>
-                      <InterviewTimeText>
-                        0000년 00월 00일
-                      </InterviewTimeText>
-                      <InterviewTimeText>시간: 분 </InterviewTimeText>
-                    </InterviewDateWrap>
-                  </ButtonWrap>
-                  <InterviewDateWrap>
-                    <CodeText>면접 코드: 123-123</CodeText>
-                  </InterviewDateWrap>
-                </InterviewButtonWrap>
-
-              <BeltWrap>
-                <CourseLabel>
-                  지원서 접수{" "}
-                  <img src={Check} style={{ marginLeft: "6px" }}></img>
-                </CourseLabel>
-                <ConectLine />
-                <CourseLabel>
-                  면접 완료{" "}
-                  <img src={Check} style={{ marginLeft: "6px" }}></img>
-                </CourseLabel>
-                <ConectLine />
-                <CourseLabel>
-                  매칭 완료{" "}
-                  <img src={Check} style={{ marginLeft: "6px" }}></img>
-                </CourseLabel>
-              </BeltWrap>
+              {data &&
+                data[idx].Applications.map((list, idx) => {
+                  return (
+                    <div key={idx}>
+                      {" "}
+                      <InterviewButtonWrap>
+                        <ButtonWrap>
+                          <InterviewButton>면접 보기</InterviewButton>
+                          <InterviewDateWrap>
+                            <InterviewTimeText>
+                              {data && list.schedule.slice(0, 4)}년{" "}
+                              {data && list.schedule.slice(5, 7)}월{" "}
+                              {data && list.schedule.slice(8, 10)}일
+                            </InterviewTimeText>
+                            <InterviewTimeText>
+                              {data && list.schedule.slice(11, 13)}시{" "}
+                              {data && list.schedule.slice(14, 16)}분{" "}
+                            </InterviewTimeText>
+                          </InterviewDateWrap>
+                        </ButtonWrap>
+                        <InterviewDateWrap>
+                          <CodeText>
+                            면접 코드: {data && list.interviewCode}
+                          </CodeText>
+                        </InterviewDateWrap>
+                      </InterviewButtonWrap>
+                      <BeltWrap>
+                        <CourseLabel>
+                          지원서 접수{" "}
+                          <img src={Check} style={{ marginLeft: "6px" }}></img>
+                        </CourseLabel>
+                        <ConectLine />
+                        <CourseLabel>
+                          면접 완료{" "}
+                          <img src={Check} style={{ marginLeft: "6px" }}></img>
+                        </CourseLabel>
+                        <ConectLine />
+                        <CourseLabel>
+                          매칭 완료{" "}
+                          <img src={Check} style={{ marginLeft: "6px" }}></img>
+                        </CourseLabel>
+                      </BeltWrap>
+                    </div>
+                  );
+                })}
+         
             </RightContentWrap>
           );
-        })}
+        }) : <EmptyCard/> }
+
     </RightMapingWrap>
 
     );

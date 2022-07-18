@@ -42,11 +42,13 @@ const FindProjectStep01 = (props) => {
   //MVP
   const [schedule, SetSchedule] = useState([]);
   const [seeDate,setSeeDate] =useState("")
+
   useEffect(() => {
     if (date.length === 8) {
       setDate(date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
     }
   }, [date]);
+
   useEffect(() => {
     if (time.length === 6) {
       setTime(time.replace(/(\d{2})(\d{2})(\d{2})/, "$1:$2:$3"));
@@ -54,8 +56,6 @@ const FindProjectStep01 = (props) => {
   }, [time]);
 
 
-  
-  console.log(seeDate)
   const onChangeDate = (e) => {
     setDate(e.target.value);
 
@@ -107,7 +107,6 @@ const FindProjectStep01 = (props) => {
   // const [endMonth, setEndMonth] = useState("");
   // const [endDay, setEndDay] = useState("");
 
-
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
@@ -145,7 +144,7 @@ const FindProjectStep01 = (props) => {
 
 
 
-  //스케쥴 데이터
+
 
   var i = [date, time].join(" ");
   const onClickSchedule = () => {
@@ -236,7 +235,7 @@ const FindProjectStep01 = (props) => {
               />
             </CalendarWrap>
             <CalendarInfoWrap>
-              {/* <Footer start={start} end={end} /> */}
+              <Footer start={startDate} end={endDate} />
             </CalendarInfoWrap>
             <div></div>
           </div>

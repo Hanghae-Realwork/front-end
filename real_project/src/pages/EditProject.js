@@ -122,104 +122,164 @@ function FindProjectStep01 (props) {
   return (
     <>
       <FindProjectAllWrap>
-          <FindprojectTopWrap>
-            <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
-          </FindprojectTopWrap>
-          <HeadLine />
-          <FindProjectInputTitle>
-            <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput ref={titleRef} id="title" type="text" defaultValue={userEdit[0]?.title}></ProjectInput>
-          </FindProjectInputTitle>
-          <FindProjectInputTitle>
-            <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-            <ProjectInput ref={subscriptRef} id="subscript" type="text" defaultValue={userEdit[0]?.subscript}></ProjectInput>
-          </FindProjectInputTitle>
-          <FindProjectInputDate>
-            <ProjectTitleText>프로젝트 기간</ProjectTitleText>
-            <div>
-               달력이 들어갈 공간 입니다.
-              <div>
-              </div>
-            </div>
-          </FindProjectInputDate>
-          <FindProjectInputTitle>
-            <ProjectTitleText>팀 상세 설명</ProjectTitleText>
-            <ReMainConWrap>
-              <RecMainCon ref={detailsRef} id="details" type="text" defaultValue={userEdit[0]?.details} />
-                <PhotoUPloadWrap>
-                  {filesImg ? (<UpPhotoArea alt="sample" id="showImg" src={filesImg} />
-                ) : (<DisablePhotoWrap></DisablePhotoWrap>)}
-                  <EditWrapPhoto>
-                    {filesImg ? (
-                      <PhotoText>수정하기 <input name="imgUpload" type="file" id="add_img"
-                          accept="image/*" onChange={onChangeImg}/>
-                      </PhotoText>
-                    ) : (
-                      <PhotoText>등록하기 <input name="imgUpload" type="file" id="add_img"
-                          accept="image/*" onChange={onChangeImg}/>
-                      </PhotoText>
-                    )}
-                  </EditWrapPhoto>
-                </PhotoUPloadWrap>
-            </ReMainConWrap>
-          </FindProjectInputTitle>
-          <FindProjectInputTitle>
-            <ProjectTitleText>구하는 직군</ProjectTitleText>
-            <div>
-              <label><input id="role" type="radio" name="Radio"  value="frontend" onChange={onChangeRole} />FrontEnd</label>
-              <label><input id="role" type="radio" name="Radio" value="backend" onChange={onChangeRole} />BackEnd</label>
-              <label><input id="role" type="radio" name="Radio" value="designer" onChange={onChangeRole} />Designer</label>
-            </div>
-          </FindProjectInputTitle>
-          
-          <SkillWrap>
-                <SkillTitleTextTag>개발자</SkillTitleTextTag>
-                <SelectBoxTab>
-                  {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
-                      return (
-                        <TecLabel key={idx}>
-                          <CheckBox type="checkbox" id="skills" value={list.data}
-                            onChange={(e) => {
-                              //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
-                              onCheckedElement(
-                                e.target.checked,
-                                e.target.value
-                              );
-                            }}
-                            checked={ checkList.includes(list.data) ? true : false }
-                          ></CheckBox>
-                          {list.data}
-                        </TecLabel>
-                      );
-                    })}
-                    </SelectBoxTab>
-                    </SkillWrap>
-                    <SkillWrap>
-                <SkillTitleTextTag>디자이너</SkillTitleTextTag>
-                <SelectBoxTab>
-                  {designerSkills_list && designerSkills_list.map((list, idx) => {
-                      return (
-                        <TecLabel key={idx}>
-                          <CheckBox type="checkbox" id="skills" value={list.data}
-                            onChange={(e) => {
-                              onCheckedElement(
-                                e.target.checked,
-                                e.target.value
-                              );
-                            }}
-                          ></CheckBox>
-                          {list.data}
-                        </TecLabel>
-                      );
-                    })}
-                </SelectBoxTab>
-              </SkillWrap>
+        <FindprojectTopWrap>
+          <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
+        </FindprojectTopWrap>
+        <HeadLine />
+        <FindProjectInputTitle>
+          <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
+          <ProjectInput
+            ref={titleRef}
+            id="title"
+            type="text"
+            defaultValue={userEdit[0]?.title}
+          ></ProjectInput>
+        </FindProjectInputTitle>
+        <FindProjectInputTitle>
+          <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
+          <ProjectInput
+            ref={subscriptRef}
+            id="subscript"
+            type="text"
+            defaultValue={userEdit[0]?.subscript}
+          ></ProjectInput>
+        </FindProjectInputTitle>
+        <FindProjectInputDate>
+          <ProjectTitleText>프로젝트 기간</ProjectTitleText>
           <div>
-            캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
+            달력이 들어갈 공간 입니다.
+            <div></div>
           </div>
-          <SubmitButtonWrap>
-            <SubmitButton onClick={CompliteEdit} >등록하기</SubmitButton>
-          </SubmitButtonWrap>
+        </FindProjectInputDate>
+        <FindProjectInputTitle>
+          <ProjectTitleText>팀 상세 설명</ProjectTitleText>
+          <ReMainConWrap>
+            <RecMainCon
+              ref={detailsRef}
+              id="details"
+              type="text"
+              defaultValue={userEdit[0]?.details}
+            />
+            <PhotoUPloadWrap>
+              {filesImg ? (
+                <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
+              ) : (
+                <DisablePhotoWrap></DisablePhotoWrap>
+              )}
+              <EditWrapPhoto>
+                {filesImg ? (
+                  <PhotoText>
+                    수정하기{" "}
+                    <input
+                      name="imgUpload"
+                      type="file"
+                      id="add_img"
+                      accept="image/*"
+                      onChange={onChangeImg}
+                    />
+                  </PhotoText>
+                ) : (
+                  <PhotoText>
+                    등록하기{" "}
+                    <input
+                      name="imgUpload"
+                      type="file"
+                      id="add_img"
+                      accept="image/*"
+                      onChange={onChangeImg}
+                    />
+                  </PhotoText>
+                )}
+              </EditWrapPhoto>
+            </PhotoUPloadWrap>
+          </ReMainConWrap>
+        </FindProjectInputTitle>
+        <FindProjectInputTitle>
+          <ProjectTitleText>구하는 직군</ProjectTitleText>
+          <div>
+            <label>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="frontend"
+                onChange={onChangeRole}
+              />
+              FrontEnd
+            </label>
+            <label>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="backend"
+                onChange={onChangeRole}
+              />
+              BackEnd
+            </label>
+            <label>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="designer"
+                onChange={onChangeRole}
+              />
+              Designer
+            </label>
+          </div>
+        </FindProjectInputTitle>
+
+        <SkillWrap>
+          <SkillTitleTextTag>개발자</SkillTitleTextTag>
+          <SelectBoxTab>
+            {dvelopSkills_list &&
+              dvelopSkills_list.map((list, idx) => {
+                return (
+                  <TecLabel key={idx}>
+                    <CheckBox
+                      type="checkbox"
+                      id="skills"
+                      value={list.data}
+                      onChange={(e) => {
+                        //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                      checked={checkList.includes(list.data) ? true : false}
+                    ></CheckBox>
+                    {list.data}
+                  </TecLabel>
+                );
+              })}
+          </SelectBoxTab>
+        </SkillWrap>
+        <SkillWrap>
+          <SkillTitleTextTag>디자이너</SkillTitleTextTag>
+          <SelectBoxTab>
+            {designerSkills_list &&
+              designerSkills_list.map((list, idx) => {
+                return (
+                  <TecLabel key={idx}>
+                    <CheckBox
+                      type="checkbox"
+                      id="skills"
+                      value={list.data}
+                      onChange={(e) => {
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                    ></CheckBox>
+                    {list.data}
+                  </TecLabel>
+                );
+              })}
+          </SelectBoxTab>
+        </SkillWrap>
+        <div>
+          캘린더 및 일정 잡는 기능이 들어갈 페이지 입니다. 추후 보강 됩니다.
+        </div>
+        <SubmitButtonWrap>
+          <SubmitButton onClick={CompliteEdit}>수정하기</SubmitButton>
+        </SubmitButtonWrap>
       </FindProjectAllWrap>
     </>
   );
