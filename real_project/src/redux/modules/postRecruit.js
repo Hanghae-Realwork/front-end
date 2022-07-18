@@ -172,7 +172,7 @@ export const editRecruitAxios = (
     .then((res) => {
       console.log('res res res')
       dispatch(
-        detailRecruit({
+        editRecruit({
           title: title,
           details: details,
           subscript: subscript,

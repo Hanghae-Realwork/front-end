@@ -4,10 +4,10 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { loadEmployAxios } from "../redux/modules/postEmploy";
 
-import NavigationBarProject from "../components/NaviBarProject";
 import CardEmpol from "../components/CardEmpol";
 import TagCompoDes from "../components/Tag/TagCompoDes";
 import TagCompoDev from "../components/Tag/TagCompoDev";
+import NavigationBarResume from "../components/NaviBarResume";
 
 const MainEmployment = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const MainEmployment = () => {
   //수정중
   return (
     <>
-      <NavigationBarProject />
+      <NavigationBarResume />
       <CardBackGround>
         <CardContainerWrap>
           {resumes === undefined ? null : resumes.map((list, idx) => {

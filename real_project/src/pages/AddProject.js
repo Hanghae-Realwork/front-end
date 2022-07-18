@@ -187,7 +187,7 @@ const [seeDate,setSeeDate] =useState("")
               />
             </CalendarWrap>
             <CalendarInfoWrap>
-              <Footer start={start} end={end} />
+              {/* <Footer start={start} end={end} /> */}
             </CalendarInfoWrap>
             <div></div>
           </div>

@@ -25,8 +25,8 @@ function NavigationBarResume() {
                 </MainNavigation>
                 <WriteButton onClick={() => {if (loginInfo === false) {alert("로그인을 해주세요!");
                 return false}if (loginInfo === true) {dispatch(checkUserValidation())
-                navigate(`/findprojectstep1`);}
-              }}>프로젝트 등록 </WriteButton>
+                navigate(`/addprofile`);}
+              }}>크루원 찾기 </WriteButton>
 
             </MainNavigationWrap>
 
