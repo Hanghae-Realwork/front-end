@@ -45,7 +45,6 @@ function FindProjectStep01 (props) {
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const userEdit = useSelector((state) => state.postRecruit.project);
 
-  console.log(userEdit)
 
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
@@ -95,8 +94,7 @@ function FindProjectStep01 (props) {
   const CompliteEdit = async() => {
     frm.append("photos", files[0]);
     try {
-        await dispatch(projectsPhotosAxios(frm)).then((success) => {
-
+      await dispatch(projectsPhotosAxios(frm)).then((success) => {
           dispatch(
             editRecruitAxios(
               projectId,

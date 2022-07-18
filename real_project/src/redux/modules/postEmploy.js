@@ -76,18 +76,7 @@ export const resumesCreateAxios = (
    _resumeId,
    _nickname
 ) => {
-  // console.log(
-  //   content,
-  //   resumeImage,
-  //   start,
-  //   end,
-  //   role,
-  //   skills,
-  //   content2,
-  //   content3,
-  //   _resumeId,
-  //   _nickname
-  // );
+
   return async function (dispatch) {
     await apis
       .resumesCreate(
@@ -101,7 +90,7 @@ export const resumesCreateAxios = (
         content3
       )
       .then((response) => {
-        
+
         dispatch(
           createEmploy({
             content: content,

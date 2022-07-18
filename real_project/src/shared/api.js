@@ -1,9 +1,9 @@
 import axios from "axios";
-import { getCookie } from "./cookie";
+
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "http://13.125.145.26/",
+  baseURL: "http://rendev.link/",
   headers: {
     "content-type": "multipart/form-data",
     withCredentials: true,
@@ -11,8 +11,7 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "http://13.125.145.26/",
-
+  baseURL: "http://rendev.link/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
@@ -20,11 +19,12 @@ const api = axios.create({
   },
 });
 
-// 주혁님 코드 : https
-// baseURL: "https://43.200.119.149/",
-// baseURL: "https://rendev.link/",
-  
+// 현재 테스트코드
+// baseURL: "http://13.125.145.26/",
+  // 주혁님 코드 : https
 
+  // baseURL: "https://43.200.119.149/",
+  // baseURL: "https://rendev.link/",
 
   //토큰
   api.interceptors.request.use(function (config) {
@@ -137,6 +137,7 @@ export const apis = {
   //////////////////////
 
   //  - 9. 프로젝트 등록
+  
   projectsCreate: (
     title,
     details,
@@ -176,8 +177,7 @@ export const apis = {
     start,
     end,
     skills,
-    photos,
-    schedule
+    photos
   ) =>
     api.put(`/api/projects/${projectId}`, {
       title: title,
@@ -188,7 +188,7 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
-      schedule: schedule,
+
     }),
 
   //  - 13. 프로젝트 삭제
