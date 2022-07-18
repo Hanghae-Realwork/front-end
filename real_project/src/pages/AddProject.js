@@ -10,6 +10,10 @@ import DateSingle from "../components/Date/DatePickerSingle"
 import DatePicker from "react-datepicker";
 
 import addimage from "../image/addimage.svg"
+import upicon from "../image/upicon.svg"
+import downicon from "../image/downicon.svg"
+
+
 
 const FindProjectStep01 = (props) => {
   const dispatch = useDispatch();
@@ -41,8 +45,8 @@ const FindProjectStep01 = (props) => {
 
   //MVP
   const [schedule, SetSchedule] = useState([]);
-  const [seeDate, setSeeDate] = useState("")
-  
+  const [seeDate,setSeeDate] =useState("")
+
   useEffect(() => {
     if (date.length === 8) {
       setDate(date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
@@ -113,7 +117,33 @@ const FindProjectStep01 = (props) => {
       setEndDate(end);
   };
 
-  //스케쥴 데이터
+
+  // 데이피커 테스트 코드
+  const SingleCalender = () => {
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(null);
+    const onChange = (dates) => {
+      const [start, end] = dates;
+      setStartDate(start);
+      setEndDate(end);
+    };
+    return (
+      <DatePicker
+        selected={startDate}
+        onChange={onChange}
+        startDate={startDate}
+        endDate={endDate}
+        dateFormat="YYYY-MM-DD"
+        locale="ko" // 달력 한글화
+        minDate={new Date()}
+        selectsRange
+        monthsShown={1}
+        selectsDisabledDaysInRange
+        inline
+      />
+    );
+  };
+
 
   var i = [date, time].join(" ");
   const onClickSchedule = () => {
@@ -155,6 +185,8 @@ const FindProjectStep01 = (props) => {
       console.log(err);
     }
   };
+
+
 
   return (
     <>
@@ -310,34 +342,34 @@ const FindProjectStep01 = (props) => {
               })}
           </SelectBoxTab>
         </SkillWrap>
-        {/* <SingleDateWrap> */}
-        <FindProjectInputTitle>
-          <H3>면접 가능 시간</H3>
-          <Div>
-            <InputEx
-              requiredtype="text"
-              placeholder="2022-01-01"
-              value={date}
-              maxLength={8}
-              onChange={onChangeDate}
-            />
-            <InputEx
-              requiredtype="text"
-              placeholder="02:02:02"
-              value={time}
-              maxLength={6}
-              onChange={onChangeTime}
-            />
-            <div>
-              {schedule.map((list, idx) => {
-                return <h3 key={idx}> {seeDate} </h3>;
-              })}
-            </div>
-
-            <button onClick={onClickSchedule}>등록하기</button>
-          </Div>
-        </FindProjectInputTitle>
-
+          <ProjectTitleText>면접 가능 시간</ProjectTitleText>
+          <InterviewTableWrap>
+          <CalenderWrap>
+            <SingleCalender />      
+          </CalenderWrap>      
+          <TimeWrap>
+            <TimeArea>
+              <HourWrap> 
+                <HourButton><img src={upicon}/></HourButton>
+                <HourInput></HourInput>
+                <HourButton><img src={downicon}/></HourButton>
+              </HourWrap>
+              <span style={{fontSize:"14px"}}>:</span>
+              <HourWrap> 
+                <HourButton><img src={upicon}/></HourButton>
+                <HourInput></HourInput>
+                <HourButton><img src={downicon}/></HourButton>
+              </HourWrap>
+              </TimeArea>
+                <TimeButton onClick={onClickSchedule}>시간 추가 </TimeButton>
+              </TimeWrap>
+              <div>
+                {schedule.map((list, idx) => {
+                  return <h3 key={idx}> {seeDate} </h3>;
+                })}
+              </div>
+              
+          </InterviewTableWrap>
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
         </SubmitButtonWrap>
@@ -405,7 +437,7 @@ const InputMainTextWrap = styled.div`
 const ProjectInput = styled.input`
   border: none;
   outline: none;
-  border-bottom: 1px solid black;
+  border-bottom: 0.5px solid black;
   padding: 8px;
   width: 1000px;
   margin-top: 16px;
@@ -459,11 +491,6 @@ const ProjectTitleText = styled.span`
   gap: 15px;
   margin-bottom: 20px;
 `
-
-const SkillTitleTextTag = styled.p`
-  font-weight: bold;
-  color: #ae97e3;
-`;
 
 const TecLabel = styled.label`
   font-size: 14px;
@@ -521,7 +548,7 @@ const PhotoText = styled.span`
   cursor: pointer;
 `
 const ReMainConWrap = styled.div`
-  border: 1px solid black;
+  border: 0.5px solid black;
   width: 1000px; 
   height: 500px;
   border-radius: 4px;  
@@ -554,50 +581,83 @@ const PhotoUPloadWrap = styled.div`
   align-items: center;
 `
 
-const SingleDateWrap = styled.div`
-  border: 1px solid black;
+const TimeWrap = styled.div`
+  border: 0.5px solid #D9D9D9;
+  border-radius: 4px;
+  width: 281px;
+  height: 320px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 `
-export default FindProjectStep01;
 
-const TimeWrap = styled.div`
-  border: 1px solid black;
+const TimeArea = styled.div`
+  /* border: 1px solid black;  */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+`
+
+const HourWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+`
+
+//MVP CSS
+
+const CalenderWrap = styled.div`
+  border: 0.5px solid #d9d9d9;
+  border-radius: 4px;
+  width: 350px;
+  height: 320px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 `
 
-const Time1Wrap = styled.div`
-  border: 1px solid black;
+const HourButton = styled.button`
+  padding: 12px 25px 12px 25px;
+  border-radius: 2px 2px 0px 0px;
+  border: 0.5px solid #8d8d8d;
+  outline: none;
+  cursor: pointer;
 `
 
-const Time2Wrap = styled.div`
-  border: 1px solid black;
-`
-//MVP CSS
-
-const H3 = styled.h3`
-margin-right:40px;`
-
-const InputEx = styled.input`
-
-margin-bottom:20px;
-padding:15px;
-font-size: 15px;
+const HourInput = styled.input`
+  width: 60px;
+  height: 36px;
+  border: 0.5px solid #F3F3F3;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  padding: 7px 0px 7px 0px;
+  outline: none;
 `
 
-const Div = styled.div`
-display : flex;
-flex-direction: column;
-justify-content:center;
-
+const TimeButton = styled.button`
+  padding: 5px 45px 5px 45px;
+  background: #303032;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
 `
 
-
+const InterviewTableWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+`
 
 const DatePickerWrapper = styled(
   ({ className, ...props }) => 
@@ -619,19 +679,19 @@ const Calendar = styled.div`
 `;
 
   const CalendarWrap =styled.div`
-    border: 1px solid black;
+    border: 0.5px solid black;
     border-radius: 4px;
     margin-top: 30px;
     margin-bottom: 30px;
-    width: 700px;
+    width: 625px;
     height: 330px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
   `
 
   const CalendarInfoWrap = styled.div`
-    border: 1px solid black;
+    border: 0.5px solid black;
     width: 297px;
     height: 43px;
     display: flex;
@@ -641,5 +701,5 @@ const Calendar = styled.div`
 
   `
 
-
+export default FindProjectStep01;
 
