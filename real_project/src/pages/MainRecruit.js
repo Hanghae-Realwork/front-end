@@ -7,6 +7,7 @@ import { loadRecruitAxios } from "../redux/modules/postRecruit";
 import Card from "../components/CardRecruit";
 import TagCompoDes from "../components/Tag/TagCompoDes";
 import TagCompoDev from "../components/Tag/TagCompoDev";
+import NavigationBarResume from "../components/NaviBarResume";
 
 
 const MainRecruit = () => {
@@ -19,8 +20,8 @@ const MainRecruit = () => {
   }, []);
 
   return (
-    <div>
-      {/* <RecSelectCompo /> */}
+      <>
+      <NavigationBarResume />
       <CardBackGround>
         <CardContainerWrap>
           {recruit === undefined ? null : recruit.map((list, idx) => {
@@ -28,7 +29,7 @@ const MainRecruit = () => {
               })}
         </CardContainerWrap>
       </CardBackGround>
-    </div>
+      </>
   );
 };
 
@@ -51,9 +52,4 @@ const CardBackGround = styled.div`
   /* border: 1px solid black; */
 `
 
-
 export default MainRecruit;
-
-{
-  /* <SelectBoxButton onClick={() => {navigate(`/selectbox`)}}>보유스택</SelectBoxButton> */
-}
