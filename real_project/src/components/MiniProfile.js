@@ -16,7 +16,7 @@ function MiniResume() {
     const dispatch = useDispatch();
 
     const data = useSelector((state) => state.postEmploy.resumes);
-    console.log(data)
+
 
 
   return (
