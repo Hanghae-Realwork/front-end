@@ -21,14 +21,14 @@ const MainRecruit = () => {
 
   return (
       <>
-      <NavigationBarProject />
-      <CardBackGround>
-        <CardContainerWrap>
-          {recruit === undefined ? null : recruit.map((list, idx) => {
-            return <Card key={idx} data={list} />;
-              })}
-        </CardContainerWrap>
-      </CardBackGround>
+        <NavigationBarProject />
+        <CardBackGround>
+          <CardContainerWrap>
+            {recruit === undefined ? null : recruit.map((list, idx) => {
+              return <Card key={idx} data={list} />;
+                })}
+          </CardContainerWrap>
+        </CardBackGround>
       </>
   );
 };
@@ -38,9 +38,11 @@ const CardContainerWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  max-width: 1440px;
-  padding: 33px 50px 0px 50px;
+  width: 1200px;
+  /* padding: 33px 50px 0px 50px; */
   /* border:1px solid black; */
+  gap: 24px;
+  margin-top: 50px;
 `
 
 const CardBackGround = styled.div`

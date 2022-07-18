@@ -12,7 +12,6 @@ const imgApi = axios.create({
 //기존 api
 const api = axios.create({
   baseURL: "http://13.125.145.26/",
-
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",

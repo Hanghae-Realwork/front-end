@@ -38,8 +38,9 @@ const CardContainerWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  max-width: 1440px;
-  padding: 33px 50px 0px 50px;
+  width: 1200px;
+  gap: 24px;
+  margin-top: 50px;
 `
 
 const CardBackGround = styled.div`
