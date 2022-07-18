@@ -20,27 +20,19 @@ const api = axios.create({
   },
 });
 
+// 주혁님 코드 : https
+// baseURL: "https://43.200.119.149/",
+// baseURL: "https://rendev.link/",
+  
 
 
-// const logApi = axios.create({
-//   baseURL: "https://43.200.119.149/",
-
-//   headers: {
-//     "content-type": "application/json;charset=UTF-8",
-//     accept: "application/json,",
-//     withCredentials: true,
-//   },
-// });
-// axios.defaults.withCredentials = true;
-
-//토큰
-api.interceptors.request.use(function (config) { 
-
-  const accessToken = `${localStorage.getItem("token")}`;
+  //토큰
+  api.interceptors.request.use(function (config) {
+    const accessToken = `${localStorage.getItem("token")}`;
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
- 
-   return config;
-});
+
+    return config;
+  });
 
 
 //imgForm토큰
