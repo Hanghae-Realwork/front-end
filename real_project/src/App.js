@@ -32,13 +32,9 @@ import { useDispatch } from "react-redux";
 import { checkUserValidation } from "./redux/modules/user";
 
 
-
-
-
-
 function App() {
   
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
    dispatch(checkUserValidation());
   }, [])
