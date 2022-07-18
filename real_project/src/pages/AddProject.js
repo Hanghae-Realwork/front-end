@@ -12,6 +12,7 @@ import DatePicker from "react-datepicker";
 import addimage from "../image/addimage.svg"
 import upicon from "../image/upicon.svg"
 import downicon from "../image/downicon.svg"
+import { min } from "lodash";
 
 
 
@@ -30,44 +31,20 @@ const FindProjectStep01 = (props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const [startMonth, setStartMonth] = useState("")
-  const [startDay, setStartDay] = useState("")
-  
-  const [endMonth, setEndMonth] = useState("")
-  const [endDay,setEndDay] = useState("")
+  const [startMonth, setStartMonth] = useState("");
+  const [startDay, setStartDay] = useState("");
+
+  const [endMonth, setEndMonth] = useState("");
+  const [endDay, setEndDay] = useState("");
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
 
-  //MVP 스케쥴
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  //시간과 분
+  const [hour, setHour] = useState(24);
+  // const minute = useRef(0)
+  const [minute, setMinute]=useState(0)
 
-  //MVP
-  const [schedule, SetSchedule] = useState([]);
-  const [seeDate,setSeeDate] =useState("")
-
-  useEffect(() => {
-    if (date.length === 8) {
-      setDate(date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
-    }
-  }, [date]);
-
-  useEffect(() => {
-    if (time.length === 6) {
-      setTime(time.replace(/(\d{2})(\d{2})(\d{2})/, "$1:$2:$3"));
-    }
-  }, [time]);
-
-
-  const onChangeDate = (e) => {
-    setDate(e.target.value);
-
-  };
-  const onChangeTime = (e) => {
-    setTime(e.target.value);
-
-  };
 
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
@@ -104,19 +81,11 @@ const FindProjectStep01 = (props) => {
     });
   };
 
-  //캘린더
-  // const [startMonth, setStartMonth] = useState("");
-  // const [startDay, setStartDay] = useState("");
-
-  // const [endMonth, setEndMonth] = useState("");
-  // const [endDay, setEndDay] = useState("");
-
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
-      setEndDate(end);
+    setEndDate(end);
   };
-
 
   // 데이피커 테스트 코드
   const SingleCalender = () => {
@@ -145,15 +114,10 @@ const FindProjectStep01 = (props) => {
   };
 
 
-  var i = [date, time].join(" ");
-  const onClickSchedule = () => {
-    schedule.push(i);
-  };
- 
+
 
   // 저장 버튼
   const CompliteButton = async () => {
-  
     frm.append("photos", files[0]);
     try {
       await dispatch(projectsPhotosAxios(frm)).then((success) => {
@@ -185,9 +149,40 @@ const FindProjectStep01 = (props) => {
       console.log(err);
     }
   };
-
-
-
+  // const hourUpOnClick = () => {
+  // if (hour < 24) {
+  //   setHour(hour + 1);
+  // } else {
+  //   setHour(0);
+    
+  // }
+  // }
+  //   const hourDownOnClick = () => {
+  //     if (hour < 24) {
+  //       setHour(hour + 1);
+  //     } else {
+  //       setHour(0);
+  //     }
+  //   };
+  const minuteUpOnClick = () => {
+    if (minute < 59) {
+      setMinute(minute + 1);
+      console.log(minute)
+    } else {
+      setMinute(0);
+      setHour(hour + 1);
+    }
+  }
+    // const minuteDownOnClick = () => {
+    //   if (minute < 1) {
+    //     setMinute(59);
+    //     setHour(hour - 1);
+    //   } else {
+    //     setMinute(minute - 1);
+  
+    //   }
+    // };
+  
   return (
     <>
       <FindProjectAllWrap>
@@ -258,8 +253,13 @@ const FindProjectStep01 = (props) => {
                 {filesImg ? (
                   <PhotoText>
                     수정하기
-                    <input name="imgUpload" type="file" id="add_img"
-                      accept="image/*" onChange={onChangeImg}/>
+                    <input
+                      name="imgUpload"
+                      type="file"
+                      id="add_img"
+                      accept="image/*"
+                      onChange={onChangeImg}
+                    />
                   </PhotoText>
                 ) : (
                   <PhotoText>
@@ -281,23 +281,37 @@ const FindProjectStep01 = (props) => {
           <ProjectTitleText>구하는 직군</ProjectTitleText>
           <div>
             <label>
-              <input id="role" type="radio" name="Radio"
-                value="frontend" onChange={onChangeRole}/>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="frontend"
+                onChange={onChangeRole}
+              />
               FrontEnd
             </label>
             <label>
-              <input id="role" type="radio" name="Radio"
-                value="backend" onChange={onChangeRole}/>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="backend"
+                onChange={onChangeRole}
+              />
               BackEnd
             </label>
             <label>
-              <input id="role" type="radio" name="Radio"
-                value="designer" onChange={onChangeRole}/>
+              <input
+                id="role"
+                type="radio"
+                name="Radio"
+                value="designer"
+                onChange={onChangeRole}
+              />
               Designer
             </label>
           </div>
         </InputMainTextWrap>
-
         <SkillWrap>
           <ProjectTitleText>개발자</ProjectTitleText>
           <SelectBoxTab>
@@ -342,34 +356,37 @@ const FindProjectStep01 = (props) => {
               })}
           </SelectBoxTab>
         </SkillWrap>
-          <ProjectTitleText>면접 가능 시간</ProjectTitleText>
-          <InterviewTableWrap>
+        {/* 달력🗓 */}
+        <ProjectTitleText>면접 가능 시간</ProjectTitleText>
+        <InterviewTableWrap>
           <CalenderWrap>
-            <SingleCalender />      
-          </CalenderWrap>      
+            <SingleCalender />
+          </CalenderWrap>
           <TimeWrap>
             <TimeArea>
-              <HourWrap> 
-                <HourButton><img src={upicon}/></HourButton>
-                <HourInput></HourInput>
-                <HourButton><img src={downicon}/></HourButton>
+              <HourWrap>
+                <HourButton>
+                  <img src={upicon}/>
+                </HourButton>
+                <HourInput defaultValue={hour} />
+                <HourButton>
+                  <img src={downicon}/>
+                </HourButton>
               </HourWrap>
-              <span style={{fontSize:"14px"}}>:</span>
-              <HourWrap> 
-                <HourButton><img src={upicon}/></HourButton>
-                <HourInput></HourInput>
-                <HourButton><img src={downicon}/></HourButton>
+              <span style={{ fontSize: "14px"}}>:</span>
+              <HourWrap>
+                <HourButton onClick={minuteUpOnClick}>
+                  <img src={upicon}/>
+                </HourButton>
+                <HourInput type="number"   defaultValue={minute}/>
+                <HourButton >
+                  <img src={downicon} />
+                </HourButton>
               </HourWrap>
-              </TimeArea>
-                <TimeButton onClick={onClickSchedule}>시간 추가 </TimeButton>
-              </TimeWrap>
-              <div>
-                {schedule.map((list, idx) => {
-                  return <h3 key={idx}> {seeDate} </h3>;
-                })}
-              </div>
-              
-          </InterviewTableWrap>
+            </TimeArea>
+            <TimeButton>시간 추가</TimeButton>
+          </TimeWrap>
+        </InterviewTableWrap>
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
         </SubmitButtonWrap>
