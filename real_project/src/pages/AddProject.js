@@ -41,12 +41,14 @@ const FindProjectStep01 = (props) => {
 
   //MVP
   const [schedule, SetSchedule] = useState([]);
-const [seeDate,setSeeDate] =useState("")
+  const [seeDate, setSeeDate] = useState("")
+  
   useEffect(() => {
     if (date.length === 8) {
       setDate(date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
     }
   }, [date]);
+
   useEffect(() => {
     if (time.length === 6) {
       setTime(time.replace(/(\d{2})(\d{2})(\d{2})/, "$1:$2:$3"));
@@ -54,8 +56,6 @@ const [seeDate,setSeeDate] =useState("")
   }, [time]);
 
 
-  
-  console.log(seeDate)
   const onChangeDate = (e) => {
     setDate(e.target.value);
 
