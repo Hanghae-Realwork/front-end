@@ -41,6 +41,7 @@ const CardContainerWrap = styled.div`
   width: 1200px;
   gap: 24px;
   margin-top: 50px;
+  margin-bottom: 50px;
 `
 
 const CardBackGround = styled.div`

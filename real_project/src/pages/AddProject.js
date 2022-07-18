@@ -41,7 +41,7 @@ const FindProjectStep01 = (props) => {
 
   //MVP
   const [schedule, SetSchedule] = useState([]);
-const [seeDate,setSeeDate] =useState("")
+  const [seeDate,setSeeDate] =useState("")
   useEffect(() => {
     if (date.length === 8) {
       setDate(date.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
@@ -115,6 +115,35 @@ const [seeDate,setSeeDate] =useState("")
   };
 
 
+  // 데이피커 테스트 코드
+  const SingleCalender = () => {
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(null);
+    const onChange = (dates) => {
+      const [start, end] = dates;
+      setStartDate(start);
+      setEndDate(end);
+    };
+    return (
+      <DatePicker
+        selected={startDate}
+        onChange={onChange}
+        startDate={startDate}
+        endDate={endDate}
+        dateFormat="YYYY-MM-DD"
+        locale="ko" // 달력 한글화
+        minDate={new Date()}
+        selectsRange
+        monthsShown={1}
+        selectsDisabledDaysInRange
+        inline
+      />
+    );
+  };
+
+
+
+
 
   //스케쥴 데이터
 
@@ -158,6 +187,8 @@ const [seeDate,setSeeDate] =useState("")
       console.log(err);
     }
   };
+
+
 
   return (
     <>
@@ -315,6 +346,8 @@ const [seeDate,setSeeDate] =useState("")
         </SkillWrap>
         {/* <SingleDateWrap> */}
         <FindProjectInputTitle>
+        <SingleCalender></SingleCalender>      
+
           <H3>면접 가능 시간</H3>
           <Div>
             <InputEx
