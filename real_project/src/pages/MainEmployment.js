@@ -1,14 +1,15 @@
 
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
-import CardEmpol from "../components/CardEmpol";
-import SelectCompo from "../components/SelectCompo"
 import { useSelector, useDispatch } from "react-redux";
 import { loadEmployAxios } from "../redux/modules/postEmploy";
 
+import NavigationBarProject from "../components/NaviBarProject";
+import CardEmpol from "../components/CardEmpol";
+import TagCompoDes from "../components/Tag/TagCompoDes";
+import TagCompoDev from "../components/Tag/TagCompoDev";
 
 const MainEmployment = () => {
-  const [updata, setUpdate] = useState();
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.postEmploy.returnResumes);
 
@@ -19,7 +20,7 @@ const MainEmployment = () => {
   //수정중
   return (
     <>
-      <SelectCompo />
+      <NavigationBarProject />
       <CardBackGround>
         <CardContainerWrap>
           {resumes === undefined ? null : resumes.map((list, idx) => {
