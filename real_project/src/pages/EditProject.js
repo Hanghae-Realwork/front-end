@@ -96,10 +96,10 @@ function FindProjectStep01 (props) {
     frm.append("photos", files[0]);
     try {
         await dispatch(projectsPhotosAxios(frm)).then((success) => {
-          console.log()
 
           dispatch(
             editRecruitAxios(
+              projectId,
               titleRef.current.value,
               detailsRef.current.value,
               subscriptRef.current.value,
@@ -113,7 +113,7 @@ function FindProjectStep01 (props) {
           );
 
           })
-        navigate("/mainrecruit");
+        navigate("/mainrecruit/");
         } catch(err){
           alert("error")
           console.log(err)
