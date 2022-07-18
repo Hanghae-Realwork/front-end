@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import Tag from "./TagCompoEmp"
+import TagDes from "./Tag/TagCompoDes"
+import TagDev from "./Tag/TagCompoDev"
 
 import BasicPhoto from "../image/astroman.svg"
 import Flip from "../image/flip.svg"
@@ -46,7 +47,7 @@ function CradEmpol({ data }) {
           <CardBotTag>
             <div>
               {data.resumeskills?.map((list, idx) => {
-                    return <Tag key={idx} skills={list} />;
+                    return <TagDev key={idx} skills={list} />;
                   })}
             </div>
           </CardBotTag>

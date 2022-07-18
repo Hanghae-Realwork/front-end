@@ -3,12 +3,16 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { checkUserValidation, login } from "../redux/modules/user";
 import { useNavigate, useParams, Outlet } from "react-router-dom";
-import astroman from "../image/astroman.svg";
-import email from "../image/letter.svg";
-import Check from "../image/check.svg";
+
 import Application from "../components/Mypage/Application";
 import Recruitment from "../components/Mypage/Recruitment";
 import MyButton from "../components/Mypage/MyPageButton";
+
+import astroman from "../image/astroman.svg";
+import email from "../image/letter.svg";
+import Check from "../image/check.svg";
+import LeftBackground from "../image/mypagBackground.svg"
+
 
 function MyPage() {
   const dispatch = useDispatch();
@@ -24,25 +28,26 @@ function MyPage() {
       <AllMyWrap>
       <MypageBackGround>
         <MyPageLeftWrap>
-          <MyPageProfileWrap>
-            <MyPagePhotoWrap></MyPagePhotoWrap>
-            <NameMyPage>
-              <NameText>{loginInfo.nickname}</NameText>
-            </NameMyPage>
-          </MyPageProfileWrap>
-          <MypageTextWrap>
-            <Mycall>{loginInfo.userId}</Mycall>
-          </MypageTextWrap>
-          <MyPagePasswordWrap>
-            <span>비밀번호 변경</span>
-            <span>회원탈퇴</span>
-          </MyPagePasswordWrap>
+          <LeftBackgroundWrap>
+            <MyPageProfileWrap>
+              <MyPagePhotoWrap/>
+              <ProfilePhotoSpan>프로필 사진 수정</ProfilePhotoSpan>
+              <NameMyPage>
+                <NameText>{loginInfo.nickname}</NameText>
+              </NameMyPage>
+            </MyPageProfileWrap>
+            <MypageTextWrap>
+              <Mycall>{loginInfo.userId}</Mycall>
+            </MypageTextWrap>
+            <MyPagePasswordWrap>
+              <span>비밀번호 변경</span>
+              <span>회원 탈퇴</span>
+            </MyPagePasswordWrap>
+          </LeftBackgroundWrap>
         </MyPageLeftWrap>
 
         <MyPageMainWrap>
-          <MyPageRightWrap>
             <Outlet />
-          </MyPageRightWrap>
         </MyPageMainWrap>
       </MypageBackGround>
       </AllMyWrap>
@@ -83,6 +88,8 @@ const MyPageMainWrap = styled.div`
   position: relative;
   top: -200px;
   left: 60px;
+  width: 900px;
+  gap: 20px;
 `;
 
 const MyPageLeftWrap = styled.div`
@@ -91,25 +98,28 @@ const MyPageLeftWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  width: 306px;
-  height: 710px;
+  width: 315px;
+  height: 627px;
   border-radius: 4px;
   background-color: white;
-  margin-top: -70px;
+  margin-top: -115px;
   position: relative;
   top: -230px;
   left: 25px;
 `;
 
-const MyPageRightWrap = styled.div`
-  /* border: 1px solid black;  */
+const LeftBackgroundWrap = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin-left: 100px;
-  gap: 20px;
-`;
+  width: 306px;
+  height: 615px;
+  background-image: url(${LeftBackground});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+`
 
 // 좌측 프로필 CSS
 const MyPageProfileWrap = styled.div`
@@ -122,7 +132,7 @@ const MyPageProfileWrap = styled.div`
 `;
 
 const MyPagePhotoWrap = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 160px;
   height: 160px;
   border-radius: 100%;
@@ -130,10 +140,19 @@ const MyPagePhotoWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(${astroman});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
+const ProfilePhotoSpan = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+`
+
 const NameMyPage = styled.div`
-  margin-top: 24px;
+  margin-top: 36px;
 `;
 
 const NameText = styled.span`
@@ -146,7 +165,7 @@ const MypageTextWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 10px;
 `;
 const Mycall = styled.span`
   font-size: 16px;
@@ -159,228 +178,228 @@ const MyPagePasswordWrap = styled.div`
   justify-content: center;
   align-items: center;
   gap: 16px;
-  margin-top: 178px;
+  margin-top: 150px;
 `;
 
-// 우측 프로필 CSS
-const RightTopWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 44px;
-  margin-bottom: 48px;
-`;
+// // 우측 프로필 CSS
+// const RightTopWrap = styled.div`
+//   /* border: 1px solid black; */
+//   width: 100%;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: center;
+//   gap: 44px;
+//   margin-bottom: 48px;
+// `;
 
-const MyMenuButton = styled.button`
-  padding: 8px 20px 8px 20px;
-  width: 120px;
-  height: 40px;
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: 20px;
-  background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  margin-bottom: 17px;
-  color: white;
-`;
+// const MyMenuButton = styled.button`
+//   padding: 8px 20px 8px 20px;
+//   width: 120px;
+//   height: 40px;
+//   font-size: 15px;
+//   font-weight: 700;
+//   border-radius: 20px;
+//   background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
+//   border: none;
+//   outline: none;
+//   cursor: pointer;
+//   margin-bottom: 17px;
+//   color: white;
+// `;
 
-const RightCardWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-`;
+// const RightCardWrap = styled.div`
+//   /* border: 1px solid black; */
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
-const InterviewWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 450px;
-`;
+// const InterviewWrap = styled.div`
+//   /* border: 1px solid black; */
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: space-between;
+//   align-items: flex-start;
+//   width: 450px;
+// `;
 
-const InterviewButtonWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  /* border: 1px solid black; */
-  width: 384px;
-  margin-top: 20px;
-`;
+// const InterviewButtonWrap = styled.div`
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: space-between;
+//   align-items: center;
+//   /* border: 1px solid black; */
+//   width: 384px;
+//   margin-top: 20px;
+// `;
 
-const InterviewButton = styled.button`
-  padding: 8px 23px 8px 23px;
-  background-color: #323230;
-  color: white;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-`;
+// const InterviewButton = styled.button`
+//   padding: 8px 23px 8px 23px;
+//   background-color: #323230;
+//   color: white;
+//   border: none;
+//   outline: none;
+//   cursor: pointer;
+//   border-radius: 4px;
+//   font-size: 14px;
+// `;
 
-const InterviewDateWrap = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  /* border: 1px solid black; */
-`;
+// const InterviewDateWrap = styled.div`
+//   display: flex;
+//   flex-flow: column nowrap;
+//   justify-content: center;
+//   align-items: center;
+//   /* border: 1px solid black; */
+// `;
 
-const ButtonWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  /* border: 1px solid black; */
-`;
+// const ButtonWrap = styled.div`
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: center;
+//   align-items: center;
+//   /* border: 1px solid black; */
+// `;
 
-const RightContentWrap = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  width: 385px;
-  /* border: 1px solid black; */
-`;
+// const RightContentWrap = styled.div`
+//   display: flex;
+//   flex-flow: column nowrap;
+//   justify-content: center;
+//   align-items: flex-start;
+//   width: 385px;
+//   /* border: 1px solid black; */
+// `;
 
-const CardAllWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: 384px;
-  height: 307px;
-  background-color: white;
-  border-radius: 4px;
-`;
+// const CardAllWrap = styled.div`
+//   /* border: 1px solid black; */
+//   display: flex;
+//   flex-flow: column nowrap;
+//   justify-content: flex-start;
+//   align-items: center;
+//   width: 384px;
+//   height: 307px;
+//   background-color: white;
+//   border-radius: 4px;
+// `;
 
-const TopWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  /* border: 1px solid black; */
-  width: 350px;
-  margin-top: 20px;
-`;
+// const TopWrap = styled.div`
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: space-between;
+//   align-items: center;
+//   /* border: 1px solid black; */
+//   width: 350px;
+//   margin-top: 20px;
+// `;
 
-const UserText = styled.span`
-  font-size: 12px;
-  font-weight: 400;
-`;
+// const UserText = styled.span`
+//   font-size: 12px;
+//   font-weight: 400;
+// `;
 
-const TitleWrap = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  width: 350px;
-  /* border: 1px solid black; */
-  margin-top: 12px;
-`;
+// const TitleWrap = styled.div`
+//   display: flex;
+//   flex-flow: column nowrap;
+//   justify-content: center;
+//   align-items: flex-start;
+//   width: 350px;
+//   /* border: 1px solid black; */
+//   margin-top: 12px;
+// `;
 
-const TitleText = styled.span`
-  font-size: 18px;
-  font-weight: 700;
-`;
+// const TitleText = styled.span`
+//   font-size: 18px;
+//   font-weight: 700;
+// `;
 
-const ContentText = styled.span`
-  font-size: 14px;
-  font-weight: 400;
-`;
+// const ContentText = styled.span`
+//   font-size: 14px;
+//   font-weight: 400;
+// `;
 
-const RoleWrap = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  /* border: 1px solid black; */
-  margin-top: 10px;
-  width: 350px;
-`;
+// const RoleWrap = styled.div`
+//   display: flex;
+//   flex-flow: column nowrap;
+//   justify-content: center;
+//   align-items: flex-start;
+//   /* border: 1px solid black; */
+//   margin-top: 10px;
+//   width: 350px;
+// `;
 
-const RoleText = styled.span`
-  font-size: 14px;
-  font-weight: 700;
-  margin-top: 2px;
-`;
+// const RoleText = styled.span`
+//   font-size: 14px;
+//   font-weight: 700;
+//   margin-top: 2px;
+// `;
 
-const ProjectLimit = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-  /* border: 1px solid black; */
-  margin-top: 10px;
-  width: 350px;
-`;
+// const ProjectLimit = styled.div`
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: flex-start;
+//   align-items: center;
+//   /* border: 1px solid black; */
+//   margin-top: 10px;
+//   width: 350px;
+// `;
 
-const DateLimitText = styled.span`
-  font-size: 14px;
-  font-weight: 400;
-`;
+// const DateLimitText = styled.span`
+//   font-size: 14px;
+//   font-weight: 400;
+// `;
 
-const DateText = styled.span`
-  font-size: 14px;
-  font-weight: 500;
-  margin-left: 12px;
-`;
+// const DateText = styled.span`
+//   font-size: 14px;
+//   font-weight: 500;
+//   margin-left: 12px;
+// `;
 
-const CardTotalWrap = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-`;
+// const CardTotalWrap = styled.div`
+//   display: flex;
+//   flex-flow: column nowrap;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
-const InterviewTimeText = styled.span`
-  font-size: 12px;
-  font-weight: 400;
-  margin-left: 10px;
-`;
+// const InterviewTimeText = styled.span`
+//   font-size: 12px;
+//   font-weight: 400;
+//   margin-left: 10px;
+// `;
 
-const CodeText = styled.span`
-  font-size: 14px;
-  font-weight: 500;
-`;
+// const CodeText = styled.span`
+//   font-size: 14px;
+//   font-weight: 500;
+// `;
 
-const BeltWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 35px;
-  /* border: 1px solid black; */
-  width: 380px;
-`;
+// const BeltWrap = styled.div`
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 35px;
+//   /* border: 1px solid black; */
+//   width: 380px;
+// `;
 
-const CourseLabel = styled.label`
-  padding: 8px 14px 8px 14px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 20px;
-  background-color: white;
-`;
+// const CourseLabel = styled.label`
+//   padding: 8px 14px 8px 14px;
+//   font-size: 14px;
+//   font-weight: 500;
+//   border-radius: 20px;
+//   background-color: white;
+// `;
 
-const ConectLine = styled.hr`
-  width: 14px;
-`;
+// const ConectLine = styled.hr`
+//   width: 14px;
+// `;
 
-const RightMapingWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-`;
+// const RightMapingWrap = styled.div`
+//   /* border: 1px solid black; */
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
 export default MyPage;

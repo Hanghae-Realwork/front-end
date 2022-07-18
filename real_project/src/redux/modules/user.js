@@ -108,8 +108,6 @@ export const loginAxios = (userEmail, password) => {
     await apis
       .login(userEmail, password, { withCredentials: true })
       .then((res) => {
-       
-        // console.log(res)
         localStorage.setItem("token", res.data.token);
         
         dispatch(checkUserValidation());
@@ -139,9 +137,9 @@ export const checkUserValidation = () => {
       .catch((err) => {
         
         if (err) {
-          console.log(err)
-          logOut();
-          alert("토큰이 만료되셨네요🥹");
+          // console.log(err)
+          // logOut();
+          // alert("토큰이 만료되셨네요🥹");
           return
         }
 

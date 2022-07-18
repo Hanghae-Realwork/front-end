@@ -5,12 +5,13 @@ import styled from "styled-components";
 import { loadRecruitAxios } from "../redux/modules/postRecruit";
 
 import Card from "../components/CardRecruit";
-import RecSelectCompo from "../components/RecSelectCompo";
-import { useLocation } from "react-router-dom";
+import TagCompoDes from "../components/Tag/TagCompoDes";
+import TagCompoDev from "../components/Tag/TagCompoDev";
+import NavigationBarProject from "../components/NaviBarProject";
 
 
 const MainRecruit = () => {
-  let location = useLocation();
+  // let location = useLocation();
   console.log(location);
   const dispatch = useDispatch();
   const recruit = useSelector((state) => state.postRecruit.receiveRecruit);
@@ -20,8 +21,8 @@ const MainRecruit = () => {
   }, []);
 
   return (
-    <div>
-      <RecSelectCompo />
+      <>
+      <NavigationBarProject />
       <CardBackGround>
         <CardContainerWrap>
           {recruit === undefined ? null : recruit.map((list, idx) => {
@@ -29,7 +30,7 @@ const MainRecruit = () => {
               })}
         </CardContainerWrap>
       </CardBackGround>
-    </div>
+      </>
   );
 };
 
@@ -52,9 +53,4 @@ const CardBackGround = styled.div`
   /* border: 1px solid black; */
 `
 
-
 export default MainRecruit;
-
-{
-  /* <SelectBoxButton onClick={() => {navigate(`/selectbox`)}}>보유스택</SelectBoxButton> */
-}

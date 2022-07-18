@@ -158,7 +158,7 @@ function EditProfile() {
               <TitleTextTag>간단한 자기 소개</TitleTextTag>
               <div>
                 <ProfileInput
-                  placeholder={userDescription[0]?.content}
+                  defaultValue={userDescription[0]?.content}
                   ref={introduceRef}
                 ></ProfileInput>
               </div>
@@ -172,37 +172,7 @@ function EditProfile() {
             ) : (
               <NoShowCircleProfile></NoShowCircleProfile>
             )}
-            <PhotoEditWrap>
-              {filesImg ? (
-                <PhotoText>
-                  수정하기
-                  <input
-                    name="imgUpload"
-                    type="file"
-                    id="add_img"
-                    accept="image/*"
-                    onChange={onChangeImg}
-                  />
-                </PhotoText>
-              ) : (
-                <PhotoText>
-                  등록하기
-                  <input
-                    name="imgUpload"
-                    type="file"
-                    id="add_img"
-                    accept="image/*"
-                    onChange={onChangeImg}
-                  />
-                </PhotoText>
-              )}
-            </PhotoEditWrap>
-          </ProfilePicWrap>
-
-          <ProfilePicWrap>
-            <PhotoEditWrap>
-              <PhotoText>삭제</PhotoText>
-            </PhotoEditWrap>
+            <PhotoEditWrap></PhotoEditWrap>
           </ProfilePicWrap>
 
           {/* 사진 */}
@@ -271,7 +241,6 @@ function EditProfile() {
                             // checked={
                             //   checkList.includes(list.data) ? true : false
                             // }
-                          
                           ></CheckBox>
                           {list.data}
                         </TecLabel>
@@ -298,7 +267,6 @@ function EditProfile() {
                                 e.target.value
                               );
                             }}
-                  
                           ></CheckBox>
                           {list.data}
                         </TecLabel>
@@ -312,7 +280,7 @@ function EditProfile() {
         <PortfollioWrap>
           <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
           <ProfileInput
-            placeholder={userDescription[0]?.content2}
+            defaultValue={userDescription[0]?.content2}
             ref={content2Ref}
           ></ProfileInput>
         </PortfollioWrap>
@@ -320,7 +288,7 @@ function EditProfile() {
         <SelfWrap>
           <textarea
             ref={content3Ref}
-            placeholder={userDescription[0]?.content3}
+            defaultValue={userDescription[0]?.content3}
           ></textarea>
         </SelfWrap>
         <HeaderHeadLine />

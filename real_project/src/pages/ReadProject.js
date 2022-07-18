@@ -5,120 +5,107 @@ import React, { useEffect, useState } from "react";
 import { LoadDetailAxios } from "../redux/modules/postRecruit";
 import { checkUserValidation } from "../redux/modules/user";
 import { loadApplyAxios } from "../redux/modules/postProfile";
-import { appointmentRecruitAxios } from "../redux/modules/postRecruit"
+import { deleteRecruitAxios } from "../redux/modules/postRecruit"
 
-import TagCompoEmpPro from "../components/TagCompoRecPro";
-import MiniResume from "../components/MiniResume";
+import TagDev from "../components/Tag/TagCompoDev"
+import TagDes from "../components/Tag/TagCompoDes"
+
+
+import MiniResume from "../components/MiniProfile";
 
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
 
 function ReadProject() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { projectId } = useParams();
 
+  const [modify, setModify] = useState(false);
+  // 로그인 유저별 resume card 용
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+   const userName_Info = useSelector((state) => state.user.userInfo.userId);
+  const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const {projectId} = useParams();
+  const [schedule, setSchedule] = useState("");
 
-    const [modify, setModify] = useState(false);
+  const Value = useSelector((state) => state.postRecruit.project);
+console.log(Value)
+  useEffect(() => {
+    if (Value) {
+      setSchedule();
+    }
+  }, [schedule]);
 
-    let start =""
-    let end = ""
-    let href = ""
+  useEffect(() => {
+    if (loginInfo === false) {
+      dispatch(checkUserValidation());
+    }
+  }, [loginInfo]);
 
-    // 로그인 유저별 resume card 용
-    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+  useEffect(() => {
+    dispatch(LoadDetailAxios(projectId));
+  }, []);
 
-    const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+  useEffect(() => {
+    if (!(nickname_Info === undefined || nickname_Info === null)) {
+      dispatch(loadApplyAxios(nickname_Info));
+    }
+  }, [nickname_Info]);
 
-    const [schedule,setSchedule]=useState("")
-
-    const onClick = (e) => {
-        const { value, name } = e.target
-        if (name === "one") { 
-            console.log(value);
-        } else if (name === "two") {
-            console.log(value);
-        }
-       
-        
-}
-
-    const Value = useSelector(
-      (state) => state.postRecruit.project
-    );
-  
-    useEffect(() => {
-        if (Value) {
-        
-                setSchedule();
-        }
-     },
-    [schedule])
-    
-
-    useEffect(() => {
-        if (loginInfo === false) {
-          dispatch(checkUserValidation());
-        }}, [loginInfo]);
-
-    useEffect(() => {
-        dispatch(LoadDetailAxios(projectId))
-    }, [])
-
-    useEffect(() => {
-        if (!(nickname_Info === undefined || nickname_Info === null)) {
-            dispatch(loadApplyAxios(nickname_Info));
+  useEffect(() => {
+    if (userName_Info && Value) {
+      if (userName_Info === Value[0]?.email) {
+        setModify(true);
       }
-    }, [nickname_Info]);
+    }
+  }, [userName_Info, Value]);
 
+  return (
+    <>
+      <AllWrap>
+        <TopWrap>
+          <TopTitle>{Value && Value[0]?.title}</TopTitle>
+          <TopDateLimit>
+            {Value && Value[0]?.start}~ {Value && Value[0]?.end}
+          </TopDateLimit>
+        </TopWrap>
+        <DivideLine />
+        <MainTextWrap>
+          <MainText>
+            <MainTextSpan>{Value && Value[0]?.details}</MainTextSpan>
+          </MainText>
+        </MainTextWrap>
+        <FindRoleWrap>
+          <div>
+            <RoleTitle>찾는 직군</RoleTitle>
+          </div>
+          <div>
+            <span>{Value && Value[0]?.role}</span>
+          </div>
+        </FindRoleWrap>
+        <FindSkillWrap>
+          <div>
+            <RoleTitle>필요한 스킬 및 스텍</RoleTitle>
+          </div>
+          <div>
+            <span>
+              {Value &&
+                Value[0]?.skills.map((list, idx) => {
+                  return <TagDev key={idx} skills={list} />;
+                })}
+            </span>
+          </div>
+        </FindSkillWrap>
 
+        <DivideLine />
 
-    return (
-      <>
-        <AllWrap>
-          <TopWrap>
-            <TopTitle>{Value && Value[0]?.title}</TopTitle>
-            <TopDateLimit>
-              {Value && Value[0]?.start}~ {Value && Value[0]?.end}
-            </TopDateLimit>
-          </TopWrap>
-          <DivideLine />
-          <MainTextWrap>
-            <MainText>
-              <MainTextSpan>{Value && Value[0]?.details}</MainTextSpan>
-            </MainText>
-          </MainTextWrap>
-          <FindRoleWrap>
-            <div>
-              <RoleTitle>찾는 직군</RoleTitle>
-            </div>
-            <div>
-              <span>{Value && Value[0]?.role}</span>
-            </div>
-          </FindRoleWrap>
-          <FindSkillWrap>
-            <div>
-              <RoleTitle>필요한 스킬 및 스텍</RoleTitle>
-            </div>
-            <div>
-              <span>
-                {Value &&
-                  Value[0]?.skills.map((list, idx) => {
-                    return <TagCompoEmpPro key={idx} skills={list} />;
-                  })}
-              </span>
-            </div>
-          </FindSkillWrap>
-
-          <DivideLine />
-
-          <DateWrap>
-            <div>
-              <button
-                value={Value[0]?.applications[0]?.schedule}
-                name="one"
-                onClick={onClick}
+        <DateWrap>
+          <div>
+            {/* <button
+                // value={Value[0]?.applications[0]?.schedule}
+                // name="one"
+                // onClick={onClick}
               >
                 {Value && Value[0]?.applications[0]?.schedule}
               </button>
@@ -128,47 +115,54 @@ function ReadProject() {
                 onClick={onClick}
               >
                 {Value && Value[0]?.applications[1]?.schedule}
-              </button>
-            </div>
-          </DateWrap>
-          <DivideLine />
-          <ProfileWrap>
-            <ProfileTitleWrap>
-              <RoleTitle>작성자 프로필</RoleTitle>
-            </ProfileTitleWrap>
-            <ProfileDetailWrap>
-              <ProfilePhoto></ProfilePhoto>
-              <UserAllWrap>
-                <UserNameWrap>
-                  <UserText>{Value && Value[0]?.nickname}</UserText>
-                  <UserText>직군</UserText>
-                </UserNameWrap>
-                <UserMailWrap>
-                  <LetterImg src={letter}></LetterImg>
-                  <UserMailAdress>{Value && Value[0]?.email}</UserMailAdress>
-                </UserMailWrap>
-              </UserAllWrap>
-            </ProfileDetailWrap>
-          </ProfileWrap>
-          <DivideLine />
-          <MiniResumeWrap>
-            <MiniResume />
-          </MiniResumeWrap>
-          <DivideLine />
-          <ButtonWrap>
-            <SubmitButton>지원하기</SubmitButton>
-            <SubmitButton
-              onClick={() => {
-                navigate("/findprojectstep2/" + `${Value[0].projectId}`);
-              }}
-            >
-              수정하기
-            </SubmitButton>
-            <SubmitButton>삭제하기</SubmitButton>
-          </ButtonWrap>
-        </AllWrap>
-      </>
-    );
+              </button> */}
+          </div>
+        </DateWrap>
+        <DivideLine />
+        <ProfileWrap>
+          <ProfileTitleWrap>
+            <RoleTitle>작성자 프로필</RoleTitle>
+          </ProfileTitleWrap>
+          <ProfileDetailWrap>
+            <ProfilePhoto></ProfilePhoto>
+            <UserAllWrap>
+              <UserNameWrap>
+                <UserText>{Value && Value[0]?.nickname}</UserText>
+                <UserText>직군</UserText>
+              </UserNameWrap>
+              <UserMailWrap>
+                <LetterImg src={letter}></LetterImg>
+                <UserMailAdress>{Value && Value[0]?.email}</UserMailAdress>
+              </UserMailWrap>
+            </UserAllWrap>
+          </ProfileDetailWrap>
+        </ProfileWrap>
+        <DivideLine />
+        <MiniResumeWrap>
+          <MiniResume />
+        </MiniResumeWrap>
+        <DivideLine />
+        <ButtonWrap>
+          <SubmitButton>지원하기</SubmitButton>
+          { modify ?  <SubmitButton
+            onClick={() => {
+              navigate("/findprojectstep2/" + `${Value[0].projectId}`);
+            }}
+          >
+            수정하기
+          </SubmitButton> : <></>}
+
+          {modify ? <SubmitButton onClick={() => {
+            dispatch(deleteRecruitAxios(projectId));
+            alert("❗️ 정말 삭제하시는 겁니까? ");
+            navigate("/mainrecruit");
+          }}>삭제하기</SubmitButton> :<></>}
+         
+         
+        </ButtonWrap>
+      </AllWrap>
+    </>
+  );
 }
 
 const AllWrap = styled.div`

@@ -3,7 +3,6 @@ import "../App.css";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import DayPickerMain from "./DayPickerMain";
 import { useDispatch,useSelector } from "react-redux";
 import { checkUserValidation } from "../redux/modules/user";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
@@ -333,7 +332,7 @@ function SelectCompo() {
     <BackGroundDiv>
       <DropDownAllWrap>
         <CompoWrap>
-          <App /> <DayPickerMain /> <AppSkill />
+          <App />  <AppSkill />
         </CompoWrap>
         <RecButtonWrap>
           <RecritButton onClick={() => {if (loginInfo === false) {alert("로그인을 해주세요!");

@@ -44,7 +44,6 @@ export const loadRecruitAxios = () => {
     await apis
       .projectsLoad()
       .then((res) => {
-
         let list = [];
         let project = res.data.projects.reverse()
         list = [...project]
@@ -58,7 +57,7 @@ export const loadRecruitAxios = () => {
 
 
 export const projectsPhotosAxios = (frm) => {
-  console.log(frm)
+
   return async function (dispatch) {
     let success = null;
     await apis
@@ -146,6 +145,7 @@ export const LoadDetailAxios = (projectId) => {
 
 
 export const editRecruitAxios = (
+  projectId,
   title,
   details,
   subscript,
@@ -158,7 +158,8 @@ export const editRecruitAxios = (
 ) => {
   return async function(dispatch) {
     await apis
-    .projectsModify(
+      .projectsModify(
+      projectId,
       title,
       details,
       subscript,
@@ -170,9 +171,8 @@ export const editRecruitAxios = (
       schedule
     )
     .then((res) => {
-      console.log('res res res')
       dispatch(
-        detailRecruit({
+        editRecruit({
           title: title,
           details: details,
           subscript: subscript,
@@ -181,15 +181,27 @@ export const editRecruitAxios = (
           end: end,
           skills: skills,
           photos: photos,
-          schedule: schedule
+          schedule: schedule,
         })
       );
-    });
+    }).catch((err) => {
+      console.log(err)
+    })
   };
 };
 
 
-
+export const deleteRecruitAxios = (projectId) => {
+  console.log(projectId)
+  return async function (dispatch) {
+    await apis
+      .projectsDelete(projectId)
+      .then((response) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 //예약 미들웨어
 export const appointmentRecruitAxios = (
   projectId, 
@@ -238,14 +250,14 @@ export default function reducer(state = initialState, action = {}) {
       const writeProject = [action.payload, ...state.receiveRecruit];
       return{
         reciveRecruit : writeProject,
-        recruit: state.recruit        
+        recruit : state.recruit        
       }
     }
 
     case 'recruit/EDIT': {   
       return {
         reciveRecruit: state.receiveRecruit,
-        recruit: action.payload,
+        project: action.payload,
       };
     }
 

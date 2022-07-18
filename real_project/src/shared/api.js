@@ -20,16 +20,19 @@ const api = axios.create({
   },
 });
 
-// axios.defaults.withCredentials = true;
+// 주혁님 코드 : https
+// baseURL: "https://43.200.119.149/",
+// baseURL: "https://rendev.link/",
+  
 
-//토큰
-api.interceptors.request.use(function (config) { 
 
-  const accessToken = `${localStorage.getItem("token")}`;
+  //토큰
+  api.interceptors.request.use(function (config) {
+    const accessToken = `${localStorage.getItem("token")}`;
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
- 
-   return config;
-});
+
+    return config;
+  });
 
 
 //imgForm토큰
