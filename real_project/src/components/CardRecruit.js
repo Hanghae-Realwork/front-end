@@ -233,6 +233,7 @@ const CardViewButton = styled.button`
   font-weight: 500;
   font-size: 14px;
   margin-top: 20px;
+  border-radius: 2px;
 `;
 
 export default CardRecruit;

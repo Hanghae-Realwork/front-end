@@ -15,6 +15,7 @@ import downicon from "../image/downicon.svg"
 
 
 
+
 const FindProjectStep01 = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -189,7 +190,7 @@ const FindProjectStep01 = (props) => {
 
 
   return (
-    <>
+    <BackgroundAllWrap>
       <FindProjectAllWrap>
         <FindprojectTopWrap>
           <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
@@ -197,21 +198,11 @@ const FindProjectStep01 = (props) => {
         <HeadLine />
         <FindProjectInputTitle>
           <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-          <ProjectInput
-            ref={titleRef}
-            id="title"
-            type="text"
-            placeholder="제목을 입력해주세요"
-          ></ProjectInput>
+          <ProjectInput ref={titleRef} id="title" type="text" placeholder="제목을 입력해주세요"></ProjectInput>
         </FindProjectInputTitle>
         <FindProjectInputTitle>
           <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-          <ProjectInput
-            ref={subscriptRef}
-            id="subscript"
-            type="text"
-            placeholder="프로젝트를 설명해주세요"
-          ></ProjectInput>
+          <ProjectInput ref={subscriptRef} id="subscript" type="text" placeholder="프로젝트를 설명해주세요"></ProjectInput>
         </FindProjectInputTitle>
         <FindProjectInputDate>
           <ProjectTitleText>프로젝트 기간</ProjectTitleText>
@@ -242,12 +233,7 @@ const FindProjectStep01 = (props) => {
         <InputMainTextWrap>
           <ProjectTitleText>팀 상세 설명</ProjectTitleText>
           <ReMainConWrap>
-            <RecMainCon
-              ref={detailsRef}
-              id="details"
-              type="text"
-              placeholder="프로젝트의 내용을 입력해주세요"
-            />
+            <RecMainCon ref={detailsRef} id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요"/>
             <PhotoUPloadWrap>
               {filesImg ? (
                 <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
@@ -258,19 +244,12 @@ const FindProjectStep01 = (props) => {
                 {filesImg ? (
                   <PhotoText>
                     수정하기
-                    <input name="imgUpload" type="file" id="add_img"
-                      accept="image/*" onChange={onChangeImg}/>
+                    <input name="imgUpload" type="file" id="add_img" accept="image/*" onChange={onChangeImg}/>
                   </PhotoText>
                 ) : (
                   <PhotoText>
                     등록하기
-                    <input
-                      name="imgUpload"
-                      type="file"
-                      id="add_img"
-                      accept="image/*"
-                      onChange={onChangeImg}
-                    />
+                    <input name="imgUpload" type="file" id="add_img" accept="image/*" onChange={onChangeImg}/>
                   </PhotoText>
                 )}
               </EditWrapPhoto>
@@ -279,26 +258,16 @@ const FindProjectStep01 = (props) => {
         </InputMainTextWrap>
         <InputMainTextWrap>
           <ProjectTitleText>구하는 직군</ProjectTitleText>
-          <div>
-            <label>
-              <input id="role" type="radio" name="Radio"
-                value="frontend" onChange={onChangeRole}/>
-              FrontEnd
-            </label>
-            <label>
-              <input id="role" type="radio" name="Radio"
-                value="backend" onChange={onChangeRole}/>
-              BackEnd
-            </label>
-            <label>
-              <input id="role" type="radio" name="Radio"
-                value="designer" onChange={onChangeRole}/>
-              Designer
-            </label>
-          </div>
+          <RoleWrap>
+            <RoleLabel>
+              <RoleInput id="role" type="radio" name="Radio" value="frontend" onChange={onChangeRole}/> FrontEnd 개발자 </RoleLabel>
+            <RoleLabel>
+              <RoleInput id="role" type="radio" name="Radio" value="backend" onChange={onChangeRole}/>  BackEnd 개발자 </RoleLabel>
+            <RoleLabel>
+              <RoleInput id="role" type="radio" name="Radio" value="designer" onChange={onChangeRole}/> UI / UX 디자이너 </RoleLabel>
+          </RoleWrap>
         </InputMainTextWrap>
-
-        <SkillWrap>
+        <InputMainTextWrap>
           <ProjectTitleText>개발자</ProjectTitleText>
           <SelectBoxTab>
             {dvelopSkills_list &&
@@ -320,8 +289,8 @@ const FindProjectStep01 = (props) => {
                 );
               })}
           </SelectBoxTab>
-        </SkillWrap>
-        <SkillWrap>
+        </InputMainTextWrap>
+        <InputMainTextWrap>
           <ProjectTitleText>디자이너</ProjectTitleText>
           <SelectBoxTab>
             {designerSkills_list &&
@@ -341,50 +310,102 @@ const FindProjectStep01 = (props) => {
                 );
               })}
           </SelectBoxTab>
-        </SkillWrap>
+        </InputMainTextWrap>
+        <InputMainTextWrap>
           <ProjectTitleText>면접 가능 시간</ProjectTitleText>
           <InterviewTableWrap>
-          <CalenderWrap>
-            <SingleCalender />      
-          </CalenderWrap>      
-          <TimeWrap>
-            <TimeArea>
-              <HourWrap> 
-                <HourButton><img src={upicon}/></HourButton>
-                <HourInput></HourInput>
-                <HourButton><img src={downicon}/></HourButton>
-              </HourWrap>
-              <span style={{fontSize:"14px"}}>:</span>
-              <HourWrap> 
-                <HourButton><img src={upicon}/></HourButton>
-                <HourInput></HourInput>
-                <HourButton><img src={downicon}/></HourButton>
-              </HourWrap>
+          <CalenderAllWrap>
+            <CalenderWrap>
+              <SingleCalender />      
+            </CalenderWrap>
+            <InterviewText>인터뷰 가능 날짜를 설정 해주세요.</InterviewText>
+            <InterviewText>최대 열개의 날짜를 설정할 수 있습니다.</InterviewText>
+          </CalenderAllWrap>
+          <TimeAllDiv>      
+            <TimeWrap>
+              <TimeArea>
+                <HourWrap> 
+                  <HourButton><img src={upicon}/></HourButton>
+                  <HourInput></HourInput>
+                  <HourButton><img src={downicon}/></HourButton>
+                </HourWrap>
+                <span style={{fontSize:"14px"}}>:</span>
+                <HourWrap> 
+                  <HourButton><img src={upicon}/></HourButton>
+                  <HourInput></HourInput>
+                  <HourButton><img src={downicon}/></HourButton>
+                </HourWrap>
               </TimeArea>
                 <TimeButton onClick={onClickSchedule}>시간 추가 </TimeButton>
-              </TimeWrap>
-              <div>
-                {schedule.map((list, idx) => {
-                  return <h3 key={idx}> {seeDate} </h3>;
-                })}
-              </div>
-              
+            </TimeWrap>
+            <InterviewText>인터뷰 가능 시간을 설정 해주세요.</InterviewText>
+            <InterviewText>하루에 최대 다섯 타임을 설정할 수 있습니다.</InterviewText>
+          </TimeAllDiv>
+
+          <TimeSelectWrap>
+            <InterviewTextDate>날짜를 선택해주세요</InterviewTextDate>
+            <TimeAddButtonWrap>
+              <TimeAddLeftWrap>
+                <LeftTimeButton>12:00</LeftTimeButton>
+                <LeftTimeButton></LeftTimeButton>
+                <LeftTimeButton></LeftTimeButton>
+                <LeftTimeButton></LeftTimeButton>
+                <LeftTimeButton></LeftTimeButton>
+              </TimeAddLeftWrap>
+              <TimeAddRightWrap>
+                <LeftDelBtn>삭제하기</LeftDelBtn>
+                <LeftDelBtn></LeftDelBtn>
+                <LeftDelBtn></LeftDelBtn>
+                <LeftDelBtn></LeftDelBtn>
+                <LeftDelBtn></LeftDelBtn>
+              </TimeAddRightWrap>
+             
+                
+            </TimeAddButtonWrap>
+            <TimeAddButton onClick={onClickSchedule}>면접시간 등록</TimeAddButton>
+          </TimeSelectWrap>
+
+
+
           </InterviewTableWrap>
+          </InputMainTextWrap>
+
+          <HeadLine />
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
         </SubmitButtonWrap>
       </FindProjectAllWrap>
-    </>
+    </BackgroundAllWrap>
   );
 };
 
 
+const BackgroundAllWrap = styled.div`
+  background: linear-gradient(0deg, 
+    rgba(217, 217, 217, 0.1), 
+    rgba(217, 217, 217, 0.1)), 
+    linear-gradient(93.14deg, 
+    rgba(174, 151, 227, 0.15) 0.24%, 
+    rgba(119, 195, 231, 0.15) 34.73%, 
+    rgba(174, 151, 227, 0.15) 67.67%, 
+    rgba(119, 195, 231, 0.15) 95.47%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const FindProjectAllWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
+  margin-top: 60px;
+  width: 1200px;
+  /* border: 1px solid black; */
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 40px;
 `
 
 const FindProjectTitleText = styled.span`
@@ -439,20 +460,9 @@ const ProjectInput = styled.input`
   outline: none;
   border-bottom: 0.5px solid black;
   padding: 8px;
-  width: 1000px;
+  width: 1050px;
   margin-top: 16px;
 `
-
-const SkillWrap = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  width: 580px;
-  padding: 10px;
-  /* border: 1px solid black; */
-`;
-
 
 const SelectBoxTab = styled.div`
   /* border: 1px solid black; */
@@ -461,6 +471,7 @@ const SelectBoxTab = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 13px;
+  width: 1100px;
 `;
 
 const SubmitButtonWrap = styled.div`
@@ -469,6 +480,8 @@ const SubmitButtonWrap = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 30px;
+  /* border: 1px solid black; */
+  width: 1200px;
 `
 
 const SubmitButton = styled.button`
@@ -483,6 +496,7 @@ const SubmitButton = styled.button`
   padding: 12px 28px;
   color: white;
   font-weight: 700;
+  margin-right: 30px;
 `
 
 const ProjectTitleText = styled.span`
@@ -499,7 +513,7 @@ const TecLabel = styled.label`
 
 const CheckBox = styled.input`
   appearance: none;
-  border: 0.5px solid gainsboro;
+  border: 2px solid gainsboro;
   border-radius: 0.25rem;
   width: 15px;
   height: 15px;
@@ -512,9 +526,24 @@ const CheckBox = styled.input`
     background-size: 100% 100%;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-color: #ae97e3;
+    background-color: #77c3e7;
   }
 `;
+
+const RoleInput = styled.input`
+  appearance: none;
+  border: 2px solid gainsboro;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  margin-bottom: -2.5px;
+  margin-right: 5px;
+
+  &:checked {
+    border-color: transparent;
+    background-color: #77c3e7;
+  }
+`
 
 const UpPhotoArea =styled.img`
   /* border: 1px solid black; */
@@ -549,7 +578,7 @@ const PhotoText = styled.span`
 `
 const ReMainConWrap = styled.div`
   border: 0.5px solid black;
-  width: 1000px; 
+  width: 1100px; 
   height: 500px;
   border-radius: 4px;  
   display: flex;
@@ -562,7 +591,7 @@ const ReMainConWrap = styled.div`
 const RecMainCon = styled.textarea`
   /* margin: 20px;  */
   padding: 10px; 
-  width: 975px; 
+  width: 1075px; 
   height: 350px; 
   outline: none; 
   border: none;
@@ -573,7 +602,7 @@ const RecMainCon = styled.textarea`
 const PhotoUPloadWrap = styled.div`
   /* border: 1px solid black; */
   padding: 10px;
-  width: 975px;
+  width: 1075px;
   height: 100px;
   display: flex;
   flex-flow: row wrap;
@@ -590,6 +619,7 @@ const TimeWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 `
 
 const TimeArea = styled.div`
@@ -609,8 +639,6 @@ const HourWrap = styled.div`
   align-items: center;
 `
 
-//MVP CSS
-
 const CalenderWrap = styled.div`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
@@ -619,7 +647,8 @@ const CalenderWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
 `
 
 const HourButton = styled.button`
@@ -658,6 +687,121 @@ const InterviewTableWrap = styled.div`
   align-items: center;
   gap: 24px;
 `
+
+const TimeAllDiv = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const InterviewText = styled.span`
+  font-size: 12px;
+  font-weight: 400;
+`
+
+const CalenderAllWrap = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+`
+
+const RoleWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+`
+
+const RoleLabel = styled.label`
+  font-size: 16px;
+  font-weight: 400;
+`
+
+const TimeSelectWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  margin-left: 100px;
+`
+
+const TimeAddButton = styled.button`
+  padding: 5px 40px 5px 50px;
+  background-color: #303032;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 2px;
+`
+
+const TimeAddButtonWrap = styled.div`
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  margin-bottom: 15px;
+
+  gap: 18px;
+`
+
+const TimeAddLeftWrap = styled.div`
+  height: 250px;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+`
+
+const LeftTimeButton = styled.div`
+  width: 180px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 400;
+  border: 0.5px solid #303032;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`
+
+const TimeAddRightWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+`
+
+const LeftDelBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  font-size: 12px;
+  font-weight: 400;
+  height: 40px;
+  cursor: pointer;
+`
+
+const InterviewTextDate = styled.span`
+  color: #8D8D8D;
+  font-size: 14px;
+  font-weight: 400;
+`
+
 
 const DatePickerWrapper = styled(
   ({ className, ...props }) => 
