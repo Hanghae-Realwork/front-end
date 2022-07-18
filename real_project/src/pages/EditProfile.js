@@ -293,7 +293,7 @@ function EditProfile() {
         </SelfWrap>
         <HeaderHeadLine />
         <SubmitButtonWrap>
-          <SubmitButton onClick={handleClick}>소개글 등록하기</SubmitButton>
+          <SubmitButton onClick={handleClick}>소개글 수정하기</SubmitButton>
         </SubmitButtonWrap>
       </AddProfileWrap>
     </BackgroundAllWrap>
