@@ -87,7 +87,7 @@ const Application = () => {
                   </CardTotalWrap>
                 </CardAllWrap>
               </RightCardWrap>
-              <InterviewWrap>
+
                 <InterviewButtonWrap>
                   <ButtonWrap>
                     <InterviewButton>면접 보기</InterviewButton>
@@ -102,7 +102,7 @@ const Application = () => {
                     <CodeText>면접 코드: 123-123</CodeText>
                   </InterviewDateWrap>
                 </InterviewButtonWrap>
-              </InterviewWrap>
+
               <BeltWrap>
                 <CourseLabel>
                   지원서 접수{" "}
@@ -130,27 +130,19 @@ const Application = () => {
 const RightMapingWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  /* border: 1px solid black; */
+  width: 820px;
 `;
 
 const RightCardWrap = styled.div`
-  /* border: 1px solid black; */
+  border: 1px solid black;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
- 
-`;
-
-const InterviewWrap = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 450px;
+  border-radius: 4px;
 `;
 
 const InterviewButtonWrap = styled.div`
@@ -158,8 +150,9 @@ const InterviewButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  width: 384px;
-  margin-top: 20px;
+  width: 380px;
+  margin-top: 15px;
+  /* border: 1px solid black; */
 `;
 
 const InterviewButton = styled.button`

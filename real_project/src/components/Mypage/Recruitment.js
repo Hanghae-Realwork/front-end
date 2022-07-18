@@ -1,7 +1,18 @@
 import React from "react";
+import styled from "styled-components"
+
 
 const Recruitment = () => {
-  return <div>모집현황</div>;
+  return (
+    <RecruitAllWrap>
+      모집현황
+    </RecruitAllWrap>
+    );
 };
+
+
+const RecruitAllWrap = styled.div`
+
+`
 
 export default Recruitment;

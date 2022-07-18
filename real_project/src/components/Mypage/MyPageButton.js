@@ -15,7 +15,7 @@ function ButtonLine() {
               navigate(`/mypage/${nickname}/apply`);
             }}>내 지원 현황</MyMenuButton>
             <MyMenuButton onClick={() => {
-                 navigate(`/mypage/${nickname}/project`);
+              navigate(`/mypage/${nickname}/project`);
             }}
             >내 모집 현황</MyMenuButton>
             <MyMenuButton onClick={() => {
@@ -35,7 +35,7 @@ const BackgroundAllWrap = styled.div`
   background-color: #323230;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
   position: relative;
 `;
 
@@ -46,7 +46,8 @@ const RightTopWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 44px;
-  margin-right: 400px;
+  margin-right: 460px;
+  margin-bottom: 20px;
   /* position: relative; */
 `;
 

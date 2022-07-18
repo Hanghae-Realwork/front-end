@@ -7,7 +7,7 @@ import { loadRecruitAxios } from "../redux/modules/postRecruit";
 import Card from "../components/CardRecruit";
 import TagCompoDes from "../components/Tag/TagCompoDes";
 import TagCompoDev from "../components/Tag/TagCompoDev";
-import NavigationBarResume from "../components/NaviBarResume";
+import NavigationBarProject from "../components/NaviBarProject";
 
 
 const MainRecruit = () => {
@@ -21,7 +21,7 @@ const MainRecruit = () => {
 
   return (
       <>
-      <NavigationBarResume />
+      <NavigationBarProject />
       <CardBackGround>
         <CardContainerWrap>
           {recruit === undefined ? null : recruit.map((list, idx) => {
