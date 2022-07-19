@@ -28,6 +28,12 @@ import Recruitment from "./components/Mypage/Recruitment";
 import Resumes from "./components/Mypage/Resumes";
 import EmptyCard from "./components/Mypage/EmptyCard";
 import EmptyProject from "./components/Mypage/EmptyProject";
+import DateModal from "./components/Modal/DateModal";
+import SkillModal from "./components/Modal/SkillModal";
+import RoleModal from "./components/Modal/RoleModal";
+import LoginModal from "./components/Modal/LoginModal";
+import JoinModal from "./components/Modal/JoinModal";
+
 
 import { useDispatch } from "react-redux";
 import { checkUserValidation } from "./redux/modules/user";
@@ -44,8 +50,15 @@ function App() {
   return (
     <MainWrap>
       <Header />
-      {/* <EmptyCard></EmptyCard>
-      <EmptyProject></EmptyProject> */}
+        <DateModal></DateModal>
+        <br/>
+        <LoginModal></LoginModal>
+        <br/>
+        <JoinModal></JoinModal>
+        <br/>
+        <RoleModal></RoleModal>
+        <br/>
+        <SkillModal></SkillModal>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
