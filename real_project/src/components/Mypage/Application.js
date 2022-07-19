@@ -19,7 +19,7 @@ const Application = () => {
 
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
-    console.log(data)
+  
 
 // console.log(data)
     useEffect(() => {
