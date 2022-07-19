@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
@@ -12,12 +12,12 @@ import DatePicker from "react-datepicker";
 import addimage from "../image/addimage.svg"
 import upicon from "../image/upicon.svg"
 import downicon from "../image/downicon.svg"
-import { min } from "lodash";
 
 
 
 
 const FindProjectStep01 = (props) => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,6 +37,7 @@ const FindProjectStep01 = (props) => {
 
   const [endMonth, setEndMonth] = useState("");
   const [endDay, setEndDay] = useState("");
+
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
@@ -52,6 +53,7 @@ const FindProjectStep01 = (props) => {
     setRole(e.target.value);
   };
 
+
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
     if (checked) {
@@ -60,6 +62,7 @@ const FindProjectStep01 = (props) => {
       setCheckList(checkList.filter((el) => el !== item));
     }
   };
+
 
   //fileReader
   const frm = new FormData();
@@ -88,6 +91,7 @@ const FindProjectStep01 = (props) => {
     setEndDate(end);
   };
 
+
   // 데이피커 테스트 코드
   const SingleCalender = () => {
     const [startDate, setStartDate] = useState(new Date());
@@ -113,8 +117,6 @@ const FindProjectStep01 = (props) => {
       />
     );
   };
-
-
 
 
   // 저장 버튼
@@ -150,21 +152,8 @@ const FindProjectStep01 = (props) => {
       console.log(err);
     }
   };
-  // const hourUpOnClick = () => {
-  // if (hour < 24) {
-  //   setHour(hour + 1);
-  // } else {
-  //   setHour(0);
-    
-  // }
-  // }
-  //   const hourDownOnClick = () => {
-  //     if (hour < 24) {
-  //       setHour(hour + 1);
-  //     } else {
-  //       setHour(0);
-  //     }
-  //   };
+ 
+
   const minuteUpOnClick = () => {
     if (minute < 59) {
       setMinute(minute + 1);
@@ -174,16 +163,9 @@ const FindProjectStep01 = (props) => {
       setHour(hour + 1);
     }
   }
-    // const minuteDownOnClick = () => {
-    //   if (minute < 1) {
-    //     setMinute(59);
-    //     setHour(hour - 1);
-    //   } else {
-    //     setMinute(minute - 1);
+
   
-    //   }
-    // };
-  
+
   return (
     <BackgroundAllWrap>
       <FindProjectAllWrap>
@@ -333,7 +315,7 @@ const FindProjectStep01 = (props) => {
                   <HourButton><img src={downicon}/></HourButton>
                 </HourWrap>
               </TimeArea>
-                <TimeButton onClick={onClickSchedule}>시간 추가 </TimeButton>
+                <TimeButton>시간 추가 </TimeButton>
             </TimeWrap>
             <InterviewText>인터뷰 가능 시간을 설정 해주세요.</InterviewText>
             <InterviewText>하루에 최대 다섯 타임을 설정할 수 있습니다.</InterviewText>
@@ -359,7 +341,7 @@ const FindProjectStep01 = (props) => {
              
                 
             </TimeAddButtonWrap>
-            <TimeAddButton onClick={onClickSchedule}>면접시간 등록</TimeAddButton>
+            <TimeAddButton>면접시간 등록</TimeAddButton>
           </TimeSelectWrap>
 
 
