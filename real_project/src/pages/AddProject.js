@@ -14,7 +14,11 @@ import upicon from "../image/upicon.svg"
 import downicon from "../image/downicon.svg"
 
 
+
+
+
 const FindProjectStep01 = (props) => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -38,15 +42,15 @@ const FindProjectStep01 = (props) => {
 
   //시간과 분
   const [hour, setHour] = useState(parseInt("24"));
-  const [minute, setMinute] = useState(parseInt("0"));
+  const [minute, setMinute] = useState(0);
+console.log(typeof minute);
   const [rangeTime, setRangeTime] = useState([]);
-   const time_List = Array.from({ length: 5 }, (v, i) => i);
-  //Role 값 (코코미 코드)
 
-
+   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
+
 
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
@@ -56,6 +60,7 @@ const FindProjectStep01 = (props) => {
       setCheckList(checkList.filter((el) => el !== item));
     }
   };
+
 
   //fileReader
   const frm = new FormData();
@@ -78,11 +83,12 @@ const FindProjectStep01 = (props) => {
     });
   };
 
-  const onChange = (dates) => {
+  const DoubleCalenderOnChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
   };
+
 
   // 데이피커 테스트 코드
   const SingleCalender = () => {
@@ -119,9 +125,6 @@ const FindProjectStep01 = (props) => {
       setHour(hour - 1);
     }
   };
-  const hourOnChange = (e) => {
-    setHour(parseInt(e.target.value));
-  };
 
   const minuteUpOnClick = () => {
     if (minute < 59) {
@@ -144,21 +147,40 @@ const FindProjectStep01 = (props) => {
       if (hour === 1) {
         setHour(24)
       }
-}
-  };
-  const minuteOnChange = (e) => {
-    setMinute(parseInt(e.target.value));
+    }
   };
 
-  
+  const hourOnChange = (e) => {
+    if (e.target.value.length < 3) { 
+      if (e.target.value > 24) {
+        setHour(24)
+      } else { 
+          setHour(parseInt(e.target.value));
+      }
+       
+    }
+      
+  };
+
+  const minuteOnChange = (e) => {
+    if (e.target.value.length < 3) { 
+      if (e.target.value > 59) {
+        setMinute(59)
+      } else { 
+        setMinute(parseInt(e.target.value));
+      }
+       
+    }
+    };
+
+  const arr = [hour, minute].join(":");
 
   const timeAddOnClick = () => {
-    let copy = []
-    const arr = [hour, minute].join(":");
-   setRangeTime(copy.push(arr))
-    console.log(rangeTime)
+    if (rangeTime.length < 5) {
+       setRangeTime((prev) => [...prev, arr]);
+     }
   }
-
+console.log(rangeTime)
   ///////////////////////
   /////////시간 끝//////////
   /////////////////////
@@ -197,6 +219,8 @@ const FindProjectStep01 = (props) => {
     }
   };
 
+
+
   return (
     <BackgroundAllWrap>
       <FindProjectAllWrap>
@@ -233,7 +257,7 @@ const FindProjectStep01 = (props) => {
                 dateFormat="YYYY-MM-DD"
                 locale="ko" // 달력 한글화
                 selected={startDate}
-                onChange={onChange}
+                onChange={DoubleCalenderOnChange}
                 startDate={startDate}
                 minDate={new Date()}
                 endDate={endDate}
@@ -409,7 +433,7 @@ const FindProjectStep01 = (props) => {
                       type="number"
                       value={minute}
                       onChange={minuteOnChange}
-                      maxLength={2}
+                      maxlength="2"
                     />
                     <HourButton onClick={minuteDownOnClick}>
                       <img src={downicon} />
@@ -427,25 +451,26 @@ const FindProjectStep01 = (props) => {
             <TimeSelectWrap>
               <InterviewTextDate>날짜를 선택해주세요</InterviewTextDate>
               <TimeAddButtonWrap>
-                <TimeAddLeftWrap>
-                  {/* {rangeTime.map((list,idx) => {
-                    return <LeftTimeButton key={idx}>
-                      {list}
-                    </LeftTimeButton>;
-                  })} */}
-                  
-                  {/* <LeftTimeButton></LeftTimeButton>
-                  <LeftTimeButton></LeftTimeButton>
-                  <LeftTimeButton></LeftTimeButton>
-                  <LeftTimeButton></LeftTimeButton> */}
-                </TimeAddLeftWrap>
-                <TimeAddRightWrap>
-                  <LeftDelBtn>삭제하기</LeftDelBtn>
-                  <LeftDelBtn></LeftDelBtn>
-                  <LeftDelBtn></LeftDelBtn>
-                  <LeftDelBtn></LeftDelBtn>
-                  <LeftDelBtn></LeftDelBtn>
-                </TimeAddRightWrap>
+           
+                  {rangeTime.map((list, idx) => {
+                    return (<div key={idx}><TimeAddLeftWrap>
+                      <LeftTimeButton key={idx}>{list}</LeftTimeButton>
+                      </TimeAddLeftWrap>
+                        <TimeAddRightWrap>
+                        <LeftDelBtn onClick={() => {
+                         console.log(idx)
+                          rangeTime.filter((l,index) => {
+                            // idx !==index
+                          })
+                          // setRangeTime((list) => console.log(list));
+                          }}>삭제하기</LeftDelBtn>
+                        </TimeAddRightWrap>
+                    </div>
+                        
+                    );
+                  })}
+               
+  
               </TimeAddButtonWrap>
               <TimeAddButton>면접시간 등록</TimeAddButton>
             </TimeSelectWrap>
@@ -838,7 +863,7 @@ const TimeAddButtonWrap = styled.div`
 `
 
 const TimeAddLeftWrap = styled.div`
-  height: 250px;
+  /* height: 250px; */
   /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
