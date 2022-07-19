@@ -157,6 +157,7 @@ const RightMapingWrap = styled.div`
   align-items: center;
   /* border: 1px solid black; */
   width: 820px;
+
 `;
 
 const RightCardWrap = styled.div`
@@ -210,6 +211,7 @@ const RightContentWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 390px;
+  margin-bottom: 40px;
 `;
 
 const CardAllWrap = styled.div`
