@@ -109,7 +109,7 @@ export const loginAxios = (userEmail, password) => {
       .login(userEmail, password, { withCredentials: true })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        
+        console.log(res)
         dispatch(checkUserValidation());
         // dispatch(login({ userId:userEmail }));
          success = true;
@@ -129,19 +129,23 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
-       
+
         dispatch(
           login({ userId: res.data.userId, nickname: res.data.nickname })
         );
       })
       .catch((err) => {
-        
-        if (err) {
+        console.log("err",err)
+        if (err.response.status === 401) {
+         
+          dispatch(refreshAxios());
+     
+        }
+     
           // console.log(err)
           // logOut();
           // alert("토큰이 만료되셨네요🥹");
-          return
-        }
+        
 
 
       });
@@ -174,23 +178,23 @@ export const checkUserValidation = () => {
 // };
 
 
-// export const refreshAxios = () => {
-//   return async function (dispatch) {
-//     await apis
-//       .refresh({ withCredentials: true })
-//       .then((response) => {
-//         console.log("refresh", response);
-//         if (response.data.accessToken) {
-//           const user = JSON.parse(localStorage.getItem("user"));
-//           user.accessToken = response.data.accessToken;
-//           localStorage.setItem("user", JSON.stringify(user));
-//         }
-//       })
-//       .catch((error) => {
-//         console.log("server", error);
-//       });
-//   };
-// };
+export const refreshAxios = () => {
+  return async function (dispatch) {
+    await apis
+      .refresh({ withCredentials: true })
+      .then((response) => {
+        console.log("refresh", response);
+        if (response.data.accessToken) {
+          const user = JSON.parse(localStorage.getItem("user"));
+          user.accessToken = response.data.accessToken;
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+      })
+      .catch((error) => {
+        console.log("server", error);
+      });
+  };
+};
 
 
 

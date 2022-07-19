@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { getCookie } from "./cookie";
 
 //이미지 데이터
 const imgApi = axios.create({
@@ -32,8 +32,10 @@ const api = axios.create({
   //토큰
   api.interceptors.request.use(function (config) {
     const accessToken = `${localStorage.getItem("token")}`;
+    //  const rtoken = getCookie("REFRESH_TOKEN");
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
-
+    // config.headers.common["Cookies"] = `Bearer ${rtoken}`;
+   
     return config;
   });
 
@@ -47,6 +49,40 @@ imgApi.interceptors.request.use(function (config) {
   }
   return config;
 });
+
+
+api.interceptors.response.use(
+  (response) => {
+    console.log("response",response)
+    return response;
+  },
+  async function (error) {
+    console.log(error)
+    const originalRequest = error.config;
+    if (error.response.status === 401) {
+      console.log("토큰 만료");
+      
+      // const sessionObj = window.sessionStorage.getItem('userInfo');
+      // let userInfo = sessionObj ? JSON.parse(sessionObj) : null;
+      // const refreshToken = cookies.get("refreshToken");
+      // const access_token = await authApi.post(
+      //   "api/refresh", // token refresh api
+      //   {
+      //     refreshToken,
+      //   }
+      // );
+      // console.log(access_token.data.accessToken);
+      // const newAccessToken = access_token.data.accessToken;
+      // originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+      // localStorage.setItem("accessToken", newAccessToken);
+      return axios(originalRequest);
+    }
+    return Promise.reject(error);
+  }
+);
+
+
+
 
 //apis body
 export const apis = {
