@@ -153,8 +153,10 @@ const FindProjectStep01 = (props) => {
   
 
   const timeAddOnClick = () => {
+    let copy = []
     const arr = [hour, minute].join(":");
-    rangeTime.push(arr)
+   setRangeTime(copy.push(arr))
+    console.log(rangeTime)
   }
 
   ///////////////////////
@@ -426,11 +428,11 @@ const FindProjectStep01 = (props) => {
               <InterviewTextDate>날짜를 선택해주세요</InterviewTextDate>
               <TimeAddButtonWrap>
                 <TimeAddLeftWrap>
-                  {rangeTime.map((list,idx) => {
+                  {/* {rangeTime.map((list,idx) => {
                     return <LeftTimeButton key={idx}>
                       {list}
                     </LeftTimeButton>;
-                  })}
+                  })} */}
                   
                   {/* <LeftTimeButton></LeftTimeButton>
                   <LeftTimeButton></LeftTimeButton>
