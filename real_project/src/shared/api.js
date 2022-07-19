@@ -50,6 +50,7 @@ imgApi.interceptors.request.use(function (config) {
 
 //apis body
 export const apis = {
+  
   ///////////////////////
   ////<1. 회원관리 API>////
   ///////////////////////
@@ -122,6 +123,7 @@ export const apis = {
   userProjects: (nickname) =>
     api.get(`/api/users/details/${nickname}/projects`),
 
+
   //  - 11. 내 Resume 조회
   userResumes: (nickname) => api.get(`/api/users/details/${nickname}/resumes`),
 
@@ -129,11 +131,12 @@ export const apis = {
   userApply: (nickname) => api.get(`/api/users/details/${nickname}/apply`),
 
   //  - 13. 내 모집현황
-  userRecruit: (nickname) => api.get(`/api/users/details/${nickname}/recruit`),
+  userRecruit: (nickname) => api.get(`/api/users/details/${nickname}/applys`),
 
   //  - 14. 프로필 이미지
   userPhotos: (frm, nickname) =>
     imgApi.post(`/api/users/details/${nickname}/image`, frm),
+
 
   ///////////////////////
   ////<2. 프로젝트 API>////

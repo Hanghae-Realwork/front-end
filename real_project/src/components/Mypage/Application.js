@@ -1,15 +1,17 @@
 import React, { useDebugValue, useEffect, useState } from "react"
 import Moment from "react-moment"
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import Check from "../../image/check.svg"
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { loadApplyAxios } from "../../redux/modules/postProfile";
+
 import TagCompoApp from "./TagCompoApp";
 import EmptyCard from "./EmptyCard";
 
+import Check from "../../image/check.svg"
+
 
 const Application = () => {
+
     // const userId =useSelector((state)=>state)
     const dispatch = useDispatch();
     const userInfo = useSelector((state) => state.user.userInfo);
@@ -17,6 +19,7 @@ const Application = () => {
 
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
+    console.log(data)
 
 // console.log(data)
     useEffect(() => {
@@ -33,7 +36,8 @@ const Application = () => {
   return (
 
     <RightMapingWrap>
-      { data.length > 0 ?       data === undefined
+      { data.length > 0 ?       
+        data === undefined
         ? null
         : data.map((list, idx) => {
           //작성시간 함수

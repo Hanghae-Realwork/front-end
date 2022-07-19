@@ -1,68 +1,131 @@
-import React from "react";
-import styled from "styled-components"
+import React, { useDebugValue, useEffect, useState } from "react"
+import Moment from "react-moment"
+import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { loadProjectAxios } from "../../redux/modules/postProfile";
+
+import TagCompoApp from "./TagCompoApp";
+import EmptyCard from "./EmptyCard";
 
 import astroman from "../../image/astroman.svg"
 import check from "../../image/check.svg"
 
 
 const Recruitment = () => {
+
+  // const userId =useSelector((state)=>state)
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+
+  const [_nickname,setNickname]=useState('')
+  const value = useSelector((state) => state.postProfile.Myprojects);
+  console.log(value)
+
+// console.log(data)
+  useEffect(() => {
+      if (!(nickname_Info === undefined || nickname_Info === null)) {
+          dispatch(loadProjectAxios(nickname_Info));
+    }
+  }, [nickname_Info]);
+
+
   return (
     <RecruitAllWrap>
-      <RecruitCardMainWrap>
+      { value.length > 0 ? value === undefined
+        ? null
+        : value.map((list, idx) => {
 
-        <CardWrap>
-          <CardNameWrap>
-            <NameText>닉네임이 들어갑니다</NameText>
-            <NameText>n 시간 전</NameText>
-          </CardNameWrap>
-          <CardTitleWrap>
-            <TitleText>제목이 들어갈 칸입니다</TitleText>
-          </CardTitleWrap>
-          <CardTextWrap>
-            <BodyText>내용이 표시될 칸입니다</BodyText>
-          </CardTextWrap>
-          <CardRoleWrap>
-            <NameText>구하는직군</NameText>
-            <NameText>직군 Role이 들어갑니다</NameText>
-          </CardRoleWrap>
-          <CardJobWrap>
-            <NameText>필요 스킬</NameText>
-            <NameText>스킬list가 들어갑니다</NameText>
-          </CardJobWrap>
-          <CardLimitWrap>
-            <BodyText>프로젝트 러닝 기간</BodyText>
-            <DateText>start~end</DateText>
-          </CardLimitWrap>
-        </CardWrap>
+          //작성시간 함수
+          const nowTime = Date.now();
+          const createdAt = list.createdAt;
+          const startTime = new Date(createdAt);
+          const thenHours = Math.floor((nowTime - startTime) / 3600000);
 
-        <ProfileWrap>
-            <PhotoBox>
-              <PhotoCircle></PhotoCircle>
-            </PhotoBox>
-            <NameBox>
-              <NickNameText>닉네임이 들어갑니다</NickNameText>
-              <RoleText>직군 Role이 들어갑니다</RoleText>
-            </NameBox>
-            <InterviewWrap>
-              <div><InterviewButton>면접보기</InterviewButton></div>
-              <TimeTextWrap>
-                <InterviewTimeText>0000년 00월 00일</InterviewTimeText>
-                <InterviewTimeText>00:00</InterviewTimeText>
-              </TimeTextWrap>
-            </InterviewWrap>
-            <div>
-              <span>면접코드: 111-111</span>
-            </div>
-        </ProfileWrap>
+          const DisplayCreatedAt = () => {
+            if (parseInt(startTime - nowTime) > -86400000) {
+              return thenHours + "시간전";
+            }
+            if (parseInt(startTime - nowTime) < -86400000) {
+              return <Moment format="M월 D일">{startTime}</Moment>;           
+            }
+          }
 
-        <LoadWrap>
-          <ApplyStatusLabel>모집 완료<img src={check}/></ApplyStatusLabel>
-          <ApplyLine/>
-          <ApplyStatusLabel>면접 완료<img src={check}/></ApplyStatusLabel>
-          <ApplyLine/>
-          <ApplyStatusLabel>지원서 접수<img src={check}/></ApplyStatusLabel>
-        </LoadWrap>
-      </RecruitCardMainWrap>
+          return (
+            <RecruitCardMainWrap key={idx}>
+
+              <CardWrap>
+                <CardNameWrap>
+                  <NameText>{value && value[idx].nickname}</NameText>
+                  <NameText>
+                    <DisplayCreatedAt />
+                  </NameText>
+                </CardNameWrap>
+                <CardTitleWrap>
+                  <TitleText>{value && value[idx].title}</TitleText>
+                </CardTitleWrap>
+                <CardTextWrap>
+                  <BodyText>{value && value[idx].details}</BodyText>
+                </CardTextWrap>
+                <CardRoleWrap>
+                  <NameText>구하는직군</NameText>
+                  <NameText>{value && value[idx].role}</NameText>
+                </CardRoleWrap>
+                <CardJobWrap>
+                  <NameText>필요 스킬</NameText>
+                  <NameText>{value &&
+                          value[idx].ProjectSkills.map((list, idx) => {
+                            return <TagCompoApp key={idx} skills={list} />;
+                          })}</NameText>
+                </CardJobWrap>
+                <CardLimitWrap>
+                  <BodyText>프로젝트 러닝 기간 : </BodyText>
+                  <DateText>
+                  </DateText>
+                </CardLimitWrap>
+              </CardWrap>
+              
+
+              <>
+              <ProfileWrap>
+                  <PhotoBox>
+                    <PhotoCircle></PhotoCircle>
+                  </PhotoBox>
+                  <NameBox>
+                    <NickNameText>닉네임이 들어갑니다</NickNameText>
+                    <RoleText>직군 Role이 들어갑니다</RoleText>
+                  </NameBox>
+  
+                  <InterviewWrap>
+                    <div><InterviewButton>면접보기</InterviewButton></div>
+                    <TimeTextWrap>
+                      <InterviewTimeText>
+                        {value && list.schedule.slice(0, 4)}년{" "}
+                        {value && list.schedule.slice(5, 7)}월{" "}
+                        {value && list.schedule.slice(8, 10)}일
+                      </InterviewTimeText>
+                      <InterviewTimeText>
+                        {value && list.schedule.slice(11, 13)}시{" "}
+                        {value && list.schedule.slice(14, 16)}분{" "}
+                      </InterviewTimeText>
+                    </TimeTextWrap>
+                  </InterviewWrap>
+                  <div>
+                    <span>면접코드: {value && list.interviewCode}</span>
+                  </div>
+              </ProfileWrap>
+
+              <LoadWrap>
+                <ApplyStatusLabel>모집 완료<img src={check}/></ApplyStatusLabel>
+                <ApplyLine/>
+                <ApplyStatusLabel>면접 완료<img src={check}/></ApplyStatusLabel>
+                <ApplyLine/>
+                <ApplyStatusLabel>지원서 접수<img src={check}/></ApplyStatusLabel>
+              </LoadWrap>
+              </>
+            </RecruitCardMainWrap>
+           );
+  }) : <EmptyCard/> }
     </RecruitAllWrap>
     );
 };

@@ -15,7 +15,7 @@ function ButtonLine() {
               navigate(`/mypage/${nickname}/apply`);
             }}>내 지원 현황</MyMenuButton>
             <MyMenuButton onClick={() => {
-              navigate(`/mypage/${nickname}/project`);
+              navigate(`/mypage/${nickname}/applys`);
             }}
             >내 모집 현황</MyMenuButton>
             <MyMenuButton onClick={() => {

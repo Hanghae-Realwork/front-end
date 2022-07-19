@@ -62,7 +62,7 @@ function App() {
 
         <Route path="mypage/:nickname/*" element={<MyPage />}>
           <Route path="apply" element={<Application />}></Route>
-          <Route path="project" element={<Recruitment />}></Route>
+          <Route path="applys" element={<Recruitment />}></Route>
           <Route path="resumes" element={<Resumes />}></Route>
         </Route>
         
