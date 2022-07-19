@@ -31,7 +31,7 @@ function ButtonLine() {
 const BackgroundAllWrap = styled.div`
   /* border: 1px solid white; */
   width: 1440px;
-  height: 135px;
+  height: 130px;
   background-color: #323230;
   display: flex;
   justify-content: flex-end;
@@ -47,7 +47,7 @@ const RightTopWrap = styled.div`
   align-items: center;
   gap: 44px;
   margin-right: 460px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   /* position: relative; */
 `;
 
@@ -57,6 +57,8 @@ const OnlyBackgroundWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid white; */
+    height: 130px;
 `
 
 // const LeftTopWrap = styled.div`

@@ -83,17 +83,19 @@ const MyPageMainWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
-  margin-top: -80px;
+  align-items: flex-start;
+  /* margin-top: -50px; */
   position: relative;
-  top: -200px;
-  left: 60px;
-  width: 900px;
+  /* top: -200px; */
+  left: 30px;
+  width: 820px;
   gap: 20px;
+  height: 1000px;
+  overflow-y: scroll;
 `;
 
 const MyPageLeftWrap = styled.div`
-  border: 1px solid black;
+  border: 0.5px solid black;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -102,10 +104,10 @@ const MyPageLeftWrap = styled.div`
   height: 627px;
   border-radius: 4px;
   background-color: white;
-  margin-top: -115px;
+  margin-top: -120px;
   position: relative;
   top: -230px;
-  left: 25px;
+  left: -25px;
 `;
 
 const LeftBackgroundWrap = styled.div`
