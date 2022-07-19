@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadProjectAxios } from "../../redux/modules/postProfile";
 
 import TagCompoApp from "./TagCompoApp";
-import EmptyCard from "./EmptyCard";
+import EmptyProject from "./EmptyProject";
 
 import astroman from "../../image/astroman.svg"
 import check from "../../image/check.svg"
@@ -13,12 +13,12 @@ import check from "../../image/check.svg"
 
 const Recruitment = () => {
 
-  // const userId =useSelector((state)=>state)
+
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
 
-  const [_nickname,setNickname]=useState('')
+ 
   const value = useSelector((state) => state.postProfile.Myprojects);
   console.log(value)
 
@@ -32,9 +32,9 @@ const Recruitment = () => {
 
   return (
     <RecruitAllWrap>
-      { value.length > 0 ? value === undefined
-        ? null
-        : value.map((list, idx) => {
+
+      {value.length > 0 ? value && 
+        value.map((list, idx) => {
 
           //작성시간 함수
           const nowTime = Date.now();
@@ -53,79 +53,96 @@ const Recruitment = () => {
 
           return (
             <RecruitCardMainWrap key={idx}>
-
               <CardWrap>
                 <CardNameWrap>
-                  <NameText>{value && value[idx].nickname}</NameText>
+                  <NameText>{list && list?.Project?.nickname}</NameText>
                   <NameText>
                     <DisplayCreatedAt />
                   </NameText>
                 </CardNameWrap>
                 <CardTitleWrap>
-                  <TitleText>{value && value[idx].title}</TitleText>
+                  <TitleText>{list && list?.Project?.title}</TitleText>
                 </CardTitleWrap>
                 <CardTextWrap>
-                  <BodyText>{value && value[idx].details}</BodyText>
+                  <BodyText>{list && list?.Project?.details}</BodyText>
                 </CardTextWrap>
                 <CardRoleWrap>
                   <NameText>구하는직군</NameText>
-                  <NameText>{value && value[idx].role}</NameText>
+                  <NameText>{list && list?.Project?.role}</NameText>
                 </CardRoleWrap>
                 <CardJobWrap>
                   <NameText>필요 스킬</NameText>
-                  <NameText>{value &&
-                          value[idx].ProjectSkills.map((list, idx) => {
-                            return <TagCompoApp key={idx} skills={list} />;
-                          })}</NameText>
+                  <NameText>
+                    {value &&
+                      value[idx].ProjectSkills.map((list, idx) => {
+                        return <TagCompoApp key={idx} skills={list} />;
+                      })}
+                  </NameText>
                 </CardJobWrap>
                 <CardLimitWrap>
-                  <BodyText>프로젝트 러닝 기간 : </BodyText>
-                  <DateText>
-                  </DateText>
+                  <BodyText>
+                    프로젝트 러닝 기간 :{" "}
+                    {list &&
+                      list?.Project?.start
+                        .replace("-", ".")
+                        .replace("-", ".")}{" "}
+                    -{" "}
+                    {list &&
+                      list?.Project?.end.replace("-", ".").replace("-", ".")}
+                  </BodyText>
+                  <DateText></DateText>
                 </CardLimitWrap>
               </CardWrap>
-              
 
-              <>
               <ProfileWrap>
-                  <PhotoBox>
-                    <PhotoCircle></PhotoCircle>
-                  </PhotoBox>
-                  <NameBox>
-                    <NickNameText>닉네임이 들어갑니다</NickNameText>
-                    <RoleText>직군 Role이 들어갑니다</RoleText>
-                  </NameBox>
-  
-                  <InterviewWrap>
-                    <div><InterviewButton>면접보기</InterviewButton></div>
-                    <TimeTextWrap>
-                      <InterviewTimeText>
-                        {value && list.schedule.slice(0, 4)}년{" "}
-                        {value && list.schedule.slice(5, 7)}월{" "}
-                        {value && list.schedule.slice(8, 10)}일
-                      </InterviewTimeText>
-                      <InterviewTimeText>
-                        {value && list.schedule.slice(11, 13)}시{" "}
-                        {value && list.schedule.slice(14, 16)}분{" "}
-                      </InterviewTimeText>
-                    </TimeTextWrap>
-                  </InterviewWrap>
+                <PhotoBox>
+                  <PhotoCircle></PhotoCircle>
+                </PhotoBox>
+                <NameBox>
+                  <NickNameText> {list && list?.Resume?.nickname}</NickNameText>
+                  <RoleText>{list && list?.Resume?.role}</RoleText>
+                </NameBox>
+
+                <InterviewWrap>
                   <div>
-                    <span>면접코드: {value && list.interviewCode}</span>
+                    <InterviewButton>면접보기</InterviewButton>
                   </div>
+                  <TimeTextWrap>
+                    <InterviewTimeText>
+                      {list && list.schedule.slice(0, 4)}년{" "}
+                      {list && list.schedule.slice(5, 7)}월{" "}
+                      {list && list.schedule.slice(8, 10)}일
+                    </InterviewTimeText>
+                    <InterviewTimeText>
+                      {list && list.schedule.slice(11, 13)}시{" "}
+                      {list && list.schedule.slice(14, 16)}분{" "}
+                    </InterviewTimeText>
+                  </TimeTextWrap>
+                </InterviewWrap>
+                <div>
+                  <span>면접코드: {list && list.interviewCode}</span>
+                </div>
               </ProfileWrap>
 
               <LoadWrap>
-                <ApplyStatusLabel>모집 완료<img src={check}/></ApplyStatusLabel>
-                <ApplyLine/>
-                <ApplyStatusLabel>면접 완료<img src={check}/></ApplyStatusLabel>
-                <ApplyLine/>
-                <ApplyStatusLabel>지원서 접수<img src={check}/></ApplyStatusLabel>
+                <ApplyStatusLabel>
+                  모집 완료
+                  <img src={check} />
+                </ApplyStatusLabel>
+                <ApplyLine />
+                <ApplyStatusLabel>
+                  면접 완료
+                  <img src={check} />
+                </ApplyStatusLabel>
+                <ApplyLine />
+                <ApplyStatusLabel>
+                  지원서 접수
+                  <img src={check} />
+                </ApplyStatusLabel>
               </LoadWrap>
-              </>
             </RecruitCardMainWrap>
-           );
-  }) : <EmptyCard/> }
+          );
+  }) :<EmptyProject/> }
     </RecruitAllWrap>
     );
 };

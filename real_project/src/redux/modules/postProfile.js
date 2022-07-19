@@ -12,8 +12,8 @@ export function loadApply(payload) {
   return { type: LOADAPPLY, payload };
 }
 
-export function loadproject(loadpay) {
-  return { type: LOADPROJECT, loadpay };
+export function loadproject(payload) {
+  return { type: LOADPROJECT, payload };
 }
 
 //middleware
@@ -33,13 +33,13 @@ export const loadApplyAxios = (nickname) => {
   };
 };
 
-//내 프로젝트 조회
+//내 모집현황 조회
 export const loadProjectAxios = (nickname) => {
   return async function (dispatch) {
     await apis
       .userRecruit(nickname)
       .then((response) => {
-        console.log('받았습니당')
+
       dispatch(loadproject(response.data));
       })
       .catch((err) => {
@@ -70,11 +70,17 @@ export const loadProjectAxios = (nickname) => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "userpage/LOADAPPLY": {
-      return { Applications: action.payload };
+      return {
+        Applications: action.payload,
+        Myprojects: state.Myprojects
+      };
     }
 
     case "userpage/LOADPROJECT": {
-      return { Myprojects: action.loadpay };
+      return {
+        Applications: state.Applications,
+        Myprojects: action.payload
+      };
     }
 
     default:

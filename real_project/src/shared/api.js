@@ -53,14 +53,14 @@ imgApi.interceptors.request.use(function (config) {
 
 api.interceptors.response.use(
   (response) => {
-    console.log("response",response)
+    // console.log("response",response)
     return response;
   },
   async function (error) {
-    console.log(error)
+    // console.log(error)
     const originalRequest = error.config;
     if (error.response.status === 401) {
-      console.log("토큰 만료");
+      // console.log("토큰 만료");
       
       // const sessionObj = window.sessionStorage.getItem('userInfo');
       // let userInfo = sessionObj ? JSON.parse(sessionObj) : null;
