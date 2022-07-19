@@ -44,10 +44,8 @@ const FindProjectStep01 = (props) => {
   const [hour, setHour] = useState(parseInt("24"));
   const [minute, setMinute] = useState(parseInt("0"));
   const [rangeTime, setRangeTime] = useState([]);
-   const time_List = Array.from({ length: 5 }, (v, i) => i);
-  //Role 값 (코코미 코드)
 
-
+   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
@@ -126,9 +124,6 @@ const FindProjectStep01 = (props) => {
       setHour(hour - 1);
     }
   };
-  const hourOnChange = (e) => {
-    setHour(parseInt(e.target.value));
-  };
 
   const minuteUpOnClick = () => {
     if (minute < 59) {
@@ -151,17 +146,21 @@ const FindProjectStep01 = (props) => {
       if (hour === 1) {
         setHour(24)
       }
-}
-  };
-  const minuteOnChange = (e) => {
-    setMinute(parseInt(e.target.value));
+    }
   };
 
-  
+  const hourOnChange = (e) => {
+    setHour(parseInt(e.target.value));
+  };
+
+  const minuteOnChange = (e) => {
+      setMinute(parseInt(e.target.value));
+    };
+
+  const arr = [hour, minute].join(":");
 
   const timeAddOnClick = () => {
-    const arr = [hour, minute].join(":");
-    rangeTime.push(arr)
+    setRangeTime(prev => [...prev, arr])
   }
 
   ///////////////////////
