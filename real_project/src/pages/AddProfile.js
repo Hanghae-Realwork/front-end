@@ -242,33 +242,15 @@ function AddProfile(props) {
               <TitleTextTag>내 직군</TitleTextTag>
               <RadioRoleWrap>
                 <label>
-                  <input
-                    id="role"
-                    type="radio"
-                    value="frontend"
-                    name="role"
-                    onChange={onChangeRole}
-                  />
+                  <input id="role" type="radio" value="frontend" name="role" onChange={onChangeRole}/>
                   FrontEnd
                 </label>
                 <label>
-                  <input
-                    id="role"
-                    type="radio"
-                    name="role"
-                    value="backend"
-                    onChange={onChangeRole}
-                  />
+                  <input id="role" type="radio" name="role" value="backend" onChange={onChangeRole}/>
                   BackEnd
                 </label>
                 <label>
-                  <input
-                    id="role"
-                    type="radio"
-                    name="role"
-                    value="designer"
-                    onChange={onChangeRole}
-                  />
+                  <input id="role" type="radio" name="role" value="designer" onChange={onChangeRole}/>
                   Designer
                 </label>
               </RadioRoleWrap>
