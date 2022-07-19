@@ -13,8 +13,8 @@ import addimage from "../image/addimage.svg"
 import upicon from "../image/upicon.svg"
 import downicon from "../image/downicon.svg"
 
-const FindProjectStep01 = (props) => {
 
+const FindProjectStep01 = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,24 +29,23 @@ const FindProjectStep01 = (props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  //캘린더 Single 
-  const [singleStartDate, setSingleStartDate] = useState(new Date());
- 
+  //캘린더 Single
+  const [singleDate, setSingleDate] = useState("");
+
   //사진 파일 유무
   const [filesImg, setFilesImg] = useState("");
   const [files, setFiles] = useState("");
 
   //시간과 분
   const [hour, setHour] = useState(parseInt("24"));
-  const [minute, setMinute] = useState(0);
+  const [minute, setMinute] = useState(1);
 
   const [rangeTime, setRangeTime] = useState([]);
-
-   //Role 값 (코코미 코드)
+  const [rangeTotal, setRangeTotal] = useState([]);
+  //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
-
 
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
@@ -56,7 +55,6 @@ const FindProjectStep01 = (props) => {
       setCheckList(checkList.filter((el) => el !== item));
     }
   };
-
 
   //fileReader
   const frm = new FormData();
@@ -71,7 +69,6 @@ const FindProjectStep01 = (props) => {
     setFilesImg(e.target.files[0]);
     reader.readAsDataURL(e.target.files[0]);
 
-    
     return new Promise((resolve) => {
       reader.onload = () => {
         setFilesImg(reader.result);
@@ -111,8 +108,8 @@ const FindProjectStep01 = (props) => {
     } else {
       setMinute(0);
       setHour(hour + 1);
-      if (hour === 24) { 
-        setHour(1)
+      if (hour === 24) {
+        setHour(1);
       }
     }
   };
@@ -124,45 +121,58 @@ const FindProjectStep01 = (props) => {
     } else {
       setMinute(minute - 1);
       if (hour === 1) {
-        setHour(24)
+        setHour(24);
       }
     }
   };
 
   const hourOnChange = (e) => {
-    if (e.target.value.length < 3) { 
+    if (e.target.value.length < 3) {
       if (e.target.value > 24) {
-        setHour(24)
-      } else { 
-          setHour(parseInt(e.target.value));
+        setHour(24);
+      } else {
+        setHour(parseInt(e.target.value));
       }
-       
     }
-      
   };
 
   const minuteOnChange = (e) => {
-    if (e.target.value.length < 3) { 
+    if (e.target.value.length < 3) {
       if (e.target.value > 59) {
-        setMinute(59)
-      } else { 
+        setMinute(59);
+      } else {
         setMinute(parseInt(e.target.value));
       }
-       
     }
-    };
+  };
 
   const arr = [hour, minute].join(":");
-
   const timeAddOnClick = () => {
     if (rangeTime.length < 5) {
-       setRangeTime((prev) => [...prev, arr]);
-     }
-  }
-console.log(rangeTime)
+      setRangeTime((prev) => [...prev, arr]);
+    }
+  };
+
   ///////////////////////
   /////////시간 끝//////////
   /////////////////////
+
+  //single달력
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [date, setDate] = useState("");
+
+  const singleCalenderOnChange = (date) => {
+    setYear(String(date.getFullYear()).padStart(2, "0"));
+    setMonth(String(date.getMonth() + 1).padStart(2, "0"));
+    setDate(String(date.getDate()).padStart(2, "0"));
+  };
+
+  const totalArr = [year+"년"+month+"월"+date+"일", ...rangeTime];
+  const schduleAddOnClick = () => {
+    setRangeTotal((prev) => [...prev, totalArr]);
+  };
+  console.log(rangeTotal);
 
   // 저장 버튼
   const CompliteButton = async () => {
@@ -197,11 +207,6 @@ console.log(rangeTime)
       console.log(err);
     }
   };
-
-  const singleCalenderonChange = () => {
-    
-  }
-
 
   return (
     <BackgroundAllWrap>
@@ -383,8 +388,8 @@ console.log(rangeTime)
             <CalenderAllWrap>
               <CalenderWrap>
                 <DatePicker
-                  selected={singleStartDate}
-                  onChange={singleCalenderonChange}
+                  selected={singleDate}
+                  onChange={singleCalenderOnChange}
                   startDate={startDate}
                   dateFormat="YYYY-MM-DD"
                   locale="ko" // 달력 한글화
@@ -440,7 +445,9 @@ console.log(rangeTime)
             </TimeAllDiv>
 
             <TimeSelectWrap>
-              <InterviewTextDate>날짜를 선택해주세요</InterviewTextDate>
+              <InterviewTextDate>
+                {year ? year + "년 " + month + "월 " + date + "일" : ""}
+              </InterviewTextDate>
               <TimeAddButtonWrap>
                 {/* 고치는중 */}
                 {rangeTime.map((list, idx) => {
@@ -466,12 +473,36 @@ console.log(rangeTime)
                   );
                 })}
               </TimeAddButtonWrap>
-              <TimeAddButton>면접시간 등록</TimeAddButton>
+              <TimeAddButton onClick={schduleAddOnClick}>
+                면접시간 등록
+              </TimeAddButton>
             </TimeSelectWrap>
           </InterviewTableWrap>
         </InputMainTextWrap>
 
         <HeadLine />
+        {/* 아래 하단 시작 */}
+        <TimeSelectWrap>
+          <InterviewTextDate>
+          날짜가 들어갑니다.
+          </InterviewTextDate>
+          <TimeAddButtonWrap>
+                  <TimeAddLeftWrap>
+                    <LeftTimeButton >가나다</LeftTimeButton>
+                  </TimeAddLeftWrap>
+                  <TimeAddRightWrap>
+                    <LeftDelBtn
+                     
+                    >
+                      삭제하기
+                    </LeftDelBtn>
+                  </TimeAddRightWrap>
+          
+      
+          </TimeAddButtonWrap>
+
+        </TimeSelectWrap>
+        {/* 아래 하단 끝 */}
 
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
