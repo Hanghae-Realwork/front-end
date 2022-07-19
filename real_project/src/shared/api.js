@@ -309,7 +309,7 @@ export const apis = {
 
   //  - 20. 면접요청 취소
   //  - 21. 프로젝트 면접 예약
-  appointmentProject: (projectId, applicationId) => api.put(`/api/applications/${projectId}/${applicationId}`)
+  appointmentProject: (applicationId) => api.put(`/api/applications/${applicationId}`)
   
   //  - 22. 면접요청 취소
   //  - 23. (팀장) 면접 승낙

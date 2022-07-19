@@ -28,6 +28,7 @@ const dvelopSkills_list = [
   { data: "Android" },
   { data: "iOS" },
 ];
+
 const designerSkills_list = [
   { data: "Figma" },
   { data: "Adobe XD" },
