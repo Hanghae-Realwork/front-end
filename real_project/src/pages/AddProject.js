@@ -13,10 +13,6 @@ import addimage from "../image/addimage.svg"
 import upicon from "../image/upicon.svg"
 import downicon from "../image/downicon.svg"
 
-
-
-
-
 const FindProjectStep01 = (props) => {
 
   const dispatch = useDispatch();
@@ -43,7 +39,7 @@ const FindProjectStep01 = (props) => {
   //시간과 분
   const [hour, setHour] = useState(parseInt("24"));
   const [minute, setMinute] = useState(0);
-console.log(typeof minute);
+
   const [rangeTime, setRangeTime] = useState([]);
 
    //Role 값 (코코미 코드)
@@ -75,6 +71,7 @@ console.log(typeof minute);
     setFilesImg(e.target.files[0]);
     reader.readAsDataURL(e.target.files[0]);
 
+    
     return new Promise((resolve) => {
       reader.onload = () => {
         setFilesImg(reader.result);
@@ -89,24 +86,6 @@ console.log(typeof minute);
     setEndDate(end);
   };
 
-
-  // 데이피커 테스트 코드
-  const SingleCalender = () => {
-  
-    
-    return (
-      <DatePicker
-        selected={startDate}
-        // onChange={onChange}
-        startDate={startDate}
-        dateFormat="YYYY-MM-DD"
-        locale="ko" // 달력 한글화
-        minDate={new Date()}
-        monthsShown={1}
-        inline
-      />
-    );
-  };
   ///////////////////////
   /////////시간//////////
   /////////////////////
@@ -219,6 +198,9 @@ console.log(rangeTime)
     }
   };
 
+  const singleCalenderonChange = () => {
+    
+  }
 
 
   return (
@@ -400,7 +382,16 @@ console.log(rangeTime)
           <InterviewTableWrap>
             <CalenderAllWrap>
               <CalenderWrap>
-                <SingleCalender startDate={singleStartDate} />
+                <DatePicker
+                  selected={singleStartDate}
+                  onChange={singleCalenderonChange}
+                  startDate={startDate}
+                  dateFormat="YYYY-MM-DD"
+                  locale="ko" // 달력 한글화
+                  minDate={new Date()}
+                  monthsShown={1}
+                  inline
+                />
               </CalenderWrap>
               <InterviewText>인터뷰 가능 날짜를 설정 해주세요.</InterviewText>
               <InterviewText>
@@ -451,26 +442,29 @@ console.log(rangeTime)
             <TimeSelectWrap>
               <InterviewTextDate>날짜를 선택해주세요</InterviewTextDate>
               <TimeAddButtonWrap>
-              {/* 고치는중 */}
-                  {rangeTime.map((list, idx) => {
-                    return (<div key={idx}><TimeAddLeftWrap>
-                      <LeftTimeButton key={idx}>{list}</LeftTimeButton>
+                {/* 고치는중 */}
+                {rangeTime.map((list, idx) => {
+                  return (
+                    <div key={idx}>
+                      <TimeAddLeftWrap>
+                        <LeftTimeButton key={idx}>{list}</LeftTimeButton>
                       </TimeAddLeftWrap>
-                        <TimeAddRightWrap>
-                        <LeftDelBtn onClick={() => {
-                         console.log(idx)
-                          rangeTime.filter((l,index) => {
-                            // idx !==index
-                          })
-                          // setRangeTime((list) => console.log(list));
-                          }}>삭제하기</LeftDelBtn>
-                        </TimeAddRightWrap>
+                      <TimeAddRightWrap>
+                        <LeftDelBtn
+                          onClick={() => {
+                            const new_post = rangeTime.filter((l, index) => {
+                              return idx !== index;
+                            });
+                            setRangeTime(new_post);
+                            // setRangeTime((list) => console.log(list));
+                          }}
+                        >
+                          삭제하기
+                        </LeftDelBtn>
+                      </TimeAddRightWrap>
                     </div>
-                        
-                    );
-                  })}
-               
-  
+                  );
+                })}
               </TimeAddButtonWrap>
               <TimeAddButton>면접시간 등록</TimeAddButton>
             </TimeSelectWrap>
