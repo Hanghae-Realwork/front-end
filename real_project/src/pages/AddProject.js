@@ -14,7 +14,11 @@ import upicon from "../image/upicon.svg"
 import downicon from "../image/downicon.svg"
 
 
+
+
+
 const FindProjectStep01 = (props) => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,13 +44,12 @@ const FindProjectStep01 = (props) => {
   const [hour, setHour] = useState(parseInt("24"));
   const [minute, setMinute] = useState(parseInt("0"));
   const [rangeTime, setRangeTime] = useState([]);
-   const time_List = Array.from({ length: 5 }, (v, i) => i);
-  //Role 값 (코코미 코드)
 
-
+   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
+
 
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
@@ -56,6 +59,7 @@ const FindProjectStep01 = (props) => {
       setCheckList(checkList.filter((el) => el !== item));
     }
   };
+
 
   //fileReader
   const frm = new FormData();
@@ -83,6 +87,7 @@ const FindProjectStep01 = (props) => {
     setStartDate(start);
     setEndDate(end);
   };
+
 
   // 데이피커 테스트 코드
   const SingleCalender = () => {
@@ -119,9 +124,6 @@ const FindProjectStep01 = (props) => {
       setHour(hour - 1);
     }
   };
-  const hourOnChange = (e) => {
-    setHour(parseInt(e.target.value));
-  };
 
   const minuteUpOnClick = () => {
     if (minute < 59) {
@@ -144,17 +146,21 @@ const FindProjectStep01 = (props) => {
       if (hour === 1) {
         setHour(24)
       }
-}
-  };
-  const minuteOnChange = (e) => {
-    setMinute(parseInt(e.target.value));
+    }
   };
 
-  
+  const hourOnChange = (e) => {
+    setHour(parseInt(e.target.value));
+  };
+
+  const minuteOnChange = (e) => {
+      setMinute(parseInt(e.target.value));
+    };
+
+  const arr = [hour, minute].join(":");
 
   const timeAddOnClick = () => {
-    const arr = [hour, minute].join(":");
-    rangeTime.push(arr)
+    setRangeTime(prev => [...prev, arr])
   }
 
   ///////////////////////
