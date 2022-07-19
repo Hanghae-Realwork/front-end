@@ -13,10 +13,6 @@ import addimage from "../image/addimage.svg"
 import upicon from "../image/upicon.svg"
 import downicon from "../image/downicon.svg"
 
-
-
-
-
 const FindProjectStep01 = (props) => {
 
   const dispatch = useDispatch();
@@ -42,7 +38,8 @@ const FindProjectStep01 = (props) => {
 
   //시간과 분
   const [hour, setHour] = useState(parseInt("24"));
-  const [minute, setMinute] = useState(parseInt("0"));
+  const [minute, setMinute] = useState(0);
+
   const [rangeTime, setRangeTime] = useState([]);
 
    //Role 값 (코코미 코드)
@@ -74,6 +71,7 @@ const FindProjectStep01 = (props) => {
     setFilesImg(e.target.files[0]);
     reader.readAsDataURL(e.target.files[0]);
 
+    
     return new Promise((resolve) => {
       reader.onload = () => {
         setFilesImg(reader.result);
@@ -82,30 +80,12 @@ const FindProjectStep01 = (props) => {
     });
   };
 
-  const onChange = (dates) => {
+  const DoubleCalenderOnChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
   };
 
-
-  // 데이피커 테스트 코드
-  const SingleCalender = () => {
-  
-    
-    return (
-      <DatePicker
-        selected={startDate}
-        // onChange={onChange}
-        startDate={startDate}
-        dateFormat="YYYY-MM-DD"
-        locale="ko" // 달력 한글화
-        minDate={new Date()}
-        monthsShown={1}
-        inline
-      />
-    );
-  };
   ///////////////////////
   /////////시간//////////
   /////////////////////
@@ -150,19 +130,36 @@ const FindProjectStep01 = (props) => {
   };
 
   const hourOnChange = (e) => {
-    setHour(parseInt(e.target.value));
+    if (e.target.value.length < 3) { 
+      if (e.target.value > 24) {
+        setHour(24)
+      } else { 
+          setHour(parseInt(e.target.value));
+      }
+       
+    }
+      
   };
 
   const minuteOnChange = (e) => {
-      setMinute(parseInt(e.target.value));
+    if (e.target.value.length < 3) { 
+      if (e.target.value > 59) {
+        setMinute(59)
+      } else { 
+        setMinute(parseInt(e.target.value));
+      }
+       
+    }
     };
 
   const arr = [hour, minute].join(":");
 
   const timeAddOnClick = () => {
-    setRangeTime(prev => [...prev, arr])
+    if (rangeTime.length < 5) {
+       setRangeTime((prev) => [...prev, arr]);
+     }
   }
-
+console.log(rangeTime)
   ///////////////////////
   /////////시간 끝//////////
   /////////////////////
@@ -201,6 +198,11 @@ const FindProjectStep01 = (props) => {
     }
   };
 
+  const singleCalenderonChange = () => {
+    
+  }
+
+
   return (
     <BackgroundAllWrap>
       <FindProjectAllWrap>
@@ -237,7 +239,7 @@ const FindProjectStep01 = (props) => {
                 dateFormat="YYYY-MM-DD"
                 locale="ko" // 달력 한글화
                 selected={startDate}
-                onChange={onChange}
+                onChange={DoubleCalenderOnChange}
                 startDate={startDate}
                 minDate={new Date()}
                 endDate={endDate}
@@ -380,7 +382,16 @@ const FindProjectStep01 = (props) => {
           <InterviewTableWrap>
             <CalenderAllWrap>
               <CalenderWrap>
-                <SingleCalender startDate={singleStartDate} />
+                <DatePicker
+                  selected={singleStartDate}
+                  onChange={singleCalenderonChange}
+                  startDate={startDate}
+                  dateFormat="YYYY-MM-DD"
+                  locale="ko" // 달력 한글화
+                  minDate={new Date()}
+                  monthsShown={1}
+                  inline
+                />
               </CalenderWrap>
               <InterviewText>인터뷰 가능 날짜를 설정 해주세요.</InterviewText>
               <InterviewText>
@@ -413,7 +424,7 @@ const FindProjectStep01 = (props) => {
                       type="number"
                       value={minute}
                       onChange={minuteOnChange}
-                      maxLength={2}
+                      maxlength="2"
                     />
                     <HourButton onClick={minuteDownOnClick}>
                       <img src={downicon} />
@@ -431,25 +442,29 @@ const FindProjectStep01 = (props) => {
             <TimeSelectWrap>
               <InterviewTextDate>날짜를 선택해주세요</InterviewTextDate>
               <TimeAddButtonWrap>
-                <TimeAddLeftWrap>
-                  {rangeTime.map((list,idx) => {
-                    return <LeftTimeButton key={idx}>
-                      {list}
-                    </LeftTimeButton>;
-                  })}
-                  
-                  {/* <LeftTimeButton></LeftTimeButton>
-                  <LeftTimeButton></LeftTimeButton>
-                  <LeftTimeButton></LeftTimeButton>
-                  <LeftTimeButton></LeftTimeButton> */}
-                </TimeAddLeftWrap>
-                <TimeAddRightWrap>
-                  <LeftDelBtn>삭제하기</LeftDelBtn>
-                  <LeftDelBtn></LeftDelBtn>
-                  <LeftDelBtn></LeftDelBtn>
-                  <LeftDelBtn></LeftDelBtn>
-                  <LeftDelBtn></LeftDelBtn>
-                </TimeAddRightWrap>
+                {/* 고치는중 */}
+                {rangeTime.map((list, idx) => {
+                  return (
+                    <div key={idx}>
+                      <TimeAddLeftWrap>
+                        <LeftTimeButton key={idx}>{list}</LeftTimeButton>
+                      </TimeAddLeftWrap>
+                      <TimeAddRightWrap>
+                        <LeftDelBtn
+                          onClick={() => {
+                            const new_post = rangeTime.filter((l, index) => {
+                              return idx !== index;
+                            });
+                            setRangeTime(new_post);
+                            // setRangeTime((list) => console.log(list));
+                          }}
+                        >
+                          삭제하기
+                        </LeftDelBtn>
+                      </TimeAddRightWrap>
+                    </div>
+                  );
+                })}
               </TimeAddButtonWrap>
               <TimeAddButton>면접시간 등록</TimeAddButton>
             </TimeSelectWrap>
@@ -842,7 +857,7 @@ const TimeAddButtonWrap = styled.div`
 `
 
 const TimeAddLeftWrap = styled.div`
-  height: 250px;
+  /* height: 250px; */
   /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
