@@ -9,6 +9,8 @@ import { useNavigation } from "react-day-picker";
 import TagDes from "../components/Tag/TagCompoDes"
 import TagDev from "../components/Tag/TagCompoDev"
 
+import letter from "../image/letter.svg"
+
 
 
 function EmploymentProfile() {
@@ -61,214 +63,320 @@ useState(data[0]?.role)
  if(!data[0]) return null 
   return (
     <>
-      <EmploProfile>
-        <NameFieldWrap>
-          <ProfileTopWrap>
-            <ProfileCircleWrap>
-              <ProfileCircle
-                style={{backgroundImage: `url(${data[0].resumeImage})`}}></ProfileCircle>
-            </ProfileCircleWrap>
-            <NameWrap>
-              <NameTitle>
-                <TitleName>{data.length > 0 ? data[0].nickname : ""}</TitleName>
-              </NameTitle>
-              <NameTitle>
-                <SubName>{data.length > 0 ? data[0].role : ""}</SubName>
-              </NameTitle>
-              <NameTitle>
-                <TextField>{data.length > 0 ? data[0].userId : ""}</TextField>
-              </NameTitle>
-              <NameTitle>
-                <TextField>{data.length > 0 ? data[0].content : ""}</TextField>
-              </NameTitle>
-            </NameWrap>
-          </ProfileTopWrap>
-          <TitleTextWrap>
-            <SubName>소개글</SubName>
-            <SelfText>{data.length > 0 ? data[0].content3 : ""}</SelfText>
-          </TitleTextWrap>
-          <TitleTextWrap>
-            <SubName>홈페이지</SubName>
-            <SelfText>
-              <a href={data.length > 0 ? data[0].content2 : ""} target="_blank">
-                {data.length > 0 ? data[0].content2 : ""}
-              </a>
-            </SelfText>
-          </TitleTextWrap>
-          <TitleTextWrap>
-            <SubName>프로젝트 참여 가능 기간</SubName>
-            <SelfText>
-              {data[0]?.start.replace("-", ".").replace("-", ".")}~
-              {data[0]?.end.replace("-", ".").replace("-", ".")}
-            </SelfText>
-          </TitleTextWrap>
-          <TitleTextWrap>
-            <StacTextWrap>
-              <StacText>
-                {data.length > 0 ? data[0].nickname : ""}님이 보유한 스택
-              </StacText>
-            </StacTextWrap>
-            <StacTagWrap>
-              {data.length > 0
+    <BackGroundOnlyWrap> 
+      {/* <HoldWrap> */}
+     {/* <BackGround1/> */}
+     {/* <BackGround2/> */}
+     <BackGround3>
+              
+     <PageAllWrap>
+          <TopWrap>
+            <LeftTopWrap>
+              <PhotoCircle style={{backgroundImage: `url(${data[0].resumeImage})`}}></PhotoCircle>
+            </LeftTopWrap>
+            <RightTopWrap>
+              <RightNameText>{data.length > 0 ? data[0].nickname : ""}</RightNameText>
+              <RightRoleText>{data.length > 0 ? data[0].role : ""}</RightRoleText>
+              <RightAdressText><img src={letter} style={{marginRight:"8px"}}/>{data.length > 0 ? data[0].userId : ""}</RightAdressText>
+              <RightSelfText>{data.length > 0 ? data[0].content : ""}</RightSelfText>
+            </RightTopWrap>
+          </TopWrap>
+
+          <TopHr/>
+
+          <MidWrap>
+            <MidTxetWrap>
+              <MidTitle>소개글</MidTitle>
+              <MidSelfText>{data.length > 0 ? data[0].content3 : ""}</MidSelfText>
+            </MidTxetWrap>
+            <MidTxetWrap>
+              <MidTitle>홈페이지</MidTitle>
+              <MidContentText>
+                <a href={data.length > 0 ? data[0].content2 : ""} target="_blank">
+                  {data.length > 0 ? data[0].content2 : ""}
+                </a>
+              </MidContentText>
+            </MidTxetWrap>
+            <MidTxetWrap>
+              <MidTitle>프로젝트 가능 기간</MidTitle>
+              <MidContentText>
+                {data[0]?.start.replace("-", ".").replace("-", ".")}~
+                {data[0]?.end.replace("-", ".").replace("-", ".")}
+              </MidContentText>
+            </MidTxetWrap>
+            <MidTxetWrap>
+              <MidTitle>
+                {data.length > 0 ? data[0].nickname : ""}님의 보유 스킬
+              </MidTitle>
+              <MidTagWrap>
+                {data.length > 0
                 ? data[0].resumeskills.map((list, idx) => {
                     return <TagDev key={idx} skills={list} />;
                   })
                 : ""}
-            </StacTagWrap>
-          </TitleTextWrap>
-          <div>
-            <DucButton>면접 신청하기</DucButton>
-            {modify ? (
-              <DucButton onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
-                수정하기
-              </DucButton>
-            ) : (<></>)}
-            {modify ? <DucButton onClick={() => {
+              </MidTagWrap>
+            </MidTxetWrap>
+          </MidWrap>
+
+          <BotHr/>
+
+          <BotWrap>
+          {modify ? (
+            <FixedBtn onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
+              수정하기</FixedBtn>) : (<></>)}
+          {modify ? (
+            <DelBtn onClick={() => {
               dispatch(deleteEmployAxios(resumeId));
               alert("❗️ 정말 삭제하시는 겁니까?")
-              navigate("/mainemployment");}}>삭제하기</DucButton> : <></>}
-          </div>
-        </NameFieldWrap>
-      </EmploProfile>
-    </>
+              navigate("/mainemployment");}}>
+              삭제하기</DelBtn>) : (<></>)}
+          </BotWrap>
+        </PageAllWrap>      
+     </BackGround3>
+     {/* </HoldWrap> */}
+    </BackGroundOnlyWrap>         
+  </>
   );
 }
 
 
 
-const EmploProfile = styled.div`
-    /* border: 1px solid black; */
-    width: 700px;
-    margin-top: 70px;
-    margin-bottom: 100px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-`
 
-const NameFieldWrap = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    /* border: 1px solid black; */
-`
-
-const ProfileTopWrap = styled.div`
-    /* border: 1px solid black; */
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-`
-
-const ProfileCircleWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 150px;
-  height: 150px;
-  margin-right: 40px;
- 
-  overflow: hidden;
-  position: relative;
-`;
-
-const ProfileCircle = styled.div`
-  /* width: 150px;
-  height: 150px; */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 150px;
-  /* object-fit: cover; */
-
-  /* background-size: 100%; */
-  /* background-position: center; */
-  border-radius: 50%;
-  /* background-repeat: no-repeat; */
-
-  /* display: inline-block;
+const BackGroundOnlyWrap = styled.div`
+border: 1px solid black;
+  background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
   width: 100%;
-  height: 100px;
-  overflow: hidden;
-  object-fit: cover; */
-  position: absolute;
-  width: 100%;
-  /* height: 100%; */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -4;
   background-size: cover;
-  background-position: center;
-`;
-
-const NameWrap = styled.div`
-    /* border: 1px solid black; */
-    width: 500px;
-`
-
-const NameTitle = styled.div`
-    /* border: 1px solid black; */
-    margin: 12px;
-`
-
-const TitleName = styled.span`
-    font-weight: bold;
-    font-size: 20px;
-`
-
-const SubName = styled.span`
-    font-size: 16px;
-    font-weight: bold;
-`
-
-const TextField = styled.div`
-    font-size: 14px;
-`
-
-const TitleTextWrap = styled.div`
-    font-size: 14px;
-    /* border: 1px solid black; */
-    width: 600px;
-    height: 100px;
-    margin-top: 50px;
-`
-
-const StacTextWrap = styled.div`
-    /* border: 1px solid black; */
-    margin-bottom: 20px;
-`
-
-const StacText = styled.div`
-  font-size: 15px;
-  font-weight: bold;
-`
-
-const StacTagWrap = styled.div`
-    margin-bottom: 50px;
-    /* border: 1px solid black; */
-`
-
-const DucButton = styled.button`
-    border: none;
-    outline: none;
-    background-color: #5B6770;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    width: 180px;
-    height: 50px;
-    cursor: pointer;
-    margin-top:  80px;
-    font-weight: bold;
-    font-size: 18px;
-    margin-left: 10px;
 
 `
 
-const SelfText = styled.div`
-  margin-top: 20px;
+const HoldWrap = styled.div`
+  /* border: 1px solid black; */
+  /* width: 1000px; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 `
+
+const BackGround1 = styled.div`
+  border: 1px solid black;
+  width: 996px;
+  height: 906px;
+  position: relative;
+  z-index: -5;
+  top: 40px;
+  left: 50px;
+  border-radius: 4px;
+`
+
+const BackGround2 = styled.div`
+  border: 1px solid black;
+  width: 996px;
+  height: 906px;
+  position: absolute;
+  z-index: -2;
+  top: 65px;
+  left: 20px;
+  background: #F3F3F3;
+  border: 1px solid #303032;
+  border-radius: 4px;
+`
+
+const BackGround3 = styled.div`
+  border: 1px solid black;
+  width: 996px;
+  height: 906px;
+  /* position: absolute;
+  z-index: -1;
+  top: 100px;
+  left: -15px; */
+  background-color: white;
+  border: 1px solid #303032;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  /* margin-bottom: 80px; */
+`
+
+const PageAllWrap = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+`
+
+//내부 틀
+const TopWrap = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 129px 30px 75px;
+  width: 588px;
+  `
+
+const MidWrap = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 50px 129px 50px 75px;
+  gap: 48px;
+`
+
+const BotWrap = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 240px 30px 240px;
+  gap: 10px;
+`
+
+//세부 틀
+const LeftTopWrap = styled.div`
+  /* border: 1px solid black; */
+  width: 200px;
+  height: 200px;
+`
+
+const RightTopWrap = styled.div`
+  /* border: 1px solid black; */
+  width: 344px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+`
+
+const MidTxetWrap = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+`
+
+
+//상세 틀
+const PhotoCircle = styled.div`
+  border: 1px solid black;
+  width: 200px;
+  height:200px;
+  border-radius: 100%;
+`
+
+const RightNameText = styled.span`
+  font-size: 24px;
+  font-weight: 700;
+`
+
+const RightRoleText = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 4px;
+`
+
+const RightAdressText = styled.span`
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+`
+
+const RightSelfText = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  height: 42px;
+  width: 344px;
+  /* border: 1px solid black; */
+  margin-top: 28px;
+`
+
+const MidTitle = styled.span`
+  font-size: 16px;
+  font-weight: 700;
+`
+
+const MidSelfText = styled.div`
+  /* border: 1px solid black; */
+  font-size: 14px;
+  font-weight: 400;
+  width: 580px;
+`
+
+const MidContentText = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+`
+
+const MidTagWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+`
+
+const FixedBtn = styled.button`
+  padding: 12px 20px 12px 20px;
+  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  width: 140px;
+  height: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`
+
+const DelBtn = styled.button`
+  padding: 12px 20px 12px 20px;
+  background: #FFF;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  width: 140px;
+  height: 40px;
+  border: 1px solid #303032;
+  outline: none;
+  cursor: pointer;
+`
+const TopHr = styled.hr`
+  border: 0.5px dashed #8D8D8D;
+  width: 996px;
+`
+
+const BotHr = styled.hr`
+  border: 0.5px solid #8D8D8D;
+  width: 996px;
+`
+
+
+
+
+
+
+
+
+
+
 
 export default EmploymentProfile
