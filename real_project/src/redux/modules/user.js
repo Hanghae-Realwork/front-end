@@ -135,11 +135,9 @@ export const checkUserValidation = () => {
         );
       })
       .catch((err) => {
-        console.log("err",err)
-        if (err.response.status === 401) {
-         
+        console.log("err", err.response.status);
+        if (err.response.data.status === 401) {
           dispatch(refreshAxios());
-     
         }
      
           // console.log(err)

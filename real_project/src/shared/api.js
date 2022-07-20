@@ -15,9 +15,11 @@ const api = axios.create({
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
-    withCredentials: true,
   },
+  withCredentials: true,
+  credentials: "include",
 });
+
 
 // 테스트(재영님)
 // baseURL: "http://13.125.145.26/",
@@ -51,35 +53,35 @@ imgApi.interceptors.request.use(function (config) {
 });
 
 
-api.interceptors.response.use(
-  (response) => {
-    // console.log("response",response)
-    return response;
-  },
-  async function (error) {
-    // console.log(error)
-    const originalRequest = error.config;
-    if (error.response.status === 401) {
-      // console.log("토큰 만료");
+// api.interceptors.response.use(
+//   (response) => {
+//     // console.log("response",response)
+//     return response;
+//   },
+//   async function (error) {
+//     // console.log(error)
+//     const originalRequest = error.config;
+//     if (error.response.status === 401) {
+//       console.log("토큰 만료");
       
-      // const sessionObj = window.sessionStorage.getItem('userInfo');
-      // let userInfo = sessionObj ? JSON.parse(sessionObj) : null;
-      // const refreshToken = cookies.get("refreshToken");
-      // const access_token = await authApi.post(
-      //   "api/refresh", // token refresh api
-      //   {
-      //     refreshToken,
-      //   }
-      // );
-      // console.log(access_token.data.accessToken);
-      // const newAccessToken = access_token.data.accessToken;
-      // originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-      // localStorage.setItem("accessToken", newAccessToken);
-      return axios(originalRequest);
-    }
-    return Promise.reject(error);
-  }
-);
+//       const sessionObj = window.sessionStorage.getItem('userInfo');
+//       let userInfo = sessionObj ? JSON.parse(sessionObj) : null;
+//       const refreshToken = cookies.get("refreshToken");
+//       const access_token = await authApi.post(
+//         "api/refresh", // token refresh api
+//         {
+//           refreshToken,
+//         }
+//       );
+//       console.log(access_token.data.accessToken);
+//       const newAccessToken = access_token.data.accessToken;
+//       originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+//       localStorage.setItem("accessToken", newAccessToken);
+//       return axios(originalRequest);
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 
 
