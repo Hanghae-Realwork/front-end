@@ -15,9 +15,11 @@ const api = axios.create({
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
-    withCredentials: true,
   },
+  withCredentials: true,
+  credentials: "include",
 });
+
 
 // 테스트(재영님)
 // baseURL: "http://13.125.145.26/",
