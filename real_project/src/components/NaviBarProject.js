@@ -8,6 +8,8 @@ import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills"
 import RoleModal from "../components/Modal/RoleModal"
 import SkillModal from "../components/Modal/SkillModal"
 import DateModal from "../components/Modal/DateModal"
+import TagDevSearch from "../components/Tag/TagSearchDev"
+import TagDesSearch from "../components/Tag/TagSearchDes"
 
 import paper from "../image/paper.svg"
 import jobicon from "../image/jobicon.svg"
@@ -27,7 +29,7 @@ function NavigationBarProject() {
 
 
     //로그인 유무
-  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
 
 
     return(
@@ -36,7 +38,8 @@ function NavigationBarProject() {
             <MainNavigationWrap>
                 <NaviWrap>
                     <MainNavigation>
-                    {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
+
+                        {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
                         <SerchLabel style={{width:"130px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
                             <ImageWrap><img src={jobicon}/>직군선택</ImageWrap>
                             <img src={down} />
@@ -53,6 +56,7 @@ function NavigationBarProject() {
                             <ImageWrap><img src={calender}/>프로젝트 기간 검색</ImageWrap>
                             <img src={down}/>
                         </SerchLabel>
+                        
                     </MainNavigation>
                     <SerchButton>검색</SerchButton>
                 </NaviWrap>
@@ -63,7 +67,17 @@ function NavigationBarProject() {
               }}><img src={paper}/>프로젝트 등록 </WriteButton>
 
             </MainNavigationWrap>
-            {/* <InlineDevide/> */}
+            <SearchResultABarWrap>
+                <InlineDevide/>
+                <TagDevSearch />
+                <TagDesSearch/>
+                {/* {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                  return <TagDevSearch key={idx} skills={list} />;
+                })} */}
+                {/* {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                  return <TagDesSearch key={idx} skills={list} />;
+                })} */}
+            </SearchResultABarWrap>
         </OnlyBackgroundDiv>
 
         </>
@@ -73,6 +87,10 @@ function NavigationBarProject() {
 const OnlyBackgroundDiv = styled.div`
     width: 1440px;
     /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 `
 
 const MainNavigationWrap = styled.div`
@@ -82,6 +100,7 @@ const MainNavigationWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     /* border: 1px solid black; */
+    width: 1200px;
     margin: 36px 120px 24px 120px;
 `
 
@@ -95,7 +114,7 @@ const NaviWrap = styled.div`
 
 const MainNavigation = styled.div`
     height: 40px;
-    border: 1px solid black;
+    border: 0.5px solid black; 
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -135,7 +154,7 @@ const SerchButton = styled.button`
 const SerchLabel = styled.label`
     padding: 9px 10px 9px 10px;
     border: none;
-    border-right: 1px solid black;
+    border-right: 0.5px solid black;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -155,6 +174,12 @@ const ImageWrap = styled.div`
 
 const InlineDevide = styled.hr`
     width: 1200px;
+`
+
+const SearchResultABarWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 1200px;
+    margin-bottom: 24px;
 `
 
 export default NavigationBarProject

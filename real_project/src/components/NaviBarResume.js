@@ -8,7 +8,8 @@ import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills"
 import RoleModal from "../components/Modal/RoleModal"
 import SkillModal from "../components/Modal/SkillModal"
 import DateModal from "../components/Modal/DateModal"
-
+import TagDev from "../components/Tag/TagCompoDev"
+import TagDes from "../components/Tag/TagCompoDes"
 
 import mycard from "../image/myCard.svg"
 import jobicon from "../image/jobicon.svg"
@@ -67,7 +68,9 @@ function NavigationBarResume() {
               }}><img src={mycard}/>크루원 찾기 </WriteButton>
 
             </MainNavigationWrap>
-            {/* <InlineDevide/> */}
+
+            <InlineDevide/>
+            
         </OnlyBackgroundDiv>
 
         </>
