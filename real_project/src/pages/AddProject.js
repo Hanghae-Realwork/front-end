@@ -2,17 +2,22 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { createRecruitAxios, projectsPhotosAxios } from "../redux/modules/postRecruit";
-import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+import {
+  createRecruitAxios,
+  projectsPhotosAxios,
+} from "../redux/modules/postRecruit";
+import {
+  dvelopSkills_list,
+  designerSkills_list,
+} from "../shared/developeSkills";
 
-import Footer from "../components/Date/Footer"
-import DateSingle from "../components/Date/DatePickerSingle"
+import Footer from "../components/Date/Footer";
+import DateSingle from "../components/Date/DatePickerSingle";
 import DatePicker from "react-datepicker";
 
-import addimage from "../image/addimage.svg"
-import upicon from "../image/upicon.svg"
-import downicon from "../image/downicon.svg"
-
+import addimage from "../image/addimage.svg";
+import upicon from "../image/upicon.svg";
+import downicon from "../image/downicon.svg";
 
 const FindProjectStep01 = (props) => {
   const dispatch = useDispatch();
@@ -40,8 +45,8 @@ const FindProjectStep01 = (props) => {
   const [hour, setHour] = useState(parseInt("24"));
   const [minute, setMinute] = useState(1);
 
-  const [rangeTime, setRangeTime] = useState([]);
-  const [rangeTotal, setRangeTotal] = useState([]);
+
+ 
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
     setRole(e.target.value);
@@ -83,7 +88,6 @@ const FindProjectStep01 = (props) => {
     setEndDate(end);
   };
 
-  
   ///////////////////////
   /////////시간//////////
   /////////////////////
@@ -147,34 +151,71 @@ const FindProjectStep01 = (props) => {
     }
   };
 
-  const arr = [hour, minute].join(":");
-  const timeAddOnClick = () => {
-    if (rangeTime.length < 5) {
-      setRangeTime((prev) => [...prev, arr]);
-    }
-  };
+
 
   ///////////////////////
   /////////시간 끝//////////
   /////////////////////
 
-
   //single달력
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
-  const [date, setDate] = useState("");
-
+  const [day, setDay] = useState("");
+  
+  
   const singleCalenderOnChange = (date) => {
+
     setYear(String(date.getFullYear()).padStart(2, "0"));
     setMonth(String(date.getMonth() + 1).padStart(2, "0"));
-    setDate(String(date.getDate()).padStart(2, "0"));
-  };
+    setDay(String(date.getDate()).padStart(2, "0"));
+    setSingleDate(date)
 
-  const totalArr = [year+"년"+month+"월"+date+"일", ...rangeTime];
-  const schduleAddOnClick = () => {
-    setRangeTotal((prev) => [...prev, totalArr]);
   };
-  console.log(rangeTotal);
+  const [rangeTime, setRangeTime] = useState([]);
+  // const arr = 
+
+  const timeAddOnClick = () => {
+    
+   
+      setRangeTime((prev) => [...prev, {Date : year+"년"+month+"월"+day+"일", Time: [hour+":"+minute] }]);
+      //  setRangeTime((prev) => [...prev, arr]);
+    };
+
+
+  const [rangeTotal, setRangeTotal] = useState([]);
+  
+  // const totalArr = [totaldate.calendar, ...rangeTime];
+  // const totalArr = [{ Date: totaldate.calendar, times: [...rangeTime] }]
+  
+  
+  
+  
+  const schduleAddOnClick = () => {
+    console.log(rangeTime)
+    // setRangeTotal((prev) =>  [...prev, totalArr]);
+let totalArray = [];
+    rangeTime.forEach((v, i) => {
+      if (totalArray.length === 0) {
+        totalArray = [v];
+      } else {
+        let indexOfDate = totalArray.findIndex((element) => element.Date === v.Date);
+        console.log(indexOfDate);
+        if (indexOfDate === -1) {
+          totalArray = [...totalArray, v];
+        } else {
+          console.log("들어옴")
+          let joinAt = totalArray[indexOfDate].Time
+          console.log(joinAt)
+          totalArray[indexOfDate].Time = [
+            ...totalArray[indexOfDate].Time,
+            v.Time,
+          ];
+        }
+      }
+    });
+
+
+  };
 
 
   // 저장 버튼
@@ -309,32 +350,16 @@ const FindProjectStep01 = (props) => {
           <ProjectTitleText>구하는 직군</ProjectTitleText>
           <RoleWrap>
             <RoleLabel>
-              <RoleInput
-                id="role"
-                type="radio"
-                name="Radio"
-                value="frontend"
-                onChange={onChangeRole}
-              />{" "}
+              <RoleInput id="role" type="radio" name="Radio" value="frontend" onChange={onChangeRole} />{" "}
               FrontEnd 개발자{" "}
             </RoleLabel>
             <RoleLabel>
-              <RoleInput
-                id="role"
-                type="radio"
-                name="Radio"
-                value="backend"
-                onChange={onChangeRole}
+              <RoleInput id="role" type="radio" name="Radio" value="backend" onChange={onChangeRole}
               />{" "}
               BackEnd 개발자{" "}
             </RoleLabel>
             <RoleLabel>
-              <RoleInput
-                id="role"
-                type="radio"
-                name="Radio"
-                value="designer"
-                onChange={onChangeRole}
+              <RoleInput id="role" type="radio" name="Radio" value="designer" onChange={onChangeRole}
               />{" "}
               UI / UX 디자이너{" "}
             </RoleLabel>
@@ -446,24 +471,29 @@ const FindProjectStep01 = (props) => {
                 하루에 최대 다섯 타임을 설정할 수 있습니다.
               </InterviewText>
             </TimeAllDiv>
+            <InterviewTextDate></InterviewTextDate>
+            {rangeTime.map((list, idx) => {
+              return (
+                <div key={idx}>
+                  <TimeAddButtonWrap>
+                    <TimeAddLeftWrap>
+                      <LeftTimeButton>{list.Time}</LeftTimeButton>
+                      <LeftDelBtn
+                        onClick={() => {
+                          const new_post = rangeTime.filter((l, index) => {
+                            return idx !== index;
+                          });
+                          setRangeTime(new_post);
+                        }}
+                      >
+                        삭제하기
+                      </LeftDelBtn>
+                    </TimeAddLeftWrap>
+                  </TimeAddButtonWrap>
+                </div>
+              );
+            })}
             <TimeSelectWrap>
-              <InterviewTextDate>
-                {year ? year + "년 " + month + "월 " + date + "일" : ""}
-              </InterviewTextDate>
-              <TimeAddButtonWrap>
-                {rangeTime.map((list, idx) => {
-                  return (
-                      <TimeAddLeftWrap key={idx}>
-                        <LeftTimeButton key={idx}>{list}</LeftTimeButton>
-                          <LeftDelBtn
-                            onClick={() => {const new_post = rangeTime.filter((l, index) => {
-                                return idx !== index;});setRangeTime(new_post);}}>
-                            삭제하기
-                          </LeftDelBtn>
-                        </TimeAddLeftWrap>
-                  );
-                })}
-              </TimeAddButtonWrap>
               <TimeAddButton onClick={schduleAddOnClick}>
                 면접시간 등록
               </TimeAddButton>
@@ -472,26 +502,26 @@ const FindProjectStep01 = (props) => {
         </InputMainTextWrap>
 
         {/* 아래 하단 시작 */}
-        <AddbleTimeWrap>
 
+        <AddbleTimeWrap>
           <TimeSelectWrapPlus>
             <InterviewDateWrap>
-              <InterviewTextDateBot>날짜가 들어갑니다</InterviewTextDateBot>
+              <InterviewTextDateBot>날짜</InterviewTextDateBot>
               <BotDelBtn>삭제</BotDelBtn>
             </InterviewDateWrap>
-            
+
             <TimeAddButtonWrap>
               <TimeAddLeftWrap>
-                <LeftTimeButton >가나다</LeftTimeButton>
-                <LeftTimeButton >가나다</LeftTimeButton>
-                <LeftTimeButton >가나다</LeftTimeButton>
-                <LeftTimeButton >가나다</LeftTimeButton>
-                <LeftTimeButton >가나다</LeftTimeButton>
-                </TimeAddLeftWrap>
+                <LeftTimeButton>가나다</LeftTimeButton>
+                <LeftTimeButton>가나다</LeftTimeButton>
+                <LeftTimeButton>가나다</LeftTimeButton>
+                <LeftTimeButton>가나다</LeftTimeButton>
+                <LeftTimeButton>가나다</LeftTimeButton>
+              </TimeAddLeftWrap>
             </TimeAddButtonWrap>
           </TimeSelectWrapPlus>
-          
         </AddbleTimeWrap>
+
         {/* 아래 하단 끝 */}
 
         <HeadLineBot />
@@ -504,22 +534,24 @@ const FindProjectStep01 = (props) => {
   );
 };
 
-const TimeAddRightWrap = styled.div`
-`
 const BackgroundAllWrap = styled.div`
-  background: linear-gradient(0deg, 
-    rgba(217, 217, 217, 0.1), 
-    rgba(217, 217, 217, 0.1)), 
-    linear-gradient(93.14deg, 
-    rgba(174, 151, 227, 0.15) 0.24%, 
-    rgba(119, 195, 231, 0.15) 34.73%, 
-    rgba(174, 151, 227, 0.15) 67.67%, 
-    rgba(119, 195, 231, 0.15) 95.47%);
+  background: linear-gradient(
+      0deg,
+      rgba(217, 217, 217, 0.1),
+      rgba(217, 217, 217, 0.1)
+    ),
+    linear-gradient(
+      93.14deg,
+      rgba(174, 151, 227, 0.15) 0.24%,
+      rgba(119, 195, 231, 0.15) 34.73%,
+      rgba(174, 151, 227, 0.15) 67.67%,
+      rgba(119, 195, 231, 0.15) 95.47%
+    );
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const FindProjectAllWrap = styled.div`
   display: flex;
@@ -532,31 +564,31 @@ const FindProjectAllWrap = styled.div`
   background-color: white;
   border-radius: 5px;
   margin-bottom: 40px;
-`
+`;
 
 const FindProjectTitleText = styled.span`
   font-size: 20px;
   font-weight: 700;
   margin: 30px 0px 30px 32px;
-`
+`;
 const FindprojectTopWrap = styled.div`
   height: 90px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-`
+`;
 
 const HeadLine = styled.hr`
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   width: 1200px;
-`
+`;
 
 const HeadLineBot = styled.hr`
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   width: 1200px;
   margin-top: 80px;
-`
+`;
 
 const FindProjectInputDate = styled.div`
   margin: 40px 0px 16px 30px;
@@ -565,7 +597,7 @@ const FindProjectInputDate = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-`
+`;
 
 const FindProjectInputTitle = styled.div`
   /* border: 1px solid black; */
@@ -575,7 +607,7 @@ const FindProjectInputTitle = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-`
+`;
 
 const InputMainTextWrap = styled.div`
   /* border: 1px solid black; */
@@ -585,7 +617,7 @@ const InputMainTextWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
-`
+`;
 
 const ProjectInput = styled.input`
   border: none;
@@ -594,7 +626,7 @@ const ProjectInput = styled.input`
   padding: 8px;
   width: 1050px;
   margin-top: 16px;
-`
+`;
 
 const SelectBoxTab = styled.div`
   /* border: 1px solid black; */
@@ -613,12 +645,12 @@ const SubmitButtonWrap = styled.div`
   align-items: center;
   /* border: 1px solid black; */
   width: 1200px;
-`
+`;
 
 const SubmitButton = styled.button`
   width: 150px;
   height: 45px;
-  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
   border-radius: 4px;
   outline: none;
   border: none;
@@ -627,14 +659,14 @@ const SubmitButton = styled.button`
   padding: 12px 28px;
   color: white;
   font-weight: 700;
-`
+`;
 
 const ProjectTitleText = styled.span`
   font-size: 16px;
   font-weight: 500;
   gap: 15px;
   margin-bottom: 20px;
-`
+`;
 
 const TecLabel = styled.label`
   font-size: 14px;
@@ -649,7 +681,6 @@ const CheckBox = styled.input`
   height: 15px;
   margin-bottom: -3px;
   margin-right: 5px;
-
   &:checked {
     border-color: transparent;
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
@@ -660,7 +691,6 @@ const CheckBox = styled.input`
   }
 `;
 
-
 const RoleInput = styled.input`
   appearance: none;
   border: 2px solid gainsboro;
@@ -669,20 +699,19 @@ const RoleInput = styled.input`
   height: 15px;
   margin-bottom: -2.5px;
   margin-right: 5px;
-
   &:checked {
     border-color: transparent;
     background-color: #77c3e7;
   }
-`
+`;
 
-const UpPhotoArea =styled.img`
+const UpPhotoArea = styled.img`
   /* border: 1px solid black; */
   width: 120px;
   height: 100px;
   background-position: center;
   background-size: cover;
-`
+`;
 
 const DisablePhotoWrap = styled.div`
   /* border: 1px solid black; */
@@ -692,7 +721,7 @@ const DisablePhotoWrap = styled.div`
   border-radius: 100%;
   background-position: center;
   background-size: cover;
-`
+`;
 
 const EditWrapPhoto = styled.div`
   /* border: 1px solid black; */
@@ -700,31 +729,31 @@ const EditWrapPhoto = styled.div`
   height: 90px;
   background-position: center;
   background-size: cover;
-`
+`;
 
 const PhotoText = styled.span`
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
-`
+`;
 const ReMainConWrap = styled.div`
   border: 0.5px solid black;
-  width: 1100px; 
+  width: 1100px;
   height: 500px;
-  border-radius: 4px;  
+  border-radius: 4px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 10px;
-`
+`;
 
 const RecMainCon = styled.textarea`
   /* margin: 20px;  */
-  padding: 10px; 
-  width: 1075px; 
-  height: 350px; 
-  outline: none; 
+  padding: 10px;
+  width: 1075px;
+  height: 350px;
+  outline: none;
   border: none;
   resize: none;
   /* border-radius: 4px; */
@@ -739,10 +768,10 @@ const PhotoUPloadWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-`
+`;
 
 const TimeWrap = styled.div`
-  border: 0.5px solid #D9D9D9;
+  border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   width: 281px;
   height: 320px;
@@ -751,7 +780,7 @@ const TimeWrap = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-`
+`;
 
 const TimeArea = styled.div`
   /* border: 1px solid black;  */
@@ -761,14 +790,14 @@ const TimeArea = styled.div`
   align-items: center;
   gap: 10px;
   margin-bottom: 22px;
-`
+`;
 
 const HourWrap = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const CalenderWrap = styled.div`
   border: 0.5px solid #d9d9d9;
@@ -780,7 +809,7 @@ const CalenderWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 20px;
-`
+`;
 
 const HourButton = styled.button`
   padding: 12px 25px 12px 25px;
@@ -788,18 +817,18 @@ const HourButton = styled.button`
   border: 0.5px solid #8d8d8d;
   outline: none;
   cursor: pointer;
-`
+`;
 
 const HourInput = styled.input`
   width: 60px;
   height: 36px;
-  border: 0.5px solid #F3F3F3;
+  border: 0.5px solid #f3f3f3;
   font-weight: 400;
   font-size: 14px;
   text-align: center;
   padding: 7px 0px 7px 0px;
   outline: none;
-`
+`;
 
 const TimeButton = styled.button`
   padding: 5px 45px 5px 45px;
@@ -809,7 +838,7 @@ const TimeButton = styled.button`
   outline: none;
   cursor: pointer;
   color: white;
-`
+`;
 
 const InterviewTableWrap = styled.div`
   display: flex;
@@ -817,7 +846,7 @@ const InterviewTableWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 24px;
-`
+`;
 
 const TimeAllDiv = styled.div`
   /* border: 1px solid black; */
@@ -825,12 +854,12 @@ const TimeAllDiv = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const InterviewText = styled.span`
   font-size: 12px;
   font-weight: 400;
-`
+`;
 
 const CalenderAllWrap = styled.div`
   /* border: 1px solid black; */
@@ -838,7 +867,7 @@ const CalenderAllWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const RoleWrap = styled.div`
   display: flex;
@@ -846,12 +875,12 @@ const RoleWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 25px;
-`
+`;
 
 const RoleLabel = styled.label`
   font-size: 16px;
   font-weight: 400;
-`
+`;
 
 const TimeSelectWrap = styled.div`
   display: flex;
@@ -861,7 +890,7 @@ const TimeSelectWrap = styled.div`
   /* border: 1px solid black; */
   margin-left: 100px;
   height: 370px;
-`
+`;
 
 const TimeSelectWrapPlus = styled.div`
   display: flex;
@@ -872,7 +901,7 @@ const TimeSelectWrapPlus = styled.div`
   width: 235px;
   /* margin-top: 100px;
   margin-left: 20px; */
-`
+`;
 
 const TimeAddButton = styled.button`
   padding: 5px 40px 5px 50px;
@@ -882,7 +911,7 @@ const TimeAddButton = styled.button`
   outline: none;
   cursor: pointer;
   border-radius: 2px;
-`
+`;
 
 const TimeAddButtonWrap = styled.div`
   height: 255px;
@@ -895,7 +924,7 @@ const TimeAddButtonWrap = styled.div`
   margin-bottom: 40px;
   margin-top: 10px;
   gap: 12px;
-`
+`;
 
 const TimeAddLeftWrap = styled.div`
   /* height: 250px; */
@@ -905,7 +934,7 @@ const TimeAddLeftWrap = styled.div`
   justify-content: center;
   align-items: center;
   gap: 12px;
-`
+`;
 
 const LeftTimeButton = styled.div`
   width: 180px;
@@ -918,7 +947,7 @@ const LeftTimeButton = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-`
+`;
 
 const LeftDelBtn = styled.div`
   display: flex;
@@ -929,7 +958,7 @@ const LeftDelBtn = styled.div`
   font-weight: 400;
   height: 40px;
   cursor: pointer;
-`
+`;
 
 const BotDelBtn = styled.div`
   display: flex;
@@ -939,15 +968,15 @@ const BotDelBtn = styled.div`
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
-`
+`;
 
 const InterviewTextDate = styled.span`
-  color: #8D8D8D;
+  color: #8d8d8d;
   font-size: 14px;
   font-weight: 400;
   /* border: 1px solid black; */
   height: 20px;
-`
+`;
 
 const InterviewTextDateBot = styled.div`
   color: #303032;
@@ -955,7 +984,7 @@ const InterviewTextDateBot = styled.div`
   font-weight: 400;
   /* border: 1px solid black; */
   height: 20px;
-`
+`;
 
 const AddbleTimeWrap = styled.div`
   display: flex;
@@ -965,7 +994,7 @@ const AddbleTimeWrap = styled.div`
   /* border: 1px solid black; */
   width: 1200px;
   margin-top: 100px;
-`
+`;
 
 const InterviewDateWrap = styled.div`
   display: flex;
@@ -974,23 +1003,20 @@ const InterviewDateWrap = styled.div`
   align-items: center;
   /* border: 1px solid black; */
   width: 180px;
-
-`
-
-
-
-const DatePickerWrapper = styled(
-  ({ className, ...props }) => 
-  (<DatePicker {...props} 
-    wrapperClassName={className} />))`  width: 100%;
 `;
- const Popper = styled.div`
-   position: absolute;
-   top: 0;
-   left: 0;
-   margin: 20px;
-   z-index: 2;
- `;
+
+const DatePickerWrapper = styled(({ className, ...props }) => (
+  <DatePicker {...props} wrapperClassName={className} />
+))`
+  width: 100%;
+`;
+const Popper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  z-index: 2;
+`;
 
 const Calendar = styled.div`
   /* width : 706px; */
@@ -998,28 +1024,26 @@ const Calendar = styled.div`
   overflow: hidden;
 `;
 
-  const CalendarWrap =styled.div`
-    border: 0.5px solid black;
-    border-radius: 4px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 625px;
-    height: 330px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  `
+const CalendarWrap = styled.div`
+  border: 0.5px solid black;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 625px;
+  height: 330px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+`;
 
-  const CalendarInfoWrap = styled.div`
-    border: 0.5px solid black;
-    width: 297px;
-    height: 43px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-
-  `
+const CalendarInfoWrap = styled.div`
+  border: 0.5px solid black;
+  width: 297px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+`;
 
 export default FindProjectStep01;
-

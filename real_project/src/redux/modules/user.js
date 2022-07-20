@@ -134,10 +134,10 @@ export const checkUserValidation = () => {
         );
       })
       .catch((err) => {
-        console.log(err.response.data.errorMessage);
+        console.log();
         //TokenExpiredError
        
-        if (err.response.status === 401) {
+        if (err.response.data.errorMessage === "Token is expired") {
           dispatch(refreshAxios());
         }
 
