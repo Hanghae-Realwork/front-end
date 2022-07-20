@@ -453,22 +453,24 @@ const FindProjectStep01 = (props) => {
                 {rangeTime.map((list, idx) => {
                   return (
                     <div key={idx}>
-                      <TimeAddLeftWrap>
-                        <LeftTimeButton key={idx}>{list}</LeftTimeButton>
-                      </TimeAddLeftWrap>
-                      <TimeAddRightWrap>
-                        <LeftDelBtn
-                          onClick={() => {
-                            const new_post = rangeTime.filter((l, index) => {
-                              return idx !== index;
-                            });
-                            setRangeTime(new_post);
-                            // setRangeTime((list) => console.log(list));
-                          }}
-                        >
-                          삭제하기
-                        </LeftDelBtn>
-                      </TimeAddRightWrap>
+                      <TimeContainer>
+                        <TimeAddLeftWrap>
+                          <LeftTimeButton key={idx}>{list}</LeftTimeButton>
+                        </TimeAddLeftWrap>
+                        <TimeAddRightWrap>
+                          <LeftDelBtn
+                            onClick={() => {
+                              const new_post = rangeTime.filter((l, index) => {
+                                return idx !== index;
+                              });
+                              setRangeTime(new_post);
+                              // setRangeTime((list) => console.log(list));
+                            }}
+                          >
+                            삭제하기
+                          </LeftDelBtn>
+                        </TimeAddRightWrap>
+                      </TimeContainer>
                     </div>
                   );
                 })}
@@ -926,6 +928,8 @@ const LeftDelBtn = styled.div`
   font-size: 12px;
   font-weight: 400;
   height: 40px;
+  //승연추가
+  margin-left: 10px;
   cursor: pointer;
 `
 
@@ -934,7 +938,10 @@ const InterviewTextDate = styled.span`
   font-size: 14px;
   font-weight: 400;
 `
-
+ //승연추가
+const TimeContainer = styled.div`
+  display:flex;
+  `
 
 const DatePickerWrapper = styled(
   ({ className, ...props }) => 
