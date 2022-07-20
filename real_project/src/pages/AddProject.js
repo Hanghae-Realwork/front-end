@@ -42,10 +42,25 @@ const FindProjectStep01 = (props) => {
   const [files, setFiles] = useState("");
 
   //시간과 분
-  const [hour, setHour] = useState(parseInt("24"));
-  const [minute, setMinute] = useState(1);
+  const [hour, setHour] = useState(0);
+  const [minute, setMinute] = useState(0);
+  const [rangeTime, setRangeTime] = useState({});
 
+    const [year, setYear] = useState(new Date().getFullYear());
+    const [month, setMonth] = useState(new Date().getMonth());
+    const [day, setDay] = useState(new Date().getDate());
+  let newDate = year + "년" + month + "월" + day + "일";
+  
 
+  useEffect(() => {
+    setRangeTime({});
+    setHour(0)
+    setMinute(0)
+  }, [singleDate])
+  
+  // useEffect(() => {
+
+  // }, [rangeTime]);
  
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
@@ -92,7 +107,7 @@ const FindProjectStep01 = (props) => {
   /////////시간//////////
   /////////////////////
   const hourUpOnClick = () => {
-    if (hour < 24) {
+    if (hour < 23) {
       setHour(hour + 1);
     } else {
       setHour(0);
@@ -100,8 +115,8 @@ const FindProjectStep01 = (props) => {
   };
 
   const hourDownOnClick = () => {
-    if (hour < 2) {
-      setHour(24);
+    if (hour === 0) {
+      setHour(23);
     } else {
       setHour(hour - 1);
     }
@@ -111,22 +126,23 @@ const FindProjectStep01 = (props) => {
     if (minute < 59) {
       setMinute(minute + 1);
     } else {
-      setMinute(0);
-      setHour(hour + 1);
-      if (hour === 24) {
-        setHour(1);
-      }
+      if (hour === 23) {
+        setHour(0);
+        setMinute(0);
+      } else { setHour(hour + 1); setMinute(0); }
     }
   };
 
   const minuteDownOnClick = () => {
-    if (minute < 1) {
-      setMinute(59);
-      setHour(hour - 1);
-    } else {
+    if (minute >= 1) {
       setMinute(minute - 1);
-      if (hour === 1) {
-        setHour(24);
+    } else {
+      if (hour >= 1) {
+        setHour(hour - 1);
+        setMinute(59);
+      } else {
+        setHour(23);
+        setMinute(59);
       }
     }
   };
@@ -158,9 +174,7 @@ const FindProjectStep01 = (props) => {
   /////////////////////
 
   //single달력
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
-  const [day, setDay] = useState("");
+
   
   
   const singleCalenderOnChange = (date) => {
@@ -169,17 +183,40 @@ const FindProjectStep01 = (props) => {
     setMonth(String(date.getMonth() + 1).padStart(2, "0"));
     setDay(String(date.getDate()).padStart(2, "0"));
     setSingleDate(date)
+    console.log(singleDate)
 
   };
-  const [rangeTime, setRangeTime] = useState([]);
-  // const arr = 
-
+ 
+ 
+  const date = year + "년" + month + "월" + day + "일";
+  const time = hour + ":" + minute;
+  // const [time,setTime]= useState([])
   const timeAddOnClick = () => {
-    
-   
-      setRangeTime((prev) => [...prev, {Date : year+"년"+month+"월"+day+"일", Time: [hour+":"+minute] }]);
-      //  setRangeTime((prev) => [...prev, arr]);
-    };
+
+    let temp = {...rangeTime};
+
+    if (Object.keys(temp).includes(date) && !temp[date].includes(time)) {
+      temp[date] = [...temp[date], time];
+    }  else {
+      temp[date] = [time];
+    }
+
+  temp[date] = temp[date].sort((a, b) => {
+          return Number(a.replace(":", "")) - Number(b.replace(":", ""));
+        })
+
+    setRangeTime(temp);
+
+    console.log(rangeTime);
+    // setRangeTime((prev) => [...prev, { Date: year + "년" + month + "월" + day + "일", Time: hour + ":" + minute }]);
+    //1차시도(됨)
+    // setTime((prev) => [...prev, hour + ":" + minute]);
+    // setRangeTime({
+    //   Date: year + "년" + month + "월" + day + "일",
+    //   Time: [...time],
+    // });
+
+  };
 
 
   const [rangeTotal, setRangeTotal] = useState([]);
@@ -191,28 +228,8 @@ const FindProjectStep01 = (props) => {
   
   
   const schduleAddOnClick = () => {
-    console.log(rangeTime)
-    // setRangeTotal((prev) =>  [...prev, totalArr]);
-let totalArray = [];
-    rangeTime.forEach((v, i) => {
-      if (totalArray.length === 0) {
-        totalArray = [v];
-      } else {
-        let indexOfDate = totalArray.findIndex((element) => element.Date === v.Date);
-        console.log(indexOfDate);
-        if (indexOfDate === -1) {
-          totalArray = [...totalArray, v];
-        } else {
-          console.log("들어옴")
-          let joinAt = totalArray[indexOfDate].Time
-          console.log(joinAt)
-          totalArray[indexOfDate].Time = [
-            ...totalArray[indexOfDate].Time,
-            v.Time,
-          ];
-        }
-      }
-    });
+
+
 
 
   };
@@ -270,7 +287,12 @@ let totalArray = [];
         </FindProjectInputTitle>
         <FindProjectInputTitle>
           <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-          <ProjectInput ref={subscriptRef} id="subscript" type="text" placeholder="프로젝트를 설명해주세요"></ProjectInput>
+          <ProjectInput
+            ref={subscriptRef}
+            id="subscript"
+            type="text"
+            placeholder="프로젝트를 설명해주세요"
+          ></ProjectInput>
         </FindProjectInputTitle>
         <FindProjectInputDate>
           <ProjectTitleText>프로젝트 기간</ProjectTitleText>
@@ -301,17 +323,40 @@ let totalArray = [];
         <InputMainTextWrap>
           <ProjectTitleText>팀 상세 설명</ProjectTitleText>
           <ReMainConWrap>
-            <RecMainCon ref={detailsRef} id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요"/>
+            <RecMainCon
+              ref={detailsRef}
+              id="details"
+              type="text"
+              placeholder="프로젝트의 내용을 입력해주세요"
+            />
             <PhotoUPloadWrap>
-              {filesImg ? (<UpPhotoArea alt="sample" id="showImg" src={filesImg} />
-              ) : (<DisablePhotoWrap></DisablePhotoWrap>
+              {filesImg ? (
+                <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
+              ) : (
+                <DisablePhotoWrap></DisablePhotoWrap>
               )}
               <EditWrapPhoto>
-                {filesImg ? (<PhotoText>수정하기
-                    <input name="imgUpload" type="file" id="add_img" accept="image/*" onChange={onChangeImg}/>
+                {filesImg ? (
+                  <PhotoText>
+                    수정하기
+                    <input
+                      name="imgUpload"
+                      type="file"
+                      id="add_img"
+                      accept="image/*"
+                      onChange={onChangeImg}
+                    />
                   </PhotoText>
-                ) : (<PhotoText>등록하기
-                    <input name="imgUpload" type="file" id="add_img" accept="image/*" onChange={onChangeImg}/>
+                ) : (
+                  <PhotoText>
+                    등록하기
+                    <input
+                      name="imgUpload"
+                      type="file"
+                      id="add_img"
+                      accept="image/*"
+                      onChange={onChangeImg}
+                    />
                   </PhotoText>
                 )}
               </EditWrapPhoto>
@@ -322,16 +367,32 @@ let totalArray = [];
           <ProjectTitleText>구하는 직군</ProjectTitleText>
           <RoleWrap>
             <RoleLabel>
-              <RoleInput id="role" type="radio" name="Radio" value="frontend" onChange={onChangeRole} />{" "}
+              <RoleInput
+                id="role"
+                type="radio"
+                name="Radio"
+                value="frontend"
+                onChange={onChangeRole}
+              />{" "}
               FrontEnd 개발자{" "}
             </RoleLabel>
             <RoleLabel>
-              <RoleInput id="role" type="radio" name="Radio" value="backend" onChange={onChangeRole}
+              <RoleInput
+                id="role"
+                type="radio"
+                name="Radio"
+                value="backend"
+                onChange={onChangeRole}
               />{" "}
               BackEnd 개발자{" "}
             </RoleLabel>
             <RoleLabel>
-              <RoleInput id="role" type="radio" name="Radio" value="designer" onChange={onChangeRole}
+              <RoleInput
+                id="role"
+                type="radio"
+                name="Radio"
+                value="designer"
+                onChange={onChangeRole}
               />{" "}
               UI / UX 디자이너{" "}
             </RoleLabel>
@@ -443,29 +504,45 @@ let totalArray = [];
                 하루에 최대 다섯 타임을 설정할 수 있습니다.
               </InterviewText>
             </TimeAllDiv>
-            <InterviewTextDate></InterviewTextDate>
-            {rangeTime.map((list, idx) => {
-              return (
-                <div key={idx}>
-                  <TimeAddButtonWrap>
-                    <TimeAddLeftWrap>
-                      <LeftTimeButton>{list.Time}</LeftTimeButton>
-                      <LeftDelBtn
-                        onClick={() => {
-                          const new_post = rangeTime.filter((l, index) => {
-                            return idx !== index;
-                          });
-                          setRangeTime(new_post);
-                        }}
-                      >
-                        삭제하기
-                      </LeftDelBtn>
-                    </TimeAddLeftWrap>
-                  </TimeAddButtonWrap>
-                </div>
-              );
-            })}
             <TimeSelectWrap>
+              <InterviewTextDate>
+                {year
+                  ? year + "년 " + month + "월 " + day + "일"
+                  : "날짜를 선택해주세요."}
+              </InterviewTextDate>
+              <TimeAddButtonWrap>
+                {
+                  rangeTime[newDate] &&
+                  rangeTime[newDate].map(
+                    (ele, idx) => {
+                    
+                      return (
+                        <TimeAddLeftWrap key={idx}>
+                          <LeftTimeButton>{ele}</LeftTimeButton>
+                          <LeftDelBtn
+                            onClick={(e) => {
+                              const new_post = rangeTime[
+                                newDate
+                              ].filter((l, index) => {
+                                return idx !== index;
+                              });
+
+                              // setRangeTime({`${year}년${month}`: new_post})
+                              
+                              setRangeTime({
+                                  [newDate]
+                                : new_post})
+                                
+                            }}
+
+                          >
+                            삭제하기
+                          </LeftDelBtn>
+                        </TimeAddLeftWrap>
+                      );
+                    }
+                  )}
+              </TimeAddButtonWrap>
               <TimeAddButton onClick={schduleAddOnClick}>
                 면접시간 등록
               </TimeAddButton>
