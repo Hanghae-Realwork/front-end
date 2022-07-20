@@ -1,9 +1,13 @@
-import React from "react"
+import React, {useState} from "react"
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import { useDispatch,useSelector } from "react-redux";
 import { checkUserValidation } from "../redux/modules/user";
+
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+import RoleModal from "../components/Modal/RoleModal"
+import SkillModal from "../components/Modal/SkillModal"
+import DateModal from "../components/Modal/DateModal"
 
 import paper from "../image/paper.svg"
 import jobicon from "../image/jobicon.svg"
@@ -12,6 +16,10 @@ import calender from "../image/calender.svg"
 import down from "../image/down.svg"
 
 function NavigationBarProject() {
+
+    const [Rolemodal, setRoleModal] = useState(false);
+    const [Skillmodal, setSkillModal] = useState(false);
+    const [Datemodal, setDateModal] = useState(false);
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -28,9 +36,23 @@ function NavigationBarProject() {
             <MainNavigationWrap>
                 <NaviWrap>
                     <MainNavigation>
-                        <SerchLabel style={{width:"130px"}}><ImageWrap><img src={jobicon}/>직군선택</ImageWrap><img src={down}/></SerchLabel>
-                        <SerchLabel style={{width:"130px"}}><ImageWrap><img src={pencil}/>구하는 기술</ImageWrap><img src={down}/></SerchLabel>
-                        <SerchLabel style={{width:"220px", borderRight:"none"}}><ImageWrap><img src={calender}/>프로젝트 기간 검색</ImageWrap><img src={down}/></SerchLabel>
+                    {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
+                        <SerchLabel style={{width:"130px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
+                            <ImageWrap><img src={jobicon}/>직군선택</ImageWrap>
+                            <img src={down} />
+                        </SerchLabel>
+
+                        {Skillmodal === true ? <SkillModal close={setSkillModal} /> : null}
+                        <SerchLabel style={{width:"130px"}} onClick={() => {setSkillModal(!Skillmodal)}}>
+                            <ImageWrap><img src={pencil}/>구하는 기술</ImageWrap>
+                            <img src={down}/>
+                        </SerchLabel>
+
+                        {Datemodal === true ? <DateModal close={setDateModal} /> : null}
+                        <SerchLabel style={{width:"220px", borderRight:"none"}} onClick={() => {setDateModal(!Datemodal)}}>
+                            <ImageWrap><img src={calender}/>프로젝트 기간 검색</ImageWrap>
+                            <img src={down}/>
+                        </SerchLabel>
                     </MainNavigation>
                     <SerchButton>검색</SerchButton>
                 </NaviWrap>

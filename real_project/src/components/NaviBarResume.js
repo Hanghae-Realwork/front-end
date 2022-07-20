@@ -40,19 +40,19 @@ function NavigationBarResume() {
                     <MainNavigation>
 
                         {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
-                        <SerchLabel style={{width:"130px"}} onClick={() => {setRoleModal(true)}}>
+                        <SerchLabel style={{width:"130px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
                             <ImageWrap><img src={jobicon}/>직군선택</ImageWrap>
                             <img src={down} />
                         </SerchLabel>
 
                         {Skillmodal === true ? <SkillModal close={setSkillModal} /> : null}
-                        <SerchLabel style={{width:"130px"}} onClick={() => {setSkillModal(true)}}>
+                        <SerchLabel style={{width:"130px"}} onClick={() => {setSkillModal(!Skillmodal)}}>
                             <ImageWrap><img src={pencil}/>구하는 기술</ImageWrap>
                             <img src={down}/>
                         </SerchLabel>
 
                         {Datemodal === true ? <DateModal close={setDateModal} /> : null}
-                        <SerchLabel style={{width:"220px", borderRight:"none"}} onClick={() => {setDateModal(true)}}>
+                        <SerchLabel style={{width:"220px", borderRight:"none"}} onClick={() => {setDateModal(!Datemodal)}}>
                             <ImageWrap><img src={calender}/>프로젝트 기간 검색</ImageWrap>
                             <img src={down}/>
                         </SerchLabel>
