@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-function TagCompoRec({ skills }) {
+import close from "../../image/tagclose.svg"
 
-    return <TagButton>{skills}</TagButton>;
+function TagCompoSearchDes({ skills }) {
+
+    return <TagButton>{skills}<img src={close}/></TagButton>;
 }
 
 const TagButton = styled.button`
@@ -14,8 +16,8 @@ const TagButton = styled.button`
   font-weight: 500;
   border-radius: 15px;
   padding: 5px 12px 5px 12px;
-  color: white;
-  margin: 3px;
+  color: black;
+
 `;
 
-export default TagCompoRec;
+export default TagCompoSearchDes;
