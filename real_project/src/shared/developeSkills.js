@@ -37,6 +37,8 @@ const designerSkills_list = [
   { data: "Invision" },
   { data: "Sketch" },
   { data: "Protopie" },
+  { data: "Adobe Suite" },
+  { data: "UX 기획" }
 ];
 
 export { dvelopSkills_list,designerSkills_list };

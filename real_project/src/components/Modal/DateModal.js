@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import Footer from "../../components/Date/Footer"
 
 
-function DateModal () {
+function DateModal (props) {
 
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -62,6 +62,11 @@ const ModalCalWrap = styled.div`
     border: 0.5px solid #303032;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
+    position: absolute;
+    z-index: 5;
+    background-color: white;
+    top: 160px;
+    left: 422px;
 `
 
 const SubmitBtn = styled.button`

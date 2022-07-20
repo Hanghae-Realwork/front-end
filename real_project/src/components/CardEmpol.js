@@ -168,6 +168,11 @@ const SkillText = styled.span`
 `
 
 const SkillWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
   height: 30px;
   overflow: scroll;
 `

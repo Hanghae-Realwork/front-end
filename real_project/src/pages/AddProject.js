@@ -86,6 +86,7 @@ const FindProjectStep01 = (props) => {
     setEndDate(end);
   };
 
+  
   ///////////////////////
   /////////시간//////////
   /////////////////////
@@ -136,9 +137,7 @@ const FindProjectStep01 = (props) => {
       } else { 
           setHour(parseInt(e.target.value));
       }
-       
     }
-      
   };
 
   const minuteOnChange = (e) => {
@@ -148,9 +147,8 @@ const FindProjectStep01 = (props) => {
       } else { 
         setMinute(parseInt(e.target.value));
       }
-       
     }
-    };
+  };
 
   const arr = [hour, minute].join(":");
 
@@ -163,6 +161,7 @@ console.log(rangeTime)
   ///////////////////////
   /////////시간 끝//////////
   /////////////////////
+
 
   // 저장 버튼
   const CompliteButton = async () => {
@@ -438,30 +437,22 @@ console.log(rangeTime)
                 하루에 최대 다섯 타임을 설정할 수 있습니다.
               </InterviewText>
             </TimeAllDiv>
-
             <TimeSelectWrap>
               <InterviewTextDate>날짜를 선택해주세요</InterviewTextDate>
               <TimeAddButtonWrap>
-                {/* 고치는중 */}
                 {rangeTime.map((list, idx) => {
                   return (
                     <div key={idx}>
                       <TimeAddLeftWrap>
                         <LeftTimeButton key={idx}>{list}</LeftTimeButton>
-                      </TimeAddLeftWrap>
-                      <TimeAddRightWrap>
-                        <LeftDelBtn
-                          onClick={() => {
-                            const new_post = rangeTime.filter((l, index) => {
-                              return idx !== index;
-                            });
-                            setRangeTime(new_post);
-                            // setRangeTime((list) => console.log(list));
-                          }}
-                        >
-                          삭제하기
-                        </LeftDelBtn>
-                      </TimeAddRightWrap>
+                          <LeftDelBtn
+                            onClick={() => {
+                              const new_post = rangeTime.filter((l, index) => {
+                                return idx !== index;});
+                              setRangeTime(new_post);}}>
+                            삭제하기
+                          </LeftDelBtn>
+                        </TimeAddLeftWrap>
                     </div>
                   );
                 })}
@@ -847,12 +838,12 @@ const TimeAddButtonWrap = styled.div`
   height: 300px;
   width: 300px;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
   align-items: center;
   /* border: 1px solid black; */
-  margin-bottom: 15px;
-
+  margin-bottom: 10px;
+  margin-top: 20px;
   gap: 18px;
 `
 
@@ -860,7 +851,7 @@ const TimeAddLeftWrap = styled.div`
   /* height: 250px; */
   /* border: 1px solid black; */
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   gap: 12px;
@@ -879,13 +870,6 @@ const LeftTimeButton = styled.div`
   cursor: pointer;
 `
 
-const TimeAddRightWrap = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-`
 
 const LeftDelBtn = styled.div`
   display: flex;

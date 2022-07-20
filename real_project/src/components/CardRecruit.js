@@ -47,12 +47,11 @@ const CardRecruit = ({ data }) => {
             </CardMainText>
           </CardMainTextInfo>
           <CardJobTextWrap>
-            <CardJobTitle>구하는 직군</CardJobTitle>
+            <CardRoleTitle>구하는 직군</CardRoleTitle>
                 <CardJobMainTitle>{data.role}</CardJobMainTitle>
           </CardJobTextWrap>
           <CardTagWrap>
             <CardJobTitle>원하는 보유 기술</CardJobTitle>
-            <br />
             <TagWrap>
               {data === undefined
                 ? null
@@ -153,6 +152,7 @@ const CardMainTextInfo = styled.div`
   width: 344px;
   height: 45px;
   margin-bottom: 10px;
+  overflow: hidden;
 `;
 
 const CardMainText = styled.span`
@@ -163,13 +163,19 @@ const CardMainText = styled.span`
 const CardJobTextWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
+  margin-top: 7px;
   margin-bottom: 5px;
   display: flex;
   flex-flow: column nowrap;
 `;
 
+const CardRoleTitle = styled.span`
+  font-size: 12px;
+`
+
 const CardJobTitle = styled.span`
   font-size: 12px;
+  margin-bottom: 4px;
 `;
 
 const CardJobMainTitle = styled.span`
@@ -185,18 +191,23 @@ const CardTagWrap = styled.div`
 
 const TagWrap = styled.div`
   /* border: 1px solid black; */
-  margin-top: 5px;
-  margin-bottom: 5px;
-  height: 37px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 3px;
+  height: 35px;
+  margin-top:2px;
   overflow: scroll;
 `;
 
 //// 센터 대쉬라인
 const DashedLine = styled.hr`
-  width: 300px;
+  width: 340px;
   border: 0.5px dashed #8d8d8d;
-  margin: 15px 0px 20px 0px;
-`;
+  margin: 8px 0px 20px 0px;
+  /* stroke-dasharray: 4,4,4,4,4px; */
+`
 
 const CardBotTopWrap = styled.div`
   /* border: 1px solid black; */
