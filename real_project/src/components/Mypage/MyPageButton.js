@@ -46,7 +46,7 @@ const RightTopWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 44px;
-  margin-right: 460px;
+  margin-right: 440px;
   margin-bottom: 30px;
   /* position: relative; */
 `;
@@ -68,7 +68,7 @@ const OnlyBackgroundWrap = styled.div`
 
 const MyMenuButton = styled.button`
   padding: 8px 20px 8px 20px;
-  width: 120px;
+  width: 135px;
   height: 40px;
   font-size: 15px;
   font-weight: 700;

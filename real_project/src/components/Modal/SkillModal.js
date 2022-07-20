@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { dvelopSkills_list, designerSkills_list} from "../../shared/developeSkills";
 
 
-function SkillModal () {
+function SkillModal (props) {
 
     const [checkList, setCheckList] = useState([]);
 
@@ -18,28 +18,25 @@ function SkillModal () {
     return(
         <>
             <SkillModalWrap>
-                    <InputMainTextWrap>
-                <ProjectTitleText>개발자</ProjectTitleText>
-                <SelectBoxTab>
-                    {dvelopSkills_list &&
-                    dvelopSkills_list.map((list, idx) => {
-                        return (
-                        <TecLabel key={idx}>
-                            <CheckBox
-                            type="checkbox"
-                            id="skills"
-                            value={list.data}
-                            onChange={(e) => {
-                                //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
-                                onCheckedElement(e.target.checked, e.target.value);
-                            }}
-                            checked={checkList.includes(list.data) ? true : false}
-                            ></CheckBox>
-                            {list.data}
-                        </TecLabel>
-                        );
-                    })}
-                </SelectBoxTab>
+                <InputMainTextWrap>
+                    <ProjectTitleText>개발자</ProjectTitleText>
+                    <SelectBoxTab>
+                        {dvelopSkills_list &&
+                        dvelopSkills_list.map((list, idx) => {
+                            return (
+                            <TecLabel key={idx}>
+                                <CheckBox type="checkbox" id="skills" value={list.data}
+                                onChange={(e) => {
+                                    //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                                    onCheckedElement(e.target.checked, e.target.value);
+                                }}
+                                checked={checkList.includes(list.data) ? true : false}
+                                ></CheckBox>
+                                {list.data}
+                            </TecLabel>
+                            );
+                        })}
+                    </SelectBoxTab>
                 </InputMainTextWrap>
                 <InputMainTextWrap>
                 <ProjectTitleText>디자이너</ProjectTitleText>
@@ -62,6 +59,10 @@ function SkillModal () {
                     })}
                 </SelectBoxTab>
                 </InputMainTextWrap>
+                <ModalLine/>
+                <BtnWrap>
+                    <SubmitBtn>선택완료</SubmitBtn>
+                </BtnWrap>
         </SkillModalWrap>
         </>
     )
@@ -89,8 +90,7 @@ const CheckBox = styled.input`
 
 const InputMainTextWrap = styled.div`
   /* border: 1px solid black; */
-  margin: 40px 0px 16px 30px;
-  width: 1100px;
+  margin: 20px 30px 20px 30px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -103,15 +103,15 @@ const SelectBoxTab = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-  gap: 13px;
+  gap: 10.5px;
   width: 580px;
+  margin-bottom: 7px;
 `;
 
 const ProjectTitleText = styled.span`
-  font-size: 16px;
-  font-weight: 500;
-  gap: 15px;
-  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
 `
 
 const TecLabel = styled.label`
@@ -125,6 +125,35 @@ const SkillModalWrap = styled.div`
     border: 0.5px solid #303032;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
+    position: absolute;
+    z-index: 5;
+    background-color: white;
+    top: 160px;
+    left: 271px;
+`
+
+const ModalLine = styled.hr`
+    width: 641px;
+    border: 0.5px solid #D9D9D9;
+`
+
+const SubmitBtn = styled.button`
+    font-size: 14px;
+    font-weight: 700;
+    padding: 7.5px 20px 7.5px 20px;
+    margin: 10px 30px 15px 15px;
+    background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+`
+
+const BtnWrap = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 `
 
 export default SkillModal

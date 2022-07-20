@@ -41,7 +41,7 @@ function NavigationBarProject() {
               }}><img src={paper}/>프로젝트 등록 </WriteButton>
 
             </MainNavigationWrap>
-            <InlineDevide/>
+            {/* <InlineDevide/> */}
         </OnlyBackgroundDiv>
 
         </>

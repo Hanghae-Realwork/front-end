@@ -4,12 +4,16 @@ import styled from "styled-components"
 import Logo from "../../image/Logo_vertical.svg"
 import close from "../../image/closeIcon.svg"
 
-function LoginModal () {
+function LoginModal (props) {
+
+    const CloseModal = () => {
+        props.close(false);
+      };
 
     return(
         <>
             <LoginModalWrap>
-                <CloseWrap><CloseBtn src={close} /></CloseWrap>
+                <CloseWrap><CloseBtn src={close} onClick={CloseModal}/></CloseWrap>
                 <LogoBox />
                 <LoginGuide>서비스를 이용하기 위해 로그인이 필요합니다</LoginGuide>
                 <GotoJoinBtn>확인</GotoJoinBtn>
@@ -28,6 +32,8 @@ const LoginModalWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    z-index: 5;
 `
 
 const LogoBox = styled.div`
@@ -57,6 +63,7 @@ const GotoJoinBtn = styled.button`
     border: none;
     outline: none;
     margin-top: 20.79px;
+    cursor: pointer;
 `
 
 const CloseWrap = styled.div`

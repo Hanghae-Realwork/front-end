@@ -50,7 +50,7 @@ function App() {
   return (
     <MainWrap>
       <Header />
-        <DateModal></DateModal>
+        {/* <DateModal></DateModal>
         <br/>
         <LoginModal></LoginModal>
         <br/>
@@ -58,7 +58,7 @@ function App() {
         <br/>
         <RoleModal></RoleModal>
         <br/>
-        <SkillModal></SkillModal>
+        <SkillModal></SkillModal> */}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
@@ -72,6 +72,12 @@ function App() {
         <Route path="/findprojectstep1" element={<AddProject/>}></Route>
         <Route path="/findprojectstep2/:projectId" element={<EditProject />}></Route>
         <Route path="/readproject/:projectId" element={<ReadProject />}></Route>
+        <Route path="/rolemodal" element={<RoleModal />}></Route>
+        <Route path="/skillmodal" element={<SkillModal />}></Route>
+        <Route path="/datemodal" element={<DateModal />}></Route>
+        <Route path="/loginmodal" element={<LoginModal />}></Route>
+        <Route path="/Joinmodal" element={<JoinModal />}></Route>
+
 
         <Route path="mypage/:nickname/*" element={<MyPage />}>
           <Route path="apply" element={<Application />}></Route>

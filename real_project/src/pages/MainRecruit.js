@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loadRecruitAxios } from "../redux/modules/postRecruit";
+import "../App.css"
 
 import Card from "../components/CardRecruit";
 import TagCompoDes from "../components/Tag/TagCompoDes";
@@ -22,7 +23,7 @@ const MainRecruit = () => {
   return (
       <>
         <NavigationBarProject />
-        <CardBackGround>
+        <CardBackGround className="MainBack">
           <CardContainerWrap>
             {recruit === undefined ? null : recruit.map((list, idx) => {
               return <Card key={idx} data={list} />;
@@ -36,9 +37,11 @@ const MainRecruit = () => {
 const CardContainerWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 1200px;
+  height: 1000px;
+  overflow-y: scroll;
   /* padding: 33px 50px 0px 50px; */
   /* border:1px solid black; */
   gap: 24px;
@@ -47,7 +50,7 @@ const CardContainerWrap = styled.div`
 `
 
 const CardBackGround = styled.div`
-  background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);
+  /* background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%); */
   width:100%;
   display: flex;
   justify-content: center;
