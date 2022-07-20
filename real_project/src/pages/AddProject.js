@@ -229,12 +229,7 @@ const FindProjectStep01 = (props) => {
         </FindProjectInputTitle>
         <FindProjectInputTitle>
           <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-          <ProjectInput
-            ref={subscriptRef}
-            id="subscript"
-            type="text"
-            placeholder="프로젝트를 설명해주세요"
-          ></ProjectInput>
+          <ProjectInput ref={subscriptRef} id="subscript" type="text" placeholder="프로젝트를 설명해주세요"></ProjectInput>
         </FindProjectInputTitle>
         <FindProjectInputDate>
           <ProjectTitleText>프로젝트 기간</ProjectTitleText>
@@ -245,7 +240,7 @@ const FindProjectStep01 = (props) => {
                 calendarContainer={Calendar}
                 controls={["calendar"]}
                 dateFormat="YYYY-MM-DD"
-                locale="ko" // 달력 한글화
+                locale="ko"
                 selected={startDate}
                 onChange={DoubleCalenderOnChange}
                 startDate={startDate}
@@ -265,40 +260,17 @@ const FindProjectStep01 = (props) => {
         <InputMainTextWrap>
           <ProjectTitleText>팀 상세 설명</ProjectTitleText>
           <ReMainConWrap>
-            <RecMainCon
-              ref={detailsRef}
-              id="details"
-              type="text"
-              placeholder="프로젝트의 내용을 입력해주세요"
-            />
+            <RecMainCon ref={detailsRef} id="details" type="text" placeholder="프로젝트의 내용을 입력해주세요"/>
             <PhotoUPloadWrap>
-              {filesImg ? (
-                <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
-              ) : (
-                <DisablePhotoWrap></DisablePhotoWrap>
+              {filesImg ? (<UpPhotoArea alt="sample" id="showImg" src={filesImg} />
+              ) : (<DisablePhotoWrap></DisablePhotoWrap>
               )}
               <EditWrapPhoto>
-                {filesImg ? (
-                  <PhotoText>
-                    수정하기
-                    <input
-                      name="imgUpload"
-                      type="file"
-                      id="add_img"
-                      accept="image/*"
-                      onChange={onChangeImg}
-                    />
+                {filesImg ? (<PhotoText>수정하기
+                    <input name="imgUpload" type="file" id="add_img" accept="image/*" onChange={onChangeImg}/>
                   </PhotoText>
-                ) : (
-                  <PhotoText>
-                    등록하기
-                    <input
-                      name="imgUpload"
-                      type="file"
-                      id="add_img"
-                      accept="image/*"
-                      onChange={onChangeImg}
-                    />
+                ) : (<PhotoText>등록하기
+                    <input name="imgUpload" type="file" id="add_img" accept="image/*" onChange={onChangeImg}/>
                   </PhotoText>
                 )}
               </EditWrapPhoto>

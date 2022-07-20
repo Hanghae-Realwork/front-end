@@ -7,6 +7,8 @@ function SkillModal (props) {
 
     const [checkList, setCheckList] = useState([]);
 
+    console.log(checkList)
+
     const onCheckedElement = (checked, item) => {
         if (checked) {
           setCheckList([...checkList, item]);
@@ -14,6 +16,8 @@ function SkillModal (props) {
           setCheckList(checkList.filter((el) => el !== item));
         }
       };
+
+    
 
     return(
         <>
@@ -45,14 +49,8 @@ function SkillModal (props) {
                     designerSkills_list.map((list, idx) => {
                         return (
                         <TecLabel key={idx}>
-                            <CheckBox
-                            type="checkbox"
-                            id="skills"
-                            value={list.data}
-                            onChange={(e) => {
-                                onCheckedElement(e.target.checked, e.target.value);
-                            }}
-                            ></CheckBox>
+                            <CheckBox type="checkbox" id="skills" value={list.data}
+                            onChange={(e) => {onCheckedElement(e.target.checked, e.target.value);}}></CheckBox>
                             {list.data}
                         </TecLabel>
                         );
@@ -68,6 +66,21 @@ function SkillModal (props) {
     )
 }
 
+
+
+const SkillModalWrap = styled.div`
+    width: 641px;
+    height: 377px;
+    border: 0.5px solid #303032;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    display: block;
+    position: fixed;
+    z-index: 5;
+    background-color: white;
+    top: 160px;
+    left: 271px;
+`
 
 const CheckBox = styled.input`
   appearance: none;
@@ -118,19 +131,6 @@ const TecLabel = styled.label`
   font-size: 14px;
   /* border: 1px solid black; */
 `;
-
-const SkillModalWrap = styled.div`
-    width: 641px;
-    height: 377px;
-    border: 0.5px solid #303032;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    position: absolute;
-    z-index: 5;
-    background-color: white;
-    top: 160px;
-    left: 271px;
-`
 
 const ModalLine = styled.hr`
     width: 641px;

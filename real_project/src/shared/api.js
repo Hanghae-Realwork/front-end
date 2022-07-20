@@ -311,7 +311,7 @@ export const apis = {
 
   //  - 20. 면접요청 취소
   //  - 21. 프로젝트 면접 예약
-  appointmentProject: (applicationId) => api.put(`/api/applications/${applicationId}`)
+  appointmentProject: (applicationId) => api.put(`/api/applications/${applicationId}`),
   
   //  - 22. 면접요청 취소
   //  - 23. (팀장) 면접 승낙
@@ -326,6 +326,18 @@ export const apis = {
   //[이미지업로드]
   //  - 31. 이미지 업로드
   //[이미지업로드]
+
+   ///////////////////////
+   ////// 검색 기능 //////
+   //////////////////////
+
+   // 32. 프로젝트 검색
+   searchProject: () => api.get("/api/search/project"),
+
+   // 33. 리쥬메 검색
+   searchResume : () => api.get("/api/search/resume")
+   // 34. 매칭 기능
+
 };
 
 
