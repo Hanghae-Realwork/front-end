@@ -18,6 +18,7 @@ const api = axios.create({
   },
   withCredentials: true,
   credentials: "include",
+
 });
 
 
@@ -53,11 +54,11 @@ imgApi.interceptors.request.use(function (config) {
 });
 
 
-// api.interceptors.response.use(
-//   (response) => {
-//     // console.log("response",response)
-//     return response;
-//   },
+api.interceptors.response.use(
+  (response) => {
+    // console.log("response",response)
+    return response;
+  },
 //   async function (error) {
 //     // console.log(error)
 //     const originalRequest = error.config;
@@ -81,7 +82,7 @@ imgApi.interceptors.request.use(function (config) {
 //     }
 //     return Promise.reject(error);
 //   }
-// );
+);
 
 
 

@@ -507,7 +507,8 @@ const FindProjectStep01 = (props) => {
   );
 };
 
-
+const TimeAddRightWrap = styled.div`
+`
 const BackgroundAllWrap = styled.div`
   background: linear-gradient(0deg, 
     rgba(217, 217, 217, 0.1), 
