@@ -453,18 +453,14 @@ const FindProjectStep01 = (props) => {
               <TimeAddButtonWrap>
                 {rangeTime.map((list, idx) => {
                   return (
-                    <div key={idx}>
-                      <TimeAddLeftWrap>
+                      <TimeAddLeftWrap key={idx}>
                         <LeftTimeButton key={idx}>{list}</LeftTimeButton>
                           <LeftDelBtn
-                            onClick={() => {
-                              const new_post = rangeTime.filter((l, index) => {
-                                return idx !== index;});
-                              setRangeTime(new_post);}}>
+                            onClick={() => {const new_post = rangeTime.filter((l, index) => {
+                                return idx !== index;});setRangeTime(new_post);}}>
                             삭제하기
                           </LeftDelBtn>
                         </TimeAddLeftWrap>
-                    </div>
                   );
                 })}
               </TimeAddButtonWrap>
@@ -475,29 +471,30 @@ const FindProjectStep01 = (props) => {
           </InterviewTableWrap>
         </InputMainTextWrap>
 
-        <HeadLine />
         {/* 아래 하단 시작 */}
-        <TimeSelectWrap>
-          <InterviewTextDate>
-          날짜가 들어갑니다.
-          </InterviewTextDate>
-          <TimeAddButtonWrap>
-                  <TimeAddLeftWrap>
-                    <LeftTimeButton >가나다</LeftTimeButton>
-                  </TimeAddLeftWrap>
-                  <TimeAddRightWrap>
-                    <LeftDelBtn
-                     
-                    >
-                      삭제하기
-                    </LeftDelBtn>
-                  </TimeAddRightWrap>
-          
-      
-          </TimeAddButtonWrap>
+        <AddbleTimeWrap>
 
-        </TimeSelectWrap>
+          <TimeSelectWrapPlus>
+            <InterviewDateWrap>
+              <InterviewTextDateBot>날짜가 들어갑니다</InterviewTextDateBot>
+              <BotDelBtn>삭제</BotDelBtn>
+            </InterviewDateWrap>
+            
+            <TimeAddButtonWrap>
+              <TimeAddLeftWrap>
+                <LeftTimeButton >가나다</LeftTimeButton>
+                <LeftTimeButton >가나다</LeftTimeButton>
+                <LeftTimeButton >가나다</LeftTimeButton>
+                <LeftTimeButton >가나다</LeftTimeButton>
+                <LeftTimeButton >가나다</LeftTimeButton>
+                </TimeAddLeftWrap>
+            </TimeAddButtonWrap>
+          </TimeSelectWrapPlus>
+          
+        </AddbleTimeWrap>
         {/* 아래 하단 끝 */}
+
+        <HeadLineBot />
 
         <SubmitButtonWrap>
           <SubmitButton onClick={CompliteButton}>등록하기</SubmitButton>
@@ -554,6 +551,12 @@ const HeadLine = styled.hr`
   width: 1200px;
 `
 
+const HeadLineBot = styled.hr`
+  border: 1px solid #D9D9D9;
+  width: 1200px;
+  margin-top: 80px;
+`
+
 const FindProjectInputDate = styled.div`
   margin: 40px 0px 16px 30px;
   width: 1100px;
@@ -607,7 +610,6 @@ const SubmitButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-end;
   align-items: center;
-  gap: 30px;
   /* border: 1px solid black; */
   width: 1200px;
 `
@@ -620,11 +622,10 @@ const SubmitButton = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  margin: 30px 0px 30px 0px;
+  margin: 30px 30px 30px 0px;
   padding: 12px 28px;
   color: white;
   font-weight: 700;
-  margin-right: 30px;
 `
 
 const ProjectTitleText = styled.span`
@@ -657,6 +658,7 @@ const CheckBox = styled.input`
     background-color: #77c3e7;
   }
 `;
+
 
 const RoleInput = styled.input`
   appearance: none;
@@ -857,6 +859,18 @@ const TimeSelectWrap = styled.div`
   align-items: center;
   /* border: 1px solid black; */
   margin-left: 100px;
+  height: 370px;
+`
+
+const TimeSelectWrapPlus = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  width: 235px;
+  /* margin-top: 100px;
+  margin-left: 20px; */
 `
 
 const TimeAddButton = styled.button`
@@ -870,16 +884,16 @@ const TimeAddButton = styled.button`
 `
 
 const TimeAddButtonWrap = styled.div`
-  height: 300px;
+  height: 255px;
   width: 300px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
   /* border: 1px solid black; */
-  margin-bottom: 10px;
-  margin-top: 20px;
-  gap: 18px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+  gap: 12px;
 `
 
 const TimeAddLeftWrap = styled.div`
@@ -905,7 +919,6 @@ const LeftTimeButton = styled.div`
   cursor: pointer;
 `
 
-
 const LeftDelBtn = styled.div`
   display: flex;
   justify-content: center;
@@ -917,10 +930,50 @@ const LeftDelBtn = styled.div`
   cursor: pointer;
 `
 
+const BotDelBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+`
+
 const InterviewTextDate = styled.span`
   color: #8D8D8D;
   font-size: 14px;
   font-weight: 400;
+  /* border: 1px solid black; */
+  height: 20px;
+`
+
+const InterviewTextDateBot = styled.div`
+  color: #303032;
+  font-size: 14px;
+  font-weight: 400;
+  /* border: 1px solid black; */
+  height: 20px;
+`
+
+const AddbleTimeWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  /* border: 1px solid black; */
+  width: 1200px;
+  margin-top: 100px;
+`
+
+const InterviewDateWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
+  width: 180px;
+
 `
 
 
