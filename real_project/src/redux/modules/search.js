@@ -4,7 +4,8 @@ const SKILLLOAD = "search/SKILLLOAD";
 const ROLELOAD = "search/ROLELOAD";
 const DATELOAD = "search/DATELOAD"
 
-
+const SKILLDELETE = "search/SKILLDELETE";
+const COMPLETE = "search/COMPLETE";
 
 const initialState = {
   Skilltag: [],
@@ -26,7 +27,15 @@ export function loaddate(payload) {
   return { type: DATELOAD, payload };
 }
 
+export function complete(payload) {
+  return { type: COMPLETE, payload };
+}
 
+export function skillDelete(payload) {
+  return { type: SKILLDELETE, payload };
+}
+
+//미들웨어  
 
 
 export default function reducer(state = initialState, action = {}) {
@@ -35,26 +44,41 @@ export default function reducer(state = initialState, action = {}) {
       return {
         Skilltag: action.payload,
         Roletag: state.Roletag,
-        Datetag: state.Datetag
+        Datetag: state.Datetag,
       };
     }
 
     case "search/ROLELOAD": {
-        return {
-          Skilltag: state.Skilltag,
-          Roletag: action.payload,
-          Datetag: state.Datetag
-        };
-      }
+      return {
+        Skilltag: state.Skilltag,
+        Roletag: action.payload,
+        Datetag: state.Datetag,
+      };
+    }
 
     case "search/DATELOAD": {
-    return {
+      return {
         Skilltag: state.Skilltag,
         Roletag: state.Roletag,
-        Datetag: action.payload
-        };
-    }  
+        Datetag: action.payload,
+      };
+    }
+    case "search/COMPLETE": {
+      return {
+        Skilltag: state.Skilltag,
+        Roletag: state.Roletag,
+        Datetag: action.payload,
+      };
+    }
+    case "search/SKILLDELETE": {
+      
+      return {
 
+        Skilltag: state.Skilltag,
+        Roletag: state.Roletag,
+        Datetag: action.payload,
+      };
+    }
 
     default:
       return state;
