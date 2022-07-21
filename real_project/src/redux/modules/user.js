@@ -124,7 +124,6 @@ export const loginAxios = (userEmail, password) => {
 };
 
 export const checkUserValidation = () => {
- 
   return async function (dispatch) {
     await apis
       .checkUser()
@@ -135,17 +134,16 @@ export const checkUserValidation = () => {
         );
       })
       .catch((err) => {
-        console.log("err", err.response.status);
-        if (err.response.data.status === 401) {
+        console.log();
+        //TokenExpiredError
+       
+        if (err.response.data.errorMessage === "Token is expired") {
           dispatch(refreshAxios());
         }
-     
-          // console.log(err)
-          // logOut();
-          // alert("토큰이 만료되셨네요🥹");
-        
 
-
+        // console.log(err)
+        // logOut();
+        // alert("토큰이 만료되셨네요🥹");
       });
   };
 };
