@@ -18,6 +18,9 @@ import AddProject from "./pages/AddProject";
 import EditProject from "./pages/EditProject";
 import EditProfile from "./pages/EditProfile";
 import AddProfile from "./pages/AddProfile";
+
+import MatchingCrew from "./pages/MatchingCrew";
+
 // import Loading from "./pages/Loading";
 
 //Components 연결
@@ -50,15 +53,9 @@ function App() {
   return (
     <MainWrap>
       <Header />
-        {/* <DateModal></DateModal>
-        <br/>
-        <LoginModal></LoginModal>
-        <br/>
-        <JoinModal></JoinModal>
-        <br/>
-        <RoleModal></RoleModal>
-        <br/>
-        <SkillModal></SkillModal> */}
+        
+      <MatchingCrew></MatchingCrew>
+
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
@@ -72,6 +69,7 @@ function App() {
         <Route path="/findprojectstep1" element={<AddProject/>}></Route>
         <Route path="/findprojectstep2/:projectId" element={<EditProject />}></Route>
         <Route path="/readproject/:projectId" element={<ReadProject />}></Route>
+        <Route path="/matchingcrew" element={<MatchingCrew />}></Route>
         <Route path="/rolemodal" element={<RoleModal />}></Route>
         <Route path="/skillmodal" element={<SkillModal />}></Route>
         <Route path="/datemodal" element={<DateModal />}></Route>

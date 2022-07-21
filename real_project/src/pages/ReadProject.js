@@ -144,11 +144,7 @@ function ReadProject() {
         <DivideLine />
         <ButtonWrap>
           <SubmitButton>지원하기</SubmitButton>
-          { modify ?  <SubmitButton
-            onClick={() => {
-              navigate("/findprojectstep2/" + `${Value[0].projectId}`);
-            }}
-          >
+          { modify ?  <SubmitButton onClick={() => {navigate("/findprojectstep2/" + `${Value[0].projectId}`);}}>
             수정하기
           </SubmitButton> : <></>}
 

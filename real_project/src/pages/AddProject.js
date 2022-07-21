@@ -312,6 +312,7 @@ const FindProjectStep01 = (props) => {
             </RoleLabel>
           </RoleWrap>
         </InputMainTextWrap>
+
         <InputMainTextWrap>
           <ProjectTitleText>개발자</ProjectTitleText>
           <SelectBoxTab>
@@ -356,6 +357,7 @@ const FindProjectStep01 = (props) => {
               })}
           </SelectBoxTab>
         </InputMainTextWrap>
+        
         {/* 달력🗓 */}
         <InputMainTextWrap>
           <ProjectTitleText>면접 가능 시간</ProjectTitleText>

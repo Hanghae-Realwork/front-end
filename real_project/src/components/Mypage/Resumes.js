@@ -1,10 +1,75 @@
-import React from "react";
-import styled from "styled-components"
+import React, { useEffect , useState  } from "react";
+import styled from "styled-components";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { deleteEmployAxios, loadSingleEmployAxios } from "../../redux/modules/postEmploy";
+import { checkUserValidation } from "../../redux/modules/user";
+import { useNavigation } from "react-day-picker";
+import { loadApplyAxios } from "../../redux/modules/postProfile";
+
+import TagDes from "../../components/Tag/TagCompoDes"
+import TagDev from "../../components/Tag/TagCompoDev"
 
 import letter from "../../image/letter.svg"
 
 const Resumes = () => {
 
+  const dispatch = useDispatch();
+  const { resumeId } = useParams();
+  const navigate = useNavigate();
+
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+  const loginInfoName = useSelector((state) => state.user.userInfo.userId);
+  const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+
+  const data = useSelector((state) => state.postEmploy.resumes);
+
+  //id와 userId 비교하여 버튼 보이게 하기
+  // const modify = (loginInfoName === data[0]?.userId);
+
+  const [modify, setModify] = useState(false);
+  
+  let start =""
+  let end = ""
+  let href = ""
+
+
+  useEffect(() => {
+   if (loginInfo === false) {
+     dispatch(checkUserValidation());
+   }}, [loginInfo]);
+  
+  useEffect(() => {
+  dispatch(loadSingleEmployAxios(resumeId))
+  }, [])
+
+    useEffect(() => {
+      if (loginInfoName && data) {
+        if (loginInfoName === data[0]?.userId) {
+         setModify(true)
+       }
+      }
+      if (data) {
+        start = data[0]?.start.replace("-", ".").replace("-", ".");
+        end = data[0]?.end.replace("-", ".").replace("-", ".");
+
+        href = data.length > 0 ? data[0].content2 : "";
+      }
+    }, [loginInfoName, data]);
+
+    useEffect(() => {
+      if (!(nickname_Info === undefined || nickname_Info === null)) {
+          dispatch(loadApplyAxios(nickname_Info));
+    }
+    }, [nickname_Info]);
+  
+useState(data[0]?.role)
+ //undefined일때 null 처리 나머지 return 
+
+ if(!data[0]) return null 
+
+
+ 
   return (
     <>
       <MyPageResumeBackWrap>
@@ -12,38 +77,53 @@ const Resumes = () => {
         <PageAllWrap>
           <TopWrap>
             <LeftTopWrap>
-              <PhotoCircle></PhotoCircle>
+              <PhotoCircle style={{backgroundImage: `url(${data[0].resumeImage})`}}></PhotoCircle>
             </LeftTopWrap>
             <RightTopWrap>
-              <RightNameText>닉네임이 들어갑니다</RightNameText>
-              <RightRoleText>직군명이 들어갑니다</RightRoleText>
-              <RightAdressText><img src={letter} style={{marginRight:"8px"}}/>이메일 주소가 들어갑니다</RightAdressText>
-              <RightSelfText>두 줄 자기 소개글이 들어갑니다</RightSelfText>
+              <RightNameText>{data.length > 0 ? data[0].nickname : ""}</RightNameText>
+              <RightRoleText>{data.length > 0 ? data[0].role : ""}</RightRoleText>
+              <RightAdressText><img src={letter} style={{marginRight:"8px"}}/>{data.length > 0 ? data[0].userId : ""}</RightAdressText>
+              <RightSelfText>{data.length > 0 ? data[0].content : ""}</RightSelfText>
             </RightTopWrap>
           </TopWrap>
 
           <MidWrap>
             <MidTxetWrap>
               <MidTitle>소개글</MidTitle>
-              <MidSelfText>장문의 자기소개 글이 노출 됩니다(줄 수 제한 가능)</MidSelfText>
+              <MidSelfText>{data.length > 0 ? data[0].content3 : ""}</MidSelfText>
             </MidTxetWrap>
             <MidTxetWrap>
               <MidTitle>홈페이지</MidTitle>
-              <MidContentText>홈페이지 주소가 노출 될 칸입니다</MidContentText>
+              <MidContentText>
+                <a href={data.length > 0 ? data[0].content2 : ""} target="_blank">
+                  {data.length > 0 ? data[0].content2 : ""}
+                </a></MidContentText>
             </MidTxetWrap>
             <MidTxetWrap>
               <MidTitle>프로젝트 가능 기간</MidTitle>
-              <MidContentText>start ~ end</MidContentText>
+              <MidContentText>
+                {data[0]?.start.replace("-", ".").replace("-", ".")}~
+                {data[0]?.end.replace("-", ".").replace("-", ".")}
+              </MidContentText>
             </MidTxetWrap>
             <MidTxetWrap>
-              <MidTitle>닉네임님의 보유 스킬</MidTitle>
-              <MidTagWrap>스킬 태그가 들어갑니다</MidTagWrap>
+              <MidTitle>{data.length > 0 ? data[0].nickname : ""}님의 보유 스킬</MidTitle>
+              <MidTagWrap>
+                {data.length > 0
+                ? data[0].resumeskills.map((list, idx) => {
+                    return <TagDev key={idx} skills={list} />;
+                  })
+                : ""}
+              </MidTagWrap>
             </MidTxetWrap>
           </MidWrap>
 
           <BotWrap>
-            <FixedBtn>수정하기</FixedBtn>
-            <DelBtn>삭제하기</DelBtn>
+            <FixedBtn onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>수정하기</FixedBtn>
+            <DelBtn onClick={() => {
+              dispatch(deleteEmployAxios(resumeId));
+              alert("❗️ 정말 삭제하시는 겁니까?")
+              navigate("/mainemployment");}}>삭제하기</DelBtn>
           </BotWrap>
         </PageAllWrap>
 
@@ -184,6 +264,8 @@ const MidTagWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: flex-start;
+  margin-top: 5px;
+  gap: 3px;
 `
 
 const FixedBtn = styled.button`

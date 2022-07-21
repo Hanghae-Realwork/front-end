@@ -9,18 +9,13 @@ function ButtonLine() {
     <>
       <OnlyBackgroundWrap>
         <BackgroundAllWrap>
-          {/* <LeftTopWrap></LeftTopWrap> */}
           <RightTopWrap>
             <MyMenuButton onClick={() => {
-              navigate(`/mypage/${nickname}/apply`);
-            }}>내 지원 현황</MyMenuButton>
+              navigate(`/mypage/${nickname}/apply`);}}>내 지원 현황</MyMenuButton>
             <MyMenuButton onClick={() => {
-              navigate(`/mypage/${nickname}/applys`);
-            }}
-            >내 모집 현황</MyMenuButton>
+              navigate(`/mypage/${nickname}/applys`);}}>내 모집 현황</MyMenuButton>
             <MyMenuButton onClick={() => {
-              navigate(`/mypage/${nickname}/resumes`);
-            }}>내 이력서</MyMenuButton>
+              navigate(`/mypage/${nickname}/resumes`);}}>내 이력서</MyMenuButton>
           </RightTopWrap>
         </BackgroundAllWrap>
       </OnlyBackgroundWrap>
