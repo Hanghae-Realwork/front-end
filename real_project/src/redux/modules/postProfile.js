@@ -24,7 +24,6 @@ export const loadApplyAxios = (nickname) => {
     await apis
       .userApply(nickname)
       .then((response) => {
-        console.log('여기도 받아용')
       dispatch(loadApply(response.data));
       })
       .catch((err) => {
@@ -39,7 +38,6 @@ export const loadProjectAxios = (nickname) => {
     await apis
       .userRecruit(nickname)
       .then((response) => {
-
       dispatch(loadproject(response.data));
       })
       .catch((err) => {

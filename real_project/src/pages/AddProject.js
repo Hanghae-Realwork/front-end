@@ -19,7 +19,10 @@ import addimage from "../image/addimage.svg";
 import upicon from "../image/upicon.svg";
 import downicon from "../image/downicon.svg";
 
+
+
 const FindProjectStep01 = (props) => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -523,22 +526,8 @@ const FindProjectStep01 = (props) => {
                         <TimeAddLeftWrap key={idx}>
                           <LeftTimeButton>{ele}</LeftTimeButton>
                           <LeftDelBtn
-                            onClick={(e) => {
-                              const new_post = rangeTime[
-                                newDate
-                              ].filter((l, index) => {
-                                return idx !== index;
-                              });
-
-                              // setRangeTime({`${year}년${month}`: new_post})
-                              
-                              setRangeTime({
-                                  [newDate]
-                                : new_post})
-                                
-                            }}
-
-                          >
+                            onClick={(e) => {const new_post = rangeTime[newDate].filter((l, index) => {return idx !== index;});
+                              setRangeTime({[newDate]: new_post})}}>
                             삭제하기
                           </LeftDelBtn>
                         </TimeAddLeftWrap>

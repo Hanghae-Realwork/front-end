@@ -17,6 +17,8 @@ import pencil from "../image/pencil.svg"
 import calender from "../image/calender.svg"
 import down from "../image/down.svg"
 
+
+
 function NavigationBarProject() {
 
     const [Rolemodal, setRoleModal] = useState(false);
@@ -26,10 +28,12 @@ function NavigationBarProject() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const loginInfo = useSelector((state) => state.user.userInfo.is_login); //로그인 유무
+    const skilldata = useSelector((state) => state.search.Skilltag);
+    const datedata = useSelector((state) => state.search.Datetag);
 
-
-    //로그인 유무
-    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+    console.log(datedata)
+    console.log(skilldata)
 
 
     return(
@@ -69,14 +73,12 @@ function NavigationBarProject() {
             </MainNavigationWrap>
             <SearchResultABarWrap>
                 <InlineDevide/>
-                <TagDevSearch />
-                <TagDesSearch/>
-                {/* {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
+                <TagWrap>
+                {skilldata.map((list, idx) => {
                   return <TagDevSearch key={idx} skills={list} />;
-                })} */}
-                {/* {dvelopSkills_list && dvelopSkills_list.map((list, idx) => {
-                  return <TagDesSearch key={idx} skills={list} />;
-                })} */}
+                })
+                }
+                </TagWrap>
             </SearchResultABarWrap>
         </OnlyBackgroundDiv>
 
@@ -180,6 +182,16 @@ const SearchResultABarWrap = styled.div`
     /* border: 1px solid black; */
     width: 1200px;
     margin-bottom: 24px;
+`
+
+const TagWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
 `
 
 export default NavigationBarProject
