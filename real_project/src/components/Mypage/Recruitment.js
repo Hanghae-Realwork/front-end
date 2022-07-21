@@ -149,7 +149,7 @@ const Recruitment = () => {
 
 
 const RecruitAllWrap = styled.div`
-
+  
 `
 
 const RecruitCardMainWrap = styled.div`

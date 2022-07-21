@@ -337,6 +337,7 @@ export const apis = {
 
    // 33. 리쥬메 검색
    searchResume : () => api.get("/api/search/resume")
+   
    // 34. 매칭 기능
 
 };

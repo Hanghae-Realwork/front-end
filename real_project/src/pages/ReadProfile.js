@@ -14,6 +14,7 @@ import letter from "../image/letter.svg"
 
 
 function EmploymentProfile() {
+  
   const dispatch = useDispatch();
   const { resumeId } = useParams();
   const navigate = useNavigate();
@@ -125,9 +126,7 @@ useState(data[0]?.role)
             <FixedBtn onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
               수정하기</FixedBtn>) : (<></>)}
           {modify ? (
-            <DelBtn onClick={() => {
-              dispatch(deleteEmployAxios(resumeId));
-              alert("❗️ 정말 삭제하시는 겁니까?")
+            <DelBtn onClick={() => {dispatch(deleteEmployAxios(resumeId)); alert("❗️ 정말 삭제하시는 겁니까?")
               navigate("/mainemployment");}}>
               삭제하기</DelBtn>) : (<></>)}
           </BotWrap>
