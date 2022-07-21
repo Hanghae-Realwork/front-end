@@ -197,7 +197,8 @@ const FindProjectStep01 = (props) => {
 
     if (Object.keys(temp).includes(date) && !temp[date].includes(time)) {
       temp[date] = [...temp[date], time];
-    }  else {
+    }
+    else {
       temp[date] = [time];
     }
 
