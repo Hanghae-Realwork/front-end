@@ -21,7 +21,7 @@ function ReadProject() {
   const dispatch = useDispatch();
   const { projectId } = useParams();
 
-  const [modify, setModify] = useState(false);
+
   // 로그인 유저별 resume card 용
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
    const userName_Info = useSelector((state) => state.user.userInfo.userId);
@@ -30,7 +30,7 @@ function ReadProject() {
   const [schedule, setSchedule] = useState("");
 
   const Value = useSelector((state) => state.postRecruit.project);
-console.log(Value)
+
   useEffect(() => {
     if (Value) {
       setSchedule();
@@ -47,19 +47,10 @@ console.log(Value)
     dispatch(LoadDetailAxios(projectId));
   }, []);
 
-  useEffect(() => {
-    if (!(nickname_Info === undefined || nickname_Info === null)) {
-      dispatch(loadApplyAxios(nickname_Info));
-    }
-  }, [nickname_Info]);
 
-  useEffect(() => {
-    if (userName_Info && Value) {
-      if (userName_Info === Value[0]?.email) {
-        setModify(true);
-      }
-    }
-  }, [userName_Info, Value]);
+
+
+
 
   return (
     <>
@@ -102,20 +93,12 @@ console.log(Value)
 
         <DateWrap>
           <div>
-            {/* <button
-                // value={Value[0]?.applications[0]?.schedule}
-                // name="one"
-                // onClick={onClick}
-              >
-                {Value && Value[0]?.applications[0]?.schedule}
-              </button>
+
               <button
                 value={Value[0]?.applications[1]?.schedule}
-                name="two"
-                onClick={onClick}
-              >
-                {Value && Value[0]?.applications[1]?.schedule}
-              </button> */}
+                name="two">
+              시간이 들어갑니다.
+              </button>
           </div>
         </DateWrap>
         <DivideLine />
@@ -144,17 +127,31 @@ console.log(Value)
         <DivideLine />
         <ButtonWrap>
           <SubmitButton>지원하기</SubmitButton>
-          { modify ?  <SubmitButton onClick={() => {navigate("/findprojectstep2/" + `${Value[0].projectId}`);}}>
-            수정하기
-          </SubmitButton> : <></>}
+          {Value && userName_Info === Value[0]?.email ? (
+            <SubmitButton
+              onClick={() => {
+                navigate("/findprojectstep2/" + `${Value[0].projectId}`);
+              }}
+            >
+              수정하기
+            </SubmitButton>
+          ) : (
+            <></>
+          )}
 
-          {modify ? <SubmitButton onClick={() => {
-            dispatch(deleteRecruitAxios(projectId));
-            alert("❗️ 정말 삭제하시는 겁니까? ");
-            navigate("/mainrecruit");
-          }}>삭제하기</SubmitButton> :<></>}
-         
-         
+          {Value && userName_Info === Value[0]?.email ? (
+            <SubmitButton
+              onClick={() => {
+                dispatch(deleteRecruitAxios(projectId));
+                alert("❗️ 정말 삭제하시는 겁니까? ");
+                navigate("/mainrecruit");
+              }}
+            >
+              삭제하기
+            </SubmitButton>
+          ) : (
+            <></>
+          )}
         </ButtonWrap>
       </AllWrap>
     </>
