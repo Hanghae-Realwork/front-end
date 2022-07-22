@@ -2,9 +2,13 @@ import React, {useState} from "react"
 import styled from "styled-components"
 import DatePicker from "react-datepicker";
 import Footer from "../../components/Date/Footer"
+import { useDispatch } from "react-redux";
+import {loaddate} from "../../redux/modules/search"
 
 
 function DateModal (props) {
+
+    const dispatch = useDispatch()
 
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -16,8 +20,19 @@ function DateModal (props) {
         console.log(start, end)
       };
 
+    const AddDate = () => {
+      const StartCalDate = startDate.getFullYear() + "-" + (startDate.getMonth() +1) + "-" + startDate.getDate()
+      const EndCalDate = endDate.getFullYear() + "-" + (endDate.getMonth()+1) + "-" + endDate.getDate()
+      dispatch(loaddate([StartCalDate, EndCalDate]))
+      CloseModal()
+    }
+
+    const CloseModal = () => {
+      props.close(false);
+    };
+
     return(
-        <>
+        <RelativeWrap>
             <ModalCalWrap>
                 <CalendarWrap>
                 <DatePickerWrapper
@@ -40,13 +55,27 @@ function DateModal (props) {
                     <CalendarInfoWrap>
                     <Footer start={startDate} end={endDate} />
                     </CalendarInfoWrap>
-                    <SubmitBtn>선택완료</SubmitBtn>
+                    <SubmitBtn onClick={AddDate}>선택완료</SubmitBtn>
                 </CalBtnWrap>
             </ModalCalWrap>
-        </>
+        </RelativeWrap>
     )
 }
 
+
+const RelativeWrap = styled.div`
+  position: relative;
+`
+
+const ModalCalWrap = styled.div`
+    border: 0.5px solid #303032;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    position: absolute;
+    z-index: 5;
+    background-color: white;
+    top: 23px;
+`
 
 const CalBtnWrap = styled.div`
     /* border: 1px solid black; */
@@ -58,17 +87,6 @@ const CalBtnWrap = styled.div`
     align-items: center;
 `
 
-const ModalCalWrap = styled.div`
-    border: 0.5px solid #303032;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    position: absolute;
-    z-index: 5;
-    background-color: white;
-    top: 160px;
-    left: 422px;
-`
-
 const SubmitBtn = styled.button`
     padding: 7px 20px 7px 20px;
     border: none;
@@ -77,6 +95,8 @@ const SubmitBtn = styled.button`
     cursor: pointer;
     background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
     border-radius: 4px;
+    font-weight: 700;
+  font-size: 14px;
 `
 
 

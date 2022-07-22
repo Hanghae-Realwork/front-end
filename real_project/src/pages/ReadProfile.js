@@ -42,6 +42,7 @@ function EmploymentProfile() {
  if(!data[0]) return null 
   return (
     <>
+
       <BackGroundOnlyWrap>
         {/* <HoldWrap> */}
         {/* <BackGround1/> */}
@@ -71,6 +72,7 @@ function EmploymentProfile() {
                 </RightSelfText>
               </RightTopWrap>
             </TopWrap>
+
 
             <TopHr />
 

@@ -227,13 +227,7 @@ function AddProfile(props) {
                   BackEnd 개발자
                 </RoleLabel>
                 <RoleLabel>
-                  <input
-                    id="role"
-                    type="radio"
-                    name="role"
-                    value="designer"
-                    onChange={onChangeRole}
-                  />
+                  <input id="role" type="radio" name="role" value="designer" onChange={onChangeRole}/>
                   UX / UI 디자이너
                 </RoleLabel>
               </RadioRoleWrap>

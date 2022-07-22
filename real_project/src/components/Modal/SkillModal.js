@@ -1,9 +1,13 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { dvelopSkills_list, designerSkills_list} from "../../shared/developeSkills";
+import { useDispatch } from "react-redux"
+import {loadskill} from "../../redux/modules/search"
 
 
 function SkillModal (props) {
+
+    const dispatch = useDispatch()
 
     const [checkList, setCheckList] = useState([]);
 
@@ -17,10 +21,17 @@ function SkillModal (props) {
         }
       };
 
-    
+    const AddSkill = () => {
+        dispatch(loadskill(checkList))
+        CloseModal()
+    }
+
+    const CloseModal = () => {
+      props.close(false);
+    };
 
     return(
-        <>
+        <RelativeWrap>
             <SkillModalWrap>
                 <InputMainTextWrap>
                     <ProjectTitleText>개발자</ProjectTitleText>
@@ -59,13 +70,17 @@ function SkillModal (props) {
                 </InputMainTextWrap>
                 <ModalLine/>
                 <BtnWrap>
-                    <SubmitBtn>선택완료</SubmitBtn>
+                    <SubmitBtn onClick={AddSkill}>선택완료</SubmitBtn>
                 </BtnWrap>
         </SkillModalWrap>
-        </>
+        </RelativeWrap>
     )
 }
 
+
+const RelativeWrap = styled.div`
+    position: relative;
+`
 
 
 const SkillModalWrap = styled.div`
@@ -75,11 +90,10 @@ const SkillModalWrap = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
     display: block;
-    position: fixed;
+    position: absolute;
     z-index: 5;
     background-color: white;
-    top: 160px;
-    left: 271px;
+    top: 23px;
 `
 
 const CheckBox = styled.input`
