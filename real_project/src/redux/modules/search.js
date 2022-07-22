@@ -49,18 +49,30 @@ export function complete(payload) {
 //미들웨어
 export const SearchAxios = (
   role,
+  skill,
+  start,
+  end
   ) => {
+    console.log('role',role)
+    console.log('skill',skill)
+    console.log('start',start)
+    console.log('end',end)
+
   return async function (dispatch) {
     await apis
       .searchProject(
         role,
+        skill,
+        start,
+        end
       )
       .then((res) => {
         console.log(res)
       dispatch(complete({
         role: role,
-        // start: start,
-        // end: end
+        skill: skill,
+        start: start,
+        end: end
       }));
       })
       .catch((err) => {

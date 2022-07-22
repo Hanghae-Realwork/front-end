@@ -43,12 +43,12 @@ function NavigationBarProject() {
     console.log(skilldata)
 
     const searchAction = () => {
-        dispatch(SearchAxios({
-            role: roledata,
-            skill: skilldata,
-            start: datedata[0],
-            end: datedata[1]
-        }   
+        dispatch(SearchAxios(
+            roledata.toString(),
+            skilldata.toString(),
+            datedata[0],
+            datedata[1]
+           
         ))
     }
 
