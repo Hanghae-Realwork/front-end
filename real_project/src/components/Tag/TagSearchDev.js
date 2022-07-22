@@ -14,7 +14,6 @@ function TagCompoSearchDev({ skills }) {
   }
 
 
-
     return <TagButton>{skills}<Img src={close} onClick={deleteButton}/></TagButton>;
 }
 
@@ -24,7 +23,6 @@ const TagButton = styled.label`
   font-weight: 500;
   border-radius: 30px;
   padding: 5px 12px 5px 12px;
-
 `;
 
 const Img = styled.img`

@@ -1,95 +1,174 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import { useDispatch,useSelector } from "react-redux";
 import { checkUserValidation } from "../redux/modules/user";
-
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
+import {SearchAxios} from "../redux/modules/search"
+
 import RoleModal from "../components/Modal/RoleModal"
 import SkillModal from "../components/Modal/SkillModal"
 import DateModal from "../components/Modal/DateModal"
-import TagDev from "../components/Tag/TagCompoDev"
-import TagDes from "../components/Tag/TagCompoDes"
+import TagDevSearch from "../components/Tag/TagSearchDev"
+import TagDesSearch from "../components/Tag/TagSearchDes"
+import TagSearchRole from "../components/Tag/TagSearchRole"
 
-import mycard from "../image/myCard.svg"
+import paper from "../image/paper.svg"
 import jobicon from "../image/jobicon.svg"
 import pencil from "../image/pencil.svg"
 import calender from "../image/calender.svg"
 import down from "../image/down.svg"
+import Fullastroman from "../image/Fullastroman.svg"
+
+
 
 function NavigationBarResume() {
 
+    //모달 스테이트
     const [Rolemodal, setRoleModal] = useState(false);
     const [Skillmodal, setSkillModal] = useState(false);
     const [Datemodal, setDateModal] = useState(false);
 
     
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    //initialstate data 로드
+    const loginInfo = useSelector((state) => state.user.userInfo.is_login); //로그인 유무
+    const skilldata = useSelector((state) => state.search.Skilltag);
+    const datedata = useSelector((state) => state.search.Datetag);
+    const roledata = useSelector((state) => state.search.Roletag)
 
+    console.log(roledata)
+    console.log(datedata)
+    console.log(skilldata)
 
-    //로그인 유무
-    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-
+    const searchAction = () => {
+        dispatch(SearchAxios())
+    }
+    useEffect(() => { })
+    
 
     return(
         <>
         <OnlyBackgroundDiv>
-            <MainNavigationWrap>
+                <MainNavigationWrap>
+                    <NaviTextAllWrap>
+                        <img src={Fullastroman}></img>
+                        <NaviTextWrap>
+                            <NaviTextTitle>내 프로젝트에 함께 탑승할 크루원을 구해보세요!</NaviTextTitle>
+                            <NaviConWrap>
+                                <NaviTextContent>랑데브에는 반짝거리는 열정으로 프로젝트를 찾고 있는 크루원들이 있어요</NaviTextContent>
+                                <NaviTextContent>당신의 프로젝트를 함께 완성해 나갈 크루원을 랑데브에서 찾아보세요</NaviTextContent>
+                            </NaviConWrap>
+                        </NaviTextWrap>
+                    </NaviTextAllWrap>
+
+                    <WriteButton onClick={() => {
+                        if (loginInfo === false) {
+                                alert("로그인을 해주세요!");
+                            return false
+                        } if (loginInfo === true) {
+                            dispatch(checkUserValidation())
+                            navigate(`/addprofile`);}
+                        }}><img src={paper}/>소개글 올리기
+                    </WriteButton>
+
+                </MainNavigationWrap>
+
                 <NaviWrap>
                     <MainNavigation>
 
                         {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
-                        <SerchLabel style={{width:"130px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
+                        <SerchLabel style={{width:"230px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
                             <ImageWrap><img src={jobicon}/>직군선택</ImageWrap>
                             <img src={down} />
                         </SerchLabel>
 
                         {Skillmodal === true ? <SkillModal close={setSkillModal} /> : null}
-                        <SerchLabel style={{width:"130px"}} onClick={() => {setSkillModal(!Skillmodal)}}>
+                        <SerchLabel style={{width:"350px"}} onClick={() => {setSkillModal(!Skillmodal)}}>
                             <ImageWrap><img src={pencil}/>구하는 기술</ImageWrap>
                             <img src={down}/>
                         </SerchLabel>
 
                         {Datemodal === true ? <DateModal close={setDateModal} /> : null}
-                        <SerchLabel style={{width:"220px", borderRight:"none"}} onClick={() => {setDateModal(!Datemodal)}}>
-                            <ImageWrap><img src={calender}/>프로젝트 기간 검색</ImageWrap>
+                        <SerchLabel style={{width:"455px", borderRight:"none"}} onClick={() => {setDateModal(!Datemodal)}}>
+                            <ImageWrap><img src={calender}/>{datedata.length > 0 ? datedata[0] +' \ '+ '~' + ' \ ' + datedata[1] : "프로젝트 기간 검색"}</ImageWrap>
                             <img src={down}/>
                         </SerchLabel>
-
+                        
                     </MainNavigation>
-                    <SerchButton>검색</SerchButton>
+                    <SerchButton onClick={searchAction}>검색</SerchButton>
                 </NaviWrap>
 
-                <WriteButton onClick={() => {if (loginInfo === false) {alert("로그인을 해주세요!");
-                return false}if (loginInfo === true) {dispatch(checkUserValidation())
-                navigate(`/addprofile`);}
-              }}><img src={mycard}/>크루원 찾기 </WriteButton>
+                <SearchResultABarWrap>
 
-            </MainNavigationWrap>
-
-            <InlineDevide/>
-            
+                    <InlineDevide style={{display: skilldata.length > 0 ? "" : "none" }}/>
+                    <TagWrap>
+                    {skilldata.map((list, idx) => {
+                    return <TagDevSearch key={idx} skills={list} />;
+                    })
+                    }
+                    </TagWrap>
+                </SearchResultABarWrap>
         </OnlyBackgroundDiv>
-
         </>
     )
 }
 
+
+
 const OnlyBackgroundDiv = styled.div`
     width: 1440px;
     /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+`
+
+const NaviTextWrap = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 30px;
+`
+
+const NaviTextTitle = styled.span`
+    font-Weight: 700;
+    font-Size: 20px;
+`
+
+const NaviTextContent = styled.span`
+    font-size: 12px;
+    font-weight: 400;
+`
+
+const NaviTextAllWrap = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+`
+
+const NaviConWrap = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 8px;
 `
 
 const MainNavigationWrap = styled.div`
-    /* border-radius: 1px solid black; */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
     /* border: 1px solid black; */
-    margin: 36px 120px 24px 120px;
+    width: 1200px;
+    margin: 42px 0px 30px 0px;
 `
 
 const NaviWrap = styled.div`
@@ -98,25 +177,30 @@ const NaviWrap = styled.div`
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
+    width: 1200px;
+    margin-bottom: 24px;
 `
 
 const MainNavigation = styled.div`
     height: 40px;
-    border: 1px solid black;
+    border: 0.5px solid black; 
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
     border-radius: 4px;
+    width: 1100px;
 `
 
 const WriteButton = styled.button`
     font-size: 14px;
     font-weight: 700;
+    width: 150px;
+    height: 56px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     padding: 10px 20px 10px 20px;
     background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
     color: white;
@@ -135,14 +219,14 @@ const SerchButton = styled.button`
     outline: none;
     font-size: 14px;
     font-weight: 700;
-    margin-left: 24px;
+    margin-left: 12px;
     cursor: pointer;
 `
 
 const SerchLabel = styled.label`
     padding: 9px 10px 9px 10px;
     border: none;
-    border-right: 1px solid black;
+    border-right: 0.5px solid black;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -162,6 +246,23 @@ const ImageWrap = styled.div`
 
 const InlineDevide = styled.hr`
     width: 1200px;
+    margin-bottom: 15px;
+`
+
+const SearchResultABarWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 1200px;
+    margin-bottom: 24px;
+`
+
+const TagWrap = styled.div`
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
 `
 
 export default NavigationBarResume

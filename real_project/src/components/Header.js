@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo_vertical.svg"
 
 
+
 function Header() {
 
   const navigate = useNavigate();
@@ -17,9 +18,10 @@ function Header() {
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const nickname = useSelector((state) => state.user.userInfo.nickname);
 
-  const [currentClick, setCurrentClick] = React.useState(null);
-  const [prevClick, setPrevClick] = React.useState(null);
+  const [currentClick, setCurrentClick] = useState(null);
+  const [prevClick, setPrevClick] = useState(null);
 
+  const [button, setButton] = useState([false, false, false])
   
   React.useEffect(() => {
     if (loginInfo === false) {dispatch(checkUserValidation());}});
@@ -36,6 +38,7 @@ function Header() {
 
   const PushClick = (e) => {
       setCurrentClick(e.target.id);
+      
   };
 
   React.useEffect(
@@ -68,7 +71,7 @@ function Header() {
             <HeaderLeftWrap>
               <FindProject onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
               <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
-              <FindMatching onClick={() => {navigate(`/`);}}>프로젝트 매칭</FindMatching>
+              <FindMatching onClick={() => {navigate(`/matchingcrew`);}}>프로젝트 매칭</FindMatching>
               <FindProject onClick={() => {window.open(`https://rendev.click/`)}}>화상채팅(임시)</FindProject>
 
             </HeaderLeftWrap>

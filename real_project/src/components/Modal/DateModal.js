@@ -21,14 +21,15 @@ function DateModal (props) {
       };
 
     const AddDate = () => {
-      dispatch(loaddate([startDate, endDate]))
+      const StartCalDate = startDate.getFullYear() + "-" + (startDate.getMonth() +1) + "-" + startDate.getDate()
+      const EndCalDate = endDate.getFullYear() + "-" + (endDate.getMonth()+1) + "-" + endDate.getDate()
+      dispatch(loaddate([StartCalDate, EndCalDate]))
       CloseModal()
     }
 
     const CloseModal = () => {
       props.close(false);
     };
-      
 
     return(
         <RelativeWrap>

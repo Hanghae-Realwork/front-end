@@ -25,6 +25,7 @@ export function loadskill(payload) {
 }
 
 export function loadrole(payload) {
+  console.log(payload)
   return { type: ROLELOAD, payload };
 }
 
@@ -45,7 +46,28 @@ export function complete(payload) {
 }
 
 
-//미들웨어  
+//미들웨어
+export const SearchAxios = (
+  role,
+  ) => {
+  return async function (dispatch) {
+    await apis
+      .searchProject(
+        role,
+      )
+      .then((res) => {
+        console.log(res)
+      dispatch(complete({
+        role: role,
+        // start: start,
+        // end: end
+      }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 
 export default function reducer(state = initialState, action = {}) {
@@ -82,9 +104,11 @@ export default function reducer(state = initialState, action = {}) {
       return {
         Skilltag: state.Skilltag,
         Roletag: state.Roletag,
-        Datetag: action.payload,
+        Datetag: state.Datetag,
       };
     }
+
+
 
     //삭제 리듀서
     case "search/SKILLDELETE": {
