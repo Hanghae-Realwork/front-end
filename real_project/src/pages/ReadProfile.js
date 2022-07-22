@@ -7,7 +7,7 @@ import { checkUserValidation } from "../redux/modules/user";
 
 import TagDev from "../components/Tag/TagCompoDev"
 import letter from "../image/letter.svg"
-
+import astroman from "../image/astroman.svg";
 
 
 function EmploymentProfile() {
@@ -42,7 +42,6 @@ function EmploymentProfile() {
  if(!data[0]) return null 
   return (
     <>
-
       <BackGroundOnlyWrap>
         {/* <HoldWrap> */}
         {/* <BackGround1/> */}
@@ -51,10 +50,13 @@ function EmploymentProfile() {
           <PageAllWrap>
             <TopWrap>
               <LeftTopWrap>
-                {data[0].resumeImage ? <PhotoCircle
-                  style={{ backgroundImage: `url(${data[0].resumeImage})` }}
-                ></PhotoCircle> : "사진이 들어가야해요 ! "}
-                
+                {data[0].resumeImage ? (
+                  <PhotoCircle
+                    style={{ backgroundImage: `url(${data[0].resumeImage})` }}
+                  ></PhotoCircle>
+                ) : (
+                  <PhotoCircle></PhotoCircle>
+                )}
               </LeftTopWrap>
               <RightTopWrap>
                 <RightNameText>
@@ -72,7 +74,6 @@ function EmploymentProfile() {
                 </RightSelfText>
               </RightTopWrap>
             </TopWrap>
-
 
             <TopHr />
 
@@ -281,6 +282,7 @@ const MidTxetWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-content: flex-start;
+
 `
 
 
@@ -290,6 +292,10 @@ const PhotoCircle = styled.div`
   width: 200px;
   height:200px;
   border-radius: 100%;
+  background-image: url(${astroman});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `
 
 const RightNameText = styled.span`
@@ -381,4 +387,12 @@ const BotHr = styled.hr`
   width: 996px;
 `
 
+// const ProfilePhoto = styled.div`
+//   width: 100px;
+//   height: 100px;
+//   background-image: url(${});
+//   background-position: center;
+//   background-size: cover;
+//   /* border: 1px solid black; */
+// `;
 export default EmploymentProfile
