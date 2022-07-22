@@ -10,12 +10,10 @@ import astroman from "../image/astroman.svg"
 
 
 
-
+//프로젝트 찾기 -> 상세조회-> 면접 예약 프로필
 function MiniResume() {
 
     const dispatch = useDispatch();
-
-    const data = useSelector((state) => state.postEmploy.resumes);
 
 
 

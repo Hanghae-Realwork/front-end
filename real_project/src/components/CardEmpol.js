@@ -13,7 +13,6 @@ import cardBackground from "../image/cardBackground.svg"
 function CradEmpol({ data }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const userResumes = useSelector((state) => state);
 
   const start =
     data > 0 ? "" : data.start.replace("-", ".").replace("-", ".");
