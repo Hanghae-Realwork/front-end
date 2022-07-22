@@ -1,9 +1,9 @@
 import axios from "axios";
-import { getCookie } from "./cookie";
+
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "http://52.78.205.196/",
+  baseURL: "https://sprata-owl.shop/",
   headers: {
     "content-type": "multipart/form-data",
     withCredentials: true,
@@ -11,14 +11,13 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "http://52.78.205.196/",
+  baseURL: "https://sprata-owl.shop/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
   },
   withCredentials: true,
   credentials: "include",
-
 });
 
 
@@ -86,7 +85,6 @@ api.interceptors.response.use(
 
 //apis body
 export const apis = {
-  
   ///////////////////////
   ////<1. 회원관리 API>////
   ///////////////////////
@@ -159,7 +157,6 @@ export const apis = {
   userProjects: (nickname) =>
     api.get(`/api/users/details/${nickname}/projects`),
 
-
   //  - 11. 내 Resume 조회
   userResumes: (nickname) => api.get(`/api/users/details/${nickname}/resumes`),
 
@@ -173,13 +170,12 @@ export const apis = {
   userPhotos: (frm, nickname) =>
     imgApi.post(`/api/users/details/${nickname}/image`, frm),
 
-
   ///////////////////////
   ////<2. 프로젝트 API>////
   //////////////////////
 
   //  - 9. 프로젝트 등록
-  
+
   projectsCreate: (
     title,
     details,
@@ -230,7 +226,6 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
-
     }),
 
   //  - 13. 프로젝트 삭제
@@ -309,8 +304,9 @@ export const apis = {
 
   //  - 20. 면접요청 취소
   //  - 21. 프로젝트 면접 예약
-  appointmentProject: (applicationId) => api.put(`/api/applications/${applicationId}`),
-  
+  appointmentProject: (applicationId) =>
+    api.put(`/api/applications/${applicationId}`),
+
   //  - 22. 면접요청 취소
   //  - 23. (팀장) 면접 승낙
   //  - 24. 승낙 취소
@@ -325,23 +321,29 @@ export const apis = {
   //  - 31. 이미지 업로드
   //[이미지업로드]
 
-   ///////////////////////
-   ////// 검색 기능 //////
-   //////////////////////
+  ///////////////////////
+  ////// 검색 기능 //////
+  //////////////////////
 
-   // 32. 프로젝트 검색
-   searchProject: (
-     role, skill, start, end
-     ) => api.get("/api/search/project",{
-      role: role,
-      skill: skill,
-      start: start,
-      end: end
-   }),
+  // 32. 프로젝트 검색
+  searchProject: (role, skill, start, end) =>
+    api.get("/api/search/project", {
+      params: {
+        role: role,
+        skill: null,
+        start: start,
+        end: end,
+      },
+    }),
 
-   // 33. 리쥬메 검색
-   searchResume : () => api.get("/api/search/resume")
-   
-   // 34. 매칭 기능
+  // 33. 리쥬메 검색
+  searchResume: () => api.get("/api/search/resume"),
 
+  // 34. 매칭 기능
+  ///////////////////////
+  ////// 4. 면접예약//////
+  //////////////////////
+  //프로젝트에 면접 예약
+  //지원서의 지원서 목록 조회
+  applicationsResumes: () => api.get("/api/applications/resumes"),
 };
