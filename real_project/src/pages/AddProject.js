@@ -18,6 +18,7 @@ import DatePicker from "react-datepicker";
 import addimage from "../image/addimage.svg";
 import upicon from "../image/upicon.svg";
 import downicon from "../image/downicon.svg";
+import { result } from "lodash";
 
 const FindProjectStep01 = (props) => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const FindProjectStep01 = (props) => {
     const [month, setMonth] = useState(new Date().getMonth());
     const [day, setDay] = useState(new Date().getDate());
   let newDate = year + "년" + month + "월" + day + "일";
-  
+
 
   useEffect(() => {
     setRangeTime({});
@@ -58,9 +59,7 @@ const FindProjectStep01 = (props) => {
     setMinute(0)
   }, [singleDate])
   
-  // useEffect(() => {
 
-  // }, [rangeTime]);
  
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
@@ -166,108 +165,160 @@ const FindProjectStep01 = (props) => {
       }
     }
   };
-
-
-
   ///////////////////////
   /////////시간 끝//////////
   /////////////////////
 
-  //single달력
 
-  
-  
+  //single달력
   const singleCalenderOnChange = (date) => {
 
     setYear(String(date.getFullYear()).padStart(2, "0"));
     setMonth(String(date.getMonth() + 1).padStart(2, "0"));
     setDay(String(date.getDate()).padStart(2, "0"));
     setSingleDate(date)
-    console.log(singleDate)
 
   };
  
  
   const date = year + "년" + month + "월" + day + "일";
   const time = hour + ":" + minute;
-  // const [time,setTime]= useState([])
+
   const timeAddOnClick = () => {
 
-    let temp = {...rangeTime};
+    let temp = { ...rangeTime };
 
+// if ~else : key에 date가 포함되어 있다면 기존 time에 배열 추가, 그렇지 않으면 새로 들어온 신참time을 배열에 넣어준다 
+// else if : 기존 time배열에서 중복 time이 포함되어 있다면 기존배열만 반환 , 첫번째 날짜의 undefined값이 나오므로 예외처리 후 조건 추가. 
     if (Object.keys(temp).includes(date) && !temp[date].includes(time)) {
       temp[date] = [...temp[date], time];
-    }
-    else {
+    } else if (temp[date] && temp[date]) {
+      if (Object.keys(temp).includes(date) && temp[date].includes(time)) {
+        temp[date] = [...temp[date]];
+      }
+    } else {
       temp[date] = [time];
     }
-
-  temp[date] = temp[date].sort((a, b) => {
+    //오름차순으로 정리
+    temp[date] = temp[date].sort((a, b) => {
           return Number(a.replace(":", "")) - Number(b.replace(":", ""));
         })
 
     setRangeTime(temp);
 
-    console.log(rangeTime);
-    // setRangeTime((prev) => [...prev, { Date: year + "년" + month + "월" + day + "일", Time: hour + ":" + minute }]);
-    //1차시도(됨)
-    // setTime((prev) => [...prev, hour + ":" + minute]);
-    // setRangeTime({
-    //   Date: year + "년" + month + "월" + day + "일",
-    //   Time: [...time],
-    // });
-
   };
 
-
+//2단계 :사용되는 날짜 + 시간 에 대한 상태관리
   const [rangeTotal, setRangeTotal] = useState([]);
-  
-  // const totalArr = [totaldate.calendar, ...rangeTime];
-  // const totalArr = [{ Date: totaldate.calendar, times: [...rangeTime] }]
-  
-  
+  const [newList,setNewList] = useState([])
   
   
   const schduleAddOnClick = () => {
+    //rangeTime을 담을 수 있는 상태관리가 필요
+    // rangeTime을 담을 때 딕셔너리 형태로{날짜 , 일, 날짜 ,일 }로 담아준다.
+    // [{},{},{}]
+//조건업음
+    let tempTwo = [...rangeTotal];
+       setRangeTotal((prev) => [...prev,tempTwo]);
 
+    // const list = []
+    // rangeTotal.forEach((item, idx) => {
+    //   const date = Object.keys(item).toString
+    //   if (Object.keys(temp).toString() === date) {
+    //     console.log("들어옴")
+    //     list.push(temp)
 
-
-
+    //   } else {
+    //     setRangeTotal((prev) => [...prev, temp]);
+    //   }
+    // })
+    // if (tempTwo.includes(rangeTime)) {
+    //   console.log("들어옴")
+    //   tempTwo=[...tempTwo,rangeTime]
+    // } else {
+    //   console.log("emfdjdh")
+    //   tempTwo=[rangeTime]
+    // }
+    // setRangeTotal(tempTwo)
+    // console.log(rangeTotal)
   };
 
 
   // 저장 버튼
   const CompliteButton = async () => {
-    frm.append("photos", files[0]);
-    try {
-      await dispatch(projectsPhotosAxios(frm)).then((success) => {
-        dispatch(
-          createRecruitAxios(
-            titleRef.current.value,
-            detailsRef.current.value,
-            subscriptRef.current.value,
-            role,
-            startDate.getFullYear() +
-              "-" +
-              (startDate.getMonth() + 1) +
-              "-" +
-              startDate.getDate(),
-            endDate.getFullYear() +
-              "-" +
-              (endDate.getMonth() + 1) +
-              "-" +
-              endDate.getDate(),
-            checkList,
-            success,
-            ["2022-07-01 02:02:02", "2022-07-02 03:03:03"]
-          )
-        );
-      });
-      navigate("/mainrecruit");
-    } catch (err) {
-      alert("error");
-      console.log(err);
+    //날짜 +시간 데이터 가공 
+    let new_list = [];
+
+    rangeTotal.forEach((item, index) => {
+
+      const date = Object.keys(item)
+      const times = item[date];
+  
+      times.forEach((time) => {
+      const dateTime = date + " " + time;
+      setNewList(new_list.push(dateTime));
+          });
+        });
+  // 
+    if (
+      titleRef.current.value === "" ||
+      detailsRef.current.value === "" ||
+      subscriptRef.current.value === "" ||
+      role === "" ||
+      startDate === "" ||
+      endDate === "" ||
+      checkList === "" ||
+      new_list === "" ||
+      titleRef.current.value === " " ||
+      detailsRef.current.value === " " ||
+      subscriptRef.current.value === " " ||
+      role === " " ||
+      startDate === " " ||
+      endDate === " " ||
+      checkList === " " ||
+      new_list === " " ||
+      titleRef.current.value === null ||
+      detailsRef.current.value === null ||
+      subscriptRef.current.value === null ||
+      role === null ||
+      startDate === null ||
+      endDate === null ||
+      checkList === null ||
+      new_list === null
+    ) {
+      alert("아직 다 작성하지 않았어요!");
+    } else {
+      frm.append("photos", files[0]);
+      try {
+        await dispatch(projectsPhotosAxios(frm)).then((success) => {
+          dispatch(
+            createRecruitAxios(
+              titleRef.current.value,
+              detailsRef.current.value,
+              subscriptRef.current.value,
+              role,
+              startDate.getFullYear() +
+                "-" +
+                (startDate.getMonth() + 1) +
+                "-" +
+                startDate.getDate(),
+              endDate.getFullYear() +
+                "-" +
+                (endDate.getMonth() + 1) +
+                "-" +
+                endDate.getDate(),
+              checkList,
+              success,
+              new_list
+            )
+          );
+        });
+        navigate("/mainrecruit");
+      } catch (err) {
+        console.log(err);
+      }
     }
+      
   };
 
   return (
@@ -330,7 +381,7 @@ const FindProjectStep01 = (props) => {
               type="text"
               placeholder="프로젝트의 내용을 입력해주세요"
             />
-            <PhotoUPloadWrap>
+            {/* <PhotoUPloadWrap>
               {filesImg ? (
                 <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
               ) : (
@@ -361,7 +412,7 @@ const FindProjectStep01 = (props) => {
                   </PhotoText>
                 )}
               </EditWrapPhoto>
-            </PhotoUPloadWrap>
+            </PhotoUPloadWrap> */}
           </ReMainConWrap>
         </InputMainTextWrap>
         <InputMainTextWrap>
@@ -509,9 +560,7 @@ const FindProjectStep01 = (props) => {
             </TimeAllDiv>
             <TimeSelectWrap>
               <InterviewTextDate>
-                {year
-                  ? year + "년 " + month + "월 " + day + "일"
-                  : "날짜를 선택해주세요."}
+                 {year + "년 " + month + "월 " + day + "일"}
               </InterviewTextDate>
               <TimeAddButtonWrap>
                 {
@@ -528,14 +577,10 @@ const FindProjectStep01 = (props) => {
                                 newDate
                               ].filter((l, index) => {
                                 return idx !== index;
-                              });
-
-                              // setRangeTime({`${year}년${month}`: new_post})
-                              
+                              });   
                               setRangeTime({
                                   [newDate]
-                                : new_post})
-                                
+                                : new_post}) 
                             }}
 
                           >
@@ -556,22 +601,29 @@ const FindProjectStep01 = (props) => {
         {/* 아래 하단 시작 */}
 
         <AddbleTimeWrap>
-          <TimeSelectWrapPlus>
-            <InterviewDateWrap>
-              <InterviewTextDateBot>날짜</InterviewTextDateBot>
-              <BotDelBtn>삭제</BotDelBtn>
-            </InterviewDateWrap>
+          {rangeTotal.map((list, idx) => {
+            const min = Object.keys(list).toString()
+            return (
+              <TimeSelectWrapPlus key={idx}>
+                <InterviewDateWrap>
+                  <InterviewTextDateBot>
+                    {Object.keys(list)}
+                  </InterviewTextDateBot>
+                  <BotDelBtn>삭제</BotDelBtn>
+                </InterviewDateWrap>
 
-            <TimeAddButtonWrap>
-              <TimeAddLeftWrap>
-                <LeftTimeButton>가나다</LeftTimeButton>
-                <LeftTimeButton>가나다</LeftTimeButton>
-                <LeftTimeButton>가나다</LeftTimeButton>
-                <LeftTimeButton>가나다</LeftTimeButton>
-                <LeftTimeButton>가나다</LeftTimeButton>
-              </TimeAddLeftWrap>
-            </TimeAddButtonWrap>
-          </TimeSelectWrapPlus>
+                <TimeAddButtonWrap>
+                  <TimeAddLeftWrap>
+                    {rangeTotal[idx][min] &&
+                      rangeTotal[idx][min].map((time,index) => {
+                        return <LeftTimeButton key={index}>{ time}</LeftTimeButton>;
+                      })}
+                  </TimeAddLeftWrap>
+                </TimeAddButtonWrap>
+              </TimeSelectWrapPlus>
+            );
+          })}
+
         </AddbleTimeWrap>
 
         {/* 아래 하단 끝 */}
