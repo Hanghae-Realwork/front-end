@@ -16,15 +16,17 @@ import MiniResume from "../components/MiniProfile";
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
 
+
 function ReadProject() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { projectId } = useParams();
 
   const [modify, setModify] = useState(false);
+  
   // 로그인 유저별 resume card 용
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-   const userName_Info = useSelector((state) => state.user.userInfo.userId);
+  const userName_Info = useSelector((state) => state.user.userInfo.userId);
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
 
   const [schedule, setSchedule] = useState("");

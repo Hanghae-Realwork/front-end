@@ -333,7 +333,14 @@ export const apis = {
    //////////////////////
 
    // 32. 프로젝트 검색
-   searchProject: () => api.get("/api/search/project"),
+   searchProject: (
+     role, skill, start, end
+     ) => api.get("/api/search/project",{
+      role: role,
+      skill: skill,
+      start: start,
+      end: end
+   }),
 
    // 33. 리쥬메 검색
    searchResume : () => api.get("/api/search/resume")
@@ -341,6 +348,3 @@ export const apis = {
    // 34. 매칭 기능
 
 };
-
-
-

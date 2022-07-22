@@ -65,9 +65,9 @@ useState(data[0]?.role)
   return (
     <>
     <BackGroundOnlyWrap> 
-      {/* <HoldWrap> */}
-     {/* <BackGround1/> */}
-     {/* <BackGround2/> */}
+      {/* <HoldWrap>
+     <BackGround1/>
+     <BackGround2/> */}
      <BackGround3>
               
      <PageAllWrap>

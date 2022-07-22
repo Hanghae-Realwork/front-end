@@ -6,6 +6,7 @@ const LOAD = "employ/LOAD";
 const CREATE = "employ/CREATE";
 const MODIFY = "employ/MODIFY";
 const DELETE = "employ/DELETE";
+
 //게시글 상세조회
 const LOAD_SINGLE = "employ/LOAD_SINGLE";
 
