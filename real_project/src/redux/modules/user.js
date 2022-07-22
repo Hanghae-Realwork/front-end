@@ -116,7 +116,11 @@ export const loginAxios = (userEmail, password) => {
       })
       .catch((error) => {
         success = false;
-        console.log(error)
+        console.log(error);
+        if (error.request.status === 400) { 
+          alert("아이디와 비밀번호를 확인해주세욥 🥸 ");
+        }
+        
       });
     return success;
   };
@@ -141,8 +145,8 @@ export const checkUserValidation = () => {
         // }
 
         // console.log(err)
-        // logOut();
-        alert("토큰이 만료되셨네요🥹");
+        logOut();
+        alert("토큰이 만료되셨네요 🥸 ");
       });
   };
 };
