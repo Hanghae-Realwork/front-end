@@ -30,7 +30,7 @@ function ReadProject() {
   const [schedule, setSchedule] = useState("");
 
   const Value = useSelector((state) => state.postRecruit.project);
-
+console.log(Value)
   useEffect(() => {
     if (Value) {
       setSchedule();
