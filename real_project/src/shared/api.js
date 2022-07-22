@@ -84,9 +84,6 @@ api.interceptors.response.use(
 //   }
 );
 
-
-
-
 //apis body
 export const apis = {
   
