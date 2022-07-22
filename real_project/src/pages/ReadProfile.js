@@ -4,37 +4,25 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { deleteEmployAxios, loadSingleEmployAxios } from "../redux/modules/postEmploy";
 import { checkUserValidation } from "../redux/modules/user";
-import { useNavigation } from "react-day-picker";
 
-import TagDes from "../components/Tag/TagCompoDes"
 import TagDev from "../components/Tag/TagCompoDev"
-
 import letter from "../image/letter.svg"
 
 
 
 function EmploymentProfile() {
   
-  const dispatch = useDispatch();
+  
   const { resumeId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
- 
   const loginInfoName = useSelector((state) => state.user.userInfo.userId);
-
   const data = useSelector((state) => state.postEmploy.resumes);
 
-  //id와 userId 비교하여 버튼 보이게 하기
-  // const modify = (loginInfoName === data[0]?.userId);
 
-  const [modify, setModify] = useState(false);
-  
-  let start =""
-  let end = ""
   let href = ""
-
-
   useEffect(() => {
    if (loginInfo === false) {
      dispatch(checkUserValidation());
@@ -45,96 +33,119 @@ function EmploymentProfile() {
   }, [])
 
     useEffect(() => {
-      if (loginInfoName && data) {
-        if (loginInfoName === data[0]?.userId) {
-         setModify(true)
-       }
-      }
       if (data) {
-        start = data[0]?.start.replace("-", ".").replace("-", ".");
-        end = data[0]?.end.replace("-", ".").replace("-", ".");
-
         href = data.length > 0 ? data[0].content2 : "";
       }
     }, [loginInfoName, data]);
   
-useState(data[0]?.role)
  //undefined일때 null 처리 나머지 return 
-
  if(!data[0]) return null 
   return (
     <>
-    <BackGroundOnlyWrap> 
-      {/* <HoldWrap> */}
-     {/* <BackGround1/> */}
-     {/* <BackGround2/> */}
-     <BackGround3>
-              
-     <PageAllWrap>
-          <TopWrap>
-            <LeftTopWrap>
-              <PhotoCircle style={{backgroundImage: `url(${data[0].resumeImage})`}}></PhotoCircle>
-            </LeftTopWrap>
-            <RightTopWrap>
-              <RightNameText>{data.length > 0 ? data[0].nickname : ""}</RightNameText>
-              <RightRoleText>{data.length > 0 ? data[0].role : ""}</RightRoleText>
-              <RightAdressText><img src={letter} style={{marginRight:"8px"}}/>{data.length > 0 ? data[0].userId : ""}</RightAdressText>
-              <RightSelfText>{data.length > 0 ? data[0].content : ""}</RightSelfText>
-            </RightTopWrap>
-          </TopWrap>
+      <BackGroundOnlyWrap>
+        {/* <HoldWrap> */}
+        {/* <BackGround1/> */}
+        {/* <BackGround2/> */}
+        <BackGround3>
+          <PageAllWrap>
+            <TopWrap>
+              <LeftTopWrap>
+                {data[0].resumeImage ? <PhotoCircle
+                  style={{ backgroundImage: `url(${data[0].resumeImage})` }}
+                ></PhotoCircle> : "사진이 들어가야해요 ! "}
+                
+              </LeftTopWrap>
+              <RightTopWrap>
+                <RightNameText>
+                  {data.length > 0 ? data[0].nickname : ""}
+                </RightNameText>
+                <RightRoleText>
+                  {data.length > 0 ? data[0].role : ""}
+                </RightRoleText>
+                <RightAdressText>
+                  <img src={letter} style={{ marginRight: "8px" }} />
+                  {data.length > 0 ? data[0].userId : ""}
+                </RightAdressText>
+                <RightSelfText>
+                  {data.length > 0 ? data[0].content : ""}
+                </RightSelfText>
+              </RightTopWrap>
+            </TopWrap>
 
-          <TopHr/>
+            <TopHr />
 
-          <MidWrap>
-            <MidTxetWrap>
-              <MidTitle>소개글</MidTitle>
-              <MidSelfText>{data.length > 0 ? data[0].content3 : ""}</MidSelfText>
-            </MidTxetWrap>
-            <MidTxetWrap>
-              <MidTitle>홈페이지</MidTitle>
-              <MidContentText>
-                <a href={data.length > 0 ? data[0].content2 : ""} target="_blank">
-                  {data.length > 0 ? data[0].content2 : ""}
-                </a>
-              </MidContentText>
-            </MidTxetWrap>
-            <MidTxetWrap>
-              <MidTitle>프로젝트 가능 기간</MidTitle>
-              <MidContentText>
-                {data[0]?.start.replace("-", ".").replace("-", ".")}~
-                {data[0]?.end.replace("-", ".").replace("-", ".")}
-              </MidContentText>
-            </MidTxetWrap>
-            <MidTxetWrap>
-              <MidTitle>
-                {data.length > 0 ? data[0].nickname : ""}님의 보유 스킬
-              </MidTitle>
-              <MidTagWrap>
-                {data.length > 0
-                ? data[0].resumeskills.map((list, idx) => {
-                    return <TagDev key={idx} skills={list} />;
-                  })
-                : ""}
-              </MidTagWrap>
-            </MidTxetWrap>
-          </MidWrap>
+            <MidWrap>
+              <MidTxetWrap>
+                <MidTitle>소개글</MidTitle>
+                <MidSelfText>
+                  {data.length > 0 ? data[0].content3 : ""}
+                </MidSelfText>
+              </MidTxetWrap>
+              <MidTxetWrap>
+                <MidTitle>홈페이지</MidTitle>
+                <MidContentText>
+                  <a
+                    href={data.length > 0 ? data[0].content2 : ""}
+                    target="_blank"
+                  >
+                    {data.length > 0 ? data[0].content2 : ""}
+                  </a>
+                </MidContentText>
+              </MidTxetWrap>
+              <MidTxetWrap>
+                <MidTitle>프로젝트 가능 기간</MidTitle>
+                <MidContentText>
+                  {data[0]?.start.replace("-", ".").replace("-", ".")}~
+                  {data[0]?.end.replace("-", ".").replace("-", ".")}
+                </MidContentText>
+              </MidTxetWrap>
+              <MidTxetWrap>
+                <MidTitle>
+                  {data.length > 0 ? data[0].nickname : ""}님의 보유 스킬
+                </MidTitle>
+                <MidTagWrap>
+                  {data.length > 0
+                    ? data[0].skill.map((list, idx) => {
+                        return <TagDev key={idx} skills={list} />;
+                      })
+                    : ""}
+                </MidTagWrap>
+              </MidTxetWrap>
+            </MidWrap>
 
-          <BotHr/>
+            <BotHr />
 
-          <BotWrap>
-          {modify ? (
-            <FixedBtn onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
-              수정하기</FixedBtn>) : (<></>)}
-          {modify ? (
-            <DelBtn onClick={() => {dispatch(deleteEmployAxios(resumeId)); alert("❗️ 정말 삭제하시는 겁니까?")
-              navigate("/mainemployment");}}>
-              삭제하기</DelBtn>) : (<></>)}
-          </BotWrap>
-        </PageAllWrap>      
-     </BackGround3>
-     {/* </HoldWrap> */}
-    </BackGroundOnlyWrap>         
-  </>
+            <BotWrap>
+              {loginInfoName === data[0]?.userId ? (
+                <FixedBtn
+                  onClick={() => {
+                    navigate("/editprofile/" + `${data[0].resumeId}`);
+                  }}
+                >
+                  수정하기
+                </FixedBtn>
+              ) : (
+                <></>
+              )}
+              {loginInfoName === data[0]?.userId ? (
+                <DelBtn
+                  onClick={() => {
+                    dispatch(deleteEmployAxios(resumeId));
+                    alert("❗️ 정말 삭제하시는 겁니까?");
+                    navigate("/mainemployment");
+                  }}
+                >
+                  삭제하기
+                </DelBtn>
+              ) : (
+                <></>
+              )}
+            </BotWrap>
+          </PageAllWrap>
+        </BackGround3>
+        {/* </HoldWrap> */}
+      </BackGroundOnlyWrap>
+    </>
   );
 }
 
@@ -367,15 +378,5 @@ const BotHr = styled.hr`
   border: 0.5px solid #8D8D8D;
   width: 996px;
 `
-
-
-
-
-
-
-
-
-
-
 
 export default EmploymentProfile
