@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import {
   createRecruitAxios,
   projectsPhotosAxios,
@@ -12,13 +12,12 @@ import {
 } from "../shared/developeSkills";
 
 import Footer from "../components/Date/Footer";
-import DateSingle from "../components/Date/DatePickerSingle";
 import DatePicker from "react-datepicker";
 
 import addimage from "../image/addimage.svg";
 import upicon from "../image/upicon.svg";
 import downicon from "../image/downicon.svg";
-import { result } from "lodash";
+
 
 const FindProjectStep01 = (props) => {
   const dispatch = useDispatch();
@@ -58,8 +57,6 @@ const FindProjectStep01 = (props) => {
     setHour(0)
     setMinute(0)
   }, [singleDate])
-  
-
  
   //Role 값 (코코미 코드)
   const onChangeRole = (e) => {
@@ -217,36 +214,29 @@ const FindProjectStep01 = (props) => {
     //rangeTime을 담을 수 있는 상태관리가 필요
     // rangeTime을 담을 때 딕셔너리 형태로{날짜 , 일, 날짜 ,일 }로 담아준다.
     // [{},{},{}]
-//조건업음
-    let tempTwo = [...rangeTotal];
-       setRangeTotal((prev) => [...prev,tempTwo]);
+    let list_up = [...rangeTotal]
+      rangeTotal.forEach((item, index) => {
+       Object.keys(item)
+    })
+  console.log(rangeTotal)
+    if (rangeTime && list_up) { 
+      list_up = [...list_up,rangeTime]
+    } else {
+      list_up = [rangeTime]
+    }
+      setRangeTotal(list_up);
+    console.log(rangeTotal);
+   
 
-    // const list = []
-    // rangeTotal.forEach((item, idx) => {
-    //   const date = Object.keys(item).toString
-    //   if (Object.keys(temp).toString() === date) {
-    //     console.log("들어옴")
-    //     list.push(temp)
+//  let temp = { ...rangeTime };
+//    setRangeTotal((prev) => [...prev,temp]);
 
-    //   } else {
-    //     setRangeTotal((prev) => [...prev, temp]);
-    //   }
-    // })
-    // if (tempTwo.includes(rangeTime)) {
-    //   console.log("들어옴")
-    //   tempTwo=[...tempTwo,rangeTime]
-    // } else {
-    //   console.log("emfdjdh")
-    //   tempTwo=[rangeTime]
-    // }
-    // setRangeTotal(tempTwo)
-    // console.log(rangeTotal)
   };
 
 
   // 저장 버튼
   const CompliteButton = async () => {
-    //날짜 +시간 데이터 가공 
+    //날짜+시간 데이터 가공 
     let new_list = [];
 
     rangeTotal.forEach((item, index) => {
@@ -560,7 +550,9 @@ const FindProjectStep01 = (props) => {
             </TimeAllDiv>
             <TimeSelectWrap>
               <InterviewTextDate>
-                 {year + "년 " + month + "월 " + day + "일"}
+                {year
+                  ? year + "년 " + month + "월 " + day + "일"
+                  : "날짜를 선택해주세요."}
               </InterviewTextDate>
               <TimeAddButtonWrap>
                 {
@@ -601,7 +593,7 @@ const FindProjectStep01 = (props) => {
         {/* 아래 하단 시작 */}
 
         <AddbleTimeWrap>
-          {rangeTotal.map((list, idx) => {
+          {/* {rangeTotal.map((list, idx) => {
             const min = Object.keys(list).toString()
             return (
               <TimeSelectWrapPlus key={idx}>
@@ -622,7 +614,7 @@ const FindProjectStep01 = (props) => {
                 </TimeAddButtonWrap>
               </TimeSelectWrapPlus>
             );
-          })}
+          })} */}
 
         </AddbleTimeWrap>
 
