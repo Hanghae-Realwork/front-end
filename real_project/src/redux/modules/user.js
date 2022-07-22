@@ -144,9 +144,9 @@ export const checkUserValidation = () => {
         //   dispatch(refreshAxios());
         // }
 
-        // console.log(err)
+        console.log("토큰만료:",err)
         logOut();
-        alert("토큰이 만료되셨네요 🥸 ");
+        // alert("토큰이 만료되셨네요 🥸 ");
       });
   };
 };
