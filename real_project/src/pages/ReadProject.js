@@ -30,9 +30,6 @@ function ReadProject() {
 
   const Value = useSelector((state) => state.postRecruit.project);
 
-console.log(Value)
-
-
 
   useEffect(() => {
     if (loginInfo === false) {

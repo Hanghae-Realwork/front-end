@@ -156,6 +156,24 @@ export const editRecruitAxios = (
   photos,
   // schedule
 ) => {
+  console.log(
+    "projectId",
+    projectId,
+    "title",
+    title,
+    "details",
+    details,
+    "subscript",
+    subscript,
+    "role",
+    role,
+    "start",
+    start,
+    "end",
+    end,
+    "skills",skills,
+    "photos",photos
+  );
   return async function(dispatch) {
     await apis
       .projectsModify(

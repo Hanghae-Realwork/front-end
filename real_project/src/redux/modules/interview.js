@@ -25,7 +25,7 @@ export const loadResumesAxios = () => {
     await apis
       .applicationsResumes()
         .then((res) => {
-          console.log(res.data.resumes);
+ 
             dispatch(loadResumes(res.data.resumes));
       })
       .catch((err) => {
