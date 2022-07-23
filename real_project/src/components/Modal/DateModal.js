@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import Footer from "../../components/Date/Footer"
 import { useDispatch } from "react-redux";
 import {loaddate} from "../../redux/modules/search"
-import ko from "date-fns/locale/ko";
+import ko from "date-fns/locale/ko"
 
 
 
@@ -14,6 +14,8 @@ function DateModal (props) {
 
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
+
+    console.log(startDate)
 
     const DoubleCalenderOnChange = (dates) => {
         const [start, end] = dates;
@@ -42,7 +44,7 @@ function DateModal (props) {
                     calendarContainer={Calendar}
                     controls={["calendar"]}
                     dateFormat="YYYY-MM-DD"
-                    locale={ko}// 달력 한글화
+                    locale={ko} // 달력 한글화
                     selected={startDate}
                     onChange={DoubleCalenderOnChange}
                     startDate={startDate}

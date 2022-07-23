@@ -83,6 +83,9 @@ api.interceptors.response.use(
 //   }
 );
 
+
+
+
 //apis body
 export const apis = {
   ///////////////////////
@@ -325,16 +328,18 @@ export const apis = {
   ////// 검색 기능 //////
   //////////////////////
 
-  // 32. 프로젝트 검색
-  searchProject: (role, skill, start, end) =>
-    api.get("/api/search/project", {
-      params: {
-        role: role,
-        skill: null,
-        start: start,
-        end: end,
-      },
-    }),
+
+   // 32. 프로젝트 검색
+   searchProject: (
+     role, skill, start, end
+     ) => api.get("/api/search/project?role=role&skill=skill&start=start&end=end",{
+      params: 
+      {role: role,
+      skill: skill,
+      start: start,
+      end: end}
+   }),
+
 
   // 33. 리쥬메 검색
   searchResume: () => api.get("/api/search/resume"),

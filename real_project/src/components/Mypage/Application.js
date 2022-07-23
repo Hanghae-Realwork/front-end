@@ -29,8 +29,6 @@ const Application = () => {
       }
     }, [nickname_Info]);
  
-
-
   return (
  
       <RightMapingWrap>
