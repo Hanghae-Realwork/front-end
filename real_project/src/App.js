@@ -55,7 +55,7 @@ function App() {
     <MainWrap>
       <Header />
         
-      <Miniproject></Miniproject>
+      {/* <Miniproject></Miniproject> */}
 
       <Routes>
         <Route path="/" element={<Main />} />
