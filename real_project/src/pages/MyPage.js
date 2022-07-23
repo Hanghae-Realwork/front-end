@@ -26,8 +26,8 @@ function MyPage() {
  const frm = new FormData();
  const reader = new FileReader();
 
-  const seeImgOnclick = (e) => {
-
+  const onChange = (e) => {
+    console.log("들어옴");
     const file = e.target.files;
     console.log(e.target.files);
     setFiles(file);
@@ -47,7 +47,6 @@ function MyPage() {
     if (files === "" || null) {
       alert("사진을 올려볼까요 🥸")
     } 
-
     console.log(files[0]);
       frm.append("profileImage", files[0]);
       dispatch(userPhotoAxios(loginInfo.nickname, frm));
@@ -62,23 +61,22 @@ function MyPage() {
           <MyPageLeftWrap>
             <LeftBackgroundWrap>
               <MyPageProfileWrap>
-                <div>
-                  {filesImg ? (
-                    <MyPagePhotoIn src={filesImg} />
-                  ) : (
-                    <MyPagePhotoWrap />
-                  )}
-
-                  <Label>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={seeImgOnclick}
-                      style={{ display: "none" }}
-                    />
-                    <ImgPlus src={Plus} />
-                  </Label>
-                </div>
+                {filesImg ? (
+                  <MyPagePhotoIn src={filesImg} />
+                ) : (
+                  <MyPagePhotoWrap />
+                )}
+                <Label>
+                  <input
+                    name="imgUpload"
+                    type="file"
+                    id="add_img"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={onChange}
+                  />
+                  <ImgPlus src={Plus} />
+                </Label>
 
                 <ProfilePhotoSpan onClick={plusImgOnclick}>
                   등록버튼
