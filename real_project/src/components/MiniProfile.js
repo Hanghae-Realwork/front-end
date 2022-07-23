@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 import { useSelector,useDispatch } from "react-redux";
-import { deleteEmployAxios, loadSingleEmployAxios } from "../redux/modules/postEmploy";
+import { loadResumesAxios } from "../redux/modules/interview";
 
 import TagDev from "./Tag/TagCompoDev"
 import TagDes from "./Tag/TagCompoDes"
@@ -14,37 +14,55 @@ import astroman from "../image/astroman.svg"
 function MiniResume() {
 
     const dispatch = useDispatch();
+const data = useSelector((state) => state.interview.resumes);
 
-
-
+ 
+    
+    useEffect(() => {
+        dispatch(loadResumesAxios())
+    },[])
   return (
-    <>
-      <MiniCardAllWrap>
-        <MiniTopWrap>
-            <MiniPhotoWrap>
-                <Photo></Photo>
-            </MiniPhotoWrap>
-            <MiniNameWrap>
-                <MiniNickName>닉네임이 들어갑니다</MiniNickName>
-                <MiniRole>직군이 들어갑니다</MiniRole>
-            </MiniNameWrap>
-        </MiniTopWrap>
+      <>{data && data.map((list,idx) => {
+        return (
+          <MiniCardAllWrap key={idx}>
+            <MiniTopWrap>
+              <MiniPhotoWrap>
+                {data[idx]?.resumeImage === null ? (
+                  <Photo></Photo>
+                ) : (
+                  <Photo>사진을 보여주세요</Photo>
+                )}
+              </MiniPhotoWrap>
+              <MiniNameWrap>
+                <MiniNickName>{data[idx]?.nickname}</MiniNickName>
+                <MiniRole>{data[idx]?.role}</MiniRole>
+              </MiniNameWrap>
+            </MiniTopWrap>
 
-        <MiniBodyWrap>
-            <MiniBodyText>내용이 들어갑니다</MiniBodyText>
-        </MiniBodyWrap>
+            <MiniBodyWrap>
+              <MiniBodyText>{data[idx]?.content}</MiniBodyText>
+            </MiniBodyWrap>
 
-        <MiniDateWrap>
-            <span style={{fontSize:"12px"}}>프로젝트 가능 기간</span> <MiniDateText></MiniDateText>
-        </MiniDateWrap>
+            <MiniDateWrap>
+              <span style={{ fontSize: "12px" }}>
+                {data[idx]?.start.slice(0, 4)}년 {data[idx]?.start.slice(5, 7)}
+                월 {data[idx]?.start.slice(8, 10)}일 ~
+                {data[idx]?.end.slice(0, 4)}년 {data[idx]?.end.slice(5, 7)}월{" "}
+                {data[idx]?.end.slice(8, 10)}일
+              </span>{" "}
+              <MiniDateText></MiniDateText>
+            </MiniDateWrap>
 
-        <TecWrap>
-            보유한 기술
-            <TecMiniWrap>
-                <TagDev/>
-            </TecMiniWrap>
-        </TecWrap>
-      </MiniCardAllWrap>
+            <TecWrap>
+              보유한 기술
+              <TecMiniWrap>
+                <TagDev skills={data[idx]?.skills} />
+              </TecMiniWrap>
+            </TecWrap>
+          </MiniCardAllWrap>
+        );
+    })}
+
     </>
   );
 }

@@ -17,7 +17,7 @@ import DatePicker from "react-datepicker";
 import addimage from "../image/addimage.svg";
 import upicon from "../image/upicon.svg";
 import downicon from "../image/downicon.svg";
-
+import ko from "date-fns/locale/ko";
 
 
 
@@ -218,22 +218,22 @@ const FindProjectStep01 = (props) => {
     //rangeTime을 담을 수 있는 상태관리가 필요
     // rangeTime을 담을 때 딕셔너리 형태로{날짜 , 일, 날짜 ,일 }로 담아준다.
     // [{},{},{}]
-    let list_up = [...rangeTotal]
-      rangeTotal.forEach((item, index) => {
-       Object.keys(item)
-    })
-  console.log(rangeTotal)
-    if (rangeTime && list_up) { 
-      list_up = [...list_up,rangeTime]
-    } else {
-      list_up = [rangeTime]
-    }
-      setRangeTotal(list_up);
-    console.log(rangeTotal);
+  //   let list_up = [...rangeTotal]
+  //     rangeTotal.forEach((item, index) => {
+  //      Object.keys(item)
+  //   })
+  // console.log(rangeTotal)
+  //   if (rangeTime && list_up) { 
+  //     list_up = [...list_up,rangeTime]
+  //   } else {
+  //     list_up = [rangeTime]
+  //   }
+  //     setRangeTotal(list_up);
+  //   console.log(rangeTotal);
    
 
-//  let temp = { ...rangeTime };
-//    setRangeTotal((prev) => [...prev,temp]);
+ let temp = { ...rangeTime };
+   setRangeTotal((prev) => [...prev,temp]);
 
   };
 
@@ -349,7 +349,7 @@ const FindProjectStep01 = (props) => {
                 calendarContainer={Calendar}
                 controls={["calendar"]}
                 dateFormat="YYYY-MM-DD"
-                locale="ko"
+                locale={ko}
                 selected={startDate}
                 onChange={DoubleCalenderOnChange}
                 startDate={startDate}
@@ -501,7 +501,7 @@ const FindProjectStep01 = (props) => {
                   onChange={singleCalenderOnChange}
                   startDate={startDate}
                   dateFormat="YYYY-MM-DD"
-                  locale="ko" // 달력 한글화
+                  locale={ko} // 달력 한글화
                   minDate={new Date()}
                   monthsShown={1}
                   inline
@@ -580,7 +580,6 @@ const FindProjectStep01 = (props) => {
                                 : new_post}) 
                             }}
                           >
-
                             삭제하기
                           </LeftDelBtn>
                         </TimeAddLeftWrap>
@@ -598,7 +597,7 @@ const FindProjectStep01 = (props) => {
         {/* 아래 하단 시작 */}
 
         <AddbleTimeWrap>
-          {/* {rangeTotal.map((list, idx) => {
+          {rangeTotal.map((list, idx) => {
             const min = Object.keys(list).toString()
             return (
               <TimeSelectWrapPlus key={idx}>
@@ -619,7 +618,7 @@ const FindProjectStep01 = (props) => {
                 </TimeAddButtonWrap>
               </TimeSelectWrapPlus>
             );
-          })} */}
+          })}
 
         </AddbleTimeWrap>
 
