@@ -25,7 +25,7 @@ function Login() {
       loginidRef.current.value === null ||
       passwordRef.current.value === null
     ) {
-      alert("아이디, 비밀번호를 채워주세요!");
+      alert("아이디 또는 비밀번호가 비어있어요! 🥸 ");
       return false;
     }
 
@@ -37,7 +37,7 @@ function Login() {
       ).then((success) => {
         if (success === true) {
           navigate("/");
-          alert("로그인되었습니다!");
+          alert("로그인되었습니다! 🥸");
         } else {
           console.log("로그인실패", success);
           document.getElementById("LoginBtn").disabled = false;

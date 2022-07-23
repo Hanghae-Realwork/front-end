@@ -6,7 +6,7 @@ import { LoadDetailAxios } from "../redux/modules/postRecruit";
 import { checkUserValidation } from "../redux/modules/user";
 import { loadApplyAxios } from "../redux/modules/postProfile";
 import { deleteRecruitAxios } from "../redux/modules/postRecruit"
-
+// import {astroman} from "../image/astroman.svg"
 import TagDev from "../components/Tag/TagCompoDev"
 import TagDes from "../components/Tag/TagCompoDes"
 
@@ -28,15 +28,11 @@ function ReadProject() {
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
 
-  const [schedule, setSchedule] = useState("");
-
   const Value = useSelector((state) => state.postRecruit.project);
 
-  useEffect(() => {
-    if (Value) {
-      setSchedule();
-    }
-  }, [schedule]);
+console.log(Value)
+
+
 
   useEffect(() => {
     if (loginInfo === false) {
@@ -47,10 +43,6 @@ function ReadProject() {
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   }, []);
-
-
-
-
 
 
   return (
@@ -94,12 +86,11 @@ function ReadProject() {
 
         <DateWrap>
           <div>
-
-              <button
+            {/* <button
                 value={Value[0]?.applications[1]?.schedule}
                 name="two">
               시간이 들어갑니다.
-              </button>
+              </button> */}
           </div>
         </DateWrap>
         <DivideLine />
@@ -123,7 +114,8 @@ function ReadProject() {
         </ProfileWrap>
         <DivideLine />
         <MiniResumeWrap>
-          <MiniResume />
+          {Value && (userName_Info !== Value[0]?.email) ? <MiniResume /> :""}
+          
         </MiniResumeWrap>
         <DivideLine />
         <ButtonWrap>
