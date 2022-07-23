@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { checkUserValidation, login } from "../redux/modules/user";
+import { userPhotoAxios } from "../redux/modules/postProfile";
 import { useNavigate, useParams, Outlet } from "react-router-dom";
 
 import Application from "../components/Mypage/Application";
@@ -12,7 +13,7 @@ import astroman from "../image/astroman.svg";
 import email from "../image/letter.svg";
 import Check from "../image/check.svg";
 import LeftBackground from "../image/mypagBackground.svg"
-
+import Plus from "../image/plus.svg";
 
 function MyPage() {
   const dispatch = useDispatch();
@@ -20,36 +21,87 @@ function MyPage() {
   const params = useParams();
 
   const loginInfo = useSelector((state) => state.user.userInfo);
+  const [files, setFiles] = React.useState("");
+  const [filesImg, setFilesImg] = React.useState("");
+ const frm = new FormData();
+ const reader = new FileReader();
 
-  
+  const seeImgOnclick = (e) => {
+
+    const file = e.target.files;
+    console.log(e.target.files);
+    setFiles(file);
+
+    //fileReader
+    setFilesImg(e.target.files[0]);
+    reader.readAsDataURL(e.target.files[0]);
+
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setFilesImg(reader.result);
+        resolve();
+      };
+    });
+  };
+  const plusImgOnclick = () => {
+    if (files === "" || null) {
+      alert("사진을 올려볼까요 🥸")
+    } 
+
+    console.log(files[0]);
+      frm.append("profileImage", files[0]);
+      dispatch(userPhotoAxios(loginInfo.nickname, frm));
+       
+
+  }
   return (
     <>
       <MyButton />
       <AllMyWrap>
-      <MypageBackGround>
-        <MyPageLeftWrap>
-          <LeftBackgroundWrap>
-            <MyPageProfileWrap>
-              <MyPagePhotoWrap/>
-              <ProfilePhotoSpan>프로필 사진 수정</ProfilePhotoSpan>
-              <NameMyPage>
-                <NameText>{loginInfo.nickname}</NameText>
-              </NameMyPage>
-            </MyPageProfileWrap>
-            <MypageTextWrap>
-              <Mycall>{loginInfo.userId}</Mycall>
-            </MypageTextWrap>
-            <MyPagePasswordWrap>
-              <span>비밀번호 변경</span>
-              <span>회원 탈퇴</span>
-            </MyPagePasswordWrap>
-          </LeftBackgroundWrap>
-        </MyPageLeftWrap>
+        <MypageBackGround>
+          <MyPageLeftWrap>
+            <LeftBackgroundWrap>
+              <MyPageProfileWrap>
+                <div>
+                  {filesImg ? (
+                    <MyPagePhotoIn src={filesImg} />
+                  ) : (
+                    <MyPagePhotoWrap />
+                  )}
 
-        <MyPageMainWrap>
+                  <Label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={seeImgOnclick}
+                      style={{ display: "none" }}
+                    />
+                    <ImgPlus src={Plus} />
+                  </Label>
+                </div>
+
+                <ProfilePhotoSpan onClick={plusImgOnclick}>
+                  등록버튼
+                </ProfilePhotoSpan>
+
+                <NameMyPage>
+                  <NameText>{loginInfo.nickname}</NameText>
+                </NameMyPage>
+              </MyPageProfileWrap>
+              <MypageTextWrap>
+                <Mycall>{loginInfo.userId}</Mycall>
+              </MypageTextWrap>
+              <MyPagePasswordWrap>
+                <span>비밀번호 변경</span>
+                <span>회원 탈퇴</span>
+              </MyPagePasswordWrap>
+            </LeftBackgroundWrap>
+          </MyPageLeftWrap>
+
+          <MyPageMainWrap>
             <Outlet />
-        </MyPageMainWrap>
-      </MypageBackGround>
+          </MyPageMainWrap>
+        </MypageBackGround>
       </AllMyWrap>
     </>
   );
@@ -133,7 +185,7 @@ const MyPageProfileWrap = styled.div`
   align-items: center;
 `;
 
-const MyPagePhotoWrap = styled.div`
+const MyPagePhotoWrap = styled.img`
   /* border: 1px solid black; */
   width: 160px;
   height: 160px;
@@ -147,8 +199,21 @@ const MyPagePhotoWrap = styled.div`
   background-position: center;
   background-repeat: no-repeat;
 `;
+const MyPagePhotoIn = styled.img`
+  /* border: 1px solid black; */
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-const ProfilePhotoSpan = styled.span`
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+const ProfilePhotoSpan = styled.div`
   font-size: 14px;
   font-weight: 400;
 `
@@ -183,6 +248,22 @@ const MyPagePasswordWrap = styled.div`
   margin-top: 150px;
 `;
 
+const ImgPlus = styled.img`
+background-color:black;
+border-radius: 50%;
+width: 30px;
+margin-left: 120px;
+margin-top: 90px;
+position: relative;
+`
+
+const Label = styled.label`
+position: absolute;
+top:90px;
+right: 90px;
+
+
+`
 // // 우측 프로필 CSS
 // const RightTopWrap = styled.div`
 //   /* border: 1px solid black; */
