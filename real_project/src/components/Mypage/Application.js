@@ -30,9 +30,6 @@ const Application = () => {
   
 
   
-  
-  
-
   return (
 
     <RightMapingWrap>

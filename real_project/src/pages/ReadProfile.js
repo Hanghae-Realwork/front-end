@@ -7,6 +7,9 @@ import { checkUserValidation } from "../redux/modules/user";
 
 import TagDev from "../components/Tag/TagCompoDev"
 import letter from "../image/letter.svg"
+import resumeback from "../image/resumeBackground.svg"
+import flip from "../image/flip.svg"
+import down from "../image/down.svg"
 
 
 
@@ -43,11 +46,8 @@ function EmploymentProfile() {
   return (
     <>
 
-      <BackGroundOnlyWrap>
-        {/* <HoldWrap> */}
-        {/* <BackGround1/> */}
-        {/* <BackGround2/> */}
-        <BackGround3>
+        <BackGround>
+          <PageFlipWrap><img src={flip}/></PageFlipWrap>
           <PageAllWrap>
             <TopWrap>
               <LeftTopWrap>
@@ -86,10 +86,8 @@ function EmploymentProfile() {
               <MidTxetWrap>
                 <MidTitle>홈페이지</MidTitle>
                 <MidContentText>
-                  <a
-                    href={data.length > 0 ? data[0].content2 : ""}
-                    target="_blank"
-                  >
+                  <a href={data.length > 0 ? data[0].content2 : ""}
+                    target="_blank">
                     {data.length > 0 ? data[0].content2 : ""}
                   </a>
                 </MidContentText>
@@ -117,107 +115,97 @@ function EmploymentProfile() {
 
             <BotHr />
 
-            <BotWrap>
+
               {loginInfoName === data[0]?.userId ? (
+              <BotWrap>
                 <FixedBtn
-                  onClick={() => {
-                    navigate("/editprofile/" + `${data[0].resumeId}`);
-                  }}
-                >
+                  onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
                   수정하기
                 </FixedBtn>
-              ) : (
-                <></>
-              )}
-              {loginInfoName === data[0]?.userId ? (
+
                 <DelBtn
-                  onClick={() => {
-                    dispatch(deleteEmployAxios(resumeId));
-                    alert("❗️ 정말 삭제하시는 겁니까?");
-                    navigate("/mainemployment");
-                  }}
-                >
+                  onClick={() => {dispatch(deleteEmployAxios(resumeId));
+                    alert("❗️ 정말 삭제하시는 겁니까?"); navigate("/mainemployment");}}>
                   삭제하기
                 </DelBtn>
+              </BotWrap>
               ) : (
-                <></>
+              <TestWrap>
+                <PropseText>우주선에 태우고 싶으신가요?<DownIcon src={down}/></PropseText>
+
+              </TestWrap>
               )}
-            </BotWrap>
+
           </PageAllWrap>
-        </BackGround3>
-        {/* </HoldWrap> */}
-      </BackGroundOnlyWrap>
+        </BackGround>
+
     </>
   );
 }
 
 
 
+const TestWrap = styled.div`
+  width: 994px;
+  margin-top: 25px;
+  /* margin-bottom: 30px; */
+  border: 1px solid black;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top: none; 
+  background-color: white;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`
+
+const PropseText = styled.span`
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+`
+
+const DownIcon = styled.img`
+  margin-left: 10px;
+`
+
 
 const BackGroundOnlyWrap = styled.div`
-border: 1px solid black;
+/* border: 1px solid black; */
   background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
   width: 100%;
   height: auto;
   display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  z-index: -4;
-  background-size: cover;
-
 `
 
-const HoldWrap = styled.div`
-  /* border: 1px solid black; */
-  /* width: 1000px; */
+const BackGround = styled.div`
+  width: 996px;
+  /* height: 904px; */
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`
-
-const BackGround1 = styled.div`
-  border: 1px solid black;
-  width: 996px;
-  height: 906px;
-  position: relative;
-  z-index: -5;
-  top: 40px;
-  left: 50px;
-  border-radius: 4px;
-`
-
-const BackGround2 = styled.div`
-  border: 1px solid black;
-  width: 996px;
-  height: 906px;
-  position: absolute;
-  z-index: -2;
-  top: 65px;
-  left: 20px;
-  background: #F3F3F3;
-  border: 1px solid #303032;
-  border-radius: 4px;
-`
-
-const BackGround3 = styled.div`
-  border: 1px solid black;
-  width: 996px;
-  height: 906px;
-  /* position: absolute;
-  z-index: -1;
-  top: 100px;
-  left: -15px; */
-  background-color: white;
-  border: 1px solid #303032;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 40px;
   margin-bottom: 40px;
-  /* margin-bottom: 80px; */
+  background-image: url(${resumeback});
+
+`
+
+const PageFlipWrap = styled.div`
+  /* border: 1px solid black; */
+  width: 1000px;
+  height: 37px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `
 
 const PageAllWrap = styled.div`
@@ -226,6 +214,7 @@ const PageAllWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  width: 994px;
 `
 
 //내부 틀
@@ -373,12 +362,12 @@ const DelBtn = styled.button`
 `
 const TopHr = styled.hr`
   border: 0.5px dashed #8D8D8D;
-  width: 996px;
+  width: 994px;
 `
 
 const BotHr = styled.hr`
   border: 0.5px solid #8D8D8D;
-  width: 996px;
+  width: 994px;
 `
 
 export default EmploymentProfile

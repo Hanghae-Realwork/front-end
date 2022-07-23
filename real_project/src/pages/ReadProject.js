@@ -95,11 +95,11 @@ function ReadProject() {
         <DateWrap>
           <div>
 
-              <button
+              {/* <button
                 value={Value[0]?.applications[1]?.schedule}
                 name="two">
               시간이 들어갑니다.
-              </button>
+              </button> */}
           </div>
         </DateWrap>
         <DivideLine />

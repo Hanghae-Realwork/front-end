@@ -579,7 +579,6 @@ const FindProjectStep01 = (props) => {
                                   [newDate]
                                 : new_post}) 
                             }}
-
                           >
 
                             삭제하기
