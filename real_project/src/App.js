@@ -36,6 +36,7 @@ import SkillModal from "./components/Modal/SkillModal";
 import RoleModal from "./components/Modal/RoleModal";
 import LoginModal from "./components/Modal/LoginModal";
 import JoinModal from "./components/Modal/JoinModal";
+import Miniproject from "./components/MiniProject"
 
 
 import { useDispatch } from "react-redux";
@@ -54,7 +55,7 @@ function App() {
     <MainWrap>
       <Header />
         
-      {/* <MatchingCrew></MatchingCrew> */}
+      <Miniproject></Miniproject>
 
       <Routes>
         <Route path="/" element={<Main />} />
