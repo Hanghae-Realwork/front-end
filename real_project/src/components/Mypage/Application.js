@@ -14,7 +14,6 @@ const Application = () => {
 
     // const userId =useSelector((state)=>state)
     const dispatch = useDispatch();
-    const userInfo = useSelector((state) => state.user.userInfo);
     const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
 
     const [_nickname,setNickname]=useState('')
@@ -30,130 +29,121 @@ const Application = () => {
     }, [nickname_Info]);
  
   return (
- 
-      <RightMapingWrap>
-        {
-         (data.length !== 0) && data.map((list, idx) => {
-            //작성시간 함수
-            const nowTime = Date.now();
-            const createdAt = list.createdAt;
-            const startTime = new Date(createdAt);
-            const thenHours = Math.floor((nowTime - startTime) / 3600000);
-            const DisplayCreatedAt = () => {
-              if (parseInt(startTime - nowTime) > -86400000) {
-                return thenHours + "시간전";
-              }
-              if (parseInt(startTime - nowTime) < -86400000) {
-                return <Moment format="M월 D일">{startTime}</Moment>;
-              }
-            };
+    <RightMapingWrap>
+      {data.lnegth > 0 ? (
+        data.length !== 0 &&
+        data.map((list, idx) => {
+          //작성시간 함수
+          const nowTime = Date.now();
+          const createdAt = list.createdAt;
+          const startTime = new Date(createdAt);
+          const thenHours = Math.floor((nowTime - startTime) / 3600000);
+          const DisplayCreatedAt = () => {
+            if (parseInt(startTime - nowTime) > -86400000) {
+              return thenHours + "시간전";
+            }
+            if (parseInt(startTime - nowTime) < -86400000) {
+              return <Moment format="M월 D일">{startTime}</Moment>;
+            }
+          };
 
-            return (
-              <RightContentWrap key={idx}>
-                <RightCardWrap>
-                  <CardAllWrap>
-                    <CardTotalWrap>
-                      <TopWrap>
-                        <UserText>{list.nickname}</UserText>
-                        <UserText>
-                          <DisplayCreatedAt />
-                        </UserText>
-                      </TopWrap>
-                      <TitleWrap>
-                        <TitleText>{list && list.title}</TitleText>
-                      </TitleWrap>
-                      <TitleWrap>
-                        <ContentText>{list && list.details}</ContentText>
-                      </TitleWrap>
-                      <RoleWrap>
-                        <UserText>구하는 직군</UserText>
-                        <RoleText>{list && list.role}</RoleText>
-                      </RoleWrap>
-                      <RoleWrap>
-                        <UserText>보유 기술</UserText>
-                        <RoleText>
-                          {list &&
-                            list.ProjectSkills.map((list, idx) => {
-                              return <TagCompoApp key={idx} skills={list} />;
-                            })}
-                        </RoleText>
-                      </RoleWrap>
-                      <ProjectLimit>
-                        <DateLimitText>프로젝트 러닝 기간 :</DateLimitText>
-                        <DateText>
-                          {list &&
-                            list.start.replace("-", ".").replace("-", ".")}{" "}
-                          ~{" "}
-                          {list && list.end.replace("-", ".").replace("-", ".")}
-                        </DateText>
-                      </ProjectLimit>
-                    </CardTotalWrap>
-                  </CardAllWrap>
-                </RightCardWrap>
-                {list &&
-                  list.applications.map((list, idx) => {
-                    return (
-                      <div key={idx}>
-                        {" "}
-                        <InterviewButtonWrap>
-                          <ButtonWrap>
-                            <InterviewButton>면접 보기</InterviewButton>
-                            <InterviewDateWrap>
-                              <InterviewTimeText>
-                                {data && list.schedule.slice(0, 4)}년{" "}
-                                {data && list.schedule.slice(5, 7)}월{" "}
-                                {data && list.schedule.slice(8, 10)}일
-                              </InterviewTimeText>
-                              <InterviewTimeText>
-                                {data && list.schedule.slice(11, 13)}시{" "}
-                                {data && list.schedule.slice(14, 16)}분{" "}
-                              </InterviewTimeText>
-                            </InterviewDateWrap>
-                          </ButtonWrap>
+          return (
+            <RightContentWrap key={idx}>
+              <RightCardWrap>
+                <CardAllWrap>
+                  <CardTotalWrap>
+                    <TopWrap>
+                      <UserText>{list.nickname}</UserText>
+                      <UserText>
+                        <DisplayCreatedAt />
+                      </UserText>
+                    </TopWrap>
+                    <TitleWrap>
+                      <TitleText>{list && list.title}</TitleText>
+                    </TitleWrap>
+                    <TitleWrap>
+                      <ContentText>{list && list.details}</ContentText>
+                    </TitleWrap>
+                    <RoleWrap>
+                      <UserText>구하는 직군</UserText>
+                      <RoleText>{list && list.role}</RoleText>
+                    </RoleWrap>
+                    <RoleWrap>
+                      <UserText>보유 기술</UserText>
+                      <RoleText>
+                        {list &&
+                          list.ProjectSkills.map((list, idx) => {
+                            return <TagCompoApp key={idx} skills={list} />;
+                          })}
+                      </RoleText>
+                    </RoleWrap>
+                    <ProjectLimit>
+                      <DateLimitText>프로젝트 러닝 기간 :</DateLimitText>
+                      <DateText>
+                        {list && list.start.replace("-", ".").replace("-", ".")}{" "}
+                        ~ {list && list.end.replace("-", ".").replace("-", ".")}
+                      </DateText>
+                    </ProjectLimit>
+                  </CardTotalWrap>
+                </CardAllWrap>
+              </RightCardWrap>
+              {list &&
+                list.applications.map((list, idx) => {
+                  return (
+                    <div key={idx}>
+                      {" "}
+                      <InterviewButtonWrap>
+                        <ButtonWrap>
+                          <InterviewButton>면접 보기</InterviewButton>
                           <InterviewDateWrap>
-                            <CodeText>
-                              면접 코드: {data && list.interviewCode}
-                            </CodeText>
+                            <InterviewTimeText>
+                              {data && list.schedule.slice(0, 4)}년{" "}
+                              {data && list.schedule.slice(5, 7)}월{" "}
+                              {data && list.schedule.slice(8, 10)}일
+                            </InterviewTimeText>
+                            <InterviewTimeText>
+                              {data && list.schedule.slice(11, 13)}시{" "}
+                              {data && list.schedule.slice(14, 16)}분{" "}
+                            </InterviewTimeText>
                           </InterviewDateWrap>
-                        </InterviewButtonWrap>
-                        <BeltWrap>
-                          <CourseLabel>
-                            지원서 접수{" "}
-                            <img
-                              src={Check}
-                              style={{ marginLeft: "6px" }}
-                            ></img>
-                          </CourseLabel>
-                          <ConectLine />
-                          <CourseLabel>
-                            면접 완료{" "}
-                            <img
-                              src={Check}
-                              style={{ marginLeft: "6px" }}
-                            ></img>
-                          </CourseLabel>
-                          <ConectLine />
-                          <CourseLabel>
-                            매칭 완료{" "}
-                            <img
-                              src={Check}
-                              style={{ marginLeft: "6px" }}
-                            ></img>
-                          </CourseLabel>
-                        </BeltWrap>
-                      </div>
-                    );
-                  })}
-              </RightContentWrap>
-            );
-          })}
-      </RightMapingWrap>
-
+                        </ButtonWrap>
+                        <InterviewDateWrap>
+                          <CodeText>
+                            면접 코드: {data && list.interviewCode}
+                          </CodeText>
+                        </InterviewDateWrap>
+                      </InterviewButtonWrap>
+                      <BeltWrap>
+                        <CourseLabel>
+                          지원서 접수{" "}
+                          <img src={Check} style={{ marginLeft: "6px" }}></img>
+                        </CourseLabel>
+                        <ConectLine />
+                        <CourseLabel>
+                          면접 완료{" "}
+                          <img src={Check} style={{ marginLeft: "6px" }}></img>
+                        </CourseLabel>
+                        <ConectLine />
+                        <CourseLabel>
+                          매칭 완료{" "}
+                          <img src={Check} style={{ marginLeft: "6px" }}></img>
+                        </CourseLabel>
+                      </BeltWrap>
+                    </div>
+                  );
+                })}
+            </RightContentWrap>
+          );
+        })
+      ) : (
+        <EmptyCard />
+      )}
+    </RightMapingWrap>
   );
 }
- {
-   /* <EmptyCard /> */
- }
+
+//  
+
 
 const RightMapingWrap = styled.div`
   display: flex;

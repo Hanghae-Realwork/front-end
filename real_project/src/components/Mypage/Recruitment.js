@@ -15,12 +15,9 @@ const Recruitment = () => {
 
 
   const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.user.userInfo);
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
-
- 
   const value = useSelector((state) => state.postProfile.Myprojects);
-  console.log(value)
+
 
 // console.log(data)
   useEffect(() => {

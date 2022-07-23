@@ -12,8 +12,7 @@ import resumeback from "../image/resumeBackground.svg"
 import flip from "../image/flip.svg"
 import down from "../image/down.svg"
 import astroman from "../image/astroman.svg";
-
-
+import MiniResume from "../components/MiniProfile";
 
 function EmploymentProfile() {
   
@@ -133,10 +132,11 @@ function EmploymentProfile() {
                   삭제하기
                 </DelBtn>
               </BotWrap>
-              ) : (
+          ) : (
+              
               <TestWrap>
                 <PropseText>우주선에 태우고 싶으신가요?<DownIcon src={down}/></PropseText>
-
+                {/* <MiniResume></MiniResume> */}
               </TestWrap>
               )}
 

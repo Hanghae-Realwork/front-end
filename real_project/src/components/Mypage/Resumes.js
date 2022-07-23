@@ -13,9 +13,8 @@ import TagDev from "../../components/Tag/TagCompoDev"
 import letter from "../../image/letter.svg"
 
 const Resumes = () => {
-
+const { resumeId } = useParams();
   const dispatch = useDispatch();
-  const { resumeId } = useParams();
   const navigate = useNavigate();
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
@@ -23,7 +22,7 @@ const Resumes = () => {
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
 
   const data = useSelector((state) => state.postEmploy.resumes);
-
+console.log(data)
   //id와 userId 비교하여 버튼 보이게 하기
   // const modify = (loginInfoName === data[0]?.userId);
 
