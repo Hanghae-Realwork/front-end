@@ -160,7 +160,7 @@ function FindProjectStep01 (props) {
               type="text"
               defaultValue={userEdit[0]?.details}
             />
-            <PhotoUPloadWrap>
+            {/* <PhotoUPloadWrap>
               {filesImg ? (
                 <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
               ) : (
@@ -191,7 +191,7 @@ function FindProjectStep01 (props) {
                   </PhotoText>
                 )}
               </EditWrapPhoto>
-            </PhotoUPloadWrap>
+            </PhotoUPloadWrap> */}
           </ReMainConWrap>
         </FindProjectInputTitle>
         <FindProjectInputTitle>
