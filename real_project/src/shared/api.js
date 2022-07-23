@@ -170,7 +170,7 @@ export const apis = {
   userRecruit: (nickname) => api.get(`/api/users/details/${nickname}/applys`),
 
   //  - 14. 프로필 이미지
-  userPhotos: (frm, nickname) =>
+  userPhoto: (frm, nickname) =>
     imgApi.post(`/api/users/details/${nickname}/image`, frm),
 
   ///////////////////////
@@ -235,7 +235,8 @@ export const apis = {
   projectsDelete: (projectId) => api.delete(`/api/projects/${projectId}`),
 
   //  - ## 이미지 업로드
-  projectsPhotos: (frm) => imgApi.post("/api/projects/photos", frm),
+  projectsPhotos: (nickname,frm) =>
+    imgApi.post(`/api/users/detatils/${nickname}/image`, frm),
 
   /////////////////////////////////////////
   ////<3. 팀원 찾기 페이지 이력서(지원자) API>////
@@ -328,18 +329,11 @@ export const apis = {
   ////// 검색 기능 //////
   //////////////////////
 
-
-   // 32. 프로젝트 검색
-   searchProject: (
-     role, skill, start, end
-     ) => api.get("/api/search/project?role=role&skill=skill&start=start&end=end",{
-      params: 
-      {role: role,
-      skill: skill,
-      start: start,
-      end: end}
-   }),
-
+  // 32. 프로젝트 검색
+  searchProject: (role, skill, start, end) =>
+    api.get("/api/search/project?role=role&skill=skill&start=start&end=end", {
+      params: { role: role, skill: skill, start: start, end: end },
+    }),
 
   // 33. 리쥬메 검색
   searchResume: () => api.get("/api/search/resume"),
@@ -351,4 +345,7 @@ export const apis = {
   //프로젝트에 면접 예약
   //지원서의 지원서 목록 조회
   applicationsResumes: () => api.get("/api/applications/resumes"),
+
+  //23. 지원서에 면접 제안시 내 프로젝트 목록 조회
+  proposalsProjects: () => api.get("/api/proposals/projects"),
 };

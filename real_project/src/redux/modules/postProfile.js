@@ -2,6 +2,7 @@ import { apis } from "../../shared/api";
 
 const LOADAPPLY = "userpage/LOADAPPLY";
 const LOADPROJECT = "userpage/LOADPROJECT"
+const USERPHOTOS = "userpage/USERPHOTOS ";
 
 const initialState = {
   Applications: [],
@@ -12,10 +13,12 @@ export function loadApply(payload) {
   return { type: LOADAPPLY, payload };
 }
 
-export function loadproject(payload) {
+export function loadProject(payload) {
   return { type: LOADPROJECT, payload };
 }
-
+export function loadPhoto(payload) {
+  return { type: USERPHOTOS, payload };
+}
 //middleware
 
 //내 지원정보 조회
@@ -38,7 +41,7 @@ export const loadProjectAxios = (nickname) => {
     await apis
       .userRecruit(nickname)
       .then((response) => {
-      dispatch(loadproject(response.data));
+      dispatch(loadProject(response.data));
       })
       .catch((err) => {
         console.log(err);
@@ -48,21 +51,23 @@ export const loadProjectAxios = (nickname) => {
 
 
 //프로필 업로드
-// export const applyPhotosAxios = (frm) => {
-//   return async function (dispatch) {
-//     let success = null;
-//     await apis
-//       .userPhotos(frm)
-//       .then((response) => {
-//         const img = response;
-//         success = img;
-//       })
-//       .catch((err) => {
-//         success = null;
-//       });
-//     return success;
-//   };
-// };
+export const userPhotoAxios = (nickname,frm) => {
+  console.log(nickname,frm)
+  return async function (dispatch) {
+    let success = null;
+    await apis
+      .userPhoto(nickname,frm)
+      .then((response) => {
+        console.log(response)
+        const img = response;
+        success = img;
+      })
+      .catch((err) => {
+        success = null;
+      });
+    return success;
+  };
+};
 
 //Reducer
 export default function reducer(state = initialState, action = {}) {
