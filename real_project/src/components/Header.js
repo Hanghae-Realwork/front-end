@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUserValidation, logOut } from "../redux/modules/user";
+import { checkUserValidation, logOut, userInfo } from "../redux/modules/user";
 
 import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo_vertical.svg"
@@ -23,8 +23,9 @@ function Header() {
 
   const [button, setButton] = useState([false, false, false])
   
+
   React.useEffect(() => {
-    if (loginInfo === false) {dispatch(checkUserValidation());}});
+    if (loginInfo === false) {dispatch(checkUserValidation());}},[loginInfo]);
 
   const logoutClick = () => {
     const result = window.confirm("정말 로그아웃 하시겠습니까 ?");
