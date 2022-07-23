@@ -9,7 +9,7 @@ import Application from "../components/Mypage/Application";
 import Recruitment from "../components/Mypage/Recruitment";
 import MyButton from "../components/Mypage/MyPageButton";
 
-import astroman from "../image/astroman.svg";
+import astroman from "../image/pluastroman.svg";
 import email from "../image/letter.svg";
 import Check from "../image/check.svg";
 import LeftBackground from "../image/mypagBackground.svg"
@@ -23,8 +23,10 @@ function MyPage() {
   const loginInfo = useSelector((state) => state.user.userInfo);
   const [files, setFiles] = React.useState("");
   const [filesImg, setFilesImg] = React.useState("");
- const frm = new FormData();
- const reader = new FileReader();
+
+  const frm = new FormData();
+  const reader = new FileReader();
+
 
   const onChange = (e) => {
     console.log("들어옴");
@@ -50,9 +52,9 @@ function MyPage() {
     console.log(files[0]);
       frm.append("profileImage", files[0]);
       dispatch(userPhotoAxios(loginInfo.nickname, frm));
-       
-
   }
+
+
   return (
     <>
       <MyButton />
@@ -61,12 +63,9 @@ function MyPage() {
           <MyPageLeftWrap>
             <LeftBackgroundWrap>
               <MyPageProfileWrap>
-                {filesImg ? (
-                  <MyPagePhotoIn src={filesImg} />
-                ) : (
-                  <MyPagePhotoWrap />
-                )}
+                
                 <Label>
+                  {filesImg ? (<MyPagePhotoIn src={filesImg} />) : (<MyPagePhotoWrap />)}
                   <input
                     name="imgUpload"
                     type="file"
@@ -75,11 +74,10 @@ function MyPage() {
                     style={{ display: "none" }}
                     onChange={onChange}
                   />
-                  <ImgPlus src={Plus} />
                 </Label>
 
                 <ProfilePhotoSpan onClick={plusImgOnclick}>
-                  등록버튼
+                  사진 업로드 완료하기
                 </ProfilePhotoSpan>
 
                 <NameMyPage>
@@ -211,9 +209,16 @@ const MyPagePhotoIn = styled.img`
   background-position: center;
   background-repeat: no-repeat;
 `;
-const ProfilePhotoSpan = styled.div`
-  font-size: 14px;
+const ProfilePhotoSpan = styled.button`
+  font-size: 12px;
   font-weight: 400;
+  cursor: pointer;
+  background-color: #303032;
+  border-radius: 4px;
+  color: white;
+  padding: 6px 12px 6px 12px;
+  border: none;
+  outline: none;
 `
 
 const NameMyPage = styled.div`
@@ -246,22 +251,13 @@ const MyPagePasswordWrap = styled.div`
   margin-top: 150px;
 `;
 
-const ImgPlus = styled.img`
-background-color:black;
-border-radius: 50%;
-width: 30px;
-margin-left: 120px;
-margin-top: 90px;
-position: relative;
-`
 
 const Label = styled.label`
-position: absolute;
+
 top:90px;
 right: 90px;
-
-
 `
+
 // // 우측 프로필 CSS
 // const RightTopWrap = styled.div`
 //   /* border: 1px solid black; */

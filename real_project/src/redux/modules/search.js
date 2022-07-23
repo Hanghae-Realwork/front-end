@@ -61,7 +61,7 @@ export const SearchAxios = (
   return async function (dispatch) {
     await apis
       .searchProject(
-        "frontend",
+        role,
         skill,
         start,
         end

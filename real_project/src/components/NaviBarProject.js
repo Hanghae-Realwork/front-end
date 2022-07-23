@@ -45,6 +45,7 @@ function NavigationBarProject() {
     // const sendStart = datedata[0].toString()
     // const sendEnd = datedata[1].toString()
     console.log(sendSkill)
+    console.log(datedata[0])
 
     const searchAction = () => {
         dispatch(SearchAxios(
@@ -199,7 +200,7 @@ const NaviWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 1200px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 `
 
 const MainNavigation = styled.div`
@@ -240,7 +241,7 @@ const SerchButton = styled.button`
     outline: none;
     font-size: 14px;
     font-weight: 700;
-    margin-left: 12px;
+    /* margin-left: 12px; */
     cursor: pointer;
 `
 
@@ -268,6 +269,7 @@ const ImageWrap = styled.div`
 const InlineDevide = styled.hr`
     width: 1200px;
     margin-bottom: 15px;
+    border: 0.5px solid #d9d9d9;
 `
 
 const SearchResultABarWrap = styled.div`

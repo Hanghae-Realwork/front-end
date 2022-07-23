@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import "../App.css"
 
 import Sample from "../image/mainSample.svg"
 import Space from "../image/space.svg"
+import banner from "../image/banner_com_edit.svg"
+import spacebackground from "../image/editspace.svg"
+import cloud from "../image/spacecloud.svg"
+import shuttle from "../image/editshuttle.svg"
 
 
 
@@ -23,12 +28,16 @@ function Main () {
                             <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>크루원 구하러 가기</PageButton2>
                         </MainButtonWrap>
                     </MaininTitleTopWrap>
+                    <MainBackgroundWrap>
+                        <Shuttle src={shuttle} className="AnimationShuttle"></Shuttle>
+                        <CloudImg src={cloud} className="AnimationCloud"/>
+                    </MainBackgroundWrap>
                 </MainAllWrap>
             </BackGroundDiv>
 
             <BackgroundBot>
                 <MainTextTitle>
-                    <CircleMainIcon>
+                    <CircleMainIcon> 
                         <CircleImage />
                     </CircleMainIcon>
                     <ContentSpan>저 멀리 시대에 뒤쳐진 은하계 서쪽 소용돌이의 끝, 
@@ -54,17 +63,43 @@ const BackGroundDiv = styled.div`
 `
 
 const MainAllWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 100%;
-  max-width: 1440px;
+  /* border: 1px solid white; */
+  width: 1440px;
   height: 602px;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-  background-image: url(${Sample});
+  justify-content: space-between;
+  align-items: flex-start;
+  background-image: url(${spacebackground});
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
   /* margin: 0px 0px 0px 110px ; */
 `;
+
+const MainBackgroundWrap = styled.div`
+    /* border: 1px solid white; */
+    width: 815px;
+    height: 600px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+`
+
+const CloudImg = styled.img`
+    height: 610px;
+    z-index: 2;
+`
+
+const Shuttle = styled.img`
+    width: 300px;
+    z-index: 3;
+    
+`
+
 
 const MaininTitleTopWrap = styled.div`
   /* border: 1px solid black; */

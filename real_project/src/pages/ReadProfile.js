@@ -54,8 +54,6 @@ function EmploymentProfile() {
   return (
     <>
         <BackGround>
-          <PageFlipWrap><img src={flip}/></PageFlipWrap>
-
           <PageAllWrap>
             <TopWrap>
               <LeftTopWrap>
@@ -226,6 +224,7 @@ const PageAllWrap = styled.div`
   justify-content: center;
   align-items: center;
   width: 994px;
+  margin-top: 40px;
 `
 
 //내부 틀
