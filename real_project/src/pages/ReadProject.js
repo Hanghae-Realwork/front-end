@@ -15,6 +15,7 @@ import MiniResume from "../components/MiniProfile";
 
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
+import { loadEmployAxios } from "../redux/modules/postEmploy";
 
 
 function ReadProject() {
@@ -27,8 +28,9 @@ function ReadProject() {
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
-const data = useSelector((state) => state.interview.resumes);
+  const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
+
 
 
   useEffect(() => {
@@ -40,6 +42,8 @@ const data = useSelector((state) => state.interview.resumes);
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   }, []);
+
+
 
 
   return (

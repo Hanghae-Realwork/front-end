@@ -109,6 +109,7 @@ export const createRecruitAxios = (
         schedule
       )
       .then((res) => {
+        console.log("res",res)
         dispatch(
           createRecruit({
             title: title,
@@ -156,24 +157,7 @@ export const editRecruitAxios = (
   photos,
   // schedule
 ) => {
-  console.log(
-    "projectId",
-    projectId,
-    "title",
-    title,
-    "details",
-    details,
-    "subscript",
-    subscript,
-    "role",
-    role,
-    "start",
-    start,
-    "end",
-    end,
-    "skills",skills,
-    "photos",photos
-  );
+
   return async function(dispatch) {
     await apis
       .projectsModify(
@@ -215,7 +199,10 @@ export const deleteRecruitAxios = (projectId) => {
   return async function (dispatch) {
     await apis
       .projectsDelete(projectId)
-      .then((response) => {})
+      .then((response) => {
+  
+        dispatch()
+      })
       .catch((err) => {
         console.log(err);
       });
