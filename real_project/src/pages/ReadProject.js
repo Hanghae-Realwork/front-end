@@ -27,7 +27,7 @@ function ReadProject() {
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
-
+const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
 
 
@@ -82,10 +82,7 @@ function ReadProject() {
         <DivideLine />
 
         <DateWrap>
-          <div>
-
-
-          </div>
+          <div></div>
         </DateWrap>
         <DivideLine />
         <ProfileWrap>
@@ -108,8 +105,11 @@ function ReadProject() {
         </ProfileWrap>
         <DivideLine />
         <MiniResumeWrap>
-          {Value && (userName_Info !== Value[0]?.email) ? <MiniResume /> :""}
-          
+          {Value && userName_Info !== Value[0]?.email ? (
+            <MiniResume data={data} />
+          ) : (
+            ""
+          )}
         </MiniResumeWrap>
         <DivideLine />
         <ButtonWrap>

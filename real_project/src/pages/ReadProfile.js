@@ -143,7 +143,7 @@ function EmploymentProfile() {
               
               <TestWrap>
                 <PropseText>우주선에 태우고 싶으신가요?<DownIcon src={down}/></PropseText>
-                <MiniProject data={ myProject} />
+                <MiniProject data={myProject} />
               </TestWrap>
               )}
 
