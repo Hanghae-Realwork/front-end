@@ -42,7 +42,7 @@ import MiniResume from "./components/MiniProfile";
 
 import { useDispatch } from "react-redux";
 import { checkUserValidation } from "./redux/modules/user";
-import MiniResume from "./components/MiniProfile";
+
 
 
 function App() {

@@ -17,6 +17,7 @@ import Letter from "../image/letter.svg";
 
 //DatePicker
 import DatePicker from "react-datepicker";
+import ko from "date-fns/locale/ko";
 import Footer from "../components/Date/Footer";
 import { parse } from "date-fns";
 
@@ -180,7 +181,7 @@ function AddProfile(props) {
                   calendarContainer={Calendar}
                   controls={["calendar"]}
                   dateFormat="YYYY-MM-DD"
-                  locale="ko"
+                  locale={ko}
                   selected={startDate}
                   onChange={onChange}
                   startDate={startDate}
