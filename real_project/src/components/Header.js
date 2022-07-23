@@ -66,34 +66,64 @@ function Header() {
       <HeaderWrap>
         <HeaderConWrap>
           <HeaderAlignWrap>
-
-            <LogoWrap onClick={() => {navigate(`/`);}}></LogoWrap>
+            <LogoWrap
+              onClick={() => {
+                navigate(`/`);
+              }}
+            ></LogoWrap>
             <HeaderLeftWrap>
-              <FindProject onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 찾기</FindProject>
-              <FindProject onClick={() => {navigate(`/mainemployment`);}}>팀원 찾기</FindProject>
-              <FindMatching onClick={() => {navigate(`/matchingcrew`);}}>프로젝트 매칭</FindMatching>
-              <FindProject onClick={() => {window.open(`https://rendev.click/`)}}>화상채팅(임시)</FindProject>
-
+              <FindProject
+                onClick={() => {
+                  navigate(`/mainrecruit`);
+                }}
+              >
+                프로젝트 찾기
+              </FindProject>
+              <FindProject
+                onClick={() => {
+                  navigate(`/mainemployment`);
+                }}
+              >
+                팀원 찾기
+              </FindProject>
+              <FindMatching
+                onClick={() => {
+                  navigate(`/matchingcrew`);
+                }}
+              >
+                프로젝트 매칭
+              </FindMatching>
+              <FindProject
+                onClick={() => {
+                  window.open(`https://rendev.click/`);
+                }}
+              >
+                화상채팅(임시)
+              </FindProject>
             </HeaderLeftWrap>
           </HeaderAlignWrap>
           <HeaderRightWrap>
             <LoginButton
-              onClick={() => {navigate(`/login`);}} 
-              style={{ display: !loginInfo ? "" : "none" }}>
+              onClick={() => {
+                navigate(`/login`);
+              }}
+              style={{ display: !loginInfo ? "" : "none" }}
+            >
               로그인
             </LoginButton>
             <LoginButton
               style={{ display: !loginInfo ? "none" : "" }}
-              onClick={logoutClick}>
+              onClick={logoutClick}
+            >
               로그아웃
             </LoginButton>
+
             <CircleImage
-              onClick={() => {if (loginInfo) {
+              style={{ display: !loginInfo ? "none" : "" }}
+              onClick={() => {
                   navigate(`/mypage/${nickname}/apply`);
-                } else {
-                  alert("로그인을 해주세요!")
-                }
-              }}>
+              }}
+            >
               <img src={BasicPhoto} />
             </CircleImage>
           </HeaderRightWrap>
