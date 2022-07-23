@@ -2,9 +2,9 @@ import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
-import { deleteEmployAxios, loadSingleEmployAxios } from "../redux/modules/postEmploy";
+import { deleteEmployAxios, loadSingleEmployAxios} from "../redux/modules/postEmploy";
 import { checkUserValidation } from "../redux/modules/user";
-
+import { loadProjectsAxios } from "../redux/modules/interview";
 import TagDev from "../components/Tag/TagCompoDev"
 import letter from "../image/letter.svg"
 
@@ -13,6 +13,7 @@ import flip from "../image/flip.svg"
 import down from "../image/down.svg"
 import astroman from "../image/astroman.svg";
 import MiniResume from "../components/MiniProfile";
+import MiniProject from "../components/MiniProject";
 
 function EmploymentProfile() {
   
@@ -25,7 +26,8 @@ function EmploymentProfile() {
   const loginInfoName = useSelector((state) => state.user.userInfo.userId);
   const data = useSelector((state) => state.postEmploy.resumes);
 
-
+  const myProject = useSelector((state) => state.interview)
+  console.log(myProject)
   let href = ""
   useEffect(() => {
    if (loginInfo === false) {
@@ -41,6 +43,11 @@ function EmploymentProfile() {
         href = data.length > 0 ? data[0].content2 : "";
       }
     }, [loginInfoName, data]);
+  
+  useEffect(() => {
+    dispatch(loadProjectsAxios())
+  },[])
+  
   
  //undefined일때 null 처리 나머지 return 
  if(!data[0]) return null 
@@ -136,7 +143,7 @@ function EmploymentProfile() {
               
               <TestWrap>
                 <PropseText>우주선에 태우고 싶으신가요?<DownIcon src={down}/></PropseText>
-                {/* <MiniResume></MiniResume> */}
+              <MiniProject/>
               </TestWrap>
               )}
 

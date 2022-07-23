@@ -6,11 +6,10 @@ import { loadResumesAxios } from "../redux/modules/interview";
 import TagDev from "./Tag/TagCompoDev"
 import TagDes from "./Tag/TagCompoDes"
 
-import astroman from "../image/astroman.svg"
 
 
 
-//프로젝트 찾기 -> 상세조회-> 면접 예약 프로필
+// 팀원찾기 -> 상세조회 -> 내 프로젝트 목록 조회
 function MiniProject() {
 
     const dispatch = useDispatch();
@@ -20,7 +19,8 @@ const data = useSelector((state) => state.interview.resumes);
     
     useEffect(() => {
         dispatch(loadResumesAxios())
-    },[])
+    }, [])
+  
   return (
       <>{data && data.map((list,idx) => {
         return (

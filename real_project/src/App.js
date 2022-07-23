@@ -44,6 +44,7 @@ import { useDispatch } from "react-redux";
 import { checkUserValidation } from "./redux/modules/user";
 
 
+
 function App() {
   
   const dispatch = useDispatch();
@@ -55,22 +56,25 @@ function App() {
   return (
     <MainWrap>
       <Header />
-        
-      {/* <Miniproject></Miniproject>
-      <MiniResume></MiniResume> */}
+
+      {/* <MiniResume></MiniResume>
+      <Miniproject></Miniproject> */}
 
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/employmentprofile/:resumeId" element={<ReadProfile />}/>
+        <Route path="/employmentprofile/:resumeId" element={<ReadProfile />} />
         <Route path="/addprofile" element={<AddProfile />} />
         <Route path="/editprofile/:resumeId" element={<EditProfile />} />
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
         <Route path="/mypage" element={<MyPage />}></Route>
-        <Route path="/findprojectstep1" element={<AddProject/>}></Route>
-        <Route path="/findprojectstep2/:projectId" element={<EditProject />}></Route>
+        <Route path="/findprojectstep1" element={<AddProject />}></Route>
+        <Route
+          path="/findprojectstep2/:projectId"
+          element={<EditProject />}
+        ></Route>
         <Route path="/readproject/:projectId" element={<ReadProject />}></Route>
         <Route path="/matchingcrew" element={<MatchingCrew />}></Route>
         <Route path="/rolemodal" element={<RoleModal />}></Route>
@@ -79,13 +83,11 @@ function App() {
         <Route path="/loginmodal" element={<LoginModal />}></Route>
         <Route path="/Joinmodal" element={<JoinModal />}></Route>
 
-
         <Route path="mypage/:nickname/*" element={<MyPage />}>
           <Route path="apply" element={<Application />}></Route>
           <Route path="applys" element={<Recruitment />}></Route>
           <Route path="resumes" element={<Resumes />}></Route>
         </Route>
-        
       </Routes>
     </MainWrap>
   );
