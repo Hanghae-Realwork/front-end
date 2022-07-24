@@ -28,9 +28,9 @@ function Header() {
     if (loginInfo === false) {dispatch(checkUserValidation());}},[loginInfo]);
 
   const logoutClick = () => {
-    const result = window.confirm("정말 로그아웃 하시겠습니까 ?");
+    const result = window.confirm("정말...나가실건가욥..? 🥸");
     if (result) {
-      alert("로그아웃 되었습니다.")
+      alert("로그아웃 되었습니다. 🥸");
        navigate("/");
        dispatch(logOut());
     } 
@@ -120,11 +120,12 @@ function Header() {
             </LoginButton>
 
             <CircleImage
-              style={{ display: !loginInfo ? "none" : "" }}
-              onClick={() => {
+              onClick={() => {if (loginInfo) {
                   navigate(`/mypage/${nickname}/apply`);
-              }}
-            >
+                } else {
+                  alert("로그인을 해주세요! 🥸");
+                }
+              }}>
               <img src={BasicPhoto} />
             </CircleImage>
           </HeaderRightWrap>

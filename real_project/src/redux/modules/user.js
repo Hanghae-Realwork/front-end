@@ -214,8 +214,8 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "user/LOGOUT": {
-      console.log("Logout:reducer")
-      // console.log(action.payload)
+
+     
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("nickname");

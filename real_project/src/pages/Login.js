@@ -37,7 +37,7 @@ function Login() {
       ).then((success) => {
         if (success === true) {
           navigate("/");
-          alert("로그인되었습니다! 🥸");
+          alert("랑데브에 오신 것을 환영합니다! 당신의 꿈을 펼쳐보세요 🥸");
         } else {
           console.log("로그인실패", success);
           document.getElementById("LoginBtn").disabled = false;

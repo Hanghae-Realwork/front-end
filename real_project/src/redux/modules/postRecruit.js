@@ -81,20 +81,9 @@ export const createRecruitAxios = (
   start, 
   end, 
   skills,
-  photos,
   schedule
 ) => {
-  console.log({
-    title: title,
-    details: details,
-    subscript: subscript,
-    role: role,
-    start: start,
-    end: end,
-    skills: skills,
-    photos: photos,
-    schedule: schedule,
-  });
+
   return async function (dispatch) {
     await apis
       .projectsCreate(
@@ -105,11 +94,9 @@ export const createRecruitAxios = (
         start,
         end,
         skills,
-        photos,
         schedule
       )
       .then((res) => {
-        console.log("res",res)
         dispatch(
           createRecruit({
             title: title,
@@ -119,7 +106,6 @@ export const createRecruitAxios = (
             start: start,
             end: end,
             skills: skills,
-            photos: photos,
             schedule: schedule,
           })
         );
@@ -135,7 +121,6 @@ export const LoadDetailAxios = (projectId) => {
     await apis
     .projectsLoadDetail(projectId)
     .then((res) => {
-      // console.log(res.data.project)
       dispatch(detailRecruit(res.data.project))
     })
     .catch((err) => {
@@ -155,9 +140,20 @@ export const editRecruitAxios = (
   end,
   skills,
   photos,
-  // schedule
+  schedule
 ) => {
-
+  console.log(
+    projectId,
+    title,
+    details,
+    subscript,
+    role,
+    start,
+    end,
+    skills,
+    photos,
+    schedule
+  );
   return async function(dispatch) {
     await apis
       .projectsModify(
@@ -170,9 +166,10 @@ export const editRecruitAxios = (
       end,
       skills,
       photos,
-      // schedule
+      schedule
     )
-    .then((res) => {
+      .then((res) => {
+      console.log(res)
       dispatch(
         editRecruit({
           projectId:projectId,
@@ -184,7 +181,7 @@ export const editRecruitAxios = (
           end: end,
           skills: skills,
           photos: photos,
-          // schedule: schedule,
+          schedule: schedule,
         })
       );
     }).catch((err) => {
@@ -248,7 +245,7 @@ export default function reducer(state = initialState, action = {}) {
 
     case 'recruit/DETAIL':{
       const projects = [action.payload]
-      // console.log(projects)
+  
       return { 
         receiveRecruit: action.state, 
         project: projects}
