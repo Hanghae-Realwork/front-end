@@ -3,13 +3,13 @@ import styled from "styled-components"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
 
-function MatchingCrew(){
+function MatchingResume(){
 
     return(
         <>
         <MatchingBtn/>
             <MatchingCrewWrap>   
-                <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
+                <MatchingText>맞는 상대를 찾고 싶은 지원자를 선택해주세요</MatchingText>
                 <MatchingCardWrap></MatchingCardWrap>
             </MatchingCrewWrap>
 
@@ -45,4 +45,4 @@ const MatchingCardWrap = styled.div`
 
 `
 
-export default MatchingCrew
+export default MatchingResume

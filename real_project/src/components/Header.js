@@ -37,25 +37,21 @@ function Header() {
   const MoveProject = (e) => {
       navigate(`/mainrecruit`)
       setCurrentClick(e.target.id);
-      console.log(e.target.id)
   };
 
   const MoveResume = (e) => {
     navigate(`/mainemployment`)
     setCurrentClick(e.target.id);
-    console.log(e.target.id)
   };
 
   const MoveMatching = (e) => {
     navigate(`/matchingcrew`)
     setCurrentClick(e.target.id);
-    console.log(e.target.id)
   };
 
   const MoveCallChat = (e) => {
     window.open(`https://rendev.click/`)
     setCurrentClick(e.target.id);
-    console.log(e.target.id)
   };
 
 

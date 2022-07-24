@@ -21,6 +21,7 @@ const data = useSelector((state) => state.interview.resumes);
         dispatch(loadResumesAxios())
     }, [])
   
+    
   return (
       <>{data && data.map((list,idx) => {
         return (

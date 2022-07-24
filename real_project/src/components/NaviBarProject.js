@@ -58,18 +58,7 @@ function NavigationBarProject() {
 
     useEffect(() => {  })
 
-    const Language = [
-        // '구워어어어어어어얽', 
-        // '라아아아아아아아앙데에브으으으으',
-        // '훌쩍훌쩍 프로젝트', 
-        // '당신의 프로젝트를 찾아보세요!'
-    ]
 
-    const getRandomIndex = function(length){
-        return(
-            parseInt(Math.random() * length)
-        )
-    }
     
 
     return(
@@ -104,7 +93,7 @@ function NavigationBarProject() {
 
                         {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
                         <SerchLabel style={{width:"230px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
-                            <ImageWrap><img src={jobicon}/>직군선택</ImageWrap>
+                            <ImageWrap><img src={jobicon}/>{roledata.length > 0 ? roledata : '직군 검색'}</ImageWrap>
                             <img src={down} />
                         </SerchLabel>
 

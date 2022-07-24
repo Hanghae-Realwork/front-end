@@ -15,20 +15,30 @@ import astroman from "../image/astroman.svg";
 import MiniResume from "../components/MiniProfile";
 import MiniProject from "../components/MiniProject";
 
+
+
 function EmploymentProfile() {
-  
   
   const { resumeId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const test = useSelector((state) => state.user.userInfo)
+  console.log(test)
+
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const loginInfoName = useSelector((state) => state.user.userInfo.userId);
   const data = useSelector((state) => state.postEmploy.resumes);
 
   const myProject = useSelector((state) => state.interview)
-  console.log(myProject)
+
   let href = ""
+
+  // 아코디언 뷰 state
+  const [Arcodian, setArcodian] = useState(false);
+
+
   useEffect(() => {
    if (loginInfo === false) {
      dispatch(checkUserValidation());
@@ -140,8 +150,14 @@ function EmploymentProfile() {
           ) : (
               
               <TestWrap>
-                <PropseText>우주선에 태우고 싶으신가요?<DownIcon src={down}/></PropseText>
-              <MiniProject/>
+                
+                <PropseText onClick={() => {setArcodian(!Arcodian)}}>
+                    우주선에 태우고 싶으신가요?
+                  <DownIcon src={down} style={{transform: Arcodian === false ? "rotate(0deg)" : "rotate(180deg)"}}/>
+                </PropseText>
+                <MiniProjectWrap style={{display: Arcodian === true ? "" : "none"}}>
+                  <MiniProject/>
+                </MiniProjectWrap>
               </TestWrap>
               )}
 
@@ -157,7 +173,6 @@ function EmploymentProfile() {
 const TestWrap = styled.div`
   width: 994px;
   margin-top: 25px;
-  /* margin-bottom: 30px; */
   border: 1px solid black;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -180,24 +195,11 @@ const PropseText = styled.span`
 `
 
 const DownIcon = styled.img`
-  margin-left: 10px;
-`
-
-
-const BackGroundOnlyWrap = styled.div`
-/* border: 1px solid black; */
-  background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
+  margin-left: 10px;  
 `
 
 const BackGround = styled.div`
   width: 996px;
-  /* height: 904px; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -208,17 +210,7 @@ const BackGround = styled.div`
 
 `
 
-const PageFlipWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 1000px;
-  height: 37px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`
-
 const PageAllWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -229,7 +221,6 @@ const PageAllWrap = styled.div`
 
 //내부 틀
 const TopWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -239,7 +230,6 @@ const TopWrap = styled.div`
   `
 
 const MidWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -249,7 +239,6 @@ const MidWrap = styled.div`
 `
 
 const BotWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -260,13 +249,11 @@ const BotWrap = styled.div`
 
 //세부 틀
 const LeftTopWrap = styled.div`
-  /* border: 1px solid black; */
   width: 200px;
   height: 200px;
 `
 
 const RightTopWrap = styled.div`
-  /* border: 1px solid black; */
   width: 344px;
   display: flex;
   flex-flow: column nowrap;
@@ -275,7 +262,6 @@ const RightTopWrap = styled.div`
 `
 
 const MidTxetWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -321,7 +307,6 @@ const RightSelfText = styled.div`
   font-weight: 400;
   height: 42px;
   width: 344px;
-  /* border: 1px solid black; */
   margin-top: 28px;
 `
 
@@ -331,7 +316,6 @@ const MidTitle = styled.span`
 `
 
 const MidSelfText = styled.div`
-  /* border: 1px solid black; */
   font-size: 14px;
   font-weight: 400;
   width: 580px;
@@ -375,6 +359,7 @@ const DelBtn = styled.button`
   outline: none;
   cursor: pointer;
 `
+
 const TopHr = styled.hr`
   border: 0.5px dashed #8D8D8D;
   width: 994px;
@@ -385,12 +370,16 @@ const BotHr = styled.hr`
   width: 994px;
 `
 
-// const ProfilePhoto = styled.div`
-//   width: 100px;
-//   height: 100px;
-//   background-image: url(${});
-//   background-position: center;
-//   background-size: cover;
-//   /* border: 1px solid black; */
-// `;
+const MiniProjectWrap = styled.div`
+  width: 800px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 27px;
+  margin-bottom: 40px;
+`
+
+
+
 export default EmploymentProfile

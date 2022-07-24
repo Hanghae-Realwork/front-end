@@ -6,8 +6,10 @@ import Sample from "../image/mainSample.svg"
 import Space from "../image/space.svg"
 import banner from "../image/banner_com_edit.svg"
 import spacebackground from "../image/editspace.svg"
+import emptyspace from "../image/justspace.svg"
 import cloud from "../image/spacecloud.svg"
 import shuttle from "../image/editshuttle.svg"
+import planet from "../image/rotationplanet.svg"
 
 
 
@@ -28,6 +30,7 @@ function Main () {
                             <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>크루원 구하러 가기</PageButton2>
                         </MainButtonWrap>
                     </MaininTitleTopWrap>
+                            <Planet src={planet} className="AnimationPlanet"/>
                     <MainBackgroundWrap>
                         <Shuttle src={shuttle} className="AnimationShuttle"></Shuttle>
                         <CloudImg src={cloud} className="AnimationCloud"/>
@@ -70,10 +73,13 @@ const MainAllWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: flex-start;
-  background-image: url(${spacebackground});
+  background-image: url(${emptyspace});
+  /* background-image: url(${spacebackground}); */
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
   /* margin: 0px 0px 0px 110px ; */
 `;
 
@@ -87,6 +93,7 @@ const MainBackgroundWrap = styled.div`
     align-items: center;
     overflow: hidden;
     position: relative;
+    right: -625px;
 `
 
 const CloudImg = styled.img`
@@ -97,7 +104,13 @@ const CloudImg = styled.img`
 const Shuttle = styled.img`
     width: 300px;
     z-index: 3;
-    
+`
+
+const Planet = styled.img`
+    width: 365px;
+    position: absolute;
+    top: 350px;
+    right: 500px;
 `
 
 
@@ -110,7 +123,7 @@ const MaininTitleTopWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-
+  position: absolute;
 `;
 
 const TitleMain = styled.span`

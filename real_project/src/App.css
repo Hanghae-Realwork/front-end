@@ -104,7 +104,7 @@
   position: absolute;
   /* border: 1px solid white; */
   margin-top: 230px;
-  margin-left: 265px;
+  margin-left: 280px;
   animation: slide 4s infinite;
 }
 
@@ -122,6 +122,19 @@
       left:0px;    
   }
   }
+
+
+
+.AnimationPlanet{
+  animation: rotation 60s linear infinite;
+}
+  
+@keyframes rotation{
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 /* 이천희 */
 
