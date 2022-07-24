@@ -51,7 +51,7 @@ const FindProjectStep01 = (props) => {
   const [rangeTime, setRangeTime] = useState({});
 
     const [year, setYear] = useState(new Date().getFullYear());
-    const [month, setMonth] = useState(new Date().getMonth());
+    const [month, setMonth] = useState(new Date().getMonth()+1);
     const [day, setDay] = useState(new Date().getDate());
   let newDate = year + "년" + month + "월" + day + "일";
 
@@ -186,7 +186,8 @@ const FindProjectStep01 = (props) => {
   const timeAddOnClick = () => {
 
     let temp = { ...rangeTime };
-
+    // console.log(temp[date].length);
+    if (temp[date] && temp[date].length < 5) { 
     if (Object.keys(temp).includes(date) && !temp[date].includes(time)) {
       temp[date] = [...temp[date], time];
     } else if (temp[date] && temp[date]) {
@@ -196,6 +197,10 @@ const FindProjectStep01 = (props) => {
     } else {
       temp[date] = [time];
     }
+    } else {
+       temp[date] = [time];
+    }
+
     //오름차순으로 정리
     temp[date] = temp[date].sort((a, b) => {
           return Number(a.replace(":", "")) - Number(b.replace(":", ""));
@@ -227,7 +232,6 @@ const FindProjectStep01 = (props) => {
 
 
   };
-console.log(rangeTotal)
 
   // 저장 버튼
   const CompliteButton = async () => {
