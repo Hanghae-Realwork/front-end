@@ -31,7 +31,7 @@ function ReadProject() {
   const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
 
-
+console.log(Value)
 
   useEffect(() => {
     if (loginInfo === false) {
@@ -42,9 +42,6 @@ function ReadProject() {
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   }, []);
-
-
-
 
   return (
     <>
@@ -119,27 +116,25 @@ function ReadProject() {
         <ButtonWrap>
           <SubmitButton>지원하기</SubmitButton>
           {Value && userName_Info === Value[0]?.email ? (
-            <SubmitButton
-              onClick={() => {
-                navigate("/findprojectstep2/" + `${Value[0].projectId}`);
-              }}
-            >
-              수정하기
-            </SubmitButton>
-          ) : (
-            <></>
-          )}
-
-          {Value && userName_Info === Value[0]?.email ? (
-            <SubmitButton
-              onClick={() => {
-                dispatch(deleteRecruitAxios(projectId));
-                alert("❗️ 정말 삭제하시는 겁니까? ");
-                navigate("/mainrecruit");
-              }}
-            >
-              삭제하기
-            </SubmitButton>
+            <>
+              {" "}
+              <SubmitButton
+                onClick={() => {
+                  navigate("/findprojectstep2/" + `${Value[0].projectId}`);
+                }}
+              >
+                수정하기
+              </SubmitButton>
+              <SubmitButton
+                onClick={() => {
+                  dispatch(deleteRecruitAxios(projectId));
+                  alert("❗️정말 삭제하시는 건가요?");
+                  navigate("/mainrecruit");
+                }}
+              >
+                삭제하기
+              </SubmitButton>
+            </>
           ) : (
             <></>
           )}
