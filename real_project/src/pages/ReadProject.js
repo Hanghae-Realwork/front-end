@@ -15,6 +15,7 @@ import MiniResume from "../components/MiniProfile";
 
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
+import { loadEmployAxios } from "../redux/modules/postEmploy";
 
 
 function ReadProject() {
@@ -27,9 +28,10 @@ function ReadProject() {
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
-
+  const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
 
+console.log(Value)
 
   useEffect(() => {
     if (loginInfo === false) {
@@ -40,7 +42,6 @@ function ReadProject() {
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   }, []);
-
 
   return (
     <>
@@ -82,10 +83,7 @@ function ReadProject() {
         <DivideLine />
 
         <DateWrap>
-          <div>
-
-
-          </div>
+          <div></div>
         </DateWrap>
         <DivideLine />
         <ProfileWrap>
@@ -108,34 +106,35 @@ function ReadProject() {
         </ProfileWrap>
         <DivideLine />
         <MiniResumeWrap>
-          {Value && (userName_Info !== Value[0]?.email) ? <MiniResume /> :""}
-          
+          {Value && userName_Info !== Value[0]?.email ? (
+            <MiniResume data={data} />
+          ) : (
+            ""
+          )}
         </MiniResumeWrap>
         <DivideLine />
         <ButtonWrap>
           <SubmitButton>지원하기</SubmitButton>
           {Value && userName_Info === Value[0]?.email ? (
-            <SubmitButton
-              onClick={() => {
-                navigate("/findprojectstep2/" + `${Value[0].projectId}`);
-              }}
-            >
-              수정하기
-            </SubmitButton>
-          ) : (
-            <></>
-          )}
-
-          {Value && userName_Info === Value[0]?.email ? (
-            <SubmitButton
-              onClick={() => {
-                dispatch(deleteRecruitAxios(projectId));
-                alert("❗️ 정말 삭제하시는 겁니까? ");
-                navigate("/mainrecruit");
-              }}
-            >
-              삭제하기
-            </SubmitButton>
+            <>
+              {" "}
+              <SubmitButton
+                onClick={() => {
+                  navigate("/findprojectstep2/" + `${Value[0].projectId}`);
+                }}
+              >
+                수정하기
+              </SubmitButton>
+              <SubmitButton
+                onClick={() => {
+                  dispatch(deleteRecruitAxios(projectId));
+                  alert("❗️정말 삭제하시는 건가요?");
+                  navigate("/mainrecruit");
+                }}
+              >
+                삭제하기
+              </SubmitButton>
+            </>
           ) : (
             <></>
           )}

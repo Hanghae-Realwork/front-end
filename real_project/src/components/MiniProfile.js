@@ -11,10 +11,10 @@ import astroman from "../image/astroman.svg"
 
 
 //프로젝트 찾기 -> 상세조회-> 면접 예약 프로필
-function MiniResume() {
+function MiniResume({ data}) {
 
     const dispatch = useDispatch();
-const data = useSelector((state) => state.interview.resumes);
+
 
  
     
@@ -27,28 +27,27 @@ const data = useSelector((state) => state.interview.resumes);
           <MiniCardAllWrap key={idx}>
             <MiniTopWrap>
               <MiniPhotoWrap>
-                {data[idx]?.resumeImage === null ? (
+                {list?.resumeImage === null ? (
                   <Photo></Photo>
                 ) : (
                   <Photo>사진을 보여주세요</Photo>
                 )}
               </MiniPhotoWrap>
               <MiniNameWrap>
-                <MiniNickName>{data[idx]?.nickname}</MiniNickName>
-                <MiniRole>{data[idx]?.role}</MiniRole>
+                <MiniNickName>{list?.nickname}</MiniNickName>
+                <MiniRole>{list?.role}</MiniRole>
               </MiniNameWrap>
             </MiniTopWrap>
 
             <MiniBodyWrap>
-              <MiniBodyText>{data[idx]?.content}</MiniBodyText>
+              <MiniBodyText>{list?.content}</MiniBodyText>
             </MiniBodyWrap>
 
             <MiniDateWrap>
               <span style={{ fontSize: "12px" }}>
-                {data[idx]?.start.slice(0, 4)}년 {data[idx]?.start.slice(5, 7)}
-                월 {data[idx]?.start.slice(8, 10)}일 ~
-                {data[idx]?.end.slice(0, 4)}년 {data[idx]?.end.slice(5, 7)}월{" "}
-                {data[idx]?.end.slice(8, 10)}일
+                {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
+                {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
+                {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일
               </span>{" "}
               <MiniDateText></MiniDateText>
             </MiniDateWrap>
@@ -56,7 +55,10 @@ const data = useSelector((state) => state.interview.resumes);
             <TecWrap>
               보유한 기술
               <TecMiniWrap>
-                <TagDev skills={data[idx]?.skills} />
+                {list && list?.skills.map((tag,index) => {
+                  return <TagDev skills={tag} key={index} />;
+                })}
+                
               </TecMiniWrap>
             </TecWrap>
           </MiniCardAllWrap>

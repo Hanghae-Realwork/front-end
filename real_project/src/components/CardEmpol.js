@@ -21,8 +21,11 @@ function CradEmpol({ data }) {
 
     return (
       <>
-        <AllCardWrap onClick={() => {
-          navigate("/employmentprofile/"+`${data.resumeId}`);}}>
+        <AllCardWrap
+          onClick={() => {
+            navigate("/employmentprofile/" + `${data.resumeId}`);
+          }}
+        >
           <CardTopWrap>
             <ProfileTopWrap>
               <ProfileWrap>
@@ -39,15 +42,16 @@ function CradEmpol({ data }) {
           </CardMidWrap>
           <CardMidMini>
             <MidDateText>
-              <span>프로젝트 가능 기간 :</span>{ ' \ ' + start + ' \ '}~{ ' \ ' + end}
+              <span>프로젝트 가능 기간 :</span>
+              {"  " + start + "  "}~{"  " + end}
             </MidDateText>
           </CardMidMini>
           <CardBotTag>
             <SkillText>보유한 기술</SkillText>
             <SkillWrap>
-              {data.resumeskills?.map((list, idx) => {
-                    return <TagDev key={idx} skills={list} />;
-                  })}
+              {data.skill?.map((list, idx) => {
+                return <TagDev key={idx} skills={list} />;
+              })}
             </SkillWrap>
           </CardBotTag>
         </AllCardWrap>

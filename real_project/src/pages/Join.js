@@ -370,10 +370,10 @@ function Join() {
     }
 
     if (!userIdCheck) {
-      alert("이메일 중복체크 부탁쓰!");
+      alert("이메일 중복체크를 확인해주세요.");
       return false
     } else if (!nicknameCheck) {
-      alert("닉네임 중복체크 부탁쓰!");
+      alert("닉네임 중복체크를 확인해주세요.");
       return false
     }
     try {
@@ -390,7 +390,7 @@ function Join() {
       ).then((res) => {
         if (res === true) {
           navigate("/login");
-          alert("회원가입되었습니다!");
+          alert("크루원이 되신 것을 축하드립니다! 🥸");
         } else {
           console.log("회원가입에 실패했습니다!");
         }

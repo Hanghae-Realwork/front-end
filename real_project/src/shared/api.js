@@ -187,7 +187,6 @@ export const apis = {
     start,
     end,
     skills,
-    photos,
     schedule
   ) =>
     api.post("/api/projects", {
@@ -198,7 +197,6 @@ export const apis = {
       start: start,
       end: end,
       skills: skills,
-      photos: photos,
       schedule: schedule,
     }),
 
@@ -218,7 +216,8 @@ export const apis = {
     start,
     end,
     skills,
-    photos
+    photos,
+    applications
   ) =>
     api.put(`/api/projects/${projectId}`, {
       title: title,
@@ -229,13 +228,14 @@ export const apis = {
       end: end,
       skills: skills,
       photos: photos,
+      applications: applications,
     }),
 
   //  - 13. 프로젝트 삭제
   projectsDelete: (projectId) => api.delete(`/api/projects/${projectId}`),
 
   //  - ## 이미지 업로드
-  projectsPhotos: (nickname,frm) =>
+  projectsPhotos: (nickname, frm) =>
     imgApi.post(`/api/users/detatils/${nickname}/image`, frm),
 
   /////////////////////////////////////////

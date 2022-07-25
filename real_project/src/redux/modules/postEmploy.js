@@ -38,7 +38,7 @@ export const loadEmployAxios = () => {
       .resumesLoad()
       .then((response) => {
         let list= []
-        let resumes = response.data.returnResumes;
+        let resumes = response.data.returnResumes.reverse();
         list = [...resumes];
        
         dispatch(loadEmploy(list));
@@ -174,6 +174,7 @@ export const deleteEmployAxios = (resumeId) => {
     await apis
       .resumesDelete(resumeId)
       .then((response) => {
+        dispatch(deleteEmploy());
       }).catch((err) => {
         console.log(err)
       })
@@ -183,7 +184,6 @@ export const deleteEmployAxios = (resumeId) => {
 //Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-
     case "employ/LOAD": {
       return { returnResumes: action.payload, resumes: state.resumes };
     }
@@ -197,7 +197,7 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
-    case "employ/MODIFY": {   
+    case "employ/MODIFY": {
       return {
         returnResumes: state.returnResumes,
         resumes: action.payload,
@@ -207,6 +207,10 @@ export default function reducer(state = initialState, action = {}) {
     case "employ/LOAD_SINGLE": {
       const newResumes = [action.payload];
       return { returnResumes: action.state, resumes: newResumes };
+    }
+    case "employ/DELETE": {
+    
+      return { returnResumes: action.payload, resumes: state.resumes };
     }
 
     default:

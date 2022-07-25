@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUserValidation, logOut } from "../redux/modules/user";
+import { checkUserValidation, logOut, userInfo } from "../redux/modules/user";
 
 import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo_vertical.svg"
@@ -21,13 +21,15 @@ function Header() {
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
 
+  const [button, setButton] = useState([false, false, false])
+
   React.useEffect(() => {
-    if (loginInfo === false) {dispatch(checkUserValidation());}});
+    if (loginInfo === false) {dispatch(checkUserValidation());}},[loginInfo]);
 
   const logoutClick = () => {
-    const result = window.confirm("정말 로그아웃 하시겠습니까 ?");
+    const result = window.confirm("정말...나가실건가욥..? 🥸");
     if (result) {
-      alert("로그아웃 되었습니다.")
+      alert("로그아웃 되었습니다. 🥸");
        navigate("/");
        dispatch(logOut());
     } 
@@ -76,9 +78,13 @@ function Header() {
       <HeaderWrap>
         <HeaderConWrap>
           <HeaderAlignWrap>
-
-            <LogoWrap onClick={() => {navigate(`/`);}}></LogoWrap>
+            <LogoWrap
+              onClick={() => {
+                navigate(`/`);
+              }}
+            ></LogoWrap>
             <HeaderLeftWrap>
+
               <FindProject onClick={MoveProject} id="btn1">프로젝트 찾기</FindProject>
               <FindProject onClick={MoveResume} id="btn2">팀원 찾기</FindProject>
               <FindMatching onClick={MoveMatching} id="btn3">프로젝트 매칭</FindMatching>
@@ -88,20 +94,25 @@ function Header() {
           </HeaderAlignWrap>
           <HeaderRightWrap>
             <LoginButton
-              onClick={() => {navigate(`/login`);}} 
-              style={{ display: !loginInfo ? "" : "none" }}>
+              onClick={() => {
+                navigate(`/login`);
+              }}
+              style={{ display: !loginInfo ? "" : "none" }}
+            >
               로그인
             </LoginButton>
             <LoginButton
               style={{ display: !loginInfo ? "none" : "" }}
-              onClick={logoutClick}>
+              onClick={logoutClick}
+            >
               로그아웃
             </LoginButton>
+
             <CircleImage
               onClick={() => {if (loginInfo) {
                   navigate(`/mypage/${nickname}/apply`);
                 } else {
-                  alert("로그인을 해주세요!")
+                  alert("로그인을 해주세요! 🥸");
                 }
               }}>
               <img src={BasicPhoto} />

@@ -51,9 +51,9 @@ const FindProjectStep01 = (props) => {
   const [rangeTime, setRangeTime] = useState({});
 
     const [year, setYear] = useState(new Date().getFullYear());
-    const [month, setMonth] = useState(new Date().getMonth());
+    const [month, setMonth] = useState(new Date().getMonth()+1);
     const [day, setDay] = useState(new Date().getDate());
-  let newDate = year + "년" + month + "월" + day + "일";
+  let newDate = year + "-" + month + "-" + day;
 
 
   useEffect(() => {
@@ -173,24 +173,21 @@ const FindProjectStep01 = (props) => {
 
   //single달력
   const singleCalenderOnChange = (date) => {
-
     setYear(String(date.getFullYear()).padStart(2, "0"));
     setMonth(String(date.getMonth() + 1).padStart(2, "0"));
     setDay(String(date.getDate()).padStart(2, "0"));
     setSingleDate(date)
-
   };
  
  
-  const date = year + "년" + month + "월" + day + "일";
-  const time = hour + ":" + minute;
+  const date = year + "-" + month + "-" + day;
+  const time = `${("00" + hour).slice(-2)}:${("00" + minute).slice(-2)}`;
 
   const timeAddOnClick = () => {
 
     let temp = { ...rangeTime };
-
-// if ~else : key에 date가 포함되어 있다면 기존 time에 배열 추가, 그렇지 않으면 새로 들어온 신참time을 배열에 넣어준다 
-// else if : 기존 time배열에서 중복 time이 포함되어 있다면 기존배열만 반환 , 첫번째 날짜의 undefined값이 나오므로 예외처리 후 조건 추가. 
+    // console.log(temp[date].length);
+    if (temp[date] && temp[date].length < 5) { 
     if (Object.keys(temp).includes(date) && !temp[date].includes(time)) {
       temp[date] = [...temp[date], time];
     } else if (temp[date] && temp[date]) {
@@ -200,6 +197,10 @@ const FindProjectStep01 = (props) => {
     } else {
       temp[date] = [time];
     }
+    } else {
+       temp[date] = [time];
+    }
+
     //오름차순으로 정리
     temp[date] = temp[date].sort((a, b) => {
           return Number(a.replace(":", "")) - Number(b.replace(":", ""));
@@ -215,29 +216,22 @@ const FindProjectStep01 = (props) => {
   
   
   const schduleAddOnClick = () => {
-    //rangeTime을 담을 수 있는 상태관리가 필요
-    // rangeTime을 담을 때 딕셔너리 형태로{날짜 , 일, 날짜 ,일 }로 담아준다.
     // [{},{},{}]
-  //   let list_up = [...rangeTotal]
-  //     rangeTotal.forEach((item, index) => {
-  //      Object.keys(item)
-  //   })
-  // console.log(rangeTotal)
-  //   if (rangeTime && list_up) { 
-  //     list_up = [...list_up,rangeTime]
-  //   } else {
-  //     list_up = [rangeTime]
-  //   }
-  //     setRangeTotal(list_up);
-  //   console.log(rangeTotal);
-   
 
- let temp = { ...rangeTime };
-   setRangeTotal((prev) => [...prev,temp]);
-
+    const arr = rangeTotal.filter((list) => {
+     return Object.keys(list).toString() === Object.keys(rangeTime).toString();
+    })
+    if (arr.length === 0 && Object.keys(rangeTime).length !== 0) {
+      let arr1 = [...rangeTotal, rangeTime];
+      //미완성 진행중 지우지 말것
+      //  const arr4= arr1.sort((a,b) => {
+      //   return Object.keys(a) - Object.keys(b);
+      // })
+      // setRangeTotal(arr1);
+       setRangeTotal(arr1);
+    }
   };
-
-
+console.log(rangeTotal)
   // 저장 버튼
   const CompliteButton = async () => {
     //날짜+시간 데이터 가공 
@@ -280,7 +274,7 @@ const FindProjectStep01 = (props) => {
       checkList === null ||
       new_list === null
     ) {
-      alert("아직 다 작성하지 않았어요!");
+      alert("부족한 정보가 있습니다! 🥸");
     } else {
       frm.append("photos", files[0]);
       try {
@@ -302,7 +296,6 @@ const FindProjectStep01 = (props) => {
                 "-" +
                 endDate.getDate(),
               checkList,
-              success,
               new_list
             )
           );
@@ -605,14 +598,25 @@ const FindProjectStep01 = (props) => {
                   <InterviewTextDateBot>
                     {Object.keys(list)}
                   </InterviewTextDateBot>
-                  <BotDelBtn>삭제</BotDelBtn>
+                  <BotDelBtn
+                    onClick={(e) => {
+                      const new_post = rangeTotal.filter((ele, index) => {
+                       return idx !== index;
+                      })
+                        setRangeTotal(new_post)
+                    }}
+                  >
+                    삭제
+                  </BotDelBtn>
                 </InterviewDateWrap>
 
                 <TimeAddButtonWrap>
                   <TimeAddLeftWrap>
                     {rangeTotal[idx][min] &&
-                      rangeTotal[idx][min].map((time,index) => {
-                        return <LeftTimeButton key={index}>{ time}</LeftTimeButton>;
+                      rangeTotal[idx][min].map((time, index) => {
+                        return (
+                          <LeftTimeButton key={index}>{time}</LeftTimeButton>
+                        );
                       })}
                   </TimeAddLeftWrap>
                 </TimeAddButtonWrap>

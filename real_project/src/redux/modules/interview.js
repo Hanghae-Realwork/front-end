@@ -43,8 +43,8 @@ export const loadProjectsAxios = () => {
     await apis
       .proposalsProjects()
       .then((res) => {
-        console.log(res.data)
-        dispatch(loadProjects(res.data));
+        console.log(res.data.projects);
+        dispatch(loadProjects(res.data.projects))
       })
       .catch((err) => {
         console.log(err);
@@ -56,6 +56,7 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     // 로드 리듀서
     case "interview/LOADRESUMES": {
+       
       return {
         resumes: action.payload,
         projects: state.projects,
