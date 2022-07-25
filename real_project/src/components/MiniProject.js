@@ -10,56 +10,47 @@ import TagDes from "./Tag/TagCompoDes"
 
 
 // 팀원찾기 -> 상세조회 -> 내 프로젝트 목록 조회
-function MiniProject() {
+function MiniProject({data}) {
 
-    const dispatch = useDispatch();
-const data = useSelector((state) => state.interview.resumes);
 
- 
-    
-    useEffect(() => {
-        dispatch(loadResumesAxios())
-    }, [])
-  
   return (
       <>{data && data.map((list,idx) => {
         return (
           <MiniCardAllWrap key={idx}>
             <MiniNickWrap>
-              <NickText>닉네임이 들어갑니다</NickText>
+              <NickText>{list?.nickname}</NickText>
               <NickText>n시간 전이 들어갑니다</NickText>
             </MiniNickWrap>
 
             <MiniTopWrap>
-              <MiniNickName>프로젝트 제목이 들어갑니다</MiniNickName>
+              <MiniNickName>{list?.title}</MiniNickName>
               <MiniBodyTextWrap>
-                <MiniBodyText>{data[idx]?.content}</MiniBodyText>
-                <MiniBodyText>{data[idx]?.content}</MiniBodyText>
+                <MiniBodyText>{list?.subscript}</MiniBodyText>
               </MiniBodyTextWrap>
             </MiniTopWrap>
 
             <MiniBodyWrap>
               <NickText>구하는 직군</NickText>
-              <MiniRole>{data[idx]?.role}</MiniRole>
+              <MiniRole>{list?.role}</MiniRole>
             </MiniBodyWrap>
 
             <TecWrap>
               <NickText>원하는 보유 기술</NickText>
               <TecMiniWrap>
-                <TagDev skills={data[idx]?.skills} />
+                {data &&
+                  list?.skills.map((tag, index) => {
+                    return <TagDev skills={tag} key={index} />;
+                  })}
               </TecMiniWrap>
             </TecWrap>
 
             <MiniDateWrap>
               <MiniDateText>
-                {data[idx]?.start.slice(0, 4)}년 {data[idx]?.start.slice(5, 7)}
-                월 {data[idx]?.start.slice(8, 10)}일 ~
-                {data[idx]?.end.slice(0, 4)}년 {data[idx]?.end.slice(5, 7)}월{" "}
-                {data[idx]?.end.slice(8, 10)}일
-                {" "}
+                {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
+                {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
+                {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일{" "}
               </MiniDateText>
             </MiniDateWrap>
-
           </MiniCardAllWrap>
         );
     })}

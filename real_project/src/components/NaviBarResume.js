@@ -40,10 +40,6 @@ function NavigationBarResume() {
     const datedata = useSelector((state) => state.search.Datetag);
     const roledata = useSelector((state) => state.search.Roletag)
 
-    console.log(roledata)
-    console.log(datedata)
-    console.log(skilldata)
-
     const searchAction = () => {
         dispatch(SearchAxios())
     }

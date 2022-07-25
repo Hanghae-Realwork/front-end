@@ -26,7 +26,7 @@ function EmploymentProfile() {
   const loginInfoName = useSelector((state) => state.user.userInfo.userId);
   const data = useSelector((state) => state.postEmploy.resumes);
 
-  const myProject = useSelector((state) => state.interview)
+  const myProject = useSelector((state) => state.interview.projects);
   console.log(myProject)
   let href = ""
   useEffect(() => {
@@ -37,16 +37,16 @@ function EmploymentProfile() {
   useEffect(() => {
   dispatch(loadSingleEmployAxios(resumeId))
   }, [])
+  //프로젝트 카드
+  useEffect(() => {
+    dispatch(loadProjectsAxios())
+  }, [])
 
     useEffect(() => {
       if (data) {
         href = data.length > 0 ? data[0].content2 : "";
       }
     }, [loginInfoName, data]);
-  
-  useEffect(() => {
-    dispatch(loadProjectsAxios())
-  },[])
   
   
  //undefined일때 null 처리 나머지 return 
@@ -143,7 +143,7 @@ function EmploymentProfile() {
               
               <TestWrap>
                 <PropseText>우주선에 태우고 싶으신가요?<DownIcon src={down}/></PropseText>
-              <MiniProject/>
+                <MiniProject data={myProject} />
               </TestWrap>
               )}
 

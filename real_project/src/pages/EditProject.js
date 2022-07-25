@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   editRecruitAxios,
+  LoadDetailAxios,
   projectsPhotosAxios,
 } from "../redux/modules/postRecruit";
 import {
@@ -20,16 +21,16 @@ import downicon from "../image/downicon.svg";
 import delIcon from "../image/tagclose.svg"
 
 
-
-
-
 const EditProject = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { projectId } = useParams();
+
 
   const titleRef = useRef(null);
   const subscriptRef = useRef(null);
   const detailsRef = useRef(null);
+
 
   const [role, setRole] = useState("");
   const [checkList, setCheckList] = useState([]);
@@ -48,30 +49,36 @@ const EditProject = (props) => {
   //시간과 분
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
-  const [rangeTime, setRangeTime] = useState({});
+  
 
   const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth());
+  const [month, setMonth] = useState(new Date().getMonth()+1);
   const [day, setDay] = useState(new Date().getDate());
-  let newDate = year + "년" + month + "월" + day + "일";
 
-  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+
   const userEdit = useSelector((state) => state.postRecruit.project);
 
-  console.log(userEdit);
+  const [newSchedule, setNewSchedule] = useState(''); 
+
+  useEffect(() => {setNewSchedule(userEdit[0]?.applications)}, [
+    userEdit
+  ])
+  
+  useEffect(() => {
+    dispatch(LoadDetailAxios(projectId));
+  },[])
 
   useEffect(() => {
-    setRangeTime({});
+    // setRangeTime([]);
     setHour(0);
     setMinute(0);
   }, [singleDate]);
 
-  //Role 값 (코코미 코드)
+  //Role 
   const onChangeRole = (e) => {
     setRole(e.target.value);
   };
 
-  //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다. (코코미 코드)
   const onCheckedElement = (checked, item) => {
     if (checked) {
       setCheckList([...checkList, item]);
@@ -82,24 +89,6 @@ const EditProject = (props) => {
 
   //fileReader
   const frm = new FormData();
-  const reader = new FileReader();
-
-  //이미지 파일 코드(코코코코코코미)
-  const onChangeImg = (e) => {
-    const file = e.target.files;
-    setFiles(file);
-
-    //fileReader
-    setFilesImg(e.target.files[0]);
-    reader.readAsDataURL(e.target.files[0]);
-
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setFilesImg(reader.result);
-        resolve();
-      };
-    });
-  };
 
   const DoubleCalenderOnChange = (dates) => {
     const [start, end] = dates;
@@ -185,71 +174,33 @@ const EditProject = (props) => {
     setSingleDate(date);
   };
 
-  const date = year + "년" + month + "월" + day + "일";
-  const time = hour + ":" + minute;
-
+  const date = year + "-" + month + "-" + day;
+  const time = `${("00"+hour).slice(-2)}:${("00"+minute).slice(-2)}`;
+  //빈 값에서 배열 추가
+// const [rangeTime, setRangeTime] = useState([]);
   const timeAddOnClick = () => {
-    let temp = { ...rangeTime };
-
-    // if ~else : key에 date가 포함되어 있다면 기존 time에 배열 추가, 그렇지 않으면 새로 들어온 신참time을 배열에 넣어준다
-    // else if : 기존 time배열에서 중복 time이 포함되어 있다면 기존배열만 반환 , 첫번째 날짜의 undefined값이 나오므로 예외처리 후 조건 추가.
-    if (Object.keys(temp).includes(date) && !temp[date].includes(time)) {
-      temp[date] = [...temp[date], time];
-    } else if (temp[date] && temp[date]) {
-      if (Object.keys(temp).includes(date) && temp[date].includes(time)) {
-        temp[date] = [...temp[date]];
-      }
-    } else {
-      temp[date] = [time];
+    //검사
+    let arr = newSchedule.filter((ele) => {
+      return ele.schedule === date + " " + time;
+    })
+    if (arr.length === 0) {
+      let arr1 = [
+        ...newSchedule,
+        { schedule: date + " " + time, available: 1 },
+      ];
+     
+      const arr2 = arr1.sort((a, b) => {
+        return new Date(a.schedule) - new Date(b.schedule);
+      })
+      setNewSchedule(arr2);
+  
     }
-    //오름차순으로 정리
-    temp[date] = temp[date].sort((a, b) => {
-      return Number(a.replace(":", "")) - Number(b.replace(":", ""));
-    });
-
-    setRangeTime(temp);
   };
 
-  //2단계 :사용되는 날짜 + 시간 에 대한 상태관리
-  const [rangeTotal, setRangeTotal] = useState([]);
-  const [newList, setNewList] = useState([]);
-
-  const schduleAddOnClick = () => {
-    //rangeTime을 담을 수 있는 상태관리가 필요
-    // rangeTime을 담을 때 딕셔너리 형태로{날짜 , 일, 날짜 ,일 }로 담아준다.
-    // [{},{},{}]
-    //   let list_up = [...rangeTotal]
-    //     rangeTotal.forEach((item, index) => {
-    //      Object.keys(item)
-    //   })
-    // console.log(rangeTotal)
-    //   if (rangeTime && list_up) {
-    //     list_up = [...list_up,rangeTime]
-    //   } else {
-    //     list_up = [rangeTime]
-    //   }
-    //     setRangeTotal(list_up);
-    //   console.log(rangeTotal);
-
-    let temp = { ...rangeTime };
-    setRangeTotal((prev) => [...prev, temp]);
-  };
 
   // 저장 버튼
   const CompliteEdit = async () => {
-    //날짜+시간 데이터 가공
-    let new_list = [];
 
-    rangeTotal.forEach((item, index) => {
-      const date = Object.keys(item);
-      const times = item[date];
-
-      times.forEach((time) => {
-        const dateTime = date + " " + time;
-        setNewList(new_list.push(dateTime));
-      });
-    });
-    //
     if (
       titleRef.current.value === "" ||
       detailsRef.current.value === "" ||
@@ -258,7 +209,7 @@ const EditProject = (props) => {
       startDate === "" ||
       endDate === "" ||
       checkList === "" ||
-      new_list === "" ||
+      
       titleRef.current.value === " " ||
       detailsRef.current.value === " " ||
       subscriptRef.current.value === " " ||
@@ -266,15 +217,15 @@ const EditProject = (props) => {
       startDate === " " ||
       endDate === " " ||
       checkList === " " ||
-      new_list === " " ||
+
       titleRef.current.value === null ||
       detailsRef.current.value === null ||
       subscriptRef.current.value === null ||
       role === null ||
       startDate === null ||
       endDate === null ||
-      checkList === null ||
-      new_list === null
+      checkList === null 
+   
     ) {
       alert("아직 다 작성하지 않았어요!");
     } else {
@@ -283,6 +234,7 @@ const EditProject = (props) => {
         await dispatch(projectsPhotosAxios(frm)).then((success) => {
           dispatch(
             editRecruitAxios(
+              projectId,
               titleRef.current.value,
               detailsRef.current.value,
               subscriptRef.current.value,
@@ -299,13 +251,13 @@ const EditProject = (props) => {
                 endDate.getDate(),
               checkList,
               success,
-              new_list
+              newSchedule
             )
           );
         });
         navigate("/mainrecruit");
       } catch (err) {
-        console.log(err);
+
       }
     }
   };
@@ -319,21 +271,12 @@ const EditProject = (props) => {
         <HeadLine />
         <FindProjectInputTitle>
           <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
-          <ProjectInput
-            ref={titleRef}
-            id="title"
-            type="text"
-            defaultValue={userEdit[0]?.title}
+          <ProjectInput ref={titleRef} id="title" type="text" defaultValue={userEdit[0]?.title}
           ></ProjectInput>
         </FindProjectInputTitle>
         <FindProjectInputTitle>
           <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
-          <ProjectInput
-            ref={subscriptRef}
-            id="subscript"
-            type="text"
-            defaultValue={userEdit[0]?.subscript}
-          ></ProjectInput>
+          <ProjectInput ref={subscriptRef} id="subscript" type="text" defaultValue={userEdit[0]?.subscript}/>
         </FindProjectInputTitle>
         <FindProjectInputDate>
           <ProjectTitleText>프로젝트 기간</ProjectTitleText>
@@ -364,35 +307,18 @@ const EditProject = (props) => {
         <InputMainTextWrap>
           <ProjectTitleText>팀 상세 설명</ProjectTitleText>
           <ReMainConWrap>
-            <RecMainCon
-              ref={detailsRef}
-              id="details"
-              type="text"
-              defaultValue={userEdit[0]?.details}
-            />
+            <RecMainCon ref={detailsRef} id="details" type="text" defaultValue={userEdit[0]?.details}/>
           </ReMainConWrap>
         </InputMainTextWrap>
         <InputMainTextWrap>
           <ProjectTitleText>구하는 직군</ProjectTitleText>
           <RoleWrap>
             <RoleLabel>
-              <RoleInput
-                id="role"
-                type="radio"
-                name="Radio"
-                value="frontend"
-                onChange={onChangeRole}
-              />{" "}
+              <RoleInput id="role" type="radio" name="Radio" value="frontend" onChange={onChangeRole}/>{" "}
               FrontEnd 개발자{" "}
             </RoleLabel>
             <RoleLabel>
-              <RoleInput
-                id="role"
-                type="radio"
-                name="Radio"
-                value="backend"
-                onChange={onChangeRole}
-              />{" "}
+              <RoleInput id="role" type="radio" name="Radio" value="backend" onChange={onChangeRole}/>{" "}
               BackEnd 개발자{" "}
             </RoleLabel>
             <RoleLabel>
@@ -420,7 +346,6 @@ const EditProject = (props) => {
                       id="skills"
                       value={list.data}
                       onChange={(e) => {
-                        //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
                         onCheckedElement(e.target.checked, e.target.value);
                       }}
                       checked={checkList.includes(list.data) ? true : false}
@@ -505,7 +430,7 @@ const EditProject = (props) => {
                     </HourButton>
                   </HourWrap>
                 </TimeArea>
-                <TimeButton onClick={timeAddOnClick}>시간 추가 </TimeButton>
+                <TimeButton onClick={timeAddOnClick}>일정 추가</TimeButton>
               </TimeWrap>
             </TimeAllDiv>
           </InterviewTableWrap>
@@ -514,21 +439,15 @@ const EditProject = (props) => {
         {/* 아래 하단 시작 */}
         <InputMainTextWrap>
           <EditDateWrap>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
-              <EditLabel>0월00일 00:00<CloseBtn src={delIcon} /></EditLabel>
+            {newSchedule && newSchedule.map((list, idx) => {
+              return (
+                <EditLabel key={idx} color={list.available}>
+                 {list.schedule.slice(0,16)}
+                  { list.available ? <CloseBtn src={delIcon} />:""}
+               
+                </EditLabel>
+              );
+            })}
           </EditDateWrap>
         </InputMainTextWrap>
 
@@ -868,7 +787,9 @@ const EditLabel = styled.label`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   padding: 10px 12px 10px 12px;
-`
+
+  background-color: ${(props) => (props.color ? "white" : "orange")};
+`;
 
 const CloseBtn = styled.img`
   width: 6%;
