@@ -38,8 +38,8 @@ function NavigationBarResume() {
     const datedata = useSelector((state) => state.search.Datetag);
     const roledata = useSelector((state) => state.search.Roletag)
 
-   
 
+    
     const sendRole = roledata.toString()
     const sendSkill = skilldata.toString()
     // const sendStart = datedata[0].toString()
@@ -54,7 +54,7 @@ function NavigationBarResume() {
         ))
     }
 
-    useEffect(() => {  })
+   
 
 
     

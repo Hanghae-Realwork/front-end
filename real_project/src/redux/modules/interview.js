@@ -4,7 +4,7 @@ import { apis } from "../../shared/api";
 const LOADRESUMES = "interview/LOADRESUMES";
 const LOADPROJECTS = "interview/LOADPROJECTS";
 
-const proposalUserProjects = "interview/proposalUserProjects";
+const PROJECTINTERVIEW = "interview/PROJECTINTERVIEW";
 
 //이니셜 스테이트
 const initialState = {
@@ -22,7 +22,9 @@ export function loadProjects(payload) {
   return { type: LOADPROJECTS, payload };
 }
 
-
+export function projectInterview(payload) {
+  return { type: PROJECTINTERVIEW ,payload};
+}
 
 //미들웨어
 export const loadResumesAxios = () => {
@@ -52,6 +54,23 @@ export const loadProjectsAxios = () => {
       });
   };
 };
+
+export const projectInterviewAxios = (applcationId,resumeId) => {
+  return async function (dispatch) {
+    await apis
+      .projectInterview(applcationId, resumeId)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.response.status);
+        if (err.response.status===404) { 
+          alert("이미 해당 프로젝트에 지원하셨습니다!🥸");
+        }
+      });
+  }
+}
+
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

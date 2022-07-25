@@ -333,22 +333,22 @@ export const apis = {
   // 32. 프로젝트 검색
   searchProject: (role, skill, start, end) =>
     api.get("/api/search/project", {
-      params: { 
-        role: role, 
-        skill: skill, 
-        start: start, 
-        end: end 
+      params: {
+        role: role,
+        skill: skill,
+        start: start,
+        end: end,
       },
     }),
 
   // 33. 리쥬메 검색
-  searchResume: (role, skill, start, end) => 
+  searchResume: (role, skill, start, end) =>
     api.get("/api/search/resume", {
-      params: { 
-        role: role, 
-        skill: skill, 
-        start: start, 
-        end: end 
+      params: {
+        role: role,
+        skill: skill,
+        start: start,
+        end: end,
       },
     }),
 
@@ -358,12 +358,17 @@ export const apis = {
   ////// 4. 면접예약//////
   //////////////////////
 
-  //프로젝트에 면접 예약
+  //21. 프로젝트에 면접 예약
+  projectInterview: (applicationId, resumeId) =>
+    api.put(`/api/applications/${applicationId}`, {
+      resumeId: resumeId,
+    }),
   //지원서의 지원서 목록 조회
   applicationsResumes: () => api.get("/api/applications/resumes"),
 
   // 22. 선택한 프로젝트를 지원서에 제안
-  proposalUserProjects: (resumeId,projectId) => api.post("/api/proposals/:resumeId/:projectId"),
+  proposalUserProjects: (resumeId, projectId) =>
+    api.post("/api/proposals/:resumeId/:projectId"),
 
   //23. 지원서에 면접 제안시 내 프로젝트 목록 조회
   proposalsProjects: () => api.get("/api/proposals/projects"),

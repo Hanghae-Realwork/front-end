@@ -11,12 +11,12 @@ import astroman from "../image/astroman.svg"
 
 
 //프로젝트 찾기 -> 상세조회-> 면접 예약 프로필
-function MiniResume({ data}) {
+function MiniResume({data,setResumeId}) {
 
     const dispatch = useDispatch();
+    
 
 
- 
     
     useEffect(() => {
         dispatch(loadResumesAxios())
@@ -24,7 +24,12 @@ function MiniResume({ data}) {
   return (
       <>{data && data.map((list,idx) => {
         return (
-          <MiniCardAllWrap key={idx}>
+          <MiniCardAllWrap
+            key={idx}
+            onClick={() => {
+              setResumeId(list.resumeId);
+            }}
+          >
             <MiniTopWrap>
               <MiniPhotoWrap>
                 {list?.resumeImage === null ? (
@@ -55,12 +60,13 @@ function MiniResume({ data}) {
             <TecWrap>
               보유한 기술
               <TecMiniWrap>
-                {list && list?.skills.map((tag,index) => {
-                  return <TagDev skills={tag} key={index} />;
-                })}
-                
+                {list &&
+                  list?.skills.map((tag, index) => {
+                    return <TagDev skills={tag} key={index} />;
+                  })}
               </TecMiniWrap>
             </TecWrap>
+          
           </MiniCardAllWrap>
         );
     })}
@@ -79,6 +85,7 @@ const MiniCardAllWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
+    background-color: ${props=>props.color};
 `
 
 const MiniTopWrap = styled.div`

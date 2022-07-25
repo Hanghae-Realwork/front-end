@@ -18,6 +18,7 @@ import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
 import down from "../image/down.svg"
 import delIcon from "../image/tagclose.svg"
+import { projectInterviewAxios } from "../redux/modules/interview";
 
 
 
@@ -50,7 +51,10 @@ function ReadProject() {
   // 로그인 유저별 resume card 용
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
-
+  // 예약기능
+  const [applicationId, setApplicationId] = useState("")
+  const [resumeId, setResumeId] = useState("")
+  const [color , setColor] = useState(false)
   const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
 
@@ -63,13 +67,14 @@ function ReadProject() {
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   }, []);
+
   const deleteOnclick = async() => {
     if (window.confirm("❗️정말 삭제하시는 건가요?")) {
 
       try {
         await dispatch(deleteRecruitAxios(projectId)).then((res) => {
           if (res) {
-            alert("삭제되었습니다!🥸")
+            alert("삭제되었습니다!🥸");
             navigate("/mainrecruit");
           } else { 
             alert("페이지 오류입니다.🥸");
@@ -82,7 +87,17 @@ function ReadProject() {
     } else {
       return false;
     }
-}
+  }
+
+ let [btnActive, setBtnActive] = useState("");
+  
+  const applyOnClick = () => {
+    dispatch(projectInterviewAxios(applicationId, resumeId));
+
+
+    
+  }
+
   return (
     <>
       <AllWrap>
@@ -114,10 +129,10 @@ function ReadProject() {
             <RoleTitle>필요한 스킬 및 스텍</RoleTitle>
           </div>
           <TagGapWrap>
-              {Value &&
-                Value[0]?.skills.map((list, idx) => {
-                  return <TagDev key={idx} skills={list} />;
-                })}
+            {Value &&
+              Value[0]?.skills.map((list, idx) => {
+                return <TagDev key={idx} skills={list} />;
+              })}
           </TagGapWrap>
         </FindSkillWrap>
 
@@ -129,35 +144,25 @@ function ReadProject() {
 
             <InputMainTextWrap>
               <EditDateWrap>
-                {newSchedule && newSchedule.map((list, idx) => {
-                  return (
-                    <EditLabel key={idx} color={list.available}>
-                      {list.schedule.slice(0, 16)}
-                      {/* {list.available ? (
-                        <CloseBtn src={delIcon} onClick={() => {
-                            const new_post = newSchedule && newSchedule.filter((l, index) => {return idx !== index;});
-                            setNewSchedule(new_post);
-                          }}/>
-                      ) : (
-                        "프로젝트 면접 일정이 없습니다"
-                      )} */}
-                    </EditLabel>
-                  );
-                })}
+                {Value &&
+                  Value[0]?.applications.map((list, idx) => {
+                    return (
+                      <EditLabel
+                        key={idx}
+                        onClick={(e) => {
+                          setApplicationId(list.applicationId);
+                          idx === idx ? setColor(true) : setColor(false)
+                    
+
+                          
+                        }}
+                      >
+                        {list.schedule.slice(0, 16)}
+                      </EditLabel>
+                    );
+                  })}
               </EditDateWrap>
             </InputMainTextWrap>
-
-            {/* <CalenderWrap>
-              <DatePicker
-                  selected={singleDate}
-                  startDate={startDate}
-                  dateFormat="YYYY-MM-DD"
-                  locale={ko} // 달력 한글화
-                  minDate={new Date()}
-                  monthsShown={1}
-                  inline
-                />
-            </CalenderWrap> */}
           </ViewDateWrap>
         </DateWrap>
 
@@ -187,43 +192,49 @@ function ReadProject() {
           {Value && userName_Info === Value[0]?.email ? (
             <>
               {" "}
-
               <SubmitButton
                 onClick={() => {
                   if (window.confirm("수정하러 가볼까요?🥸")) {
-                     navigate("/findprojectstep2/" + `${Value[0].projectId}`);
+                    navigate("/findprojectstep2/" + `${Value[0].projectId}`);
                   } else {
                     return false;
                   }
                 }}
               >
-
                 수정하기
               </SubmitButton>
-              <SubmitButton
-                onClick={deleteOnclick}
-              >
-                삭제하기
-              </SubmitButton>
+              <SubmitButton onClick={deleteOnclick}>삭제하기</SubmitButton>
             </>
           ) : (
-          <ArcodianWrap>
-            <ArcodianTextWrap onClick={() => {setArcodian(!Arcodian)}}>
-              <ArcodianText>이 프로젝트에 지원하고 싶어요?</ArcodianText>
-              <DownIcon src={down} style={{transform: Arcodian === false ? "rotate(0deg)" : "rotate(180deg)"}}/>
-            </ArcodianTextWrap>
-            <MiniResumeWrap style={{display: Arcodian === true ? "" : "none"}}>
-              {Value && userName_Info !== Value[0]?.email ? (
-                <MiniResume data={data} />
-              ) : (
-                ""
-              )}
-            </MiniResumeWrap>
+            <ArcodianWrap>
+              <ArcodianTextWrap
+                onClick={() => {
+                  setArcodian(!Arcodian);
+                }}
+              >
+                <ArcodianText>이 프로젝트에 지원하고 싶어요?</ArcodianText>
+                <DownIcon
+                  src={down}
+                  style={{
+                    transform:
+                      Arcodian === false ? "rotate(0deg)" : "rotate(180deg)",
+                  }}
+                />
+              </ArcodianTextWrap>
+              <MiniResumeWrap
+                style={{ display: Arcodian === true ? "" : "none" }}
+              >
+                {Value && userName_Info !== Value[0]?.email ? (
+                  <MiniResume data={data} setResumeId={setResumeId} />
+                ) : (
+                  ""
+                )}
+              </MiniResumeWrap>
 
-            <DivideLine />
+              <DivideLine />
 
-            <SubmitButton>지원하기</SubmitButton>
-          </ArcodianWrap>
+              <SubmitButton onClick={applyOnClick}>지원하기</SubmitButton>
+            </ArcodianWrap>
           )}
         </ButtonWrap>
       </AllWrap>
@@ -525,8 +536,11 @@ const EditLabel = styled.label`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   padding: 10px 12px 10px 12px;
-
-  background-color: ${(props) => (props.color ? "white" : "orange")};
+  background-color: ${(props) => props.color};
+  /* background-color: ${(props) => (props.color ? "white" : "orange")}; */
+  &.active {
+    background-color: lightblue;
+  }
 `;
 
 const CloseBtn = styled.img`

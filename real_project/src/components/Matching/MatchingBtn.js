@@ -3,27 +3,27 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 function MatchingBtn(){
-    const navigate = useNavigate()
 
-    return(
-        <>
-            <MatchingBtnWrap>
-                <PositionWrap>
-                    <BtnDivWrap>
-                    <LeftTriangleDiv></LeftTriangleDiv>
-                    <CenterDiv onClick={navigate(`/matchingcrew`)}>내가 모집중인 프로젝트</CenterDiv>
-                    <RightTriangleDiv></RightTriangleDiv>
-                    </BtnDivWrap>
 
-                    <SecondBtnDivWrap>
-                    <LeftTriangleDivtwo></LeftTriangleDivtwo>
-                    <SecondCenterDiv onClick={navigate(`/matchingresume`)}>내 이력서</SecondCenterDiv>
-                    <RightTriangleDivtwo></RightTriangleDivtwo>
-                    </SecondBtnDivWrap>
-                </PositionWrap>
-            </MatchingBtnWrap>
-        </>
-    )
+    return (
+    
+        <MatchingBtnWrap>
+          <PositionWrap>
+            <BtnDivWrap>
+              <LeftTriangleDiv></LeftTriangleDiv>
+              <CenterDiv>내가 모집중인 프로젝트</CenterDiv>
+              <RightTriangleDiv></RightTriangleDiv>
+            </BtnDivWrap>
+
+            <SecondBtnDivWrap>
+              <LeftTriangleDivtwo></LeftTriangleDivtwo>
+              <SecondCenterDiv>내 이력서</SecondCenterDiv>
+              <RightTriangleDivtwo></RightTriangleDivtwo>
+            </SecondBtnDivWrap>
+          </PositionWrap>
+        </MatchingBtnWrap>
+     
+    );
 }
 
 
