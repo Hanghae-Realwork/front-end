@@ -1,13 +1,13 @@
 import { apis } from "../../shared/api";
 
 //로드 액션
-const SKILLLOAD = "search/SKILLLOAD";
-const ROLELOAD = "search/ROLELOAD";
-const DATELOAD = "search/DATELOAD"
+const SKILLLOAD = "searchResume/SKILLLOAD";
+const ROLELOAD = "searchResume/ROLELOAD";
+const DATELOAD = "searchResume/DATELOAD";
 
 //삭제 및 검색 액션
-const SKILLDELETE = "search/SKILLDELETE";
-const COMPLETE = "search/COMPLETE";
+const SKILLDELETE = "searchResume/SKILLDELETE";
+const COMPLETE = "searchResume/COMPLETE";
 
 
 //이니셜 스테이트
