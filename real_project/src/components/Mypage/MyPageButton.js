@@ -107,7 +107,7 @@ const OnlyBackgroundWrap = styled.div`
 //     width: 500px;
 // `
 
-const MyMenuButton = styled.button`
+const MyMenuButton = styled.label`
   padding: 8px 20px 8px 20px;
   width: 135px;
   height: 40px;

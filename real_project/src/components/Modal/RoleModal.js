@@ -36,7 +36,7 @@ function RoleModal (props) {
                         id="role" 
                         name="Radio"
                         type="radio" 
-                        value="FrontEnd"
+                        value="frontend"
                         onChange={roleChange}/>
                         FrontEnd 개발자</RoleLabelStart>
                     <RoleLabel>
@@ -44,7 +44,7 @@ function RoleModal (props) {
                         id="role"
                         name="Radio"
                         type="radio" 
-                        value="BackEnd" 
+                        value="backend" 
                         onChange={roleChange}/>
                         BackEnd 개발자</RoleLabel>
                     <RoleLabelEnd>
@@ -52,7 +52,7 @@ function RoleModal (props) {
                         id="role" 
                         name="Radio"
                         type="radio" 
-                        value="UX/UI" 
+                        value="designer"
                         onChange={roleChange}/>
                         UX/UI 디자이너</RoleLabelEnd>
                 </RadioWrap>

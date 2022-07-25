@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { useDispatch,useSelector } from "react-redux";
 import { checkUserValidation } from "../redux/modules/user";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import {SearchAxios} from "../redux/modules/search"
+import {SearchResumeAxios} from "../redux/modules/searchResume"
 
 import RoleModal from "../components/Modal/RoleModal"
 import SkillModal from "../components/Modal/SkillModal"
@@ -29,21 +29,34 @@ function NavigationBarResume() {
     const [Skillmodal, setSkillModal] = useState(false);
     const [Datemodal, setDateModal] = useState(false);
 
-    
-
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     //initialstate data 로드
     const loginInfo = useSelector((state) => state.user.userInfo.is_login); //로그인 유무
-    const skilldata = useSelector((state) => state.search.Skilltag);
-    const datedata = useSelector((state) => state.search.Datetag);
-    const roledata = useSelector((state) => state.search.Roletag)
+    const skilldata = useSelector((state) => state.searchResume);
+    const datedata = useSelector((state) => state.searchResume);
+    const roledata = useSelector((state) => state.searchResume)
+
+   
+
+    const sendRole = roledata.toString()
+    const sendSkill = skilldata.toString()
+    // const sendStart = datedata[0].toString()
+    // const sendEnd = datedata[1].toString()
 
     const searchAction = () => {
-        dispatch(SearchAxios())
+        dispatch(SearchResumeAxios(
+            sendRole,
+            sendSkill,
+            datedata[0],
+            datedata[1]
+        ))
     }
-    useEffect(() => { })
+
+    useEffect(() => {  })
+
+
     
 
     return(
@@ -53,10 +66,10 @@ function NavigationBarResume() {
                     <NaviTextAllWrap>
                         <img src={Fullastroman}></img>
                         <NaviTextWrap>
-                            <NaviTextTitle>내 프로젝트에 함께 탑승할 크루원을 구해보세요!</NaviTextTitle>
+                            <NaviTextTitle>당신의 프로젝트를 찾아보세요!</NaviTextTitle>
                             <NaviConWrap>
-                                <NaviTextContent>랑데브에는 반짝거리는 열정으로 프로젝트를 찾고 있는 크루원들이 있어요</NaviTextContent>
-                                <NaviTextContent>당신의 프로젝트를 함께 완성해 나갈 크루원을 랑데브에서 찾아보세요</NaviTextContent>
+                                <NaviTextContent>랑데브에는 다양한 아이디어의 프로젝트가 있습니다</NaviTextContent>
+                                <NaviTextContent>당신의 꿈을 향해 로켓을 발사하세요</NaviTextContent>
                             </NaviConWrap>
                         </NaviTextWrap>
                     </NaviTextAllWrap>
@@ -78,7 +91,7 @@ function NavigationBarResume() {
 
                         {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
                         <SerchLabel style={{width:"230px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
-                            <ImageWrap><img src={jobicon}/>직군선택</ImageWrap>
+                            <ImageWrap><img src={jobicon}/>{roledata.length > 0 ? roledata : '직군 검색'}</ImageWrap>
                             <img src={down} />
                         </SerchLabel>
 
@@ -101,12 +114,12 @@ function NavigationBarResume() {
                 <SearchResultABarWrap>
 
                     <InlineDevide style={{display: skilldata.length > 0 ? "" : "none" }}/>
-                    <TagWrap>
+                    {/* <TagWrap>
                     {skilldata.map((list, idx) => {
                     return <TagDevSearch key={idx} skills={list} />;
                     })
                     }
-                    </TagWrap>
+                    </TagWrap> */}
                 </SearchResultABarWrap>
         </OnlyBackgroundDiv>
         </>
@@ -174,7 +187,7 @@ const NaviWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 1200px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 `
 
 const MainNavigation = styled.div`
@@ -215,7 +228,7 @@ const SerchButton = styled.button`
     outline: none;
     font-size: 14px;
     font-weight: 700;
-    margin-left: 12px;
+    /* margin-left: 12px; */
     cursor: pointer;
 `
 
@@ -243,6 +256,7 @@ const ImageWrap = styled.div`
 const InlineDevide = styled.hr`
     width: 1200px;
     margin-bottom: 15px;
+    border: 0.5px solid #d9d9d9;
 `
 
 const SearchResultABarWrap = styled.div`
@@ -261,4 +275,7 @@ const TagWrap = styled.div`
     margin-top: 10px;
 `
 
-export default NavigationBarResume
+export default NavigationBarResume;
+
+
+

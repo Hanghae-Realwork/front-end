@@ -370,38 +370,6 @@ const FindProjectStep01 = (props) => {
               type="text"
               placeholder="프로젝트의 내용을 입력해주세요"
             />
-            {/* <PhotoUPloadWrap>
-              {filesImg ? (
-                <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
-              ) : (
-                <DisablePhotoWrap></DisablePhotoWrap>
-              )}
-              <EditWrapPhoto>
-                {filesImg ? (
-                  <PhotoText>
-                    수정하기
-                    <input
-                      name="imgUpload"
-                      type="file"
-                      id="add_img"
-                      accept="image/*"
-                      onChange={onChangeImg}
-                    />
-                  </PhotoText>
-                ) : (
-                  <PhotoText>
-                    등록하기
-                    <input
-                      name="imgUpload"
-                      type="file"
-                      id="add_img"
-                      accept="image/*"
-                      onChange={onChangeImg}
-                    />
-                  </PhotoText>
-                )}
-              </EditWrapPhoto>
-            </PhotoUPloadWrap> */}
           </ReMainConWrap>
         </InputMainTextWrap>
         <InputMainTextWrap>
@@ -1112,3 +1080,39 @@ const CalendarInfoWrap = styled.div`
 `;
 
 export default FindProjectStep01;
+
+
+
+
+// {/* <PhotoUPloadWrap>
+//               {filesImg ? (
+//                 <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
+//               ) : (
+//                 <DisablePhotoWrap></DisablePhotoWrap>
+//               )}
+//               <EditWrapPhoto>
+//                 {filesImg ? (
+//                   <PhotoText>
+//                     수정하기
+//                     <input
+//                       name="imgUpload"
+//                       type="file"
+//                       id="add_img"
+//                       accept="image/*"
+//                       onChange={onChangeImg}
+//                     />
+//                   </PhotoText>
+//                 ) : (
+//                   <PhotoText>
+//                     등록하기
+//                     <input
+//                       name="imgUpload"
+//                       type="file"
+//                       id="add_img"
+//                       accept="image/*"
+//                       onChange={onChangeImg}
+//                     />
+//                   </PhotoText>
+//                 )}
+//               </EditWrapPhoto>
+//             </PhotoUPloadWrap> */}

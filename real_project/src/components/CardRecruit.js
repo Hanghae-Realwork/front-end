@@ -138,8 +138,10 @@ const CardWriteTime = styled.span`
 
 const CardTitleInfo = styled.div`
   /* border: 1px solid black; */
+  height: 30px;
   width: 344px;
   margin: 10px 0px 12px 0px;
+  overflow: hidden;
 `;
 
 const CardTitleText = styled.span`

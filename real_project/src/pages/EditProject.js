@@ -683,7 +683,7 @@ const TimeWrap = styled.div`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   width: 281px;
-  height: 320px;
+  height: 350px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -712,7 +712,7 @@ const CalenderWrap = styled.div`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   width: 350px;
-  height: 320px;
+  height: 350px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -842,7 +842,7 @@ const CalendarWrap = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
   width: 625px;
-  height: 330px;
+  height: 350px;
   display: flex;
   justify-content: center;
   align-items: flex-start;

@@ -17,6 +17,7 @@ import MiniResume from "../components/MiniProfile";
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
 import down from "../image/down.svg"
+import delIcon from "../image/tagclose.svg"
 
 
 
@@ -33,7 +34,10 @@ function ReadProject() {
   const [day, setDay] = useState(new Date().getDate());
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
   const [Arcodian, setArcodian] = useState(false);
+
+  const [newSchedule, setNewSchedule] = useState(''); 
 
   const singleCalenderOnChange = (date) => {
     setYear(String(date.getFullYear()).padStart(2, "0"));
@@ -121,8 +125,29 @@ function ReadProject() {
 
         <DateWrap>
           <ViewDateWrap>
-            <RoleTitle>필요한 스킬 및 스텍</RoleTitle>
-            <CalenderWrap>
+            <RoleTitle>면접 일정 보기</RoleTitle>
+
+            <InputMainTextWrap>
+              <EditDateWrap>
+                {newSchedule && newSchedule.map((list, idx) => {
+                  return (
+                    <EditLabel key={idx} color={list.available}>
+                      {list.schedule.slice(0, 16)}
+                      {/* {list.available ? (
+                        <CloseBtn src={delIcon} onClick={() => {
+                            const new_post = newSchedule && newSchedule.filter((l, index) => {return idx !== index;});
+                            setNewSchedule(new_post);
+                          }}/>
+                      ) : (
+                        "프로젝트 면접 일정이 없습니다"
+                      )} */}
+                    </EditLabel>
+                  );
+                })}
+              </EditDateWrap>
+            </InputMainTextWrap>
+
+            {/* <CalenderWrap>
               <DatePicker
                   selected={singleDate}
                   startDate={startDate}
@@ -132,7 +157,7 @@ function ReadProject() {
                   monthsShown={1}
                   inline
                 />
-            </CalenderWrap>
+            </CalenderWrap> */}
           </ViewDateWrap>
         </DateWrap>
 
@@ -429,7 +454,6 @@ const CalenderWrap = styled.div`
 const ViewDateWrap = styled.div`
   /* border: 1px solid black; */
   width: 1200px;
-  height: 450px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -469,5 +493,45 @@ const ArcodianText = styled.span`
   font-size: 18px;
   font-weight: 700;
 `
+
+const InputMainTextWrap = styled.div`
+  /* border: 1px solid black; */
+  margin: 40px 0px 16px 30px;
+  width: 1100px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const EditDateWrap = styled.div`
+  /* border: 1px solid; */
+  width: 1100px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 25px;
+`
+
+const EditLabel = styled.label`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 16px;
+  width: 170px;
+  font-weight: 400;
+  border: 0.5px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 10px 12px 10px 12px;
+
+  background-color: ${(props) => (props.color ? "white" : "orange")};
+`;
+
+const CloseBtn = styled.img`
+  width: 6%;
+`
+
 
 export default ReadProject;
