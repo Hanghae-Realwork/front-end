@@ -1,6 +1,7 @@
 import axios from "axios";
 
 
+
 //이미지 데이터
 const imgApi = axios.create({
   baseURL: "https://sprata-owl.shop/",
@@ -332,11 +333,24 @@ export const apis = {
   // 32. 프로젝트 검색
   searchProject: (role, skill, start, end) =>
     api.get("/api/search/project", {
-      params: { role: role, skill: skill, start: start, end: end },
+      params: { 
+        role: role, 
+        skill: skill, 
+        start: start, 
+        end: end 
+      },
     }),
 
   // 33. 리쥬메 검색
-  searchResume: () => api.get("/api/search/resume"),
+  searchResume: (role, skill, start, end) => 
+    api.get("/api/search/resume", {
+      params: { 
+        role: role, 
+        skill: skill, 
+        start: start, 
+        end: end 
+      },
+    }),
 
   // 34. 매칭 기능
 
