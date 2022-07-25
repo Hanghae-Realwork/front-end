@@ -157,7 +157,7 @@ export const editRecruitAxios = (
       schedule
     )
       .then((res) => {
-      console.log(res)
+  
       dispatch(
         editRecruit({
           projectId:projectId,
@@ -186,7 +186,7 @@ export const deleteRecruitAxios = (projectId) => {
       .projectsDelete(projectId)
       .then((response) => {
   
-        dispatch()
+        dispatch(deleteRecruit())
       })
       .catch((err) => {
         console.log(err);
@@ -195,71 +195,38 @@ export const deleteRecruitAxios = (projectId) => {
 };
 
 
-
-//예약 미들웨어
-// export const appointmentRecruitAxios = (
-//   projectId, 
-//   applicationId
-//   ) => {
-//     return async function(dispatch) {
-//     await apis
-//     .appointmentProject(
-//       projectId, 
-//       applicationId
-//     )
-//     .then((res) => {
-//       dispatch(
-//         appointRecruit({
-//           projectId: projectId,
-//           applicationId: applicationId
-//         })
-//       );
-//     });
-//   };
-// }
-
-
-
  
 //리듀서
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case 'recruit/LOAD': {
+    case "recruit/LOAD": {
       return {
         receiveRecruit: action.payload,
         project: state.recruit,
       };
     }
-
-    case 'recruit/DETAIL':{
-      const projects = [action.payload]
-  
-      return { 
-        receiveRecruit: action.state, 
-        project: projects}
-    }
-
-    case 'recruit/CREATE': {
+    case "recruit/CREATE": {
       const writeProject = [action.payload, ...state.receiveRecruit];
       return {
         reciveRecruit: writeProject,
         project: state.recruit,
       };
     }
-
-    case 'recruit/EDIT': {  
+    case "recruit/DETAIL": {
+     
+      const projects = [action.payload];
+      return {
+        receiveRecruit: action.state,
+        project: projects,
+      };
+    }
+    case "recruit/EDIT": {
+      console.log(action.payload);
       return {
         reciveRecruit: state.receiveRecruit,
         project: action.payload,
       };
     }
-
-    // case 'recruit/APPOINT': {
-    //   return{
-    //     reciveRecruit: state.receiveRecruit,
-    //     recruit: action.payload,
-    //   }
-    // }
 
     default:
       return state;

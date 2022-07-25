@@ -9,10 +9,9 @@ import TagDev from "../components/Tag/TagCompoDev"
 import letter from "../image/letter.svg"
 
 import resumeback from "../image/resumeBackground.svg"
-import flip from "../image/flip.svg"
+
 import down from "../image/down.svg"
 import astroman from "../image/astroman.svg";
-import MiniResume from "../components/MiniProfile";
 import MiniProject from "../components/MiniProject";
 
 
@@ -139,13 +138,27 @@ function EmploymentProfile() {
               {loginInfoName === data[0]?.userId ? (
               <BotWrap>
                 <FixedBtn
-                  onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
+                onClick={() =>
+                
+                {
+                  if (window.confirm("수정하러 가볼까요?🥸")) {
+                    navigate("/editprofile/" + `${data[0].resumeId}`);
+                  } else { 
+                    return false;
+                  }
+                  
+                }}>
                   수정하기
                 </FixedBtn>
-
                 <DelBtn
-                  onClick={() => {dispatch(deleteEmployAxios(resumeId));
-                    alert("❗️ 정말 삭제하시는 겁니까?"); navigate("/mainemployment");}}>
+                onClick={() => {
+                  if (window.confirm("❗️정말 삭제하시는 건가요?")) {
+                     dispatch(deleteEmployAxios(resumeId));
+                     navigate("/mainemployment");
+                  } else {
+                    return false;
+                  }
+                 }}>
                   삭제하기
                 </DelBtn>
               </BotWrap>

@@ -44,8 +44,6 @@ function NavigationBarProject() {
     const sendSkill = skilldata.toString()
     // const sendStart = datedata[0].toString()
     // const sendEnd = datedata[1].toString()
-    console.log(sendSkill)
-    console.log(datedata[0])
 
     const searchAction = () => {
         dispatch(SearchAxios(

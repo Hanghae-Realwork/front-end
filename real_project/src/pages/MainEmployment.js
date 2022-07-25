@@ -15,7 +15,7 @@ const MainEmployment = () => {
 
   useEffect(() => {
     dispatch(loadEmployAxios());
-  }, []);
+  }, [loadEmployAxios]);
 
   //수정중
   return (
