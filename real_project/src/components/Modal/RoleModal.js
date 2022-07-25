@@ -4,65 +4,68 @@ import styled from "styled-components"
 import {loadrole} from "../../redux/modules/search"
 
 
-function RoleModal (props) {
+function RoleModal(props) {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  const [role, setRole] = useState("");
+  console.log(role);
 
+  const roleChange = (e) => {
+      setRole(e.target.value);
+   
+  };
 
-    const [role, setRole] = useState("");
-    console.log(role)
-
-
-    const roleChange = (e) => {
-        setRole(e.target.value);
-      };
-
-    const CloseModal = () => {
+  const CloseModal = () => {
     props.close(false);
-    };  
+  };
 
-    const Addrole = () => {
-        dispatch(loadrole(role))
-        CloseModal()
-    }  
+  const Addrole = () => {
+    dispatch(loadrole(role));
+    CloseModal();
+  };
 
-
-    return(
-        <RelativeWrap>
-            <RoleWrap>
-                <RadioWrap>
-                    <RoleLabelStart>
-                        <RoleInput
-                        id="role" 
-                        name="Radio"
-                        type="radio" 
-                        value="frontend"
-                        onChange={roleChange}/>
-                        FrontEnd 개발자</RoleLabelStart>
-                    <RoleLabel>
-                        <RoleInput 
-                        id="role"
-                        name="Radio"
-                        type="radio" 
-                        value="backend" 
-                        onChange={roleChange}/>
-                        BackEnd 개발자</RoleLabel>
-                    <RoleLabelEnd>
-                        <RoleInput
-                        id="role" 
-                        name="Radio"
-                        type="radio" 
-                        value="designer"
-                        onChange={roleChange}/>
-                        UX/UI 디자이너</RoleLabelEnd>
-                </RadioWrap>
-                    <DivideLine/>
-                    <ButtonWrap>
-                         <SubmitButton onClick={Addrole}>선택 완료</SubmitButton>
-                    </ButtonWrap>
-            </RoleWrap>
-        </RelativeWrap>
-    )
+  return (
+    <RelativeWrap>
+      <RoleWrap>
+        <RadioWrap>
+          <RoleLabelStart>
+            <RoleInput
+              id="role"
+              name="Radio"
+              type="radio"
+              value="frontend"
+              onChange={roleChange}
+            />
+            FrontEnd 개발자
+          </RoleLabelStart>
+          <RoleLabel>
+            <RoleInput
+              id="role"
+              name="Radio"
+              type="radio"
+              value="backend"
+              onChange={roleChange}
+            />
+            BackEnd 개발자
+          </RoleLabel>
+          <RoleLabelEnd>
+            <RoleInput
+              id="role"
+              name="Radio"
+              type="radio"
+              value="designer"
+              onChange={roleChange}
+            />
+            UX/UI 디자이너
+          </RoleLabelEnd>
+        </RadioWrap>
+        <DivideLine />
+        <ButtonWrap>
+          <SubmitButton onClick={Addrole}>선택 완료</SubmitButton>
+        </ButtonWrap>
+      </RoleWrap>
+    </RelativeWrap>
+  );
 }
 
 

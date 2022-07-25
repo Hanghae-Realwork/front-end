@@ -38,7 +38,7 @@ function NavigationBarProject() {
     const datedata = useSelector((state) => state.search.Datetag);
     const roledata = useSelector((state) => state.search.Roletag)
 
-   
+
 
     const sendRole = roledata.toString()
     const sendSkill = skilldata.toString()
@@ -59,71 +59,111 @@ function NavigationBarProject() {
     
     
 
-    return(
-        <>
+    return (
+      <>
         <OnlyBackgroundDiv>
-                <MainNavigationWrap>
-                    <NaviTextAllWrap>
-                        <img src={telescope}></img>
-                        <NaviTextWrap>
-                            <NaviTextTitle>당신의 프로젝트를 찾아보세요!</NaviTextTitle>
-                            <NaviConWrap>
-                                <NaviTextContent>랑데브에는 다양한 아이디어의 프로젝트가 있습니다</NaviTextContent>
-                                <NaviTextContent>당신의 꿈을 향해 로켓을 발사하세요</NaviTextContent>
-                            </NaviConWrap>
-                        </NaviTextWrap>
-                    </NaviTextAllWrap>
+          <MainNavigationWrap>
+            <NaviTextAllWrap>
+              <img src={telescope}></img>
+              <NaviTextWrap>
+                <NaviTextTitle>당신의 프로젝트를 찾아보세요!</NaviTextTitle>
+                <NaviConWrap>
+                  <NaviTextContent>
+                    랑데브에는 다양한 아이디어의 프로젝트가 있습니다
+                  </NaviTextContent>
+                  <NaviTextContent>
+                    당신의 꿈을 향해 로켓을 발사하세요
+                  </NaviTextContent>
+                </NaviConWrap>
+              </NaviTextWrap>
+            </NaviTextAllWrap>
 
-                    <WriteButton onClick={() => {
-                        if (loginInfo === false) {
-                                alert("로그인을 해주세요!");
-                            return false
-                        } if (loginInfo === true) {
-                            dispatch(checkUserValidation())
-                            navigate(`/findprojectstep1`);}
-                        }}><img src={paper}/>프로젝트 등록 
-                    </WriteButton>
+            <WriteButton
+              onClick={() => {
+                if (loginInfo === false) {
+                  alert("로그인을 해주세요!");
+                  return false;
+                }
+                if (loginInfo === true) {
+                  dispatch(checkUserValidation());
+                  navigate(`/findprojectstep1`);
+                }
+              }}
+            >
+              <img src={paper} />
+              프로젝트 등록
+            </WriteButton>
+          </MainNavigationWrap>
 
-                </MainNavigationWrap>
+          <NaviWrap>
+            <MainNavigation>
+              {Rolemodal === true ? (
+                <RoleModal
+                 
+                  close={setRoleModal}
+                />
+              ) : null}
+              <SerchLabel
+                style={{ width: "230px" }}
+                onClick={() => {
+                  setRoleModal(!Rolemodal);
+                }}
+              >
+                <ImageWrap>
+                  <img src={jobicon} />
+                  {roledata.length > 0 ? roledata : "직군 검색"}
+                </ImageWrap>
+                <img src={down} />
+              </SerchLabel>
 
-                <NaviWrap>
-                    <MainNavigation>
+              {Skillmodal === true ? (
+                <SkillModal close={setSkillModal} />
+              ) : null}
+              <SerchLabel
+                style={{ width: "350px" }}
+                onClick={() => {
+                  setSkillModal(!Skillmodal);
+                }}
+              >
+                <ImageWrap>
+                  <img src={pencil} />
+                  구하는 기술
+                </ImageWrap>
+                <img src={down} />
+              </SerchLabel>
 
-                        {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
-                        <SerchLabel style={{width:"230px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
-                            <ImageWrap><img src={jobicon}/>{roledata.length > 0 ? roledata : '직군 검색'}</ImageWrap>
-                            <img src={down} />
-                        </SerchLabel>
+              {Datemodal === true ? <DateModal close={setDateModal} /> : null}
+              <SerchLabel
+                style={{ width: "455px", borderRight: "none" }}
+                onClick={() => {
+                  setDateModal(!Datemodal);
+                }}
+              >
+                <ImageWrap>
+                  <img src={calender} />
+                  {datedata.length > 0
+                    ? datedata[0] + "  " + "~" + "  " + datedata[1]
+                    : "프로젝트 기간 검색"}
+                </ImageWrap>
+                <img src={down} />
+              </SerchLabel>
+            </MainNavigation>
+            <SerchButton onClick={searchAction}>검색</SerchButton>
+          </NaviWrap>
 
-                        {Skillmodal === true ? <SkillModal close={setSkillModal} /> : null}
-                        <SerchLabel style={{width:"350px"}} onClick={() => {setSkillModal(!Skillmodal)}}>
-                            <ImageWrap><img src={pencil}/>구하는 기술</ImageWrap>
-                            <img src={down}/>
-                        </SerchLabel>
-
-                        {Datemodal === true ? <DateModal close={setDateModal} /> : null}
-                        <SerchLabel style={{width:"455px", borderRight:"none"}} onClick={() => {setDateModal(!Datemodal)}}>
-                            <ImageWrap><img src={calender}/>{datedata.length > 0 ? datedata[0] +' \ '+ '~' + ' \ ' + datedata[1] : "프로젝트 기간 검색"}</ImageWrap>
-                            <img src={down}/>
-                        </SerchLabel>
-                        
-                    </MainNavigation>
-                    <SerchButton onClick={searchAction}>검색</SerchButton>
-                </NaviWrap>
-
-                <SearchResultABarWrap>
-
-                    <InlineDevide style={{display: skilldata.length > 0 ? "" : "none" }}/>
-                    <TagWrap>
-                    {skilldata.map((list, idx) => {
-                    return <TagDevSearch key={idx} skills={list} />;
-                    })
-                    }
-                    </TagWrap>
-                </SearchResultABarWrap>
+          <SearchResultABarWrap>
+            <InlineDevide
+              style={{ display: skilldata.length > 0 ? "" : "none" }}
+            />
+            <TagWrap>
+              {skilldata.map((list, idx) => {
+                return <TagDevSearch key={idx} skills={list} />;
+              })}
+            </TagWrap>
+          </SearchResultABarWrap>
         </OnlyBackgroundDiv>
-        </>
-    )
+      </>
+    );
 }
 
 
