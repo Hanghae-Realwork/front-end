@@ -12,6 +12,8 @@ import NavigationBarResume from "../components/NaviBarResume";
 const MainEmployment = () => {
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.postEmploy.returnResumes);
+  const ResumeResult = useSelector((state) => state.search.SearchResume);
+  console.log(ResumeResult)
 
   useEffect(() => {
     dispatch(loadEmployAxios());
@@ -22,11 +24,16 @@ const MainEmployment = () => {
     <>
       <NavigationBarResume />
         <CardBackGround className="MainBack">
-          <CardContainerWrap>
+          <CardContainerWrap style={{display: ResumeResult.length === 0 ? "" : "none"}}>
             {resumes === undefined ? null : resumes.map((list, idx) => {
               return <CardEmpol key={idx} data={list} />;
                 })}
-        </CardContainerWrap>
+          </CardContainerWrap>
+          <CardContainerWrap style={{display: ResumeResult.length === 0 ? "none" : ""}}>
+            {resumes === undefined ? null : ResumeResult.map((list, idx) => {
+              return <CardEmpol key={idx} data={list} />;
+                })}
+          </CardContainerWrap>
       </CardBackGround>
     </>
   );
