@@ -783,6 +783,7 @@ const SelectMonth = styled.select`
   -moz-appearance: none;
   appearance: none;
   color: white;
+  font-size: 13px;
 `
 
 const BirthWrap = styled.div`

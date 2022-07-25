@@ -9,7 +9,7 @@ import postEmploy from "./modules/postEmploy";
 import postProfile from "./modules/postProfile";
 import search from "./modules/search"
 import interview from "./modules/interview"
-import searchResume from "./modules/searchResume"
+
 
 const rootReducer = combineReducers({
   user,
@@ -17,7 +17,6 @@ const rootReducer = combineReducers({
   postEmploy,
   postProfile,
   search,
-  searchResume,
   interview
 });
 
