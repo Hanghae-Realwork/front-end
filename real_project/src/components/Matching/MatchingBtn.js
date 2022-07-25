@@ -145,6 +145,7 @@ const SecondBtnDivWrap = styled.div`
 
 const PositionWrap = styled.div`
     position: relative;
+    /* border: 1px solid white; */
 `
 
 

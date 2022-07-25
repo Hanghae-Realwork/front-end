@@ -1,6 +1,5 @@
-import React, {useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import React, {useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loadRecruitAxios } from "../redux/modules/postRecruit";
 import "../App.css"
@@ -15,17 +14,27 @@ const MainRecruit = () => {
 
   const dispatch = useDispatch();
   const recruit = useSelector((state) => state.postRecruit.receiveRecruit);
+  const SearchResult = useSelector((state) => state.search.SearchResult);
+  console.log(SearchResult)
 
+  
   useEffect(() => {
     dispatch(loadRecruitAxios());
   }, []);
+
+
 
   return (
       <>
         <NavigationBarProject />
         <CardBackGround className="MainBack">
-          <CardContainerWrap>
+          <CardContainerWrap style={{display: SearchResult.length === 0 ? "" : "none"}}>
             {recruit === undefined ? null : recruit.map((list, idx) => {
+              return <Card key={idx} data={list} />;
+                })}
+          </CardContainerWrap>
+          <CardContainerWrap style={{display: SearchResult.length === 0 ? "none" : ""}}>
+            {recruit === undefined ? null : SearchResult.map((list, idx) => {
               return <Card key={idx} data={list} />;
                 })}
           </CardContainerWrap>

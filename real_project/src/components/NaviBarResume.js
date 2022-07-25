@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { useDispatch,useSelector } from "react-redux";
 import { checkUserValidation } from "../redux/modules/user";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import {SearchResumeAxios} from "../redux/modules/searchResume"
+import {SearchResumeAxios} from "../redux/modules/search"
 
 import RoleModal from "../components/Modal/RoleModal"
 import SkillModal from "../components/Modal/SkillModal"
@@ -34,9 +34,9 @@ function NavigationBarResume() {
 
     //initialstate data 로드
     const loginInfo = useSelector((state) => state.user.userInfo.is_login); //로그인 유무
-    const skilldata = useSelector((state) => state.searchResume);
-    const datedata = useSelector((state) => state.searchResume);
-    const roledata = useSelector((state) => state.searchResume)
+    const skilldata = useSelector((state) => state.search.Skilltag);
+    const datedata = useSelector((state) => state.search.Datetag);
+    const roledata = useSelector((state) => state.search.Roletag)
 
 
     
@@ -114,12 +114,12 @@ function NavigationBarResume() {
                 <SearchResultABarWrap>
 
                     <InlineDevide style={{display: skilldata.length > 0 ? "" : "none" }}/>
-                    {/* <TagWrap>
+                    <TagWrap>
                     {skilldata.map((list, idx) => {
                     return <TagDevSearch key={idx} skills={list} />;
                     })
                     }
-                    </TagWrap> */}
+                    </TagWrap>
                 </SearchResultABarWrap>
         </OnlyBackgroundDiv>
         </>

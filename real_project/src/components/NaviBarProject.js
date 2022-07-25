@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { useDispatch,useSelector } from "react-redux";
 import { checkUserValidation } from "../redux/modules/user";
 import { dvelopSkills_list, designerSkills_list} from "../shared/developeSkills";
-import {SearchAxios} from "../redux/modules/search"
+import {SearchAxios, loadResultAxios} from "../redux/modules/search"
 
 import RoleModal from "../components/Modal/RoleModal"
 import SkillModal from "../components/Modal/SkillModal"
@@ -52,6 +52,7 @@ function NavigationBarProject() {
             datedata[0],
             datedata[1]
         ))
+        // dispatch(loadResultAxios())
     }
 
     useEffect(() => {  })
