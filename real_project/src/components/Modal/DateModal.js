@@ -130,7 +130,7 @@ const DatePickerWrapper = styled(
     const CalendarWrap =styled.div`
       /* border: 0.5px solid black; */
       border-radius: 4px;
-      width: 625px;
+      width: 630px;
       height: 330px;
       display: flex;
       justify-content: center;

@@ -128,7 +128,7 @@ export default function reducer(state = initialState, action = {}) {
         return action.payload
       })
       return {
-        Skilltag: deleteTag,
+        Skilltag: [...state.Skilltag, deleteTag],
         Roletag: state.Roletag,
         Datetag: state.Datetag,
       };

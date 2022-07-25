@@ -160,6 +160,9 @@ const TecMiniWrap = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 344px;
+    height: 35px;
+    gap: 4px;
+    overflow: scroll;
 `
 
 

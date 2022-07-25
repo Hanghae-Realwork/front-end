@@ -12,6 +12,7 @@ import TagDes from "./Tag/TagCompoDes"
 // 팀원찾기 -> 상세조회 -> 내 프로젝트 목록 조회
 function MiniProject({data}) {
 
+
     
   return (
       <>{data && data.map((list,idx) => {
