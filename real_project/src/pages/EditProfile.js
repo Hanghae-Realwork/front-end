@@ -14,8 +14,6 @@ import { dvelopSkills_list, designerSkills_list } from "../shared/developeSkills
 import Letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
 
-
-
 function EditProfile() {
   
   const navigate = useNavigate();
@@ -101,32 +99,51 @@ function EditProfile() {
   };
 
   //버튼 누르면 저장
-  const handleClick = async () => {
-   
-    frm.append("resumeImage", files[0]);
-    try {
-        await dispatch(projectsPhotosAxios(frm)).then((success) => {
-            console.log(success)
-            
-        dispatch(
-            modifyEmployAxios(
-            resumeId,
-            introduceRef.current.value,
-            success,
-            start,
-            end,
-            role,
-            checkList,
-            content2Ref.current.value,
-            content3Ref.current.value
-          )
-        );
-      });
-        
-      navigate("/mainemployment");
-    } catch (err) {
-      console.log(err);
-    }
+  const handleClick = () => {
+    if (
+      resumeId === "" ||
+      introduceRef.current.value === "" ||
+      start === "" ||
+      end === "" ||
+      role === "" ||
+      checkList === "" ||
+      content2Ref.current.value === "" ||
+      content3Ref.current.value === "" ||
+      resumeId === " " ||
+      introduceRef.current.value === " " ||
+      start === " " ||
+      end === " " ||
+      role === " " ||
+      checkList === " " ||
+      content2Ref.current.value === " " ||
+      content3Ref.current.value === " " ||
+      resumeId === null ||
+      introduceRef.current.value === null ||
+      start === null ||
+      end === null ||
+      role === null ||
+      checkList === null ||
+      content2Ref.current.value === null ||
+      content3Ref.current.value === null) { 
+      alert("아직 다 작성하지 않았어요!🥸");
+      }
+      dispatch(
+        modifyEmployAxios(
+          resumeId,
+          introduceRef.current.value,
+          null,
+          start,
+          end,
+          role,
+          checkList,
+          content2Ref.current.value,
+          content3Ref.current.value
+        )
+      ).then(() => {
+        navigate("/mainemployment");
+      }).catch((err) => {
+        alert("페이지 오류입니다.")
+      })
   };
     
   
