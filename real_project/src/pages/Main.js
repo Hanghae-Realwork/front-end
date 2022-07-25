@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import "../App.css"
 
 import Sample from "../image/mainSample.svg"
 import Space from "../image/space.svg"
+import banner from "../image/banner_com_edit.svg"
+import spacebackground from "../image/editspace.svg"
+import emptyspace from "../image/justspace.svg"
+import cloud from "../image/spacecloud.svg"
+import shuttle from "../image/editshuttle.svg"
+import planet from "../image/rotationplanet.svg"
 
 
 
@@ -23,12 +30,17 @@ function Main () {
                             <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>크루원 구하러 가기</PageButton2>
                         </MainButtonWrap>
                     </MaininTitleTopWrap>
+                            <Planet src={planet} className="AnimationPlanet"/>
+                    <MainBackgroundWrap>
+                        <Shuttle src={shuttle} className="AnimationShuttle"></Shuttle>
+                        <CloudImg src={cloud} className="AnimationCloud"/>
+                    </MainBackgroundWrap>
                 </MainAllWrap>
             </BackGroundDiv>
 
             <BackgroundBot>
                 <MainTextTitle>
-                    <CircleMainIcon>
+                    <CircleMainIcon> 
                         <CircleImage />
                     </CircleMainIcon>
                     <ContentSpan>저 멀리 시대에 뒤쳐진 은하계 서쪽 소용돌이의 끝, 
@@ -54,17 +66,52 @@ const BackGroundDiv = styled.div`
 `
 
 const MainAllWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 100%;
-  max-width: 1440px;
+  /* border: 1px solid white; */
+  width: 1440px;
   height: 602px;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-  background-image: url(${Sample});
-  /* margin: 0px 0px 0px 110px ; */
+  justify-content: space-between;
+  align-items: flex-start;
+  background-image: url(${emptyspace});
+  /* background-image: url(${spacebackground}); */
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
 `;
+
+const MainBackgroundWrap = styled.div`
+    /* border: 1px solid white; */
+    width: 815px;
+    height: 600px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    right: -625px;
+`
+
+const CloudImg = styled.img`
+    height: 610px;
+    z-index: 2;
+`
+
+const Shuttle = styled.img`
+    width: 300px;
+    z-index: 3;
+`
+
+const Planet = styled.img`
+    width: 365px;
+    position: absolute;
+    top: 350px;
+    right: 500px;
+`
+
 
 const MaininTitleTopWrap = styled.div`
   /* border: 1px solid black; */
@@ -75,7 +122,7 @@ const MaininTitleTopWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-
+  position: absolute;
 `;
 
 const TitleMain = styled.span`

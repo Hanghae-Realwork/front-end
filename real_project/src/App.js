@@ -20,6 +20,7 @@ import EditProfile from "./pages/EditProfile";
 import AddProfile from "./pages/AddProfile";
 
 import MatchingCrew from "./pages/MatchingCrew";
+import MatchingResume from "./pages/MatchingResume";
 
 // import Loading from "./pages/Loading";
 
@@ -55,12 +56,14 @@ function App() {
 
   return (
     <MainWrap>
+
       <Header />
 
       {/* <MiniResume></MiniResume>
       <Miniproject></Miniproject> */}
 
       <Routes>
+
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
         <Route path="/login" element={<Login />} />
@@ -71,12 +74,11 @@ function App() {
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
         <Route path="/mypage" element={<MyPage />}></Route>
         <Route path="/findprojectstep1" element={<AddProject />}></Route>
-        <Route
-          path="/findprojectstep2/:projectId"
-          element={<EditProject />}
-        ></Route>
+        <Route path="/findprojectstep2/:projectId" element={<EditProject />}></Route>
         <Route path="/readproject/:projectId" element={<ReadProject />}></Route>
         <Route path="/matchingcrew" element={<MatchingCrew />}></Route>
+        <Route path="/matchingresume" element={<MatchingResume />}></Route>
+
         <Route path="/rolemodal" element={<RoleModal />}></Route>
         <Route path="/skillmodal" element={<SkillModal />}></Route>
         <Route path="/datemodal" element={<DateModal />}></Route>
@@ -88,6 +90,7 @@ function App() {
           <Route path="applys" element={<Recruitment />}></Route>
           <Route path="resumes" element={<Resumes />}></Route>
         </Route>
+
       </Routes>
     </MainWrap>
   );
@@ -103,12 +106,5 @@ const MainWrap = styled.div`
   width: 100%;
 `;
 
-const MainHeader = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 80px;
-`;
 
 export default App;

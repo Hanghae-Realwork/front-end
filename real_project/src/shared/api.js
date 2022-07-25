@@ -331,7 +331,7 @@ export const apis = {
 
   // 32. 프로젝트 검색
   searchProject: (role, skill, start, end) =>
-    api.get("/api/search/project?role=role&skill=skill&start=start&end=end", {
+    api.get("/api/search/project", {
       params: { role: role, skill: skill, start: start, end: end },
     }),
 
@@ -339,13 +339,17 @@ export const apis = {
   searchResume: () => api.get("/api/search/resume"),
 
   // 34. 매칭 기능
+  
   ///////////////////////
   ////// 4. 면접예약//////
   //////////////////////
+
   //프로젝트에 면접 예약
   //지원서의 지원서 목록 조회
   applicationsResumes: () => api.get("/api/applications/resumes"),
 
   //23. 지원서에 면접 제안시 내 프로젝트 목록 조회
   proposalsProjects: () => api.get("/api/proposals/projects"),
+
+  
 };

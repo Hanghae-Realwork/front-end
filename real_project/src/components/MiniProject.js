@@ -13,6 +13,14 @@ import TagDes from "./Tag/TagCompoDes"
 function MiniProject({data}) {
 
 
+
+ 
+    
+    useEffect(() => {
+        dispatch(loadResumesAxios())
+    }, [])
+  
+    
   return (
       <>{data && data.map((list,idx) => {
         return (

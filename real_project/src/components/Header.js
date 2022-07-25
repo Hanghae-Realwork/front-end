@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,6 @@ function Header() {
   const [prevClick, setPrevClick] = useState(null);
 
   const [button, setButton] = useState([false, false, false])
-  
 
   React.useEffect(() => {
     if (loginInfo === false) {dispatch(checkUserValidation());}},[loginInfo]);
@@ -37,24 +36,36 @@ function Header() {
   }
 
 
-  const PushClick = (e) => {
+  const MoveProject = (e) => {
+      navigate(`/mainrecruit`)
       setCurrentClick(e.target.id);
-      
   };
 
-  React.useEffect(
+  const MoveResume = (e) => {
+    navigate(`/mainemployment`)
+    setCurrentClick(e.target.id);
+  };
+
+  const MoveMatching = (e) => {
+    navigate(`/matchingcrew`)
+    setCurrentClick(e.target.id);
+  };
+
+  const MoveCallChat = (e) => {
+    window.open(`https://rendev.click/`)
+    setCurrentClick(e.target.id);
+  };
+
+
+  useEffect(
       (e) => {
       if (currentClick !== null) {
           let current = document.getElementById(currentClick);
-          current.style.color = "black";
-          current.style.border = "none";
-          current.style.backgroundColor = "white";
+          current.style.backgroundColor = "#303032";
       }
       if (prevClick !== null) {
           let prev = document.getElementById(prevClick);
-          prev.style.color = "#bebcbc";
-          prev.style.border = "1px solid black"
-          prev.style.backgroundColor = "#F3F3F3";
+          prev.style.backgroundColor = "transparent";
       }
       setPrevClick(currentClick);
       },
@@ -73,34 +84,12 @@ function Header() {
               }}
             ></LogoWrap>
             <HeaderLeftWrap>
-              <FindProject
-                onClick={() => {
-                  navigate(`/mainrecruit`);
-                }}
-              >
-                프로젝트 찾기
-              </FindProject>
-              <FindProject
-                onClick={() => {
-                  navigate(`/mainemployment`);
-                }}
-              >
-                팀원 찾기
-              </FindProject>
-              <FindMatching
-                onClick={() => {
-                  navigate(`/matchingcrew`);
-                }}
-              >
-                프로젝트 매칭
-              </FindMatching>
-              <FindProject
-                onClick={() => {
-                  window.open(`https://rendev.click/`);
-                }}
-              >
-                화상채팅(임시)
-              </FindProject>
+
+              <FindProject onClick={MoveProject} id="btn1">프로젝트 찾기</FindProject>
+              <FindProject onClick={MoveResume} id="btn2">팀원 찾기</FindProject>
+              <FindMatching onClick={MoveMatching} id="btn3">프로젝트 매칭</FindMatching>
+              <FindProject onClick={MoveCallChat} id="btn4">화상채팅(임시)</FindProject>
+
             </HeaderLeftWrap>
           </HeaderAlignWrap>
           <HeaderRightWrap>
@@ -162,6 +151,7 @@ const LogoWrap = styled.div`
     height: 48px;
     font-weight: 700;
     font-size: 32px;
+    margin-bottom: 5px;
     /* margin: 26px 0px 26px 0px; */
     cursor: pointer;
     display: flex;
@@ -200,18 +190,17 @@ const HeaderLeftWrap = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     /* width: 108vh; */
     gap: 20px;
     margin-left: 80px;
 `
 
-const FindProject = styled.label`
-    /* border: 1px solid white; */
+const FindProject = styled.button`
     outline: none;
+    border: none;
     cursor: pointer;
     background-color: transparent;
-    /* margin: 10px; */
     font-size: 16px;
     color: #FFF;
     font-weight: 500;
@@ -219,12 +208,14 @@ const FindProject = styled.label`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+
+    border-radius: 2px;
 `
 
-const FindMatching = styled.label`
+const FindMatching = styled.button`
     /* border: 1px solid white; */
     outline: none;
+    border: none;
     cursor: pointer;
     background-color: transparent;
     /* margin: 10px; */
@@ -235,7 +226,7 @@ const FindMatching = styled.label`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+
 `
 
 const HeaderRightWrap = styled.div`

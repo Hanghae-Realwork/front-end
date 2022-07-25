@@ -45,6 +45,7 @@ function NavigationBarProject() {
     // const sendStart = datedata[0].toString()
     // const sendEnd = datedata[1].toString()
     console.log(sendSkill)
+    console.log(datedata[0])
 
     const searchAction = () => {
         dispatch(SearchAxios(
@@ -57,18 +58,7 @@ function NavigationBarProject() {
 
     useEffect(() => {  })
 
-    const Language = [
-        // '구워어어어어어어얽', 
-        // '라아아아아아아아앙데에브으으으으',
-        // '훌쩍훌쩍 프로젝트', 
-        // '당신의 프로젝트를 찾아보세요!'
-    ]
 
-    const getRandomIndex = function(length){
-        return(
-            parseInt(Math.random() * length)
-        )
-    }
     
 
     return(
@@ -103,7 +93,7 @@ function NavigationBarProject() {
 
                         {Rolemodal === true ? <RoleModal close={setRoleModal} /> : null}
                         <SerchLabel style={{width:"230px"}} onClick={() => {setRoleModal(!Rolemodal)}}>
-                            <ImageWrap><img src={jobicon}/>직군선택</ImageWrap>
+                            <ImageWrap><img src={jobicon}/>{roledata.length > 0 ? roledata : '직군 검색'}</ImageWrap>
                             <img src={down} />
                         </SerchLabel>
 
@@ -199,7 +189,7 @@ const NaviWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 1200px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 `
 
 const MainNavigation = styled.div`
@@ -240,7 +230,7 @@ const SerchButton = styled.button`
     outline: none;
     font-size: 14px;
     font-weight: 700;
-    margin-left: 12px;
+    /* margin-left: 12px; */
     cursor: pointer;
 `
 
@@ -268,6 +258,7 @@ const ImageWrap = styled.div`
 const InlineDevide = styled.hr`
     width: 1200px;
     margin-bottom: 15px;
+    border: 0.5px solid #d9d9d9;
 `
 
 const SearchResultABarWrap = styled.div`

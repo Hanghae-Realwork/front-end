@@ -1,16 +1,26 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 function MatchingBtn(){
+    const navigate = useNavigate()
 
     return(
         <>
             <MatchingBtnWrap>
-                <BtnWrap>
-                    <TopBtn1>내가 모집중인 프로젝트</TopBtn1>
-                    <TopBtn2>내 이력서</TopBtn2>
-                </BtnWrap>
+                <PositionWrap>
+                    <BtnDivWrap>
+                    <LeftTriangleDiv></LeftTriangleDiv>
+                    <CenterDiv onClick={navigate(`/matchingcrew`)}>내가 모집중인 프로젝트</CenterDiv>
+                    <RightTriangleDiv></RightTriangleDiv>
+                    </BtnDivWrap>
 
+                    <SecondBtnDivWrap>
+                    <LeftTriangleDivtwo></LeftTriangleDivtwo>
+                    <SecondCenterDiv onClick={navigate(`/matchingresume`)}>내 이력서</SecondCenterDiv>
+                    <RightTriangleDivtwo></RightTriangleDivtwo>
+                    </SecondBtnDivWrap>
+                </PositionWrap>
             </MatchingBtnWrap>
         </>
     )
@@ -25,51 +35,120 @@ const MatchingBtnWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: flex-end;
-
+    z-index: -3;
+    position: relative;
 `
 
-const BtnWrap = styled.div`
-    width: 1300px;
-    margin-left:100px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
-    /* border: 1px solid white; */
+const LeftTriangleDiv = styled.label`
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid white;
+  border-top: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid white;
+  position: absolute;
+  top: -40px;
+  left: -590px;
+  /* background-color: red; */
+  /* transform: rotate(180deg); */
 `
 
-
-
-const TopBtn1 = styled.button`
-    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-    width: 246px;
+const CenterDiv = styled.label`
+    width: 200px;
     height: 40px;
-    padding: 9px 46px 9px 46px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 700;
     font-size: 16px;
-    border: none;
-    border-bottom: none;
-    outline: none;
     cursor: pointer;
-    background-color: white;
-    z-index: 2;
+    position: absolute;
+    top: -40px;
+    left: -550px;
 `
 
-const TopBtn2 = styled.button`
-    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-    width: 180px;
+const RightTriangleDiv = styled.label`
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid white;
+  border-top: 20px solid transparent;
+  border-left: 20px solid white;
+  border-right: 20px solid transparent;
+  position: absolute;
+  top: -40px;
+  left: -350px;
+`
+
+const LeftTriangleDivtwo = styled.div`
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid white;
+  border-top: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid white;
+  position: absolute;
+  top: -40px;
+  left: -1275px;
+  /* background-color: red; */
+  /* transform: rotate(180deg); */
+`
+
+const SecondCenterDiv = styled.label`
+    width: 120px;
     height: 40px;
-    padding: 9px 60px 9px 60px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 700;
     font-size: 16px;
     color: #d9d9d9;
-    border: none;
-    border-bottom: 1px solid #d9d9d9;
-    outline: none;
     cursor: pointer;
-    margin-left: -44px;
-    background-color: white;
+    position: absolute;
+    top: -40px;
+    left: -1235px;
 `
+
+const RightTriangleDivtwo = styled.div`
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid white;
+  border-top: 20px solid transparent;
+  border-left: 20px solid white;
+  border-right: 20px solid transparent;
+  position: absolute;
+  /* background-color: red; */
+  top: -40px;
+  left: -1115px;
+  /* transform: rotate(180deg); */
+`
+
+const BtnDivWrap = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+`
+
+const SecondBtnDivWrap = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1px;
+    z-index: -1;
+    position: absolute;
+    left: 950px;
+`
+
+const PositionWrap = styled.div`
+    position: relative;
+`
+
+
+
 
 
 export default MatchingBtn

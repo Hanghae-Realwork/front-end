@@ -7,9 +7,13 @@ import {
   checkUserNicknameAxios,
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
-
-
 import { flushSync } from "react-dom";
+
+import Logo from "../image/Logo_vertical.svg"
+
+
+
+
 function Join() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,6 +45,15 @@ function Join() {
   //아이디,비밀번호 중복체크
   const [userIdCheck, setUserIdCheck] = useState(false)
   const [nicknameCheck, setNicknameCheck] = useState(false)
+
+
+  // 입력완료 후 enter키 입력 시 회원가입 되도록 하기
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      signupFunction();
+    }
+  });
+  
   
   //체크박스
   useEffect(() => {
@@ -387,12 +400,14 @@ function Join() {
     }
   };
 
+
   return (
     <>
+    <BackgroundWrap>
       <JoinWrap>
         <AlignWrap>
           <LogoWrap>
-            <p>renDev</p>
+
           </LogoWrap>
           <InputJoinWrap>
             <IdWrap>
@@ -404,8 +419,9 @@ function Join() {
                   autoFocus></InputBar>
                 <CheckButton onClick={onClickCheckUserId}>중복 확인</CheckButton>
               </div>
-
+              <ValiWrap>
               {userIdError.status && <ValiSpan>{userIdError.text}</ValiSpan>}
+              </ValiWrap>
             </IdWrap>
             <IdWrap>
               <div>
@@ -420,30 +436,25 @@ function Join() {
               ></InputBar>
               <CheckButton onClick={onClickChecknickname}>중복 확인</CheckButton>
               </div>
-              {nicknameError.status && (
-                <ValiSpan>{nicknameError.text}</ValiSpan>
-              )}
+              <ValiWrap>
+              {nicknameError.status && (<ValiSpan>{nicknameError.text}</ValiSpan>)}
+              </ValiWrap>
             </IdWrap>
             <IdWrap>
-              <InputBar
-                type="text"
-                placeholder="이름"
-                minLength={2}
-                maxLength={10}
-                value={name}
-                onChange={onChageName}
-                onBlur={BlurName}
-              ></InputBar>
+              <InputBar type="text" placeholder="이름" minLength={2}
+                maxLength={10} value={name} onChange={onChageName}
+                onBlur={BlurName}/>
+              <ValiWrap>
               {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
+              </ValiWrap>
             </IdWrap>
+            
             <BirthWrap>
-              <InpuBirthYear name="year" type="text"
-                maxLength="4" placeholder="년(4자)"
-                onBlur={BlurYear} value={year}
-                onChange={onChangeBirth}/>
-                <div>
-              <select onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
-                <option value="month">월</option>
+              <BirthAlignWrap>
+              <InpuBirth name="year" type="text" maxLength="4" placeholder="년(4자)"
+                onBlur={BlurYear} value={year} onChange={onChangeBirth}/>
+              <SelectMonth onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
+                <option value="month" disabled>월</option>
                 <option value="01">1</option>
                 <option value="02">2</option>
                 <option value="03">3</option>
@@ -456,23 +467,17 @@ function Join() {
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
-              </select>
-              <InpuBirth
-                type="text"
-                maxLength="2"
-                placeholder="일"
-                value={day}
-                onChange={onChangeBirth}
-                onBlur={BlurYear}
-                name="day"
-              />
-              </div>
-            </BirthWrap>
-            {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
-            <IdWrap>
-
-            </IdWrap>
-
+              </SelectMonth>
+              <InpuBirthDay type="text" maxLength="2" placeholder="일"
+                value={day} onChange={onChangeBirth}
+                onBlur={BlurYear} name="day"/>
+                </BirthAlignWrap>
+                <div>
+            <ValiWrap>
+              {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
+            </ValiWrap>
+            </div>
+            </BirthWrap>           
             <IdWrap>
               <InputBar
                 placeholder="비밀번호"
@@ -482,9 +487,11 @@ function Join() {
                 value={password}
                 onBlur={BlurPassWord}
               ></InputBar>
+              <ValiWrap>
               {passwordError.status && (
                 <ValiSpan>{passwordError.text}</ValiSpan>
               )}
+              </ValiWrap>
             </IdWrap>
             <IdWrap>
               <InputBar
@@ -495,16 +502,18 @@ function Join() {
                 value={passwordCheck}
                 onBlur={BlurPassWordCheck}
               ></InputBar>
+              <ValiWrap>
               {confirmPasswordError.status && (
                 <ValiSpan>{confirmPasswordError.text}</ValiSpan>
               )}
+              </ValiWrap>
             </IdWrap>
           </InputJoinWrap>
-          <PolicyWrap>
-            <div>
+
+            <AgreeFullWrap>
+            <AgreementTitle>서비스 이용정책</AgreementTitle>
               <AgreementWrap>
-                <AgreementTitle>약관동의</AgreementTitle>
-                <div>
+                <AgreeChkWrap>
                   <AgreementInput
                     type="checkbox"
                     id="all-check"
@@ -512,9 +521,9 @@ function Join() {
                     onChange={allBtnEvent}
                   />
                   <AgreementText htmlFor="all-check">전체동의</AgreementText>
-                </div>
-
-                <div>
+                </AgreeChkWrap>
+                  <AgreementHr/>
+                <AgreeChkWrap>
                   <AgreementInput
                     type="checkbox"
                     id="check2"
@@ -524,8 +533,8 @@ function Join() {
                   <AgreementText htmlFor="check2">
                     이용약관 (필수){" "}
                   </AgreementText>
-                </div>
-                <div>
+                </AgreeChkWrap>
+                <AgreeChkWrap>
                   <AgreementInput
                     type="checkbox"
                     id="check3"
@@ -535,10 +544,10 @@ function Join() {
                   <AgreementText htmlFor="check3">
                     마케팅 동의 (선택){" "}
                   </AgreementText>
-                </div>
+                </AgreeChkWrap>
               </AgreementWrap>
-            </div>
-          </PolicyWrap>
+            </AgreeFullWrap>
+
           <ButtonWrap>
             <JoinButton
               id="signBtnDisabled"
@@ -550,19 +559,27 @@ function Join() {
           </ButtonWrap>
         </AlignWrap>
       </JoinWrap>
+      </BackgroundWrap>
     </>
   );
 }
 
+
+const BackgroundWrap = styled.div`
+  background-color: #1f1f1f;
+  width: 100%;
+`
+
 const JoinWrap = styled.div`
-  /* border: 1px solid black; */
+  /* border: 1px solid white; */
   width: auto;
   height: auto;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   margin-top: 40px;
+  
 `;
 
 const AlignWrap = styled.div`
@@ -576,69 +593,73 @@ const AlignWrap = styled.div`
 `;
 
 const LogoWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 400px;
-  height: 50px;
+  /* border: 1px solid white; */
+  width: 166px;
+  height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
-  font-size: 30px;
   margin-bottom: 50px;
-  color: #685bc7;
+  background-image: url(${Logo});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
+const ValiWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 8px;
+  /* border: 1px solid white; */
+`
+
 const ValiSpan = styled.span`
-  color: red;
-  font-size: 13px;
+  color: #C70000;
+  font-size: 10px;
+  font-weight: 400;
 `;
+
 const InputJoinWrap = styled.div`
-  /* border: 1px solid black; */
+  /* border: 1px solid white; */
   width: auto;
   height: auto;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const IdWrap = styled.div`
-  /* border: 1px solid black; */
+  /* border: 1px solid white; */
   /* width: 500px; */
-  /* height: 50px; */
+  /* height: 60px; */
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin: 30px;
+  margin: 30px 0px 30px 90px;
+  /* width: 510px; */
   flex-flow: column nowrap;
 `;
 
-const PolicyWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 400px;
-  height: 150px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  /* margin: 30px; */
-  padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-`;
 
 const InputBar = styled.input`
   outline: none;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   padding: 7px;
-  width: 300px;
+  width: 375px;
+  background-color: transparent;
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
 `;
 
+
 const ButtonWrap = styled.div`
-  /* border:1px solid black; */
+  /* border:1px solid white; */
   width: auto;
-  height: 80px;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -648,14 +669,15 @@ const JoinButton = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  width: 400px;
+  width: 384px;
   height: 60px;
-  margin: 30px;
-  border-radius: 10px;
+  padding: 15px 150px 15px 150px;
+  margin-bottom: 40px;
+  border-radius: 4px;
   color: white;
-  font-weight: bold;
-  font-size: 20px;
-  background-color: #685bc7;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
   :disabled {
     cursor: not-allowed;
     background-color: green;
@@ -668,27 +690,38 @@ const AgreementWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 7px;
-  color: #685bc7;
+  color: white;
+  /* border: 1px solid white; */
+  width: 384px;
+  margin-top: 10px;
+  padding: 15px 0px 15px 0px;
+  gap: 12px;
+  background: #303032;
+  border-radius: 5px;
 `;
 
 const AgreementTitle = styled.label`
-  font-weight: bold;
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 50px;
   margin-bottom: 5px;
+  color: white;
 `;
 
 const AgreementText = styled.label`
   font-weight: bold;
   font-size: 14px;
+  font-weight: 400;
 `;
 
 const AgreementInput = styled.input`
   appearance: none;
   border: 0.5px solid gainsboro;
-  border-radius: 0.25rem;
+  /* border-radius: 0.25rem; */
   width: 15px;
   height: 15px;
   margin-bottom: -3px;
-  margin-right: 5px;
+  margin-right: 13.5px;
 
   &:checked {
     border-color: transparent;
@@ -708,32 +741,80 @@ const CheckButton = styled.button`
   outline: none;
   cursor: pointer;
   border-radius: 5px;
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 10px;
   margin-left: 20px;
 `
 
 const InpuBirth = styled.input`
   outline: none;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
   padding: 7px;
-  width: 150px;
+  width: 160px;
+  font-weight: 400;
+  font-size: 14px;
 `
 
-const InpuBirthYear = styled.input`
+const InpuBirthDay = styled.input`
   outline: none;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
   padding: 7px;
-  width: 190px;
+  width: 100px;
+  font-weight: 400;
+  font-size: 14px;
+`
+
+const SelectMonth = styled.select`
+  width: 100px;
+  padding: 5px; 
+  border: none;
+  outline: none;
+  border-bottom: 1px solid white;
+  font-family: inherit;  
+  background: url('arrow.jpg') no-repeat 95% 50%; 
+  border-radius: 0px; 
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;
+  color: white;
 `
 
 const BirthWrap = styled.div`
+  /* border: 1px solid white; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
+  margin: 30px 0px 30px 90px;
+`
+
+const BirthAlignWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+`
+
+const AgreementHr = styled.hr`
+  border: 0.5px solid white;
+  width: 354px; 
+`
+
+const AgreeChkWrap = styled.div`
+  margin: 0px 15px 0px 15px;
+  /* border: 1px solid white; */
+`
+
+const AgreeFullWrap = styled.div`
+  margin-top: 50px;
+  /* border: 1px solid white; */
+  width: 384px;
 `
 
 

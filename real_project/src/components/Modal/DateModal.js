@@ -25,8 +25,12 @@ function DateModal (props) {
       };
 
     const AddDate = () => {
-      const StartCalDate = startDate.getFullYear() + "-" + (startDate.getMonth() +1) + "-" + startDate.getDate()
-      const EndCalDate = endDate.getFullYear() + "-" + (endDate.getMonth()+1) + "-" + endDate.getDate()
+      const StartCalDate = 
+        startDate.getFullYear() + "-" + 
+          (("0"+(startDate.getMonth()+1)).slice(-2)) + "-" + (("00"+startDate.getDate()).slice(-2))
+      const EndCalDate = 
+        endDate.getFullYear() + "-" + 
+        (("0"+(endDate.getMonth()+1)).slice(-2)) + "-" + (("00"+endDate.getDate()).slice(-2))
       dispatch(loaddate([StartCalDate, EndCalDate]))
       CloseModal()
     }
