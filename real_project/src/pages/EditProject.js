@@ -197,7 +197,6 @@ const EditProject = (props) => {
     }
   };
 
-console.log(newSchedule)
 
   // 저장 버튼
   const CompliteEdit = async () => {

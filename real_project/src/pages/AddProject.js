@@ -53,7 +53,7 @@ const FindProjectStep01 = (props) => {
     const [year, setYear] = useState(new Date().getFullYear());
     const [month, setMonth] = useState(new Date().getMonth()+1);
     const [day, setDay] = useState(new Date().getDate());
-  let newDate = year + "년" + month + "월" + day + "일";
+  let newDate = year + "-" + month + "-" + day;
 
 
   useEffect(() => {
@@ -180,7 +180,7 @@ const FindProjectStep01 = (props) => {
   };
  
  
-  const date = year + "년" + month + "월" + day + "일";
+  const date = year + "-" + month + "-" + day;
   const time = `${("00" + hour).slice(-2)}:${("00" + minute).slice(-2)}`;
 
   const timeAddOnClick = () => {
@@ -217,22 +217,21 @@ const FindProjectStep01 = (props) => {
   
   const schduleAddOnClick = () => {
     // [{},{},{}]
-    //중복 날짜 제거
+
     const arr = rangeTotal.filter((list) => {
      return Object.keys(list).toString() === Object.keys(rangeTime).toString();
     })
-    console.log()
     if (arr.length === 0 && Object.keys(rangeTime).length !== 0) {
       let arr1 = [...rangeTotal, rangeTime];
-      arr.map((list) => {
-        arr.sort((a, b) => console.log(a, b));
-      });
-      setRangeTotal(arr1);
+      //미완성 진행중 지우지 말것
+      //  const arr4= arr1.sort((a,b) => {
+      //   return Object.keys(a) - Object.keys(b);
+      // })
+      // setRangeTotal(arr1);
+       setRangeTotal(arr1);
     }
-
-
   };
-
+console.log(rangeTotal)
   // 저장 버튼
   const CompliteButton = async () => {
     //날짜+시간 데이터 가공 
