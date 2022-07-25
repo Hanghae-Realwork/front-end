@@ -174,6 +174,7 @@ export const deleteEmployAxios = (resumeId) => {
     await apis
       .resumesDelete(resumeId)
       .then((response) => {
+        
         dispatch(deleteEmploy());
       }).catch((err) => {
         console.log(err)
@@ -198,6 +199,7 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case "employ/MODIFY": {
+      console.log(action.payload)
       return {
         returnResumes: state.returnResumes,
         resumes: action.payload,
@@ -208,10 +210,11 @@ export default function reducer(state = initialState, action = {}) {
       const newResumes = [action.payload];
       return { returnResumes: action.state, resumes: newResumes };
     }
-    case "employ/DELETE": {
-    
-      return { returnResumes: action.payload, resumes: state.resumes };
-    }
+      //delete가 있으면 작동하지않음 
+    // case "employ/DELETE": {
+    //   console.log(action.payload)
+    //   return { returnResumes: action.state, resumes: action.payload };
+    // }
 
     default:
       return state;

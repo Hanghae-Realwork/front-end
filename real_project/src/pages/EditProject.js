@@ -15,7 +15,7 @@ import ko from "date-fns/locale/ko";
 import Footer from "../components/Date/Footer";
 import DatePicker from "react-datepicker";
 
-import addimage from "../image/addimage.svg";
+
 import upicon from "../image/upicon.svg";
 import downicon from "../image/downicon.svg";
 import delIcon from "../image/tagclose.svg"
@@ -209,7 +209,7 @@ const EditProject = (props) => {
       startDate === "" ||
       endDate === "" ||
       checkList === "" ||
-      
+      newSchedule === "" ||
       titleRef.current.value === " " ||
       detailsRef.current.value === " " ||
       subscriptRef.current.value === " " ||
@@ -217,15 +217,15 @@ const EditProject = (props) => {
       startDate === " " ||
       endDate === " " ||
       checkList === " " ||
-
+      newSchedule === " " ||
       titleRef.current.value === null ||
       detailsRef.current.value === null ||
       subscriptRef.current.value === null ||
       role === null ||
       startDate === null ||
       endDate === null ||
-      checkList === null 
-   
+      checkList === null ||
+      newSchedule === null
     ) {
       alert("아직 다 작성하지 않았어요!");
     } else {
@@ -250,15 +250,15 @@ const EditProject = (props) => {
                 "-" +
                 endDate.getDate(),
               checkList,
-              success,
+              [],
               newSchedule
             )
           );
         });
+        alert("수정이 완료되었습니다!🥸");
         navigate("/mainrecruit");
-      } catch (err) {
-
-      }
+        
+      } catch (err) {}
     }
   };
 
@@ -442,9 +442,24 @@ const EditProject = (props) => {
             {newSchedule && newSchedule.map((list, idx) => {
               return (
                 <EditLabel key={idx} color={list.available}>
-                 {list.schedule.slice(0,16)}
-                  { list.available ? <CloseBtn src={delIcon} />:""}
-               
+                  {list.schedule.slice(0, 16)}
+                  {list.available ? (
+                    <CloseBtn
+                      src={delIcon}
+                      onClick={() => {
+                        const new_post =
+                          newSchedule &&
+                          newSchedule.filter((l, index) => {
+                            return idx !== index;
+                          });
+                        setNewSchedule(
+                          new_post
+                        );
+                      }}
+                    />
+                  ) : (
+                    ""
+                  )}
                 </EditLabel>
               );
             })}

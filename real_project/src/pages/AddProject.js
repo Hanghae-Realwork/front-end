@@ -562,7 +562,6 @@ console.log(rangeTotal)
                         <TimeAddLeftWrap key={idx}>
                           <LeftTimeButton>{ele}</LeftTimeButton>
                           <LeftDelBtn
-
                             onClick={(e) => {
                               const new_post = rangeTime[
                                 newDate

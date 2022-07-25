@@ -339,7 +339,7 @@ export const apis = {
   searchResume: () => api.get("/api/search/resume"),
 
   // 34. 매칭 기능
-  
+
   ///////////////////////
   ////// 4. 면접예약//////
   //////////////////////
@@ -348,8 +348,9 @@ export const apis = {
   //지원서의 지원서 목록 조회
   applicationsResumes: () => api.get("/api/applications/resumes"),
 
+  //22. 선택한 프로젝트를 지원서에 제안
+  // proposalsProjects: () => api.get("/api/proposals/:resumeId/:projectId"),
+
   //23. 지원서에 면접 제안시 내 프로젝트 목록 조회
   proposalsProjects: () => api.get("/api/proposals/projects"),
-
-  
 };

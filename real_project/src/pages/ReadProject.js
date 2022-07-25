@@ -20,6 +20,7 @@ import down from "../image/down.svg"
 
 
 
+
 function ReadProject() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -45,11 +46,9 @@ function ReadProject() {
   // 로그인 유저별 resume card 용
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
-  const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+
   const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
-
-console.log(Value)
 
   useEffect(() => {
     if (loginInfo === false) {
@@ -144,14 +143,27 @@ console.log(Value)
           {Value && userName_Info === Value[0]?.email ? (
             <>
               {" "}
-              <SubmitButton onClick={() => {navigate("/findprojectstep2/" + `${Value[0].projectId}`);}}>
+
+              <SubmitButton
+                onClick={() => {
+                  if (window.confirm("수정하러 가볼까요?🥸")) {
+                     navigate("/findprojectstep2/" + `${Value[0].projectId}`);
+                  } else {
+                    return false;
+                  }
+                }}
+              >
+
                 수정하기
               </SubmitButton>
               <SubmitButton
                 onClick={() => {
-                  dispatch(deleteRecruitAxios(projectId));
-                  alert("❗️정말 삭제하시는 건가요?");
-                  navigate("/mainrecruit");
+                  if (window.confirm("❗️정말 삭제하시는 건가요?")) { 
+                    dispatch(deleteRecruitAxios(projectId));
+                    navigate("/mainrecruit");
+                  } else {
+                    return false;
+                  }
                 }}
               >
                 삭제하기

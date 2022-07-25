@@ -6,7 +6,7 @@ const CREATE = 'recruit/CREATE';
 const EDIT = 'recruit/EDIT';
 const DETAIL = 'recruit/DETAIL';
 const DELETE = 'recruit/DELETE';
-const APPOINT = 'recruit/APPOINT';
+// const APPOINT = 'recruit/APPOINT';
 
 const initialState = {
   receiveRecruit: [],
@@ -33,9 +33,9 @@ export function deleteRecruit(payload) {
   return { type: DELETE, payload};
 }
 
-export function appointRecruit(payload) {
-  return { typpe: APPOINT, payload };
-}
+// export function appointRecruit(payload) {
+//   return { typpe: APPOINT, payload };
+// }
 
 
 //미들믿을
@@ -142,18 +142,6 @@ export const editRecruitAxios = (
   photos,
   schedule
 ) => {
-  console.log(
-    projectId,
-    title,
-    details,
-    subscript,
-    role,
-    start,
-    end,
-    skills,
-    photos,
-    schedule
-  );
   return async function(dispatch) {
     await apis
       .projectsModify(
@@ -165,11 +153,11 @@ export const editRecruitAxios = (
       start,
       end,
       skills,
-      photos,
+      [],
       schedule
     )
       .then((res) => {
-      console.log(res)
+  
       dispatch(
         editRecruit({
           projectId:projectId,
@@ -180,7 +168,7 @@ export const editRecruitAxios = (
           start: start,
           end: end,
           skills: skills,
-          photos: photos,
+          photos: [],
           schedule: schedule,
         })
       );
@@ -198,7 +186,7 @@ export const deleteRecruitAxios = (projectId) => {
       .projectsDelete(projectId)
       .then((response) => {
   
-        dispatch()
+        dispatch(deleteRecruit())
       })
       .catch((err) => {
         console.log(err);
@@ -207,70 +195,37 @@ export const deleteRecruitAxios = (projectId) => {
 };
 
 
-
-//예약 미들웨어
-export const appointmentRecruitAxios = (
-  projectId, 
-  applicationId
-  ) => {
-    return async function(dispatch) {
-    await apis
-    .appointmentProject(
-      projectId, 
-      applicationId
-    )
-    .then((res) => {
-      dispatch(
-        appointRecruit({
-          projectId: projectId,
-          applicationId: applicationId
-        })
-      );
-    });
-  };
-}
-
-
-
  
 //리듀서
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case 'recruit/LOAD': {
+    case "recruit/LOAD": {
       return {
         receiveRecruit: action.payload,
         project: state.recruit,
       };
     }
-
-    case 'recruit/DETAIL':{
-      const projects = [action.payload]
-  
-      return { 
-        receiveRecruit: action.state, 
-        project: projects}
-    }
-
-    case 'recruit/CREATE': {
+    case "recruit/CREATE": {
       const writeProject = [action.payload, ...state.receiveRecruit];
       return {
         reciveRecruit: writeProject,
         project: state.recruit,
       };
     }
-
-    case 'recruit/EDIT': {  
+    case "recruit/DETAIL": {
+     
+      const projects = [action.payload];
+      return {
+        receiveRecruit: action.state,
+        project: projects,
+      };
+    }
+    case "recruit/EDIT": {
+      console.log(action.payload);
       return {
         reciveRecruit: state.receiveRecruit,
         project: action.payload,
       };
-    }
-
-    case 'recruit/APPOINT': {
-      return{
-        reciveRecruit: state.receiveRecruit,
-        recruit: action.payload,
-      }
     }
 
     default:
