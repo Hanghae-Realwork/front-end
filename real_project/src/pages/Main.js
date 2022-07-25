@@ -80,7 +80,6 @@ const MainAllWrap = styled.div`
   background-repeat: no-repeat;
   overflow: hidden;
   position: relative;
-  /* margin: 0px 0px 0px 110px ; */
 `;
 
 const MainBackgroundWrap = styled.div`

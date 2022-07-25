@@ -8,7 +8,7 @@ function MatchingBtn(){
     return(
         <>
             <MatchingBtnWrap>
-
+                <PositionWrap>
                     <BtnDivWrap>
                     <LeftTriangleDiv></LeftTriangleDiv>
                     <CenterDiv onClick={navigate(`/matchingcrew`)}>내가 모집중인 프로젝트</CenterDiv>
@@ -16,11 +16,11 @@ function MatchingBtn(){
                     </BtnDivWrap>
 
                     <SecondBtnDivWrap>
-                    <LeftTriangleDiv></LeftTriangleDiv>
+                    <LeftTriangleDivtwo></LeftTriangleDivtwo>
                     <SecondCenterDiv onClick={navigate(`/matchingresume`)}>내 이력서</SecondCenterDiv>
-                    <RightTriangleDiv></RightTriangleDiv>
+                    <RightTriangleDivtwo></RightTriangleDivtwo>
                     </SecondBtnDivWrap>
-
+                </PositionWrap>
             </MatchingBtnWrap>
         </>
     )
@@ -46,6 +46,11 @@ const LeftTriangleDiv = styled.label`
   border-top: 20px solid transparent;
   border-left: 20px solid transparent;
   border-right: 20px solid white;
+  position: absolute;
+  top: -40px;
+  left: -590px;
+  /* background-color: red; */
+  /* transform: rotate(180deg); */
 `
 
 const CenterDiv = styled.label`
@@ -58,6 +63,35 @@ const CenterDiv = styled.label`
     font-weight: 700;
     font-size: 16px;
     cursor: pointer;
+    position: absolute;
+    top: -40px;
+    left: -550px;
+`
+
+const RightTriangleDiv = styled.label`
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid white;
+  border-top: 20px solid transparent;
+  border-left: 20px solid white;
+  border-right: 20px solid transparent;
+  position: absolute;
+  top: -40px;
+  left: -350px;
+`
+
+const LeftTriangleDivtwo = styled.div`
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid white;
+  border-top: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid white;
+  position: absolute;
+  top: -40px;
+  left: -1275px;
+  /* background-color: red; */
+  /* transform: rotate(180deg); */
 `
 
 const SecondCenterDiv = styled.label`
@@ -69,17 +103,25 @@ const SecondCenterDiv = styled.label`
     align-items: center;
     font-weight: 700;
     font-size: 16px;
+    color: #d9d9d9;
     cursor: pointer;
+    position: absolute;
+    top: -40px;
+    left: -1235px;
 `
 
-
-const RightTriangleDiv = styled.label`
+const RightTriangleDivtwo = styled.div`
   width: 0;
   height: 0;
   border-bottom: 20px solid white;
   border-top: 20px solid transparent;
   border-left: 20px solid white;
   border-right: 20px solid transparent;
+  position: absolute;
+  /* background-color: red; */
+  top: -40px;
+  left: -1115px;
+  /* transform: rotate(180deg); */
 `
 
 const BtnDivWrap = styled.div`
@@ -87,8 +129,7 @@ const BtnDivWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 130px;
+    position: relative;
 `
 
 const SecondBtnDivWrap = styled.div`
@@ -96,12 +137,18 @@ const SecondBtnDivWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    /* margin-left: -44px; */
-    /* border-bottom: 1px solid black; */
     margin-bottom: 1px;
     z-index: -1;
     position: absolute;
-    left: 380px;
+    left: 950px;
 `
+
+const PositionWrap = styled.div`
+    position: relative;
+`
+
+
+
+
 
 export default MatchingBtn
