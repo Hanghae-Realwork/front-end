@@ -18,7 +18,7 @@ const MainRecruit = () => {
 
   useEffect(() => {
     dispatch(loadRecruitAxios());
-  }, [loadRecruitAxios]);
+  }, []);
 
   return (
       <>

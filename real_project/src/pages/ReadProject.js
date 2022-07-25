@@ -59,7 +59,26 @@ function ReadProject() {
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   }, []);
+  const deleteOnclick = async() => {
+    if (window.confirm("❗️정말 삭제하시는 건가요?")) {
 
+      try {
+        await dispatch(deleteRecruitAxios(projectId)).then((res) => {
+          if (res) {
+            alert("삭제되었습니다!🥸")
+            navigate("/mainrecruit");
+          } else { 
+            alert("페이지 오류입니다.🥸");
+          }
+        })
+      
+      } catch (err) {
+        alert(err)
+      }
+    } else {
+      return false;
+    }
+}
   return (
     <>
       <AllWrap>
@@ -157,14 +176,7 @@ function ReadProject() {
                 수정하기
               </SubmitButton>
               <SubmitButton
-                onClick={() => {
-                  if (window.confirm("❗️정말 삭제하시는 건가요?")) { 
-                    dispatch(deleteRecruitAxios(projectId));
-                    navigate("/mainrecruit");
-                  } else {
-                    return false;
-                  }
-                }}
+                onClick={deleteOnclick}
               >
                 삭제하기
               </SubmitButton>

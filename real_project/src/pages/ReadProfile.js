@@ -23,7 +23,7 @@ function EmploymentProfile() {
   const dispatch = useDispatch();
 
   const test = useSelector((state) => state.user.userInfo)
-  console.log(test)
+
 
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
@@ -32,7 +32,7 @@ function EmploymentProfile() {
 
 
   const myProject = useSelector((state) => state.interview.projects);
-  console.log(myProject)
+
 
   let href = ""
 
@@ -59,7 +59,15 @@ function EmploymentProfile() {
       }
     }, [loginInfoName, data]);
   
-  
+  const deleteOnclick = () => {
+
+    if (window.confirm("❗️정말 삭제하시는 건가요?")) {
+      dispatch(deleteEmployAxios(resumeId))
+      .then(() => navigate("/mainemployment"))
+     } else {
+       return false;
+     }
+  }
  //undefined일때 null 처리 나머지 return 
  if(!data[0]) return null 
   return (
@@ -131,19 +139,16 @@ function EmploymentProfile() {
                 </MidTagWrap>
               </MidTxetWrap>
             </MidWrap>
-
             <BotHr />
-
 
               {loginInfoName === data[0]?.userId ? (
               <BotWrap>
                 <FixedBtn
                 onClick={() =>
-                
                 {
                   if (window.confirm("수정하러 가볼까요?🥸")) {
                     navigate("/editprofile/" + `${data[0].resumeId}`);
-                  } else { 
+                  } else {
                     return false;
                   }
                   
@@ -151,14 +156,7 @@ function EmploymentProfile() {
                   수정하기
                 </FixedBtn>
                 <DelBtn
-                onClick={() => {
-                  if (window.confirm("❗️정말 삭제하시는 건가요?")) {
-                     dispatch(deleteEmployAxios(resumeId));
-                     navigate("/mainemployment");
-                  } else {
-                    return false;
-                  }
-                 }}>
+                onClick={deleteOnclick}>
                   삭제하기
                 </DelBtn>
               </BotWrap>

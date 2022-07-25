@@ -231,7 +231,7 @@ const FindProjectStep01 = (props) => {
        setRangeTotal(arr1);
     }
   };
-console.log(rangeTotal)
+
 
   // 저장 버튼
   const CompliteButton = async () => {
@@ -248,7 +248,7 @@ console.log(rangeTotal)
       setNewList(new_list.push(dateTime));
           });
         });
-  // 
+ 
     if (
       titleRef.current.value === "" ||
       detailsRef.current.value === "" ||
@@ -275,7 +275,7 @@ console.log(rangeTotal)
       checkList === null ||
       new_list === null
     ) {
-      alert("부족한 정보가 있습니다! 🥸");
+      alert("아직 다 작성하지 않았어요!🥸");
     } else {
       frm.append("photos", files[0]);
       try {
@@ -301,6 +301,7 @@ console.log(rangeTotal)
             )
           );
         });
+        alert("게시글을 등록하시겠습니까?🥸 ");
         navigate("/mainrecruit");
       } catch (err) {
         console.log(err);

@@ -7,6 +7,7 @@ import {
   LoadDetailAxios,
   projectsPhotosAxios,
 } from "../redux/modules/postRecruit";
+import { loadRecruitAxios } from "../redux/modules/postRecruit";
 import {
   dvelopSkills_list,
   designerSkills_list,
@@ -67,7 +68,7 @@ const EditProject = (props) => {
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   },[])
-
+console.log(userEdit);
   useEffect(() => {
     // setRangeTime([]);
     setHour(0);
@@ -227,12 +228,11 @@ const EditProject = (props) => {
       checkList === null ||
       newSchedule === null
     ) {
-      alert("아직 다 작성하지 않았어요!");
-    } else {
-      frm.append("photos", files[0]);
+      alert("아직 다 작성하지 않았어요!🥸");
+    }
+    else {
       try {
-        await dispatch(projectsPhotosAxios(frm)).then((success) => {
-          dispatch(
+        await dispatch(
             editRecruitAxios(
               projectId,
               titleRef.current.value,
@@ -253,15 +253,21 @@ const EditProject = (props) => {
               [],
               newSchedule
             )
-          );
+          ).then((res) => {
+          if (res === true) {
+            dispatch(loadRecruitAxios())
+            navigate("/mainrecruit");
+          } else {
+            alert("페이지 오류입니다.");
+          }
         });
-        alert("수정이 완료되었습니다!🥸");
-        navigate("/mainrecruit");
-        
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     }
-  };
 
+    };
+ 
   return (
     <BackgroundAllWrap>
       <FindProjectAllWrap>

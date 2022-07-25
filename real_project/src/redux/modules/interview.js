@@ -4,6 +4,7 @@ import { apis } from "../../shared/api";
 const LOADRESUMES = "interview/LOADRESUMES";
 const LOADPROJECTS = "interview/LOADPROJECTS";
 
+const proposalUserProjects = "interview/proposalUserProjects";
 
 //이니셜 스테이트
 const initialState = {

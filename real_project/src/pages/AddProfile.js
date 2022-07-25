@@ -103,39 +103,70 @@ function AddProfile(props) {
   };
 
   //버튼 누르면 저장
-  const handleClick = async () => {
-    frm.append("resumeImage", files[0]);
-    try {
-      await dispatch(projectsPhotosAxios(frm)).then((success) => {
-        dispatch(
-          resumesCreateAxios(
-            introduceRef.current.value,
-            success,
-            startDate.getFullYear() +
-              "-" +
-              (startDate.getMonth() + 1) +
-              "-" +
-              startDate.getDate(),
-            endDate.getFullYear() +
-              "-" +
-              (endDate.getMonth() + 1) +
-              "-" +
-              endDate.getDate(),
-            role,
-            checkList,
-            content2Ref.current.value,
-            content3Ref.current.value,
-            _resumeId,
-            _nickname
-          )
-        );
-      });
-      alert("게시글을 등록하시겠습니까 ? ");
-      navigate("/mainemployment");
-    } catch (err) {
-      console.log(err);
+  const handleClick = () => {
+    if (
+      introduceRef.current.value === "" ||
+      startDate === "" ||
+      endDate === "" ||
+      role === "" ||
+      checkList === "" ||
+      content2Ref.current.value === "" ||
+      content3Ref.current.value === "" ||
+      _resumeId === "" ||
+      _nickname === "" ||
+      introduceRef.current.value === " " ||
+      startDate === " " ||
+      endDate === " " ||
+      role === " " ||
+      checkList === " " ||
+      content2Ref.current.value === " " ||
+      content3Ref.current.value === " " ||
+      _resumeId === " " ||
+      _nickname === " " ||
+      introduceRef.current.value === null ||
+      startDate === null ||
+      endDate === null ||
+      role === null ||
+      checkList === null ||
+      content2Ref.current.value === null ||
+      content3Ref.current.value === null ||
+      _resumeId === null ||
+      _nickname === null 
+    ) {
+        alert("아직 다 작성하지 않았어요!🥸");
+    } else {
+      
+     dispatch(
+            resumesCreateAxios(
+              introduceRef.current.value,
+              null,
+              startDate.getFullYear() +
+                "-" +
+                (startDate.getMonth() + 1) +
+                "-" +
+                startDate.getDate(),
+              endDate.getFullYear() +
+                "-" +
+                (endDate.getMonth() + 1) +
+                "-" +
+                endDate.getDate(),
+              role,
+              checkList,
+              content2Ref.current.value,
+              content3Ref.current.value,
+              _resumeId,
+              _nickname
+            )
+     ).then(() => {
+             alert("게시글을 등록하시겠습니까?🥸");
+        navigate("/mainemployment");
+     }).catch((err) => {
+          console.log(err);
+     })
+       
+      } 
     }
-  };
+      
 
   return (
     <BackgroundAllWrap>
