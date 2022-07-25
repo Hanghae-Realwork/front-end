@@ -150,18 +150,14 @@ function EmploymentProfile() {
                 </DelBtn>
               </BotWrap>
           ) : (
-              
               <TestWrap>
-
-                
                 <PropseText onClick={() => {setArcodian(!Arcodian)}}>
                     우주선에 태우고 싶으신가요?
                   <DownIcon src={down} style={{transform: Arcodian === false ? "rotate(0deg)" : "rotate(180deg)"}}/>
                 </PropseText>
                 <MiniProjectWrap style={{display: Arcodian === true ? "" : "none"}}>
-                  <MiniProject/>
+                  <MiniProject data={myProject}/>
                 </MiniProjectWrap>
-
               </TestWrap>
               )}
 
@@ -221,6 +217,7 @@ const PageAllWrap = styled.div`
   align-items: center;
   width: 994px;
   margin-top: 40px;
+  border-bottom: 0.5px solid black;
 `
 
 //내부 틀
@@ -249,6 +246,7 @@ const BotWrap = styled.div`
   align-items: center;
   margin: 30px 240px 30px 240px;
   gap: 10px;
+  /* border: 1px solid black; */
 `
 
 //세부 틀

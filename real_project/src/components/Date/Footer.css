@@ -30,7 +30,8 @@
 
 .react-datepicker__day-names, .react-datepicker__week {
   white-space: nowrap;
-  margin-top: 10px; 
+  margin-top: 5px; 
+  /* border: 1px solid black; */
   /*달력 날짜 한줄 한줄의 간격을 조정하는 옵션*/
 }
 
@@ -43,8 +44,9 @@
 /* 캘린더 한 덩어리의 margin 값을 조정할 수 있는 CSS 컨테이너*/
 .react-datepicker__month-container {
   /* float: left; */
-  margin-left: 25px;
-  margin-right: 25px;
+  /* margin-left: 15px;
+  margin-right: 15px; */
+  /* margin-top: 5px; */
   /* border: 1px solid black; */
 }
 
@@ -248,10 +250,8 @@
   text-align: center;
   cursor: pointer;
   position: absolute;
-  /* top: 20px; */
   margin-left: -15px;
   margin-right: -15px;
-  padding: 0;
   border: none;
   z-index: 1;
   height: 40px;
@@ -885,10 +885,12 @@ input::-webkit-inner-spin-button {
   border-color: 2px #000;
   outline: 2px #000;
   /* background-color: #ffffff; */
+  /* border: 1px solid black; */
 }
 
 .react-datepicker__header {
   padding-top: 20px !important;
+  /* border: 1px solid black; */
 }
 
 

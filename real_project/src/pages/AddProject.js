@@ -232,6 +232,7 @@ const FindProjectStep01 = (props) => {
     }
   };
 console.log(rangeTotal)
+
   // 저장 버튼
   const CompliteButton = async () => {
     //날짜+시간 데이터 가공 
@@ -598,6 +599,7 @@ console.log(rangeTotal)
                   <InterviewTextDateBot>
                     {Object.keys(list)}
                   </InterviewTextDateBot>
+
                   <BotDelBtn
                     onClick={(e) => {
                       const new_post = rangeTotal.filter((ele, index) => {
@@ -809,37 +811,7 @@ const RoleInput = styled.input`
   }
 `;
 
-const UpPhotoArea = styled.img`
-  /* border: 1px solid black; */
-  width: 120px;
-  height: 100px;
-  background-position: center;
-  background-size: cover;
-`;
 
-const DisablePhotoWrap = styled.div`
-  /* border: 1px solid black; */
-  background-image: url(${addimage});
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  background-position: center;
-  background-size: cover;
-`;
-
-const EditWrapPhoto = styled.div`
-  /* border: 1px solid black; */
-  width: 150px;
-  height: 90px;
-  background-position: center;
-  background-size: cover;
-`;
-
-const PhotoText = styled.span`
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-`;
 const ReMainConWrap = styled.div`
   border: 0.5px solid black;
   width: 1100px;
@@ -863,22 +835,11 @@ const RecMainCon = styled.textarea`
   /* border-radius: 4px; */
 `;
 
-const PhotoUPloadWrap = styled.div`
-  /* border: 1px solid black; */
-  padding: 10px;
-  width: 1075px;
-  height: 100px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
 const TimeWrap = styled.div`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   width: 281px;
-  height: 320px;
+  height: 350px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -906,8 +867,8 @@ const HourWrap = styled.div`
 const CalenderWrap = styled.div`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
-  width: 350px;
-  height: 320px;
+  width: 360px;
+  height: 350px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -993,7 +954,7 @@ const TimeSelectWrap = styled.div`
   align-items: center;
   /* border: 1px solid black; */
   margin-left: 100px;
-  height: 370px;
+  height: 390px;
 `;
 
 const TimeSelectWrapPlus = styled.div`
@@ -1133,8 +1094,8 @@ const CalendarWrap = styled.div`
   border-radius: 4px;
   margin-top: 30px;
   margin-bottom: 30px;
-  width: 625px;
-  height: 330px;
+  width: 700px;
+  height: 360px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
