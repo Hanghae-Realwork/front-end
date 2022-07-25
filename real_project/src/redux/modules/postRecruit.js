@@ -83,7 +83,6 @@ export const createRecruitAxios = (
   skills,
   schedule
 ) => {
-
   return async function (dispatch) {
     await apis
       .projectsCreate(
@@ -128,8 +127,6 @@ export const LoadDetailAxios = (projectId) => {
     })
   }
 }
-
-
 export const editRecruitAxios = (
   projectId,
   title,
@@ -142,7 +139,8 @@ export const editRecruitAxios = (
   photos,
   schedule
 ) => {
-  return async function(dispatch) {
+  return async function (dispatch) {
+     let res = null;
     await apis
       .projectsModify(
       projectId,
@@ -155,9 +153,8 @@ export const editRecruitAxios = (
       skills,
       [],
       schedule
-    )
-      .then((res) => {
-  
+    ).then(() => {
+      res = true;
       dispatch(
         editRecruit({
           projectId:projectId,
@@ -174,23 +171,27 @@ export const editRecruitAxios = (
       );
     }).catch((err) => {
       console.log(err)
+      res = false;
     })
+    return res;
   };
 };
 
 
 export const deleteRecruitAxios = (projectId) => {
-  console.log(projectId)
+  let res = null;
   return async function (dispatch) {
     await apis
       .projectsDelete(projectId)
       .then((response) => {
-  
+        res = true;
         dispatch(deleteRecruit())
       })
       .catch((err) => {
+        res = false;
         console.log(err);
       });
+    return res;
   };
 };
 
@@ -221,10 +222,9 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "recruit/EDIT": {
-      console.log(action.payload);
       return {
         reciveRecruit: state.receiveRecruit,
-        project: action.payload,
+        project: [action.payload],
       };
     }
 
