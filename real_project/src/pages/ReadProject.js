@@ -6,22 +6,40 @@ import { LoadDetailAxios } from "../redux/modules/postRecruit";
 import { checkUserValidation } from "../redux/modules/user";
 import { loadApplyAxios } from "../redux/modules/postProfile";
 import { deleteRecruitAxios } from "../redux/modules/postRecruit"
-// import {astroman} from "../image/astroman.svg"
+import DatePicker from "react-datepicker";
+import ko from "date-fns/locale/ko";
+import { loadEmployAxios } from "../redux/modules/postEmploy";
+
 import TagDev from "../components/Tag/TagCompoDev"
 import TagDes from "../components/Tag/TagCompoDes"
-
-
 import MiniResume from "../components/MiniProfile";
 
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
-import { loadEmployAxios } from "../redux/modules/postEmploy";
+import down from "../image/down.svg"
+
 
 
 function ReadProject() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { projectId } = useParams();
+
+  const [singleDate, setSingleDate] = useState("");
+
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState(new Date().getMonth()+1);
+  const [day, setDay] = useState(new Date().getDate());
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [Arcodian, setArcodian] = useState(false);
+
+  const singleCalenderOnChange = (date) => {
+    setYear(String(date.getFullYear()).padStart(2, "0"));
+    setMonth(String(date.getMonth() + 1).padStart(2, "0"));
+    setDay(String(date.getDate()).padStart(2, "0"));
+    setSingleDate(date)
+  };
 
 
   // 로그인 유저별 resume card 용
@@ -49,10 +67,13 @@ console.log(Value)
         <TopWrap>
           <TopTitle>{Value && Value[0]?.title}</TopTitle>
           <TopDateLimit>
+            <>프로젝트 기간 : </>
             {Value && Value[0]?.start}~ {Value && Value[0]?.end}
           </TopDateLimit>
         </TopWrap>
+
         <DivideLine />
+
         <MainTextWrap>
           <MainText>
             <MainTextSpan>{Value && Value[0]?.details}</MainTextSpan>
@@ -70,21 +91,33 @@ console.log(Value)
           <div>
             <RoleTitle>필요한 스킬 및 스텍</RoleTitle>
           </div>
-          <div>
-            <span>
+          <TagGapWrap>
               {Value &&
                 Value[0]?.skills.map((list, idx) => {
                   return <TagDev key={idx} skills={list} />;
                 })}
-            </span>
-          </div>
+          </TagGapWrap>
         </FindSkillWrap>
 
         <DivideLine />
 
         <DateWrap>
-          <div></div>
+          <ViewDateWrap>
+            <RoleTitle>필요한 스킬 및 스텍</RoleTitle>
+            <CalenderWrap>
+              <DatePicker
+                  selected={singleDate}
+                  startDate={startDate}
+                  dateFormat="YYYY-MM-DD"
+                  locale={ko} // 달력 한글화
+                  minDate={new Date()}
+                  monthsShown={1}
+                  inline
+                />
+            </CalenderWrap>
+          </ViewDateWrap>
         </DateWrap>
+
         <DivideLine />
         <ProfileWrap>
           <ProfileTitleWrap>
@@ -104,25 +137,14 @@ console.log(Value)
             </UserAllWrap>
           </ProfileDetailWrap>
         </ProfileWrap>
+
         <DivideLine />
-        <MiniResumeWrap>
-          {Value && userName_Info !== Value[0]?.email ? (
-            <MiniResume data={data} />
-          ) : (
-            ""
-          )}
-        </MiniResumeWrap>
-        <DivideLine />
+
         <ButtonWrap>
-          <SubmitButton>지원하기</SubmitButton>
           {Value && userName_Info === Value[0]?.email ? (
             <>
               {" "}
-              <SubmitButton
-                onClick={() => {
-                  navigate("/findprojectstep2/" + `${Value[0].projectId}`);
-                }}
-              >
+              <SubmitButton onClick={() => {navigate("/findprojectstep2/" + `${Value[0].projectId}`);}}>
                 수정하기
               </SubmitButton>
               <SubmitButton
@@ -136,7 +158,23 @@ console.log(Value)
               </SubmitButton>
             </>
           ) : (
-            <></>
+          <ArcodianWrap>
+            <ArcodianTextWrap onClick={() => {setArcodian(!Arcodian)}}>
+              <ArcodianText>이 프로젝트에 지원하고 싶어요?</ArcodianText>
+              <DownIcon src={down} style={{transform: Arcodian === false ? "rotate(0deg)" : "rotate(180deg)"}}/>
+            </ArcodianTextWrap>
+            <MiniResumeWrap style={{display: Arcodian === true ? "" : "none"}}>
+              {Value && userName_Info !== Value[0]?.email ? (
+                <MiniResume data={data} />
+              ) : (
+                ""
+              )}
+            </MiniResumeWrap>
+
+            <DivideLine />
+
+            <SubmitButton>지원하기</SubmitButton>
+          </ArcodianWrap>
           )}
         </ButtonWrap>
       </AllWrap>
@@ -147,7 +185,7 @@ console.log(Value)
 
 
 const AllWrap = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -163,6 +201,8 @@ const TopWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-top: 55px;
+  margin-bottom: 24px;
+  gap: 12px;
 `;
 
 const MainTextWrap = styled.div`
@@ -172,6 +212,8 @@ const MainTextWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  margin-top: 32px;
+
 `;
 
 const FindRoleWrap = styled.div`
@@ -194,6 +236,7 @@ const FindSkillWrap = styled.div`
   align-items: flex-start;
   margin-top: 30px;
   margin-bottom: 30px;
+  gap: 12px;
 `;
 
 const DateWrap = styled.div`
@@ -205,6 +248,7 @@ const DateWrap = styled.div`
   align-items: flex-start;
   margin-top: 30px;
   margin-bottom: 40px;
+  gap: 12px;
 `;
 
 const ProfileWrap = styled.div`
@@ -223,9 +267,9 @@ const ButtonWrap = styled.div`
   width: 1200px;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 20px;
   margin-bottom: 80px;
   gap: 20px;
 `;
@@ -244,25 +288,23 @@ const SubmitButton = styled.button`
 
 const DivideLine = styled.hr`
   width: 1200px;
+  border: 0.5px solid #D9D9D9;
 `;
 
 const TopTitle = styled.span`
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 12px;
 `;
 
 const TopDateLimit = styled.span`
   font-size: 14px;
-  font-weight: 400;
-  margin-bottom: 24px;
+  font-weight: 400; 
 `;
 
 const MainText = styled.div`
   width: 1200px;
-  margin-top: 32px;
-  /* border: 1px solid black; */
 `;
+
 const MainTextSpan = styled.span`
   font-size: 16px;
   font-weight: 400;
@@ -339,10 +381,69 @@ const MiniResumeWrap = styled.div`
   /* border: 1px solid black; */
   width: 1200px;
   display: flex;
+  flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 30px;
   margin-bottom: 30px;
+  gap: 15px;
 `;
+
+const CalenderWrap = styled.div`
+  border: 0.5px solid #d9d9d9;
+  border-radius: 4px;
+  width: 380px;
+  height: 350px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  margin-top: 12px;
+`;
+
+const ViewDateWrap = styled.div`
+  /* border: 1px solid black; */
+  width: 1200px;
+  height: 450px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  /* margin-top: 30px; */
+  gap: 12px;
+`
+
+const TagGapWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+`
+
+const ArcodianWrap = styled.div`
+  display: flex;
+  width: 1200px;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  /* border: 1px solid black; */
+`
+
+const ArcodianTextWrap = styled.div`
+  width: 1200px;
+  cursor: pointer;
+  margin-bottom: 20px;
+`
+
+const DownIcon = styled.img`
+  margin-left: 10px;  
+`
+
+const ArcodianText = styled.span`
+  font-size: 18px;
+  font-weight: 700;
+`
 
 export default ReadProject;

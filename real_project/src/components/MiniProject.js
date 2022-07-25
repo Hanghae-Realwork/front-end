@@ -13,7 +13,7 @@ import TagDes from "./Tag/TagCompoDes"
 function MiniProject({data}) {
 
 
-
+  const dispatch = useDispatch()
  
     
     useEffect(() => {
