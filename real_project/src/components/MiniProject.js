@@ -12,14 +12,6 @@ import TagDes from "./Tag/TagCompoDes"
 // 팀원찾기 -> 상세조회 -> 내 프로젝트 목록 조회
 function MiniProject({data}) {
 
-
-
- 
-    
-    useEffect(() => {
-        dispatch(loadResumesAxios())
-    }, [])
-  
     
   return (
       <>{data && data.map((list,idx) => {

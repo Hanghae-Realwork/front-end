@@ -159,7 +159,7 @@ function EmploymentProfile() {
                   <DownIcon src={down} style={{transform: Arcodian === false ? "rotate(0deg)" : "rotate(180deg)"}}/>
                 </PropseText>
                 <MiniProjectWrap style={{display: Arcodian === true ? "" : "none"}}>
-                  <MiniProject/>
+                  <MiniProject data={myProject} />
                 </MiniProjectWrap>
 
               </TestWrap>
