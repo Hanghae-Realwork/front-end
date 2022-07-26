@@ -45,11 +45,6 @@ function EditProfile() {
     const userDescription = useSelector((state) => state.postEmploy.resumes);
     const _userDiscription = useSelector((state) => state.postEmploy)
 
-  //formData
-  const frm = new FormData();
-  
-  //fileReader
-  const reader = new FileReader();
     
   //로그인 useEffect
  useEffect(() => {
@@ -81,22 +76,6 @@ function EditProfile() {
     setRole(e.target.value);
   };
 
-  const onChangeImg = (e) => {
-    //파일 유무
-    const file = e.target.files;
-    setFiles(file);
-
-    //fileReader
-    setFilesImg(e.target.files[0]);
-    reader.readAsDataURL(e.target.files[0]);
-
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setFilesImg(reader.result);
-        resolve();
-      };
-    });
-  };
 
   //버튼 누르면 저장
   const handleClick = () => {
@@ -131,7 +110,6 @@ function EditProfile() {
         modifyEmployAxios(
           resumeId,
           introduceRef.current.value,
-          null,
           start,
           end,
           role,
@@ -146,8 +124,6 @@ function EditProfile() {
       })
   };
     
-  
-
   return (
     <BackgroundAllWrap>
       <AddProfileWrap>

@@ -246,7 +246,6 @@ export const apis = {
   //  - 14. 팀원 찾기 등록
   resumesCreate: (
     content,
-    resumeImage,
     start,
     end,
     role,
@@ -256,7 +255,6 @@ export const apis = {
   ) =>
     api.post("/api/resumes", {
       content: content,
-      resumeImage: resumeImage,
       start: start,
       end: end,
       role: role,
@@ -275,7 +273,6 @@ export const apis = {
   resumesModify: (
     resumeId,
     content,
-    resumeImage,
     start,
     end,
     role,
@@ -285,7 +282,6 @@ export const apis = {
   ) =>
     api.put(`/api/resumes/${resumeId}`, {
       content: content,
-      resumeImage: resumeImage,
       start: start,
       end: end,
       role: role,

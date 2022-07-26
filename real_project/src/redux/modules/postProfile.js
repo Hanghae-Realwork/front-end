@@ -42,6 +42,7 @@ export const loadApplyAxios = (nickname) => {
 
 //내 모집현황 조회
 export const loadProjectAxios = (nickname) => {
+
   return async function (dispatch) {
     await apis
       .userRecruit(nickname)

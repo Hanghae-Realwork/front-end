@@ -16,16 +16,18 @@ function MatchingCrew() {
     
     const myProject = useSelector((state) => state.interview.projects);
     const [projectId, setProjectId] = useState("");
+    //매칭하기 
     const data = useSelector((state) => state.matches.resumes[0])
-    console.log(data)
+
+    const [seeData,setSeeData] = useState(false)
   //프로젝트 카드
   useEffect(() => {
     dispatch(loadProjectsAxios());
   }, []);
 
-
     const matchOnclick = () => {
         dispatch(matchesResumesAxios(projectId))
+        setSeeData(true)
     }
 
 
@@ -43,17 +45,19 @@ function MatchingCrew() {
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
             <MatchingButton onClick={matchOnclick}>매칭하기</MatchingButton>
-          </MatchingBotBtnWrap>
-          <MatchingBotWrap>
+                </MatchingBotBtnWrap>
+                { seeData ? <MatchingBotWrap>
             <MatchingContentWrap>
               <MatchingText>
                 맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
               </MatchingText>
-              <MatchingResumeWrap>
-                            <CradEmpol data={data} />
-              </MatchingResumeWrap>
+            <MatchingResumeWrap>         
+            <CradEmpol data={data} />
+            </MatchingResumeWrap> 
+                        
             </MatchingContentWrap>
-          </MatchingBotWrap>
+          </MatchingBotWrap> :""}
+          
         </MatchingCrewWrap>
       </>
     );
