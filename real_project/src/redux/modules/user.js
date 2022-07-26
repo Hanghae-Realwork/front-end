@@ -110,7 +110,7 @@ export const loginAxios = (userEmail, password) => {
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         dispatch(checkUserValidation());
-        // dispatch(login({ userId:userEmail }));
+        dispatch(login({ userId:userEmail }));
          success = true;
         
       })
@@ -131,7 +131,6 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
-
         dispatch(
           login({ userId: res.data.userId, nickname: res.data.nickname })
         );
@@ -202,7 +201,7 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
 
     case "user/LOGIN": {
-      // console.log(action.payload)
+   
       const newUserInfo = {
         userId: action.payload.userId,
         nickname:action.payload.nickname,

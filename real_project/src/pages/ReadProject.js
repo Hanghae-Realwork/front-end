@@ -41,7 +41,7 @@ function ReadProject() {
   const Value = useSelector((state) => state.postRecruit.project);
     const [currentClick, setCurrentClick] = useState(null);
     const [prevClick, setPrevClick] = useState(null);
-
+//background
     useEffect(() => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
@@ -53,7 +53,19 @@ function ReadProject() {
       }
       setPrevClick(currentClick);
     }, [currentClick]);
-
+  
+//border
+  // useEffect(() => {
+  //   if (currentClick !== null) {
+  //     let current = document.getElementById(currentClick);
+  //     current.style.border = "2px solid gray";
+  //   }
+  //   if (prevClick !== null) {
+  //     let prev = document.getElementById(prevClick);
+  //     prev.style.border = "1px solid ";
+  //   }
+  //   setPrevClick(currentClick);
+  // }, [currentClick]);
 
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));

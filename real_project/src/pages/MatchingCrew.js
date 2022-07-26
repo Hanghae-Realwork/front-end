@@ -162,6 +162,7 @@ const TextAlingWrap = styled.div`
   margin-top: 35px;
 `
 
+
 const MatchingBotWrap = styled.div`
   width: 100%;
   display: flex;
@@ -172,6 +173,7 @@ const MatchingBotWrap = styled.div`
   width: 100%;
   /* height: 20vh; */
   background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
+
 `
  
 export default MatchingCrew

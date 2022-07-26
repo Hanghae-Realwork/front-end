@@ -16,9 +16,8 @@ const Recruitment = () => {
 
   const dispatch = useDispatch();
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
-  console.log(nickname_Info)
   const value = useSelector((state) => state.postProfile.Myprojects);
-
+console.log(value)
 
 // console.log(data)
   useEffect(() => {
@@ -118,17 +117,19 @@ const Recruitment = () => {
               </ProfileWrap>
 
               <LoadWrap>
-                <ApplyStatusLabel>
+                <RecruitmentStatusLabel>
                   모집 완료
                   <img src={check} />
-                </ApplyStatusLabel>
+                </RecruitmentStatusLabel>
                 <ApplyLine />
-                <ApplyStatusLabel>
+
+                <InterviewStatusLabel>
                   면접 완료
                   <img src={check} />
-                </ApplyStatusLabel>
+                </InterviewStatusLabel>
                 <ApplyLine />
-                <ApplyStatusLabel>
+                {}
+                <ApplyStatusLabel color={list.available}>
                   지원서 접수
                   <img src={check} />
                 </ApplyStatusLabel>
@@ -319,8 +320,21 @@ const InterviewTimeText = styled.span`
   font-size: 12px;
   font-weight: 400;
 `
+const RecruitmentStatusLabel = styled.label`
+  padding: 8px 15px 8px 15px;
+  width: 90px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+  border:  1px solid black;
 
-const ApplyStatusLabel = styled.label`
+  border-radius: 20px;
+  font-size: 13px;
+`;
+const InterviewStatusLabel = styled.label`
   padding: 8px 15px 8px 15px;
   width: 90px;
   display: flex;
@@ -332,7 +346,25 @@ const ApplyStatusLabel = styled.label`
   border: 1px solid black;
   border-radius: 20px;
   font-size: 13px;
-`
+`;
+const ApplyStatusLabel = styled.label`
+  padding: 8px 15px 8px 15px;
+  width: 90px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+  font-weight: ${(props) =>
+  props.color ? "" : "600"};
+  border: ${(props) => (props.color ? "1px solid black" : "1.5px solid black")};
+  background-color: ghostwhite;
+
+  border-radius: 20px;
+  font-size: 13px;
+`;
+
 
 const ApplyLine = styled.hr`
   border: 1px solid #000; 
