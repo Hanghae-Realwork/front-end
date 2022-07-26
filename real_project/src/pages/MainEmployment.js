@@ -12,7 +12,7 @@ const MainEmployment = () => {
   const dispatch = useDispatch();
   const resumes = useSelector((state) => state.postEmploy.returnResumes);
   const ResumeResult = useSelector((state) => state.search.SearchResume);
-  console.log(ResumeResult)
+  
 
   useEffect(() => {
     dispatch(loadEmployAxios());

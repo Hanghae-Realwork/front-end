@@ -66,7 +66,7 @@ function MiniProject({ data, setProjectId }) {
               <TecWrap id={list.projectid}>
                 <NickText id={list.projectid}>원하는 보유 기술</NickText>
                 <TecMiniWrap id={list.projectid}>
-                  {data &&
+                  {data && list.projectid &&
                     list?.skills.map((tag, index) => {
                       return (
                         <TagDev skills={tag} key={index} id={list.projectid} />

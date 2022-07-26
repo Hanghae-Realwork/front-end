@@ -13,11 +13,11 @@ import cardBackground from "../image/cardBackground.svg"
 function CradEmpol({ data }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  console.log(data)
   const start =
-    data > 0 ? "" : data.start.replace("-", ".").replace("-", ".");
+    data > 0 ? "" : data?.start.replace("-", ".").replace("-", ".");
   const end =
-    data > 0 ? "" : data.end.replace("-", ".").replace("-", ".");
+    data > 0 ? "" : data?.end.replace("-", ".").replace("-", ".");
 
     return (
       <>
@@ -32,13 +32,13 @@ function CradEmpol({ data }) {
                 <ProfileCircle></ProfileCircle>
               </ProfileWrap>
               <CardTextWrap>
-                <CardTitle>{data.length > 0 ? "" : data.nickname}</CardTitle>
-                <CardText>{data.length > 0 ? "" : data.role}</CardText>
+                <CardTitle>{data?.nickname}</CardTitle>
+                <CardText>{ data?.role}</CardText>
               </CardTextWrap>
             </ProfileTopWrap>
           </CardTopWrap>
           <CardMidWrap>
-            <MidText>{data.length > 0 ? "" : data.content}</MidText>
+            <MidText>{data?.content}</MidText>
           </CardMidWrap>
           <CardMidMini>
             <MidDateText>
@@ -49,7 +49,7 @@ function CradEmpol({ data }) {
           <CardBotTag>
             <SkillText>보유한 기술</SkillText>
             <SkillWrap>
-              {data.skill?.map((list, idx) => {
+              {data?.skills?.map((list, idx) => {
                 return <TagDev key={idx} skills={list} />;
               })}
             </SkillWrap>

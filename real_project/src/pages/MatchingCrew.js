@@ -9,12 +9,15 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { loadProjectsAxios } from "../redux/modules/interview"
 import { matchesResumesAxios } from "../redux/modules/matches"
+import CradEmpol from "../components/CardEmpol"
+
 function MatchingCrew() {
     const dispatch = useDispatch();
     
     const myProject = useSelector((state) => state.interview.projects);
     const [projectId, setProjectId] = useState("");
-
+    const data = useSelector((state) => state.matches.resumes[0])
+    console.log(data)
   //프로젝트 카드
   useEffect(() => {
     dispatch(loadProjectsAxios());
@@ -47,7 +50,7 @@ function MatchingCrew() {
                 맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
               </MatchingText>
               <MatchingResumeWrap>
-                여기에 미니프로필 카드가 들어갑니당
+                            <CradEmpol data={data} />
               </MatchingResumeWrap>
             </MatchingContentWrap>
           </MatchingBotWrap>
