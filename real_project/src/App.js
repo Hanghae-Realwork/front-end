@@ -59,8 +59,9 @@ function App() {
       <Header />
 
 
-      <MatchingCrew></MatchingCrew>
-      <MatchingResume></MatchingResume>
+      {/* <MatchingCrew></MatchingCrew>
+      <MatchingResume></MatchingResume> */}
+
 
 
       <Routes>

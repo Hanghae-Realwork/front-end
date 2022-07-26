@@ -29,14 +29,18 @@ const MainRecruit = () => {
         <NavigationBarProject />
         <CardBackGround className="MainBack">
           <CardContainerWrap style={{display: SearchResult.length === 0 ? "" : "none"}}>
+            <SearchWrap>
             {recruit === undefined ? null : recruit.map((list, idx) => {
               return <Card key={idx} data={list} />;
                 })}
+            </SearchWrap>
           </CardContainerWrap>
           <CardContainerWrap style={{display: SearchResult.length === 0 ? "none" : ""}}>
+            <SearchWrap>
             {recruit === undefined ? null : SearchResult.map((list, idx) => {
               return <Card key={idx} data={list} />;
                 })}
+            </SearchWrap>
           </CardContainerWrap>
         </CardBackGround>
       </>
@@ -65,6 +69,16 @@ const CardBackGround = styled.div`
   justify-content: center;
   align-items: flex-start;
   /* border: 1px solid black; */
+`
+
+const SearchWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: auto;
+  gap: 24px;
+  width: 1200px;
 `
 
 export default MainRecruit;

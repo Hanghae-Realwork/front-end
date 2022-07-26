@@ -137,8 +137,9 @@ const CardMidWrap = styled.div`
     /* border: 1px solid black; */
     margin: 5px 20px 0px 20px; 
     width: 350px;
-    height: 55px;
+    height: 50px;
     overflow: hidden;
+    line-height: 21px;
 `
 
 const MidText = styled.span`
@@ -148,7 +149,9 @@ const MidText = styled.span`
 const CardMidMini = styled.div`
     /* border: 1px solid black; */
     width: 350px;
-    margin: 8px 20px 5px 20px;
+    margin: 5px 20px 5px 20px;
+    line-height: 21px;
+    height: 25px;
 `
 
 const MidDateText = styled.span`
@@ -173,11 +176,12 @@ const SkillText = styled.span`
 const SkillWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 3px;
   height: 30px;
   overflow: scroll;
+  line-height: 21px;
 `
 
 export default CradEmpol

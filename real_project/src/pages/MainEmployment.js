@@ -24,14 +24,18 @@ const MainEmployment = () => {
       <NavigationBarResume />
         <CardBackGround className="MainBack">
           <CardContainerWrap style={{display: ResumeResult.length === 0 ? "" : "none"}}>
-            {resumes === undefined ? null : resumes.map((list, idx) => {
-              return <CardEmpol key={idx} data={list} />;
-                })}
-          </CardContainerWrap>
+          <SearchWrap>
+              {resumes === undefined ? null : resumes.map((list, idx) => {
+                return <CardEmpol key={idx} data={list} />;
+                  })}
+          </SearchWrap>
+        </CardContainerWrap>
           <CardContainerWrap style={{display: ResumeResult.length === 0 ? "none" : ""}}>
+            <SearchWrap>
             {resumes === undefined ? null : ResumeResult.map((list, idx) => {
               return <CardEmpol key={idx} data={list} />;
                 })}
+            </SearchWrap>
           </CardContainerWrap>
       </CardBackGround>
     </>
@@ -59,6 +63,16 @@ const CardBackGround = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+const SearchWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: auto;
+  gap: 24px;
+  width: 1200px;
 `
 
 

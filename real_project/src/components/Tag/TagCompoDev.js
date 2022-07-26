@@ -12,7 +12,7 @@ const TagButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  background-color: #ece0ec;
+  background-color: #ECE0EC;
   font-size: 12px;
   font-weight: 500;
   border-radius: 30px;
