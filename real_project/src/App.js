@@ -56,14 +56,12 @@ function App() {
   
   return (
     <MainWrap>
-
       <Header />
 
       {/* <MiniResume></MiniResume>
       <Miniproject></Miniproject> */}
 
       <Routes>
-
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
         <Route path="/login" element={<Login />} />
@@ -74,10 +72,11 @@ function App() {
         <Route path="/mainemployment" element={<MainEmployment />}></Route>
         <Route path="/mypage" element={<MyPage />}></Route>
         <Route path="/findprojectstep1" element={<AddProject />}></Route>
-        <Route path="/findprojectstep2/:projectId" element={<EditProject />}></Route>
+        <Route
+          path="/findprojectstep2/:projectId"
+          element={<EditProject />}
+        ></Route>
         <Route path="/readproject/:projectId" element={<ReadProject />}></Route>
-        <Route path="/matchingcrew" element={<MatchingCrew />}></Route>
-        <Route path="/matchingresume" element={<MatchingResume />}></Route>
 
         <Route path="/rolemodal" element={<RoleModal />}></Route>
         <Route path="/skillmodal" element={<SkillModal />}></Route>
@@ -91,6 +90,8 @@ function App() {
           <Route path="resumes" element={<Resumes />}></Route>
         </Route>
 
+        <Route path="/matchingcrew" element={<MatchingCrew />}></Route>
+        <Route path="/matchingresume" element={<MatchingResume />}></Route>
       </Routes>
     </MainWrap>
   );
