@@ -1,41 +1,51 @@
-import React, {useState} from "react"
+import React,{useState,useEffect} from "react"
 import styled from "styled-components"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
+import { useSelector,useDispatch } from "react-redux";
+import MiniResume from "../components/MiniProfile";
+import { loadResumesAxios } from "../redux/modules/interview";
+import { matchesProjectsAxios } from "../redux/modules/matches";
+function MatchingResume() {
+    const dispatch = useDispatch();
+  const data = useSelector((state) => state.interview.resumes);
+  
+    const [resumeId, setResumeId] = useState("");
+    useEffect(() => {
+      dispatch(loadResumesAxios());
+    }, []);
 
-function MatchingResume(){
-
-
-
-    return(
-        <>
-        <MatchingBtn/>
-            <MatchingCrewWrap>
-                <MatchingTopWrap>   
-                    <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
-                    <MatchingCardWrap>
-
-                        여기에 미니프로필 카드가 들어갑니당
-
-                    </MatchingCardWrap>
-                </MatchingTopWrap>
-                <MatchingBotBtnWrap>
-                    <MatchingButton>매칭하기</MatchingButton>
-                </MatchingBotBtnWrap>
-                <MatchingBotWrap>
-                    <MatchingContentWrap>
-                        <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
-                        <MatchingResumeWrap>
-
-                            여기에 미니프로젝트 카드가 들어갑니당
-
-                        </MatchingResumeWrap>
-                    </MatchingContentWrap>
-                </MatchingBotWrap>
-            </MatchingCrewWrap>
-
-        </>
-    )
+  const matchOnclick = () => {
+    dispatch(matchesProjectsAxios(resumeId))
+  }
+    return (
+      <>
+        <MatchingBtn />
+        <MatchingCrewWrap>
+          <MatchingTopWrap>
+            <MatchingText>
+              맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
+            </MatchingText>
+            <MatchingCardWrap>
+              여기에 미니프로필 카드가 들어갑니당
+            </MatchingCardWrap>
+          </MatchingTopWrap>
+          <MatchingBotBtnWrap>
+            <MatchingButton onClick={matchOnclick}>매칭하기</MatchingButton>
+          </MatchingBotBtnWrap>
+          <MatchingBotWrap>
+            <MatchingContentWrap>
+              <MatchingText>
+                맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
+              </MatchingText>
+              <MatchingResumeWrap>
+                <MiniResume data={data} setResumeId={setResumeId} />
+              </MatchingResumeWrap>
+            </MatchingContentWrap>
+          </MatchingBotWrap>
+        </MatchingCrewWrap>
+      </>
+    );
 }
 
 

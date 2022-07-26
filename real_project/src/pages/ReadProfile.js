@@ -28,7 +28,7 @@ function EmploymentProfile() {
   const loginInfoName = useSelector((state) => state.user.userInfo.userId);
   const data = useSelector((state) => state.postEmploy.resumes);
   const [projectId,setProjectId] =useState("")
-  console.log(projectId)
+  
   const myProject = useSelector((state) => state.interview.projects);
 
 

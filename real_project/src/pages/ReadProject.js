@@ -19,7 +19,7 @@ import astroman from "../image/astroman.svg";
 import down from "../image/down.svg"
 import delIcon from "../image/tagclose.svg"
 import { projectInterviewAxios } from "../redux/modules/interview";
-
+import { loadResumesAxios } from "../redux/modules/interview";
 
 
 
@@ -28,34 +28,16 @@ function ReadProject() {
   const dispatch = useDispatch();
   const { projectId } = useParams();
 
-  const [singleDate, setSingleDate] = useState("");
-
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth()+1);
-  const [day, setDay] = useState(new Date().getDate());
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-
+ 
   const [Arcodian, setArcodian] = useState(false);
 
-  const [newSchedule, setNewSchedule] = useState(''); 
-
-  const singleCalenderOnChange = (date) => {
-    setYear(String(date.getFullYear()).padStart(2, "0"));
-    setMonth(String(date.getMonth() + 1).padStart(2, "0"));
-    setDay(String(date.getDate()).padStart(2, "0"));
-    setSingleDate(date)
-  };
-
-
-  // 로그인 유저별 resume card 용
-  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
   // 예약기능
   const [applicationId, setApplicationId] = useState("");
   const [resumeId, setResumeId] = useState("")
  
   const data = useSelector((state) => state.interview.resumes);
+
   const Value = useSelector((state) => state.postRecruit.project);
     const [currentClick, setCurrentClick] = useState(null);
     const [prevClick, setPrevClick] = useState(null);
@@ -77,7 +59,11 @@ function ReadProject() {
     dispatch(LoadDetailAxios(projectId));
   }, []);
 
+  useEffect(() => {
+    dispatch(loadResumesAxios());
+  }, []);
 
+  
   const deleteOnclick = async() => {
     if (window.confirm("❗️정말 삭제하시는 건가요?")) {
 
@@ -106,7 +92,7 @@ function ReadProject() {
     ) {
       alert("날짜와 소개서를 선택해주세요!")
     } else { 
- dispatch(projectInterviewAxios   (applicationId, resumeId));  
+    dispatch(projectInterviewAxios   (applicationId, resumeId));  
     }
    
   }
