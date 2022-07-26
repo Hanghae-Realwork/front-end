@@ -58,8 +58,8 @@ function App() {
     <MainWrap>
       <Header />
 
-      {/* <MiniResume></MiniResume>
-      <Miniproject></Miniproject> */}
+      <MatchingCrew></MatchingCrew>
+      <MatchingResume></MatchingResume>
 
       <Routes>
         <Route path="/" element={<Main />} />

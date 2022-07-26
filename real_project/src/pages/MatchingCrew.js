@@ -1,16 +1,37 @@
-import React from "react"
+import React, {useState} from "react"
 import styled from "styled-components"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
 
 function MatchingCrew(){
 
+
+
     return(
         <>
         <MatchingBtn/>
-            <MatchingCrewWrap>   
-                <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
-                <MatchingCardWrap></MatchingCardWrap>
+            <MatchingCrewWrap>
+                <MatchingTopWrap>   
+                    <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
+                    <MatchingCardWrap>
+
+                        여기에 미니프로젝트 카드가 들어갑니당
+
+                    </MatchingCardWrap>
+                </MatchingTopWrap>
+                <MatchingBotBtnWrap>
+                    <MatchingButton>매칭하기</MatchingButton>
+                </MatchingBotBtnWrap>
+                <MatchingBotWrap>
+                    <MatchingContentWrap>
+                        <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
+                        <MatchingResumeWrap>
+
+                            여기에 미니프로필 카드가 들어갑니당
+
+                        </MatchingResumeWrap>
+                    </MatchingContentWrap>
+                </MatchingBotWrap>
             </MatchingCrewWrap>
 
         </>
@@ -20,11 +41,16 @@ function MatchingCrew(){
 
 const MatchingCrewWrap = styled.div`
     width: 1200px;
-    height: 500px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
+`
+
+const MatchingTopWrap = styled.div`
+    width: 100%;
+    /* border: 1px solid black; */
+    margin-top: 44.5px;
 `
 
 const MatchingText = styled.span`
@@ -40,9 +66,54 @@ const MatchingCardWrap = styled.div`
     overflow-x: scroll;
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-
+    margin-top: 20px;
 `
 
+const MatchingBotBtnWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+`
+
+const MatchingButton = styled.button`
+    padding: 7.5px 24px 7.5px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    background: #303032;
+    border-radius: 4px;
+    background-color: #303032;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+`
+
+const MatchingBotWrap = styled.div`
+    /* border: 1px solid black; */
+    width: 100%;
+    margin-top: 36px;
+    background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
+`
+
+const MatchingResumeWrap = styled.div`
+    border: 1px solid black;
+    width: 100%;
+    margin-top: 20px;
+    height: 600px;
+    overflow: scroll;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+`               
+                        
+const MatchingContentWrap = styled.div`
+    margin-top: 40px;
+`
+ 
 export default MatchingCrew
