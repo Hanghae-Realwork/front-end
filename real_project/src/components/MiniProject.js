@@ -31,23 +31,23 @@ function MiniProject({ data, setProjectId }) {
   //   setPrevClick(currentClick);
   // }, [currentClick]);
 
-  const [changeClass, setChangeClass] = useState("change")
-  const [disClass, setDisClass] = useState(null)
-  const testClick = (e) => {
-    setChangeClass(e.target.className)
-    setDisClass(e.target)
-      console.log(e.target)
+  // const [changeClass, setChangeClass] = useState("change")
+  // // const [disClass, setDisClass] = useState(null)
+  // const testClick = (e) => {
+  //   setChangeClass(e.target.className)
+  //   // setDisClass(e.target)
+  //   //   console.log(e.target)
    
-      if(changeClass === "change"){
-        setChangeClass(e.target.className = "dis")
-        console.log(e.target.className)
-      }
-      if(changeClass === "dis"){
-        setChangeClass(e.target.className = "change")
-        console.log(e.target.className)
-      }
+  //     if(changeClass === "change"){
+  //       setChangeClass(e.target.className = "dis")
+  //       console.log(e.target.className)
+  //     }
+  //     if(changeClass === "dis"){
+  //       setChangeClass(e.target.className = "change")
+  //       console.log(e.target.className)
+  //     }
     
-  }
+  // }
 
   
   
@@ -58,9 +58,8 @@ function MiniProject({ data, setProjectId }) {
         data.map((list, idx) => {
           return (
 
-            <MiniCardAllWrap className="change" onClick={testClick}>
-            <TestWrap key={idx} 
-              onClick={() => {setProjectId(list.projectId)}}>
+            <MiniCardAllWrap key={idx} onClick={() => {setProjectId(list.projectId)}}>
+            
               <MiniNickWrap >
                 <NickText >{list?.nickname}</NickText>
                 <NickText >n시간 전이 들어갑니다</NickText>
@@ -86,7 +85,7 @@ function MiniProject({ data, setProjectId }) {
                   {data && 
                     list?.skills.map((tag, index) => {
                       return (
-                        <TagDev skills={tag} key={index}  />
+                        <TagDev skills={tag} key={index} />
                       );
                     })}
                 </TecMiniWrap>
@@ -99,7 +98,7 @@ function MiniProject({ data, setProjectId }) {
                   {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일{" "}
                 </MiniDateText>
               </MiniDateWrap>
-              </TestWrap>
+              
             </MiniCardAllWrap>
             
           );
@@ -111,25 +110,17 @@ function MiniProject({ data, setProjectId }) {
 }
 
 
-const TestWrap = styled.div`
-    width: auto;
-    height: auto;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-`
 
 
 const MiniCardAllWrap = styled.div`
-    /* border: 1px solid black; */
+    border: 0.5px solid black;
     border-radius: 4px;
     width: 384px;
     height: 307px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 `
 
 const MiniTopWrap = styled.div`
@@ -141,6 +132,7 @@ const MiniTopWrap = styled.div`
     align-items: flex-start;
     margin: 12px 0px 23px 20px;
     pointer-events : none;
+    line-height: 21px;
 `
 
 const MiniBodyWrap = styled.div`
@@ -152,7 +144,7 @@ const MiniBodyWrap = styled.div`
     justify-content: center;
     align-items: flex-start;
     pointer-events : none;
-    
+    line-height: 21px;
 `
 
 const MiniDateWrap = styled.div`
@@ -160,6 +152,7 @@ const MiniDateWrap = styled.div`
     width: 344px;
     margin: 0px 0px 16px 20px;
     pointer-events : none;
+    line-height: 21px;
 `
 
 const TecWrap = styled.div`
@@ -167,27 +160,32 @@ const TecWrap = styled.div`
     width: 344px;
     margin: 0px 0px 10px 20px;
     pointer-events : none;
+    line-height: 21px;
 `
 
 const MiniNickName = styled.span`
     font-size: 18px;
     font-weight: 700;
+    line-height: 21px;
 `
 
 const MiniRole = styled.span`
     font-size: 14px;
     font-weight: 700;
     margin-top: 2px;
+    line-height: 21px;
 `
 
 const MiniBodyText = styled.span`
     font-size: 14px;
     font-weight: 400;
+    line-height: 21px;
 `
 
 const MiniDateText = styled.span`
     font-size: 12px;
     font-weight: 500;
+    line-height: 21px;
 `
 
 const TecMiniWrap = styled.div`
@@ -198,6 +196,7 @@ const TecMiniWrap = styled.div`
     align-items: center;
     width: 344px;
     margin-top: 4px;
+    line-height: 21px;
 `
 
 const MiniNickWrap = styled.div`
@@ -209,11 +208,13 @@ const MiniNickWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   pointer-events : none;
+  line-height: 21px;
 `
 
 const NickText = styled.span`
   font-size: 12px;
   font-weight: 400;
+  line-height: 21px;
 `
 
 const MiniBodyTextWrap = styled.div`
@@ -226,6 +227,7 @@ const MiniBodyTextWrap = styled.div`
   width: 344px;
   overflow: hidden;
   height: 40px;
+  line-height: 21px;
 ` 
 
 export default MiniProject;
