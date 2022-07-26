@@ -16,12 +16,13 @@ const Recruitment = () => {
 
   const dispatch = useDispatch();
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+  console.log(nickname_Info)
   const value = useSelector((state) => state.postProfile.Myprojects);
-console.log(value)
+
 
 // console.log(data)
   useEffect(() => {
-      if (!(nickname_Info === undefined || nickname_Info === null)) {
+      if (nickname_Info !== undefined || nickname_Info !== null) {
           dispatch(loadProjectAxios(nickname_Info));
     }
   }, [nickname_Info]);

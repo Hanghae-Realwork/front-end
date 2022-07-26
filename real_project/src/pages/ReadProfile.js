@@ -56,9 +56,9 @@ function EmploymentProfile() {
         href = data.length > 0 ? data[0].content2 : "";
       }
     }, [loginInfoName, data]);
-  
+   
   const deleteOnclick = () => {
-
+    
     if (window.confirm("❗️정말 삭제하시는 건가요?")) {
       dispatch(deleteEmployAxios(resumeId))
       .then(() => navigate("/mainemployment"))
