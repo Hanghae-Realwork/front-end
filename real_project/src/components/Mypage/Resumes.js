@@ -17,11 +17,11 @@ const Resumes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const nickname = useSelector((state) => state.user.userInfo.nickname);
-  const data = useSelector((state) => state.postProfile.Myresumes);
+  
   
   
 
-  let href = ""
+ 
 
   useEffect(() => {
     if (nickname !== undefined) {
@@ -34,6 +34,7 @@ const Resumes = () => {
   return (
     <>
       <MyPageResumeBackWrap>
+        
         <PageAllWrap>
           <TopWrap>
             <LeftTopWrap>

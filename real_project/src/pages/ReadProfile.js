@@ -143,11 +143,11 @@ function EmploymentProfile() {
                 {data.length > 0 ? data[0].nickname : ""}님의 보유 스킬
               </MidTitle>
               <MidTagWrap>
-                {data.length > 0
-                  ? data[0].skill.map((list, idx) => {
+                {data && 
+                  data[0].skills.map((list, idx) => {
                       return <TagDev key={idx} skills={list} />;
                     })
-                  : ""}
+                  }
               </MidTagWrap>
             </MidTxetWrap>
           </MidWrap>
