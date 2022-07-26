@@ -58,9 +58,15 @@ function MiniProject({ data, setProjectId }) {
         data.map((list, idx) => {
           return (
 
-            <MiniCardAllWrap className="change" onClick={testClick}>
-            <TestWrap key={idx} 
-              onClick={() => {setProjectId(list.projectId)}}>
+
+            <MiniCardAllWrap
+              key={idx}
+              id={list.projectid}
+              onClick={(e) => {
+                setProjectId(list.projectid);
+                // setCurrentClick(e.target.id);
+              }}>
+
               <MiniNickWrap >
                 <NickText >{list?.nickname}</NickText>
                 <NickText >n시간 전이 들어갑니다</NickText>
@@ -83,7 +89,9 @@ function MiniProject({ data, setProjectId }) {
               <TecWrap >
                 <NickText >원하는 보유 기술</NickText>
                 <TecMiniWrap >
+
                   {data && 
+
                     list?.skills.map((tag, index) => {
                       return (
                         <TagDev skills={tag} key={index}  />
@@ -99,7 +107,7 @@ function MiniProject({ data, setProjectId }) {
                   {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일{" "}
                 </MiniDateText>
               </MiniDateWrap>
-              </TestWrap>
+ 
             </MiniCardAllWrap>
             
           );
