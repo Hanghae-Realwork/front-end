@@ -105,7 +105,7 @@ const MatchingCardWrap = styled.div`
     overflow-x: scroll;
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 20px;
     gap: 20px;

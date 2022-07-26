@@ -13,6 +13,18 @@ import TagDes from "./Tag/TagCompoDes"
 
 // 팀원찾기 -> 상세조회 -> 내 프로젝트 목록 조회
 function MiniProject({ data, setProjectId }) {
+  const [currentClick, setCurrentClick] = useState(null);
+  const [prevClick, setPrevClick] = useState(null);
+
+  useEffect(() => {
+    if (currentClick !== null ) {
+      document.getElementsByClassName(currentClick)[0].style.border = "2px solid black";
+    }
+    if (prevClick !== null ) {
+      document.getElementsByClassName(prevClick)[0].style.border = "1px solid gray";
+    }
+    setPrevClick(currentClick);
+  }, [currentClick]);
   
   // const [currentClick, setCurrentClick] = useState(null);
   // const [prevClick, setPrevClick] = useState(null);
@@ -61,10 +73,10 @@ function MiniProject({ data, setProjectId }) {
 
             <MiniCardAllWrap
               key={idx}
-              id={list.projectid}
+              className={list.projectid}
               onClick={(e) => {
                 setProjectId(list.projectid);
-                // setCurrentClick(e.target.id);
+                setCurrentClick(e.target.className);
               }}>
 
 
@@ -90,7 +102,6 @@ function MiniProject({ data, setProjectId }) {
               <TecWrap >
                 <NickText >원하는 보유 기술</NickText>
                 <TecMiniWrap >
-
                   {data && 
                     list?.skills.map((tag, index) => {
                       return (
@@ -138,7 +149,7 @@ const MiniTopWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
-    margin: 12px 0px 23px 20px;
+    margin: 12px 0px 23px 0px;
     pointer-events : none;
     line-height: 21px;
 `
@@ -146,7 +157,7 @@ const MiniTopWrap = styled.div`
 const MiniBodyWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
-    margin: 0px 12px 8px 20px;
+    margin: 0px 0px 5px 0px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -158,7 +169,7 @@ const MiniBodyWrap = styled.div`
 const MiniDateWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
-    margin: 0px 0px 16px 20px;
+    margin: 0px 0px 16px 0px;
     pointer-events : none;
     line-height: 21px;
 `
@@ -166,9 +177,10 @@ const MiniDateWrap = styled.div`
 const TecWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
-    margin: 0px 0px 10px 20px;
-    pointer-events : none;
+    margin: 0px 0px 10px 0px;
+    /* pointer-events : none; */
     line-height: 21px;
+    /* overflow: scroll; */
 `
 
 const MiniNickName = styled.span`
@@ -203,8 +215,11 @@ const TecMiniWrap = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 344px;
+    height: 30px;
     margin-top: 4px;
     line-height: 21px;
+    overflow: scroll;
+    gap: 4px;
 `
 
 const MiniNickWrap = styled.div`
