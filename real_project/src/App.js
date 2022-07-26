@@ -57,9 +57,11 @@ function App() {
   return (
     <MainWrap>
       <Header />
-      
-      {/* <MiniResume></MiniResume>
-      <Miniproject></Miniproject> */}
+
+
+      <MatchingCrew></MatchingCrew>
+      <MatchingResume></MatchingResume>
+
 
       <Routes>
         <Route path="/" element={<Main />} />
