@@ -17,7 +17,7 @@ const Resumes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const nickname = useSelector((state) => state.user.userInfo.nickname);
-  
+
   
   
 

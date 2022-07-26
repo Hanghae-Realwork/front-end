@@ -157,11 +157,9 @@ function EmploymentProfile() {
             <BotWrap>
               <FixedBtn
                 onClick={() => {
-                  if (window.confirm("수정하러 가볼까요?🥸")) {
+                 
                     navigate("/editprofile/" + `${data[0].resumeId}`);
-                  } else {
-                    return false;
-                  }
+                  
                 }}
               >
                 수정하기
