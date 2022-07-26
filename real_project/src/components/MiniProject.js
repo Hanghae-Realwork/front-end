@@ -47,39 +47,39 @@ function MiniProject({ data, setProjectId }) {
                 setProjectId(list.projectid);
                 // setCurrentClick(e.target.id);
               }}>
-              <MiniNickWrap id={list.projectid}>
-                <NickText id={list.projectid}>{list?.nickname}</NickText>
-                <NickText id={list.projectid}>n시간 전이 들어갑니다</NickText>
+              <MiniNickWrap >
+                <NickText >{list?.nickname}</NickText>
+                <NickText >n시간 전이 들어갑니다</NickText>
               </MiniNickWrap>
 
-              <MiniTopWrap id={list.projectid}>
-                <MiniNickName id={list.projectid}>{list?.title}</MiniNickName>
-                <MiniBodyTextWrap id={list.projectid}>
-                  <MiniBodyText id={list.projectid}>
+              <MiniTopWrap >
+                <MiniNickName >{list?.title}</MiniNickName>
+                <MiniBodyTextWrap >
+                  <MiniBodyText >
                     {list?.subscript}
                   </MiniBodyText>
                 </MiniBodyTextWrap>
               </MiniTopWrap>
 
-              <MiniBodyWrap id={list.projectid}>
-                <NickText id={list.projectid}>구하는 직군</NickText>
-                <MiniRole id={list.projectid}>{list?.role}</MiniRole>
+              <MiniBodyWrap >
+                <NickText >구하는 직군</NickText>
+                <MiniRole >{list?.role}</MiniRole>
               </MiniBodyWrap>
 
-              <TecWrap id={list.projectid}>
-                <NickText id={list.projectid}>원하는 보유 기술</NickText>
-                <TecMiniWrap id={list.projectid}>
+              <TecWrap >
+                <NickText >원하는 보유 기술</NickText>
+                <TecMiniWrap >
                   {data && list.projectid &&
                     list?.skills.map((tag, index) => {
                       return (
-                        <TagDev skills={tag} key={index} id={list.projectid} />
+                        <TagDev skills={tag} key={index}  />
                       );
                     })}
                 </TecMiniWrap>
               </TecWrap>
 
-              <MiniDateWrap id={list.projectid}>
-                <MiniDateText id={list.projectid}>
+              <MiniDateWrap >
+                <MiniDateText >
                   {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
                   {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
                   {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일{" "}
