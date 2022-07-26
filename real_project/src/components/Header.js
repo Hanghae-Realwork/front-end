@@ -18,6 +18,7 @@ function Header() {
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const nickname = useSelector((state) => state.user.userInfo.nickname);
+  const test = useSelector((state) => state.user.userInfo);
 
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);

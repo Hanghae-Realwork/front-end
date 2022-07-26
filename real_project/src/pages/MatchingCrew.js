@@ -56,8 +56,6 @@ function MatchingCrew() {
       <>
         <MatchingBtn />
         <MatchingCrewWrap>
-
-
           <div 
             onClick={testClick} 
             className="change">테스트 버튼</div>
@@ -187,6 +185,8 @@ const ContentAlignWrap = styled.div`
 const TextAlingWrap = styled.div`
   width: 1200px;
   margin-top: 35px;
+`
+const MatchingBotWrap = styled.div`
 `
  
 export default MatchingCrew
