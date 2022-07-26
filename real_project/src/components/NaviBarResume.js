@@ -57,8 +57,6 @@ function NavigationBarResume() {
    
 
 
-    
-
     return(
         <>
         <OnlyBackgroundDiv>

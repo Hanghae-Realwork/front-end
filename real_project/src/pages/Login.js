@@ -15,13 +15,6 @@ function Login() {
   const navigate = useNavigate();
 
 
-  // 엔터키 누르면 로그인 작동하게 하기 
-  window.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-      loginFunction();
-    }
-  });
-
 
   // 로그인 벨리데이션 체크 함수
   const loginFunction = async () => {

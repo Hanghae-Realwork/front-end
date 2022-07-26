@@ -5,12 +5,17 @@ const SKILLLOAD = "search/SKILLLOAD";
 const ROLELOAD = "search/ROLELOAD";
 const DATELOAD = "search/DATELOAD"
 
+//검색 결과
 const LOADRESULT = "search/LOADRESULT"
 const RESUMERESULT = "search/RESUMERESULT"
 
 //삭제 및 검색 액션
 const SKILLDELETE = "search/SKILLDELETE";
 const COMPLETE = "search/COMPLETE";
+
+//검색 초기화
+const RESULTRESET = "search/RESULTRESET"
+
 
 
 //이니셜 스테이트
@@ -59,6 +64,13 @@ export function skillDelete(payload) {
 export function complete(payload) {
   return { type: COMPLETE, payload };
 }
+
+//리셋 액션함수
+export function resetresult(payload){
+  return {type: RESULTRESET, payload}
+}
+
+
 
 
 //미들웨어
@@ -132,12 +144,6 @@ export const SearchResumeAxios = (
       });
   };
 };
-
-
-
-
-
-
 
 
 
