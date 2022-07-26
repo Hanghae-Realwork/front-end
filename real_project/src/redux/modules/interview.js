@@ -65,15 +65,17 @@ export const projectInterviewAxios = (applcationId,resumeId) => {
     await apis
       .projectInterview(applcationId, resumeId)
       .then((res) => {
-        if (res.response.status === 200) { 
+
+       
           alert("성공적으로 예약되었습니다. 🥸");
-        }
+      
       })
       .catch((err) => {
+        console.log(err)
         if (err) {
           alert(err.response.data.errorMessage);
         }
-        console.log();
+       
         
         // console.log(err.response.status);
        
