@@ -17,7 +17,7 @@ const Recruitment = () => {
   const dispatch = useDispatch();
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
   const value = useSelector((state) => state.postProfile.Myprojects);
-
+console.log(value)
 
 // console.log(data)
   useEffect(() => {
@@ -52,26 +52,26 @@ const Recruitment = () => {
             <RecruitCardMainWrap key={idx}>
               <CardWrap>
                 <CardNameWrap>
-                  <NameText>{list && list?.Project?.nickname}</NameText>
+                  <NameText>{list && list?.nickname}</NameText>
                   <NameText>
                     <DisplayCreatedAt />
                   </NameText>
                 </CardNameWrap>
                 <CardTitleWrap>
-                  <TitleText>{list && list?.Project?.title}</TitleText>
+                  <TitleText>{list && list?.title}</TitleText>
                 </CardTitleWrap>
                 <CardTextWrap>
-                  <BodyText>{list && list?.Project?.details}</BodyText>
+                  <BodyText>{list && list?.details}</BodyText>
                 </CardTextWrap>
                 <CardRoleWrap>
                   <NameText>구하는직군</NameText>
-                  <NameText>{list && list?.Project?.role}</NameText>
+                  <NameText>{list && list?.role}</NameText>
                 </CardRoleWrap>
                 <CardJobWrap>
                   <NameText>필요 스킬</NameText>
                   <NameText>
                     {value &&
-                      value[idx].ProjectSkills.map((list, idx) => {
+                      list?.ProjectSkills.map((list, idx) => {
                         return <TagCompoApp key={idx} skills={list} />;
                       })}
                   </NameText>
@@ -79,13 +79,8 @@ const Recruitment = () => {
                 <CardLimitWrap>
                   <BodyText>
                     프로젝트 러닝 기간 :{" "}
-                    {list &&
-                      list?.Project?.start
-                        .replace("-", ".")
-                        .replace("-", ".")}{" "}
-                    -{" "}
-                    {list &&
-                      list?.Project?.end.replace("-", ".").replace("-", ".")}
+                    {list && list?.start.replace("-", ".").replace("-", ".")} -{" "}
+                    {list && list?.end.replace("-", ".").replace("-", ".")}
                   </BodyText>
                   <DateText></DateText>
                 </CardLimitWrap>
