@@ -54,18 +54,7 @@ function ReadProject() {
       setPrevClick(currentClick);
     }, [currentClick]);
   
-//border
-  // useEffect(() => {
-  //   if (currentClick !== null) {
-  //     let current = document.getElementById(currentClick);
-  //     current.style.border = "2px solid gray";
-  //   }
-  //   if (prevClick !== null) {
-  //     let prev = document.getElementById(prevClick);
-  //     prev.style.border = "1px solid ";
-  //   }
-  //   setPrevClick(currentClick);
-  // }, [currentClick]);
+
 
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));

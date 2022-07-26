@@ -91,7 +91,6 @@ function MiniProject({ data, setProjectId }) {
                 <TecMiniWrap >
 
                   {data && 
-
                     list?.skills.map((tag, index) => {
                       return (
                         <TagDev skills={tag} key={index}  />
