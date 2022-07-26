@@ -2,11 +2,13 @@ import { apis } from "../../shared/api";
 
 const LOADAPPLY = "userpage/LOADAPPLY";
 const LOADPROJECT = "userpage/LOADPROJECT"
+const LOADRESUMES = "userpage/LOADRESUMES";
 const USERPHOTOS = "userpage/USERPHOTOS ";
 
 const initialState = {
   Applications: [],
-  Myprojects: []
+  Myprojects: [],
+  Myresumes:[]
 };
 
 export function loadApply(payload) {
@@ -15,6 +17,9 @@ export function loadApply(payload) {
 
 export function loadProject(payload) {
   return { type: LOADPROJECT, payload };
+}
+export function loadResumes(payload) {
+  return { type: LOADRESUMES, payload };
 }
 export function loadPhoto(payload) {
   return { type: USERPHOTOS, payload };
@@ -48,6 +53,20 @@ export const loadProjectAxios = (nickname) => {
       });
   };
 };
+//내 resumes 조회
+export const loadResumesAxios = (nickname) => {
+  return async function (dispatch) {
+    await apis
+      .userResumes(nickname)
+      .then((response) => {
+      
+        dispatch(loadResumes(response.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 
 //프로필 업로드
@@ -65,7 +84,7 @@ export const userPhotoAxios = (nickname,frm) => {
       .catch((err) => {
         success = null;
       });
-    return success;
+   
   };
 };
 
@@ -75,14 +94,23 @@ export default function reducer(state = initialState, action = {}) {
     case "userpage/LOADAPPLY": {
       return {
         Applications: action.payload,
-        Myprojects: state.Myprojects
+        Myprojects: state.Myprojects,
+        Myresumes: state.Myresumes,
       };
     }
 
     case "userpage/LOADPROJECT": {
       return {
         Applications: state.Applications,
-        Myprojects: action.payload
+        Myprojects: action.payload,
+        Myresumes: state.Myresumes,
+      };
+    }
+    case "userpage/LOADRESUMES": {
+      return {
+        Applications: state.Applications,
+        Myprojects: state.Myprojects,
+        Myresumes: action.payload,
       };
     }
 

@@ -5,7 +5,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { deleteEmployAxios, loadSingleEmployAxios } from "../../redux/modules/postEmploy";
 import { checkUserValidation } from "../../redux/modules/user";
 import { useNavigation } from "react-day-picker";
-import { loadApplyAxios } from "../../redux/modules/postProfile";
+import { loadApplyAxios, loadResumesAxios } from "../../redux/modules/postProfile";
 
 import TagDes from "../../components/Tag/TagCompoDes"
 import TagDev from "../../components/Tag/TagCompoDev"
@@ -13,122 +13,101 @@ import TagDev from "../../components/Tag/TagCompoDev"
 import letter from "../../image/letter.svg"
 
 const Resumes = () => {
-const { resumeId } = useParams();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-  const loginInfoName = useSelector((state) => state.user.userInfo.userId);
-  const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
-
-  const data = useSelector((state) => state.postEmploy.resumes);
-console.log(data)
-  //id와 userId 비교하여 버튼 보이게 하기
-  // const modify = (loginInfoName === data[0]?.userId);
-
-  const [modify, setModify] = useState(false);
+  const nickname = useSelector((state) => state.user.userInfo.nickname);
+  const data = useSelector((state) => state.postProfile.Myresumes);
   
-  let start =""
-  let end = ""
+  
+
   let href = ""
 
-
   useEffect(() => {
-   if (loginInfo === false) {
-     dispatch(checkUserValidation());
-   }}, [loginInfo]);
-  
-  useEffect(() => {
-  dispatch(loadSingleEmployAxios(resumeId))
-  }, [])
-
-    useEffect(() => {
-      if (loginInfoName && data) {
-        if (loginInfoName === data[0]?.userId) {
-         setModify(true)
-       }
-      }
-      if (data) {
-        start = data[0]?.start.replace("-", ".").replace("-", ".");
-        end = data[0]?.end.replace("-", ".").replace("-", ".");
-
-        href = data.length > 0 ? data[0].content2 : "";
-      }
-    }, [loginInfoName, data]);
-
-    useEffect(() => {
-      if (!(nickname_Info === undefined || nickname_Info === null)) {
-          dispatch(loadApplyAxios(nickname_Info));
+    if (nickname !== undefined) {
+       dispatch(loadResumesAxios(nickname));
     }
-    }, [nickname_Info]);
-  
-useState(data[0]?.role)
- //undefined일때 null 처리 나머지 return 
-
- if(!data[0]) return null 
-
-
+ 
+},[])
+ 
  
   return (
     <>
       <MyPageResumeBackWrap>
-
         <PageAllWrap>
           <TopWrap>
             <LeftTopWrap>
-              <PhotoCircle style={{backgroundImage: `url(${data[0].resumeImage})`}}></PhotoCircle>
+              <PhotoCircle
+                // style={{ backgroundImage: `url(${data[0].resumeImage})` }}
+              ></PhotoCircle>
             </LeftTopWrap>
             <RightTopWrap>
-              <RightNameText>{data.length > 0 ? data[0].nickname : ""}</RightNameText>
-              <RightRoleText>{data.length > 0 ? data[0].role : ""}</RightRoleText>
-              <RightAdressText><img src={letter} style={{marginRight:"8px"}}/>{data.length > 0 ? data[0].userId : ""}</RightAdressText>
-              <RightSelfText>{data.length > 0 ? data[0].content : ""}</RightSelfText>
+              <RightNameText>닉네임</RightNameText>
+              <RightRoleText>role</RightRoleText>
+              <RightAdressText>
+                <img src={letter} style={{ marginRight: "8px" }} />
+                아이디
+              </RightAdressText>
+              <RightSelfText>content</RightSelfText>
             </RightTopWrap>
           </TopWrap>
 
           <MidWrap>
             <MidTxetWrap>
               <MidTitle>소개글</MidTitle>
-              <MidSelfText>{data.length > 0 ? data[0].content3 : ""}</MidSelfText>
+              <MidSelfText>content3</MidSelfText>
             </MidTxetWrap>
             <MidTxetWrap>
               <MidTitle>홈페이지</MidTitle>
               <MidContentText>
-                <a href={data.length > 0 ? data[0].content2 : ""} target="_blank">
-                  {data.length > 0 ? data[0].content2 : ""}
-                </a></MidContentText>
+                {/* <a href={} target="_blank">
+                  content2
+                </a> */}
+              </MidContentText>
             </MidTxetWrap>
             <MidTxetWrap>
               <MidTitle>프로젝트 가능 기간</MidTitle>
               <MidContentText>
-                {data[0]?.start.replace("-", ".").replace("-", ".")}~
-                {data[0]?.end.replace("-", ".").replace("-", ".")}
+                시작날짜~
+                끝날짜
               </MidContentText>
             </MidTxetWrap>
             <MidTxetWrap>
-              <MidTitle>{data.length > 0 ? data[0].nickname : ""}님의 보유 스킬</MidTitle>
+              <MidTitle>
+                닉네임님의 보유 스킬
+              </MidTitle>
               <MidTagWrap>
-                {data.length > 0
-                ? data[0].resumeskills.map((list, idx) => {
-                    return <TagDev key={idx} skills={list} />;
-                  })
-                : ""}
+                {/* {data.length > 0
+                  ? data[0].resumeskills.map((list, idx) => {
+                      return <TagDev key={idx} skills={list} />;
+                    })
+                  : ""} */}
               </MidTagWrap>
             </MidTxetWrap>
           </MidWrap>
 
           <BotWrap>
-            <FixedBtn onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>수정하기</FixedBtn>
-            <DelBtn onClick={() => {
-              dispatch(deleteEmployAxios(resumeId));
-              alert("❗️ 정말 삭제하시는 겁니까?")
-              navigate("/mainemployment");}}>삭제하기</DelBtn>
+            <FixedBtn
+              onClick={() => {
+                // navigate("/editprofile/" + `${data[0].resumeId}`);
+              }}
+            >
+              수정하기
+            </FixedBtn>
+            <DelBtn
+              onClick={() => {
+                // dispatch(deleteEmployAxios(resumeId));
+                // alert("❗️ 정말 삭제하시는 겁니까?");
+                // navigate("/mainemployment");
+              }}
+            >
+              삭제하기
+            </DelBtn>
           </BotWrap>
         </PageAllWrap>
-
       </MyPageResumeBackWrap>
     </>
-  )
+  );
 };
 
 //대형 틀

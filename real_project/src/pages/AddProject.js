@@ -234,7 +234,7 @@ const FindProjectStep01 = (props) => {
 
 
   // 저장 버튼
-  const CompliteButton = async () => {
+  const CompliteButton = () => {
     //날짜+시간 데이터 가공 
     let new_list = [];
 
@@ -244,10 +244,10 @@ const FindProjectStep01 = (props) => {
       const times = item[date];
   
       times.forEach((time) => {
-      const dateTime = date + " " + time;
-      setNewList(new_list.push(dateTime));
-          });
-        });
+        const dateTime = date + " " + time;
+        setNewList(new_list.push(dateTime));
+      });
+    });
  
     if (
       titleRef.current.value === "" ||
@@ -277,38 +277,38 @@ const FindProjectStep01 = (props) => {
     ) {
       alert("아직 다 작성하지 않았어요!🥸");
     } else {
-      frm.append("photos", files[0]);
-      try {
-        await dispatch(projectsPhotosAxios(frm)).then((success) => {
-          dispatch(
-            createRecruitAxios(
-              titleRef.current.value,
-              detailsRef.current.value,
-              subscriptRef.current.value,
-              role,
-              startDate.getFullYear() +
-                "-" +
-                (startDate.getMonth() + 1) +
-                "-" +
-                startDate.getDate(),
-              endDate.getFullYear() +
-                "-" +
-                (endDate.getMonth() + 1) +
-                "-" +
-                endDate.getDate(),
-              checkList,
-              new_list
-            )
-          );
-        });
-        alert("게시글을 등록하시겠습니까?🥸 ");
+      dispatch(
+        createRecruitAxios(
+          titleRef.current.value,
+          detailsRef.current.value,
+          subscriptRef.current.value,
+          role,
+          startDate.getFullYear() +
+          "-" +
+          (startDate.getMonth() + 1) +
+          "-" +
+          startDate.getDate(),
+          endDate.getFullYear() +
+          "-" +
+          (endDate.getMonth() + 1) +
+          "-" +
+          endDate.getDate(),
+          checkList,
+          new_list
+        )
+      ).then((res) => {
+        console.log(res)
         navigate("/mainrecruit");
-      } catch (err) {
-        console.log(err);
-      }
-    }
+      })
       
+        
+        
+       
+
+    }
   };
+      
+
 
   return (
     <BackgroundAllWrap>

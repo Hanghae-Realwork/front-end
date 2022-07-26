@@ -18,7 +18,7 @@ const Application = () => {
 
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
-
+  
 
   
 
@@ -30,7 +30,7 @@ const Application = () => {
  
   return (
     <RightMapingWrap>
-      {data.lnegth > 0 ? (
+      {data.length > 0 ? (
         data.length !== 0 &&
         data.map((list, idx) => {
           //작성시간 함수
