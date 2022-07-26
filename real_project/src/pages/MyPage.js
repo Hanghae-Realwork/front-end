@@ -21,6 +21,7 @@ function MyPage() {
   const params = useParams();
 
   const loginInfo = useSelector((state) => state.user.userInfo);
+  const nickname = useSelector((state) => state.user.userInfo.nickname);
   const [files, setFiles] = React.useState("");
   const [filesImg, setFilesImg] = React.useState("");
 
@@ -49,9 +50,12 @@ function MyPage() {
     if (files === "" || null) {
       alert("사진을 올려볼까요 🥸")
     } 
-    console.log(files[0]);
-      frm.append("profileImage", files[0]);
-      dispatch(userPhotoAxios(loginInfo.nickname, frm));
+    console.log(files[0])
+    frm.append("profileImage", files[0]);
+    console.log(frm)
+    dispatch(userPhotoAxios(nickname, frm)).then((res) => {
+      console.log(res);
+    });
   }
 
 
