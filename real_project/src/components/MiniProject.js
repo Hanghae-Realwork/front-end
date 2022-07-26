@@ -14,20 +14,22 @@ import TagDes from "./Tag/TagCompoDes"
 // 팀원찾기 -> 상세조회 -> 내 프로젝트 목록 조회
 function MiniProject({ data, setProjectId }) {
   
-  const [currentClick, setCurrentClick] = useState(null);
-  const [prevClick, setPrevClick] = useState(null);
+  // const [currentClick, setCurrentClick] = useState(null);
+  // const [prevClick, setPrevClick] = useState(null);
 
-  useEffect(() => {
-    if (currentClick !== null) {
-      let current = document.getElementById(currentClick);
-      current.style.backgroundColor = "#EAF3FB";
-    }
-    if (prevClick !== null) {
-      let prev = document.getElementById(prevClick);
-      prev.style.backgroundColor = "transparent";
-    }
-    setPrevClick(currentClick);
-  }, [currentClick]);
+  // useEffect(() => {
+  //   if (currentClick !== null) {
+  //     let current = document.getElementById(currentClick);
+  //     current.style.backgroundColor = "#d9d9d9";
+  //     current.style.border= "2px black";
+  //   }
+  //   if (prevClick !== null) {
+  //     let prev = document.getElementById(prevClick);
+  //     prev.style.backgroundColor = "transparent";
+  //     prev.style.border= "0.5px black"
+  //   }
+  //   setPrevClick(currentClick);
+  // }, [currentClick]);
 
 
 
@@ -41,9 +43,8 @@ function MiniProject({ data, setProjectId }) {
               id={list.projectid}
               onClick={(e) => {
                 setProjectId(list.projectid);
-                setCurrentClick(e.target.id);
-              }}
-            >
+                // setCurrentClick(e.target.id);
+              }}>
               <MiniNickWrap id={list.projectid}>
                 <NickText id={list.projectid}>{list?.nickname}</NickText>
                 <NickText id={list.projectid}>n시간 전이 들어갑니다</NickText>

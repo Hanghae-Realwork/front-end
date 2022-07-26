@@ -82,15 +82,16 @@ const MatchingText = styled.span`
 `
 
 const MatchingCardWrap = styled.div`
-    height: 384px;
-    width: 200%;
-    border: 1px solid black;
+    height: 320px;
+    width: 1200px;
+    /* border: 1px solid black; */
     overflow-x: scroll;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
     margin-top: 20px;
+    gap: 20px;
 `
 
 const MatchingBotBtnWrap = styled.div`
