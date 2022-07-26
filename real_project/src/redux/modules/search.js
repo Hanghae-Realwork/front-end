@@ -216,6 +216,10 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
+    case "search/RESULTRESET":{
+      return{}
+    }
+
 
     //삭제 리듀서
     case "search/SKILLDELETE": {
