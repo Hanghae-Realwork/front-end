@@ -31,14 +31,33 @@ function MiniProject({ data, setProjectId }) {
   //   setPrevClick(currentClick);
   // }, [currentClick]);
 
+  const [changeClass, setChangeClass] = useState("change")
+  const [disClass, setDisClass] = useState(null)
+  const testClick = (e) => {
+    setChangeClass(e.target.className)
+    setDisClass(e.target)
+      console.log(e.target)
+   
+      if(changeClass === "change"){
+        setChangeClass(e.target.className = "dis")
+        console.log(e.target.className)
+      }
+      if(changeClass === "dis"){
+        setChangeClass(e.target.className = "change")
+        console.log(e.target.className)
+      }
+    
+  }
 
-
+  
+  
   return (
     <>
     
       {data &&
         data.map((list, idx) => {
           return (
+
 
             <MiniCardAllWrap
               key={idx}
@@ -47,6 +66,7 @@ function MiniProject({ data, setProjectId }) {
                 setProjectId(list.projectid);
                 // setCurrentClick(e.target.id);
               }}>
+
               <MiniNickWrap >
                 <NickText >{list?.nickname}</NickText>
                 <NickText >n시간 전이 들어갑니다</NickText>
@@ -69,7 +89,9 @@ function MiniProject({ data, setProjectId }) {
               <TecWrap >
                 <NickText >원하는 보유 기술</NickText>
                 <TecMiniWrap >
-                  {data && list.projectid &&
+
+                  {data && 
+
                     list?.skills.map((tag, index) => {
                       return (
                         <TagDev skills={tag} key={index}  />
@@ -85,6 +107,7 @@ function MiniProject({ data, setProjectId }) {
                   {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일{" "}
                 </MiniDateText>
               </MiniDateWrap>
+ 
             </MiniCardAllWrap>
             
           );
@@ -96,8 +119,18 @@ function MiniProject({ data, setProjectId }) {
 }
 
 
+const TestWrap = styled.div`
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+`
+
+
 const MiniCardAllWrap = styled.div`
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 4px;
     width: 384px;
     height: 307px;
@@ -115,6 +148,7 @@ const MiniTopWrap = styled.div`
     justify-content: center;
     align-items: flex-start;
     margin: 12px 0px 23px 20px;
+    pointer-events : none;
 `
 
 const MiniBodyWrap = styled.div`
@@ -125,18 +159,22 @@ const MiniBodyWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
+    pointer-events : none;
+    
 `
 
 const MiniDateWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 16px 20px;
+    pointer-events : none;
 `
 
 const TecWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 10px 20px;
+    pointer-events : none;
 `
 
 const MiniNickName = styled.span`
@@ -178,6 +216,7 @@ const MiniNickWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+  pointer-events : none;
 `
 
 const NickText = styled.span`

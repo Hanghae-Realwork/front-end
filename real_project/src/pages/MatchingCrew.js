@@ -39,28 +39,13 @@ function MatchingCrew() {
       favoriteBtn.current.style.border = '#959595';
     }
 
-    const [test, setTest] = useState("change")
-    const testClick = (e) => {
-      setTest(e.target.className)
-      if(test === "change"){
-        setTest(e.target.className = "dis")
-      }
-      if(test === "dis"){
-        setTest(e.target.className = "change")
-      }
-    }
-  
+
 
 
     return (
       <>
         <MatchingBtn />
         <MatchingCrewWrap>
-          <div 
-            onClick={testClick} 
-            className="change">테스트 버튼</div>
-
-
           <MatchingTopWrap>
             <MatchingText>
               맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
@@ -71,21 +56,21 @@ function MatchingCrew() {
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
             <MatchingButton onClick={matchOnclick}>매칭하기</MatchingButton>
-
-                </MatchingBotBtnWrap>
-                { seeData ? <MatchingBotWrap>
-            <MatchingContentWrap>
-              <MatchingText>
+          </MatchingBotBtnWrap>
+        </MatchingCrewWrap>
+        { seeData ? 
+          <MatchingBotWrap>
+            <TextAlingWrap>
+            <MatchingText>
                 맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
               </MatchingText>
-            <MatchingResumeWrap>         
-            <CradEmpol data={data} />
-            </MatchingResumeWrap> 
-                        
-            </MatchingContentWrap>
+            </TextAlingWrap>
+            <ContentAlignWrap>
+              <MatchingResumeWrap>         
+                <CradEmpol data={data} />
+              </MatchingResumeWrap> 
+            </ContentAlignWrap>
           </MatchingBotWrap> :""}
-          
-        </MatchingCrewWrap>
       </>
     );
 
@@ -114,13 +99,13 @@ const MatchingText = styled.span`
 `
 
 const MatchingCardWrap = styled.div`
-    height: 320px;
+    height: 360px;
     width: 1200px;
     /* border: 1px solid black; */
     overflow-x: scroll;
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin-top: 20px;
     gap: 20px;
@@ -160,16 +145,6 @@ const MatchingResumeWrap = styled.div`
     align-items: center;
 `               
                         
-const MatchingContentWrap = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    width: 100%;
-    /* height: 20vh; */
-    background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
-`
 
 const ContentAlignWrap = styled.div`
   margin-top: 35px;
@@ -186,7 +161,19 @@ const TextAlingWrap = styled.div`
   width: 1200px;
   margin-top: 35px;
 `
+
+
 const MatchingBotWrap = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  width: 100%;
+  /* height: 20vh; */
+  background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
+
 `
  
 export default MatchingCrew
