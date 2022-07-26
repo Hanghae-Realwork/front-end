@@ -44,30 +44,48 @@ function Header() {
   const MoveProject = (e) => {
       navigate(`/mainrecruit`)
       setCurrentClick(e.target.id);
-      // ResetResult()
+      ResetResult()
   };
 
   const MoveResume = (e) => {
     navigate(`/mainemployment`)
     setCurrentClick(e.target.id);
-    // ResetResult()
+    ResetResult()
   };
 
   const MoveMatching = (e) => {
     navigate(`/matchingcrew`)
     setCurrentClick(e.target.id);
+    ResetResult()
   };
 
   const MoveCallChat = (e) => {
     window.open(`https://rendev.click/`)
     setCurrentClick(e.target.id);
+    ResetResult()
   };
+
+  const MoveLogin = () => {
+    navigate(`/login`)
+    ResetResult()
+  }
+
+  const MoveMyPage = () => {
+    navigate(`/mypage/${nickname}/apply`)
+    ResetResult()
+  }
+
+  const MoveMain = () => {
+    navigate(`/`)
+    ResetResult()
+  }
 
 
   useEffect(
       (e) => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
+          current.style.fontWeight = "bold";
           current.style.backgroundColor = "#303032";
       }
       if (prevClick !== null) {
@@ -77,8 +95,6 @@ function Header() {
       setPrevClick(currentClick);
       },
     [currentClick]
-      
-
   );
 
 
@@ -87,11 +103,7 @@ function Header() {
       <HeaderWrap>
         <HeaderConWrap>
           <HeaderAlignWrap>
-            <LogoWrap
-              onClick={() => {
-                navigate(`/`);
-              }}
-            ></LogoWrap>
+            <LogoWrap onClick={MoveMain}></LogoWrap>
             <HeaderLeftWrap>
 
               <FindProject onClick={MoveProject} id="btn1">프로젝트 찾기</FindProject>
@@ -103,27 +115,23 @@ function Header() {
           </HeaderAlignWrap>
           <HeaderRightWrap>
             <LoginButton
-              onClick={() => {
-                navigate(`/login`);
-              }}
-              style={{ display: !loginInfo ? "" : "none" }}
-            >
+              onClick={MoveLogin}
+              style={{ display: !loginInfo ? "" : "none" }}>
               로그인
             </LoginButton>
             <LoginButton
               style={{ display: !loginInfo ? "none" : "" }}
-              onClick={logoutClick}
-            >
+              onClick={logoutClick}>
               로그아웃
             </LoginButton>
 
             <CircleImage
-              onClick={() => {if (loginInfo) {
-                  navigate(`/mypage/${nickname}/apply`);
+              onClick={() => {
+                if (loginInfo) {
+                MoveMyPage();
                 } else {
                   alert("로그인을 해주세요! 🥸");
-                }
-              }}>
+                }}}>
               <img src={BasicPhoto} />
             </CircleImage>
           </HeaderRightWrap>

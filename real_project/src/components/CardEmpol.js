@@ -49,7 +49,7 @@ function CradEmpol({ data }) {
           <CardBotTag>
             <SkillText>보유한 기술</SkillText>
             <SkillWrap>
-              {data.skill?.map((list, idx) => {
+              {data.skills?.map((list, idx) => {
                 return <TagDev key={idx} skills={list} />;
               })}
             </SkillWrap>
