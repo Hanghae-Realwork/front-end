@@ -7,20 +7,15 @@ import TagDev from "./Tag/TagCompoDev"
 import TagDes from "./Tag/TagCompoDes"
 
 import astroman from "../image/astroman.svg"
-import { loadResumesAxios } from "../redux/modules/interview";
 
 
 //프로젝트 찾기 -> 상세조회-> 면접 예약 프로필
 function MiniResume({ data, setResumeId }) {
 
-
-    const dispatch = useDispatch();
     const [currentClick, setCurrentClick] = useState(null);
     const [prevClick, setPrevClick] = useState(null);
 
-    // useEffect(() => {
-    //   dispatch(loadResumesAxios());
-    // }, []);
+
   useEffect(() => {
     if (currentClick !== null) {
       let current = document.getElementById(currentClick);

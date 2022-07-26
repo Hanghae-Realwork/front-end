@@ -376,5 +376,12 @@ export const apis = {
   //24.인터뷰 완료 상태 업데이트 붙여야함
   interviewEndStatus: (applicationId) =>
     api.patch(`/api/applications/interviewed/${applicationId}`),
+
+  // 검색기능 api
+  //1. 프로젝트에 맞는 이력서 조회
+  matchResumes: (projectId) => api.get(`/api/matches/resumes/${projectId}`),
+
+  //2. 이력서에 맞는 프로젝트 조회
+  matchProjects: (resumeId) => api.get(`/api/matches/projects/${resumeId}`),
 };
 

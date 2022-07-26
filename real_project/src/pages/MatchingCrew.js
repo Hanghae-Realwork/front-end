@@ -1,5 +1,5 @@
 
-import React, {useState} from "react"
+import React, {useState,useEffect} from "react"
 
 import styled from "styled-components"
 
@@ -8,48 +8,52 @@ import MiniProject from "../components/MiniProject"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { loadProjectsAxios } from "../redux/modules/interview"
+import { matchesResumesAxios } from "../redux/modules/matches"
 function MatchingCrew() {
-        const dispatch= useDispatch()
-//         const myProject = useSelector((state) => state.interview.projects);
-//   //프로젝트 카드
-//   useEffect(() => {
-//     dispatch(loadProjectsAxios());
-//   }, []);
+    const dispatch = useDispatch();
+    
+    const myProject = useSelector((state) => state.interview.projects);
+    const [projectId, setProjectId] = useState("");
+
+  //프로젝트 카드
+  useEffect(() => {
+    dispatch(loadProjectsAxios());
+  }, []);
 
 
-function MatchingCrew(){
+    const matchOnclick = () => {
+        dispatch(matchesResumesAxios(projectId))
+    }
 
 
-
-    return(
-        <>
-        <MatchingBtn/>
-            <MatchingCrewWrap>
-                <MatchingTopWrap>   
-                    <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
-                    <MatchingCardWrap>
-
-                        여기에 미니프로젝트 카드가 들어갑니당
-
-                    </MatchingCardWrap>
-                </MatchingTopWrap>
-                <MatchingBotBtnWrap>
-                    <MatchingButton>매칭하기</MatchingButton>
-                </MatchingBotBtnWrap>
-                <MatchingBotWrap>
-                    <MatchingContentWrap>
-                        <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
-                        <MatchingResumeWrap>
-
-                            여기에 미니프로필 카드가 들어갑니당
-
-                        </MatchingResumeWrap>
-                    </MatchingContentWrap>
-                </MatchingBotWrap>
-            </MatchingCrewWrap>
-
-        </>
-    )
+    return (
+      <>
+        <MatchingBtn />
+        <MatchingCrewWrap>
+          <MatchingTopWrap>
+            <MatchingText>
+              맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
+            </MatchingText>
+            <MatchingCardWrap>
+              <MiniProject data={myProject} setProjectId={setProjectId} />
+            </MatchingCardWrap>
+          </MatchingTopWrap>
+          <MatchingBotBtnWrap>
+            <MatchingButton onClick={matchOnclick}>매칭하기</MatchingButton>
+          </MatchingBotBtnWrap>
+          <MatchingBotWrap>
+            <MatchingContentWrap>
+              <MatchingText>
+                맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
+              </MatchingText>
+              <MatchingResumeWrap>
+                여기에 미니프로필 카드가 들어갑니당
+              </MatchingResumeWrap>
+            </MatchingContentWrap>
+          </MatchingBotWrap>
+        </MatchingCrewWrap>
+      </>
+    );
 
 }
 
