@@ -11,91 +11,85 @@ import astroman from "../image/astroman.svg"
 
 //프로젝트 찾기 -> 상세조회-> 면접 예약 프로필
 function MiniResume({ data, setResumeId }) {
-
-    const [currentClick, setCurrentClick] = useState(null);
-    const [prevClick, setPrevClick] = useState(null);
-
+  const [currentClick, setCurrentClick] = useState(null);
+  const [prevClick, setPrevClick] = useState(null);
 
   useEffect(() => {
-    if (currentClick !== null) {
-      // let current = document.getElementsByClassName(
-      //   currentClick
-      // )[0].style.backgroundColor = "blue";
-      
-
-  document.getElementsByClassName(currentClick)[0].style.backgroundColor =
-  "#EAF3FB";
-      // for (var i = 0; i < len; i++) {
-      //  current[i].style.backgroundColor = "blue";
-      // }
-      // current.style.backgroundColor = "#EAF3FB";
+    if (currentClick !== null ) {
+      document.getElementsByClassName(currentClick)[0].style.border = "2px solid black";
     }
-      if (prevClick !== null) {
-        // let prev = document.getElementsByClassName(prevClick);
-        // prev.style.backgroundColor = "transparent";
-         document.getElementsByClassName(prevClick)[0].style.backgroundColor =
-           "transparent";
-
-      }
-      setPrevClick(currentClick);
-    },
-    [currentClick]
-  );
-
-   
+    if (prevClick !== null ) {
+      document.getElementsByClassName(prevClick)[0].style.border =
+        "1px solid gray";
+    }
+    setPrevClick(currentClick);
+  }, [currentClick]);
+  //border
+  // useEffect(() => {
+  //   if (currentClick !== null) {
+  //     let current = document.getElementById(currentClick);
+  //     current.style.border = "2px solid gray";
+  //   }
+  //   if (prevClick !== null) {
+  //     let prev = document.getElementById(prevClick);
+  //     prev.style.border = "1px solid ";
+  //   }
+  //   setPrevClick(currentClick);
+  // }, [currentClick]);
 
   return (
-      <>{data && data.map((list,idx) => {
-        return (
-          <MiniCardAllWrap
-            key={idx}
-            value={idx}
-            className={list.resumeId}
-            onClick={(e) => {
-              setResumeId(list.resumeId);
-              setCurrentClick(e.target.className);
-            }}
-          >
-            <MiniTopWrap>
-              <MiniPhotoWrap>
-                {list?.resumeImage === null ? (
-                  <Photo></Photo>
-                ) : (
-                  <Photo>사진을 보여주세요</Photo>
-                )}
-              </MiniPhotoWrap>
-              <MiniNameWrap>
-                <MiniNickName>{list?.nickname}</MiniNickName>
-                <MiniRole>{list?.role}</MiniRole>
-              </MiniNameWrap>
-            </MiniTopWrap>
+    <>
+      {data &&
+        data.map((list, idx) => {
+          return (
+            <MiniCardAllWrap
+              key={idx}
+              value={idx}
+              className={list.resumeId}
+              onClick={(e) => {
+                setResumeId(list.resumeId);
+                setCurrentClick(e.target.className);
+              }}
+            >
+              <MiniTopWrap>
+                <MiniPhotoWrap>
+                  {list?.resumeImage === null ? (
+                    <Photo></Photo>
+                  ) : (
+                    <Photo>사진을 보여주세요</Photo>
+                  )}
+                </MiniPhotoWrap>
+                <MiniNameWrap>
+                  <MiniNickName>{list?.nickname}</MiniNickName>
+                  <MiniRole>{list?.role}</MiniRole>
+                </MiniNameWrap>
+              </MiniTopWrap>
 
-            <MiniBodyWrap>
-              <MiniBodyText>{list?.content}</MiniBodyText>
-            </MiniBodyWrap>
+              <MiniBodyWrap>
+                <MiniBodyText>{list?.content}</MiniBodyText>
+              </MiniBodyWrap>
 
-            <MiniDateWrap>
-              <span style={{ fontSize: "12px" }} className={list.resumeId}>
-                {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
-                {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
-                {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일
-              </span>{" "}
-              <MiniDateText></MiniDateText>
-            </MiniDateWrap>
+              <MiniDateWrap>
+                <span style={{ fontSize: "12px" }} className={list.resumeId}>
+                  {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
+                  {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
+                  {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일
+                </span>{" "}
+                <MiniDateText></MiniDateText>
+              </MiniDateWrap>
 
-            <TecWrap>
-              보유한 기술
-              <TecMiniWrap>
-                {list &&
-                  list?.skills.map((tag, index) => {
-                    return <TagDev skills={tag} key={index} />;
-                  })}
-              </TecMiniWrap>
-            </TecWrap>
-          </MiniCardAllWrap>
-        );
-    })}
-
+              <TecWrap>
+                보유한 기술
+                <TecMiniWrap>
+                  {list &&
+                    list?.skills.map((tag, index) => {
+                      return <TagDev skills={tag} key={index} />;
+                    })}
+                </TecMiniWrap>
+              </TecWrap>
+            </MiniCardAllWrap>
+          );
+        })}
     </>
   );
 }
