@@ -356,10 +356,9 @@ const ApplyStatusLabel = styled.label`
   align-items: center;
   gap: 10px;
   background-color: white;
-  font-weight: ${(props) =>
-  props.color ? "" : "600"};
+  font-weight: ${(props) => (props.color ? "" : "600")};
   border: ${(props) => (props.color ? "1px solid black" : "1.5px solid black")};
-  background-color: ghostwhite;
+  background-color: ${(props) => (props.color ? "" : "ghostwhite")};
 
   border-radius: 20px;
   font-size: 13px;
