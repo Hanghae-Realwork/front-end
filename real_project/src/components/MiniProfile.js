@@ -120,29 +120,34 @@ const MiniTopWrap = styled.div`
     justify-content: flex-start;
     align-items: center;
     margin: 15px 0px 12px 20px;
+    pointer-events : none;
 `
 
 const MiniBodyWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
     margin: 0px 12px 12px 20px;
+    pointer-events : none;
 `
 
 const MiniDateWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 16px 20px;
+    pointer-events : none;
 `
 
 const TecWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 21px 20px;
+    pointer-events : none;
 `
 
 const MiniPhotoWrap = styled.div`
     width: 60px;
     height: 60px;
+    pointer-events : none;
 `
 
 const Photo = styled.div`
