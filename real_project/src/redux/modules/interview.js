@@ -1,3 +1,4 @@
+import { resolvePath } from "react-router-dom";
 import { apis } from "../../shared/api";
 
 //로드 액션
@@ -5,7 +6,7 @@ const LOADRESUMES = "interview/LOADRESUMES";
 const LOADPROJECTS = "interview/LOADPROJECTS";
 
 const PROJECTINTERVIEW = "interview/PROJECTINTERVIEW";
-
+const PERPOSEUSERPROJECT = "interview/PERPOSEUSERPROJECT";
 //이니셜 스테이트
 const initialState = {
   resumes: [],
@@ -24,6 +25,10 @@ export function loadProjects(payload) {
 
 export function projectInterview(payload) {
   return { type: PROJECTINTERVIEW ,payload};
+}
+
+export function proposalUserProjects(payload) {
+  return { type: PERPOSEUSERPROJECT, payload };
 }
 
 //미들웨어
@@ -60,16 +65,44 @@ export const projectInterviewAxios = (applcationId,resumeId) => {
     await apis
       .projectInterview(applcationId, resumeId)
       .then((res) => {
-        console.log(res);
+        if (res.response.status === 200) { 
+          alert("성공적으로 예약되었습니다. 🥸");
+        }
       })
       .catch((err) => {
-        console.log(err.response.status);
-        if (err.response.status===404) { 
-          alert("이미 해당 프로젝트에 지원하셨습니다!🥸");
+        console.log(err.response.status === 404)
+        console.log(err)
+        // console.log(err.response.status);
+        if (err.response.status === 400) { 
+          alert(err.response.data.errorMessage);
         }
+        // else if (err.message === "Request failed with status code 404") {
+        //   alert("소개글도 같이 선택해주세요!");
+        // }
       });
   }
 }
+
+export const proposalUserProjectsAxios = (resumeId, projectId) => {
+  return async function (dispatch) {
+    await apis
+      .proposalUserProjects(resumeId, projectId)
+      .then((res) => {
+     
+        alert(res.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+
+        // if (err.response.status === 400) {
+        //   alert(err.response.data.errorMessage);
+        // }
+        // else if (err.message === "Request failed with status code 404") {
+        //   alert("소개글도 같이 선택해주세요!");
+        // }
+      });
+  };
+};
 
 
 export default function reducer(state = initialState, action = {}) {
@@ -88,7 +121,7 @@ export default function reducer(state = initialState, action = {}) {
         projects: action.payload,
       };
     }
-
+    
     //삭제 리듀서
 
     default:

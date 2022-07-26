@@ -14,10 +14,25 @@ import astroman from "../image/astroman.svg"
 function MiniResume({data,setResumeId}) {
 
     const dispatch = useDispatch();
-    
+    const [currentClick, setCurrentClick] = useState(null);
+    const [prevClick, setPrevClick] = useState(null);
 
 
-    
+  useEffect(() => {
+    if (currentClick !== null) {
+      let current = document.getElementById(currentClick);
+      current.style.backgroundColor = "#EAF3FB";
+    }
+      if (prevClick !== null) {
+        let prev = document.getElementById(prevClick);
+        prev.style.backgroundColor = "transparent";
+      }
+      setPrevClick(currentClick);
+    },
+    [currentClick]
+  );
+
+   
     useEffect(() => {
         dispatch(loadResumesAxios())
     },[])
@@ -26,47 +41,52 @@ function MiniResume({data,setResumeId}) {
         return (
           <MiniCardAllWrap
             key={idx}
-            onClick={() => {
+            value={idx}
+            id={list.resumeId}
+            onClick={(e) => {
               setResumeId(list.resumeId);
+              setCurrentClick(e.target.id);
+             
             }}
           >
-            <MiniTopWrap>
-              <MiniPhotoWrap>
+            <MiniTopWrap id={list.resumeId}>
+              <MiniPhotoWrap id={list.resumeId}>
                 {list?.resumeImage === null ? (
-                  <Photo></Photo>
+                  <Photo id={list.resumeId}></Photo>
                 ) : (
                   <Photo>사진을 보여주세요</Photo>
                 )}
               </MiniPhotoWrap>
-              <MiniNameWrap>
-                <MiniNickName>{list?.nickname}</MiniNickName>
-                <MiniRole>{list?.role}</MiniRole>
+              <MiniNameWrap id={list.resumeId}>
+                <MiniNickName id={list.resumeId}>{list?.nickname}</MiniNickName>
+                <MiniRole id={list.resumeId}>{list?.role}</MiniRole>
               </MiniNameWrap>
             </MiniTopWrap>
 
-            <MiniBodyWrap>
-              <MiniBodyText>{list?.content}</MiniBodyText>
+            <MiniBodyWrap id={list.resumeId}>
+              <MiniBodyText id={list.resumeId}>{list?.content}</MiniBodyText>
             </MiniBodyWrap>
 
-            <MiniDateWrap>
-              <span style={{ fontSize: "12px" }}>
+            <MiniDateWrap id={list.resumeId}>
+              <span style={{ fontSize: "12px" }} id={list.resumeId}>
                 {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
                 {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
                 {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일
               </span>{" "}
-              <MiniDateText></MiniDateText>
+              <MiniDateText id={list.resumeId}></MiniDateText>
             </MiniDateWrap>
 
-            <TecWrap>
+            <TecWrap id={list.resumeId}>
               보유한 기술
-              <TecMiniWrap>
+              <TecMiniWrap id={list.resumeId}>
                 {list &&
                   list?.skills.map((tag, index) => {
-                    return <TagDev skills={tag} key={index} />;
+                    return (
+                      <TagDev id={list.resumeId} skills={tag} key={index} />
+                    );
                   })}
               </TecMiniWrap>
             </TecWrap>
-          
           </MiniCardAllWrap>
         );
     })}
@@ -77,16 +97,15 @@ function MiniResume({data,setResumeId}) {
 
 
 const MiniCardAllWrap = styled.div`
-    border: 1px solid black;
-    border-radius: 4px;
-    width: 384px;
-    height: 250px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    background-color: ${props=>props.color};
-`
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 384px;
+  height: 250px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+`;
 
 const MiniTopWrap = styled.div`
     /* border: 1px solid black; */

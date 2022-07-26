@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { deleteEmployAxios, loadSingleEmployAxios} from "../redux/modules/postEmploy";
 import { checkUserValidation } from "../redux/modules/user";
-import { loadProjectsAxios } from "../redux/modules/interview";
+import { loadProjectsAxios, proposalUserProjectsAxios } from "../redux/modules/interview";
 import TagDev from "../components/Tag/TagCompoDev"
 import letter from "../image/letter.svg"
 
@@ -22,15 +22,13 @@ function EmploymentProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const test = useSelector((state) => state.user.userInfo)
-
 
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const loginInfoName = useSelector((state) => state.user.userInfo.userId);
   const data = useSelector((state) => state.postEmploy.resumes);
-
-
+  const [projectId,setProjectId] =useState("")
+  console.log(projectId)
   const myProject = useSelector((state) => state.interview.projects);
 
 
@@ -68,115 +66,135 @@ function EmploymentProfile() {
        return false;
      }
   }
+
+  const applyOnClick = () => {
+    console.log(resumeId, projectId);
+    if (projectId === "" ||
+      projectId === " "
+    ) {
+      alert("제안하고싶은 프로젝트를 선택해주세요! 🥸");
+    } else { 
+      dispatch(proposalUserProjectsAxios(resumeId, projectId));
+    }
+    
+  }
  //undefined일때 null 처리 나머지 return 
  if(!data[0]) return null 
   return (
     <>
-        <BackGround>
-          <PageAllWrap>
-            <TopWrap>
-              <LeftTopWrap>
-                {data[0].resumeImage ? (
-                  <PhotoCircle
-                    style={{ backgroundImage: `url(${data[0].resumeImage})` }}
-                  ></PhotoCircle>
-                ) : (
-                  <PhotoCircle></PhotoCircle>
-                )}
-              </LeftTopWrap>
-              <RightTopWrap>
-                <RightNameText>
-                  {data.length > 0 ? data[0].nickname : ""}
-                </RightNameText>
-                <RightRoleText>
-                  {data.length > 0 ? data[0].role : ""}
-                </RightRoleText>
-                <RightAdressText>
-                  <img src={letter} style={{ marginRight: "8px" }} />
-                  {data.length > 0 ? data[0].userId : ""}
-                </RightAdressText>
-                <RightSelfText>
-                  {data.length > 0 ? data[0].content : ""}
-                </RightSelfText>
-              </RightTopWrap>
-            </TopWrap>
+      <BackGround>
+        <PageAllWrap>
+          <TopWrap>
+            <LeftTopWrap>
+              {data[0].resumeImage ? (
+                <PhotoCircle
+                  style={{ backgroundImage: `url(${data[0].resumeImage})` }}
+                ></PhotoCircle>
+              ) : (
+                <PhotoCircle></PhotoCircle>
+              )}
+            </LeftTopWrap>
+            <RightTopWrap>
+              <RightNameText>
+                {data.length > 0 ? data[0].nickname : ""}
+              </RightNameText>
+              <RightRoleText>
+                {data.length > 0 ? data[0].role : ""}
+              </RightRoleText>
+              <RightAdressText>
+                <img src={letter} style={{ marginRight: "8px" }} />
+                {data.length > 0 ? data[0].userId : ""}
+              </RightAdressText>
+              <RightSelfText>
+                {data.length > 0 ? data[0].content : ""}
+              </RightSelfText>
+            </RightTopWrap>
+          </TopWrap>
 
-            <TopHr />
+          <TopHr />
 
-            <MidWrap>
-              <MidTxetWrap>
-                <MidTitle>소개글</MidTitle>
-                <MidSelfText>
-                  {data.length > 0 ? data[0].content3 : ""}
-                </MidSelfText>
-              </MidTxetWrap>
-              <MidTxetWrap>
-                <MidTitle>홈페이지</MidTitle>
-                <MidContentText>
-                  <a href={data.length > 0 ? data[0].content2 : ""}
-                    target="_blank">
-                    {data.length > 0 ? data[0].content2 : ""}
-                  </a>
-                </MidContentText>
-              </MidTxetWrap>
-              <MidTxetWrap>
-                <MidTitle>프로젝트 가능 기간</MidTitle>
-                <MidContentText>
-                  {data[0]?.start.replace("-", ".").replace("-", ".")}~
-                  {data[0]?.end.replace("-", ".").replace("-", ".")}
-                </MidContentText>
-              </MidTxetWrap>
-              <MidTxetWrap>
-                <MidTitle>
-                  {data.length > 0 ? data[0].nickname : ""}님의 보유 스킬
-                </MidTitle>
-                <MidTagWrap>
-                  {data.length > 0
-                    ? data[0].skill.map((list, idx) => {
-                        return <TagDev key={idx} skills={list} />;
-                      })
-                    : ""}
-                </MidTagWrap>
-              </MidTxetWrap>
-            </MidWrap>
-            <BotHr />
+          <MidWrap>
+            <MidTxetWrap>
+              <MidTitle>소개글</MidTitle>
+              <MidSelfText>
+                {data.length > 0 ? data[0].content3 : ""}
+              </MidSelfText>
+            </MidTxetWrap>
+            <MidTxetWrap>
+              <MidTitle>홈페이지</MidTitle>
+              <MidContentText>
+                <a
+                  href={data.length > 0 ? data[0].content2 : ""}
+                  target="_blank"
+                >
+                  {data.length > 0 ? data[0].content2 : ""}
+                </a>
+              </MidContentText>
+            </MidTxetWrap>
+            <MidTxetWrap>
+              <MidTitle>프로젝트 가능 기간</MidTitle>
+              <MidContentText>
+                {data[0]?.start.replace("-", ".").replace("-", ".")}~
+                {data[0]?.end.replace("-", ".").replace("-", ".")}
+              </MidContentText>
+            </MidTxetWrap>
+            <MidTxetWrap>
+              <MidTitle>
+                {data.length > 0 ? data[0].nickname : ""}님의 보유 스킬
+              </MidTitle>
+              <MidTagWrap>
+                {data.length > 0
+                  ? data[0].skill.map((list, idx) => {
+                      return <TagDev key={idx} skills={list} />;
+                    })
+                  : ""}
+              </MidTagWrap>
+            </MidTxetWrap>
+          </MidWrap>
+          <BotHr />
 
-              {loginInfoName === data[0]?.userId ? (
-              <BotWrap>
-                <FixedBtn
-                onClick={() =>
-                {
+          {loginInfoName === data[0]?.userId ? (
+            <BotWrap>
+              <FixedBtn
+                onClick={() => {
                   if (window.confirm("수정하러 가볼까요?🥸")) {
                     navigate("/editprofile/" + `${data[0].resumeId}`);
                   } else {
                     return false;
                   }
-                  
-                }}>
-                  수정하기
-                </FixedBtn>
-                <DelBtn
-                onClick={deleteOnclick}>
-                  삭제하기
-                </DelBtn>
-              </BotWrap>
+                }}
+              >
+                수정하기
+              </FixedBtn>
+              <DelBtn onClick={deleteOnclick}>삭제하기</DelBtn>
+            </BotWrap>
           ) : (
-              <TestWrap>
-                <PropseText onClick={() => {setArcodian(!Arcodian)}}>
-                    우주선에 태우고 싶으신가요?
-                  <DownIcon src={down} style={{transform: Arcodian === false ? "rotate(0deg)" : "rotate(180deg)"}}/>
-                </PropseText>
-                <MiniProjectWrap style={{display: Arcodian === true ? "" : "none"}}>
+            <TestWrap>
+              <PropseText
+                onClick={() => {
+                  setArcodian(!Arcodian);
+                }}
+              >
+                우주선에 태우고 싶으신가요?
+                <DownIcon
+                  src={down}
+                  style={{
+                    transform:
+                      Arcodian === false ? "rotate(0deg)" : "rotate(180deg)",
+                  }}
+                />
+              </PropseText>
 
-                  <MiniProject data={myProject}/>
-
-                </MiniProjectWrap>
-              </TestWrap>
-              )}
-
-          </PageAllWrap>
-        </BackGround>
-
+              <MiniProjectWrap
+                style={{ display: Arcodian === true ? "" : "none" }}
+              >
+                <MiniProject data={myProject} setProjectId={setProjectId} />
+              </MiniProjectWrap>
+              <SubmitButton onClick={applyOnClick}>면접 제안하기</SubmitButton>
+            </TestWrap>
+          )}
+        </PageAllWrap>
+      </BackGround>
     </>
   );
 }
@@ -395,6 +413,17 @@ const MiniProjectWrap = styled.div`
   margin-bottom: 40px;
 `
 
-
+const SubmitButton = styled.button`
+  background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
+  border-radius: 4px;
+  color: white;
+  padding: 10px 45px 10px 45px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 30px;
+`;
 
 export default EmploymentProfile

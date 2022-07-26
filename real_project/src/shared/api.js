@@ -368,7 +368,7 @@ export const apis = {
 
   // 22. 선택한 프로젝트를 지원서에 제안
   proposalUserProjects: (resumeId, projectId) =>
-    api.post("/api/proposals/:resumeId/:projectId"),
+    api.post(`/api/proposals/${resumeId}/${projectId}`, {}),
 
   //23. 지원서에 면접 제안시 내 프로젝트 목록 조회
   proposalsProjects: () => api.get("/api/proposals/projects"),
