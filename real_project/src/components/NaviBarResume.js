@@ -48,7 +48,7 @@ function NavigationBarResume() {
     const searchAction = () => {
         dispatch(SearchResumeAxios(
             sendRole,
-            sendSkill,
+            skilldata,
             datedata[0],
             datedata[1]
         ))

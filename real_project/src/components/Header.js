@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { checkUserValidation, logOut, userInfo } from "../redux/modules/user";
+import {resetresult} from "../redux/modules/search"
 
 import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo_vertical.svg"
@@ -35,15 +36,21 @@ function Header() {
     } 
   }
 
+  const ResetResult = () => {
+    dispatch(resetresult([]))    
+  }
+
 
   const MoveProject = (e) => {
       navigate(`/mainrecruit`)
       setCurrentClick(e.target.id);
+      // ResetResult()
   };
 
   const MoveResume = (e) => {
     navigate(`/mainemployment`)
     setCurrentClick(e.target.id);
+    // ResetResult()
   };
 
   const MoveMatching = (e) => {

@@ -1,4 +1,3 @@
-
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -51,6 +50,7 @@ const CardContainerWrap = styled.div`
   gap: 24px;
   margin-top: 50px;
   margin-bottom: 50px;
+  /* border: 1px solid black; */
 `
 
 const CardBackGround = styled.div`

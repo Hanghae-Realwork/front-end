@@ -194,6 +194,8 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
+
+    //프로젝트 검색결과 리듀서
     case "search/LOADRESULT": {
       // const result = [action.payload, ...state.SearchResult]
       return {
@@ -205,6 +207,7 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
+    //리쥬메 검색 결과 리듀서
     case "search/RESUMERESULT": {
       // const result = [action.payload, ...state.SearchResult]
       return {
@@ -216,8 +219,16 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
+    //결과 초기화 리듀서
     case "search/RESULTRESET":{
-      return{}
+      const emptyResult = [action.payload, ['']]
+      return{
+        Skilltag: emptyResult,
+        Roletag: emptyResult,
+        Datetag: emptyResult,
+        SearchResult: emptyResult,
+        SearchResume: emptyResult
+      }
     }
 
 

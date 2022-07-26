@@ -57,20 +57,12 @@ function Login() {
       <LoginBackgroundWrap>
         <LoginWrap>
           <AlignWrap>
-            <LogoWrap>
               <MainLogo/>
-            </LogoWrap>
             <InpuLoginWrap>
-              <IdWrap>
                 <InputBar ref={loginidRef} placeholder="이메일" type="email" autoFocus></InputBar>
-              </IdWrap>
-              <PwWrap>
                 <InputBar ref={passwordRef} placeholder="패스워드" type="password"></InputBar>
-              </PwWrap>
             </InpuLoginWrap>
-            <ButtonWrap>
-              <LoginButton onClick={loginFunction}>로그인</LoginButton>
-            </ButtonWrap>
+            <LoginButton onClick={loginFunction}>로그인</LoginButton>
             <LoginText>랑데브가 처음인가요?
               <MovetoJoin onClick={() => {navigate(`/join`);}} id="LoginBtn">회원 가입하기</MovetoJoin>
             </LoginText>
@@ -81,46 +73,35 @@ function Login() {
   );
 }
 
+
 const LoginWrap = styled.div`
-  /* border: 1px solid black; */
-  width: auto;
-  height: auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  position: relative;
-  top: -150px;
+  margin-top: -200px;
+  /* border: 1px solid white; */
 `;
 
 const AlignWrap = styled.div`
-  /* border: 1px solid black; */
-  width: auto;
-  height: auto;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 `;
 
-const LogoWrap = styled.div`
-  /* border: 1px solid white; */
-  width: 400px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-`;
 
 const InpuLoginWrap = styled.div`
-  /* border: 1px solid black; */
-  width: auto;
-  height: auto;
+  /* border: 1px solid white; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 `;
 
 const IdWrap = styled.div`
-  /* border: 1px solid black; */
+  /* border: 1px solid white; */
   width: 500px;
   height: 50px;
   display: flex;
@@ -146,7 +127,7 @@ const InputBar = styled.input`
   padding: 7px;
   width: 400px;
   color: white;
-  background-color: #1F1F1F;
+  background-color: transparent;
 `;
 
 const ButtonWrap = styled.div`
@@ -171,6 +152,7 @@ const LoginButton = styled.button`
   font-weight: bold;
   font-size: 20px;
   background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  margin-top: 80px;
 `;
 
 const LoginText = styled.span`
@@ -189,7 +171,7 @@ const MovetoJoin = styled.span`
 const LoginBackgroundWrap = styled.div`
   background-color: #1F1F1F;
   width: 100%;
-  height: 1080px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
