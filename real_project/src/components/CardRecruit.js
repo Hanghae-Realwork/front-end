@@ -78,24 +78,20 @@ const CardRecruit = ({ data }) => {
 //// 카드 전체 틀 관련 CSS 뭉치
 
 const AllWrap = styled.div`
-  /* margin: 0px 24px 19px 0px; */
-  border-top: none;
-  border-bottom: none;
   width: 384px;
-  height: 387px;
+  height: 426px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-image: url(${Receipt});
   background-position: center;
-  background-size: cover;
-  background-repeat: none;
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 const AllTopWrap = styled.div`
   width: 384px;
-  height: 310px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -105,10 +101,9 @@ const AllTopWrap = styled.div`
 
 const AllBotWrap = styled.div`
   width: 384px;
-  height: 120px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   /* border: 1px solid black; */
 `;
@@ -118,13 +113,13 @@ const AllBotWrap = styled.div`
 const CardTopInfo = styled.div`
   /* border: 1px solid black; */
   width: 344px;
-  height: 18px;
+  height: 17px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 15px;
-  /* margin: 16px 0px 12px 0px; */
+  align-items: flex-start;
+  margin-top: 20px;
+  line-height: 20px;
 `;
 
 const CardWriteName = styled.span`
@@ -138,10 +133,11 @@ const CardWriteTime = styled.span`
 
 const CardTitleInfo = styled.div`
   /* border: 1px solid black; */
-  height: 30px;
+  height: 20px;
   width: 344px;
-  margin: 10px 0px 12px 0px;
+  margin: 16px 0px 0px 0px;
   overflow: hidden;
+  line-height: 21px;
 `;
 
 const CardTitleText = styled.span`
@@ -153,8 +149,9 @@ const CardMainTextInfo = styled.div`
   /* border: 1px solid black; */
   width: 344px;
   height: 45px;
-  margin-bottom: 10px;
+  margin: 20px 0px 0px 0px;
   overflow: hidden;
+  line-height: 21px;
 `;
 
 const CardMainText = styled.span`
@@ -165,10 +162,11 @@ const CardMainText = styled.span`
 const CardJobTextWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
-  margin-top: 7px;
-  margin-bottom: 5px;
+  margin-top: 20px;
   display: flex;
   flex-flow: column nowrap;
+  gap: 4px;
+  line-height: 21px;
 `;
 
 const CardRoleTitle = styled.span`
@@ -189,6 +187,7 @@ const CardTagWrap = styled.div`
   /* border: 1px solid black; */
   width: 344px;
   height: 55px;
+  margin-top: 8px;
 `;
 
 const TagWrap = styled.div`
@@ -207,18 +206,19 @@ const TagWrap = styled.div`
 const DashedLine = styled.hr`
   width: 340px;
   border: 0.5px dashed #8d8d8d;
-  margin: 8px 0px 20px 0px;
-  /* stroke-dasharray: 4,4,4,4,4px; */
+  margin: 30px 0px 0px 0px;
 `
 
 const CardBotTopWrap = styled.div`
   /* border: 1px solid black; */
   width: 340px;
-  height: 20px;
+  height: 17px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
+  line-height: 21px;
+  margin-top: 30px;
 `;
 
 const CardBotTextDate = styled.span`
@@ -246,6 +246,7 @@ const CardViewButton = styled.button`
   font-weight: 500;
   font-size: 14px;
   margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 2px;
 `;
 

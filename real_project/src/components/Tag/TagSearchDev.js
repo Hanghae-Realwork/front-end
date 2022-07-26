@@ -18,7 +18,7 @@ function TagCompoSearchDev({ skills }) {
 }
 
 const TagButton = styled.label`
-  background-color: #F4E0E2;
+  background-color: #ECE0EC;
   font-size: 12px;
   font-weight: 500;
   border-radius: 30px;
