@@ -17,7 +17,7 @@ function Login() {
 
 
   // 로그인 벨리데이션 체크 함수
-  const loginFunction = async () => {
+  const loginFunction = () => {
 
     if (
       loginidRef.current.value === "" ||
@@ -30,11 +30,8 @@ function Login() {
       alert("아이디 또는 비밀번호가 비어있어요! 🥸 ");
       return false;
     }
-
-
     document.getElementById("LoginBtn").disabled = true;
-    try {
-      await dispatch(
+      dispatch(
         loginAxios(loginidRef.current.value, passwordRef.current.value)
       ).then((success) => {
         if (success === true) {
@@ -44,11 +41,11 @@ function Login() {
           console.log("로그인실패", success);
           document.getElementById("LoginBtn").disabled = false;
         }
-      });
-    } catch (err) {
-      console.log("Error >>", err);
+      }).catch((err) => {
+         console.log("Error >>", err);
       document.getElementById("LoginBtn").disabled = false;
-    }
+      })
+
   };
 
 
