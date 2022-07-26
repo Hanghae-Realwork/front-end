@@ -67,7 +67,6 @@ export const projectsPhotosAxios = (frm) => {
 
 export const resumesCreateAxios = (
   content, 
-  resumeImage, 
   start, 
   end, 
   role, 
@@ -82,7 +81,6 @@ export const resumesCreateAxios = (
     await apis
       .resumesCreate(
         content,
-        resumeImage,
         start,
         end,
         role,
@@ -95,7 +93,6 @@ export const resumesCreateAxios = (
         dispatch(
           createEmploy({
             content: content,
-            resumeImage: resumeImage,
             start: start,
             end: end,
             role: role,
@@ -130,7 +127,6 @@ export const loadSingleEmployAxios = (resumeId) => {
 export const modifyEmployAxios = (
   resumeId,
   content,
-  resumeImage,
   start,
   end,
   role,
@@ -143,7 +139,6 @@ export const modifyEmployAxios = (
       .resumesModify(
         resumeId,
         content,
-        resumeImage,
         start,
         end,
         role,
@@ -156,7 +151,6 @@ export const modifyEmployAxios = (
           modifyEmploy({
             resumeId: resumeId,
             content: content,
-            resumeImage: resumeImage,
             start: start,
             end: end,
             role: role,

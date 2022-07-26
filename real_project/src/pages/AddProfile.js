@@ -135,11 +135,10 @@ function AddProfile(props) {
     ) {
         alert("아직 다 작성하지 않았어요!🥸");
     } else {
-      
+      alert("게시글을 등록하시겠습니까?🥸");
      dispatch(
             resumesCreateAxios(
               introduceRef.current.value,
-              null,
               startDate.getFullYear() +
                 "-" +
                 (startDate.getMonth() + 1) +
@@ -158,7 +157,7 @@ function AddProfile(props) {
               _nickname
             )
      ).then(() => {
-             alert("게시글을 등록하시겠습니까?🥸");
+             
         navigate("/mainemployment");
      }).catch((err) => {
           console.log(err);

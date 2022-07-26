@@ -56,9 +56,9 @@ function EmploymentProfile() {
         href = data.length > 0 ? data[0].content2 : "";
       }
     }, [loginInfoName, data]);
-  
+   
   const deleteOnclick = () => {
-
+    
     if (window.confirm("❗️정말 삭제하시는 건가요?")) {
       dispatch(deleteEmployAxios(resumeId))
       .then(() => navigate("/mainemployment"))
@@ -143,11 +143,11 @@ function EmploymentProfile() {
                 {data.length > 0 ? data[0].nickname : ""}님의 보유 스킬
               </MidTitle>
               <MidTagWrap>
-                {data.length > 0
-                  ? data[0].skill.map((list, idx) => {
+                {data && 
+                  data[0].skills.map((list, idx) => {
                       return <TagDev key={idx} skills={list} />;
                     })
-                  : ""}
+                  }
               </MidTagWrap>
             </MidTxetWrap>
           </MidWrap>
@@ -157,11 +157,9 @@ function EmploymentProfile() {
             <BotWrap>
               <FixedBtn
                 onClick={() => {
-                  if (window.confirm("수정하러 가볼까요?🥸")) {
+                 
                     navigate("/editprofile/" + `${data[0].resumeId}`);
-                  } else {
-                    return false;
-                  }
+                  
                 }}
               >
                 수정하기
