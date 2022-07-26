@@ -1,7 +1,8 @@
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
-import { useSelector,useDispatch } from "react-redux";
-import { loadResumesAxios } from "../redux/modules/interview";
+
+
+import { useSelector, useDispatch } from "react-redux";
 
 import TagDev from "./Tag/TagCompoDev"
 import TagDes from "./Tag/TagCompoDes"
@@ -9,77 +10,81 @@ import TagDes from "./Tag/TagCompoDes"
 
 
 
+
 // 팀원찾기 -> 상세조회 -> 내 프로젝트 목록 조회
-function MiniProject({data,setProjectId}) {
- const [currentClick, setCurrentClick] = useState(null);
- const [prevClick, setPrevClick] = useState(null);
+function MiniProject({ data, setProjectId }) {
+  
+  const [currentClick, setCurrentClick] = useState(null);
+  const [prevClick, setPrevClick] = useState(null);
 
- useEffect(() => {
-   if (currentClick !== null) {
-     let current = document.getElementById(currentClick);
-     current.style.backgroundColor = "#EAF3FB";
-   }
-   if (prevClick !== null) {
-     let prev = document.getElementById(prevClick);
-     prev.style.backgroundColor = "transparent";
-   }
-   setPrevClick(currentClick);
- }, [currentClick]);
+  useEffect(() => {
+    if (currentClick !== null) {
+      let current = document.getElementById(currentClick);
+      current.style.backgroundColor = "#EAF3FB";
+    }
+    if (prevClick !== null) {
+      let prev = document.getElementById(prevClick);
+      prev.style.backgroundColor = "transparent";
+    }
+    setPrevClick(currentClick);
+  }, [currentClick]);
 
-    
+
+
   return (
-      <>{data && data.map((list,idx) => {
-        return (
-          <MiniCardAllWrap
-            key={idx}
-            id={list.projectid}
-            onClick={(e) => {
-              setProjectId(list.projectid);
-              setCurrentClick(e.target.id);
-            }}
-          >
-            <MiniNickWrap id={list.projectid}>
-              <NickText id={list.projectid}>{list?.nickname}</NickText>
-              <NickText id={list.projectid}>n시간 전이 들어갑니다</NickText>
-            </MiniNickWrap>
+    <>
+      {data &&
+        data.map((list, idx) => {
+          return (
+            <MiniCardAllWrap
+              key={idx}
+              id={list.projectid}
+              onClick={(e) => {
+                setProjectId(list.projectid);
+                setCurrentClick(e.target.id);
+              }}
+            >
+              <MiniNickWrap id={list.projectid}>
+                <NickText id={list.projectid}>{list?.nickname}</NickText>
+                <NickText id={list.projectid}>n시간 전이 들어갑니다</NickText>
+              </MiniNickWrap>
 
-            <MiniTopWrap id={list.projectid}>
-              <MiniNickName id={list.projectid}>{list?.title}</MiniNickName>
-              <MiniBodyTextWrap id={list.projectid}>
-                <MiniBodyText id={list.projectid}>
-                  {list?.subscript}
-                </MiniBodyText>
-              </MiniBodyTextWrap>
-            </MiniTopWrap>
+              <MiniTopWrap id={list.projectid}>
+                <MiniNickName id={list.projectid}>{list?.title}</MiniNickName>
+                <MiniBodyTextWrap id={list.projectid}>
+                  <MiniBodyText id={list.projectid}>
+                    {list?.subscript}
+                  </MiniBodyText>
+                </MiniBodyTextWrap>
+              </MiniTopWrap>
 
-            <MiniBodyWrap id={list.projectid}>
-              <NickText id={list.projectid}>구하는 직군</NickText>
-              <MiniRole id={list.projectid}>{list?.role}</MiniRole>
-            </MiniBodyWrap>
+              <MiniBodyWrap id={list.projectid}>
+                <NickText id={list.projectid}>구하는 직군</NickText>
+                <MiniRole id={list.projectid}>{list?.role}</MiniRole>
+              </MiniBodyWrap>
 
-            <TecWrap id={list.projectid}>
-              <NickText id={list.projectid}>원하는 보유 기술</NickText>
-              <TecMiniWrap id={list.projectid}>
-                {data &&
-                  list?.skills.map((tag, index) => {
-                    return (
-                      <TagDev skills={tag} key={index} id={list.projectid} />
-                    );
-                  })}
-              </TecMiniWrap>
-            </TecWrap>
+              <TecWrap id={list.projectid}>
+                <NickText id={list.projectid}>원하는 보유 기술</NickText>
+                <TecMiniWrap id={list.projectid}>
+                  {data &&
+                    list?.skills.map((tag, index) => {
+                      return (
+                        <TagDev skills={tag} key={index} id={list.projectid} />
+                      );
+                    })}
+                </TecMiniWrap>
+              </TecWrap>
 
-            <MiniDateWrap id={list.projectid}>
-              <MiniDateText id={list.projectid}>
-                {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
-                {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
-                {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일{" "}
-              </MiniDateText>
-            </MiniDateWrap>
-          </MiniCardAllWrap>
-        );
-    })}
-
+              <MiniDateWrap id={list.projectid}>
+                <MiniDateText id={list.projectid}>
+                  {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
+                  {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
+                  {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일{" "}
+                </MiniDateText>
+              </MiniDateWrap>
+            </MiniCardAllWrap>
+          );
+        })}
     </>
   );
 }
