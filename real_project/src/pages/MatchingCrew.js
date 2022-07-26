@@ -1,7 +1,9 @@
 
-import React, {useState,useEffect} from "react"
+import React, {useState,useEffect, useRef} from "react"
 
 import styled from "styled-components"
+
+import "../App.css"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
 import MiniProject from "../components/MiniProject"
@@ -31,10 +33,36 @@ function MatchingCrew() {
     }
 
 
+    const favoriteBtn = useRef(null);
+    const onFavoriteToggle = () => {
+      favoriteBtn.current.style.backgroundColor = '#959595';
+      favoriteBtn.current.style.border = '#959595';
+    }
+
+    const [test, setTest] = useState("change")
+    const testClick = (e) => {
+      setTest(e.target.className)
+      if(test === "change"){
+        setTest(e.target.className = "dis")
+      }
+      if(test === "dis"){
+        setTest(e.target.className = "change")
+      }
+    }
+  
+
+
     return (
       <>
         <MatchingBtn />
         <MatchingCrewWrap>
+
+
+          <div 
+            onClick={testClick} 
+            className="change">테스트 버튼</div>
+
+
           <MatchingTopWrap>
             <MatchingText>
               맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
@@ -45,6 +73,7 @@ function MatchingCrew() {
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
             <MatchingButton onClick={matchOnclick}>매칭하기</MatchingButton>
+
                 </MatchingBotBtnWrap>
                 { seeData ? <MatchingBotWrap>
             <MatchingContentWrap>
@@ -71,6 +100,7 @@ const MatchingCrewWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
+    margin-bottom: 80px;
 `
 
 const MatchingTopWrap = styled.div`
@@ -120,18 +150,11 @@ const MatchingButton = styled.button`
     cursor: pointer;
 `
 
-const MatchingBotWrap = styled.div`
+const MatchingResumeWrap = styled.div`
     /* border: 1px solid black; */
     width: 100%;
-    margin-top: 36px;
-    background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
-`
-
-const MatchingResumeWrap = styled.div`
-    border: 1px solid black;
-    width: 100%;
     margin-top: 20px;
-    height: 600px;
+    height: auto;
     overflow: scroll;
     display: flex;
     flex-flow: row wrap;
@@ -140,7 +163,30 @@ const MatchingResumeWrap = styled.div`
 `               
                         
 const MatchingContentWrap = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
     margin-top: 40px;
+    width: 100%;
+    /* height: 20vh; */
+    background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
+`
+
+const ContentAlignWrap = styled.div`
+  margin-top: 35px;
+  width: 1200px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 50vh;
+  /* border: 1px solid black; */
+`
+
+const TextAlingWrap = styled.div`
+  width: 1200px;
+  margin-top: 35px;
 `
  
 export default MatchingCrew

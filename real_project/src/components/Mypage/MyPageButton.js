@@ -37,12 +37,12 @@ function ButtonLine() {
       (e) => {
       if (currentClick !== null) {
           let current = document.getElementById(currentClick);
-          current.style.border = "1px white";
+          // current.style.outline = "3px white";
           current.style.background = "#3d3d3d";
       }
       if (prevClick !== null) {
           let prev = document.getElementById(prevClick);
-          prev.style.border = "none";
+          // prev.style.outline = "none";
           prev.style.background = "#303032";
       }
       setPrevClick(currentClick);
