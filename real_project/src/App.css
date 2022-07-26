@@ -58,12 +58,31 @@
 
 
   .change{
-    border: 5px solid black;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 384px;
+    height: 307px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    zoom: 0.95;
   }
 
   .dis{
-    border: 5px solid red;
+    border: 1.5px solid black;
+    border-radius: 4px;
+    width: 384px;
+    height: 307px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: white;
+    zoom: 1.1;
+
   }
+
 
   /* .MainBack{
   background: linear-gradient(-45deg, #FFB549, #FF585D, #307FE2, #004E42);
