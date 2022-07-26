@@ -44,7 +44,7 @@ const CardContainerWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   width: 1200px;
   height: 1000px;
   overflow-y: scroll;

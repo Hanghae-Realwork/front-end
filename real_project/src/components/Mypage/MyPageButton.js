@@ -87,7 +87,7 @@ const RightTopWrap = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 44px;
-  margin-right: 200px;
+  margin-right: 250px;
   margin-bottom: 30px;
   /* position: relative; */
 `;
@@ -109,12 +109,15 @@ const OnlyBackgroundWrap = styled.div`
 
 const MyMenuButton = styled.label`
   padding: 8px 20px 8px 20px;
-  width: 135px;
-  height: 40px;
+  width: 100px;
+  height: 30px;
   font-size: 15px;
   font-weight: 700;
   border-radius: 20px;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* background-color: transparent; */
   /* background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%); */
   border: none;
