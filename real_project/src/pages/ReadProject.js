@@ -52,21 +52,31 @@ function ReadProject() {
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
   // 예약기능
-  const [applicationId, setApplicationId] = useState("")
+  const [applicationId, setApplicationId] = useState("");
   const [resumeId, setResumeId] = useState("")
-  const [color , setColor] = useState(false)
+ 
   const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
+    const [currentClick, setCurrentClick] = useState(null);
+    const [prevClick, setPrevClick] = useState(null);
 
-  useEffect(() => {
-    if (loginInfo === false) {
-      dispatch(checkUserValidation());
-    }
-  }, [loginInfo]);
+    useEffect(() => {
+      if (currentClick !== null) {
+        let current = document.getElementById(currentClick);
+        current.style.backgroundColor = "#EAF3FB";
+      }
+      if (prevClick !== null) {
+        let prev = document.getElementById(prevClick);
+        prev.style.backgroundColor = "transparent";
+      }
+      setPrevClick(currentClick);
+    }, [currentClick]);
+
 
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   }, []);
+
 
   const deleteOnclick = async() => {
     if (window.confirm("❗️정말 삭제하시는 건가요?")) {
@@ -89,14 +99,18 @@ function ReadProject() {
     }
   }
 
- let [btnActive, setBtnActive] = useState("");
-  
+
   const applyOnClick = () => {
-    dispatch(projectInterviewAxios(applicationId, resumeId));
-
-
-    
+    if (applicationId === "" ||
+      resumeId === ""
+    ) {
+      alert("날짜와 소개서를 선택해주세요!")
+    } else { 
+ dispatch(projectInterviewAxios   (applicationId, resumeId));  
+    }
+   
   }
+
 
   return (
     <>
@@ -144,17 +158,21 @@ function ReadProject() {
 
             <InputMainTextWrap>
               <EditDateWrap>
+                
                 {Value &&
                   Value[0]?.applications.map((list, idx) => {
                     return (
                       <EditLabel
-                        key={idx}
+                        style={
+                          list.available
+                            ? { backgroundColor: "" }
+                            : { backgroundColor: "#d9d9d9" }
+                        }
+                        key={list.applicationId}
+                        id={idx}
                         onClick={(e) => {
                           setApplicationId(list.applicationId);
-                          idx === idx ? setColor(true) : setColor(false)
-                    
-
-                          
+                          setCurrentClick(e.target.id);
                         }}
                       >
                         {list.schedule.slice(0, 16)}
@@ -536,11 +554,9 @@ const EditLabel = styled.label`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   padding: 10px 12px 10px 12px;
-  background-color: ${(props) => props.color};
-  /* background-color: ${(props) => (props.color ? "white" : "orange")}; */
-  &.active {
-    background-color: lightblue;
-  }
+
+  //승연 추가
+
 `;
 
 const CloseBtn = styled.img`
