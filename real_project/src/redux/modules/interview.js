@@ -70,12 +70,13 @@ export const projectInterviewAxios = (applcationId,resumeId) => {
         }
       })
       .catch((err) => {
-        console.log(err.response.status === 404)
-        console.log(err)
-        // console.log(err.response.status);
-        if (err.response.status === 400) { 
+        if (err) {
           alert(err.response.data.errorMessage);
         }
+        console.log();
+        
+        // console.log(err.response.status);
+       
         // else if (err.message === "Request failed with status code 404") {
         //   alert("소개글도 같이 선택해주세요!");
         // }
@@ -88,12 +89,13 @@ export const proposalUserProjectsAxios = (resumeId, projectId) => {
     await apis
       .proposalUserProjects(resumeId, projectId)
       .then((res) => {
-     
+
         alert(res.data.message);
+   
       })
       .catch((err) => {
-        console.log(err);
-
+     
+        alert(err.response.data.errorMessage);
         // if (err.response.status === 400) {
         //   alert(err.response.data.errorMessage);
         // }

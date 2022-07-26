@@ -96,6 +96,7 @@ export const createRecruitAxios = (
         schedule
       )
       .then((res) => {
+        console.log(res)
         dispatch(
           createRecruit({
             title: title,

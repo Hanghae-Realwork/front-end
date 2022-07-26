@@ -29,7 +29,7 @@ function Header() {
   const logoutClick = () => {
     const result = window.confirm("정말...나가실건가욥..? 🥸");
     if (result) {
-      alert("로그아웃 되었습니다. 🥸");
+      
        navigate("/");
        dispatch(logOut());
     } 
