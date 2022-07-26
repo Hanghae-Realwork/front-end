@@ -60,7 +60,7 @@ function Header() {
   useEffect(
       (e) => {
       if (currentClick !== null) {
-          let current = document.getElementById(currentClick);
+        let current = document.getElementById(currentClick);
           current.style.backgroundColor = "#303032";
       }
       if (prevClick !== null) {
@@ -69,7 +69,9 @@ function Header() {
       }
       setPrevClick(currentClick);
       },
-      [currentClick]
+    [currentClick]
+      
+
   );
 
 
