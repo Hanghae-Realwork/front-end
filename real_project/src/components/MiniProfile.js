@@ -18,12 +18,24 @@ function MiniResume({ data, setResumeId }) {
 
   useEffect(() => {
     if (currentClick !== null) {
-      let current = document.getElementById(currentClick);
-      current.style.backgroundColor = "#EAF3FB";
+      // let current = document.getElementsByClassName(
+      //   currentClick
+      // )[0].style.backgroundColor = "blue";
+      
+
+  document.getElementsByClassName(currentClick)[0].style.backgroundColor =
+  "#EAF3FB";
+      // for (var i = 0; i < len; i++) {
+      //  current[i].style.backgroundColor = "blue";
+      // }
+      // current.style.backgroundColor = "#EAF3FB";
     }
       if (prevClick !== null) {
-        let prev = document.getElementById(prevClick);
-        prev.style.backgroundColor = "transparent";
+        // let prev = document.getElementsByClassName(prevClick);
+        // prev.style.backgroundColor = "transparent";
+         document.getElementsByClassName(prevClick)[0].style.backgroundColor =
+           "transparent";
+
       }
       setPrevClick(currentClick);
     },
@@ -38,48 +50,45 @@ function MiniResume({ data, setResumeId }) {
           <MiniCardAllWrap
             key={idx}
             value={idx}
-            id={list.resumeId}
+            className={list.resumeId}
             onClick={(e) => {
               setResumeId(list.resumeId);
-              setCurrentClick(e.target.id);
-             
+              setCurrentClick(e.target.className);
             }}
           >
-            <MiniTopWrap id={list.resumeId}>
-              <MiniPhotoWrap id={list.resumeId}>
+            <MiniTopWrap>
+              <MiniPhotoWrap>
                 {list?.resumeImage === null ? (
-                  <Photo id={list.resumeId}></Photo>
+                  <Photo></Photo>
                 ) : (
                   <Photo>사진을 보여주세요</Photo>
                 )}
               </MiniPhotoWrap>
-              <MiniNameWrap id={list.resumeId}>
-                <MiniNickName id={list.resumeId}>{list?.nickname}</MiniNickName>
-                <MiniRole id={list.resumeId}>{list?.role}</MiniRole>
+              <MiniNameWrap>
+                <MiniNickName>{list?.nickname}</MiniNickName>
+                <MiniRole>{list?.role}</MiniRole>
               </MiniNameWrap>
             </MiniTopWrap>
 
-            <MiniBodyWrap id={list.resumeId}>
-              <MiniBodyText id={list.resumeId}>{list?.content}</MiniBodyText>
+            <MiniBodyWrap>
+              <MiniBodyText>{list?.content}</MiniBodyText>
             </MiniBodyWrap>
 
-            <MiniDateWrap id={list.resumeId}>
-              <span style={{ fontSize: "12px" }} id={list.resumeId}>
+            <MiniDateWrap>
+              <span style={{ fontSize: "12px" }} className={list.resumeId}>
                 {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
                 {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
                 {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일
               </span>{" "}
-              <MiniDateText id={list.resumeId}></MiniDateText>
+              <MiniDateText></MiniDateText>
             </MiniDateWrap>
 
-            <TecWrap id={list.resumeId}>
+            <TecWrap>
               보유한 기술
-              <TecMiniWrap id={list.resumeId}>
+              <TecMiniWrap>
                 {list &&
                   list?.skills.map((tag, index) => {
-                    return (
-                      <TagDev id={list.resumeId} skills={tag} key={index} />
-                    );
+                    return <TagDev skills={tag} key={index} />;
                   })}
               </TecMiniWrap>
             </TecWrap>
