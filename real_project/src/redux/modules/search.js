@@ -112,12 +112,12 @@ export const SearchAxios = (
 
 export const SearchResumeAxios = (
   role,
-  skill,
+  skills,
   start,
   end
   ) => {
     console.log('role',role)
-    console.log('skill',skill)
+    console.log('skill',skills)
     console.log('start',start)
     console.log('end',end)
 
@@ -125,7 +125,7 @@ export const SearchResumeAxios = (
     await apis
       .searchResume(
         role,
-        skill,
+        skills,
         start,
         end
       )
@@ -133,7 +133,7 @@ export const SearchResumeAxios = (
         console.log(res)
       dispatch(complete({
         role: role,
-        skill: skill,
+        skills: skills,
         start: start,
         end: end
       }));
@@ -221,13 +221,12 @@ export default function reducer(state = initialState, action = {}) {
 
     //결과 초기화 리듀서
     case "search/RESULTRESET":{
-      const emptyResult = [action.payload, ['']]
       return{
-        Skilltag: emptyResult,
-        Roletag: emptyResult,
-        Datetag: emptyResult,
-        SearchResult: emptyResult,
-        SearchResume: emptyResult
+        Skilltag: [],
+        Roletag: [],
+        Datetag: [],
+        SearchResult: [],
+        SearchResume: []
       }
     }
 
