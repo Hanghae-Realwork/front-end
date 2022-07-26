@@ -56,6 +56,15 @@
     border-bottom: 1px solid white;
   }
 
+
+  .change{
+    border: 5px solid black;
+  }
+
+  .dis{
+    border: 5px solid red;
+  }
+
   /* .MainBack{
   background: linear-gradient(-45deg, #FFB549, #FF585D, #307FE2, #004E42);
   background-size: 400% 400%;

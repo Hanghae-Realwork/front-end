@@ -35,9 +35,11 @@ function MiniProject({ data, setProjectId }) {
 
   return (
     <>
+    
       {data &&
         data.map((list, idx) => {
           return (
+
             <MiniCardAllWrap
               key={idx}
               id={list.projectid}
@@ -84,8 +86,11 @@ function MiniProject({ data, setProjectId }) {
                 </MiniDateText>
               </MiniDateWrap>
             </MiniCardAllWrap>
+            
           );
+          
         })}
+        
     </>
   );
 }
