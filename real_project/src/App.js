@@ -57,7 +57,7 @@ function App() {
   return (
     <MainWrap>
       <Header />
-
+      
       {/* <MiniResume></MiniResume>
       <Miniproject></Miniproject> */}
 

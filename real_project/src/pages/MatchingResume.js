@@ -3,8 +3,11 @@ import styled from "styled-components"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
 
-function MatchingResume(){
-
+function MatchingResume() {
+    
+    // useEffect(() => {
+    //   dispatch(loadResumesAxios());
+    // }, []);
     return(
         <>
         <MatchingBtn/>

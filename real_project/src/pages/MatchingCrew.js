@@ -1,20 +1,31 @@
-import React from "react"
+import React,{useEffect} from "react"
 import styled from "styled-components"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
+import MiniProject from "../components/MiniProject"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { loadProjectsAxios } from "../redux/modules/interview"
+function MatchingCrew() {
+        const dispatch= useDispatch()
+//         const myProject = useSelector((state) => state.interview.projects);
+//   //프로젝트 카드
+//   useEffect(() => {
+//     dispatch(loadProjectsAxios());
+//   }, []);
 
-function MatchingCrew(){
-
-    return(
-        <>
-        <MatchingBtn/>
-            <MatchingCrewWrap>   
-                <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
-                <MatchingCardWrap></MatchingCardWrap>
-            </MatchingCrewWrap>
-
-        </>
-    )
+  return (
+    <>
+      <MatchingBtn />
+      <MatchingCrewWrap>
+        <MatchingText>
+          맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
+        </MatchingText>
+        {/* <MiniProject data={myProject}></MiniProject> */}
+        <MatchingCardWrap></MatchingCardWrap>
+      </MatchingCrewWrap>
+    </>
+  );
 }
 
 

@@ -40,12 +40,7 @@ function ReadProject() {
 
   const [newSchedule, setNewSchedule] = useState(''); 
 
-  const singleCalenderOnChange = (date) => {
-    setYear(String(date.getFullYear()).padStart(2, "0"));
-    setMonth(String(date.getMonth() + 1).padStart(2, "0"));
-    setDay(String(date.getDate()).padStart(2, "0"));
-    setSingleDate(date)
-  };
+
 
 
   // 로그인 유저별 resume card 용
@@ -56,6 +51,7 @@ function ReadProject() {
   const [resumeId, setResumeId] = useState("")
  
   const data = useSelector((state) => state.interview.resumes);
+  console.log(data)
   const Value = useSelector((state) => state.postRecruit.project);
     const [currentClick, setCurrentClick] = useState(null);
     const [prevClick, setPrevClick] = useState(null);
@@ -78,6 +74,7 @@ function ReadProject() {
   }, []);
 
 
+  
   const deleteOnclick = async() => {
     if (window.confirm("❗️정말 삭제하시는 건가요?")) {
 
@@ -106,7 +103,7 @@ function ReadProject() {
     ) {
       alert("날짜와 소개서를 선택해주세요!")
     } else { 
- dispatch(projectInterviewAxios   (applicationId, resumeId));  
+    dispatch(projectInterviewAxios   (applicationId, resumeId));  
     }
    
   }
