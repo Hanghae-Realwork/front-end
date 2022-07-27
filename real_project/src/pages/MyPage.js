@@ -8,12 +8,15 @@ import { useNavigate, useParams, Outlet } from "react-router-dom";
 import Application from "../components/Mypage/Application";
 import Recruitment from "../components/Mypage/Recruitment";
 import MyButton from "../components/Mypage/MyPageButton";
+import FireModal from "../components/Modal/FireModal"
 
 import astroman from "../image/pluastroman.svg";
 import email from "../image/letter.svg";
 import Check from "../image/check.svg";
 import LeftBackground from "../image/mypagBackground.svg"
 import Plus from "../image/plus.svg";
+
+
 
 function MyPage() {
   const dispatch = useDispatch();
@@ -27,6 +30,8 @@ function MyPage() {
 
   const frm = new FormData();
   const reader = new FileReader();
+
+  const [fireModal, setfireModal] = useState(false)
 
 
   const onChange = (e) => {
@@ -58,6 +63,9 @@ function MyPage() {
 
   return (
     <>
+    <ModalWrap style={{display: !fireModal ? "none" : ""}}>
+    {fireModal === true ? (<FireModal close={setfireModal}/>) : null}
+    </ModalWrap>
       <MyButton />
       <AllMyWrap>
         <MypageBackGround>
@@ -83,7 +91,6 @@ function MyPage() {
                   ? { backgroundColor: "" }
                   : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
               }
-        
                   onClick={plusImgOnclick}>
                   사진 업로드 완료하기
                 </ProfilePhotoSpan>
@@ -95,10 +102,13 @@ function MyPage() {
               <MypageTextWrap>
                 <Mycall>{loginInfo.userId}</Mycall>
               </MypageTextWrap>
+
               <MyPagePasswordWrap>
-                <span>비밀번호 변경</span>
-                <span>회원 탈퇴</span>
+
+                
+                <PassWordText onClick={() => {setfireModal(true);}}>회원 탈퇴</PassWordText>
               </MyPagePasswordWrap>
+
             </LeftBackgroundWrap>
           </MyPageLeftWrap>
 
@@ -252,18 +262,31 @@ const Mycall = styled.span`
 
 const MyPagePasswordWrap = styled.div`
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: 16px;
   margin-top: 150px;
+  /* border: 1px solid black; */
 `;
 
 
 const Label = styled.label`
+  top:90px;
+  right: 90px;
+`
 
-top:90px;
-right: 90px;
+const PassWordText = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  cursor: pointer;
+`
+
+const ModalWrap = styled.div`
+  /* border: 4px solid white; */
+  z-index: 4;
+  position: absolute;
+  /* margin-bottom: -100px; */
 `
 
 // // 우측 프로필 CSS

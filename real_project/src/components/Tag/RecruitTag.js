@@ -92,7 +92,7 @@ function RecruitTag() {
 }
 
 const LoadWrap = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 120px;
   height: 307px;
   display: flex;

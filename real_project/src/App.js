@@ -86,6 +86,7 @@ function App() {
         <Route path="/datemodal" element={<DateModal />}></Route>
         <Route path="/loginmodal" element={<LoginModal />}></Route>
         <Route path="/Joinmodal" element={<JoinModal />}></Route>
+        
 
         <Route path="mypage/:nickname/*" element={<MyPage />}>
           <Route path="apply" element={<Application />}></Route>
