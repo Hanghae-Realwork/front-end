@@ -13,7 +13,7 @@ import astroman from "../image/astroman.svg"
 function MiniResume({ data, setResumeId }) {
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
-console.log(data)
+
   useEffect(() => {
     if (currentClick !== null ) {
       document.getElementsByClassName(currentClick)[0].style.border = "2px solid black";
