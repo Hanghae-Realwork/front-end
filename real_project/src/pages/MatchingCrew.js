@@ -16,20 +16,24 @@ function MatchingCrew() {
     const myProject = useSelector((state) => state.interview.projects);
 
     //매칭하기 
-    const data = useSelector((state) => state.matches.resumes[0])
-
+    const data = useSelector((state) => state.matches.resumes)
     const [projectId, setProjectId] = useState("");
     const [seeData,setSeeData] = useState(false)
-    console.log(projectId)
+ 
 
   //프로젝트 카드
   useEffect(() => {
     dispatch(loadProjectsAxios());
   }, []);
 
-    const matchOnclick = () => {
-        dispatch(matchesResumesAxios(projectId))
-        setSeeData(true)
+  const matchOnclick = () => {
+    if (projectId === "") {
+        alert("프로젝트를 선택해주세요")
+    } else {
+        dispatch(matchesResumesAxios(projectId));
+        setSeeData(true);
+      }
+      
     }
 
 
@@ -58,8 +62,11 @@ function MatchingCrew() {
               </MatchingText>
             </TextAlingWrap>
             <ContentAlignWrap>
-              <MatchingResumeWrap>         
-                <CradEmpol data={data} />
+              <MatchingResumeWrap>    
+                {data.map((list,index) => {
+                  return <CradEmpol key={ index} data={list} />;
+                })}
+                
               </MatchingResumeWrap> 
             </ContentAlignWrap>
           </MatchingBotWrap> :""}
