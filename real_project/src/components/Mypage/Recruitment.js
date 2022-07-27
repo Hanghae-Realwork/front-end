@@ -9,22 +9,29 @@ import EmptyProject from "./EmptyProject";
 
 import astroman from "../../image/astroman.svg"
 import check from "../../image/check.svg"
-import { interviewEndStatusAxios } from "../../redux/modules/interview";
-
+import { interviewEndStatusAxios, interviewMatchStatusAxios } from "../../redux/modules/interview";
+import { useNavigate } from "react-router-dom";
 const Recruitment = () => {
 
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
   const value = useSelector((state) => state.postProfile.Myprojects);
-console.log(value);
+  console.log(value)
 
+  useEffect(() => {
+    if (value.message === "토큰이 재발급 됐습니다.") { 
+      localStorage.setItem("token", value.token);
+    }
+  },[])
 
   useEffect(() => {
       if (nickname_Info !== undefined || nickname_Info !== null) {
           dispatch(loadProjectAxios(nickname_Info));
     }
   }, [nickname_Info]);
+
+
 
 
   return (
@@ -117,21 +124,76 @@ console.log(value);
               </ProfileWrap>
 
               <LoadWrap>
-                <RecruitmentStatusLabel>
+                <RecruitmentStatusLabel
+                  onClick={() => {
+                    if (window.confirm("함께 하실건가요? 취소 시 불합격")) {
+                      dispatch(interviewMatchStatusAxios(list.applicationId, "matched")).then((success) => {
+                      if (success) {
+                        dispatch(loadProjectAxios());
+                      } else {
+                        return;
+                      }
+                    })
+                    } else {
+                      //매칭실패시
+                      //unmatched
+                    }
+                  }}
+                >
                   모집 완료
                   <img src={check} />
                 </RecruitmentStatusLabel>
                 <ApplyLine />
-
-                <InterviewStatusLabel onClick={() => {
-                  dispatch(interviewEndStatusAxios(list.applicationId));
-                }}>
+                <InterviewStatusLabel
+                  style={
+                    list.status === "interviewed"  ? {
+                      fontWeight: "600",
+                      border: "1.5px solid black",
+                      backgroundColor: "ghostwhite"
+                    } : {}
+                    
+                  }
+                  onClick={() => {
+                    if (list.status === "interviewed") {
+                      {
+                        alert("면접완료가 완료되었습니다.");
+                      }
+                    } else {
+                       if (window.confirm("면접을 완료하시나요?")) {
+                         dispatch(
+                           interviewEndStatusAxios(list.applicationId)
+                         ).then((success) => {
+                           if (success) {
+                             dispatch(loadProjectAxios());
+                           } else {
+                             return;
+                           }
+                         });
+                       } else {
+                         return;
+                       }
+                    }
+                   
+                      
+                  }}
+                >
                   면접 완료
                   <img src={check} />
                 </InterviewStatusLabel>
                 <ApplyLine />
                 {}
-                <ApplyStatusLabel color={list.available}>
+
+                <ApplyStatusLabel
+                  style={
+                    list.available
+                      ? {}
+                      : {
+                          fontWeight: "600",
+                          border: "1.5px solid black",
+                          backgroundColor: "ghostwhite",
+                        }
+                  }
+                >
                   지원서 접수
                   <img src={check} />
                 </ApplyStatusLabel>
@@ -348,6 +410,10 @@ const InterviewStatusLabel = styled.label`
   border: 1px solid black;
   border-radius: 20px;
   font-size: 13px;
+
+  /* font-weight: ${(props) => (props.color ? "600" : "")};
+  border: ${(props) => (props.color ? "1.5px solid black" : "1px solid black")};
+  background-color: ${(props) => (props.color ? "ghostwhite" : "")}; */
 `;
 const ApplyStatusLabel = styled.label`
   padding: 8px 15px 8px 15px;
@@ -358,10 +424,7 @@ const ApplyStatusLabel = styled.label`
   align-items: center;
   gap: 10px;
   background-color: white;
-  font-weight: ${(props) => (props.color ? "" : "600")};
-  border: ${(props) => (props.color ? "1px solid black" : "1.5px solid black")};
-  background-color: ${(props) => (props.color ? "" : "ghostwhite")};
-
+  border:1px solid black;
   border-radius: 20px;
   font-size: 13px;
 `;

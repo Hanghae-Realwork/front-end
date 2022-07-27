@@ -18,6 +18,7 @@ function MatchingResume() {
   const matchOnclick = () => {
     dispatch(matchesProjectsAxios(resumeId))
   }
+  console.log(resumeId)
 
 
 

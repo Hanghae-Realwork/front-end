@@ -365,9 +365,11 @@ export const apis = {
   //24.인터뷰 완료 상태 업데이트
   interviewEndStatus: (applicationId) =>
     api.patch(`/api/applications/interviewed/${applicationId}`),
-  //24 - 2. 매칭 결과 상태 업데이트
-  // interviewMatchStatus: (applicationId) =>
-  //   api.patch(`/api/applications/interviewed/${applicationId}`),
+  // 24 - 2. 매칭 결과 상태 업데이트
+  interviewMatchStatus: (applicationId, matching) =>
+    api.patch(`/api/applications/matched/${applicationId}`, {
+      status: matching,
+    }),
 
   // 검색기능 api
   //1. 프로젝트에 맞는 이력서 조회

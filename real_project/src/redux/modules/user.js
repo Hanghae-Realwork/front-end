@@ -136,66 +136,13 @@ export const checkUserValidation = () => {
         );
       })
       .catch((err) => {
- 
-        //TokenExpiredError
-       
-        // if (err.response.data.errorMessage === "Token is expired") {
-        //   dispatch(refreshAxios());
-        // }
-
+      
         console.log("토큰만료:",err)
-        logOut();
+        // logOut();
         // alert("토큰이 만료되셨네요 🥸 ");
       });
   };
 };
-
-
-
-// version 2 cookies
-// export const checkUserValidation = () => {
-//   const atoken = getCookie("ACCESS_TOKEN");
-//   const rtoken = getCookie("REFRESH_TOKEN");
-//   return async function (dispatch) {
-//     if ((atoken, rtoken)) {
-//       await apis
-//       .checkUser()
-//       .then((res) => {
-//         console.log("res", res);
-//         dispatch(login(res))
-//       }).catch((err) => {
-//         // dispatch(logOut());
-//         console.log("err", err);
-//         if (err.response.status === 401) {
-//           dispatch(refreshAxios());
-//           // window.location.reload()
-//         }
-//       });
-//     }
-//   };
-// };
-
-
-// export const refreshAxios = () => {
-//   return async function (dispatch) {
-//     await apis
-//       .refresh({ withCredentials: true })
-//       .then((response) => {
-//         console.log("refresh", response);
-//         if (response.data.accessToken) {
-//           const user = JSON.parse(localStorage.getItem("user"));
-//           user.accessToken = response.data.accessToken;
-//           localStorage.setItem("user", JSON.stringify(user));
-//         }
-//       })
-//       .catch((error) => {
-//         console.log("server", error);
-//       });
-//   };
-// };
-
-
-
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
