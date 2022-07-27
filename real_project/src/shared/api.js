@@ -40,7 +40,6 @@ const api = axios.create({
     //  const rtoken = getCookie("REFRESH_TOKEN");
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
     // config.headers.common["Cookies"] = `Bearer ${rtoken}`;
-   
     return config;
   });
 

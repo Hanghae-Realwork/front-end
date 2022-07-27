@@ -55,10 +55,6 @@ function NavigationBarProject() {
         // dispatch(loadResultAxios())
     }
 
-    useEffect(() => {  })
-
-    
-    
 
     return (
       <>
@@ -97,19 +93,9 @@ function NavigationBarProject() {
           </MainNavigationWrap>
 
           <NaviWrap>
-            <MainNavigation>
-              {Rolemodal === true ? (
-                <RoleModal
-                 
-                  close={setRoleModal}
-                />
-              ) : null}
-              <SerchLabel
-                style={{ width: "230px" }}
-                onClick={() => {
-                  setRoleModal(!Rolemodal);
-                }}
-              >
+            <MainNavigation> 
+              {Rolemodal === true ? (<RoleModal close={setRoleModal}/>) : null}
+              <SerchLabel style={{ width: "230px" }} onClick={() => {setRoleModal(!Rolemodal);}}>
                 <ImageWrap>
                   <img src={jobicon} />
                   {roledata.length > 0 ? roledata : "직군 검색"}
@@ -134,12 +120,8 @@ function NavigationBarProject() {
               </SerchLabel>
 
               {Datemodal === true ? <DateModal close={setDateModal} /> : null}
-              <SerchLabel
-                style={{ width: "455px", borderRight: "none" }}
-                onClick={() => {
-                  setDateModal(!Datemodal);
-                }}
-              >
+              <SerchLabel style={{ width: "455px", borderRight: "none" }}
+                onClick={() => {setDateModal(!Datemodal);}}>
                 <ImageWrap>
                   <img src={calender} />
                   {datedata.length > 0
