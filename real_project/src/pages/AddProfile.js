@@ -25,11 +25,7 @@ function AddProfile(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  //사진 파일 유무
-  const [filesImg, setFilesImg] = React.useState("");
-  const [files, setFiles] = React.useState("");
   const [checkList, setCheckList] = useState([]);
-
   //저장데이터
   const introduceRef = useRef(null);
   const content2Ref = useRef(null);
@@ -47,11 +43,6 @@ function AddProfile(props) {
 
   //로그인 유무
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-
-  //fileReader
-  const frm = new FormData();
-  //fileReader
-  const reader = new FileReader();
 
   //로그인 useEffect
   useEffect(() => {
@@ -76,23 +67,6 @@ function AddProfile(props) {
   //Role 값
   const onChangeRole = (e) => {
     setRole(e.target.value);
-  };
-
-  const onChangeImg = (e) => {
-    //파일 유무
-    const file = e.target.files;
-    setFiles(file);
-
-    //fileReader
-    setFilesImg(e.target.files[0]);
-    reader.readAsDataURL(e.target.files[0]);
-
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setFilesImg(reader.result);
-        resolve();
-      };
-    });
   };
 
   //캘린더
@@ -157,7 +131,6 @@ function AddProfile(props) {
               _nickname
             )
      ).then(() => {
-             
         navigate("/mainemployment");
      }).catch((err) => {
           console.log(err);

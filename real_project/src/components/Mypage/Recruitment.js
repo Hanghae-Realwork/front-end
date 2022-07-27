@@ -9,7 +9,7 @@ import EmptyProject from "./EmptyProject";
 
 import astroman from "../../image/astroman.svg"
 import check from "../../image/check.svg"
-
+import { interviewEndStatusAxios } from "../../redux/modules/interview";
 
 const Recruitment = () => {
 
@@ -17,9 +17,9 @@ const Recruitment = () => {
   const dispatch = useDispatch();
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
   const value = useSelector((state) => state.postProfile.Myprojects);
-console.log(value)
+console.log(value);
 
-// console.log(data)
+
   useEffect(() => {
       if (nickname_Info !== undefined || nickname_Info !== null) {
           dispatch(loadProjectAxios(nickname_Info));
@@ -123,7 +123,9 @@ console.log(value)
                 </RecruitmentStatusLabel>
                 <ApplyLine />
 
-                <InterviewStatusLabel>
+                <InterviewStatusLabel onClick={() => {
+                  dispatch(interviewEndStatusAxios(list.applicationId));
+                }}>
                   면접 완료
                   <img src={check} />
                 </InterviewStatusLabel>

@@ -7,6 +7,8 @@ const LOADPROJECTS = "interview/LOADPROJECTS";
 
 const PROJECTINTERVIEW = "interview/PROJECTINTERVIEW";
 const PERPOSEUSERPROJECT = "interview/PERPOSEUSERPROJECT";
+
+const INTERVIEWINDSTATUS = "interview/INTERVIEWINDSTATUS";
 //이니셜 스테이트
 const initialState = {
   resumes: [],
@@ -31,6 +33,9 @@ export function proposalUserProjects(payload) {
   return { type: PERPOSEUSERPROJECT, payload };
 }
 
+export function interviewEndStatus(payload) {
+  return { type: INTERVIEWINDSTATUS, payload };
+}
 //미들웨어
 export const loadResumesAxios = () => {
   return async function (dispatch) {
@@ -75,8 +80,6 @@ export const projectInterviewAxios = (applcationId,resumeId) => {
         if (err) {
           alert(err.response.data.errorMessage);
         }
-       
-        
         // console.log(err.response.status);
        
         // else if (err.message === "Request failed with status code 404") {
@@ -86,6 +89,7 @@ export const projectInterviewAxios = (applcationId,resumeId) => {
   }
 }
 
+//23. 지원서에 면접 제안시 내 프로젝트 목록 조회
 export const proposalUserProjectsAxios = (resumeId, projectId) => {
   return async function (dispatch) {
     await apis
@@ -107,7 +111,26 @@ export const proposalUserProjectsAxios = (resumeId, projectId) => {
       });
   };
 };
-
+  //24.인터뷰 완료 상태 업데이트 
+export const interviewEndStatusAxios = (applicationId) => {
+  return async function (dispatch) {
+    await apis
+      .interviewEndStatus(applicationId)
+      .then((res) => {
+        console.log(res)
+        alert(res.data.message);
+      })
+      .catch((err) => {
+        alert(err.response.data.errorMessage);
+        // if (err.response.status === 400) {
+        //   alert(err.response.data.errorMessage);
+        // }
+        // else if (err.message === "Request failed with status code 404") {
+        //   alert("소개글도 같이 선택해주세요!");
+        // }
+      });
+  };
+};
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
