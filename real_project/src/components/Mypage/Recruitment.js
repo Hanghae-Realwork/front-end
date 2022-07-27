@@ -127,7 +127,7 @@ const Recruitment = () => {
                 </div>
               </ProfileWrap>
 
-              <RecruitTag />
+              <RecruitTag list={list } />
               
             </RecruitCardMainWrap>
           );

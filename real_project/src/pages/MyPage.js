@@ -28,7 +28,6 @@ function MyPage() {
   const frm = new FormData();
   const reader = new FileReader();
 
-
   const onChange = (e) => {
     const file = e.target.files;
     console.log(e.target.files);
