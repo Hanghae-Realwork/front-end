@@ -117,8 +117,10 @@ export const loginAxios = (userEmail, password) => {
       .catch((error) => {
         success = false;
         console.log(error);
-        if (error.request.status === 400) { 
+        if (error.request.status === 400) {
           alert("아이디와 비밀번호를 확인해주세욥 🥸 ");
+        } else if (error.request.status === 401) {
+          alert("아이디 또는 비밀번호가 일치하지 않습니다. 🥸 ");
         }
         
       });

@@ -31,8 +31,8 @@ function MyPage() {
   const frm = new FormData();
   const reader = new FileReader();
 
-  const [fireModal, setfireModal] = useState(false)
 
+  const [fireModal, setfireModal] = useState(false)
 
   const onChange = (e) => {
     const file = e.target.files;

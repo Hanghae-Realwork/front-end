@@ -22,6 +22,7 @@ const Recruitment = () => {
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
   const value = useSelector((state) => state.postProfile.Myprojects);
   console.log(value)
+  
 
   useEffect(() => {
     if (value.message === "토큰이 재발급 됐습니다.") { 
@@ -49,7 +50,11 @@ const Recruitment = () => {
           const createdAt = list.createdAt;
           const startTime = new Date(createdAt);
           const thenHours = Math.floor((nowTime - startTime) / 3600000);
-
+          const today = new Date(list?.schedule);
+          const tenMinutes = new Date(list?.schedule);
+          const test2 = tenMinutes.setMinutes(tenMinutes.getMinutes() - 10);
+          // console.log("10분전", tenMinutes, "현재", today);
+        
           const DisplayCreatedAt = () => {
             if (parseInt(startTime - nowTime) > -86400000) {
               return thenHours + "시간전";
@@ -108,7 +113,19 @@ const Recruitment = () => {
 
                 <InterviewWrap>
                   <div>
-                    <InterviewButton>면접보기</InterviewButton>
+                    <InterviewButton
+                      style={
+                        tenMinutes <= new Date() < today
+                          ? {}
+                          : {
+                              backgroundColor: "#D9D9D9",
+                              pointerEvents: "none",
+                            }
+                      }
+                    >
+                      면접보기
+                    </InterviewButton>
+                    <p>{}</p>
                   </div>
                   <TimeTextWrap>
                     <InterviewTimeText>
@@ -127,8 +144,7 @@ const Recruitment = () => {
                 </div>
               </ProfileWrap>
 
-              <RecruitTag />
-              
+              <RecruitTag list={list} />
             </RecruitCardMainWrap>
           );
   }) :<EmptyProject/> }
