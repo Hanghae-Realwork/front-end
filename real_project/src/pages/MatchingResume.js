@@ -24,13 +24,8 @@ function MatchingResume() {
     }, []);
 
   const matchOnclick = () => {
-    if (resumeId === "") {
-      alert("소개서를 선택해주세요")
-    } else {
       dispatch(matchesProjectsAxios(resumeId));
       setSeeData(true);
-     }
-    
   }
 
 
@@ -48,24 +43,33 @@ function MatchingResume() {
             </MatchingCardWrap>
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
-            <MatchingButton onClick={matchOnclick}>매칭하기</MatchingButton>
+            <MatchingButton
+              style={
+                resumeId !== ""
+                  ? { backgroundColor: "" }
+                  : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
+              }
+              onClick={matchOnclick}
+            >
+              매칭하기
+            </MatchingButton>
           </MatchingBotBtnWrap>
-          {seeData ? 
+          {seeData ? (
             <MatchingBotWrap>
-            <MatchingContentWrap>
-              <MatchingText>
-                맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
-              </MatchingText>
-              <MatchingResumeWrap>
-                {data.map((list,idx) => {
-                  return <CardRecruit key={idx} data={list} />;
-                })}
-              
-              </MatchingResumeWrap>
-            </MatchingContentWrap>
-          </MatchingBotWrap> :""
-          }
-          
+              <MatchingContentWrap>
+                <MatchingText>
+                  맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
+                </MatchingText>
+                <MatchingResumeWrap>
+                  {data.map((list, idx) => {
+                    return <CardRecruit key={idx} data={list} />;
+                  })}
+                </MatchingResumeWrap>
+              </MatchingContentWrap>
+            </MatchingBotWrap>
+          ) : (
+            ""
+          )}
         </MatchingCrewWrap>
       </>
     );

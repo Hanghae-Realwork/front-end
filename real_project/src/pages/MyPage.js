@@ -77,7 +77,14 @@ function MyPage() {
                   />
                 </Label>
 
-                <ProfilePhotoSpan onClick={plusImgOnclick}>
+                <ProfilePhotoSpan
+                  style={
+                files !== ""
+                  ? { backgroundColor: "" }
+                  : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
+              }
+        
+                  onClick={plusImgOnclick}>
                   사진 업로드 완료하기
                 </ProfilePhotoSpan>
 
