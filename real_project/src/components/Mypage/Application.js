@@ -20,7 +20,7 @@ const Application = () => {
 
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
-  
+    
 
   
 
@@ -115,7 +115,7 @@ const Application = () => {
                           </CodeText>
                         </InterviewDateWrap>
                       </InterviewButtonWrap>
-                      <ApplyTag />
+                      <ApplyTag list={list} />
                     </div>
                   );
                 })}

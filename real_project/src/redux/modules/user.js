@@ -146,11 +146,21 @@ export const checkUserValidation = () => {
   };
 };
 
-
-
-
-
-
+  //  - 9. 회원탈퇴
+export const userDeleteAxios = (nickname,password) => {
+  return async function (dispatch) {
+    await apis
+      .userDelete(nickname, password)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+       console.log(err)
+        // logOut();
+        // alert("토큰이 만료되셨네요 🥸 ");
+      });
+  };
+};
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

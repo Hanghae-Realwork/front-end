@@ -1,15 +1,26 @@
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 
 import Logo from "../../image/Logo_vertical.svg"
 import close from "../../image/closeIcon.svg"
 
+import { useDispatch ,useSelector} from "react-redux"
+import { userDeleteAxios } from "../../redux/modules/user"
+import { useNavigate } from "react-router-dom"
 function FireModal(props) {
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const nickname = useSelector((state) => state.user.userInfo.nickname);
+    const password = useRef(null)
     const CloseModal = () => {
         props.close(false);
       };
-
+    const fireOnClick = () => {
+        dispatch(userDeleteAxios(nickname, password.current.value)).then(() => {
+            alert("랑데브는 언제나 이 자리에 있습니다. 🥸")
+            navigate("/")
+        })
+      }
     return(
         <>
             <BackGroundWrap>
@@ -18,8 +29,8 @@ function FireModal(props) {
                         <CloseWrap><CloseBtn src={close} onClick={() => {CloseModal()}}/></CloseWrap>
                         <LogoBox />
                         <LoginGuide>탈퇴하려면 비밀번호를 다시 입력해주세요</LoginGuide>
-                        <FireInput></FireInput>
-                        <GotoJoinBtn>탈퇴하기</GotoJoinBtn>
+                        <FireInput ref={password}></FireInput>
+                        <GotoJoinBtn onClick={fireOnClick}>탈퇴하기</GotoJoinBtn>
                     </FireModalWrap>
                 </JustRelative>
             </BackGroundWrap>
