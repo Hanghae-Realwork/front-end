@@ -99,7 +99,7 @@ const MatchingText = styled.span`
 const MatchingCardWrap = styled.div`
     height: 384px;
     width: 200%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     overflow-x: scroll;
     display: flex;
     flex-flow: row wrap;
