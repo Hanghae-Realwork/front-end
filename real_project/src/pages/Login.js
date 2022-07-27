@@ -54,14 +54,35 @@ function Login() {
       <LoginBackgroundWrap>
         <LoginWrap>
           <AlignWrap>
-              <MainLogo/>
+            <MainLogo />
             <InpuLoginWrap>
-                <InputBar ref={loginidRef} placeholder="이메일" type="email" autoFocus></InputBar>
-                <InputBar ref={passwordRef} placeholder="패스워드" type="password"></InputBar>
+              <InputBar
+                ref={loginidRef}
+                placeholder="이메일"
+                type="email"
+                autoFocus
+              ></InputBar>
+              <InputBar
+                ref={passwordRef}
+                placeholder="패스워드"
+                type="password"
+              ></InputBar>
             </InpuLoginWrap>
-            <LoginButton onClick={loginFunction}>로그인</LoginButton>
-            <LoginText>랑데브가 처음인가요?
-              <MovetoJoin onClick={() => {navigate(`/join`);}} id="LoginBtn">회원 가입하기</MovetoJoin>
+            <LoginButton
+              onClick={loginFunction}
+            >
+              로그인
+            </LoginButton>
+            <LoginText>
+              랑데브가 처음인가요?
+              <MovetoJoin
+                onClick={() => {
+                  navigate(`/join`);
+                }}
+                id="LoginBtn"
+              >
+                회원 가입하기
+              </MovetoJoin>
             </LoginText>
           </AlignWrap>
         </LoginWrap>

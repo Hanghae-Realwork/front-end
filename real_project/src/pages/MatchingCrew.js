@@ -16,24 +16,23 @@ function MatchingCrew() {
     const myProject = useSelector((state) => state.interview.projects);
 
     //매칭하기 
-    const data = useSelector((state) => state.matches.resumes[0])
-
+    const data = useSelector((state) => state.matches.resumes)
     const [projectId, setProjectId] = useState("");
     const [seeData,setSeeData] = useState(false)
-    console.log(projectId)
+ 
 
   //프로젝트 카드
   useEffect(() => {
     dispatch(loadProjectsAxios());
   }, []);
 
-    const matchOnclick = () => {
-        dispatch(matchesResumesAxios(projectId))
-        setSeeData(true)
-    }
-
-
-
+  const matchOnclick = () => {
+  
+        dispatch(matchesResumesAxios(projectId));
+        setSeeData(true);
+  
+  }
+  
     return (
       <>
         <MatchingBtn />
@@ -47,22 +46,36 @@ function MatchingCrew() {
             </MatchingCardWrap>
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
-            <MatchingButton onClick={matchOnclick}>매칭하기</MatchingButton>
+            <MatchingButton
+              style={
+                projectId !== ""
+                  ? { backgroundColor: "" }
+                  : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
+              }
+              onClick={matchOnclick}
+            >
+              매칭하기
+            </MatchingButton>
           </MatchingBotBtnWrap>
         </MatchingCrewWrap>
-        { seeData ? 
+        {seeData ? (
           <MatchingBotWrap>
             <TextAlingWrap>
-            <MatchingText>
+              <MatchingText>
                 맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
               </MatchingText>
             </TextAlingWrap>
             <ContentAlignWrap>
-              <MatchingResumeWrap>         
-                <CradEmpol data={data} />
-              </MatchingResumeWrap> 
+              <MatchingResumeWrap>
+                {data.map((list, index) => {
+                  return <CradEmpol key={index} data={list} />;
+                })}
+              </MatchingResumeWrap>
             </ContentAlignWrap>
-          </MatchingBotWrap> :""}
+          </MatchingBotWrap>
+        ) : (
+          ""
+        )}
       </>
     );
 

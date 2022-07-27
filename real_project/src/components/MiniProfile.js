@@ -44,7 +44,6 @@ function MiniResume({ data, setResumeId }) {
           return (
             <MiniCardAllWrap
               key={idx}
-              value={idx}
               className={list.resumeId}
               onClick={(e) => {
                 setResumeId(list.resumeId);

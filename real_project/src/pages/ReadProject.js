@@ -153,8 +153,9 @@ function ReadProject() {
                         style={
                           list.available
                             ? { backgroundColor: "" }
-                            : { backgroundColor: "#d9d9d9" }
+                            : { backgroundColor: "#d9d9d9" ,pointerEvents:"none"}
                         }
+                        event = {list}
                         key={list.applicationId}
                         id={idx}
                         onClick={(e) => {

@@ -14,7 +14,7 @@ function RecruitTag() {
 
     return(
         <LoadWrap>
-        <RecruitmentStatusLabel
+        {/* <RecruitmentStatusLabel
           onClick={() => {
             if (window.confirm("함께 하실건가요? 취소 시 불합격")) {
               dispatch(interviewMatchStatusAxios(list.applicationId, "matched")).then((success) => {
@@ -86,7 +86,7 @@ function RecruitTag() {
         >
           지원서 접수
           <img src={check} />
-        </ApplyStatusLabel>
+        </ApplyStatusLabel> */}
       </LoadWrap>
     )
 }
