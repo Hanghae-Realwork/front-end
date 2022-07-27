@@ -30,7 +30,6 @@ function MyPage() {
 
 
   const onChange = (e) => {
-    console.log("들어옴");
     const file = e.target.files;
     console.log(e.target.files);
     setFiles(file);
@@ -46,16 +45,14 @@ function MyPage() {
       };
     });
   };
+
   const plusImgOnclick = () => {
     if (files === "" || null) {
       alert("사진을 올려볼까요 🥸")
     } 
-    console.log(files[0])
     frm.append("profileImage", files[0]);
     console.log(frm)
-    dispatch(userPhotoAxios(nickname, frm)).then((res) => {
-      console.log(res);
-    });
+    dispatch(userPhotoAxios(nickname, frm));
   }
 
 
