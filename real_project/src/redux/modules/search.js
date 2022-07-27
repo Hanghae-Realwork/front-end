@@ -102,6 +102,7 @@ export const SearchAxios = (
         end: end
       }));
       dispatch(loadresult(res.data.skillFilteredProjects))
+        alert("선택하신 조건으로 검색이 완료되었습니다")  
       })
       .catch((err) => {
         console.log(err);
@@ -138,6 +139,7 @@ export const SearchResumeAxios = (
         end: end
       }));
       dispatch(loadresumeresult(res.data.skillFilteredResumes))
+        alert("선택하신 조건으로 검색이 완료되었습니다")     
       })
       .catch((err) => {
         console.log(err);

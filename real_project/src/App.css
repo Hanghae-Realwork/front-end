@@ -58,30 +58,13 @@
 
 
   .change{
-    border: 0.5px solid black;
-    border-radius: 4px;
-    width: 384px;
-    height: 307px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
+    font-weight: 700;
+    color: #303032;
     /* zoom: 0.95; */
   }
 
   .dis{
-    border: 2px solid black;
-    border-radius: 4px;
-    width: 384px;
-    height: 307px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    background-color: white;
-    /* zoom: 1.1; */
-    /* position: absolute; */
-
+    color: #d9d9d9;
   }
 
 

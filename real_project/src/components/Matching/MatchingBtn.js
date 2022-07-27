@@ -1,24 +1,80 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import "../../App.css"
 
 function MatchingBtn(){
+  const navigate = useNavigate()
+
+  // const [changeClass, setChangeClass] = useState("change")
+  // // const [disClass, setDisClass] = useState(null)
+  // const testClick = (e) => {
+  //   setChangeClass(e.target.className)
+  //   // setDisClass(e.target)
+  //   //   console.log(e.target)
+   
+  //     if(changeClass === "change"){
+  //       setChangeClass(e.target.className = "dis")
+  //       console.log(e.target.className)
+  //     }
+  //     if(changeClass === "dis"){
+  //       setChangeClass(e.target.className = "change")
+  //       console.log(e.target.className)
+  //     }
+    
+  // }
+
+  // const [currentClick, setCurrentClick] = useState(null);
+  // const [prevClick, setPrevClick] = useState(null);
+
+  //   useEffect(
+//     (e) => {
+//     if (currentClick !== null) {
+//       let current = document.getElementById(currentClick);
+//         // current.style.fontWeight = "bold";
+//         current.style.Color = "#303032";
+//     }
+//     if (prevClick !== null) {
+//         let prev = document.getElementById(prevClick);
+//         prev.style.Color = "#d9d9d9";
+//     }
+//     setPrevClick(currentClick);
+//     }, [currentClick]
+// );
+
+  const [btnActive, setBtnActive] = useState(false);
+
+  const toggleActive = (e) => {
+    setBtnActive((prev) => {
+      return !prev;
+    });
+  };
+
+  const MoveChapter = (e) => {
+    navigate(`/matchingcrew`)
+    toggleActive()
+  };
+
+  const MoveResume = (e) => {
+    navigate(`/matchingresume`)
+    toggleActive()
+  };
 
 
     return (
     
         <MatchingBtnWrap>
           <PositionWrap>
-            <BtnDivWrap>
-              <LeftTriangleDiv></LeftTriangleDiv>
+            <BtnDivWrap onClick={() => {MoveChapter()}} id="chapter1">
+              <LeftTriangleDiv/>
               <CenterDiv>내가 모집중인 프로젝트</CenterDiv>
-              <RightTriangleDiv></RightTriangleDiv>
+              <RightTriangleDiv/>
             </BtnDivWrap>
 
-            <SecondBtnDivWrap>
-              <LeftTriangleDivtwo></LeftTriangleDivtwo>
+            <SecondBtnDivWrap onClick={() => {MoveResume()}} id="chapter2">
+              <LeftTriangleDivtwo/>
               <SecondCenterDiv>내 이력서</SecondCenterDiv>
-              <RightTriangleDivtwo></RightTriangleDivtwo>
+              <RightTriangleDivtwo/>
             </SecondBtnDivWrap>
           </PositionWrap>
         </MatchingBtnWrap>
@@ -35,8 +91,7 @@ const MatchingBtnWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: flex-end;
-    z-index: -3;
-    position: relative;
+    /* border: 1px solid white; */
 `
 
 const LeftTriangleDiv = styled.label`
@@ -46,11 +101,7 @@ const LeftTriangleDiv = styled.label`
   border-top: 20px solid transparent;
   border-left: 20px solid transparent;
   border-right: 20px solid white;
-  position: absolute;
-  top: -40px;
-  left: -590px;
-  /* background-color: red; */
-  /* transform: rotate(180deg); */
+
 `
 
 const CenterDiv = styled.label`
@@ -63,9 +114,7 @@ const CenterDiv = styled.label`
     font-weight: 700;
     font-size: 16px;
     cursor: pointer;
-    position: absolute;
-    top: -40px;
-    left: -550px;
+
 `
 
 const RightTriangleDiv = styled.label`
@@ -75,9 +124,6 @@ const RightTriangleDiv = styled.label`
   border-top: 20px solid transparent;
   border-left: 20px solid white;
   border-right: 20px solid transparent;
-  position: absolute;
-  top: -40px;
-  left: -350px;
 `
 
 const LeftTriangleDivtwo = styled.div`
@@ -87,11 +133,6 @@ const LeftTriangleDivtwo = styled.div`
   border-top: 20px solid transparent;
   border-left: 20px solid transparent;
   border-right: 20px solid white;
-  position: absolute;
-  top: -40px;
-  left: -1275px;
-  /* background-color: red; */
-  /* transform: rotate(180deg); */
 `
 
 const SecondCenterDiv = styled.label`
@@ -105,9 +146,6 @@ const SecondCenterDiv = styled.label`
     font-size: 16px;
     color: #d9d9d9;
     cursor: pointer;
-    position: absolute;
-    top: -40px;
-    left: -1235px;
 `
 
 const RightTriangleDivtwo = styled.div`
@@ -117,11 +155,6 @@ const RightTriangleDivtwo = styled.div`
   border-top: 20px solid transparent;
   border-left: 20px solid white;
   border-right: 20px solid transparent;
-  position: absolute;
-  /* background-color: red; */
-  top: -40px;
-  left: -1115px;
-  /* transform: rotate(180deg); */
 `
 
 const BtnDivWrap = styled.div`
@@ -129,7 +162,7 @@ const BtnDivWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    position: relative;
+    margin-bottom: -1px;
 `
 
 const SecondBtnDivWrap = styled.div`
@@ -137,19 +170,22 @@ const SecondBtnDivWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1px;
-    z-index: -1;
-    position: absolute;
-    left: 950px;
+    margin-bottom: 0.5px;
+    margin-left: -35px;
 `
 
 const PositionWrap = styled.div`
     position: relative;
     /* border: 1px solid white; */
+    width: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    left: -375px;
 `
 
 
 
+export default MatchingBtn;
 
-
-export default MatchingBtn

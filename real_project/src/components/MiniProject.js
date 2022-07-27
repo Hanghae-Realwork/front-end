@@ -43,23 +43,7 @@ function MiniProject({ data, setProjectId }) {
   //   setPrevClick(currentClick);
   // }, [currentClick]);
 
-  // const [changeClass, setChangeClass] = useState("change")
-  // // const [disClass, setDisClass] = useState(null)
-  // const testClick = (e) => {
-  //   setChangeClass(e.target.className)
-  //   // setDisClass(e.target)
-  //   //   console.log(e.target)
-   
-  //     if(changeClass === "change"){
-  //       setChangeClass(e.target.className = "dis")
-  //       console.log(e.target.className)
-  //     }
-  //     if(changeClass === "dis"){
-  //       setChangeClass(e.target.className = "change")
-  //       console.log(e.target.className)
-  //     }
-    
-  // }
+
 
   
   
@@ -140,6 +124,7 @@ const MiniCardAllWrap = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    background-color: white;
 `
 
 const MiniTopWrap = styled.div`
@@ -163,6 +148,7 @@ const MiniBodyWrap = styled.div`
     justify-content: center;
     align-items: flex-start;
     pointer-events : none;
+    pointer-events : none;
     line-height: 21px;
 `
 
@@ -172,6 +158,7 @@ const MiniDateWrap = styled.div`
     margin: 0px 0px 16px 0px;
     pointer-events : none;
     line-height: 21px;
+    pointer-events : none;
 `
 
 const TecWrap = styled.div`

@@ -39,7 +39,7 @@ function NavigationBarResume() {
     const roledata = useSelector((state) => state.search.Roletag)
 
     const resultResume = useSelector((state) => state.search.SearchResume)
-
+    console.log(resultResume.length)
     
     const sendRole = roledata.toString()
     // const sendSkill = skilldata.toString()
@@ -53,11 +53,6 @@ function NavigationBarResume() {
             datedata[0],
             datedata[1]
         ))
-        if(resultResume.length > 0){
-            alert("선택하신 조건으로 검색이 완료 되었습니다")
-        }else{
-            alert("검색 결과가 없습니다")
-        }
     }
 
    

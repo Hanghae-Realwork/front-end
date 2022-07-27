@@ -18,6 +18,7 @@ const CardRecruit = ({ data }) => {
     const createdAt = data.createdAt;
     const startTime = new Date(createdAt);
     const thenHours = Math.floor((nowTime - startTime) / 3600000);
+    
     const DisplayCreatedAt = () => {
       if (parseInt(startTime - nowTime) > -86400000) {
         return thenHours + "시간전";
