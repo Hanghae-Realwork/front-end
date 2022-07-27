@@ -82,6 +82,7 @@ function EmploymentProfile() {
  if(!data[0]) return null 
   return (
     <>
+    <BackColorTestWrap>
       <BackGround>
         <PageAllWrap>
           <TopWrap>
@@ -156,12 +157,7 @@ function EmploymentProfile() {
           {loginInfoName === data[0]?.userId ? (
             <BotWrap>
               <FixedBtn
-                onClick={() => {
-                 
-                    navigate("/editprofile/" + `${data[0].resumeId}`);
-                  
-                }}
-              >
+                onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
                 수정하기
               </FixedBtn>
               <DelBtn onClick={deleteOnclick}>삭제하기</DelBtn>
@@ -193,6 +189,7 @@ function EmploymentProfile() {
           )}
         </PageAllWrap>
       </BackGround>
+      </BackColorTestWrap>
     </>
   );
 }
@@ -297,7 +294,7 @@ const MidTxetWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-content: flex-start;
-
+  gap: 8px;
 `
 
 
@@ -362,6 +359,8 @@ const MidTagWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: flex-start;
+  margin-top: 8px;
+  gap: 4px;
 `
 
 const FixedBtn = styled.button`
@@ -423,5 +422,15 @@ const SubmitButton = styled.button`
   font-weight: 700;
   margin: 30px;
 `;
+
+const BackColorTestWrap = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), 
+rgba(217, 217, 217, 0.1)), linear-gradient(93.14deg, rgba(174, 151, 227, 0.15) 0.24%, 
+rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);
+`
 
 export default EmploymentProfile
