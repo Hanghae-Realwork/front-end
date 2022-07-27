@@ -8,6 +8,7 @@ const imgApi = axios.create({
   headers: {
     "content-type": "multipart/form-data",
     withCredentials: true,
+    credentials: "include",
   },
 });
 //기존 api
@@ -171,8 +172,8 @@ export const apis = {
   userRecruit: (nickname) => api.get(`/api/users/details/${nickname}/applys`),
 
   //  - 14. 프로필 이미지
-  userPhoto: (frm, nickname) =>
-    imgApi.post(`/api/users/details/${nickname}/image`, frm),
+  userPhoto: (nickname, frm) =>
+    imgApi.put(`/api/users/details/${nickname}/image`, frm),
 
   ///////////////////////
   ////<2. 프로젝트 API>////
@@ -244,15 +245,7 @@ export const apis = {
   /////////////////////////////////////////
 
   //  - 14. 팀원 찾기 등록
-  resumesCreate: (
-    content,
-    start,
-    end,
-    role,
-    skills,
-    content2,
-    content3
-  ) =>
+  resumesCreate: (content, start, end, role, skills, content2, content3) =>
     api.post("/api/resumes", {
       content: content,
       start: start,
@@ -364,14 +357,19 @@ export const apis = {
 
   // 22. 선택한 프로젝트를 지원서에 제안
   proposalUserProjects: (resumeId, projectId) =>
-    api.post(`/api/proposals/${resumeId}/${projectId}`, {}),
+    api.post(`/api/proposals/${resumeId}/${projectId}`),
 
   //23. 지원서에 면접 제안시 내 프로젝트 목록 조회
   proposalsProjects: () => api.get("/api/proposals/projects"),
 
-  //24.인터뷰 완료 상태 업데이트 붙여야함
+  //24.인터뷰 완료 상태 업데이트
   interviewEndStatus: (applicationId) =>
     api.patch(`/api/applications/interviewed/${applicationId}`),
+  // 24 - 2. 매칭 결과 상태 업데이트
+  interviewMatchStatus: (applicationId, matching) =>
+    api.patch(`/api/applications/matched/${applicationId}`, {
+      status: matching,
+    }),
 
   // 검색기능 api
   //1. 프로젝트에 맞는 이력서 조회

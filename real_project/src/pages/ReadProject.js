@@ -93,7 +93,7 @@ function ReadProject() {
     ) {
       alert("날짜와 소개서를 선택해주세요!")
     } else { 
-    dispatch(projectInterviewAxios   (applicationId, resumeId));  
+    dispatch(projectInterviewAxios(applicationId, resumeId));  
     }
    
   }
@@ -199,11 +199,7 @@ function ReadProject() {
               {" "}
               <SubmitButton
                 onClick={() => {
-                  if (window.confirm("수정하러 가볼까요?🥸")) {
-                    navigate("/findprojectstep2/" + `${Value[0].projectId}`);
-                  } else {
-                    return false;
-                  }
+                  navigate("/findprojectstep2/" + `${Value[0].projectId}`);
                 }}
               >
                 수정하기
