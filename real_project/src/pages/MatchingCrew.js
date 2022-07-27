@@ -1,14 +1,11 @@
-
 import React, {useState,useEffect, useRef} from "react"
-
 import styled from "styled-components"
 
 import "../App.css"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
 import MiniProject from "../components/MiniProject"
-import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { loadProjectsAxios } from "../redux/modules/interview"
 import { matchesResumesAxios } from "../redux/modules/matches"
 import CradEmpol from "../components/CardEmpol"
@@ -17,11 +14,14 @@ function MatchingCrew() {
     const dispatch = useDispatch();
     
     const myProject = useSelector((state) => state.interview.projects);
-    const [projectId, setProjectId] = useState("");
+
     //매칭하기 
     const data = useSelector((state) => state.matches.resumes[0])
 
+    const [projectId, setProjectId] = useState("");
     const [seeData,setSeeData] = useState(false)
+    console.log(projectId)
+
   //프로젝트 카드
   useEffect(() => {
     dispatch(loadProjectsAxios());
@@ -31,14 +31,6 @@ function MatchingCrew() {
         dispatch(matchesResumesAxios(projectId))
         setSeeData(true)
     }
-
-
-    const favoriteBtn = useRef(null);
-    const onFavoriteToggle = () => {
-      favoriteBtn.current.style.backgroundColor = '#959595';
-      favoriteBtn.current.style.border = '#959595';
-    }
-
 
 
 

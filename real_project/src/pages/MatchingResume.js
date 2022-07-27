@@ -2,26 +2,34 @@ import React,{useState,useEffect, useRef} from "react"
 import styled from "styled-components"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
+import MiniProfile from "../components/MiniProfile"
 import { useSelector,useDispatch } from "react-redux";
 import MiniResume from "../components/MiniProfile";
 import { loadResumesAxios } from "../redux/modules/interview";
 import { matchesProjectsAxios } from "../redux/modules/matches";
+import CardRecruit from "../components/CardRecruit";
+
+
 function MatchingResume() {
     const dispatch = useDispatch();
-  const data = useSelector((state) => state.interview.resumes);
-  
+
+    const myResume = useSelector((state) => state.interview.resumes);
+
+    const data = useSelector((state) => state.matches.projects)
+    console.log(data)
+
     const [resumeId, setResumeId] = useState("");
+    const [seeData, setSeeData] = useState(false)
+    console.log(resumeId)
+  
     useEffect(() => {
       dispatch(loadResumesAxios());
     }, []);
 
   const matchOnclick = () => {
     dispatch(matchesProjectsAxios(resumeId))
+    setSeeData(true)
   }
-
-
-
-
 
 
     return (
@@ -30,10 +38,10 @@ function MatchingResume() {
         <MatchingCrewWrap>
           <MatchingTopWrap>
             <MatchingText>
-              맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
+              맞는 프로젝트를 찾고 싶은 이력서를 선택해주세요
             </MatchingText>
             <MatchingCardWrap>
-              여기에 미니프로필 카드가 들어갑니당
+              <MiniResume data={myResume} setResumeId={setResumeId} />
             </MatchingCardWrap>
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
@@ -45,7 +53,7 @@ function MatchingResume() {
                 맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
               </MatchingText>
               <MatchingResumeWrap>
-                <MiniResume data={data} setResumeId={setResumeId} />
+                {/* <CardRecruit data={data} /> */}
               </MatchingResumeWrap>
             </MatchingContentWrap>
           </MatchingBotWrap>

@@ -14,6 +14,7 @@ const imgApi = axios.create({
 const api = axios.create({
   baseURL: "https://sprata-owl.shop/",
   headers: {
+    "Access-Control-Allow-Origin": "https://sprata-owl.shop/",
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
   },
