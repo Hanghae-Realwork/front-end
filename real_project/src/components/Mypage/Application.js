@@ -6,8 +6,10 @@ import { loadApplyAxios } from "../../redux/modules/postProfile";
 
 import TagCompoApp from "./TagCompoApp";
 import EmptyCard from "./EmptyCard";
+import ApplyTag from "../../components/Tag/ApplyTag"
 
 import Check from "../../image/check.svg"
+
 
 
 const Application = () => {
@@ -113,22 +115,7 @@ const Application = () => {
                           </CodeText>
                         </InterviewDateWrap>
                       </InterviewButtonWrap>
-                      <BeltWrap>
-                        <CourseLabel>
-                          지원서 접수{" "}
-                          <img src={Check} style={{ marginLeft: "6px" }}></img>
-                        </CourseLabel>
-                        <ConectLine />
-                        <CourseLabel>
-                          면접 완료{" "}
-                          <img src={Check} style={{ marginLeft: "6px" }}></img>
-                        </CourseLabel>
-                        <ConectLine />
-                        <CourseLabel>
-                          매칭 완료{" "}
-                          <img src={Check} style={{ marginLeft: "6px" }}></img>
-                        </CourseLabel>
-                      </BeltWrap>
+                      <ApplyTag />
                     </div>
                   );
                 })}
@@ -207,6 +194,7 @@ const RightContentWrap = styled.div`
   align-items: flex-start;
   width: 390px;
   margin-bottom: 40px;
+  /* border: 1px solid black; */
 `;
 
 const CardAllWrap = styled.div`
@@ -309,25 +297,6 @@ const CodeText = styled.span`
   font-weight: 500;
 `;
 
-const BeltWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 35px;
-  /* border: 1px solid black; */
-  width: 380px;
-`;
 
-const CourseLabel = styled.label`
-  padding: 8px 14px 8px 14px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 20px;
-  background-color: white;
-`;
 
-const ConectLine = styled.hr`
-  width: 14px;
-`;
 export default Application;
