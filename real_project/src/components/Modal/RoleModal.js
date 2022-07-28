@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState,useRef} from "react"
 import { useDispatch } from "react-redux";
 import styled from "styled-components"
 import {loadrole} from "../../redux/modules/search"
@@ -6,13 +6,9 @@ import {loadrole} from "../../redux/modules/search"
 
 function RoleModal(props) {
   const dispatch = useDispatch();
-
   const [role, setRole] = useState("");
-  console.log(role);
-
   const roleChange = (e) => {
       setRole(e.target.value);
-   
   };
 
   const CloseModal = () => {

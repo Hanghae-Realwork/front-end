@@ -61,7 +61,6 @@ export const loadProjectsAxios = () => {
     await apis
       .proposalsProjects()
       .then((res) => {
-        console.log(res.data.projects);
         dispatch(loadProjects(res.data.projects))
       })
       .catch((err) => {
@@ -85,11 +84,7 @@ export const projectInterviewAxios = (applcationId,resumeId) => {
         if (err) {
           alert(err.response.data.errorMessage);
         }
-        // console.log(err.response.status);
-       
-        // else if (err.message === "Request failed with status code 404") {
-        //   alert("소개글도 같이 선택해주세요!");
-        // }
+
       });
   }
 }
@@ -167,9 +162,6 @@ export default function reducer(state = initialState, action = {}) {
         projects: action.payload,
       };
     }
-    
-    //삭제 리듀서
-
     default:
       return state;
   }

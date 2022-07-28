@@ -12,100 +12,30 @@ import TagDev from "../../components/Tag/TagCompoDev"
 
 import letter from "../../image/letter.svg"
 
+import CardEmpol from "../CardEmpol"
 const Resumes = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const nickname = useSelector((state) => state.user.userInfo.nickname);
-
-  
-  
-
- 
-
+  const data = useSelector((state) => state.postProfile.Myresumes);
+  console.log(nickname)
+console.log(data)
   useEffect(() => {
-    if (nickname !== undefined) {
+    if (nickname && nickname) {
        dispatch(loadResumesAxios(nickname));
     }
  
-},[])
+},[loadResumesAxios])
  
  
   return (
     <>
       <MyPageResumeBackWrap>
+        {data && data.map((list,idx) => {
+          return <CardEmpol data={list} />;
+        })}
         
-        <PageAllWrap>
-          <TopWrap>
-            <LeftTopWrap>
-              <PhotoCircle
-                // style={{ backgroundImage: `url(${data[0].resumeImage})` }}
-              ></PhotoCircle>
-            </LeftTopWrap>
-            <RightTopWrap>
-              <RightNameText>닉네임</RightNameText>
-              <RightRoleText>role</RightRoleText>
-              <RightAdressText>
-                <img src={letter} style={{ marginRight: "8px" }} />
-                아이디
-              </RightAdressText>
-              <RightSelfText>content</RightSelfText>
-            </RightTopWrap>
-          </TopWrap>
-
-          <MidWrap>
-            <MidTxetWrap>
-              <MidTitle>소개글</MidTitle>
-              <MidSelfText>content3</MidSelfText>
-            </MidTxetWrap>
-            <MidTxetWrap>
-              <MidTitle>홈페이지</MidTitle>
-              <MidContentText>
-                {/* <a href={} target="_blank">
-                  content2
-                </a> */}
-              </MidContentText>
-            </MidTxetWrap>
-            <MidTxetWrap>
-              <MidTitle>프로젝트 가능 기간</MidTitle>
-              <MidContentText>
-                시작날짜~
-                끝날짜
-              </MidContentText>
-            </MidTxetWrap>
-            <MidTxetWrap>
-              <MidTitle>
-                닉네임님의 보유 스킬
-              </MidTitle>
-              <MidTagWrap>
-                {/* {data.length > 0
-                  ? data[0].resumeskills.map((list, idx) => {
-                      return <TagDev key={idx} skills={list} />;
-                    })
-                  : ""} */}
-              </MidTagWrap>
-            </MidTxetWrap>
-          </MidWrap>
-
-          <BotWrap>
-            <FixedBtn
-              onClick={() => {
-                // navigate("/editprofile/" + `${data[0].resumeId}`);
-              }}
-            >
-              수정하기
-            </FixedBtn>
-            <DelBtn
-              onClick={() => {
-                // dispatch(deleteEmployAxios(resumeId));
-                // alert("❗️ 정말 삭제하시는 겁니까?");
-                // navigate("/mainemployment");
-              }}
-            >
-              삭제하기
-            </DelBtn>
-          </BotWrap>
-        </PageAllWrap>
       </MyPageResumeBackWrap>
     </>
   );

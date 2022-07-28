@@ -8,10 +8,8 @@ import {loadskill} from "../../redux/modules/search"
 function SkillModal (props) {
 
     const dispatch = useDispatch()
-
     const [checkList, setCheckList] = useState([]);
 
-    console.log(checkList)
 
     const onCheckedElement = (checked, item) => {
         if (checked) {

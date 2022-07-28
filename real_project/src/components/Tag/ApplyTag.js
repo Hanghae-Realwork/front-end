@@ -3,26 +3,212 @@ import styled from "styled-components"
 
 import Check from "../../image/check.svg"
 
-function ApplyTag() {
+function ApplyTag({list}) {
 
-    return(
-        <BeltWrap>
-            <CourseLabel>
-                지원서 접수{" "}
-                <img src={Check} style={{ marginLeft: "6px" }}></img>
-            </CourseLabel>
-            <ConectLine />
-            <CourseLabel>
-                면접 완료{" "}
-                <img src={Check} style={{ marginLeft: "6px" }}></img>
-            </CourseLabel>
-            <ConectLine />
-            <CourseLabel>
-                매칭 완료{" "}
-                <img src={Check} style={{ marginLeft: "6px" }}></img>
-            </CourseLabel>
-        </BeltWrap>
-    )
+  return (
+    <BeltWrap>
+      {list.status === "reserved" ? (
+        <>
+          {" "}
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            지원서 접수 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel>
+            면접 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel>
+            매칭 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>{" "}
+        </>
+      ) : (
+        ""
+      )}
+      {list.status === "interviewed" ? (
+        <>
+          {" "}
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            지원서 접수 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            면접 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel>
+            매칭 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>{" "}
+        </>
+      ) : (
+        ""
+      )}
+      {list.status === "interviewed" ? (
+        <>
+          {" "}
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            지원서 접수 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            면접 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel>
+            매칭 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>{" "}
+        </>
+      ) : (
+        ""
+      )}
+      {list.status === "matched" ? (
+        <>
+          {" "}
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            지원서 접수 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            면접 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            매칭 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>{" "}
+        </>
+      ) : (
+        ""
+      )}
+      {list.status === "unmatched" ? (
+        <>
+          {" "}
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            지원서 접수 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+            면접 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>
+          <ConectLine />
+          <CourseLabel
+            style={
+              list.available
+                ? ""
+                : {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+            }
+          >
+          다음 기회에 <img src={Check} style={{ marginLeft: "6px" }}></img>
+          </CourseLabel>{" "}
+        </>
+      ) : (
+        ""
+      )}
+    </BeltWrap>
+  );
 }
 
 const BeltWrap = styled.div`
