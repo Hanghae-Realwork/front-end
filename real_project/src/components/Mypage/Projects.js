@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-
 import { useSelector, useDispatch } from "react-redux";
-
 import {loadProjectsAxios} from "../../redux/modules/postProfile";
 
 import CardRecruit from "../CardRecruit";

@@ -21,13 +21,11 @@ import Plus from "../image/plus.svg";
 function MyPage() {
   const dispatch = useDispatch();
 
-
   const loginInfo = useSelector((state) => state.user.userInfo);
   const loginCheck = useSelector((state) => state.user.userInfo.is_login);
   const nickname = useSelector((state) => state.user.userInfo.nickname);
   const [files, setFiles] = React.useState("");
   const [filesImg, setFilesImg] = React.useState("");
-  console.log(loginInfo)
   const frm = new FormData();
   const reader = new FileReader();
 
@@ -65,18 +63,24 @@ function MyPage() {
 
   return (
     <>
-    <ModalWrap style={{display: !fireModal ? "none" : ""}}>
-    {fireModal === true ? (<FireModal close={setfireModal}/>) : null}
-    </ModalWrap>
+      <ModalWrap style={{ display: !fireModal ? "none" : "" }}>
+        {fireModal === true ? <FireModal close={setfireModal} /> : null}
+      </ModalWrap>
       <MyButton />
       <AllMyWrap>
         <MypageBackGround>
           <MyPageLeftWrap>
             <LeftBackgroundWrap>
               <MyPageProfileWrap>
-                
                 <Label>
-                  {filesImg ? (<MyPagePhotoIn src={filesImg} />) : (<MyPagePhotoWrap />)}
+                  {filesImg ? (
+                    <MyPagePhotoIn src={filesImg} />
+                  ) : loginInfo?.profileImage === "" ? (
+                    <MyPagePhotoWrap />
+                  ) : (
+                    <MyPagePhotoIn src={loginInfo.profileImage} />
+                  )}
+
                   <input
                     name="imgUpload"
                     type="file"
@@ -89,11 +93,12 @@ function MyPage() {
 
                 <ProfilePhotoSpan
                   style={
-                files !== ""
-                  ? { backgroundColor: "" }
-                  : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
-              }
-                  onClick={plusImgOnclick}>
+                    files !== ""
+                      ? { backgroundColor: "" }
+                      : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
+                  }
+                  onClick={plusImgOnclick}
+                >
                   사진 업로드 완료하기
                 </ProfilePhotoSpan>
 
@@ -106,11 +111,14 @@ function MyPage() {
               </MypageTextWrap>
 
               <MyPagePasswordWrap>
-
-                
-                <PassWordText onClick={() => {setfireModal(true);}}>회원 탈퇴</PassWordText>
+                <PassWordText
+                  onClick={() => {
+                    setfireModal(true);
+                  }}
+                >
+                  회원 탈퇴
+                </PassWordText>
               </MyPagePasswordWrap>
-
             </LeftBackgroundWrap>
           </MyPageLeftWrap>
 
