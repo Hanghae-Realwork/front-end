@@ -33,8 +33,8 @@ function EditProfile() {
   const [role, setRole] = useState("");
 
   //캘린더 (22.07.12 추가 전)
-  const [start, setStart] = useState("2022-02-02");
-  const [end, setEnd] = useState("2022-02-04");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
 
   //userId,nickname 정보
     const userIdInfo = useSelector((state) => state.user.userInfo);
@@ -43,24 +43,22 @@ function EditProfile() {
     const loginInfo = useSelector((state) => state.user.userInfo.is_login);
     //기존 내용
     const userDescription = useSelector((state) => state.postEmploy.resumes);
-    const _userDiscription = useSelector((state) => state.postEmploy)
 
-    
   //로그인 useEffect
  useEffect(() => {
-    if (loginInfo === false) {
-      dispatch(checkUserValidation());
-    }
-  }, [loginInfo]);
+   if (loginInfo === false) {
+     dispatch(checkUserValidation());
+   }
+ }, [loginInfo]);
 
-     useEffect(() => {
-       dispatch(loadSingleEmployAxios(resumeId));
-     }, []); 
+  useEffect(() => {
+      dispatch(loadSingleEmployAxios(resumeId));
+  }, []); 
 
     
-    useEffect(() => {
-        dispatch(loadEmployAxios());
-    },[])
+  useEffect(() => {
+    dispatch(loadEmployAxios());
+  },[])
     
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
   const onCheckedElement = (checked, item) => {
@@ -79,6 +77,16 @@ function EditProfile() {
 
   //버튼 누르면 저장
   const handleClick = () => {
+    console.log(
+      resumeId,
+      introduceRef.current.value,
+      start,
+      end,
+      role,
+      checkList,
+      content2Ref.current.value,
+      content3Ref.current.value
+    );
     if (
       resumeId === "" ||
       introduceRef.current.value === "" ||
@@ -140,7 +148,6 @@ function EditProfile() {
             <ToggleBox>
               <TitleTextTag>이메일 정보</TitleTextTag>
               <PhoneNumberWrap>
-                {/* <img src={Letter} style={{ marginRight: "10px" }}></img> */}
                 <Contect>
                   {" "}
                   {userIdInfo.length > 0 ? "" : userIdInfo.userId}
@@ -158,10 +165,9 @@ function EditProfile() {
             </div>
           </SelfWrap>
 
-          {/* 사진 */}
           <ProfilePicWrap>
-            {filesImg ? (
-              <ShowCircleProfile alt="sample" id="showImg" src={filesImg} />
+            {userDescription[0]?.resumeImage ? (
+              <ShowCircleProfile src={userDescription[0].resumeImage} />
             ) : (
               <NoShowCircleProfile></NoShowCircleProfile>
             )}
@@ -278,12 +284,15 @@ function EditProfile() {
           ></ProfileInput>
         </PortfollioWrap>
 
-        <SelfWrap>
-          <textarea
-            ref={content3Ref}
-            defaultValue={userDescription[0]?.content3}
-          ></textarea>
-        </SelfWrap>
+        <Con1Wrap>
+          <SelfWrap>
+            <TitleTextTag>본인을 소개해 주세요</TitleTextTag>
+            <TextArea
+              defaultValue={userDescription[0]?.content3}
+              ref={content3Ref}
+            ></TextArea>
+          </SelfWrap>
+        </Con1Wrap>
         <HeaderHeadLine />
         <SubmitButtonWrap>
           <SubmitButton onClick={handleClick}>소개글 수정하기</SubmitButton>
@@ -680,4 +689,17 @@ const SkillTitleTextTag = styled.p`
   color: #ae97e3;
 `;
 
+const Con1Wrap = styled.div`
+  margin-top: 70px;
+  margin-bottom: 60px;
+`;
+const TextArea = styled.textarea`
+  width: 1120px;
+  height: 400px;
+  margin-top: 12px;
+  border: 0.5px solid black;
+  outline: none;
+  border-radius: 4px;
+  resize: none;
+`;
 export default EditProfile;
