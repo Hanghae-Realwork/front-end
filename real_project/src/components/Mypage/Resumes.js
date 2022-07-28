@@ -10,7 +10,7 @@ import TagDev from "../../components/Tag/TagCompoDev"
 import CardEmpol from "../CardEmpol";
 
 import letter from "../../image/letter.svg"
-import EmptyMyCard from "./EmptyMyCard";
+import EmptyMyCard from "../Mypage/EmptyMyCard";
 
 
 const Resumes = () => {
