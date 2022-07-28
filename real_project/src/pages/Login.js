@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { loginAxios, checkUserValidation } from "../redux/modules/user";
 
 import Logo from "../image/Logo_vertical.svg"
-import { checkUserValidation } from "../redux/modules/user";
 import { useSelector } from "react-redux";
 function Login() {
   const loginidRef = useRef(null);
@@ -44,10 +43,9 @@ function Login() {
 
       ).then((success) => {
         if (success === true) {
-          navigate("/");
+          // alert("랑데브에 오신 것을 환영합니다! 당신의 꿈을 펼쳐보세요 🥸");
+          navigate("/loading");
 
-          alert("랑데브에 오신 것을 환영합니다! 당신의 꿈을 펼쳐보세요 🥸");
-            navigate("/");
         }
       }).catch((err) => {
       document.getElementById("LoginBtn").disabled = false;

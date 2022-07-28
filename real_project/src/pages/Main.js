@@ -1,6 +1,5 @@
 import React,{useEffect} from "react"
 import styled from "styled-components";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -17,9 +16,6 @@ import cloud from "../image/spacecloud.svg"
 import shuttle from "../image/editshuttle.svg"
 import planet from "../image/rotationplanet.svg"
 
-
-import { useDispatch, useSelector } from "react-redux";
-import { checkUserValidation } from "../redux/modules/user";
 
 
 function Main() {
@@ -172,9 +168,11 @@ const PageButton = styled.button`
   border: none;
   outline: none;
   border-radius: 5px;
-  font-weight: bold;
-  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 24.5px 12px 24.5px;
   background-color: #AE97E3;
+  width: 200px;
   color: white;
   cursor: pointer;
 `;
@@ -183,8 +181,10 @@ const PageButton2 = styled.button`
   border: none;
   outline: none;
   border-radius: 5px;
-  font-weight: bold;
-  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 24.5px 12px 24.5px;
+  width: 200px;
   background-color: #77C3E7;
   color: white;
   cursor: pointer;
@@ -222,7 +222,7 @@ const CircleMainIcon = styled.div`
     height: 140px;
     border-radius: 100%;
     /* border: 1px solid black; */
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 40px;
     display: flex;
     justify-content: center;

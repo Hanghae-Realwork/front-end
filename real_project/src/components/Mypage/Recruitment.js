@@ -118,15 +118,8 @@ const Recruitment = () => {
                 <InterviewWrap>
                   <div>
                     <InterviewButton
-                      style={
-                        tenMinutes <= new Date() < today
-                          ? {}
-                          : {
-                              backgroundColor: "#D9D9D9",
-                              pointerEvents: "none",
-                            }
-                      }
-                    >
+                      style={tenMinutes <= new Date() < today ? {} : {backgroundColor: "#D9D9D9", pointerEvents: "none"}} 
+                      onClick={() => {window.open(`https://rendev.click/`)}}>
                       면접보기
                     </InterviewButton>
                     <p>{}</p>

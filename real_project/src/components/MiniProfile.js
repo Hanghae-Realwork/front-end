@@ -110,6 +110,7 @@ const MiniBodyWrap = styled.div`
     width: 344px;
     margin: 0px 12px 12px 20px;
     pointer-events : none;
+    overflow: hidden;
 `
 
 const MiniDateWrap = styled.div`
@@ -181,7 +182,7 @@ const TecMiniWrap = styled.div`
     height: 35px;
     gap: 4px;
     overflow: scroll;
-    pointer-events: auto;
+    pointer-events: none;
 `
 
 
