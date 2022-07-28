@@ -27,6 +27,9 @@ function ReadProject() {
   const [Arcodian, setArcodian] = useState(false);
 
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
+   const profileImage = useSelector(
+     (state) => state.user.userInfo.profileImage
+   );
   // 예약기능
   const [applicationId, setApplicationId] = useState("");
   const [resumeId, setResumeId] = useState("");
@@ -165,7 +168,11 @@ function ReadProject() {
             <RoleTitle>작성자 프로필</RoleTitle>
           </ProfileTitleWrap>
           <ProfileDetailWrap>
-            <ProfilePhoto></ProfilePhoto>
+            {profileImage !== "" ?<ProfilePhoto style={{
+                  backgroundImage: `url(${
+                    profileImage !== " " ? profileImage : ""
+                  })`,
+                }}/>  : <ProfilePhoto />}
             <UserAllWrap>
               <UserNameWrap>
                 <UserText>{Value && Value[0]?.nickname}</UserText>
@@ -219,13 +226,12 @@ function ReadProject() {
                   ""
                 )}
               </MiniResumeWrap>
-
               <DivideLine />
 
               <SubmitButton
                 style={
                   applicationId !== "" && resumeId !== ""
-                    ? { }
+                    ? {}
                     : { opacity: "0.5", pointerEvents: "none" }
                 }
                 onClick={applyOnClick}
@@ -385,10 +391,12 @@ const ProfileDetailWrap = styled.div`
 const ProfilePhoto = styled.div`
   width: 100px;
   height: 100px;
-  background-image: url(${astroman});
+  background-image: ${astroman};
   background-position: center;
   background-size: cover;
   /* border: 1px solid black; */
+  border-radius: 50%;
+
 `;
 
 const UserNameWrap = styled.div`
@@ -534,14 +542,8 @@ const EditLabel = styled.label`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   padding: 10px 12px 10px 12px;
-
-  //승연 추가
-
 `;
 
-const CloseBtn = styled.img`
-  width: 6%;
-`
 
 
 export default ReadProject;

@@ -17,7 +17,7 @@ function Header() {
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const nickname = useSelector((state) => state.user.userInfo.nickname);
-
+  const profileImage = useSelector((state) => state.user.userInfo.profileImage);
 
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
@@ -108,35 +108,57 @@ function Header() {
           <HeaderAlignWrap>
             <LogoWrap onClick={MoveMain}></LogoWrap>
             <HeaderLeftWrap>
-
-              <FindProject onClick={MoveProject} id="btn1">프로젝트 찾기</FindProject>
-              <FindProject onClick={MoveResume} id="btn2">팀원 찾기</FindProject>
-              <FindMatching onClick={MoveMatching} id="btn3">프로젝트 매칭</FindMatching>
-              <FindProject onClick={MoveCallChat} id="btn4">화상채팅(임시)</FindProject>
-
+              <FindProject onClick={MoveProject} id="btn1">
+                프로젝트 찾기
+              </FindProject>
+              <FindProject onClick={MoveResume} id="btn2">
+                팀원 찾기
+              </FindProject>
+              <FindMatching onClick={MoveMatching} id="btn3">
+                프로젝트 매칭
+              </FindMatching>
+              <FindProject onClick={MoveCallChat} id="btn4">
+                화상채팅(임시)
+              </FindProject>
             </HeaderLeftWrap>
           </HeaderAlignWrap>
           <HeaderRightWrap>
             <LoginButton
               onClick={MoveLogin}
-              style={{ display: !loginInfo ? "" : "none" }}>
+              style={{ display: !loginInfo ? "" : "none" }}
+            >
               로그인
             </LoginButton>
             <LoginButton
               style={{ display: !loginInfo ? "none" : "" }}
-              onClick={logoutClick}>
+              onClick={logoutClick}
+            >
               로그아웃
             </LoginButton>
-
-            <CircleImage
-              onClick={() => {
-                if (loginInfo) {
-                MoveMyPage();
-                } else {
-                  alert("로그인을 해주세요! 🥸");
-                }}}>
-              <img src={BasicPhoto} />
-            </CircleImage>
+            {profileImage ? (
+              <CircleImage
+                style={{ backgroundImage: `url(${profileImage})` }}
+                onClick={() => {
+                  if (loginInfo) {
+                    MoveMyPage();
+                  } else {
+                    alert("로그인을 해주세요! 🥸");
+                  }
+                }}
+              ></CircleImage>
+            ) : (
+              <CircleImage
+                onClick={() => {
+                  if (loginInfo) {
+                    MoveMyPage();
+                  } else {
+                    alert("로그인을 해주세요! 🥸");
+                  }
+                }}
+              >
+                <img src={BasicPhoto} />
+              </CircleImage>
+            )}
           </HeaderRightWrap>
         </HeaderConWrap>
       </HeaderWrap>
@@ -275,19 +297,20 @@ const LoginButton = styled.span`
 
 
 const CircleImage = styled.div`
-    width: 36px;
-    height:36px;
-    border-radius: 100%;
-    background: linear-gradient(45deg, #AE97E3, #77C3E7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* background-image: url(${BasicPhoto});
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  background: linear-gradient(45deg, #ae97e3, #77c3e7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-image: url(${BasicPhoto});
     background-position: center;
     background-size: cover;  */
-
-    cursor: pointer;
-`
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+`;
 
 
 

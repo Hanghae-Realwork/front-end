@@ -14,8 +14,6 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
- const is_login = useSelector((state) => state.user.userInfo.is_login); 
-
   // 로그인 벨리데이션 체크 함수
   const loginFunction = () => {
     if (
@@ -30,11 +28,12 @@ function Login() {
       return false;
     }
     document.getElementById("LoginBtn").disabled = true;
-      dispatch(loginAxios(loginidRef.current.value, passwordRef.current.value)
+      
+    dispatch(loginAxios(loginidRef.current.value, passwordRef.current.value)
       ).then((success) => {
         if (success) {
           alert("랑데브에 오신 것을 환영합니다! 당신의 꿈을 펼쳐보세요 🥸");
-         navigate("/");
+            navigate("/");
         }
       }).catch((err) => {
       document.getElementById("LoginBtn").disabled = false;
