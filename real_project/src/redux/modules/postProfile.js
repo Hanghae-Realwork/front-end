@@ -66,7 +66,6 @@ export const loadResumesAxios = (nickname) => {
     await apis
       .userResumes(nickname)
       .then((response) => {
-        console.log(response.data)
         dispatch(loadResumes(response.data));
       })
       .catch((err) => {
@@ -80,9 +79,7 @@ export const loadProjectsAxios = (nickname) => {
     await apis
       .userProjects(nickname)
       .then((response) => {
-        console.log(response.data.message);
-        
-        dispatch(loadProjects(response.data.message));
+        dispatch(loadProjects(response.data));
       })
       .catch((err) => {
         console.log(err);
@@ -99,7 +96,6 @@ export const userPhotoAxios = (nickname,frm) => {
     await apis
       .userPhoto(nickname,frm)
       .then((response) => {
-        console.log(response)
         const img = response;
         success = img;
       })
