@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-
+import { React, useState } from "react";
 import {skillDelete} from "../../redux/modules/search"
 
 import close from "../../image/tagclose.svg"
@@ -8,13 +8,12 @@ import close from "../../image/tagclose.svg"
 function TagCompoSearchDev({ skills }) {
 
   const dispatch = useDispatch()
-
-  const deleteButton = () => {
-    dispatch(skillDelete())
-  }
+  const [total,setTotal]=useState(skills)
 
 
-    return <TagButton>{skills}<Img src={close} onClick={deleteButton}/></TagButton>;
+  return <TagButton>{skills}<Img src={close} onClick={() => {
+     dispatch(skillDelete(skills));
+    }}/></TagButton>;
 }
 
 const TagButton = styled.label`

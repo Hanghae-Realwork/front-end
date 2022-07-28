@@ -19,7 +19,7 @@ import Letter from "../image/letter.svg";
 import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
 import Footer from "../components/Date/Footer";
-import { parse } from "date-fns";
+
 
 function AddProfile(props) {
   const navigate = useNavigate();
@@ -109,7 +109,7 @@ function AddProfile(props) {
     ) {
         alert("아직 다 작성하지 않았어요!🥸");
     } else {
-      alert("게시글을 등록하시겠습니까?🥸");
+
      dispatch(
             resumesCreateAxios(
               introduceRef.current.value,

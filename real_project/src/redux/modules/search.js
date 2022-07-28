@@ -30,33 +30,34 @@ const initialState = {
 
 //로드 액션함수
 export function loadskill(payload) {
-  console.log(payload)
+ 
   return { type: SKILLLOAD, payload };
 }
 
 export function loadrole(payload) {
-  console.log(payload)
+ 
   return { type: ROLELOAD, payload };
 }
 
 export function loaddate(payload) {
-  console.log(payload)
+
   return { type: DATELOAD, payload };
 }
 
 export function loadresult(payload) {
-  console.log(payload)
+
   return { type: LOADRESULT, payload };
 }
 
 export function loadresumeresult(payload) {
-  console.log(payload)
+
   return { type: RESUMERESULT, payload };
 }
 
 
 //삭제 액션함수
 export function skillDelete(payload) {
+
   return { type: SKILLDELETE, payload };
 }
 
@@ -139,7 +140,7 @@ export const SearchResumeAxios = (
         end: end
       }));
       dispatch(loadresumeresult(res.data.skillFilteredResumes))
-        alert("선택하신 조건으로 검색이 완료되었습니다")     
+        
       })
       .catch((err) => {
         console.log(err);
@@ -235,11 +236,12 @@ export default function reducer(state = initialState, action = {}) {
 
     //삭제 리듀서
     case "search/SKILLDELETE": {
-      const deleteTag = state.Skilltag.splice((idx) => {
-        return action.payload
+      
+      const new_list = state.Skilltag.filter((list) => {
+        return list !== action.payload;
       })
       return {
-        Skilltag: [...state.Skilltag, deleteTag],
+        Skilltag: [...new_list],
         Roletag: state.Roletag,
         Datetag: state.Datetag,
         SearchResult: state.SearchResult,

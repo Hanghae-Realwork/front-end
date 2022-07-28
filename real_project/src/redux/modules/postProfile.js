@@ -60,7 +60,7 @@ export const loadResumesAxios = (nickname) => {
     await apis
       .userResumes(nickname)
       .then((response) => {
-      
+        console.log(response.data)
         dispatch(loadResumes(response.data));
       })
       .catch((err) => {

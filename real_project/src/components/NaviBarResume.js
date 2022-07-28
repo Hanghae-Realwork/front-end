@@ -39,7 +39,6 @@ function NavigationBarResume() {
     const roledata = useSelector((state) => state.search.Roletag)
 
     const resultResume = useSelector((state) => state.search.SearchResume)
-    console.log(resultResume.length)
     
     const sendRole = roledata.toString()
     // const sendSkill = skilldata.toString()

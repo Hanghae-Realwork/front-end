@@ -29,7 +29,7 @@ function FireModal(props) {
                         <CloseWrap><CloseBtn src={close} onClick={() => {CloseModal()}}/></CloseWrap>
                         <LogoBox />
                         <LoginGuide>탈퇴하려면 비밀번호를 다시 입력해주세요</LoginGuide>
-                        <FireInput ref={password}></FireInput>
+                        <FireInput ref={password} type="password"></FireInput>
                         <GotoJoinBtn onClick={fireOnClick}>탈퇴하기</GotoJoinBtn>
                     </FireModalWrap>
                 </JustRelative>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import { useDispatch,useSelector } from "react-redux";
@@ -31,6 +31,7 @@ function NavigationBarProject() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const el = useRef();
 
     //initialstate data 로드
     const loginInfo = useSelector((state) => state.user.userInfo.is_login); //로그인 유무
@@ -45,6 +46,20 @@ function NavigationBarProject() {
     // const sendStart = datedata[0].toString()
     // const sendEnd = datedata[1].toString()
 
+ 
+
+//   const handleCloseModal = ({ target }) => {
+//    console.log(el.current.contains(target));
+//    if (Rolemodal && ! el.current.contains(target)) setRoleModal(false);
+//  };
+  
+  // useEffect(() => {
+  //   window.addEventListener('click', handleCloseModal);
+  //   return () => {
+  //     window.removeEventListener('click',handleCloseModal)
+  //   }
+  // }, [])
+  
     const searchAction = () => {
         dispatch(SearchAxios(
             sendRole,
@@ -94,7 +109,7 @@ function NavigationBarProject() {
 
           <NaviWrap>
             <MainNavigation> 
-              {Rolemodal === true ? (<RoleModal close={setRoleModal}/>) : null}
+              {Rolemodal ? (<RoleModal close={setRoleModal}/>) : null}
               <SerchLabel style={{ width: "230px" }} onClick={() => {setRoleModal(!Rolemodal);}}>
                 <ImageWrap>
                   <img src={jobicon} />

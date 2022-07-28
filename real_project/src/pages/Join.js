@@ -427,7 +427,7 @@ function Join() {
               <div>
               <InputBar
                 type="text"
-                placeholder="닉네임"
+                placeholder="김크루"
                 minLength={2}
                 maxLength={8}
                 value={nickname}

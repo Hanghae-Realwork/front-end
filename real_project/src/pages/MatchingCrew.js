@@ -12,14 +12,13 @@ import CradEmpol from "../components/CardEmpol"
 
 function MatchingCrew() {
     const dispatch = useDispatch();
-    
     const myProject = useSelector((state) => state.interview.projects);
 
     //매칭하기 
     const data = useSelector((state) => state.matches.resumes)
     const [projectId, setProjectId] = useState("");
     const [seeData,setSeeData] = useState(false)
- 
+   console.log(data)
 
   //프로젝트 카드
   useEffect(() => {
@@ -27,10 +26,8 @@ function MatchingCrew() {
   }, []);
 
   const matchOnclick = () => {
-  
         dispatch(matchesResumesAxios(projectId));
         setSeeData(true);
-  
   }
   
     return (

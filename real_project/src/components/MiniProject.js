@@ -25,23 +25,7 @@ function MiniProject({ data, setProjectId }) {
     }
     setPrevClick(currentClick);
   }, [currentClick]);
-  
-  // const [currentClick, setCurrentClick] = useState(null);
-  // const [prevClick, setPrevClick] = useState(null);
 
-  // useEffect(() => {
-  //   if (currentClick !== null) {
-  //     let current = document.getElementById(currentClick);
-  //     current.style.backgroundColor = "#d9d9d9";
-  //     current.style.border= "2px black";
-  //   }
-  //   if (prevClick !== null) {
-  //     let prev = document.getElementById(prevClick);
-  //     prev.style.backgroundColor = "transparent";
-  //     prev.style.border= "0.5px black"
-  //   }
-  //   setPrevClick(currentClick);
-  // }, [currentClick]);
 
 
 
@@ -51,7 +35,7 @@ function MiniProject({ data, setProjectId }) {
     <>
     
       {data &&
-        data.map((list, idx) => {
+        data?.map((list, idx) => {
           return (
 
 
