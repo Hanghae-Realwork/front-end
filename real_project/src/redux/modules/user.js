@@ -1,11 +1,11 @@
 import { apis } from "../../shared/api";
 import { setCookie, deleteCookie,getCookie } from "../../shared/cookie";
-
+import {useCookies} from "react-cookie"
 const LOGIN = "user/LOGIN";
 const LOGOUT = "user/LOGOUT";
 const USERINFO = "user/USERINFO";
 const CheckUserId = "user/CheckUserId";
-
+const VALIDATION = "user/VALIDATION";
 const initialState = {
   signup: {
     userId: null,
@@ -35,8 +35,12 @@ export function userInfo(infototal) {
 export function userId(payload) {
   return { type: CheckUserId, payload };
 }
+export function validation(payload) {
+  return { type: VALIDATION, payload };
+}
 
 //middleWare
+//회원가입
 export const signupAxios = (
   userId,
   nickname,
@@ -62,7 +66,6 @@ export const signupAxios = (
         res = true;
       })
       .catch((err) => {
-        console.log(err)
         res = false;
       });
     return res;
@@ -84,7 +87,7 @@ export const checkUserIdAxios = (userId) => {
     return checksuccess;
   };
 };
-
+//닉네임 중복검사
 export const checkUserNicknameAxios = (nickname) => {
   return async function (dispatch) {
     let checksuccess = null;
@@ -109,7 +112,7 @@ export const loginAxios = (userEmail, password) => {
       .login(userEmail, password, { withCredentials: true })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        dispatch(checkUserValidation());
+        dispatch(validation())
         dispatch(login({ userId:userEmail }));
          success = true;
         
@@ -127,14 +130,19 @@ export const loginAxios = (userEmail, password) => {
     return success;
   };
 };
-
+//user정보조회
 export const checkUserValidation = () => {
   return async function (dispatch) {
     await apis
       .checkUser()
       .then((res) => {
+        console.log("checkUserValidation",res);
         dispatch(
-          login({ userId: res.data.userId, nickname: res.data.nickname })
+          login({
+            userId: res.data.userId,
+            nickname: res.data.nickname,
+            profileImage: res.data.profileImage,
+          })
         );
       })
       .catch((err) => {
@@ -169,7 +177,8 @@ export default function reducer(state = initialState, action = {}) {
    
       const newUserInfo = {
         userId: action.payload.userId,
-        nickname:action.payload.nickname,
+        nickname: action.payload.nickname,
+        profileImage: action.payload.profileImage,
         is_login: true,
       };
       return {
@@ -184,6 +193,8 @@ export default function reducer(state = initialState, action = {}) {
       localStorage.removeItem("userId");
       localStorage.removeItem("nickname");
       localStorage.removeItem("token");
+      
+
       // deleteCookie("ACCESS_TOKEN");
       // deleteCookie("REFRESH_TOKEN");
       const newUserInfo = {

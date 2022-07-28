@@ -3,12 +3,14 @@ import { apis } from "../../shared/api";
 const LOADAPPLY = "userpage/LOADAPPLY";
 const LOADPROJECT = "userpage/LOADPROJECT"
 const LOADRESUMES = "userpage/LOADRESUMES";
+const LOAPROJECTS = "userpage/LOAPROJECTS";
 const USERPHOTOS = "userpage/USERPHOTOS ";
 
 const initialState = {
   Applications: [],
   Myprojects: [],
-  Myresumes:[]
+  Myresumes: [],
+  Myproject:[]
 };
 
 export function loadApply(payload) {
@@ -21,9 +23,13 @@ export function loadProject(payload) {
 export function loadResumes(payload) {
   return { type: LOADRESUMES, payload };
 }
+export function loadProjects(payload) {
+  return { type: LOAPROJECTS, payload };
+}
 export function loadPhoto(payload) {
   return { type: USERPHOTOS, payload };
 }
+
 //middleware
 
 //내 지원정보 조회
@@ -60,8 +66,20 @@ export const loadResumesAxios = (nickname) => {
     await apis
       .userResumes(nickname)
       .then((response) => {
-        console.log(response.data)
         dispatch(loadResumes(response.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+  //  - 10. 내 Project 조회
+export const loadProjectsAxios = (nickname) => {
+  return async function (dispatch) {
+    await apis
+      .userProjects(nickname)
+      .then((response) => {
+        dispatch(loadProjects(response.data));
       })
       .catch((err) => {
         console.log(err);
@@ -78,7 +96,6 @@ export const userPhotoAxios = (nickname,frm) => {
     await apis
       .userPhoto(nickname,frm)
       .then((response) => {
-        console.log(response)
         const img = response;
         success = img;
       })
@@ -97,6 +114,7 @@ export default function reducer(state = initialState, action = {}) {
         Applications: action.payload,
         Myprojects: state.Myprojects,
         Myresumes: state.Myresumes,
+        Myproject: state.Myproject,
       };
     }
 
@@ -105,6 +123,7 @@ export default function reducer(state = initialState, action = {}) {
         Applications: state.Applications,
         Myprojects: action.payload,
         Myresumes: state.Myresumes,
+        Myproject: state.Myproject,
       };
     }
     case "userpage/LOADRESUMES": {
@@ -112,6 +131,15 @@ export default function reducer(state = initialState, action = {}) {
         Applications: state.Applications,
         Myprojects: state.Myprojects,
         Myresumes: action.payload,
+        Myproject: state.Myproject,
+      };
+    }
+    case "userpage/LOAPROJECTS": {
+      return {
+        Applications: state.Applications,
+        Myprojects: state.Myprojects,
+        Myresumes: state.Myresumes,
+        Myproject: action.payload,
       };
     }
 

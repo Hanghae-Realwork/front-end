@@ -18,15 +18,17 @@ function Header() {
 
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
   const nickname = useSelector((state) => state.user.userInfo.nickname);
-  const test = useSelector((state) => state.user.userInfo);
+
 
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
 
-  const [button, setButton] = useState([false, false, false])
 
+//확인
   React.useEffect(() => {
-    if (loginInfo === false) {dispatch(checkUserValidation());}},[loginInfo]);
+    if (nickname === undefined) {
+      dispatch(checkUserValidation());
+    }},[loginInfo]);
 
   const logoutClick = () => {
     const result = window.confirm("정말...나가실건가욥..? 🥸");
@@ -72,15 +74,17 @@ function Header() {
   }
 
   const MoveMyPage = () => {
-    navigate(`/mypage/${nickname}/apply`)
-    ResetResult()
+    if (nickname !== undefined) {
+      navigate(`/mypage/${nickname}/apply`);
+      ResetResult();
+    }
+    
   }
 
   const MoveMain = () => {
     navigate(`/`)
     ResetResult()
   }
-
 
   useEffect(
       (e) => {
@@ -128,7 +132,7 @@ function Header() {
 
             <CircleImage
               onClick={() => {
-                if (loginInfo) {
+                if (nickname !== undefined || nickname !== null) {
                 MoveMyPage();
                 } else {
                   alert("로그인을 해주세요! 🥸");
