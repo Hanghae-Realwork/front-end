@@ -21,9 +21,7 @@ const Recruitment = () => {
   const dispatch = useDispatch();
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
   const value = useSelector((state) => state.postProfile.Myprojects);
-  console.log(value)
   
-
   useEffect(() => {
     if (value.message === "토큰이 재발급 됐습니다.") { 
       localStorage.setItem("token", value.token);

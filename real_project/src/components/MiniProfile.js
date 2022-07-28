@@ -1,7 +1,5 @@
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
-import { useSelector,useDispatch } from "react-redux";
-
 
 import TagDev from "./Tag/TagCompoDev"
 import TagDes from "./Tag/TagCompoDes"
@@ -24,18 +22,6 @@ function MiniResume({ data, setResumeId }) {
     }
     setPrevClick(currentClick);
   }, [currentClick]);
-  //border
-  // useEffect(() => {
-  //   if (currentClick !== null) {
-  //     let current = document.getElementById(currentClick);
-  //     current.style.border = "2px solid gray";
-  //   }
-  //   if (prevClick !== null) {
-  //     let prev = document.getElementById(prevClick);
-  //     prev.style.border = "1px solid ";
-  //   }
-  //   setPrevClick(currentClick);
-  // }, [currentClick]);
 
   return (
     <>

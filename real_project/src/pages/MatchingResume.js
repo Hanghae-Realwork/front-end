@@ -8,7 +8,7 @@ import { loadResumesAxios } from "../redux/modules/interview";
 import { matchesProjectsAxios } from "../redux/modules/matches";
 import CardRecruit from "../components/CardRecruit";
 import EmptyProject from "../components/Mypage/EmptyCard"
-
+import EmptyMatchProject from "../components/Mypage/EmptyMatchProject";
 
 
 function MatchingResume() {
@@ -21,15 +21,18 @@ function MatchingResume() {
     const [resumeId, setResumeId] = useState("");
     const [seeData, setSeeData] = useState(false)
 
-    console.log(resumeId)
+
  
   useEffect(() => {
       dispatch(loadResumesAxios());
     }, []);
 
   const matchOnclick = () => {
+    if (resumeId && resumeId) {
       dispatch(matchesProjectsAxios(resumeId));
       setSeeData(true);
+    }
+      
   }
 
 
@@ -47,7 +50,8 @@ function MatchingResume() {
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
             <MatchingButton
-              style={resumeId !== ""
+              style={
+                resumeId !== ""
                   ? { backgroundColor: "" }
                   : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
               }
@@ -58,26 +62,31 @@ function MatchingResume() {
           </MatchingBotBtnWrap>
         </MatchingCrewWrap>
         {seeData ? (
-            <MatchingBotWrap>
-              <TextAlingWrap>
-                <MatchingText>
-                  나에게 맞는 프로젝트를 선택해주세요
-                </MatchingText>
-              </TextAlingWrap>
-              <ContentAlignWrap>
-                <MatchingResumeWrap style={{display: resumeId.length === 0 ? "none" : ""}}>
-                  {data.map((list, idx) => {
-                    return <CardRecruit key={idx} data={list} />;
-                  })}
-                </MatchingResumeWrap>
-                <MatchingResumeWrap style={{display: data.length > 0 ? "none" : ""}}>
-                  <EmptyProject/>
-                </MatchingResumeWrap>
-              </ContentAlignWrap>
-            </MatchingBotWrap>
-          ) : (
-            <FallowText>작성하신 이력서 중 하나를 선택하시면 나와 맞는 프로젝트를 찾아 드립니다</FallowText>
-          )}
+          <MatchingBotWrap>
+            <TextAlingWrap>
+              <MatchingText>나에게 맞는 프로젝트를 선택해주세요</MatchingText>
+            </TextAlingWrap>
+            <ContentAlignWrap>
+              <MatchingResumeWrap
+                style={{ display: resumeId.length === 0 ? "none" : "" }}
+              >
+                {data.map((list, idx) => {
+                  return <CardRecruit key={idx} data={list} />;
+                })}
+              </MatchingResumeWrap>
+              <MatchingResumeWrap
+                style={{ display: data.length > 0 ? "none" : "" }}
+              >
+                <EmptyMatchProject />
+              </MatchingResumeWrap>
+            </ContentAlignWrap>
+          </MatchingBotWrap>
+        ) : (
+          <FallowText>
+            작성하신 이력서 중 하나를 선택하시면 나와 맞는 프로젝트를 찾아
+            드립니다
+          </FallowText>
+        )}
       </>
     );
 }

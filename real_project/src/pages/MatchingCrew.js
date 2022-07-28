@@ -9,7 +9,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { loadProjectsAxios } from "../redux/modules/interview"
 import { matchesResumesAxios } from "../redux/modules/matches"
 import CradEmpol from "../components/CardEmpol"
-import EmptyCard from "../components/Mypage/EmptyCard";
+
+import EmptyMatchCard from "../components/Mypage/EmptyMatchCard"
 
 function MatchingCrew() {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function MatchingCrew() {
     const data = useSelector((state) => state.matches.resumes)
     const [projectId, setProjectId] = useState("");
     const [seeData,setSeeData] = useState(false)
-   console.log(data)
+   
 
   //프로젝트 카드
   useEffect(() => {
@@ -27,8 +28,11 @@ function MatchingCrew() {
   }, []);
 
   const matchOnclick = () => {
-        dispatch(matchesResumesAxios(projectId));
-        setSeeData(true);
+    if (projectId && projectId) {
+       dispatch(matchesResumesAxios(projectId));
+       setSeeData(true);
+    }
+       
   }
   
     return (
@@ -64,18 +68,25 @@ function MatchingCrew() {
               </MatchingText>
             </TextAlingWrap>
             <ContentAlignWrap>
-              <MatchingResumeWrap style={{display: projectId.length === 0 ? "none" : ""}}>
+              <MatchingResumeWrap
+                style={{ display: projectId.length === 0 ? "none" : "" }}
+              >
                 {data.map((list, index) => {
                   return <CradEmpol key={index} data={list} />;
                 })}
               </MatchingResumeWrap>
-              <MatchingResumeWrap style={{display: data.length > 0 ? "none" : ""}}>
-                <EmptyCard/>
+              <MatchingResumeWrap
+                style={{ display: data.length > 0 ? "none" : "" }}
+              >
+                <EmptyMatchCard />
               </MatchingResumeWrap>
             </ContentAlignWrap>
           </MatchingBotWrap>
         ) : (
-          <FallowText>모집중인 프로젝트 중 하나를 선택하시면 프로젝트와 맞는 사용자를 찾아 드립니다</FallowText>
+          <FallowText>
+            모집중인 프로젝트 중 하나를 선택하시면 프로젝트와 맞는 사용자를 찾아
+            드립니다
+          </FallowText>
         )}
       </>
     );

@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import TagDes from "./Tag/TagCompoDes"
 import TagDev from "./Tag/TagCompoDev"
 
 import BasicPhoto from "../image/astroman.svg"
