@@ -6,28 +6,57 @@ import "../../App.css"
 function MatchingBtn(){
   const navigate = useNavigate()
 
+  const [currentClick, setCurrentClick] = useState(null);
+  const [prevClick, setPrevClick] = useState(null);
+
   const MoveChapter = (e) => {
     navigate(`/matchingcrew`)
+    setCurrentClick(e.target.id)
+    console.log(e)
+    console.log(e.target)
+    console.log(e.target.id);
   };
 
   const MoveResume = (e) => {
     navigate(`/matchingresume`)
+    setCurrentClick(e.target.id);
+    console.log(e)
+    console.log(e.target)
+    console.log(e.target.id);
   };
+
+  
+  useEffect(
+    (e) => {
+    if (currentClick !== null) {
+        let current = document.getElementById(currentClick);
+        current.style.color = "#303032";
+    }
+    if (prevClick !== null) {
+        let prev = document.getElementById(prevClick);
+        prev.style.color = "#d9d9d9"
+    }
+    setPrevClick(currentClick);
+    },
+    [currentClick]
+);
+
+
 
 
     return (
     
         <MatchingBtnWrap>
           <PositionWrap>
-            <BtnDivWrap onClick={() => {MoveChapter()}} id="chapter1">
+            <BtnDivWrap onClick={(e) => {MoveChapter(e)}} id="projectButton">
               <LeftTriangleDiv/>
-              <CenterDiv>내가 모집중인 프로젝트</CenterDiv>
+              <CenterDiv >내가 모집중인 프로젝트</CenterDiv>
               <RightTriangleDiv/>
             </BtnDivWrap>
 
-            <SecondBtnDivWrap onClick={() => {MoveResume()}} id="chapter2">
+            <SecondBtnDivWrap  onClick={(e) => {MoveResume(e)}} id="resumeButton">
               <LeftTriangleDivtwo/>
-              <SecondCenterDiv>내 이력서</SecondCenterDiv>
+              <SecondCenterDiv >내 이력서</SecondCenterDiv>
               <RightTriangleDivtwo/>
             </SecondBtnDivWrap>
           </PositionWrap>
@@ -55,6 +84,7 @@ const LeftTriangleDiv = styled.label`
   border-top: 20px solid transparent;
   border-left: 20px solid transparent;
   border-right: 20px solid white;
+  pointer-events: none;
 
 `
 
@@ -78,6 +108,7 @@ const RightTriangleDiv = styled.label`
   border-top: 20px solid transparent;
   border-left: 20px solid white;
   border-right: 20px solid transparent;
+  pointer-events: none;
 `
 
 const LeftTriangleDivtwo = styled.div`
@@ -87,6 +118,7 @@ const LeftTriangleDivtwo = styled.div`
   border-top: 20px solid transparent;
   border-left: 20px solid transparent;
   border-right: 20px solid white;
+  pointer-events: none;
 `
 
 const SecondCenterDiv = styled.label`
@@ -109,6 +141,7 @@ const RightTriangleDivtwo = styled.div`
   border-top: 20px solid transparent;
   border-left: 20px solid white;
   border-right: 20px solid transparent;
+  pointer-events: none;
 `
 
 const BtnDivWrap = styled.div`

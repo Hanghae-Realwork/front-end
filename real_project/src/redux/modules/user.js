@@ -6,6 +6,8 @@ const LOGOUT = "user/LOGOUT";
 const USERINFO = "user/USERINFO";
 const CheckUserId = "user/CheckUserId";
 const VALIDATION = "user/VALIDATION";
+
+
 const initialState = {
   signup: {
     userId: null,
@@ -15,6 +17,7 @@ const initialState = {
     passwordCheck: null,
     policy: false,
   },
+  
   userInfo: {
     userEmail: null,
     nickname:null,
@@ -87,6 +90,7 @@ export const checkUserIdAxios = (userId) => {
     return checksuccess;
   };
 };
+
 //닉네임 중복검사
 export const checkUserNicknameAxios = (nickname) => {
   return async function (dispatch) {

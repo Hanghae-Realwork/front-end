@@ -1,6 +1,11 @@
+import React,{useEffect} from "react"
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import {checkUserValidation} from "../redux/modules/user"
+
 import "../App.css"
 
 import Sample from "../image/mainSample.svg"
@@ -12,8 +17,11 @@ import cloud from "../image/spacecloud.svg"
 import shuttle from "../image/editshuttle.svg"
 import planet from "../image/rotationplanet.svg"
 
+
 import { useDispatch, useSelector } from "react-redux";
 import { checkUserValidation } from "../redux/modules/user";
+
+
 function Main() {
   const dispatch = useDispatch();
     const loginInfo = useSelector((state) => state.user.userInfo.is_login);
@@ -27,6 +35,7 @@ function Main() {
     }, [checkUserValidation]);
 
     const navigate = useNavigate();
+
 
     return(
         <>
