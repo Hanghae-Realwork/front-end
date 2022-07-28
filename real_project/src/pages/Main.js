@@ -1,5 +1,6 @@
 import React,{useEffect} from "react"
 import styled from "styled-components";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -17,24 +18,24 @@ import shuttle from "../image/editshuttle.svg"
 import planet from "../image/rotationplanet.svg"
 
 
+import { useDispatch, useSelector } from "react-redux";
+import { checkUserValidation } from "../redux/modules/user";
 
 
-function Main () {
-
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-
-    const nickname = useSelector((state) => state.user.userInfo.nickname);
-    console.log(nickname)
+function Main() {
+  const dispatch = useDispatch();
     const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-
-    
-
+    const nickname = useSelector((state) => state.user.userInfo.nickname);
+ 
     useEffect(() => {
-       dispatch(checkUserValidation());
-    },[]);
+   console.log("메인페이지");
+      
+        dispatch(checkUserValidation());
+      
+    }, [checkUserValidation]);
 
-    
+    const navigate = useNavigate();
+
 
     return(
         <>

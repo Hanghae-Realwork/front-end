@@ -116,7 +116,8 @@ export const loginAxios = (userEmail, password) => {
       .login(userEmail, password, { withCredentials: true })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        dispatch(validation())
+        // dispatch(validation())
+        dispatch(checkUserValidation())
         dispatch(login({ userId:userEmail }));
          success = true;
         
@@ -140,14 +141,17 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
-        console.log("checkUserValidation",res);
-        dispatch(
-          login({
-            userId: res.data.userId,
-            nickname: res.data.nickname,
-            profileImage: res.data.profileImage,
-          })
-        );
+        console.log("checkUserValidation", res);
+        if (res.data.message === "토큰이 재발급 됐습니다.") {
+          localStorage.setItem("token", res.data.token);
+        }
+          dispatch(
+            login({
+              userId: res.data.userId,
+              nickname: res.data.nickname,
+              profileImage: res.data.profileImage,
+            })
+          );
       })
       .catch((err) => {
       
@@ -178,7 +182,7 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
 
     case "user/LOGIN": {
-   
+
       const newUserInfo = {
         userId: action.payload.userId,
         nickname: action.payload.nickname,

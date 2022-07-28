@@ -25,7 +25,7 @@ const Projects = () => {
           <EmptyMyProject />
         ) : (
           data &&
-          data.map((list, idx) => {
+          data?.map((list, idx) => {
             return <CardRecruit key={idx} data={list} />;
           })
         )}

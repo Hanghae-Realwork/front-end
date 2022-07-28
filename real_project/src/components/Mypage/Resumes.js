@@ -12,34 +12,31 @@ import CardEmpol from "../CardEmpol";
 import letter from "../../image/letter.svg"
 import EmptyMyCard from "../Mypage/EmptyMyCard";
 
-//import 사용하지 않는 것 지워주세요!(승연)
+
 const Resumes = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const nickname = useSelector((state) => state.user.userInfo.nickname);
   const data = useSelector((state) => state.postProfile.Myresumes);
- 
+ console.log(data)
   useEffect(() => {
     if (nickname && nickname) {
        dispatch(loadResumesAxios(nickname));
     }
 },[loadResumesAxios])
  
-  useEffect(() => {
-    
-  })
   return (
     <>
       <MyPageResumeBackWrap>
-        {/* {data && data.length <= 0 ? (
+        {data && data.length <= 0 ? (
           <EmptyMyCard />
         ) : (
           data &&
-          data.map((list, idx) => {
+          data?.map((list, idx) => {
             return <CardEmpol key={idx} data={list} />;
           })
-        )} */}
+        )}
       </MyPageResumeBackWrap>
     </>
   );

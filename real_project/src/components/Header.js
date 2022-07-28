@@ -10,7 +10,6 @@ import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo_vertical.svg"
 
 
-
 function Header() {
 
   const navigate = useNavigate();
@@ -131,7 +130,7 @@ function Header() {
 
             <CircleImage
               onClick={() => {
-                if (nickname !== undefined || nickname !== null) {
+                if (loginInfo) {
                 MoveMyPage();
                 } else {
                   alert("로그인을 해주세요! 🥸");
