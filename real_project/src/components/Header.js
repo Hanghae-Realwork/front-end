@@ -79,22 +79,12 @@ function Header() {
     ResetResult()
   }
 
-  useEffect(
-      (e) => {
-      if (currentClick !== null) {
-        let current = document.getElementById(currentClick);
-          current.style.fontWeight = "bold";
-          current.style.backgroundColor = "#303032";
-      }
-      if (prevClick !== null) {
-          let prev = document.getElementById(prevClick);
-          prev.style.backgroundColor = "transparent";
-      }
-      setPrevClick(currentClick);
-      },
-    [currentClick]
-  );
-
+  const MoveMyPage = () => {
+    if (nickname !== undefined) {
+      navigate(`/mypage/${nickname}/apply`);
+      ResetResult();
+    }
+  }
 
   const JoinFunction = () => {
     if (loginInfo === false) {
@@ -122,6 +112,26 @@ function Header() {
   }
 
 
+  useEffect(
+    (e) => {
+    if (currentClick !== null) {
+      let current = document.getElementById(currentClick);
+        current.style.border = "1px solid white"
+        current.style.fontWeight = "700";
+        current.style.backgroundColor = "#303032";
+    }
+    if (prevClick !== null) {
+        let prev = document.getElementById(prevClick);
+        prev.style.border = "none"
+        prev.style.fontWeight = "400";
+        prev.style.backgroundColor = "transparent";
+    }
+    setPrevClick(currentClick);
+    },
+  [currentClick]
+);
+
+
 
 
   return (
@@ -139,7 +149,7 @@ function Header() {
 
               <FindProject onClick={MoveProject} id="btn1">프로젝트 찾기</FindProject>
               <FindProject onClick={MoveResume} id="btn2">팀원 찾기</FindProject>
-              <FindMatching onClick={() => {{JoinSetting()}}} id="btn3">프로젝트 매칭</FindMatching>
+              <FindMatching onClick={JoinSetting} id="btn3">프로젝트 매칭</FindMatching>
               <FindProject onClick={MoveCallChat} id="btn4">인터뷰</FindProject>
 
             </HeaderLeftWrap>
@@ -283,7 +293,7 @@ const FindMatching = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
 `
 
 const HeaderRightWrap = styled.div`

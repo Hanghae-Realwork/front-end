@@ -210,7 +210,7 @@ function EmploymentProfile() {
 const TestWrap = styled.div`
   width: 994px;
   margin-top: 25px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   border-top: none; 
@@ -237,6 +237,7 @@ const DownIcon = styled.img`
 
 const BackGround = styled.div`
   width: 996px;
+  height: 904px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -244,6 +245,9 @@ const BackGround = styled.div`
   margin-top: 40px;
   margin-bottom: 40px;
   background-image: url(${resumeback});
+  background-position: center;
+  background-size: contain;
+  /* border: 5px solid black; */
 
 `
 
@@ -254,7 +258,7 @@ const PageAllWrap = styled.div`
   align-items: center;
   width: 994px;
   margin-top: 40px;
-  border-bottom: 0.5px solid black;
+  /* border-bottom: 0.5px solid black; */
 `
 
 //내부 틀
@@ -281,8 +285,9 @@ const BotWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  margin: 30px 240px 30px 240px;
+  /* margin: 30px 240px 30px 240px; */
   gap: 10px;
+  margin-top: 15px;
   /* border: 1px solid black; */
 `
 
@@ -306,6 +311,8 @@ const MidTxetWrap = styled.div`
   justify-content: flex-start;
   align-content: flex-start;
   gap: 8px;
+  /* border: 1px solid black; */
+  width: 700px;
 `
 
 
@@ -368,10 +375,11 @@ const MidContentText = styled.span`
 const MidTagWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   margin-top: 8px;
   gap: 4px;
+  /* border: 1px solid black; */
 `
 
 const FixedBtn = styled.button`
@@ -382,7 +390,9 @@ const FixedBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   width: 140px;
-  height: 40px;
+  /* margin-bottom: 20px; */
+  /* height: 40px; */
+  /* margin-top: -30px; */
   border: none;
   outline: none;
   cursor: pointer;
@@ -395,7 +405,8 @@ const DelBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   width: 140px;
-  height: 40px;
+  /* margin-top: -20px; */
+  /* height: 40px; */
   border: 1px solid #303032;
   outline: none;
   cursor: pointer;
