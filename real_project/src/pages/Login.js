@@ -15,6 +15,7 @@ function Login() {
   const navigate = useNavigate();
 
 
+
  const is_login = useSelector((state) => state.user.userInfo.is_login); 
 
 
@@ -33,15 +34,20 @@ function Login() {
     }
     document.getElementById("LoginBtn").disabled = true;
 
+      
+    
+
+
 
       dispatch(
         loginAxios(loginidRef.current.value, passwordRef.current.value)
+
       ).then((success) => {
         if (success === true) {
           navigate("/");
 
           alert("랑데브에 오신 것을 환영합니다! 당신의 꿈을 펼쳐보세요 🥸");
-         navigate("/");
+            navigate("/");
         }
       }).catch((err) => {
       document.getElementById("LoginBtn").disabled = false;

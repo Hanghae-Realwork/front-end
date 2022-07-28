@@ -19,27 +19,26 @@ const Resumes = () => {
   const navigate = useNavigate();
   const nickname = useSelector((state) => state.user.userInfo.nickname);
   const data = useSelector((state) => state.postProfile.Myresumes);
- console.log(data)
+
   useEffect(() => {
     if (nickname && nickname) {
        dispatch(loadResumesAxios(nickname));
     }
 },[loadResumesAxios])
- 
-  return (
-    <>
-      <MyPageResumeBackWrap>
-        {data && data.length <= 0 ? (
-          <EmptyMyCard />
-        ) : (
-          data &&
-          data?.map((list, idx) => {
-            return <CardEmpol key={idx} data={list} />;
-          })
-        )}
-      </MyPageResumeBackWrap>
-    </>
-  );
+   return (
+     <>
+       <MyPageResumeBackWrap>
+         {data && data.length <= 0 ? (
+           <EmptyMyCard />
+         ) : (
+           data &&
+           data?.map((list, idx) => {
+             return <CardEmpol key={idx} data={list} />;
+           })
+         )}
+       </MyPageResumeBackWrap>
+     </>
+   );
 };
 
 //대형 틀

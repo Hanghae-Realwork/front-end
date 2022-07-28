@@ -119,12 +119,9 @@ export const loginAxios = (userEmail, password) => {
         // dispatch(validation())
         dispatch(checkUserValidation())
         dispatch(login({ userId:userEmail }));
-         success = true;
-        
-      })
-      .catch((error) => {
+        success = true;
+      }).catch((error) => {
         success = false;
-        console.log(error);
         if (error.request.status === 400) {
           alert("아이디와 비밀번호를 확인해주세욥 🥸 ");
         } else if (error.request.status === 401) {
@@ -134,6 +131,7 @@ export const loginAxios = (userEmail, password) => {
       });
     return success;
   };
+  
 };
 //user정보조회
 export const checkUserValidation = () => {

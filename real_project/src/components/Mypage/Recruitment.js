@@ -102,7 +102,13 @@ const Recruitment = () => {
 
               <ProfileWrap>
                 <PhotoBox>
-                  <PhotoCircle></PhotoCircle>
+                  {list?.resumeImage ? (
+                    <PhotoCircle
+                      style={{ backgroundImage: `url(${list?.resumeImage})` }}
+                    />
+                  ) : (
+                    <PhotoCircle />
+                  )}
                 </PhotoBox>
                 <NameBox>
                   <NickNameText> {list && list?.Resume?.nickname}</NickNameText>

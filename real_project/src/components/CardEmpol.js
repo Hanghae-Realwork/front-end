@@ -12,7 +12,7 @@ import cardBackground from "../image/cardBackground.svg"
 function CradEmpol({ data }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+ const profileImage = useSelector((state) => state.user.userInfo.profileImage);
   const start =
     data > 0 ? "" : data?.start.replace("-", ".").replace("-", ".");
   const end =
@@ -28,11 +28,18 @@ function CradEmpol({ data }) {
           <CardTopWrap>
             <ProfileTopWrap>
               <ProfileWrap>
-                <ProfileCircle></ProfileCircle>
+                {data?.resumeImage ? (
+                  <ProfileCircle
+                    style={{ backgroundImage: `url(${data?.resumeImage})` }}
+                  ></ProfileCircle>
+                ) : (
+                  <ProfileCircle></ProfileCircle>
+                )}
+                
               </ProfileWrap>
               <CardTextWrap>
                 <CardTitle>{data?.nickname}</CardTitle>
-                <CardText>{ data?.role}</CardText>
+                <CardText>{data?.role}</CardText>
               </CardTextWrap>
             </ProfileTopWrap>
           </CardTopWrap>
@@ -48,9 +55,7 @@ function CradEmpol({ data }) {
           <CardBotTag>
             <SkillText>보유한 기술</SkillText>
             <SkillWrap>
-
               {data?.skills?.map((list, idx) => {
-
                 return <TagDev key={idx} skills={list} />;
               })}
             </SkillWrap>

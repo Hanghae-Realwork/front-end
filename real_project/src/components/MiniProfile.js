@@ -22,7 +22,7 @@ function MiniResume({ data, setResumeId }) {
     }
     setPrevClick(currentClick);
   }, [currentClick]);
-
+console.log(data)
   return (
     <>
       {data &&
@@ -39,9 +39,12 @@ function MiniResume({ data, setResumeId }) {
               <MiniTopWrap>
                 <MiniPhotoWrap>
                   {list?.resumeImage === null ? (
-                    <Photo></Photo>
+                    <Photo/>
                   ) : (
-                    <Photo>사진을 보여주세요</Photo>
+                    <Photo
+                      style={{ backgroundImage: `url(${list?.resumeImage})` }}
+                    />
+              
                   )}
                 </MiniPhotoWrap>
                 <MiniNameWrap>
@@ -64,7 +67,7 @@ function MiniResume({ data, setResumeId }) {
               </MiniDateWrap>
 
               <TecWrap>
-              <MiniBodyText>보유한 기술</MiniBodyText>
+                <MiniBodyText>보유한 기술</MiniBodyText>
                 <TecMiniWrap>
                   {list &&
                     list?.skills.map((tag, index) => {
