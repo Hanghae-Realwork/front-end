@@ -33,12 +33,9 @@ function MiniProject({ data, setProjectId }) {
   
   return (
     <>
-    
       {data &&
         data?.map((list, idx) => {
           return (
-
-
             <MiniCardAllWrap
               key={idx}
               className={list.projectid}
@@ -46,7 +43,6 @@ function MiniProject({ data, setProjectId }) {
                 setProjectId(list.projectid);
                 setCurrentClick(e.target.className);
               }}>
-
 
               <MiniNickWrap >
                 <NickText >{list?.nickname}</NickText>
@@ -87,9 +83,7 @@ function MiniProject({ data, setProjectId }) {
                 </MiniDateText>
               </MiniDateWrap>
             </MiniCardAllWrap>
-            
           );
-          
         })}
         
     </>
@@ -121,6 +115,7 @@ const MiniTopWrap = styled.div`
     margin: 12px 0px 23px 0px;
     pointer-events : none;
     line-height: 21px;
+    overflow: hidden;
 `
 
 const MiniBodyWrap = styled.div`
@@ -191,7 +186,7 @@ const TecMiniWrap = styled.div`
     line-height: 21px;
     overflow: scroll;
     gap: 4px;
-    pointer-events: auto;
+    pointer-events: none;
 `
 
 const MiniNickWrap = styled.div`

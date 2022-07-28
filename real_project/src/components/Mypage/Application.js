@@ -94,7 +94,7 @@ const Application = () => {
                       {" "}
                       <InterviewButtonWrap>
                         <ButtonWrap>
-                          <InterviewButton>면접 보기</InterviewButton>
+                          <InterviewButton onClick={() => {window.open(`https://rendev.click/`)}}>면접 보기</InterviewButton>
                           <InterviewDateWrap>
                             <InterviewTimeText>
                               {data && list.schedule.slice(0, 4)}년{" "}

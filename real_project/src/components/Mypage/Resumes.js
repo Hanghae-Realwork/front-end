@@ -44,14 +44,16 @@ const Resumes = () => {
 
 //대형 틀
 const MyPageResumeBackWrap = styled.div`
-  background: #FFFFFF;
-  border: 1px solid #303032;
+  /* background: #FFFFFF; */
+  /* border: 1px solid #303032; */
   border-radius: 4px;
   width: 792px;
-  height: 877px;
+  /* height: 877px; */
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 `
 
 // const PageAllWrap = styled.div`

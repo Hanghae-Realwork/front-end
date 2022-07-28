@@ -42,25 +42,9 @@ function NavigationBarProject() {
     const roledata = useSelector((state) => state.search.Roletag)
 
 
-
     const sendRole = roledata.toString()
     const sendSkill = skilldata.toString()
-    // const sendStart = datedata[0].toString()
-    // const sendEnd = datedata[1].toString()
 
- 
-
-//   const handleCloseModal = ({ target }) => {
-//    console.log(el.current.contains(target));
-//    if (Rolemodal && ! el.current.contains(target)) setRoleModal(false);
-//  };
-  
-  // useEffect(() => {
-  //   window.addEventListener('click', handleCloseModal);
-  //   return () => {
-  //     window.removeEventListener('click',handleCloseModal)
-  //   }
-  // }, [])
   
     const searchAction = () => {
         dispatch(SearchAxios(
@@ -69,7 +53,6 @@ function NavigationBarProject() {
             datedata[0],
             datedata[1]
         ))
-        // dispatch(loadResultAxios())
     }
 
     const JoinFunction = () => {
@@ -82,7 +65,6 @@ function NavigationBarProject() {
         dispatch(checkUserValidation());
         navigate(`/findprojectstep1`);
       }
-      
     }
 
 

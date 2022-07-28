@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { checkUserValidation, logOut, userInfo } from "../redux/modules/user";
 import {resetresult} from "../redux/modules/search"
+
+import JoinModal from "../components/Modal/JoinModal";
 
 import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo_vertical.svg"
@@ -21,6 +22,7 @@ function Header() {
 
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
+  const [Joinmodal, setJoinModal] = useState(false);
 
 
 //확인
@@ -71,13 +73,6 @@ function Header() {
     ResetResult()
   }
 
-  const MoveMyPage = () => {
-    if (nickname !== undefined) {
-      navigate(`/mypage/${nickname}/apply`);
-      ResetResult();
-    }
-    
-  }
 
   const MoveMain = () => {
     navigate(`/`)
@@ -101,7 +96,40 @@ function Header() {
   );
 
 
+  const JoinFunction = () => {
+    if (loginInfo === false) {
+      setJoinModal(true)
+      return false;
+    }
+    if (loginInfo === true) {
+      dispatch(checkUserValidation());
+      navigate(`/mypage/${nickname}/apply`);
+      ResetResult();
+    }
+  }
+
+
+  const JoinSetting = (e) => {
+    if (loginInfo === false) {
+      setJoinModal(true)
+      return false;
+    }
+    if (loginInfo === true) {
+      navigate(`/matchingcrew`)
+      setCurrentClick(e.target.id);
+      ResetResult()
+    }
+  }
+
+
+
+
   return (
+    <>
+    <ModralWrap>
+       {Joinmodal === true ? (<JoinModal close={setJoinModal}/>) : null}
+      </ModralWrap>
+    
     <BackGroundDiv>
       <HeaderWrap>
         <HeaderConWrap>
@@ -111,8 +139,8 @@ function Header() {
 
               <FindProject onClick={MoveProject} id="btn1">프로젝트 찾기</FindProject>
               <FindProject onClick={MoveResume} id="btn2">팀원 찾기</FindProject>
-              <FindMatching onClick={MoveMatching} id="btn3">프로젝트 매칭</FindMatching>
-              <FindProject onClick={MoveCallChat} id="btn4">화상채팅(임시)</FindProject>
+              <FindMatching onClick={() => {{JoinSetting()}}} id="btn3">프로젝트 매칭</FindMatching>
+              <FindProject onClick={MoveCallChat} id="btn4">인터뷰</FindProject>
 
             </HeaderLeftWrap>
           </HeaderAlignWrap>
@@ -129,18 +157,14 @@ function Header() {
             </LoginButton>
 
             <CircleImage
-              onClick={() => {
-                if (loginInfo) {
-                MoveMyPage();
-                } else {
-                  alert("로그인을 해주세요! 🥸");
-                }}}>
+              onClick={() => {JoinFunction()}}>
               <img src={BasicPhoto} />
             </CircleImage>
           </HeaderRightWrap>
         </HeaderConWrap>
       </HeaderWrap>
     </BackGroundDiv>
+    </>
   );
 }
 
@@ -221,9 +245,10 @@ const FindProject = styled.button`
     border: none;
     cursor: pointer;
     background-color: transparent;
-    font-size: 16px;
+    font-size: 15px;
     color: #FFF;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 22.5px;
     padding: 8px 16px 8px 16px;
     display: flex;
     justify-content: center;
@@ -239,9 +264,10 @@ const FindMatching = styled.button`
     cursor: pointer;
     background-color: transparent;
     /* margin: 10px; */
-    font-size: 16px;
+    font-size: 15px;
     color: #FFF;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 24.5px;
     padding: 8px 16px 8px 16px;
     display: flex;
     justify-content: center;
@@ -289,6 +315,11 @@ const CircleImage = styled.div`
     cursor: pointer;
 `
 
+const ModralWrap = styled.div`
+  position: relative;
+  left: -1600px;
+
+`
 
 
 

@@ -2,6 +2,9 @@
 ::-webkit-scrollbar {
   display: none;
   }
+*{
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
 
 .App{
   font-family: 'IBM Plex Sans KR', sans-serif;

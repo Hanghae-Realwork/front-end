@@ -745,7 +745,7 @@ const CheckButton = styled.button`
   cursor: pointer;
   border-radius: 5px;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 11px;
   margin-left: 20px;
 `
 
@@ -759,6 +759,7 @@ const InpuBirth = styled.input`
   width: 160px;
   font-weight: 400;
   font-size: 14px;
+  margin-top: -0.5px;
 `
 
 const InpuBirthDay = styled.input`
@@ -771,15 +772,15 @@ const InpuBirthDay = styled.input`
   width: 100px;
   font-weight: 400;
   font-size: 14px;
+  margin-top: -0.5px;
 `
 
 const SelectMonth = styled.select`
   width: 100px;
-  padding: 5px; 
+  padding: 7px; 
   border: none;
   outline: none;
   border-bottom: 1px solid white;
-  font-family: inherit;  
   background: url('arrow.jpg') no-repeat 95% 50%; 
   border-radius: 0px; 
   -webkit-appearance: none; 
@@ -803,6 +804,7 @@ const BirthAlignWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: flex-start;
+  /* border: 1px solid white; */
 `
 
 const AgreementHr = styled.hr`
