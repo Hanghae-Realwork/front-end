@@ -37,22 +37,11 @@ import SkillModal from "./components/Modal/SkillModal";
 import RoleModal from "./components/Modal/RoleModal";
 import LoginModal from "./components/Modal/LoginModal";
 import JoinModal from "./components/Modal/JoinModal";
-import Miniproject from "./components/MiniProject"
-import MiniResume from "./components/MiniProfile";
-
-
-
-import { useDispatch } from "react-redux";
-import { checkUserValidation } from "./redux/modules/user";
 
 
 
 function App() {
   
-  const dispatch = useDispatch();
-  useEffect(() => {
-   dispatch(checkUserValidation());
-  }, [])
   
   
   return (

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {loadProjectsAxios} from "../../redux/modules/postProfile";
 
 import CardRecruit from "../CardRecruit";
-
+import EmptyMyProject from "./EmptyMyProject";
 const Projects = () => {
     const dispatch = useDispatch();
     const nickname = useSelector((state) => state.user.userInfo.nickname);
@@ -20,12 +20,15 @@ const Projects = () => {
 
   return (
     <>
-          <MyPageResumeBackWrap>
-              
-        {data &&
+      <MyPageResumeBackWrap>
+        {data.length <= 0 ? (
+          <EmptyMyProject />
+        ) : (
+          data &&
           data.map((list, idx) => {
-              return <CardRecruit key={idx} data={list} />;
-          })}
+            return <CardRecruit key={idx} data={list} />;
+          })
+        )}
       </MyPageResumeBackWrap>
     </>
   );

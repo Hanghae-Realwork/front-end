@@ -20,18 +20,20 @@ import Plus from "../image/plus.svg";
 
 function MyPage() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const params = useParams();
+
 
   const loginInfo = useSelector((state) => state.user.userInfo);
+  const loginCheck = useSelector((state) => state.user.userInfo.is_login);
   const nickname = useSelector((state) => state.user.userInfo.nickname);
   const [files, setFiles] = React.useState("");
   const [filesImg, setFilesImg] = React.useState("");
-
+  console.log(loginInfo)
   const frm = new FormData();
   const reader = new FileReader();
 
-
+  useEffect(() => {
+    if (!loginCheck) dispatch(checkUserValidation());
+  },[])
   const [fireModal, setfireModal] = useState(false)
 
   const onChange = (e) => {
