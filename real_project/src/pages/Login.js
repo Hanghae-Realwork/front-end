@@ -5,8 +5,8 @@ import { React, useRef } from "react";
 import { loginAxios } from "../redux/modules/user";
 
 import Logo from "../image/Logo_vertical.svg"
-
-
+import { checkUserValidation } from "../redux/modules/user";
+import { useSelector } from "react-redux";
 function Login() {
   const loginidRef = useRef(null);
   const passwordRef = useRef(null);
@@ -14,11 +14,10 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
+ const is_login = useSelector((state) => state.user.userInfo.is_login); 
 
   // 로그인 벨리데이션 체크 함수
   const loginFunction = () => {
-
     if (
       loginidRef.current.value === "" ||
       passwordRef.current.value === "" ||
@@ -27,24 +26,20 @@ function Login() {
       loginidRef.current.value === null ||
       passwordRef.current.value === null
     ) {
-      alert("아이디 또는 비밀번호가 비어있어요! 🥸 ");
+      alert("아이디 또는 비밀번호가 비어있어요! 🥸");
       return false;
     }
     document.getElementById("LoginBtn").disabled = true;
-      dispatch(
-        loginAxios(loginidRef.current.value, passwordRef.current.value)
+      dispatch(loginAxios(loginidRef.current.value, passwordRef.current.value)
       ).then((success) => {
-        if (success === true) {
-          navigate("/");
+        if (success) {
           alert("랑데브에 오신 것을 환영합니다! 당신의 꿈을 펼쳐보세요 🥸");
-        } else {
-          console.log("로그인실패", success);
-          document.getElementById("LoginBtn").disabled = false;
+         navigate("/");
         }
       }).catch((err) => {
-         console.log("Error >>", err);
       document.getElementById("LoginBtn").disabled = false;
       })
+     
 
   };
 

@@ -38,12 +38,15 @@ import RoleModal from "./components/Modal/RoleModal";
 import LoginModal from "./components/Modal/LoginModal";
 import JoinModal from "./components/Modal/JoinModal";
 
-
+import { useDispatch } from "react-redux";
+import { checkUserValidation } from "./redux/modules/user";
 
 function App() {
+  const dispatch = useDispatch();
   
-  
-  
+  useEffect(() => {
+   dispatch(checkUserValidation());
+ }, []);
   return (
     <MainWrap>
       <Header />

@@ -11,10 +11,8 @@ import ApplyTag from "../../components/Tag/ApplyTag"
 import Check from "../../image/check.svg"
 
 
-
 const Application = () => {
-
-    // const userId =useSelector((state)=>state)
+  
     const dispatch = useDispatch();
     const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
 

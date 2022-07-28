@@ -10,7 +10,6 @@ import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo_vertical.svg"
 
 
-
 function Header() {
 
   const navigate = useNavigate();
@@ -25,10 +24,9 @@ function Header() {
 
 
 //확인
-  React.useEffect(() => {
-    if (nickname === undefined) {
+  useEffect(() => {
       dispatch(checkUserValidation());
-    }},[loginInfo]);
+    },[loginInfo]);
 
   const logoutClick = () => {
     const result = window.confirm("정말...나가실건가욥..? 🥸");
@@ -132,7 +130,7 @@ function Header() {
 
             <CircleImage
               onClick={() => {
-                if (nickname !== undefined || nickname !== null) {
+                if (loginInfo) {
                 MoveMyPage();
                 } else {
                   alert("로그인을 해주세요! 🥸");
