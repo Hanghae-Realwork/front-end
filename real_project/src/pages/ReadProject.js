@@ -3,12 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams, Outlet } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { LoadDetailAxios } from "../redux/modules/postRecruit";
-import { checkUserValidation } from "../redux/modules/user";
-import { loadApplyAxios } from "../redux/modules/postProfile";
+
 import { deleteRecruitAxios } from "../redux/modules/postRecruit"
-import DatePicker from "react-datepicker";
-import ko from "date-fns/locale/ko";
-import { loadEmployAxios } from "../redux/modules/postEmploy";
 
 import TagDev from "../components/Tag/TagCompoDev"
 import TagDes from "../components/Tag/TagCompoDes"
@@ -28,33 +24,31 @@ function ReadProject() {
   const dispatch = useDispatch();
   const { projectId } = useParams();
 
- 
   const [Arcodian, setArcodian] = useState(false);
 
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
   // 예약기능
   const [applicationId, setApplicationId] = useState("");
-  const [resumeId, setResumeId] = useState("")
- 
+  const [resumeId, setResumeId] = useState("");
+
   const data = useSelector((state) => state.interview.resumes);
-
   const Value = useSelector((state) => state.postRecruit.project);
-    const [currentClick, setCurrentClick] = useState(null);
-    const [prevClick, setPrevClick] = useState(null);
-//background
-    useEffect(() => {
-      if (currentClick !== null) {
-        let current = document.getElementById(currentClick);
-        current.style.backgroundColor = "#EAF3FB";
-      }
-      if (prevClick !== null) {
-        let prev = document.getElementById(prevClick);
-        prev.style.backgroundColor = "transparent";
-      }
-      setPrevClick(currentClick);
-    }, [currentClick]);
-  
+  //예약 button 색깔처리
+  const [currentClick, setCurrentClick] = useState(null);
+  const [prevClick, setPrevClick] = useState(null);
 
+  //buttonbackground
+  useEffect(() => {
+    if (currentClick !== null) {
+      let current = document.getElementById(currentClick);
+      current.style.backgroundColor = "#EAF3FB";
+    }
+    if (prevClick !== null) {
+      let prev = document.getElementById(prevClick);
+      prev.style.backgroundColor = "transparent";
+    }
+    setPrevClick(currentClick);
+  }, [currentClick]);
 
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
@@ -64,40 +58,31 @@ function ReadProject() {
     dispatch(loadResumesAxios());
   }, []);
 
-  
-  const deleteOnclick = async() => {
-    if (window.confirm("❗️정말 삭제하시는 건가요?")) {
-
+  const deleteOnclick = async () => {
+    if (window.confirm("정말 삭제하시는 건가요?")) {
       try {
         await dispatch(deleteRecruitAxios(projectId)).then((res) => {
           if (res) {
             alert("삭제되었습니다!🥸");
             navigate("/mainrecruit");
-          } else { 
+          } else {
             alert("페이지 오류입니다.🥸");
           }
-        })
-      
+        });
       } catch (err) {
-        alert(err)
+        alert(err);
       }
     } else {
       return false;
     }
-  }
-
-
+  };
   const applyOnClick = () => {
-    if (applicationId === "" ||
-      resumeId === ""
-    ) {
-      alert("날짜와 소개서를 선택해주세요!")
-    } else { 
-    dispatch(projectInterviewAxios(applicationId, resumeId));  
+    if (applicationId === "" || resumeId === "") {
+      alert("날짜와 소개서를 선택해주세요!");
+    } else {
+      dispatch(projectInterviewAxios(applicationId, resumeId));
     }
-   
-  }
-
+  };
 
   return (
     <>
@@ -145,7 +130,6 @@ function ReadProject() {
 
             <InputMainTextWrap>
               <EditDateWrap>
-                
                 {Value &&
                   Value[0]?.applications.map((list, idx) => {
                     return (
@@ -153,9 +137,12 @@ function ReadProject() {
                         style={
                           list.available
                             ? { backgroundColor: "" }
-                            : { backgroundColor: "#d9d9d9" ,pointerEvents:"none"}
+                            : {
+                                backgroundColor: "#d9d9d9",
+                                pointerEvents: "none",
+                              }
                         }
-                        event = {list}
+                        event={list}
                         key={list.applicationId}
                         id={idx}
                         onClick={(e) => {
@@ -235,7 +222,16 @@ function ReadProject() {
 
               <DivideLine />
 
-              <SubmitButton onClick={applyOnClick}>지원하기</SubmitButton>
+              <SubmitButton
+                style={
+                  applicationId !== "" && resumeId !== ""
+                    ? { }
+                    : { opacity: "0.5", pointerEvents: "none" }
+                }
+                onClick={applyOnClick}
+              >
+                지원하기
+              </SubmitButton>
             </ArcodianWrap>
           )}
         </ButtonWrap>
