@@ -28,7 +28,7 @@ function ButtonLine() {
   };
 
   const MoveMyProject = (e) => {
-    navigate(`/mypage/${nickname}/resumes`)
+    navigate(`/mypage/${nickname}/project`)
     setCurrentClick(e.target.id);
   };
 

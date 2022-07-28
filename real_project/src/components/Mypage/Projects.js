@@ -1,38 +1,44 @@
-import React, { useEffect , useState  } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
-import { deleteEmployAxios, loadSingleEmployAxios } from "../../redux/modules/postEmploy";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  deleteEmployAxios,
+  loadSingleEmployAxios,
+} from "../../redux/modules/postEmploy";
 import { checkUserValidation } from "../../redux/modules/user";
 import { useNavigation } from "react-day-picker";
-import { loadApplyAxios, loadResumesAxios } from "../../redux/modules/postProfile";
+import {loadProjectsAxios} from "../../redux/modules/postProfile";
 
-import TagDes from "../../components/Tag/TagCompoDes"
-import TagDev from "../../components/Tag/TagCompoDev"
+import TagDes from "../../components/Tag/TagCompoDes";
+import TagDev from "../../components/Tag/TagCompoDev";
 
-import letter from "../../image/letter.svg"
+import letter from "../../image/letter.svg";
 
-import CardEmpol from "../CardEmpol"
-const Resumes = () => {
+import CardEmpol from "../CardEmpol";
+import CardRecruit from "../CardRecruit";
+const Projects = () => {
+    const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const nickname = useSelector((state) => state.user.userInfo.nickname);
-  const data = useSelector((state) => state.postProfile.Myresumes);
-
+    const nickname = useSelector((state) => state.user.userInfo.nickname);
+ 
+    const data = useSelector((state) => state.postProfile.Myproject);
+console.log(data)
+    
   useEffect(() => {
     if (nickname && nickname) {
-       dispatch(loadResumesAxios(nickname));
+      dispatch(loadProjectsAxios(nickname));
     }
-},[loadResumesAxios])
- 
+  }, [loadProjectsAxios]);
+
   return (
     <>
-      <MyPageResumeBackWrap>
-        {data && data.map((list,idx) => {
-          return <CardEmpol key={idx} data={list} />;
-        })}
-        
+          <MyPageResumeBackWrap>
+              
+        {data &&
+          data.map((list, idx) => {
+            // return <CardRecruit data={list} />;
+          })}
       </MyPageResumeBackWrap>
     </>
   );
@@ -40,7 +46,7 @@ const Resumes = () => {
 
 //대형 틀
 const MyPageResumeBackWrap = styled.div`
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #303032;
   border-radius: 4px;
   width: 792px;
@@ -48,13 +54,13 @@ const MyPageResumeBackWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const PageAllWrap = styled.div`
   /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
-`
+`;
 
 //내부 틀
 const TopWrap = styled.div`
@@ -64,7 +70,7 @@ const TopWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 30px 129px 30px 75px;
-  `
+`;
 
 const MidWrap = styled.div`
   /* border: 1px solid black; */
@@ -74,7 +80,7 @@ const MidWrap = styled.div`
   align-items: flex-start;
   margin: 50px 129px 50px 75px;
   gap: 48px;
-`
+`;
 
 const BotWrap = styled.div`
   /* border: 1px solid black; */
@@ -84,14 +90,14 @@ const BotWrap = styled.div`
   align-items: center;
   margin: 30px 240px 30px 240px;
   gap: 10px;
-`
+`;
 
 //세부 틀
 const LeftTopWrap = styled.div`
   /* border: 1px solid black; */
   width: 200px;
   height: 200px;
-`
+`;
 
 const RightTopWrap = styled.div`
   /* border: 1px solid black; */
@@ -100,7 +106,7 @@ const RightTopWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
-`
+`;
 
 const MidTxetWrap = styled.div`
   /* border: 1px solid black; */
@@ -108,27 +114,26 @@ const MidTxetWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-content: flex-start;
-`
-
+`;
 
 //상세 틀
 const PhotoCircle = styled.div`
   border: 1px solid black;
   width: 200px;
-  height:200px;
+  height: 200px;
   border-radius: 100%;
-`
+`;
 
 const RightNameText = styled.span`
   font-size: 24px;
   font-weight: 700;
-`
+`;
 
 const RightRoleText = styled.span`
   font-size: 16px;
   font-weight: 500;
   margin-top: 4px;
-`
+`;
 
 const RightAdressText = styled.span`
   font-size: 16px;
@@ -137,7 +142,7 @@ const RightAdressText = styled.span`
   justify-content: center;
   align-items: center;
   margin-top: 12px;
-`
+`;
 
 const RightSelfText = styled.div`
   font-size: 14px;
@@ -146,24 +151,24 @@ const RightSelfText = styled.div`
   width: 344px;
   /* border: 1px solid black; */
   margin-top: 28px;
-`
+`;
 
 const MidTitle = styled.span`
   font-size: 16px;
   font-weight: 700;
-`
+`;
 
 const MidSelfText = styled.div`
   /* border: 1px solid black; */
   font-size: 14px;
   font-weight: 400;
   width: 580px;
-`
+`;
 
 const MidContentText = styled.span`
   font-size: 14px;
   font-weight: 400;
-`
+`;
 
 const MidTagWrap = styled.div`
   display: flex;
@@ -172,11 +177,11 @@ const MidTagWrap = styled.div`
   align-items: flex-start;
   margin-top: 5px;
   gap: 3px;
-`
+`;
 
 const FixedBtn = styled.button`
   padding: 12px 20px 12px 20px;
-  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
   border-radius: 4px;
   color: white;
   font-size: 16px;
@@ -186,11 +191,11 @@ const FixedBtn = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-`
+`;
 
 const DelBtn = styled.button`
   padding: 12px 20px 12px 20px;
-  background: #FFF;
+  background: #fff;
   border-radius: 4px;
   font-size: 16px;
   font-weight: 700;
@@ -199,7 +204,6 @@ const DelBtn = styled.button`
   border: 1px solid #303032;
   outline: none;
   cursor: pointer;
+`;
 
-`
-
-export default Resumes;
+export default Projects;

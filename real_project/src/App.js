@@ -21,7 +21,7 @@ import AddProfile from "./pages/AddProfile";
 
 import MatchingCrew from "./pages/MatchingCrew";
 import MatchingResume from "./pages/MatchingResume";
-
+import Projects from "./components/Mypage/Projects";
 // import Loading from "./pages/Loading";
 
 //Components 연결
@@ -41,6 +41,7 @@ import Miniproject from "./components/MiniProject"
 import MiniResume from "./components/MiniProfile";
 
 
+
 import { useDispatch } from "react-redux";
 import { checkUserValidation } from "./redux/modules/user";
 
@@ -58,11 +59,8 @@ function App() {
     <MainWrap>
       <Header />
 
-
       {/* <MatchingCrew></MatchingCrew>
       <MatchingResume></MatchingResume> */}
-
-
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -86,12 +84,12 @@ function App() {
         <Route path="/datemodal" element={<DateModal />}></Route>
         <Route path="/loginmodal" element={<LoginModal />}></Route>
         <Route path="/Joinmodal" element={<JoinModal />}></Route>
-        
 
         <Route path="mypage/:nickname/*" element={<MyPage />}>
           <Route path="apply" element={<Application />}></Route>
           <Route path="applys" element={<Recruitment />}></Route>
           <Route path="resumes" element={<Resumes />}></Route>
+          <Route path="project" element={<Projects/>}></Route>
         </Route>
 
         <Route path="/matchingcrew" element={<MatchingCrew />}></Route>
