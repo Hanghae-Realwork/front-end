@@ -40,7 +40,9 @@ function AddProfile(props) {
   const userIdInfo = useSelector((state) => state.user.userInfo);
   const _resumeId = useSelector((state) => state.user.userInfo.userId);
   const _nickname = useSelector((state) => state.user.userInfo.nickname);
-
+   const profileImage = useSelector(
+     (state) => state.user.userInfo.profileImage
+   );
   //로그인 유무
   const loginInfo = useSelector((state) => state.user.userInfo.is_login);
 
@@ -152,13 +154,24 @@ function AddProfile(props) {
           <SelfWrap>
             <NewProfileWrap>
               <ProfilePicWrap>
-                <NoShowCircleProfile />
+                {profileImage !== "" ? (
+                  <NoShowCircleProfile
+                    style={{ backgroundImage: `url(${profileImage})` }}
+                  />
+                ) : (
+                  <NoShowCircleProfile />
+                )}
               </ProfilePicWrap>
               <ProfileTextWrap>
-              <NickNameBox>{userIdInfo.length > 0 ? "" : userIdInfo.nickname}님</NickNameBox>
+                <NickNameBox>
+                  {userIdInfo.length > 0 ? "" : userIdInfo.nickname}님
+                </NickNameBox>
                 <PhoneNumberWrap>
                   <TitleTextTag>이메일</TitleTextTag>
-                  <Contect>{" "}{userIdInfo.length > 0 ? "" : userIdInfo.userId}</Contect>
+                  <Contect>
+                    {" "}
+                    {userIdInfo.length > 0 ? "" : userIdInfo.userId}
+                  </Contect>
                 </PhoneNumberWrap>
               </ProfileTextWrap>
             </NewProfileWrap>
@@ -166,10 +179,11 @@ function AddProfile(props) {
         </ProfileTopWrap>
         <SelfWrap>
           <SelfIntWrap>
-          <TitleTextTag>간단한 자기 소개</TitleTextTag>
-          <ProfileInput
-            placeholder="간단한 인사말을 남겨 주세요"
-            ref={introduceRef}></ProfileInput>
+            <TitleTextTag>간단한 자기 소개</TitleTextTag>
+            <ProfileInput
+              placeholder="간단한 인사말을 남겨 주세요"
+              ref={introduceRef}
+            ></ProfileInput>
           </SelfIntWrap>
         </SelfWrap>
 
@@ -206,103 +220,115 @@ function AddProfile(props) {
         <SelectBoxWrap>
           <SelectAllWrap>
             <RoleWrap>
-            <SelfWrap>
-              
-              <TitleTextTag>내 직군</TitleTextTag>
-              <RadioRoleWrap>
-                <RoleLabel>
-                  <input
-                    id="role"
-                    type="radio"
-                    value="frontend"
-                    name="role"
-                    onChange={onChangeRole}
-                  />
-                  FrontEnd 개발자
-                </RoleLabel>
-                <RoleLabel>
-                  <input
-                    id="role"
-                    type="radio"
-                    name="role"
-                    value="backend"
-                    onChange={onChangeRole}
-                  />
-                  BackEnd 개발자
-                </RoleLabel>
-                <RoleLabel>
-                  <input id="role" type="radio" name="role" value="designer" onChange={onChangeRole}/>
-                  UX / UI 디자이너
-                </RoleLabel>
-              </RadioRoleWrap>
-            </SelfWrap>
+              <SelfWrap>
+                <TitleTextTag>내 직군</TitleTextTag>
+                <RadioRoleWrap>
+                  <RoleLabel>
+                    <input
+                      id="role"
+                      type="radio"
+                      value="frontend"
+                      name="role"
+                      onChange={onChangeRole}
+                    />
+                    FrontEnd 개발자
+                  </RoleLabel>
+                  <RoleLabel>
+                    <input
+                      id="role"
+                      type="radio"
+                      name="role"
+                      value="backend"
+                      onChange={onChangeRole}
+                    />
+                    BackEnd 개발자
+                  </RoleLabel>
+                  <RoleLabel>
+                    <input
+                      id="role"
+                      type="radio"
+                      name="role"
+                      value="designer"
+                      onChange={onChangeRole}
+                    />
+                    UX / UI 디자이너
+                  </RoleLabel>
+                </RadioRoleWrap>
+              </SelfWrap>
 
-            <SkillWrap>
-            <SelfWrap>
-              {/* skill */}
-              <TitleTextTag>개발자</TitleTextTag>
-              <SelectBoxTab>
-                {dvelopSkills_list &&
-                  dvelopSkills_list.map((list, idx) => {
-                    return (
-                      <TecLabel key={idx}>
-                        <CheckBox
-                          type="checkbox"
-                          id="skills"
-                          value={list.data}
-                          onChange={(e) => {
-                            //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
-                            onCheckedElement(e.target.checked, e.target.value);
-                          }}
-                          checked={checkList.includes(list.data) ? true : false}
-                        ></CheckBox>
-                        {list.data}
-                      </TecLabel>
-                    );
-                  })}
-              </SelectBoxTab>
+              <SkillWrap>
+                <SelfWrap>
+                  {/* skill */}
+                  <TitleTextTag>개발자</TitleTextTag>
+                  <SelectBoxTab>
+                    {dvelopSkills_list &&
+                      dvelopSkills_list.map((list, idx) => {
+                        return (
+                          <TecLabel key={idx}>
+                            <CheckBox
+                              type="checkbox"
+                              id="skills"
+                              value={list.data}
+                              onChange={(e) => {
+                                //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                                onCheckedElement(
+                                  e.target.checked,
+                                  e.target.value
+                                );
+                              }}
+                              checked={
+                                checkList.includes(list.data) ? true : false
+                              }
+                            ></CheckBox>
+                            {list.data}
+                          </TecLabel>
+                        );
+                      })}
+                  </SelectBoxTab>
 
-              <TitleTextTag>디자이너</TitleTextTag>
-              <SelectBoxTab>
-                {designerSkills_list &&
-                  designerSkills_list.map((list, idx) => {
-                    return (
-                      <TecLabel key={idx}>
-                        <CheckBox
-                          type="checkbox"
-                          id="skills"
-                          value={list.data}
-                          onChange={(e) => {
-                            onCheckedElement(e.target.checked, e.target.value);
-                          }}
-                        ></CheckBox>
-                        {list.data}
-                      </TecLabel>
-                    );
-                  })}
-              </SelectBoxTab>
-              
-            </SelfWrap>
-            </SkillWrap>
+                  <TitleTextTag>디자이너</TitleTextTag>
+                  <SelectBoxTab>
+                    {designerSkills_list &&
+                      designerSkills_list.map((list, idx) => {
+                        return (
+                          <TecLabel key={idx}>
+                            <CheckBox
+                              type="checkbox"
+                              id="skills"
+                              value={list.data}
+                              onChange={(e) => {
+                                onCheckedElement(
+                                  e.target.checked,
+                                  e.target.value
+                                );
+                              }}
+                            ></CheckBox>
+                            {list.data}
+                          </TecLabel>
+                        );
+                      })}
+                  </SelectBoxTab>
+                </SelfWrap>
+              </SkillWrap>
             </RoleWrap>
           </SelectAllWrap>
         </SelectBoxWrap>
 
         <PortWrap>
-        <PortfollioWrap>
-          <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
-          <ProfileInput
-            placeholder="GitHub, Figma 등 링크를 적어 주세요"
-            ref={content2Ref}
-          ></ProfileInput>
-        </PortfollioWrap>
+          <PortfollioWrap>
+            <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
+            <ProfileInput
+              placeholder="GitHub, Figma 등 링크를 적어 주세요"
+              ref={content2Ref}
+            ></ProfileInput>
+          </PortfollioWrap>
         </PortWrap>
 
-        <Con1Wrap>          
-        <SelfWrap>
-          <TitleTextTag>본인을 소개해 주세요</TitleTextTag>
-          <TextArea ref={content3Ref}></TextArea>
-        </SelfWrap>
+        <Con1Wrap>
+          <SelfWrap>
+            <TitleTextTag>본인을 소개해 주세요</TitleTextTag>
+            <TextArea ref={content3Ref}></TextArea>
+          </SelfWrap>
         </Con1Wrap>
 
         <HeaderHeadLine />
@@ -366,7 +392,6 @@ const ProfileInput = styled.input`
   margin-top: 16px;
   border: 0.5px solid black;
   border-radius: 4px;
-
 `;
 
 const ProfilePicWrap = styled.div`
