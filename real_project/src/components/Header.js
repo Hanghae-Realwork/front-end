@@ -25,10 +25,9 @@ function Header() {
 
 
 //확인
-  React.useEffect(() => {
-    if (nickname === undefined) {
+  useEffect(() => {
       dispatch(checkUserValidation());
-    }},[loginInfo]);
+    },[loginInfo]);
 
   const logoutClick = () => {
     const result = window.confirm("정말...나가실건가욥..? 🥸");

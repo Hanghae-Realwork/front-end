@@ -1,8 +1,8 @@
+import React, {useEffect, useRef} from "react"
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { React, useRef } from "react";
-import { loginAxios } from "../redux/modules/user";
+import { loginAxios, checkUserValidation } from "../redux/modules/user";
 
 import Logo from "../image/Logo_vertical.svg"
 
@@ -14,6 +14,9 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(checkUserValidation());
+ },[]);
 
 
   // 로그인 벨리데이션 체크 함수
@@ -31,11 +34,13 @@ function Login() {
       return false;
     }
     document.getElementById("LoginBtn").disabled = true;
+
       dispatch(
         loginAxios(loginidRef.current.value, passwordRef.current.value)
       ).then((success) => {
         if (success === true) {
           navigate("/");
+          
           alert("랑데브에 오신 것을 환영합니다! 당신의 꿈을 펼쳐보세요 🥸");
         } else {
           console.log("로그인실패", success);
@@ -45,7 +50,6 @@ function Login() {
          console.log("Error >>", err);
       document.getElementById("LoginBtn").disabled = false;
       })
-
   };
 
 

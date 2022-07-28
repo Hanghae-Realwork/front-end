@@ -1,5 +1,10 @@
+import React,{useEffect} from "react"
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import {checkUserValidation} from "../redux/modules/user"
+
 import "../App.css"
 
 import Sample from "../image/mainSample.svg"
@@ -13,9 +18,23 @@ import planet from "../image/rotationplanet.svg"
 
 
 
+
 function Main () {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const nickname = useSelector((state) => state.user.userInfo.nickname);
+    console.log(nickname)
+    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
+
+    
+
+    useEffect(() => {
+       dispatch(checkUserValidation());
+    },[]);
+
+    
 
     return(
         <>

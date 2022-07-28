@@ -212,7 +212,6 @@ const MainNavigation = styled.div`
 const WriteButton = styled.button`
     font-size: 14px;
     font-weight: 700;
-    width: 150px;
     height: 56px;
     display: flex;
     justify-content: center;

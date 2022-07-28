@@ -36,14 +36,13 @@ const Projects = () => {
 
 //대형 틀
 const MyPageResumeBackWrap = styled.div`
-  background: #ffffff;
-  border: 1px solid #303032;
   border-radius: 4px;
-  width: 792px;
-  height: 877px;
+  background-color: transparent;
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 `;
 
 // const PageAllWrap = styled.div`

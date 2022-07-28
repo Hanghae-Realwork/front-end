@@ -2,6 +2,9 @@ import "./App.css";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import {checkUserValidation} from "./redux/modules/user"
 
 //Pages 연결
 import Join from "./pages/Join";
@@ -41,8 +44,7 @@ import JoinModal from "./components/Modal/JoinModal";
 
 
 function App() {
-  
-  
+
   
   return (
     <MainWrap>

@@ -10,7 +10,7 @@ import TagDev from "../../components/Tag/TagCompoDev"
 import CardEmpol from "../CardEmpol";
 
 import letter from "../../image/letter.svg"
-import EmptyMyCard from "./EmptyMyCard";
+import EmptyMyCard from "../Mypage/EmptyMyCard";
 
 //import 사용하지 않는 것 지워주세요!(승연)
 const Resumes = () => {
