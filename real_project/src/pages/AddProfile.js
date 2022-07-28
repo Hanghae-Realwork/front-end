@@ -498,7 +498,7 @@ const SubmitButtonWrap = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  width: 150px;
+  /* width: 150px; */
   height: 45px;
   background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
   border-radius: 4px;

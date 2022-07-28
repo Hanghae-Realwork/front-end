@@ -78,7 +78,7 @@ function MiniResume({ data, setResumeId }) {
               </MiniDateWrap>
 
               <TecWrap>
-                보유한 기술
+              <MiniBodyText>보유한 기술</MiniBodyText>
                 <TecMiniWrap>
                   {list &&
                     list?.skills.map((tag, index) => {
@@ -192,6 +192,7 @@ const TecMiniWrap = styled.div`
     height: 35px;
     gap: 4px;
     overflow: scroll;
+    pointer-events: auto;
 `
 
 

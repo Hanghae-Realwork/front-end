@@ -3,8 +3,11 @@ import styled from "styled-components"
 
 import Logo from "../../image/Logo_vertical.svg"
 import close from "../../image/closeIcon.svg"
+import { useNavigate } from "react-router-dom"
 
 function JoinModal (props) {
+
+    const navigate = useNavigate()
 
     const CloseModal = () => {
         props.close(false);
@@ -12,13 +15,20 @@ function JoinModal (props) {
 
     return(
         <>
-            <JoinAllWrap>
-                <CloseWrap><CloseBtn src={close} onClick={CloseModal}/></CloseWrap>
-                <LogoArea/>
-                <LoginGuide>서비스를 이용하기 위해 로그인이 필요합니다</LoginGuide>
-                <GotoLoginBtn>로그인하러 가기</GotoLoginBtn>
-                <GotoJoinBtn>회원가입하러 가기</GotoJoinBtn>
-            </JoinAllWrap>
+
+        <RelativeBackWrap>
+            <JustRelative>
+                <JoinAllWrap>
+                    <CloseWrap><CloseBtn src={close} onClick={CloseModal}/></CloseWrap>
+                    <LogoArea/>
+                    <LoginGuide>서비스를 이용하기 위해 로그인이 필요합니다</LoginGuide>
+                    <GotoLoginBtn onClick={() => {navigate(`/login`)}}>로그인하러 가기</GotoLoginBtn>
+                    <GotoJoinBtn onClick={() => {navigate(`/join`)}}>회원가입하러 가기</GotoJoinBtn>
+                </JoinAllWrap>
+            </JustRelative>
+        </RelativeBackWrap>
+
+
         </>
     )
 }
@@ -36,6 +46,8 @@ const JoinAllWrap = styled.div`
     align-items: center;
     position: absolute;
     z-index: 5;
+    top: 150px;
+    left: 1950px;
 `
 
 const LogoArea = styled.div`
@@ -98,6 +110,25 @@ const CloseWrap = styled.div`
 
 const CloseBtn = styled.img`
     cursor: pointer;
+`
+
+const RelativeBackWrap = styled.div`
+    background-color: rgba(48,48,50,0.80);
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+    width: 400vh;
+    height: 135vh;
+    position: absolute;
+    left: 0vh;
+    top: 0vh;
+    display: flex;
+
+`
+
+const JustRelative = styled.div`
+    position: relative;
+    left: -700px;
 `
 
 export default JoinModal

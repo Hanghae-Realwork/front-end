@@ -6,58 +6,12 @@ import "../../App.css"
 function MatchingBtn(){
   const navigate = useNavigate()
 
-  // const [changeClass, setChangeClass] = useState("change")
-  // // const [disClass, setDisClass] = useState(null)
-  // const testClick = (e) => {
-  //   setChangeClass(e.target.className)
-  //   // setDisClass(e.target)
-  //   //   console.log(e.target)
-   
-  //     if(changeClass === "change"){
-  //       setChangeClass(e.target.className = "dis")
-  //       console.log(e.target.className)
-  //     }
-  //     if(changeClass === "dis"){
-  //       setChangeClass(e.target.className = "change")
-  //       console.log(e.target.className)
-  //     }
-    
-  // }
-
-  // const [currentClick, setCurrentClick] = useState(null);
-  // const [prevClick, setPrevClick] = useState(null);
-
-  //   useEffect(
-//     (e) => {
-//     if (currentClick !== null) {
-//       let current = document.getElementById(currentClick);
-//         // current.style.fontWeight = "bold";
-//         current.style.Color = "#303032";
-//     }
-//     if (prevClick !== null) {
-//         let prev = document.getElementById(prevClick);
-//         prev.style.Color = "#d9d9d9";
-//     }
-//     setPrevClick(currentClick);
-//     }, [currentClick]
-// );
-
-  const [btnActive, setBtnActive] = useState(false);
-
-  const toggleActive = (e) => {
-    setBtnActive((prev) => {
-      return !prev;
-    });
-  };
-
   const MoveChapter = (e) => {
     navigate(`/matchingcrew`)
-    toggleActive()
   };
 
   const MoveResume = (e) => {
     navigate(`/matchingresume`)
-    toggleActive()
   };
 
 

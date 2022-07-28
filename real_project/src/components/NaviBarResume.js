@@ -10,6 +10,7 @@ import RoleModal from "../components/Modal/RoleModal"
 import SkillModal from "../components/Modal/SkillModal"
 import DateModal from "../components/Modal/DateModal"
 import TagDevSearch from "../components/Tag/TagSearchDev"
+import JoinModal from "./Modal/JoinModal";
 import TagDesSearch from "../components/Tag/TagSearchDes"
 import TagSearchRole from "../components/Tag/TagSearchRole"
 
@@ -28,6 +29,7 @@ function NavigationBarResume() {
     const [Rolemodal, setRoleModal] = useState(false);
     const [Skillmodal, setSkillModal] = useState(false);
     const [Datemodal, setDateModal] = useState(false);
+    const [Joinmodal, setJoinModal] = useState(false);
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -54,11 +56,26 @@ function NavigationBarResume() {
         ))
     }
 
+    const JoinFunction = () => {
+      
+        if (loginInfo === false) {
+          setJoinModal(true)
+          return false;
+        }
+        if (loginInfo === true) {
+          dispatch(checkUserValidation());
+          navigate(`/addprofile`);
+        }
+        
+      }
    
 
 
     return(
         <>
+        <ModralWrap>
+         {Joinmodal === true ? (<JoinModal close={setJoinModal}/>) : null}
+        </ModralWrap>
         <OnlyBackgroundDiv>
                 <MainNavigationWrap>
                     <NaviTextAllWrap>
@@ -72,14 +89,7 @@ function NavigationBarResume() {
                         </NaviTextWrap>
                     </NaviTextAllWrap>
 
-                    <WriteButton onClick={() => {
-                        if (loginInfo === false) {
-                                alert("로그인을 해주세요!");
-                            return false
-                        } if (loginInfo === true) {
-                            dispatch(checkUserValidation())
-                            navigate(`/addprofile`);}
-                        }}><img src={paper}/>소개글 올리기
+                    <WriteButton onClick={() => {{JoinFunction()}}}><img src={paper}/>소개글 올리기
                     </WriteButton>
 
                 </MainNavigationWrap>
@@ -271,6 +281,12 @@ const TagWrap = styled.div`
     align-items: center;
     gap: 5px;
     margin-top: 10px;
+`
+
+const ModralWrap = styled.div`
+  position: relative;
+  left: -1600px;
+
 `
 
 export default NavigationBarResume;

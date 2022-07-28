@@ -149,7 +149,7 @@ const TecWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 10px 0px;
-    /* pointer-events : none; */
+    pointer-events : none;
     line-height: 21px;
     /* overflow: scroll; */
 `
@@ -191,6 +191,7 @@ const TecMiniWrap = styled.div`
     line-height: 21px;
     overflow: scroll;
     gap: 4px;
+    pointer-events: auto;
 `
 
 const MiniNickWrap = styled.div`
