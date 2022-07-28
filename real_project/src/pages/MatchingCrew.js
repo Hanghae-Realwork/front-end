@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { loadProjectsAxios } from "../redux/modules/interview"
 import { matchesResumesAxios } from "../redux/modules/matches"
 import CradEmpol from "../components/CardEmpol"
+import EmptyCard from "../components/Mypage/EmptyCard";
 
 function MatchingCrew() {
     const dispatch = useDispatch();
@@ -66,15 +67,18 @@ function MatchingCrew() {
               </MatchingText>
             </TextAlingWrap>
             <ContentAlignWrap>
-              <MatchingResumeWrap>
+              <MatchingResumeWrap style={{display: projectId.length === 0 ? "none" : ""}}>
                 {data.map((list, index) => {
                   return <CradEmpol key={index} data={list} />;
                 })}
               </MatchingResumeWrap>
+              <MatchingResumeWrap style={{display: data.length > 0 ? "none" : ""}}>
+                <EmptyCard/>
+              </MatchingResumeWrap>
             </ContentAlignWrap>
           </MatchingBotWrap>
         ) : (
-          ""
+          <FallowText>모집중인 프로젝트 중 하나를 선택하시면 프로젝트와 맞는 사용자를 찾아 드립니다</FallowText>
         )}
       </>
     );
@@ -122,7 +126,7 @@ const MatchingBotBtnWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 60px;
 `
 
 const MatchingButton = styled.button`
@@ -148,6 +152,8 @@ const MatchingResumeWrap = styled.div`
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
+    overflow: scroll;
+    gap: 21px;
 `               
                         
 
@@ -158,7 +164,7 @@ const ContentAlignWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 50vh;
+  height: auto;
   /* border: 1px solid black; */
 `
 
@@ -174,11 +180,15 @@ const MatchingBotWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
-  width: 100%;
+  /* margin-top: 20px; */
+  height: auto;
+  padding-bottom: 80px;
   /* height: 20vh; */
   background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
+`
 
+const FallowText = styled.span`
+  /* margin-top: 20px; */
 `
  
 export default MatchingCrew

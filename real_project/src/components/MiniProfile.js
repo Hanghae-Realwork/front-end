@@ -192,6 +192,7 @@ const TecMiniWrap = styled.div`
     height: 35px;
     gap: 4px;
     overflow: scroll;
+    pointer-events: auto;
 `
 
 

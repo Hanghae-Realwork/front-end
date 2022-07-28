@@ -7,9 +7,12 @@ import MiniResume from "../components/MiniProfile";
 import { loadResumesAxios } from "../redux/modules/interview";
 import { matchesProjectsAxios } from "../redux/modules/matches";
 import CardRecruit from "../components/CardRecruit";
+import EmptyProject from "../components/Mypage/EmptyCard"
+
 
 
 function MatchingResume() {
+
     const dispatch = useDispatch();
 
     const myResume = useSelector((state) => state.interview.resumes);
@@ -18,7 +21,8 @@ function MatchingResume() {
     const [resumeId, setResumeId] = useState("");
     const [seeData, setSeeData] = useState(false)
 
-  
+    console.log(resumeId)
+ 
   useEffect(() => {
       dispatch(loadResumesAxios());
     }, []);
@@ -27,7 +31,6 @@ function MatchingResume() {
       dispatch(matchesProjectsAxios(resumeId));
       setSeeData(true);
   }
-
 
 
     return (
@@ -44,8 +47,7 @@ function MatchingResume() {
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
             <MatchingButton
-              style={
-                resumeId !== ""
+              style={resumeId !== ""
                   ? { backgroundColor: "" }
                   : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
               }
@@ -63,15 +65,18 @@ function MatchingResume() {
                 </MatchingText>
               </TextAlingWrap>
               <ContentAlignWrap>
-                <MatchingResumeWrap>
+                <MatchingResumeWrap style={{display: resumeId.length === 0 ? "none" : ""}}>
                   {data.map((list, idx) => {
                     return <CardRecruit key={idx} data={list} />;
                   })}
                 </MatchingResumeWrap>
+                <MatchingResumeWrap style={{display: data.length > 0 ? "none" : ""}}>
+                  <EmptyProject/>
+                </MatchingResumeWrap>
               </ContentAlignWrap>
             </MatchingBotWrap>
           ) : (
-            ""
+            <FallowText>작성하신 이력서 중 하나를 선택하시면 나와 맞는 프로젝트를 찾아 드립니다</FallowText>
           )}
       </>
     );
@@ -138,9 +143,11 @@ const MatchingBotWrap = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
+  align-items:center;
   margin-top: 40px;
-  width: 100%;
+  height: auto;
+  padding-bottom: 80px;
+  /* border: 1px solid black; */
   /* height: 20vh; */
   background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
 `
@@ -149,18 +156,15 @@ const MatchingResumeWrap = styled.div`
     /* border: 1px solid black; */
     width: 100%;
     margin-top: 20px;
-    height: 600px;
+    height: auto;
     overflow: scroll;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+    gap: 20px;
 `               
                         
-const MatchingContentWrap = styled.div`
-    margin-top: 40px;
-`
-
 const TextAlingWrap = styled.div`
   width: 1200px;
   margin-top: 35px;
@@ -173,8 +177,12 @@ const ContentAlignWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 50vh;
+  height: auto;
   /* border: 1px solid black; */
+`
+
+const FallowText = styled.span`
+  margin-top: 60px;
 `
  
 export default MatchingResume

@@ -514,36 +514,39 @@ function Join() {
             <AgreementTitle>서비스 이용정책</AgreementTitle>
               <AgreementWrap>
                 <AgreeChkWrap>
-                  <AgreementInput
-                    type="checkbox"
-                    id="all-check"
-                    checked={allCheck}
-                    onChange={allBtnEvent}
-                  />
-                  <AgreementText htmlFor="all-check">전체동의</AgreementText>
+                  <ChcekWrap>
+                    <AgreementInput
+                      type="checkbox"
+                      id="all-check"
+                      checked={allCheck}
+                      onChange={allBtnEvent}
+                    />
+                    <AgreementText htmlFor="all-check">전체동의</AgreementText>
+                  </ChcekWrap>
                 </AgreeChkWrap>
                   <AgreementHr/>
                 <AgreeChkWrap>
-                  <AgreementInput
-                    type="checkbox"
-                    id="check2"
-                    checked={useCheck}
-                    onChange={useBtnEvent}
-                  />
-                  <AgreementText htmlFor="check2">
-                    이용약관 (필수){" "}
-                  </AgreementText>
+                  <ChcekWrap>
+                    <AgreementInput type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent}/>
+                    <AgreementText htmlFor="check2">
+                      이용약관 (필수)
+                    </AgreementText>
+                  </ChcekWrap>
+                  <AgreementCheckButton>약관 보기</AgreementCheckButton>
                 </AgreeChkWrap>
                 <AgreeChkWrap>
-                  <AgreementInput
-                    type="checkbox"
-                    id="check3"
-                    checked={marketingCheck}
-                    onChange={marketingBtnEvent}
-                  />
-                  <AgreementText htmlFor="check3">
-                    마케팅 동의 (선택){" "}
-                  </AgreementText>
+                  <ChcekWrap>
+                    <AgreementInput
+                      type="checkbox"
+                      id="check3"
+                      checked={marketingCheck}
+                      onChange={marketingBtnEvent}
+                    />
+                    <AgreementText htmlFor="check3">
+                      마케팅 동의 (선택)
+                    </AgreementText>
+                  </ChcekWrap>
+                  <AgreementCheckButton>약관 보기</AgreementCheckButton>
                 </AgreeChkWrap>
               </AgreementWrap>
             </AgreeFullWrap>
@@ -720,8 +723,8 @@ const AgreementInput = styled.input`
   /* border-radius: 0.25rem; */
   width: 15px;
   height: 15px;
-  margin-bottom: -3px;
-  margin-right: 13.5px;
+  margin-bottom: 2px;
+  margin-right: 10px;
 
   &:checked {
     border-color: transparent;
@@ -810,12 +813,36 @@ const AgreementHr = styled.hr`
 const AgreeChkWrap = styled.div`
   margin: 0px 15px 0px 15px;
   /* border: 1px solid white; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
 `
 
 const AgreeFullWrap = styled.div`
   margin-top: 50px;
   /* border: 1px solid white; */
   width: 384px;
+`
+
+const AgreementCheckButton = styled.button`
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #d9d9d9;
+  /* color: white; */
+  cursor: pointer;
+  padding: 3px 12px 3px 12px;
+`
+
+const ChcekWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 `
 
 
