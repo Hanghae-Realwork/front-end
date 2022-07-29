@@ -248,7 +248,7 @@ const FindProjectStep01 = (props) => {
         setNewList(new_list.push(dateTime));
       });
     });
- 
+
     if (
       titleRef.current.value === "" ||
       detailsRef.current.value === "" ||
@@ -257,7 +257,7 @@ const FindProjectStep01 = (props) => {
       startDate === "" ||
       endDate === "" ||
       checkList === "" ||
-      new_list === "" ||
+
       titleRef.current.value === " " ||
       detailsRef.current.value === " " ||
       subscriptRef.current.value === " " ||
@@ -265,7 +265,6 @@ const FindProjectStep01 = (props) => {
       startDate === " " ||
       endDate === " " ||
       checkList === " " ||
-      new_list === " " ||
       titleRef.current.value === null ||
       detailsRef.current.value === null ||
       subscriptRef.current.value === null ||
@@ -273,7 +272,7 @@ const FindProjectStep01 = (props) => {
       startDate === null ||
       endDate === null ||
       checkList === null ||
-      new_list === null
+      new_list.length === 0
     ) {
       alert("아직 다 작성하지 않았어요!🥸");
     } else {
