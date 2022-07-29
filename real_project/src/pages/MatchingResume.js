@@ -10,6 +10,8 @@ import CardRecruit from "../components/CardRecruit";
 import EmptyProject from "../components/Mypage/EmptyCard"
 import EmptyMatchProject from "../components/Mypage/EmptyMatchProject";
 
+import EmptyAstroman from "../image/emptyAstroman.svg"
+
 
 function MatchingResume() {
 
@@ -44,9 +46,14 @@ function MatchingResume() {
             <MatchingText>
               어느 소개서에 맞는 프로젝트를 찾아드릴까요?
             </MatchingText>
-            <MatchingCardWrap>
+            <MatchingCardWrap style={{display: myResume.length > 0 ? "" : "none"}}>
               <MiniResume data={myResume} setResumeId={setResumeId} />
             </MatchingCardWrap>
+            <MatchingCardNoWrap style={{display: myResume.length > 0 ? "none" : ""}}>
+              <img src = {EmptyAstroman}/>
+              <span>아직 등록 하신 내 소개 글이 없는 것 같아요...</span>
+              <span>내 소개 글 등록해 주세요</span>
+            </MatchingCardNoWrap>
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
             <MatchingButton
@@ -192,6 +199,18 @@ const ContentAlignWrap = styled.div`
 
 const FallowText = styled.span`
   margin-top: 60px;
+`
+
+const MatchingCardNoWrap = styled.div`
+    height: 360px;
+    width: 1200px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
 `
  
 export default MatchingResume
