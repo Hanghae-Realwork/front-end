@@ -7,6 +7,8 @@ import {checkUserValidation} from "../redux/modules/user"
 
 import "../App.css"
 
+import Footer from "../components/Footer";
+
 import Sample from "../image/mainSample.svg"
 import Space from "../image/space.svg"
 import banner from "../image/banner_com_edit.svg"
@@ -15,6 +17,7 @@ import emptyspace from "../image/justspace.svg"
 import cloud from "../image/spacecloud.svg"
 import shuttle from "../image/editshuttle.svg"
 import planet from "../image/rotationplanet.svg"
+
 
 
 
@@ -57,6 +60,7 @@ function Main() {
                         프로젝트를 함께할 사람들을 기다리는 히치하이커들을 위한 공간, 신선한 아이디어의 프로젝트와 준비된 팀원들이 모이는 이곳은 renDev입니다.</ContentSpan>
                 </MainTextTitle>
             </BackgroundBot>
+            <Footer/>
         </>
 
     )
@@ -233,9 +237,8 @@ const CircleImage = styled.div`
 const BackgroundBot = styled.div`
     /* border: 1px solid black; */
     width: 100%;
-    margin-bottom: 80px;
-    margin-top: 40px;
-
+    margin-bottom: 127px;
+    margin-top: 127px;
 `
 
 

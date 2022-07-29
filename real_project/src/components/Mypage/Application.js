@@ -61,9 +61,9 @@ const Application = () => {
                     <TitleWrap>
                       <TitleText>{list && list.title}</TitleText>
                     </TitleWrap>
-                    <TitleWrap>
+                    <DetailWrap>
                       <ContentText>{list && list.details}</ContentText>
-                    </TitleWrap>
+                    </DetailWrap>
                     <RoleWrap>
                       <UserText>구하는 직군</UserText>
                       <RoleText>{list && list.role}</RoleText>
@@ -228,7 +228,22 @@ const TitleWrap = styled.div`
   width: 350px;
   margin-top: 15px;
   overflow: hidden;
+  /* border: 1px solid black; */
 `;
+
+const DetailWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 350px;
+  height: 34px;
+  margin-top: 15px;
+  overflow: hidden;
+  line-height: 21px;
+  /* border: 1px solid black; */
+`
+
 
 const TitleText = styled.span`
   font-size: 18px;

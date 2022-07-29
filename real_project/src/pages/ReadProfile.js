@@ -120,14 +120,12 @@ function EmploymentProfile() {
               </MidTxetWrap>
               <MidTxetWrap>
                 <MidTitle>포트폴리오 링크(URL)</MidTitle>
+                <UrlWrap>
                 <MidContentText>
-                  <a
-                    href={data.length > 0 ? data[0].content2 : ""}
-                    target="_blank"
-                  >
-                    {data.length > 0 ? data[0].content2 : ""}
-                  </a>
+                  <a href={data.length > 0 ? data[0].content2 : ""} target="_blank">
+                    {data.length > 0 ? data[0].content2 : ""}</a>
                 </MidContentText>
+                </UrlWrap>
               </MidTxetWrap>
               <MidTxetWrap>
                 <MidTitle>프로젝트 가능 기간</MidTitle>
@@ -258,8 +256,8 @@ const MidWrap = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: flex-start;
-  margin: 50px 129px 50px 75px;
+  align-items: center;
+  margin: 50px 50px 50px 75px;
   gap: 48px;
 `
 
@@ -268,11 +266,16 @@ const BotWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  width: 988.5px;
+  background-color: white;
+  /* height: 80px; */
   /* margin: 30px 240px 30px 240px; */
   gap: 10px;
   margin-top: 15px;
-  /* border: 5px solid black; */
+  border-top: none;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 `
 
 //세부 틀
@@ -296,7 +299,7 @@ const MidTxetWrap = styled.div`
   align-content: flex-start;
   gap: 8px;
   /* border: 1px solid black; */
-  width: 700px;
+  width: 800px;
 `
 
 
@@ -349,6 +352,11 @@ const MidSelfText = styled.div`
   font-size: 14px;
   font-weight: 400;
   width: 580px;
+  /* border: 1px solid black; */
+  width: 800px;
+  line-height: 21px;
+  height: 55px;
+  overflow: scroll;
 `
 
 const MidContentText = styled.span`
@@ -374,6 +382,7 @@ const FixedBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   width: 140px;
+  margin-bottom: 30px;
   /* margin-bottom: 20px; */
   /* height: 40px; */
   /* margin-top: -30px; */
@@ -389,6 +398,7 @@ const DelBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   width: 140px;
+  margin-bottom: 30px;
   /* margin-top: -20px; */
   /* height: 40px; */
   border: 1px solid #303032;
@@ -444,5 +454,15 @@ const BackColorTestWrap = styled.div`
   rgba(119, 195, 231, 0.15) 34.73%, rgba(174, 151, 227, 0.15) 67.67%, rgba(119, 195, 231, 0.15) 95.47%);
   background-size: cover;
   `
+
+  const UrlWrap = styled.div`
+  /* border: 1px solid black; */
+  line-height: 21px;
+  overflow: hidden;
+  width: 800px;
+  height: 25px;
+  /* width: 900px; */
+  `
+
 
 export default EmploymentProfile

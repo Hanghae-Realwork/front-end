@@ -102,7 +102,7 @@ function NavigationBarResume() {
                         </SerchLabel>
 
                         {Skillmodal === true ? <SkillModal close={setSkillModal} /> : null}
-                        <SerchLabel style={{width:"350px"}} onClick={() => {setSkillModal(!Skillmodal)}}>
+                        <SerchLabel style={{width:"370px"}} onClick={() => {setSkillModal(!Skillmodal)}}>
                             <ImageWrap><img src={pencil}/>보유 기술</ImageWrap>
                             <img src={down}/>
                         </SerchLabel>
@@ -193,7 +193,7 @@ const NaviWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 1200px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 `
 
 const MainNavigation = styled.div`
@@ -204,7 +204,7 @@ const MainNavigation = styled.div`
     justify-content: flex-start;
     align-items: center;
     border-radius: 4px;
-    width: 1100px;
+    width: 1120px;
 `
 
 const WriteButton = styled.button`

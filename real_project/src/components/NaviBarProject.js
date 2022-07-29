@@ -116,7 +116,7 @@ function NavigationBarProject() {
 
               
               <SerchLabel
-                style={{ width: "350px" }}
+                style={{ width: "370px" }}
                 onClick={() => {
                   setSkillModal(!Skillmodal);
                 }}
@@ -221,7 +221,7 @@ const NaviWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 1200px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 `
 
 const MainNavigation = styled.div`
@@ -232,7 +232,7 @@ const MainNavigation = styled.div`
     justify-content: flex-start;
     align-items: center;
     border-radius: 4px;
-    width: 1100px;
+    width: 1120px;
 `
 
 const WriteButton = styled.button`
