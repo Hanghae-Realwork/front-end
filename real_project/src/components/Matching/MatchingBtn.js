@@ -9,54 +9,28 @@ function MatchingBtn(){
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
 
-  const MoveChapter = (e) => {
+  const MoveChapter = () => {
     navigate(`/matchingcrew`)
-    setCurrentClick(e.target.id)
-    // console.log(e)
-    // console.log(e.target)
-    // console.log(e.target.id);
   };
 
-  const MoveResume = (e) => {
+  const MoveResume = () => {
     navigate(`/matchingresume`)
-    setCurrentClick(e.target.id);
-    // console.log(e)
-    // console.log(e.target)
-    // console.log(e.target.id);
   };
-
-  
-  useEffect(
-    (e) => {
-    if (currentClick !== null) {
-        let current = document.getElementById(currentClick);
-        current.style.color = "#303032";
-    }
-    if (prevClick !== null) {
-        let prev = document.getElementById(prevClick);
-        prev.style.color = "#d9d9d9"
-    }
-    setPrevClick(currentClick);
-    },
-    [currentClick]
-);
-
-
 
 
     return (
     
         <MatchingBtnWrap>
           <PositionWrap>
-            <BtnDivWrap onClick={(e) => {MoveChapter(e)}} id="projectButton">
+            <BtnDivWrap onClick={MoveChapter} id="projectButton">
               <LeftTriangleDiv/>
               <CenterDiv >내가 모집중인 프로젝트</CenterDiv>
               <RightTriangleDiv/>
             </BtnDivWrap>
 
-            <SecondBtnDivWrap  onClick={(e) => {MoveResume(e)}} id="resumeButton">
+            <SecondBtnDivWrap  onClick={MoveResume} id="resumeButton">
               <LeftTriangleDivtwo/>
-              <SecondCenterDiv >내 이력서</SecondCenterDiv>
+              <SecondCenterDiv >내 소개글</SecondCenterDiv>
               <RightTriangleDivtwo/>
             </SecondBtnDivWrap>
           </PositionWrap>
@@ -80,17 +54,17 @@ const MatchingBtnWrap = styled.div`
 const LeftTriangleDiv = styled.label`
   width: 0;
   height: 0;
-  border-bottom: 20px solid white;
-  border-top: 20px solid transparent;
-  border-left: 20px solid transparent;
-  border-right: 20px solid white;
+  border-bottom: 17px solid white;
+  border-top: 17px solid transparent;
+  border-left: 17px solid transparent;
+  border-right: 17px solid white;
   pointer-events: none;
 
 `
 
 const CenterDiv = styled.label`
     width: 200px;
-    height: 40px;
+    height: 34px;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -104,43 +78,43 @@ const CenterDiv = styled.label`
 const RightTriangleDiv = styled.label`
   width: 0;
   height: 0;
-  border-bottom: 20px solid white;
-  border-top: 20px solid transparent;
-  border-left: 20px solid white;
-  border-right: 20px solid transparent;
+  border-bottom: 17px solid white;
+  border-top: 17px solid transparent;
+  border-left: 17px solid white;
+  border-right: 17px solid transparent;
   pointer-events: none;
 `
 
 const LeftTriangleDivtwo = styled.div`
   width: 0;
   height: 0;
-  border-bottom: 20px solid white;
-  border-top: 20px solid transparent;
-  border-left: 20px solid transparent;
-  border-right: 20px solid white;
+  border-bottom: 17px solid white;
+  border-top: 17px solid transparent;
+  border-left: 17px solid transparent;
+  border-right: 17px solid white;
   pointer-events: none;
 `
 
 const SecondCenterDiv = styled.label`
     width: 120px;
-    height: 40px;
+    height: 34px;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 700;
     font-size: 16px;
-    color: #d9d9d9;
+    /* color: #d9d9d9; */
     cursor: pointer;
 `
 
 const RightTriangleDivtwo = styled.div`
   width: 0;
   height: 0;
-  border-bottom: 20px solid white;
-  border-top: 20px solid transparent;
-  border-left: 20px solid white;
-  border-right: 20px solid transparent;
+  border-bottom: 17px solid white;
+  border-top: 17px solid transparent;
+  border-left: 17px solid white;
+  border-right: 17px solid transparent;
   pointer-events: none;
 `
 
@@ -157,8 +131,6 @@ const SecondBtnDivWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0.5px;
-    margin-left: -35px;
 `
 
 const PositionWrap = styled.div`
@@ -169,7 +141,7 @@ const PositionWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    left: -375px;
+    left: -350px;
 `
 
 

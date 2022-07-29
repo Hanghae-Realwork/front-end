@@ -15,6 +15,9 @@ function ButtonLine() {
   const MoveMyRecruit = (e) => {
     navigate(`/mypage/${nickname}/apply`)
     setCurrentClick(e.target.id);
+    console.log(e)
+    console.log(e.target)
+    console.log(e.target.id)
   };
 
   const MoveMyEmpol = (e) => {
@@ -37,13 +40,15 @@ function ButtonLine() {
       (e) => {
       if (currentClick !== null) {
           let current = document.getElementById(currentClick);
-          current.style.outline = "3px white";
-          current.style.background = "#3d3d3d";
+          current.style.border = "1px solid white";
+          current.style.fontWeight = "700";
+          current.style.backgroundColor = "#3d3d3d";
       }
       if (prevClick !== null) {
           let prev = document.getElementById(prevClick);
-          prev.style.outline = "none";
-          prev.style.background = "#303032";
+          prev.style.border = "none";
+          prev.style.fontWeight = "400";
+          prev.style.backgroundColor = "#303032";
       }
       setPrevClick(currentClick);
       },
@@ -60,7 +65,7 @@ function ButtonLine() {
           <RightTopWrap>
             <MyMenuButton onClick={MoveMyRecruit} id="Mybtn1">내 지원 현황</MyMenuButton>
             <MyMenuButton onClick={MoveMyEmpol} id="Mybtn2">내 모집 현황</MyMenuButton>
-            <MyMenuButton onClick={MoveMyResume} id="Mybtn3">내 이력서</MyMenuButton>
+            <MyMenuButton onClick={MoveMyResume} id="Mybtn3">내 소개글</MyMenuButton>
             <MyMenuButton onClick={MoveMyProject} id="Mybtn4">내 프로젝트</MyMenuButton>
           </RightTopWrap>
         </BackgroundAllWrap>
@@ -108,7 +113,7 @@ const OnlyBackgroundWrap = styled.div`
 // `
 
 const MyMenuButton = styled.label`
-  padding: 8px 20px 8px 20px;
+  padding: 4px 15px 4px 15px;
   width: 100px;
   height: 30px;
   font-size: 15px;

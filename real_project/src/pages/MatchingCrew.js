@@ -12,9 +12,12 @@ import CradEmpol from "../components/CardEmpol"
 
 import EmptyMatchCard from "../components/Mypage/EmptyMatchCard"
 
+import EmptyAstroman from "../image/emptyAstroman.svg"
+
 function MatchingCrew() {
     const dispatch = useDispatch();
     const myProject = useSelector((state) => state.interview.projects);
+
 
     //매칭하기 
     const data = useSelector((state) => state.matches.resumes)
@@ -43,9 +46,14 @@ function MatchingCrew() {
             <MatchingText>
               어느 프로젝트에 맞는 팀원을 찾아드릴까요?
             </MatchingText>
-            <MatchingCardWrap>
+            <MatchingCardWrap style={{display: myProject.length > 0 ? "" : "none"}}>
               <MiniProject data={myProject} setProjectId={setProjectId} />
             </MatchingCardWrap>
+            <MatchingCardNoWrap style={{display: myProject.length > 0 ? "none" : ""}}>
+              <img src = {EmptyAstroman}/>
+              <span>아직 등록 하신 프로젝트가 없는 것 같아요...</span>
+              <span>프로젝트를 등록해 주세요</span>
+            </MatchingCardNoWrap>
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
             <MatchingButton
@@ -63,9 +71,7 @@ function MatchingCrew() {
         {seeData ? (
           <MatchingBotWrap>
             <TextAlingWrap>
-              <MatchingText>
-                맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
-              </MatchingText>
+              <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
             </TextAlingWrap>
             <ContentAlignWrap>
               <MatchingResumeWrap
@@ -110,13 +116,13 @@ const MatchingTopWrap = styled.div`
 `
 
 const MatchingText = styled.span`
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 18px;
     margin-bottom: 24px;
 `
 
 const MatchingCardWrap = styled.div`
-    height: 360px;
+    height: 384px;
     width: 1200px;
     /* border: 1px solid black; */
     overflow-x: scroll;
@@ -196,7 +202,19 @@ const MatchingBotWrap = styled.div`
 `
 
 const FallowText = styled.span`
-  /* margin-top: 20px; */
+  /* margin-top: 60px; */
+`
+
+const MatchingCardNoWrap = styled.div`
+    height: 360px;
+    width: 1200px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
 `
  
 export default MatchingCrew

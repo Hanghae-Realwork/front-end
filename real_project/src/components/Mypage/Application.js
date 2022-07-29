@@ -228,6 +228,7 @@ const TitleWrap = styled.div`
   align-items: flex-start;
   width: 350px;
   margin-top: 15px;
+  overflow: hidden;
 `;
 
 const TitleText = styled.span`

@@ -7,10 +7,7 @@ import {
   dvelopSkills_list,
   designerSkills_list,
 } from "../shared/developeSkills";
-import {
-  projectsPhotosAxios,
-  resumesCreateAxios,
-} from "../redux/modules/postEmploy";
+import {modifyEmployAxios} from "../redux/modules/postEmploy";
 
 import astroman from "../image/astroman.svg";
 import Letter from "../image/letter.svg";
@@ -119,7 +116,7 @@ function EditProfile(props) {
     } else {
 
      dispatch(
-            resumesCreateAxios(
+          modifyEmployAxios(
               introduceRef.current.value,
               startDate.getFullYear() +
                 "-" +
