@@ -33,7 +33,8 @@ function ReadProject() {
   // 예약기능
   const [applicationId, setApplicationId] = useState("");
   const [resumeId, setResumeId] = useState("");
-
+  const image =useSelector((state)=>state.user)
+  console.log(image)
   const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
 
@@ -169,21 +170,21 @@ function ReadProject() {
             <RoleTitle>작성자 프로필</RoleTitle>
           </ProfileTitleWrap>
           <ProfileDetailWrap>
-            {profileImage !== "" ? (
+            {Value && Value[0]?.photos ? (
               <ProfilePhoto
                 style={{
                   backgroundImage: `url(${
-                    profileImage !== " " ? profileImage : ""
+                    Value && Value[0]?.photos?.toString()
                   })`,
                 }}
               />
             ) : (
               <ProfilePhoto />
             )}
+
             <UserAllWrap>
               <UserNameWrap>
                 <UserText>{Value && Value[0]?.nickname}</UserText>
-                <UserText>{Value && Value[0]?.role}</UserText>
               </UserNameWrap>
               <UserMailWrap>
                 <LetterImg src={letter}></LetterImg>
@@ -398,12 +399,11 @@ const ProfileDetailWrap = styled.div`
 const ProfilePhoto = styled.div`
   width: 100px;
   height: 100px;
-  background-image: ${astroman};
+  background-image: url(${astroman});
   background-position: center;
   background-size: cover;
   /* border: 1px solid black; */
   border-radius: 50%;
-
 `;
 
 const UserNameWrap = styled.div`
