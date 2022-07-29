@@ -40,7 +40,7 @@ function EditProfile(props) {
   //기존 내용
   const userDescription = useSelector((state) => state.postEmploy.resumes);
 
-console.log(userDescription)
+
   //userId,nickname 정보
   const userIdInfo = useSelector((state) => state.user.userInfo);
   const _resumeId = useSelector((state) => state.user.userInfo.userId);

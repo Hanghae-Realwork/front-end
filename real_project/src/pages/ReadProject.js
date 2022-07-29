@@ -34,7 +34,7 @@ function ReadProject() {
   const [applicationId, setApplicationId] = useState("");
   const [resumeId, setResumeId] = useState("");
   const image =useSelector((state)=>state.user)
-  console.log(image)
+
   const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
 
