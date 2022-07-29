@@ -164,7 +164,7 @@ function EmploymentProfile() {
               <>
               <TestWrap>
                 <PropseText onClick={() => {setArcodian(!Arcodian);}}>
-                  모집중인 프로젝트에 합류 시킬까요?
+                  모집중인 프로젝트에 초대할까요?
                   <DownIcon src={down} style={{transform: Arcodian === false ? "rotate(0deg)" : "rotate(180deg)"}}/>
                 </PropseText>
                 
@@ -268,6 +268,7 @@ const BotWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  height: 80px;
   /* margin: 30px 240px 30px 240px; */
   gap: 10px;
   margin-top: 15px;

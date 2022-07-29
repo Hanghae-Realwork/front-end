@@ -67,7 +67,9 @@ function MiniProject({ data, setProjectId }) {
               </MiniNickWrap>
 
               <MiniTopWrap>
-                <MiniNickName>{list?.title}</MiniNickName>
+                <MiniTitleWrap>
+                  <MiniNickName>{list?.title}</MiniNickName>
+                </MiniTitleWrap>
                 <MiniBodyTextWrap>
                   <MiniBodyText>{list?.subscript}</MiniBodyText>
                 </MiniBodyTextWrap>
@@ -119,20 +121,18 @@ const MiniCardAllWrap = styled.div`
 `
 
 const MiniTopWrap = styled.div`
-    /* border: 1px solid black; */
     width: 344px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
-    margin: 12px 0px 23px 0px;
+    margin: 10px 0px 19px 0px;
     pointer-events : none;
     line-height: 21px;
     overflow: hidden;
 `
 
 const MiniBodyWrap = styled.div`
-    /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 5px 0px;
     display: flex;
@@ -145,7 +145,6 @@ const MiniBodyWrap = styled.div`
 `
 
 const MiniDateWrap = styled.div`
-    /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 16px 0px;
     pointer-events : none;
@@ -154,12 +153,10 @@ const MiniDateWrap = styled.div`
 `
 
 const TecWrap = styled.div`
-    /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 10px 0px;
     pointer-events : none;
     line-height: 21px;
-    /* overflow: scroll; */
 `
 
 const MiniNickName = styled.span`
@@ -188,7 +185,6 @@ const MiniDateText = styled.span`
 `
 
 const TecMiniWrap = styled.div`
-    /* bordeR: 1px solid black; */
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -204,7 +200,6 @@ const TecMiniWrap = styled.div`
 
 const MiniNickWrap = styled.div`
   margin: 20px 20px 0px 20px;
-  /* border: 1px solid; */
   width: 344px;
   display: flex;
   flex-flow: row wrap;
@@ -226,11 +221,16 @@ const MiniBodyTextWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin: 12px 0px 0px 0px;
-  /* border: 1px solid; */
   width: 344px;
   overflow: hidden;
-  height: 40px;
+  height: 37px;
   line-height: 21px;
 ` 
+
+const MiniTitleWrap = styled.div`
+  width: 344px;
+  height: 24px;
+  overflow: hidden;
+`
 
 export default MiniProject;

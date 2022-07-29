@@ -42,6 +42,7 @@ import RoleModal from "./components/Modal/RoleModal";
 import LoginModal from "./components/Modal/LoginModal";
 import JoinModal from "./components/Modal/JoinModal";
 import AgreementModal from "./components/Modal/AgreementModal";
+import MiniProject from "./components/MiniProject";
 
 
 function App() {

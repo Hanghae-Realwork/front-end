@@ -216,7 +216,7 @@ function ReadProject() {
                   setArcodian(!Arcodian);
                 }}
               >
-                <ArcodianText>이 프로젝트에 지원하고 싶어요?</ArcodianText>
+                <ArcodianText>이 프로젝트에 지원해 볼까요?</ArcodianText>
                 <DownIcon
                   src={down}
                   style={{
@@ -462,18 +462,6 @@ const MiniResumeWrap = styled.div`
   gap: 15px;
 `;
 
-const CalenderWrap = styled.div`
-  border: 0.5px solid #d9d9d9;
-  border-radius: 4px;
-  width: 380px;
-  height: 350px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 20px;
-  margin-top: 12px;
-`;
 
 const ViewDateWrap = styled.div`
   /* border: 1px solid black; */
