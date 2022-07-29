@@ -7,11 +7,11 @@ import {
   dvelopSkills_list,
   designerSkills_list,
 } from "../shared/developeSkills";
-import {modifyEmployAxios} from "../redux/modules/postEmploy";
+import {loadSingleEmployAxios, modifyEmployAxios} from "../redux/modules/postEmploy";
 
 import astroman from "../image/astroman.svg";
 import Letter from "../image/letter.svg";
-
+import { useParams } from "react-router-dom";
 //DatePicker
 import DatePicker from "react-datepicker";
 import ko from "date-fns/locale/ko";
@@ -23,7 +23,9 @@ function EditProfile(props) {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { resumeId } = useParams();
 
+  //skills 배열
   const [checkList, setCheckList] = useState([]);
   //저장데이터
   const introduceRef = useRef(null);
@@ -37,8 +39,8 @@ function EditProfile(props) {
 
   //기존 내용
   const userDescription = useSelector((state) => state.postEmploy.resumes);
-  console.log(userDescription)
 
+console.log(userDescription)
   //userId,nickname 정보
   const userIdInfo = useSelector((state) => state.user.userInfo);
   const _resumeId = useSelector((state) => state.user.userInfo.userId);
@@ -57,9 +59,9 @@ function EditProfile(props) {
   }, [loginInfo]);
 
   useEffect(() => {
-    if (startDate && startDate) {
-    }
-  }, [startDate]);
+    dispatch(loadSingleEmployAxios(resumeId));
+    
+  }, []);
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
   const onCheckedElement = (checked, item) => {
     if (checked) {
@@ -91,8 +93,6 @@ function EditProfile(props) {
       checkList === "" ||
       content2Ref.current.value === "" ||
       content3Ref.current.value === "" ||
-      _resumeId === "" ||
-      _nickname === "" ||
       introduceRef.current.value === " " ||
       startDate === " " ||
       endDate === " " ||
@@ -100,46 +100,45 @@ function EditProfile(props) {
       checkList === " " ||
       content2Ref.current.value === " " ||
       content3Ref.current.value === " " ||
-      _resumeId === " " ||
-      _nickname === " " ||
+   
       introduceRef.current.value === null ||
       startDate === null ||
       endDate === null ||
       role === null ||
       checkList === null ||
       content2Ref.current.value === null ||
-      content3Ref.current.value === null ||
-      _resumeId === null ||
-      _nickname === null 
+      content3Ref.current.value === null 
+   
     ) {
         alert("아직 다 작성하지 않았어요!🥸");
     } else {
 
      dispatch(
-          modifyEmployAxios(
-              introduceRef.current.value,
-              startDate.getFullYear() +
-                "-" +
-                (startDate.getMonth() + 1) +
-                "-" +
-                startDate.getDate(),
-              endDate.getFullYear() +
-                "-" +
-                (endDate.getMonth() + 1) +
-                "-" +
-                endDate.getDate(),
-              role,
-              checkList,
-              content2Ref.current.value,
-              content3Ref.current.value,
-              _resumeId,
-              _nickname
-            )
-     ).then(() => {
-        navigate("/mainemployment");
-     }).catch((err) => {
-          console.log(err);
-     })
+       modifyEmployAxios(
+         resumeId,
+         introduceRef.current.value,
+         startDate.getFullYear() +
+           "-" +
+           (startDate.getMonth() + 1) +
+           "-" +
+           startDate.getDate(),
+         endDate.getFullYear() +
+           "-" +
+           (endDate.getMonth() + 1) +
+           "-" +
+           endDate.getDate(),
+         role,
+         checkList,
+         content2Ref.current.value,
+         content3Ref.current.value
+       )
+     )
+       .then(() => {
+         navigate("/mainemployment");
+       })
+       .catch((err) => {
+         // console.log(err);
+       });
        
       } 
     }
@@ -184,7 +183,7 @@ function EditProfile(props) {
           <SelfIntWrap>
             <TitleTextTag>간단한 자기 소개</TitleTextTag>
             <ProfileInput
-              defaultValue={userDescription[0]?.content3}
+              defaultValue={userDescription[0]?.content}
               ref={introduceRef}
             ></ProfileInput>
           </SelfIntWrap>
@@ -330,7 +329,10 @@ function EditProfile(props) {
         <Con1Wrap>
           <SelfWrap>
             <TitleTextTag>본인을 소개해 주세요</TitleTextTag>
-            <TextArea ref={content3Ref} defaultValue={userDescription[0]?.content}></TextArea>
+            <TextArea
+              ref={content3Ref}
+              defaultValue={userDescription[0]?.content3}
+            ></TextArea>
           </SelfWrap>
         </Con1Wrap>
 
