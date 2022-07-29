@@ -105,7 +105,7 @@ function NavigationBarResume() {
 
                         {Skillmodal === true ? <SkillModal close={setSkillModal} /> : null}
                         <SerchLabel style={{width:"350px"}} onClick={() => {setSkillModal(!Skillmodal)}}>
-                            <ImageWrap><img src={pencil}/>구하는 기술</ImageWrap>
+                            <ImageWrap><img src={pencil}/>요구 기술</ImageWrap>
                             <img src={down}/>
                         </SerchLabel>
 

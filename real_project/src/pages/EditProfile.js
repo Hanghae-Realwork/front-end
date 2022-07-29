@@ -1,65 +1,68 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { checkUserValidation } from "../redux/modules/user";
-import { 
-  loadSingleEmployAxios,
-  modifyEmployAxios,
-  loadEmployAxios,
-  projectsPhotosAxios, 
- } from "../redux/modules/postEmploy";
-import { dvelopSkills_list, designerSkills_list } from "../shared/developeSkills";
+import {
+  dvelopSkills_list,
+  designerSkills_list,
+} from "../shared/developeSkills";
+import {
+  projectsPhotosAxios,
+  resumesCreateAxios,
+} from "../redux/modules/postEmploy";
 
-import Letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
+import Letter from "../image/letter.svg";
 
-function EditProfile() {
-  
+//DatePicker
+import DatePicker from "react-datepicker";
+import ko from "date-fns/locale/ko";
+import Footer from "../components/Date/Footer";
+
+
+
+function EditProfile(props) {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { resumeId } = useParams();
- 
 
-  //사진 파일 유무
-  const [filesImg, setFilesImg] = useState("");
-  const [files, setFiles] = useState("");
   const [checkList, setCheckList] = useState([]);
-
   //저장데이터
   const introduceRef = useRef(null);
   const content2Ref = useRef(null);
   const content3Ref = useRef(null);
   const [role, setRole] = useState("");
 
-  //캘린더 (22.07.12 추가 전)
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  //캘린더 (22.07.15 추가 후)
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  //기존 내용
+  const userDescription = useSelector((state) => state.postEmploy.resumes);
+  console.log(userDescription)
 
   //userId,nickname 정보
-    const userIdInfo = useSelector((state) => state.user.userInfo);
- 
+  const userIdInfo = useSelector((state) => state.user.userInfo);
+  const _resumeId = useSelector((state) => state.user.userInfo.userId);
+  const _nickname = useSelector((state) => state.user.userInfo.nickname);
+   const profileImage = useSelector(
+     (state) => state.user.userInfo.profileImage
+   );
   //로그인 유무
-    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-    //기존 내용
-    const userDescription = useSelector((state) => state.postEmploy.resumes);
+  const loginInfo = useSelector((state) => state.user.userInfo.is_login);
 
   //로그인 useEffect
- useEffect(() => {
-   if (loginInfo === false) {
-     dispatch(checkUserValidation());
-   }
- }, [loginInfo]);
+  useEffect(() => {
+    if (loginInfo === false) {
+      dispatch(checkUserValidation());
+    }
+  }, [loginInfo]);
 
   useEffect(() => {
-      dispatch(loadSingleEmployAxios(resumeId));
-  }, []); 
-
-    
-  useEffect(() => {
-    dispatch(loadEmployAxios());
-  },[])
-    
+    if (startDate && startDate) {
+    }
+  }, [startDate]);
   //skills:onChenge 함수를 사용하여 이벤트를 감지, 필요한 값 받아온다.
   const onCheckedElement = (checked, item) => {
     if (checked) {
@@ -74,64 +77,77 @@ function EditProfile() {
     setRole(e.target.value);
   };
 
+  //캘린더
+  const onChange = (dates) => {
+    const [startDate, endDate] = dates;
+    setStartDate(startDate);
+    setEndDate(endDate);
+  };
 
   //버튼 누르면 저장
   const handleClick = () => {
-    console.log(
-      resumeId,
-      introduceRef.current.value,
-      start,
-      end,
-      role,
-      checkList,
-      content2Ref.current.value,
-      content3Ref.current.value
-    );
     if (
-      resumeId === "" ||
       introduceRef.current.value === "" ||
-      start === "" ||
-      end === "" ||
+      startDate === "" ||
+      endDate === "" ||
       role === "" ||
       checkList === "" ||
       content2Ref.current.value === "" ||
       content3Ref.current.value === "" ||
-      resumeId === " " ||
+      _resumeId === "" ||
+      _nickname === "" ||
       introduceRef.current.value === " " ||
-      start === " " ||
-      end === " " ||
+      startDate === " " ||
+      endDate === " " ||
       role === " " ||
       checkList === " " ||
       content2Ref.current.value === " " ||
       content3Ref.current.value === " " ||
-      resumeId === null ||
+      _resumeId === " " ||
+      _nickname === " " ||
       introduceRef.current.value === null ||
-      start === null ||
-      end === null ||
+      startDate === null ||
+      endDate === null ||
       role === null ||
       checkList === null ||
       content2Ref.current.value === null ||
-      content3Ref.current.value === null) { 
-      alert("아직 다 작성하지 않았어요!🥸");
-      }
-      dispatch(
-        modifyEmployAxios(
-          resumeId,
-          introduceRef.current.value,
-          start,
-          end,
-          role,
-          checkList,
-          content2Ref.current.value,
-          content3Ref.current.value
-        )
-      ).then(() => {
+      content3Ref.current.value === null ||
+      _resumeId === null ||
+      _nickname === null 
+    ) {
+        alert("아직 다 작성하지 않았어요!🥸");
+    } else {
+
+     dispatch(
+            resumesCreateAxios(
+              introduceRef.current.value,
+              startDate.getFullYear() +
+                "-" +
+                (startDate.getMonth() + 1) +
+                "-" +
+                startDate.getDate(),
+              endDate.getFullYear() +
+                "-" +
+                (endDate.getMonth() + 1) +
+                "-" +
+                endDate.getDate(),
+              role,
+              checkList,
+              content2Ref.current.value,
+              content3Ref.current.value,
+              _resumeId,
+              _nickname
+            )
+     ).then(() => {
         navigate("/mainemployment");
-      }).catch((err) => {
-        alert("페이지 오류입니다.")
-      })
-  };
-    
+     }).catch((err) => {
+          console.log(err);
+     })
+       
+      } 
+    }
+      
+
   return (
     <BackgroundAllWrap>
       <AddProfileWrap>
@@ -142,165 +158,194 @@ function EditProfile() {
 
         <ProfileTopWrap>
           <SelfWrap>
-            <NickNameBox>
-              {userIdInfo.length > 0 ? "" : userIdInfo.nickname}님
-            </NickNameBox>
-            <ToggleBox>
-              <TitleTextTag>이메일 정보</TitleTextTag>
-              <PhoneNumberWrap>
-                <Contect>
-                  {" "}
-                  {userIdInfo.length > 0 ? "" : userIdInfo.userId}
-                </Contect>
-              </PhoneNumberWrap>
-            </ToggleBox>
-            <div>
-              <TitleTextTag>간단한 자기 소개</TitleTextTag>
-              <div>
-                <ProfileInput
-                  defaultValue={userDescription[0]?.content}
-                  ref={introduceRef}
-                ></ProfileInput>
-              </div>
-            </div>
+            <NewProfileWrap>
+              <ProfilePicWrap>
+                {profileImage !== "" ? (
+                  <NoShowCircleProfile
+                    style={{ backgroundImage: `url(${profileImage})` }}
+                  />
+                ) : (
+                  <NoShowCircleProfile />
+                )}
+              </ProfilePicWrap>
+              <ProfileTextWrap>
+                <NickNameBox>
+                  {userIdInfo.length > 0 ? "" : userIdInfo.nickname}님
+                </NickNameBox>
+                <PhoneNumberWrap>
+                  <TitleTextTag>이메일</TitleTextTag>
+                  <Contect>
+                    {" "}
+                    {userIdInfo.length > 0 ? "" : userIdInfo.userId}
+                  </Contect>
+                </PhoneNumberWrap>
+              </ProfileTextWrap>
+            </NewProfileWrap>
           </SelfWrap>
-
-          <ProfilePicWrap>
-            {userDescription[0]?.resumeImage ? (
-              <ShowCircleProfile src={userDescription[0].resumeImage} />
-            ) : (
-              <NoShowCircleProfile></NoShowCircleProfile>
-            )}
-            <PhotoEditWrap></PhotoEditWrap>
-          </ProfilePicWrap>
-
-          {/* 사진 */}
         </ProfileTopWrap>
-        <div>{/* 캘린더 작업물이 들어갈 공간 입니다 */}</div>
+        <SelfWrap>
+          <SelfIntWrap>
+            <TitleTextTag>간단한 자기 소개</TitleTextTag>
+            <ProfileInput
+              defaultValue={userDescription[0]?.content3}
+              ref={introduceRef}
+            ></ProfileInput>
+          </SelfIntWrap>
+        </SelfWrap>
+
+        {/*🗓 캘린더 작업물시작*/}
+        <SelectAllWrap>
+          <SelfWrap>
+            <CalWrap>
+              <TitleTextTag>프로젝트 진행 가능 기간</TitleTextTag>
+              <CalendarWrap>
+                <DatePickerWrapper
+                  popperContainer={Popper}
+                  calendarContainer={Calendar}
+                  controls={["calendar"]}
+                  dateFormat="YYYY-MM-DD"
+                  locale={ko}
+                  selected={startDate}
+                  onChange={onChange}
+                  startDate={startDate}
+                  minDate={new Date()}
+                  endDate={endDate}
+                  monthsShown={2}
+                  selectsRange
+                  inline
+                />
+              </CalendarWrap>
+              <CalendarInfoWrap>
+                <Footer start={startDate} end={endDate} />
+              </CalendarInfoWrap>
+            </CalWrap>
+          </SelfWrap>
+        </SelectAllWrap>
+
+        {/* Role */}
         <SelectBoxWrap>
           <SelectAllWrap>
-            <SelfWrap>
-              <TitleTextTag>내 직군</TitleTextTag>
-              <RadioRoleWrap>
-                <label>
-                  <input
-                    id="role"
-                    type="radio"
-                    value="frontend"
-                    name="role"
-                    // checked={userDescription[0]?.role === "frontend"}
-                    onChange={onChangeRole}
-                  />
-                  FrontEnd
-                </label>
-                <label>
-                  <input
-                    id="role"
-                    type="radio"
-                    name="role"
-                    value="backend"
-                    // checked={userDescription[0]?.role === "backend"}
-                    onChange={onChangeRole}
-                  />
-                  BackEnd
-                </label>
-                <label>
-                  <input
-                    id="role"
-                    type="radio"
-                    name="role"
-                    value="designer"
-                    // checked={userDescription[0]?.role === "designer"}
-                    onChange={onChangeRole}
-                  />
-                  Designer
-                </label>
-              </RadioRoleWrap>
-            </SelfWrap>
-            <SelfWrap>
-              {/* skill */}
-              <SkillWrap>
-                <SkillTitleTextTag>개발자</SkillTitleTextTag>
-                <SelectBoxTab>
-                  {dvelopSkills_list &&
-                    dvelopSkills_list.map((list, idx) => {
-                      return (
-                        <TecLabel key={idx}>
-                          <CheckBox
-                            type="checkbox"
-                            id="skills"
-                            value={list.data}
-                            onChange={(e) => {
-                              //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
-                              onCheckedElement(
-                                e.target.checked,
-                                e.target.value
-                              );
-                            }}
-                            // checked={
-                            //   checkList.includes(list.data) ? true : false
-                            // }
-                          ></CheckBox>
-                          {list.data}
-                        </TecLabel>
-                      );
-                    })}
-                </SelectBoxTab>
-              </SkillWrap>
+            <RoleWrap>
+              <SelfWrap>
+                <TitleTextTag>내 직군</TitleTextTag>
+                <RadioRoleWrap>
+                  <RoleLabel>
+                    <input
+                      id="role"
+                      type="radio"
+                      value="frontend"
+                      name="role"
+                      onChange={onChangeRole}
+                    />
+                    FrontEnd 개발자
+                  </RoleLabel>
+                  <RoleLabel>
+                    <input
+                      id="role"
+                      type="radio"
+                      name="role"
+                      value="backend"
+                      onChange={onChangeRole}
+                    />
+                    BackEnd 개발자
+                  </RoleLabel>
+                  <RoleLabel>
+                    <input
+                      id="role"
+                      type="radio"
+                      name="role"
+                      value="designer"
+                      onChange={onChangeRole}
+                    />
+                    UX / UI 디자이너
+                  </RoleLabel>
+                </RadioRoleWrap>
+              </SelfWrap>
 
               <SkillWrap>
-                <SkillTitleTextTag>디자이너</SkillTitleTextTag>
-                <SelectBoxTab>
-                  {designerSkills_list &&
-                    designerSkills_list.map((list, idx) => {
-                      return (
-                        <TecLabel key={idx}>
-                          {" "}
-                          <CheckBox
-                            type="checkbox"
-                            id="skills"
-                            value={list.data}
-                            onChange={(e) => {
-                              onCheckedElement(
-                                e.target.checked,
-                                e.target.value
-                              );
-                            }}
-                          ></CheckBox>
-                          {list.data}
-                        </TecLabel>
-                      );
-                    })}
-                </SelectBoxTab>
+                <SelfWrap>
+                  {/* skill */}
+                  <TitleTextTag>개발자</TitleTextTag>
+                  <SelectBoxTab>
+                    {dvelopSkills_list &&
+                      dvelopSkills_list.map((list, idx) => {
+                        return (
+                          <TecLabel key={idx}>
+                            <CheckBox
+                              type="checkbox"
+                              id="skills"
+                              value={list.data}
+                              onChange={(e) => {
+                                //onchange이벤트 발생 시 checked여부와 value값을 배열 데이터에 넣는다.
+                                onCheckedElement(
+                                  e.target.checked,
+                                  e.target.value
+                                );
+                              }}
+                              checked={
+                                checkList.includes(list.data) ? true : false
+                              }
+                            ></CheckBox>
+                            {list.data}
+                          </TecLabel>
+                        );
+                      })}
+                  </SelectBoxTab>
+
+                  <TitleTextTag>디자이너</TitleTextTag>
+                  <SelectBoxTab>
+                    {designerSkills_list &&
+                      designerSkills_list.map((list, idx) => {
+                        return (
+                          <TecLabel key={idx}>
+                            <CheckBox
+                              type="checkbox"
+                              id="skills"
+                              value={list.data}
+                              onChange={(e) => {
+                                onCheckedElement(
+                                  e.target.checked,
+                                  e.target.value
+                                );
+                              }}
+                            ></CheckBox>
+                            {list.data}
+                          </TecLabel>
+                        );
+                      })}
+                  </SelectBoxTab>
+                </SelfWrap>
               </SkillWrap>
-            </SelfWrap>
+            </RoleWrap>
           </SelectAllWrap>
         </SelectBoxWrap>
-        <PortfollioWrap>
-          <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
-          <ProfileInput
-            defaultValue={userDescription[0]?.content2}
-            ref={content2Ref}
-          ></ProfileInput>
-        </PortfollioWrap>
+
+        <PortWrap>
+          <PortfollioWrap>
+            <TitleTextTag>포트폴리오 링크를 적어주세요</TitleTextTag>
+            <ProfileInput
+              defaultValue={userDescription[0]?.content2}
+              ref={content2Ref}
+            ></ProfileInput>
+          </PortfollioWrap>
+        </PortWrap>
 
         <Con1Wrap>
           <SelfWrap>
             <TitleTextTag>본인을 소개해 주세요</TitleTextTag>
-            <TextArea
-              defaultValue={userDescription[0]?.content3}
-              ref={content3Ref}
-            ></TextArea>
+            <TextArea ref={content3Ref} defaultValue={userDescription[0]?.content}></TextArea>
           </SelfWrap>
         </Con1Wrap>
+
         <HeaderHeadLine />
         <SubmitButtonWrap>
-          <SubmitButton onClick={handleClick}>소개글 수정하기</SubmitButton>
+          <SubmitButton onClick={handleClick}>수정 완료</SubmitButton>
         </SubmitButtonWrap>
       </AddProfileWrap>
     </BackgroundAllWrap>
   );
 }
+//datePicker
 
 const BackgroundAllWrap = styled.div`
   background: linear-gradient(
@@ -322,12 +367,12 @@ const BackgroundAllWrap = styled.div`
 `;
 
 const AddProfileWrap = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 20px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: auto;
   height: auto;
   margin: 70px;
@@ -341,16 +386,18 @@ const SelfWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  padding: 30px;
-  height: auto;
-`;
+  /* padding: 30px; */
+  margin-left: 30px;
+`
 
 const ProfileInput = styled.input`
   padding: 10px;
   outline: none;
   border: none;
-  width: 555px;
-  border-bottom: 1px solid black;
+  width: 1100px;
+  margin-top: 16px;
+  border: 0.5px solid black;
+  border-radius: 4px;
 `;
 
 const ProfilePicWrap = styled.div`
@@ -359,8 +406,6 @@ const ProfilePicWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  padding: 30px;
-  margin: 50px 150px 0px 0px;
 `;
 
 const ProfileTopWrap = styled.div`
@@ -373,7 +418,7 @@ const ProfileTopWrap = styled.div`
 `;
 
 const NoShowCircleProfile = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 200px;
   height: 200px;
   border-radius: 100%;
@@ -383,16 +428,9 @@ const NoShowCircleProfile = styled.div`
   background-size: cover;
 `;
 
-const ShowCircleProfile = styled.img`
-  position: relative;
-  width: 200px;
-  height: 200px;
-  border: 1px solid black;
-  border-radius: 100%;
-  background-size: cover;
-  background-position: center;
-  object-fit: cover;
-  background-color: transparent;
+const RoleLabel = styled.label`
+  font-size: 16px;
+  font-weight: 400;
 `;
 
 const SelectBoxWrap = styled.div`
@@ -417,9 +455,10 @@ const SelectAllWrap = styled.div`
 const PhoneNumberWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   /* border: 1px solid black; */
+  gap: 12px;
 `;
 
 const RadioRoleWrap = styled.div`
@@ -427,82 +466,21 @@ const RadioRoleWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
   /* border: 1px solid black; */
   gap: 25px;
 `;
 
-const TitleTextTag = styled.p`
-  font-weight: bold;
+const TitleTextTag = styled.span`
+  font-size: 16px;
+  font-weight: 500;
   color: #323230;
 `;
-
-// const CheckBoxWrapper = styled.div`
-//   position: relative;
-//   margin-top:10px;
-//   margin-left: 20px;
-// `;
-
-// const CheckBoxLabel = styled.label`
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 50px;
-//   height: 26px;
-//   border-radius: 15px;
-//   background: #bebebe;
-//   cursor: pointer;
-//   &::after {
-//     content: "";
-//     display: block;
-//     border-radius: 50%;
-//     width: 18px;
-//     height: 18px;
-//     margin: 3px;
-//     background: #ffffff;
-//     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-//     transition: 0.2s;
-//   }
-// `;
-
-// const CheckBox = styled.input`
-//   opacity: 0;
-//   z-index: 1;
-//   border-radius: 15px;
-//   width: 50px;
-//   height: 26px;
-//   &:checked + ${CheckBoxLabel} {
-//     background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);;
-//     &::after {
-//       content: "";
-//       display: block;
-//       border-radius: 50%;
-//       width: 19px;
-//       height: 19px;
-//       margin-left: 28px;
-//       transition: 0.2s;
-//     }
-//   }
-// `;
 
 const Contect = styled.span`
   font-size: 16px;
   font-weight: 400;
 `;
-
-const ToggleBox = styled.div`
-  /* border: 1px solid black; */
-  width: auto;
-  margin: 30px 0px 30px 0px;
-  /* margin-left: 20px; */
-`;
-
-// const ToggleTextWrap = styled.div`
-//   /* border: 1px solid black; */
-//   display: flex;
-//   flex-flow: row wrap;
-//   justify-content: flex-start;
-//   align-items: center;
-// `
 
 const HeaderHeadLine = styled.hr`
   /* border: 1px solid #D9D9D9; */
@@ -524,94 +502,22 @@ const TitleText = styled.span`
   margin: 30px 0px 30px 30px;
 `;
 
-// const CareerInput = styled.input`
-//   width: 550px;
-//   border: none;
-//   outline: none;
-//   border-bottom: 1px solid black;
-//   padding: 8px;
-// `
-
-// const CareerInputButton = styled.button`
-//   width: 100px;
-//   padding: 5px;
-//   margin: 0px 25px 0px 25px;
-//   background-color: #303032;
-//   color: white;
-//   font-weight: 700;
-//   font-size: 15px;
-//   border: none;
-//   outline: none;
-// `
-
-// const RightInputDiv = styled.div`
-//   /* border: 1px solid black; */
-//   width: 1100px;
-//   height: 200px;
-//   display: flex;
-//   flex-flow: row wrap;
-//   gap: 10px;
-//   line-height: 21px;
-//   margin-top: 20px;
-//   overflow: scroll;
-// `
-
-// const InputCareerWrap = styled.div`
-//   display: flex;
-//   flex-flow: column nowrap;
-//   justify-content: center;
-//   align-items: flex-start;
-//   width: 1140px;
-// `
-
-// const CareerLabel = styled.label`
-//   background-color: #ae97E3;
-//   font-size: 12px;
-//   border-radius: 5px;
-//   height: 20px;
-//   color: white;
-//   padding: 4px;
-// `
-
 const PortfollioWrap = styled.div`
+  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  width: 1140px;
+  width: 1100px;
+  margin-left: 30px;
 `;
 
-// const PointCraeer = styled.textarea`
-//   resize: none;
-//   width: 1140px;
-//   height: 400px;
-//   border-radius: 4px;
-//   padding: 10px;
-// `
-
-const NickNameBox = styled.span`
+const NickNameBox = styled.div`
   font-size: 20px;
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 10px;
   /* border: 1px solid black; */
-`;
-
-const PhotoEditWrap = styled.div`
-  /* border: 1px solid black; */
-  width: auto;
-  margin-top: 24px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-`;
-
-const PhotoText = styled.span`
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
 `;
 
 const SubmitButtonWrap = styled.div`
@@ -623,7 +529,7 @@ const SubmitButtonWrap = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  width: 150px;
+  /* width: 150px; */
   height: 45px;
   background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
   border-radius: 4px;
@@ -631,33 +537,22 @@ const SubmitButton = styled.button`
   border: none;
   cursor: pointer;
   margin: 30px 0px 30px 0px;
-  padding: 12px 28px;
+  padding: 10px 23px 10px 23px;
   color: white;
   font-weight: 700;
 `;
 
-// const PhotoInput = styled.input`
-//   /* display: none; */
-// `
-
 //skills input
 const SelectBoxTab = styled.div`
   /* border: 1px solid black; */
+  width: 1100px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
   gap: 13px;
-`;
-
-const SkillWrap = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  width: 580px;
-  padding: 10px;
-  /* border: 1px solid black; */
+  margin-top: 10px;
+  margin-bottom: 16px;
 `;
 
 const TecLabel = styled.label`
@@ -684,15 +579,47 @@ const CheckBox = styled.input`
   }
 `;
 
-const SkillTitleTextTag = styled.p`
-  font-weight: bold;
-  color: #ae97e3;
+const NewProfileWrap = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 450px;
+  margin-top: 70px;
 `;
+
+const ProfileTextWrap = styled.div`
+  /* border: 1px solid black; */
+
+`
+
+const SelfIntWrap = styled.div`
+  margin-top: 105px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+`
+
+const CalWrap = styled.div`
+  margin-top: 70px;
+`
+const RoleWrap = styled.div`
+  margin-top: 60px;
+`
+const SkillWrap = styled.div`
+  margin-top: 60px;
+`
+const PortWrap = styled.div`
+  margin-top: 54px;
+`
 
 const Con1Wrap = styled.div`
   margin-top: 70px;
   margin-bottom: 60px;
-`;
+`
+
 const TextArea = styled.textarea`
   width: 1120px;
   height: 400px;
@@ -701,5 +628,56 @@ const TextArea = styled.textarea`
   outline: none;
   border-radius: 4px;
   resize: none;
+`
+
+
+
+
+
+
+const DatePickerWrapper = styled(({ className, ...props }) => (
+  <DatePicker {...props} wrapperClassName={className} />
+))`
+  width: 100%;
 `;
+const Popper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  z-index: 2;
+`;
+
+const Calendar = styled.div`
+  /* width : 706px; */
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
+const CalendarWrap = styled.div`
+  border: 0.5px solid #d9d9d9;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 700px;
+  height: 330px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const CalendarInfoWrap = styled.div`
+  border: 0.5px solid #d9d9d9;
+  width: 297px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+`;
+
+
 export default EditProfile;
+
+
+

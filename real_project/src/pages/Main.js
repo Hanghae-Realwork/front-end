@@ -43,7 +43,7 @@ function Main() {
                             개발자들은 물론, 디자이너까지, 아이디어의 우주를 헤엄치며 함께할 팀원을 찾는 여러분께 renDev가 협업을 위한 랑데부 포인트가 되어드리겠습니다.</SubMain></SubWrap>
                         <MainButtonWrap>
                             <PageButton onClick={() => {navigate(`/mainrecruit`)}}>프로젝트 페이지로 가기</PageButton>
-                            <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>크루원 구하러 가기</PageButton2>
+                            <PageButton2 onClick={() => {navigate(`/mainemployment`)}}>팀원 구하러 가기</PageButton2>
                         </MainButtonWrap>
                     </MaininTitleTopWrap>
                             <Planet src={planet} className="AnimationPlanet"/>
