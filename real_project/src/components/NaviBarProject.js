@@ -123,7 +123,9 @@ function NavigationBarProject() {
               >
                 <ImageWrap>
                   <img src={pencil} />
+
                  보유 기술
+
                 </ImageWrap>
                 <img src={down} />
               </SerchLabel>
