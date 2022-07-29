@@ -69,8 +69,6 @@ function NavigationBarResume() {
         
       }
    
-
-
     return(
         <>
         <ModralWrap>
@@ -81,10 +79,10 @@ function NavigationBarResume() {
                     <NaviTextAllWrap>
                         <img src={Fullastroman}></img>
                         <NaviTextWrap>
-                            <NaviTextTitle>당신의 프로젝트를 찾아보세요!</NaviTextTitle>
+                            <NaviTextTitle>당신에 드는 팀원을 찾아보세요!</NaviTextTitle>
                             <NaviConWrap>
-                                <NaviTextContent>랑데브에는 다양한 아이디어의 프로젝트가 있습니다</NaviTextContent>
-                                <NaviTextContent>당신의 꿈을 향해 로켓을 발사하세요</NaviTextContent>
+                                <NaviTextContent>랑데브에는 좋은 사람들이 모입니다.</NaviTextContent>
+                                <NaviTextContent>내 프로젝트에 맞는 팀원과 랑데부하세요.</NaviTextContent>
                             </NaviConWrap>
                         </NaviTextWrap>
                     </NaviTextAllWrap>

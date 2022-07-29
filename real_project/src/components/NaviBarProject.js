@@ -79,13 +79,13 @@ function NavigationBarProject() {
             <NaviTextAllWrap>
               <img src={telescope}></img>
               <NaviTextWrap>
-                <NaviTextTitle>마음에 드는 팀원을 찾아보세요!</NaviTextTitle>
+                <NaviTextTitle>마음에 드는 아이디어를 찾아보세요!</NaviTextTitle>
                 <NaviConWrap>
                   <NaviTextContent>
-                  랑데브에는 좋은 사람들이 모입니다.
+                  랑데브에는 다양한 아이디어의 프로젝트가 있습니다.
                   </NaviTextContent>
                   <NaviTextContent>
-                    내 프로젝트에 맞는 팀원과 랑데부하세요.
+                    나와 딱 맞는 프로젝트에 랑데부하세요.
                   </NaviTextContent>
                 </NaviConWrap>
               </NaviTextWrap>
@@ -124,7 +124,7 @@ function NavigationBarProject() {
                 <ImageWrap>
                   <img src={pencil} />
 
-                 보유 기술
+                 요구 기술
 
                 </ImageWrap>
                 <img src={down} />

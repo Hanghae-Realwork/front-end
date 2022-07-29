@@ -15,7 +15,6 @@ function MatchingBtn(){
 
   const MoveResume = () => {
     navigate(`/matchingresume`)
-
   };
 
 

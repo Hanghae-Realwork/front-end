@@ -68,7 +68,7 @@ const CardRecruit = ({ data }) => {
             <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
             <CardBotTextDateInfo> {data.start} ~ {data.end} </CardBotTextDateInfo>
           </CardBotTopWrap>
-          <CardViewButton onClick={() => {navigate("/readproject/" + `${data.projectId}`);}}>프로젝트 보러 가기</CardViewButton>
+          <CardViewButton onClick={() => {navigate("/readproject/" + `${data.projectId}`);}}>프로젝트 상세 가기</CardViewButton>
         </AllBotWrap>
       </AllWrap>
     );

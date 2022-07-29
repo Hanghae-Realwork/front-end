@@ -15,13 +15,13 @@ function DateModal (props) {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
-    console.log(startDate)
+    // console.log(startDate)
 
     const DoubleCalenderOnChange = (dates) => {
         const [start, end] = dates;
         setStartDate(start);
         setEndDate(end);
-        console.log(start, end)
+        // console.log(start, end)
       };
 
     const AddDate = () => {

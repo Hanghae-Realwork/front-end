@@ -13,7 +13,7 @@ function SelectSkill() {
 
     if (checked) {
       setCheckList([...checkList, item])
-      console.log(checkList)
+  
     } else if (!checked) {
       setCheckList(checkList.filter(el => el !== item));
     }
