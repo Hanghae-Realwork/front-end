@@ -14,7 +14,43 @@ function RecruitTag({list}) {
 
   return (
     <LoadWrap>
-      {list.status === "reserved" ? (
+      {list.status === "matched" || list.status === "unmatched" ? (
+        <>
+          <ApplyStatusLabel
+            style={{
+              fontWeight: "600",
+              border: "1.5px solid black",
+              backgroundColor: "ghostwhite",
+            }}
+          >
+            지원서 접수
+            <img src={check} />
+          </ApplyStatusLabel>
+          <ApplyLine />
+          <InterviewStatusLabel
+            style={{
+              fontWeight: "600",
+              border: "1.5px solid black",
+              backgroundColor: "ghostwhite",
+            }}
+          >
+            인터뷰 완료
+            <img src={check} />
+          </InterviewStatusLabel>
+
+          <ApplyLine />
+          <RecruitmentStatusLabel
+            style={{
+              fontWeight: "600",
+              border: "1.5px solid black",
+              backgroundColor: "ghostwhite",
+            }}
+          >
+            {list.status === "matched" ? "매칭 완료" : "다음 기회에"}
+            <img src={check} />
+          </RecruitmentStatusLabel>
+        </>
+      ) : (
         <>
           <ApplyStatusLabel
             style={
@@ -32,6 +68,15 @@ function RecruitTag({list}) {
           </ApplyStatusLabel>
           <ApplyLine />
           <InterviewStatusLabel
+            style={
+              list.status === "interviewed"
+                ? {
+                    fontWeight: "600",
+                    border: "1.5px solid black",
+                    backgroundColor: "ghostwhite",
+                  }
+                : {}
+            }
             onClick={() => {
               if (list.status === "interviewed") {
                 {
@@ -59,15 +104,39 @@ function RecruitTag({list}) {
           </InterviewStatusLabel>
           <ApplyLine />
 
-          <RecruitmentStatusLabel>
+          <RecruitmentStatusLabel
+            onClick={() => {
+              if (window.confirm("함께 하실건가요? 취소 시 불합격")) {
+                dispatch(
+                  interviewMatchStatusAxios(list.applicationId, "matched")
+                ).then((success) => {
+                  if (success) {
+                    dispatch(loadProjectAxios());
+                  } else {
+                    return;
+                  }
+                });
+              } else {
+                //매칭실패시
+                //unmatched
+                dispatch(
+                  interviewMatchStatusAxios(list.applicationId, "unmatched")
+                ).then((success) => {
+                  if (success) {
+                    dispatch(loadProjectAxios());
+                  } else {
+                    return;
+                  }
+                });
+              }
+            }}
+          >
             모집 완료
             <img src={check} />
           </RecruitmentStatusLabel>
         </>
-      ) : (
-        ""
       )}
-      {list.status === "interviewed" ? (
+      {/* {
         <>
           <ApplyStatusLabel
             style={
@@ -148,75 +217,9 @@ function RecruitTag({list}) {
             <img src={check} />
           </RecruitmentStatusLabel>
         </>
-      ) : (
-        ""
-      )}
-      {list.status === "matched" ? (
-        <>
-          <ApplyStatusLabel
-            style={{
-              fontWeight: "600",
-              border: "1.5px solid black",
-              backgroundColor: "ghostwhite",
-            }}
-          >
-            지원서 접수
-            <img src={check} />
-          </ApplyStatusLabel>
-          <ApplyLine />
-          <InterviewStatusLabel
-            style={{
-              fontWeight: "600",
-              border: "1.5px solid black",
-              backgroundColor: "ghostwhite",
-            }}
-          >
-            인터뷰 완료
-            <img src={check} />
-          </InterviewStatusLabel>
+      } */}
 
-          <ApplyLine />
-          <RecruitmentStatusLabel
-            style={{
-              fontWeight: "600",
-              border: "1.5px solid black",
-              backgroundColor: "ghostwhite",
-            }}
-            onClick={() => {
-              if (window.confirm("함께 하실건가요? 취소 시 불합격")) {
-                dispatch(
-                  interviewMatchStatusAxios(list.applicationId, "matched")
-                ).then((success) => {
-                  if (success) {
-                    dispatch(loadProjectAxios());
-                  } else {
-                    return;
-                  }
-                });
-              } else {
-                //매칭실패시
-                //unmatched
-                dispatch(
-                  interviewMatchStatusAxios(list.applicationId, "unmatched")
-                ).then((success) => {
-                  if (success) {
-                    dispatch(loadProjectAxios());
-                  } else {
-                    return;
-                  }
-                });
-              }
-            }}
-          >
-            매칭 완료
-            <img src={check} />
-          </RecruitmentStatusLabel>
-        </>
-      ) : (
-        ""
-      )}
-
-      {list.status === "unmatched" ? (
+      {/* {list.status === "unmatched" ? (
         <>
           <ApplyStatusLabel
             style={{
@@ -281,7 +284,7 @@ function RecruitTag({list}) {
         ""
       )}
 
-      {}
+      {} */}
     </LoadWrap>
   );
 }
