@@ -101,7 +101,7 @@ export const checkUserNicknameAxios = (nickname) => {
         checksuccess = true;
       })
       .catch((err) => {
-        console.log(err.response.data.errorMessage);
+       
         checksuccess = false;
       });
     return checksuccess;
@@ -140,7 +140,7 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
-        console.log("checkUserValidation", res);
+        // console.log("checkUserValidation", res);
         if (res.data.message === "토큰이 재발급 됐습니다.") {
           localStorage.setItem("token", res.data.token);
         }
@@ -154,7 +154,7 @@ export const checkUserValidation = () => {
       })
       .catch((err) => {
       
-        console.log("토큰만료:",err)
+        // console.log("토큰만료:",err)
         // logOut();
         // alert("토큰이 만료되셨네요 🥸 ");
       });
@@ -167,10 +167,10 @@ export const userDeleteAxios = (nickname,password) => {
     await apis
       .userDelete(nickname, password)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
       })
       .catch((err) => {
-       console.log(err)
+      //  console.log(err)
         // logOut();
         // alert("토큰이 만료되셨네요 🥸 ");
       });
@@ -202,8 +202,8 @@ export default function reducer(state = initialState, action = {}) {
       localStorage.removeItem("token");
       
 
-      // deleteCookie("ACCESS_TOKEN");
-      // deleteCookie("REFRESH_TOKEN");
+      deleteCookie("refreshToken");
+    
       const newUserInfo = {
         userEmail: null,
         nickname:null,

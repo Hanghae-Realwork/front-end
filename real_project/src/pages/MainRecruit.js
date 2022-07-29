@@ -15,7 +15,7 @@ const MainRecruit = () => {
   const dispatch = useDispatch();
   const recruit = useSelector((state) => state.postRecruit.receiveRecruit);
   const SearchResult = useSelector((state) => state.search.SearchResult);
-  console.log(SearchResult)
+
 
   
   useEffect(() => {
