@@ -78,11 +78,11 @@ const Recruitment = () => {
                   <BodyText>{list && list?.details}</BodyText>
                 </CardTextWrap>
                 <CardRoleWrap>
-                  <NameText>구하는직군</NameText>
+                  <NameTextBold>구하는직군</NameTextBold>
                   <NameText>{list && list?.role}</NameText>
                 </CardRoleWrap>
                 <CardJobWrap>
-                  <NameText>필요 스킬</NameText>
+                  <NameTextBold>필요 스킬</NameTextBold>
                   <NameText>
                     {value &&
                       list?.ProjectSkills.map((list, idx) => {
@@ -161,6 +161,7 @@ const RecruitCardMainWrap = styled.div`
   justify-content: center;
   align-items: center;
   gap: 24px;
+
   margin-bottom: 20px;
 `
 
@@ -208,7 +209,10 @@ const CardTitleWrap = styled.div`
 
 const CardTextWrap = styled.div`
   /* border: 1px solid black; */
-  margin: 0px 20px 12px 20px;
+  margin: 0px 20px 20px 20px;
+  height: 45px;
+  line-height: 21px;
+  overflow: hidden;
 `
 
 const CardRoleWrap = styled.div`
@@ -218,11 +222,12 @@ const CardRoleWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
+  gap: 3px;
 `
 
 const CardJobWrap = styled.div`
   /* border: 1px solid black; */
-  margin: 0px 20px 10px 20px;
+  margin: 5px 20px 10px 20px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -263,7 +268,7 @@ const DateText = styled.span`
 //프로필 영역 CSS
 const PhotoBox = styled.div`
   /* border: 1px solid black; */
-  margin: 0px 0px 8px 0px;
+  margin: 0px 0px 5px 0px;
 `
 
 const PhotoCircle = styled.div`
@@ -284,7 +289,7 @@ const NameBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `
 
 const NickNameText = styled.span`
@@ -303,7 +308,7 @@ const InterviewWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  /* gap: 5px; */
   margin-bottom: 8px;
 `
 
@@ -319,9 +324,10 @@ const InterviewButton = styled.button`
 
 const TimeTextWrap = styled.div`
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: flex-start;
+  /* border: 1px solid black; */
 `
 
 const InterviewTimeText = styled.span`
@@ -342,44 +348,9 @@ const RecruitmentStatusLabel = styled.label`
   font-size: 13px;
 `;
 
-const InterviewStatusLabel = styled.label`
-  padding: 8px 15px 8px 15px;
-  width: 90px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 20px;
-  font-size: 13px;
-
-  /* font-weight: ${(props) => (props.color ? "600" : "")};
-  border: ${(props) => (props.color ? "1.5px solid black" : "1px solid black")};
-  background-color: ${(props) => (props.color ? "ghostwhite" : "")}; */
-`;
-
-const ApplyStatusLabel = styled.label`
-  padding: 8px 15px 8px 15px;
-  width: 90px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: white;
-  border:1px solid black;
-  border-radius: 20px;
-  font-size: 13px;
-`;
-
-
-const ApplyLine = styled.hr`
-  border: 1px solid #000; 
-  height: 30px;
-  margin-top: -1px;
-  margin-bottom: -1px;
+const NameTextBold = styled.span`
+  font-weight: 600;
+  font-size: 12px;
 `
 
 export default Recruitment;

@@ -48,6 +48,7 @@ const Application = () => {
           };
 
           return (
+
             <RightContentWrap key={idx}>
               <RightCardWrap>
                 <CardAllWrap>
@@ -124,6 +125,7 @@ const Application = () => {
                   );
                 })}
             </RightContentWrap>
+
           );
         })
       ) : (
@@ -141,6 +143,7 @@ const RightMapingWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 25px;
   /* border: 1px solid black; */
 
 `;
@@ -159,8 +162,8 @@ const InterviewButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  width: 380px;
-  margin-top: 15px;
+  width: 385px;
+  margin-top: 20px;
   /* border: 1px solid black; */
 `;
 
@@ -187,14 +190,13 @@ const ButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
 `;
 
 const RightContentWrap = styled.div`
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 390px;
   margin-bottom: 40px;
   /* border: 1px solid black; */
@@ -228,22 +230,22 @@ const UserText = styled.span`
 
 const TitleWrap = styled.div`
   display: flex;
-  flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
   width: 350px;
   margin-top: 15px;
   overflow: hidden;
+  height: 20px;
+  line-height: 21px;
   /* border: 1px solid black; */
 `;
 
 const DetailWrap = styled.div`
   display: flex;
-  flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
   width: 350px;
-  height: 34px;
+  height: 40px;
   margin-top: 15px;
   overflow: hidden;
   line-height: 21px;
@@ -316,6 +318,14 @@ const CodeText = styled.span`
   font-weight: 500;
 `;
 
+const AllDivWrap = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid black;
+  gap: 20px;
+`
 
 
 export default Application;
