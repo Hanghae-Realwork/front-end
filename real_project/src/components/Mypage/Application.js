@@ -136,7 +136,6 @@ const RightMapingWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   /* border: 1px solid black; */
-  width: 820px;
 
 `;
 

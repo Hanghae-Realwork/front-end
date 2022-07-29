@@ -54,7 +54,7 @@ function Main() {
                     <ContentSpan>저 멀리 시대에 뒤쳐진 은하계 서쪽 소용돌이의 끝, 
                         지도에도 나와 있지 않은 그 변두리 지역에 아무도 주목하지 않는 작은 노란색 항성이 하나 있다.<SubSpan> ~은하수를 여행하는 히치하이커를 위한 안내서~ (더글라스 애덤스)</SubSpan></ContentSpan>
                     <ContentSpan>은하수를 여행하는 히치하이커 라는 작품을 아시나요?
-                        프로젝트를 함께할 사람들을 기다리는 히치하이커들을 위한 공간, 신선한 아이디어의 프로젝트와 준비된 크루원들이 모이는 이곳은 renDev입니다.</ContentSpan>
+                        프로젝트를 함께할 사람들을 기다리는 히치하이커들을 위한 공간, 신선한 아이디어의 프로젝트와 준비된 팀원들이 모이는 이곳은 renDev입니다.</ContentSpan>
                 </MainTextTitle>
             </BackgroundBot>
         </>

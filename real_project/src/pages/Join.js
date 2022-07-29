@@ -618,7 +618,7 @@ const ValiWrap = styled.div`
 
 const ValiSpan = styled.span`
   color: #C70000;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
 `;
 

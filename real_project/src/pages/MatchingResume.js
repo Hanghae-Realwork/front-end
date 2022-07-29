@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 import MatchingBtn from "../components/Matching/MatchingBtn"
 import { useSelector,useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
 import MiniResume from "../components/MiniProfile";
 import { loadResumesAxios } from "../redux/modules/interview";
 import { matchesProjectsAxios } from "../redux/modules/matches";
@@ -24,6 +25,18 @@ function MatchingResume() {
     const [seeData, setSeeData] = useState(false)
 
 
+    const navigate = useNavigate()
+
+ 
+  
+    const MoveChapter = () => {
+      navigate(`/matchingcrew`)
+    };
+
+    const MoveResume = () => {
+      navigate(`/matchingresume`)
+    };
+  
  
   useEffect(() => {
       dispatch(loadResumesAxios());
@@ -40,7 +53,23 @@ function MatchingResume() {
 
     return (
       <>
-        <MatchingBtn />
+        <MatchingBtnWrap>
+          <PositionWrap>
+            <BtnDivWrap onClick={MoveChapter} id="projectButton">
+              <LeftTriangleDiv/>
+              <CenterDiv >내가 모집중인 프로젝트</CenterDiv>
+              <RightTriangleDiv/>
+            </BtnDivWrap>
+
+            <SecondBtnDivWrap  onClick={MoveResume} id="resumeButton">
+          <LeftTriangleDivtwo/>
+            <SecondCenterDiv >내 소개글</SecondCenterDiv>
+          <RightTriangleDivtwo/>
+        </SecondBtnDivWrap>
+
+          </PositionWrap>
+        </MatchingBtnWrap>
+
         <MatchingCrewWrap>
           <MatchingTopWrap>
             <MatchingText>
@@ -51,8 +80,8 @@ function MatchingResume() {
             </MatchingCardWrap>
             <MatchingCardNoWrap style={{display: myResume.length > 0 ? "none" : ""}}>
               <img src = {EmptyAstroman}/>
-              <span>아직 등록 하신 내 소개 글이 없는 것 같아요...</span>
-              <span>내 소개 글 등록해 주세요</span>
+              <span>아직 등록 하신 내 소개글이 없는 것 같아요...</span>
+              <span>소개글 등록을 통해 본인을 소개해 주세요</span>
             </MatchingCardNoWrap>
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
@@ -212,5 +241,116 @@ const MatchingCardNoWrap = styled.div`
     margin-top: 20px;
     gap: 20px;
 `
+
+
+
+
+const MatchingBtnWrap = styled.div`
+    width: 100%;
+    height: 66px;
+    background-color: #303032;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-end;
+    /* border: 1px solid white; */
+`
+
+const LeftTriangleDiv = styled.label`
+  width: 0;
+  height: 0;
+  border-bottom: 17px solid white;
+  border-top: 17px solid transparent;
+  border-left: 17px solid transparent;
+  border-right: 17px solid white;
+  pointer-events: none;
+
+`
+
+const CenterDiv = styled.label`
+    width: 200px;
+    height: 34px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    color: #d9d9d9;
+    cursor: pointer;
+
+`
+
+const RightTriangleDiv = styled.label`
+  width: 0;
+  height: 0;
+  border-bottom: 17px solid white;
+  border-top: 17px solid transparent;
+  border-left: 17px solid white;
+  border-right: 17px solid transparent;
+  pointer-events: none;
+`
  
+
+const BtnDivWrap = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 1px; */
+`
+
+const PositionWrap = styled.div`
+    position: relative;
+    /* border: 1px solid white; */
+    width: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    left: -350px;
+`
+
+
+const SecondBtnDivWrap = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: -20px;
+`
+
+const LeftTriangleDivtwo = styled.div`
+  width: 0;
+  height: 0;
+  border-bottom: 17px solid white;
+  border-top: 17px solid transparent;
+  border-left: 17px solid transparent;
+  border-right: 17px solid white;
+  pointer-events: none;
+`
+
+const SecondCenterDiv = styled.label`
+    width: 120px;
+    height: 34px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    /* color: #d9d9d9; */
+    cursor: pointer;
+`
+
+const RightTriangleDivtwo = styled.div`
+  width: 0;
+  height: 0;
+  border-bottom: 17px solid white;
+  border-top: 17px solid transparent;
+  border-left: 17px solid white;
+  border-right: 17px solid transparent;
+  pointer-events: none;
+`
+
 export default MatchingResume

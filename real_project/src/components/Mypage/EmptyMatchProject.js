@@ -12,7 +12,7 @@ function EmptyMatchProject() {
             <EmptyText>아직 매칭되는 프로젝트가 없어요...ㅠㅠ</EmptyText>
             <EmptyText>
               기간, 스킬을 비교하여 프로젝트의 조건에 맞는 <br />
-              이력서들만을 찾아냅니다.
+              소개서를 검색해 드려요
             </EmptyText>
           </EmptyCardTop>
           <EmptyCardBot>
