@@ -4,19 +4,17 @@ import { useNavigate, useParams, Outlet } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { LoadDetailAxios } from "../redux/modules/postRecruit";
 
-import { deleteRecruitAxios } from "../redux/modules/postRecruit"
+import { deleteRecruitAxios } from "../redux/modules/postRecruit";
 
-import TagDev from "../components/Tag/TagCompoDev"
+import TagDev from "../components/Tag/TagCompoDev";
 
 import MiniResume from "../components/MiniProfile";
 
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
-import down from "../image/down.svg"
+import down from "../image/down.svg";
 import { projectInterviewAxios } from "../redux/modules/interview";
 import { loadResumesAxios } from "../redux/modules/interview";
-
-
 
 function ReadProject() {
   const navigate = useNavigate();
@@ -26,13 +24,11 @@ function ReadProject() {
   const [Arcodian, setArcodian] = useState(false);
 
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
-   const profileImage = useSelector(
-     (state) => state.user.userInfo.profileImage
-   );
+  const profileImage = useSelector((state) => state.user.userInfo.profileImage);
   // 예약기능
   const [applicationId, setApplicationId] = useState("");
   const [resumeId, setResumeId] = useState("");
-  const image =useSelector((state)=>state.user)
+  const image = useSelector((state) => state.user);
 
   const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
@@ -40,8 +36,6 @@ function ReadProject() {
   //예약 button 색깔처리
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
-
-
 
   //buttonbackground
   useEffect(() => {
@@ -130,46 +124,11 @@ function ReadProject() {
 
         <DivideLine />
 
-        <DateWrap>
-          <ViewDateWrap>
-            <RoleTitle>면접 일정 보기</RoleTitle>
-
-            <InputMainTextWrap>
-              <EditDateWrap>
-                {Value &&
-                  Value[0]?.applications.map((list, idx) => {
-                    return (
-                      <EditLabel
-                        style={
-                          list.available
-                            ? { backgroundColor: "" }
-                            : {
-                                backgroundColor: "#d9d9d9",
-                                pointerEvents: "none",
-                              }
-                        }
-                        event={list}
-                        key={list.applicationId}
-                        id={idx}
-                        onClick={(e) => {
-                          setApplicationId(list.applicationId);
-                          setCurrentClick(e.target.id);
-                        }}
-                      >
-                        {list.schedule.slice(0, 16)}
-                      </EditLabel>
-                    );
-                  })}
-              </EditDateWrap>
-            </InputMainTextWrap>
-          </ViewDateWrap>
-        </DateWrap>
-
-        <DivideLine />
         <ProfileWrap>
           <ProfileTitleWrap>
             <RoleTitle>작성자 프로필</RoleTitle>
           </ProfileTitleWrap>
+
           <ProfileDetailWrap>
             {Value && Value[0]?.profileImage ? (
               <ProfilePhoto
@@ -215,7 +174,7 @@ function ReadProject() {
                   setArcodian(!Arcodian);
                 }}
               >
-                <ArcodianText>이 프로젝트에 지원해 볼까요?</ArcodianText>
+                <ArcodianText>이 프로젝트에 지원하기</ArcodianText>
                 <DownIcon
                   src={down}
                   style={{
@@ -224,27 +183,67 @@ function ReadProject() {
                   }}
                 />
               </ArcodianTextWrap>
-              <MiniResumeWrap
-                style={{ display: Arcodian === true ? "" : "none" }}
-              >
-                {Value && userName_Info !== Value[0]?.email ? (
-                  <MiniResume data={data} setResumeId={setResumeId} />
-                ) : (
-                  ""
-                )}
-              </MiniResumeWrap>
-              <DivideLine />
 
-              <SubmitButton
-                style={
-                  applicationId !== "" && resumeId !== ""
-                    ? {}
-                    : { opacity: "0.5", pointerEvents: "none" }
-                }
-                onClick={applyOnClick}
-              >
-                지원하기
-              </SubmitButton>
+              
+
+              <MiniResumeWrap style={{ display: Arcodian === true ? "" : "none" }}>
+                 <StepOneWrap>
+                    <TestText><ColorSpan>Step.01 _ </ColorSpan>자기소개글을 선택해 주세요</TestText>
+
+                      {Value && userName_Info !== Value[0]?.email ? (
+                        <MiniResume data={data} setResumeId={setResumeId} />
+                      ) : (
+                        ""
+                      )}
+                </StepOneWrap>   
+                <DateWrap>
+                  <ViewDateWrap>
+                    <TestText><ColorSpan>Step.02_ </ColorSpan>인터뷰 일정을 선택해 주세요</TestText>
+                    <InputMainTextWrap>
+                      <EditDateWrap>
+                        {Value &&
+                          Value[0]?.applications.map((list, idx) => {
+                            return (
+                              <EditLabel
+                                style={
+                                  list.available
+                                    ? { backgroundColor: "" }
+                                    : {
+                                        backgroundColor: "#d9d9d9",
+                                        pointerEvents: "none",
+                                      }
+                                }
+                                event={list}
+                                key={list.applicationId}
+                                id={idx}
+                                onClick={(e) => {
+                                  setApplicationId(list.applicationId);
+                                  setCurrentClick(e.target.id);
+                                }}
+                              >
+                                {list.schedule.slice(0, 16)}
+                              </EditLabel>
+                            );
+                          })}
+                      </EditDateWrap>
+                    </InputMainTextWrap>
+                  </ViewDateWrap>
+                </DateWrap>
+
+                <BtnWrap>
+                <TestText><ColorSpan>Step.03_ </ColorSpan>프로젝트에 지원합니다! 좋은 결과 기대할게요!</TestText>
+                  <SubmitButton
+                    style={
+                      applicationId !== "" && resumeId !== ""
+                        ? {}
+                        : { opacity: "0.5", pointerEvents: "none" }
+                    }
+                    onClick={applyOnClick}
+                  >
+                    지원하기
+                  </SubmitButton>
+                </BtnWrap>
+              </MiniResumeWrap>
             </ArcodianWrap>
           )}
         </ButtonWrap>
@@ -252,8 +251,6 @@ function ReadProject() {
     </>
   );
 }
-
-
 
 const AllWrap = styled.div`
   /* border: 1px solid black; */
@@ -284,7 +281,6 @@ const MainTextWrap = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 32px;
-
 `;
 
 const FindRoleWrap = styled.div`
@@ -317,8 +313,8 @@ const DateWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 30px;
-  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 30px;
   gap: 12px;
 `;
 
@@ -360,7 +356,7 @@ const SubmitButton = styled.button`
 
 const DivideLine = styled.hr`
   width: 1200px;
-  border: 0.5px solid #D9D9D9;
+  border: 0.5px solid #d9d9d9;
 `;
 
 const TopTitle = styled.span`
@@ -370,7 +366,7 @@ const TopTitle = styled.span`
 
 const TopDateLimit = styled.span`
   font-size: 14px;
-  font-weight: 400; 
+  font-weight: 400;
 `;
 
 const MainText = styled.div`
@@ -457,11 +453,10 @@ const MiniResumeWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 30px;
   gap: 15px;
 `;
-
 
 const ViewDateWrap = styled.div`
   /* border: 1px solid black; */
@@ -472,7 +467,7 @@ const ViewDateWrap = styled.div`
   align-items: flex-start;
   /* margin-top: 30px; */
   gap: 12px;
-`
+`;
 
 const TagGapWrap = styled.div`
   display: flex;
@@ -480,7 +475,7 @@ const TagGapWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 8px;
-`
+`;
 
 const ArcodianWrap = styled.div`
   display: flex;
@@ -489,27 +484,27 @@ const ArcodianWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   /* border: 1px solid black; */
-`
+`;
 
 const ArcodianTextWrap = styled.div`
   width: 1200px;
   cursor: pointer;
   margin-bottom: 20px;
-`
+`;
 
 const DownIcon = styled.img`
-  margin-left: 10px;  
-`
+  margin-left: 10px;
+`;
 
 const ArcodianText = styled.span`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-`
+`;
 
 const InputMainTextWrap = styled.div`
   /* border: 1px solid black; */
-  margin: 40px 0px 16px 30px;
-  width: 1100px;
+  margin: 20px 0px 25px 0px;
+  width: 1200px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -518,13 +513,13 @@ const InputMainTextWrap = styled.div`
 
 const EditDateWrap = styled.div`
   /* border: 1px solid; */
-  width: 1100px;
+  width: 1200px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 25px;
-`
+`;
 
 const EditLabel = styled.label`
   display: flex;
@@ -539,6 +534,41 @@ const EditLabel = styled.label`
   padding: 10px 12px 10px 12px;
 `;
 
+const GuideText = styled.span`
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 21px;
+  margin-top: 15px;
+`;
+
+const BtnWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const TestText = styled.span`
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 21px;
+  margin-top: 30px;
+`;
+
+const ColorSpan = styled.span`
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 21px;
+  color: #d9d9d9;
+`
+
+const StepOneWrap = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 25px;
+`
 
 
 export default ReadProject;
