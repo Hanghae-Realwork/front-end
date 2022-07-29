@@ -68,7 +68,7 @@ const EditProject = (props) => {
   useEffect(() => {
     dispatch(LoadDetailAxios(projectId));
   },[])
-console.log(userEdit);
+
   useEffect(() => {
     // setRangeTime([]);
     setHour(0);
