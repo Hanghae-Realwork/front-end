@@ -8,10 +8,6 @@ function LoginModal (props) {
     const CloseModal = () => {
         props.close(false);
       };
-
-
-
-  
     return (
       <>
      (
