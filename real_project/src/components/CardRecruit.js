@@ -27,7 +27,7 @@ const CardRecruit = ({ data }) => {
         return <Moment format="M월 D일">{startTime}</Moment>;
       }
     }
-
+    // console.log(data)
 
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const CardRecruit = ({ data }) => {
           </CardTitleInfo>
           <CardMainTextInfo>
             <CardMainText>
-              {data.details}
+              {data.subscript}
               <br />
             </CardMainText>
           </CardMainTextInfo>
