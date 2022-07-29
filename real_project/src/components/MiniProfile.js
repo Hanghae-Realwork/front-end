@@ -22,7 +22,7 @@ function MiniResume({ data, setResumeId }) {
     }
     setPrevClick(currentClick);
   }, [currentClick]);
-console.log(data)
+
   return (
     <>
       {data &&

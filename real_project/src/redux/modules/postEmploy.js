@@ -193,7 +193,7 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case "employ/MODIFY": {
-      console.log(action.payload)
+   
       return {
         returnResumes: state.returnResumes,
         resumes: action.payload,

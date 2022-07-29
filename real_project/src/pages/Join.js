@@ -341,7 +341,6 @@ function Join() {
     }
   };
   const signupFunction = async () => {
-    console.log(password)
  // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
       userId === "" ||
