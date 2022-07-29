@@ -170,12 +170,10 @@ function ReadProject() {
             <RoleTitle>작성자 프로필</RoleTitle>
           </ProfileTitleWrap>
           <ProfileDetailWrap>
-            {Value && Value[0]?.photos ? (
+            {Value && Value[0].profileImage ? (
               <ProfilePhoto
                 style={{
-                  backgroundImage: `url(${
-                    Value && Value[0]?.photos?.toString()
-                  })`,
+                  backgroundImage: `url(${Value && Value[0].profileImage})`,
                 }}
               />
             ) : (
