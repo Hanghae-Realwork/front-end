@@ -9,7 +9,7 @@ import JoinModal from "../components/Modal/JoinModal";
 
 import BasicPhoto from "../image/astro-white.svg"
 import Logo from "../image/Logo_vertical.svg"
-
+import {useCookies} from "react-cookie"
 
 function Header() {
 
@@ -23,19 +23,25 @@ function Header() {
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
   const [Joinmodal, setJoinModal] = useState(false);
-
+const [cookies, setCookie, removeCookie] = useCookies(["refreshtoken"]);
 
 //확인
   useEffect(() => {
       dispatch(checkUserValidation());
     },[loginInfo]);
 
+ 
   const logoutClick = () => {
     const result = window.confirm("정말...나가실건가욥..? 🥸");
     if (result) {
       
        navigate("/");
-       dispatch(logOut());
+      dispatch(logOut());
+
+        removeCookie("refreshtoken");
+
+       
+     
     } 
   }
 

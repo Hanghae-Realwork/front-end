@@ -35,10 +35,10 @@ function RecruitTag({list}) {
             onClick={() => {
               if (list.status === "interviewed") {
                 {
-                  alert("면접완료가 완료되었습니다.");
+                  alert("인터뷰가 완료되었습니다.");
                 }
               } else {
-                if (window.confirm("면접을 완료하시나요?")) {
+                if (window.confirm("인터뷰를 완료하시나요?")) {
                   dispatch(interviewEndStatusAxios(list.applicationId)).then(
                     (success) => {
                       if (success) {
@@ -54,7 +54,7 @@ function RecruitTag({list}) {
               }
             }}
           >
-            면접 완료
+            인터뷰 완료
             <img src={check} />
           </InterviewStatusLabel>
           <ApplyLine />
@@ -96,7 +96,7 @@ function RecruitTag({list}) {
                   alert("이미 완료되었습니다.");
                 }
               } else {
-                if (window.confirm("면접을 완료하시나요?")) {
+                if (window.confirm("인터뷰을 완료하시나요?")) {
                   dispatch(interviewEndStatusAxios(list.applicationId)).then(
                     (success) => {
                       if (success) {
@@ -112,7 +112,7 @@ function RecruitTag({list}) {
               }
             }}
           >
-            면접 완료
+            인터뷰 완료
             <img src={check} />
           </InterviewStatusLabel>
           <ApplyLine />
@@ -171,7 +171,7 @@ function RecruitTag({list}) {
               backgroundColor: "ghostwhite",
             }}
           >
-            면접 완료
+            인터뷰 완료
             <img src={check} />
           </InterviewStatusLabel>
 
@@ -236,7 +236,7 @@ function RecruitTag({list}) {
               backgroundColor: "ghostwhite",
             }}
           >
-            면접 완료
+            인터뷰 완료
             <img src={check} />
           </InterviewStatusLabel>
 
@@ -305,7 +305,7 @@ const RecruitmentStatusLabel = styled.label`
   align-items: center;
   gap: 10px;
   background-color: white;
-  border:  1px solid black;
+  /* border:  1px solid black; */
   border-radius: 20px;
   font-size: 13px;
 `;
@@ -326,7 +326,7 @@ const ApplyStatusLabel = styled.label`
   align-items: center;
   gap: 10px;
   background-color: white;
-  border:1px solid black;
+  /* border:1px solid black; */
   border-radius: 20px;
   font-size: 13px;
 `;
@@ -340,7 +340,7 @@ const InterviewStatusLabel = styled.label`
   align-items: center;
   gap: 10px;
   background-color: white;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 20px;
   font-size: 13px;
 

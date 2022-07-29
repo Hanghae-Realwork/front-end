@@ -41,7 +41,7 @@ function MatchingCrew() {
         <MatchingCrewWrap>
           <MatchingTopWrap>
             <MatchingText>
-              맞는 상대를 찾고 싶은 프로젝트를 선택해주세요
+              어느 프로젝트에 맞는 팀원을 찾아드릴까요?
             </MatchingText>
             <MatchingCardWrap>
               <MiniProject data={myProject} setProjectId={setProjectId} />

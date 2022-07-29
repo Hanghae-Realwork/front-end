@@ -42,7 +42,7 @@ function MatchingResume() {
         <MatchingCrewWrap>
           <MatchingTopWrap>
             <MatchingText>
-              맞는 프로젝트를 찾고 싶은 이력서를 선택해주세요
+              어느 소개서에 맞는 프로젝트를 찾아드릴까요?
             </MatchingText>
             <MatchingCardWrap>
               <MiniResume data={myResume} setResumeId={setResumeId} />
@@ -83,7 +83,7 @@ function MatchingResume() {
           </MatchingBotWrap>
         ) : (
           <FallowText>
-            작성하신 이력서 중 하나를 선택하시면 나와 맞는 프로젝트를 찾아
+            작성하신 소개서 중 하나를 선택하시면 나와 맞는 프로젝트를 찾아
             드립니다
           </FallowText>
         )}

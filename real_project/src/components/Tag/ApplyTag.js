@@ -81,7 +81,7 @@ function ApplyTag({list}) {
                 : {}
             }
           >
-            면접 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
+            인터뷰 완료 <img src={Check} style={{ marginLeft: "6px" }}></img>
           </CourseLabel>
           <ConectLine />
           <CourseLabel>

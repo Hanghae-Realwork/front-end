@@ -116,13 +116,13 @@ function EmploymentProfile() {
 
             <MidWrap>
               <MidTxetWrap>
-                <MidTitle>소개글</MidTitle>
+                <MidTitle>자기소개</MidTitle>
                 <MidSelfText>
                   {data.length > 0 ? data[0].content3 : ""}
                 </MidSelfText>
               </MidTxetWrap>
               <MidTxetWrap>
-                <MidTitle>홈페이지</MidTitle>
+                <MidTitle>포트폴리오 링크(URL)</MidTitle>
                 <MidContentText>
                   <a
                     href={data.length > 0 ? data[0].content2 : ""}
