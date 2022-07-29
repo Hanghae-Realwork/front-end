@@ -45,7 +45,7 @@ const CardRecruit = ({ data }) => {
           </CardTitleInfo>
           <CardMainTextInfo>
             <CardMainText>
-              {data.details}
+              {data.subscript}
               <br />
             </CardMainText>
           </CardMainTextInfo>

@@ -317,7 +317,7 @@ const FindProjectStep01 = (props) => {
         </FindprojectTopWrap>
         <HeadLine />
         <FindProjectInputTitle>
-          <ProjectTitleText>제목 (최대 n자 이내)</ProjectTitleText>
+          <ProjectTitleText>제목</ProjectTitleText>
           <ProjectInput
             ref={titleRef}
             id="title"
@@ -326,7 +326,7 @@ const FindProjectStep01 = (props) => {
           ></ProjectInput>
         </FindProjectInputTitle>
         <FindProjectInputTitle>
-          <ProjectTitleText>프로젝트 설명 (최대 n자 이내)</ProjectTitleText>
+          <ProjectTitleText>프로젝트 요약 (미리보기에 보여질 간략한 소개입니다)</ProjectTitleText>
           <ProjectInput
             ref={subscriptRef}
             id="subscript"
@@ -361,7 +361,7 @@ const FindProjectStep01 = (props) => {
           </div>
         </FindProjectInputDate>
         <InputMainTextWrap>
-          <ProjectTitleText>팀 상세 설명</ProjectTitleText>
+          <ProjectTitleText>프로젝트 상세 설명</ProjectTitleText>
           <ReMainConWrap>
             <RecMainCon
               ref={detailsRef}
@@ -1062,7 +1062,7 @@ const CalendarWrap = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
   width: 700px;
-  height: 360px;
+  height: 340px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
