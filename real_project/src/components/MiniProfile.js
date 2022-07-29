@@ -58,12 +58,12 @@ function MiniResume({ data, setResumeId }) {
               </MiniBodyWrap>
 
               <MiniDateWrap>
+                <MiniDateText>프로젝트 가능 기간 : </MiniDateText>
                 <span style={{ fontSize: "12px" }} className={list.resumeId}>
                   {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
                   {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
                   {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일
-                </span>{" "}
-                <MiniDateText></MiniDateText>
+                </span>
               </MiniDateWrap>
 
               <TecWrap>
@@ -84,7 +84,7 @@ function MiniResume({ data, setResumeId }) {
 
 
 const MiniCardAllWrap = styled.div`
-  border: 1px solid black;
+  border: 0.5px solid black;
   border-radius: 4px;
   width: 384px;
   height: 250px;
@@ -101,7 +101,7 @@ const MiniTopWrap = styled.div`
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
-    margin: 15px 0px 12px 20px;
+    margin: 0px 0px 12px 20px;
     pointer-events : none;
 `
 
@@ -111,6 +111,8 @@ const MiniBodyWrap = styled.div`
     margin: 0px 12px 12px 20px;
     pointer-events : none;
     overflow: hidden;
+    line-height: 21px;
+    height: 45px;
 `
 
 const MiniDateWrap = styled.div`
@@ -118,13 +120,15 @@ const MiniDateWrap = styled.div`
     width: 344px;
     margin: 0px 0px 16px 20px;
     pointer-events : none;
+    line-height: 21px;
 `
 
 const TecWrap = styled.div`
     /* border: 1px solid black; */
     width: 344px;
-    margin: 0px 0px 21px 20px;
+    margin-left: 20px;
     pointer-events : none;
+    line-height: 21px;
 `
 
 const MiniPhotoWrap = styled.div`
@@ -160,16 +164,19 @@ const MiniNameWrap = styled.div`
 const MiniRole = styled.span`
     font-size: 14px;
     font-weight: 500;
+    line-height: 21px;
 `
 
 const MiniBodyText = styled.span`
     font-size: 14px;
     font-weight: 400;
+    line-height: 21px;
 `
 
 const MiniDateText = styled.span`
     font-size: 12px;
     font-weight: 500;
+    line-height: 21px;
 `
 
 const TecMiniWrap = styled.div`
