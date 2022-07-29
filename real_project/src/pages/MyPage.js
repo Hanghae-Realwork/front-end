@@ -36,7 +36,6 @@ function MyPage() {
 
   const onChange = (e) => {
     const file = e.target.files;
-    
     setFiles(file);
 
     //fileReader

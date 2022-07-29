@@ -12,17 +12,17 @@ function MatchingBtn(){
   const MoveChapter = (e) => {
     navigate(`/matchingcrew`)
     setCurrentClick(e.target.id)
-    console.log(e)
-    console.log(e.target)
-    console.log(e.target.id);
+    // console.log(e)
+    // console.log(e.target)
+    // console.log(e.target.id);
   };
 
   const MoveResume = (e) => {
     navigate(`/matchingresume`)
     setCurrentClick(e.target.id);
-    console.log(e)
-    console.log(e.target)
-    console.log(e.target.id);
+    // console.log(e)
+    // console.log(e.target)
+    // console.log(e.target.id);
   };
 
   
