@@ -1,6 +1,5 @@
-import React from "react"
+import React,{useRef,useState,useEffect} from "react"
 import styled from "styled-components"
-
 import Logo from "../../image/Logo_vertical.svg"
 import close from "../../image/closeIcon.svg"
 
@@ -10,16 +9,34 @@ function LoginModal (props) {
         props.close(false);
       };
 
-    return(
-        <>
-            <LoginModalWrap>
-                <CloseWrap><CloseBtn src={close} onClick={CloseModal}/></CloseWrap>
-                <LogoBox />
-                <LoginGuide>서비스를 이용하기 위해 로그인이 필요합니다</LoginGuide>
-                <GotoJoinBtn>확인</GotoJoinBtn>
-            </LoginModalWrap>
-        </>
-    )
+    const modalEl = useRef( null); 
+    console.log(modalEl)
+    const [isOpen, setOpen] = useState(false);
+
+    const handleClickOutside = ({ target }) => {
+      if (isOpen && !modalEl.current.contains(target)) setOpen(false);
+    };
+
+    useEffect(() => {
+      window.addEventListener("click", handleClickOutside);
+      return () => {
+        window.removeEventListener("click", handleClickOutside);
+      };
+    }, []);
+    return (
+      <>
+        {isOpen && (
+          <LoginModalWrap>
+            <CloseWrap>
+              <CloseBtn src={close} onClick={CloseModal} />
+            </CloseWrap>
+            <LogoBox />
+            <LoginGuide>서비스를 이용하기 위해 로그인이 필요합니다</LoginGuide>
+            <GotoJoinBtn ref={modalEl}>확인</GotoJoinBtn>
+          </LoginModalWrap>
+        )}
+      </>
+    );
 }
 
 const LoginModalWrap = styled.div`

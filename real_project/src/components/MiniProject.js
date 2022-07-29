@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import styled from "styled-components";
-
+import Moment from "react-moment";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -35,6 +35,19 @@ function MiniProject({ data, setProjectId }) {
     <>
       {data &&
         data?.map((list, idx) => {
+          const nowTime = Date.now();
+          const createdAt = list.createdAt;
+          const startTime = new Date(createdAt);
+          const thenHours = Math.floor((nowTime - startTime) / 3600000);
+          const DisplayCreatedAt = () => {
+            if (parseInt(startTime - nowTime) > -86400000) {
+              return thenHours + "시간전";
+            }
+            if (parseInt(startTime - nowTime) < -86400000) {
+              return <Moment format="M월 D일">{startTime}</Moment>;
+            }
+          };
+          
           return (
             <MiniCardAllWrap
               key={idx}
@@ -42,41 +55,41 @@ function MiniProject({ data, setProjectId }) {
               onClick={(e) => {
                 setProjectId(list.projectid);
                 setCurrentClick(e.target.className);
-              }}>
+              }}
+            >
+              <MiniNickWrap>
+                <NickText>{list?.nickname}</NickText>
 
-              <MiniNickWrap >
-                <NickText >{list?.nickname}</NickText>
-                <NickText >n시간 전이 들어갑니다</NickText>
+                <NickText>
+                  {" "}
+                  <DisplayCreatedAt />
+                </NickText>
               </MiniNickWrap>
 
-              <MiniTopWrap >
-                <MiniNickName >{list?.title}</MiniNickName>
-                <MiniBodyTextWrap >
-                  <MiniBodyText >
-                    {list?.subscript}
-                  </MiniBodyText>
+              <MiniTopWrap>
+                <MiniNickName>{list?.title}</MiniNickName>
+                <MiniBodyTextWrap>
+                  <MiniBodyText>{list?.subscript}</MiniBodyText>
                 </MiniBodyTextWrap>
               </MiniTopWrap>
 
-              <MiniBodyWrap >
-                <NickText >구하는 직군</NickText>
-                <MiniRole >{list?.role}</MiniRole>
+              <MiniBodyWrap>
+                <NickText>구하는 직군</NickText>
+                <MiniRole>{list?.role}</MiniRole>
               </MiniBodyWrap>
 
-              <TecWrap >
-                <NickText >원하는 보유 기술</NickText>
-                <TecMiniWrap >
-                  {data && 
+              <TecWrap>
+                <NickText>원하는 보유 기술</NickText>
+                <TecMiniWrap>
+                  {data &&
                     list?.skills.map((tag, index) => {
-                      return (
-                        <TagDev skills={tag} key={index} />
-                      );
+                      return <TagDev skills={tag} key={index} />;
                     })}
                 </TecMiniWrap>
               </TecWrap>
 
-              <MiniDateWrap >
-                <MiniDateText >
+              <MiniDateWrap>
+                <MiniDateText>
                   {list?.start.slice(0, 4)}년 {list?.start.slice(5, 7)}월{" "}
                   {list?.start.slice(8, 10)}일 ~{list?.end.slice(0, 4)}년{" "}
                   {list?.end.slice(5, 7)}월 {list?.end.slice(8, 10)}일{" "}
