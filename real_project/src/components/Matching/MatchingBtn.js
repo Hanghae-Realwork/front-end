@@ -19,71 +19,13 @@ function MatchingBtn(){
 
 
     return (
-    
-        <MatchingBtnWrap>
-          <PositionWrap>
-            <BtnDivWrap onClick={MoveChapter} id="projectButton">
-              <LeftTriangleDiv/>
-              <CenterDiv >내가 모집중인 프로젝트</CenterDiv>
-              <RightTriangleDiv/>
-            </BtnDivWrap>
-
-            <SecondBtnDivWrap  onClick={MoveResume} id="resumeButton">
-              <LeftTriangleDivtwo/>
-              <SecondCenterDiv >내 소개글</SecondCenterDiv>
-              <RightTriangleDivtwo/>
-            </SecondBtnDivWrap>
-          </PositionWrap>
-        </MatchingBtnWrap>
-     
+      <></>
+        
     );
 }
 
 
-const MatchingBtnWrap = styled.div`
-    width: 100%;
-    height: 66px;
-    background-color: #303032;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: flex-end;
-    /* border: 1px solid white; */
-`
 
-const LeftTriangleDiv = styled.label`
-  width: 0;
-  height: 0;
-  border-bottom: 17px solid white;
-  border-top: 17px solid transparent;
-  border-left: 17px solid transparent;
-  border-right: 17px solid white;
-  pointer-events: none;
-
-`
-
-const CenterDiv = styled.label`
-    width: 200px;
-    height: 34px;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-
-`
-
-const RightTriangleDiv = styled.label`
-  width: 0;
-  height: 0;
-  border-bottom: 17px solid white;
-  border-top: 17px solid transparent;
-  border-left: 17px solid white;
-  border-right: 17px solid transparent;
-  pointer-events: none;
-`
 
 const LeftTriangleDivtwo = styled.div`
   width: 0;
@@ -147,4 +89,6 @@ const PositionWrap = styled.div`
 
 
 export default MatchingBtn;
+
+
 

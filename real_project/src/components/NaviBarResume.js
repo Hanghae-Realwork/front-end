@@ -79,7 +79,7 @@ function NavigationBarResume() {
                     <NaviTextAllWrap>
                         <img src={Fullastroman}></img>
                         <NaviTextWrap>
-                            <NaviTextTitle>당신에 드는 팀원을 찾아보세요!</NaviTextTitle>
+                            <NaviTextTitle>마음에 드는 팀원을 찾아보세요!</NaviTextTitle>
                             <NaviConWrap>
                                 <NaviTextContent>랑데브에는 좋은 사람들이 모입니다.</NaviTextContent>
                                 <NaviTextContent>내 프로젝트에 맞는 팀원과 랑데부하세요.</NaviTextContent>

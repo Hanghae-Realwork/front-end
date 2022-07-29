@@ -11,7 +11,8 @@ function EmptyMyCard() {
                 <EmptyCardInnerWrap>
                     <EmptyCardTop>
                         <EmptyText>아직 작성한 지원서가 없어요...ㅠㅠ</EmptyText>
-                        <EmptyText>renDev의 다양한 아이디어의 프로젝트에 <br/>크루원으로 동참해보세요!</EmptyText>
+                        <EmptyText>renDev에서 다양한 프로젝트에</EmptyText>
+                        <EmptyText>팀원으로 동참해보세요!</EmptyText>
                     </EmptyCardTop>
                     <EmptyCardBot>
                         <img src={EmptyAstroman}/>

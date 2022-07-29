@@ -148,23 +148,23 @@ function EmploymentProfile() {
                 </MidTagWrap>
               </MidTxetWrap>
             </MidWrap>
-            <BotHr />
+            
 
             {loginInfoName === data[0]?.userId ? (
+              <>
+              <BotHr />
               <BotWrap>
-                <FixedBtn
-                  onClick={() => {
-                    navigate("/editprofile/" + `${data[0].resumeId}`);
-                  }}
-                >
+                <FixedBtn onClick={() => {navigate("/editprofile/" + `${data[0].resumeId}`);}}>
                   수정하기
                 </FixedBtn>
                 <DelBtn onClick={deleteOnclick}>삭제하기</DelBtn>
               </BotWrap>
+              </>
             ) : (
+              <>
               <TestWrap>
                 <PropseText onClick={() => {setArcodian(!Arcodian);}}>
-                  우주선에 태우고 싶으신가요?
+                  모집중인 프로젝트에 합류 시킬까요?
                   <DownIcon src={down} style={{transform: Arcodian === false ? "rotate(0deg)" : "rotate(180deg)"}}/>
                 </PropseText>
                 
@@ -174,6 +174,7 @@ function EmploymentProfile() {
                 <SubmitButton style={projectId !== "" ? { background: "" } : { opacity: "0.5", pointerEvents: "none" }} onClick={applyOnClick}>
                   면접 제안하기 </SubmitButton>
               </TestWrap>
+              </>
             )}
           </PageAllWrap>
         </BackGround>
@@ -188,6 +189,7 @@ const TestWrap = styled.div`
   width: 989px;
   margin-top: 25px;
   border: 1px solid black;
+  border-top: none;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   border-top: none; 
@@ -197,8 +199,8 @@ const TestWrap = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 80px;
-
+  margin-bottom: 60px;
+  /* z-index: 5; */
 `
 
 const PropseText = styled.span`
