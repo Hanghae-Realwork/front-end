@@ -106,7 +106,7 @@ function MatchingCrew() {
         {seeData ? (
           <MatchingBotWrap>
             <TextAlingWrap>
-              <MatchingText>맞는 상대를 찾고 싶은 프로젝트를 선택해주세요</MatchingText>
+              <MatchingText>내 프로젝트에 어울리는 지원자를 선택해주세요</MatchingText>
             </TextAlingWrap>
             <ContentAlignWrap>
               <MatchingResumeWrap

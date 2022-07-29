@@ -140,7 +140,9 @@ export const checkUserValidation = () => {
     await apis
       .checkUser()
       .then((res) => {
+
         // console.log("checkUserValidation", res);
+
         if (res.data.message === "토큰이 재발급 됐습니다.") {
           localStorage.setItem("token", res.data.token);
         }
