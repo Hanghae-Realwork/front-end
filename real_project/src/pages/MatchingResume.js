@@ -114,8 +114,8 @@ const MatchingTopWrap = styled.div`
 `
 
 const MatchingText = styled.span`
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 18px;
     margin-bottom: 24px;
 `
 
@@ -138,7 +138,7 @@ const MatchingBotBtnWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 60px;
 `
 
 const MatchingButton = styled.button`
@@ -198,7 +198,7 @@ const ContentAlignWrap = styled.div`
 `
 
 const FallowText = styled.span`
-  margin-top: 60px;
+  margin-top: 70px;
 `
 
 const MatchingCardNoWrap = styled.div`

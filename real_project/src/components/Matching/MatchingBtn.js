@@ -15,32 +15,15 @@ function MatchingBtn(){
 
   const MoveResume = () => {
     navigate(`/matchingresume`)
+
   };
-
-  
-  useEffect(
-    (e) => {
-    if (currentClick !== null) {
-        let current = document.getElementById(currentClick);
-        current.style.color = "#303032";
-    }
-    if (prevClick !== null) {
-        let prev = document.getElementById(prevClick);
-        prev.style.color = "#d9d9d9"
-    }
-    setPrevClick(currentClick);
-    },
-    [currentClick]
-);
-
-
 
 
     return (
     
         <MatchingBtnWrap>
           <PositionWrap>
-            <BtnDivWrap onClick={() => {MoveChapter()}} id="projectButton">
+            <BtnDivWrap onClick={MoveChapter} id="projectButton">
               <LeftTriangleDiv/>
               <CenterDiv >내가 모집중인 프로젝트</CenterDiv>
               <RightTriangleDiv/>

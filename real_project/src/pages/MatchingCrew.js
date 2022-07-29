@@ -116,13 +116,13 @@ const MatchingTopWrap = styled.div`
 `
 
 const MatchingText = styled.span`
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 18px;
     margin-bottom: 24px;
 `
 
 const MatchingCardWrap = styled.div`
-    height: 360px;
+    height: 384px;
     width: 1200px;
     /* border: 1px solid black; */
     overflow-x: scroll;
@@ -202,7 +202,7 @@ const MatchingBotWrap = styled.div`
 `
 
 const FallowText = styled.span`
-  /* margin-top: 20px; */
+  /* margin-top: 60px; */
 `
 
 const MatchingCardNoWrap = styled.div`
