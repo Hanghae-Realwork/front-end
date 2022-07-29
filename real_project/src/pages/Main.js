@@ -23,10 +23,8 @@ import planet from "../image/rotationplanet.svg"
 
 function Main() {
 
- 
-
     const navigate = useNavigate();
-
+    console.log('빌드 1.0.188')
 
     return(
         <>
