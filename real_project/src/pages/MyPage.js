@@ -28,7 +28,7 @@ function MyPage() {
   const [filesImg, setFilesImg] = React.useState("");
   const frm = new FormData();
   const reader = new FileReader();
-
+  const [uploadEnd,setUploadEnd] = useState({status:false,msg:""})
   useEffect(() => {
     if (!loginCheck) dispatch(checkUserValidation());
   },[])
@@ -36,11 +36,14 @@ function MyPage() {
 
   const onChange = (e) => {
     const file = e.target.files;
-    console.log(e.target.files);
+    
     setFiles(file);
 
     //fileReader
-    setFilesImg(e.target.files[0]);
+    if (filesImg !== e.target.files[0]) {
+      setUploadEnd({ status: false, msg: "" })
+      document.getElementById("uploadEnd").disabled = false;
+    } setFilesImg(e.target.files[0]);
     reader.readAsDataURL(e.target.files[0]);
 
     return new Promise((resolve) => {
@@ -52,12 +55,13 @@ function MyPage() {
   };
 
   const plusImgOnclick = () => {
-    if (files === "" || null) {
-      alert("사진을 올려볼까요 🥸")
-    } 
+    
     frm.append("profileImage", files[0]);
-    console.log(frm)
     dispatch(userPhotoAxios(nickname, frm));
+    setUploadEnd({ status: true, msg: "업로드 완료!" })
+    document.getElementById("uploadEnd").disabled = true;
+   
+
   }
 
 
@@ -98,8 +102,11 @@ function MyPage() {
                       : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
                   }
                   onClick={plusImgOnclick}
+                  id="uploadEnd"
                 >
-                  사진 업로드 완료하기
+                 
+                  {uploadEnd.status ? uploadEnd.msg :"사진 업로드 완료하기"}
+                  
                 </ProfilePhotoSpan>
 
                 <NameMyPage>

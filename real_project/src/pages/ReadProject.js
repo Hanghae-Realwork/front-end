@@ -36,6 +36,7 @@ function ReadProject() {
 
   const data = useSelector((state) => state.interview.resumes);
   const Value = useSelector((state) => state.postRecruit.project);
+
   //예약 button 색깔처리
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
@@ -168,15 +169,21 @@ function ReadProject() {
             <RoleTitle>작성자 프로필</RoleTitle>
           </ProfileTitleWrap>
           <ProfileDetailWrap>
-            {profileImage !== "" ?<ProfilePhoto style={{
+            {profileImage !== "" ? (
+              <ProfilePhoto
+                style={{
                   backgroundImage: `url(${
                     profileImage !== " " ? profileImage : ""
                   })`,
-                }}/>  : <ProfilePhoto />}
+                }}
+              />
+            ) : (
+              <ProfilePhoto />
+            )}
             <UserAllWrap>
               <UserNameWrap>
                 <UserText>{Value && Value[0]?.nickname}</UserText>
-                <UserText>직군</UserText>
+                <UserText>{Value && Value[0]?.role}</UserText>
               </UserNameWrap>
               <UserMailWrap>
                 <LetterImg src={letter}></LetterImg>

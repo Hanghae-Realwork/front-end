@@ -19,16 +19,8 @@ import planet from "../image/rotationplanet.svg"
 
 
 function Main() {
-  const dispatch = useDispatch();
-    const loginInfo = useSelector((state) => state.user.userInfo.is_login);
-    const nickname = useSelector((state) => state.user.userInfo.nickname);
+
  
-    useEffect(() => {
-   console.log("메인페이지");
-      
-        dispatch(checkUserValidation());
-      
-    }, [checkUserValidation]);
 
     const navigate = useNavigate();
 

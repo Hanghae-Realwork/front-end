@@ -120,7 +120,7 @@ const Recruitment = () => {
                     <InterviewButton
                       style={tenMinutes <= new Date() < today ? {} : {backgroundColor: "#D9D9D9", pointerEvents: "none"}} 
                       onClick={() => {window.open(`https://rendev.click/`)}}>
-                      면접보기
+                      인터뷰 보기
                     </InterviewButton>
                     <p>{}</p>
                   </div>
@@ -137,7 +137,7 @@ const Recruitment = () => {
                   </TimeTextWrap>
                 </InterviewWrap>
                 <div>
-                  <span>면접코드: {list && list.interviewCode}</span>
+                  <span>인터뷰 코드: {list && list.interviewCode}</span>
                 </div>
               </ProfileWrap>
 

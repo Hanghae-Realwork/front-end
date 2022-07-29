@@ -77,16 +77,7 @@ function EditProfile() {
 
   //버튼 누르면 저장
   const handleClick = () => {
-    console.log(
-      resumeId,
-      introduceRef.current.value,
-      start,
-      end,
-      role,
-      checkList,
-      content2Ref.current.value,
-      content3Ref.current.value
-    );
+  
     if (
       resumeId === "" ||
       introduceRef.current.value === "" ||
