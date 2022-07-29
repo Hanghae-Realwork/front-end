@@ -36,20 +36,22 @@ const CardRecruit = ({ data }) => {
         <AllTopWrap>
           <CardTopInfo>
             <CardWriteName>{data.nickname}</CardWriteName>
-            <CardWriteTime><DisplayCreatedAt /></CardWriteTime>
+            <CardWriteTime>
+              <DisplayCreatedAt />
+            </CardWriteTime>
           </CardTopInfo>
           <CardTitleInfo>
             <CardTitleText>{data.title}</CardTitleText>
           </CardTitleInfo>
           <CardMainTextInfo>
             <CardMainText>
-              {data.subscript}
+              {data.details}
               <br />
             </CardMainText>
           </CardMainTextInfo>
           <CardJobTextWrap>
             <CardRoleTitle>구하는 직군</CardRoleTitle>
-                <CardJobMainTitle>{data.role}</CardJobMainTitle>
+            <CardJobMainTitle>{data.role}</CardJobMainTitle>
           </CardJobTextWrap>
           <CardTagWrap>
             <CardJobTitle>원하는 보유 기술</CardJobTitle>
@@ -66,9 +68,18 @@ const CardRecruit = ({ data }) => {
         <AllBotWrap>
           <CardBotTopWrap>
             <CardBotTextDate>프로젝트 러닝 기간 :</CardBotTextDate>
-            <CardBotTextDateInfo> {data.start} ~ {data.end} </CardBotTextDateInfo>
+            <CardBotTextDateInfo>
+              {" "}
+              {data.start} ~ {data.end}{" "}
+            </CardBotTextDateInfo>
           </CardBotTopWrap>
-          <CardViewButton onClick={() => {navigate("/readproject/" + `${data.projectId}`);}}>프로젝트 상세 가기</CardViewButton>
+          <CardViewButton
+            onClick={() => {
+              navigate("/readproject/" + `${data.projectId}`);
+            }}
+          >
+            프로젝트 상세 가기
+          </CardViewButton>
         </AllBotWrap>
       </AllWrap>
     );

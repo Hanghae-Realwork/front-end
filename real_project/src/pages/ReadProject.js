@@ -7,13 +7,12 @@ import { LoadDetailAxios } from "../redux/modules/postRecruit";
 import { deleteRecruitAxios } from "../redux/modules/postRecruit"
 
 import TagDev from "../components/Tag/TagCompoDev"
-import TagDes from "../components/Tag/TagCompoDes"
+
 import MiniResume from "../components/MiniProfile";
 
 import letter from "../image/letter.svg";
 import astroman from "../image/astroman.svg";
 import down from "../image/down.svg"
-import delIcon from "../image/tagclose.svg"
 import { projectInterviewAxios } from "../redux/modules/interview";
 import { loadResumesAxios } from "../redux/modules/interview";
 
@@ -41,6 +40,8 @@ function ReadProject() {
   //예약 button 색깔처리
   const [currentClick, setCurrentClick] = useState(null);
   const [prevClick, setPrevClick] = useState(null);
+
+
 
   //buttonbackground
   useEffect(() => {
@@ -170,10 +171,10 @@ function ReadProject() {
             <RoleTitle>작성자 프로필</RoleTitle>
           </ProfileTitleWrap>
           <ProfileDetailWrap>
-            {Value && Value[0].profileImage ? (
+            {Value && Value[0]?.profileImage ? (
               <ProfilePhoto
                 style={{
-                  backgroundImage: `url(${Value && Value[0].profileImage})`,
+                  backgroundImage: `url(${Value && Value[0]?.profileImage})`,
                 }}
               />
             ) : (

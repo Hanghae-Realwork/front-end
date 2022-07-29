@@ -18,7 +18,7 @@ const Application = () => {
 
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
-    
+     
 
   
 
@@ -94,7 +94,13 @@ const Application = () => {
                       {" "}
                       <InterviewButtonWrap>
                         <ButtonWrap>
-                          <InterviewButton onClick={() => {window.open(`https://rendev.click/`)}}>인터뷰 보기</InterviewButton>
+                          <InterviewButton
+                            onClick={() => {
+                              window.open(`https://rendev.click/`);
+                            }}
+                          >
+                            인터뷰 보기
+                          </InterviewButton>
                           <InterviewDateWrap>
                             <InterviewTimeText>
                               {data && list.schedule.slice(0, 4)}년{" "}
