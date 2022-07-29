@@ -68,14 +68,11 @@ function EmploymentProfile() {
   }
 
   const applyOnClick = () => {
-    console.log(resumeId, projectId);
-    if (projectId === "" ||
-      projectId === " "
-    ) {
-      alert("제안하고싶은 프로젝트를 선택해주세요! 🥸");
-    } else { 
+   
+ 
+
       dispatch(proposalUserProjectsAxios(resumeId, projectId));
-    }
+
     
   }
  //undefined일때 null 처리 나머지 return 
@@ -116,13 +113,13 @@ function EmploymentProfile() {
 
             <MidWrap>
               <MidTxetWrap>
-                <MidTitle>소개글</MidTitle>
+                <MidTitle>자기소개</MidTitle>
                 <MidSelfText>
                   {data.length > 0 ? data[0].content3 : ""}
                 </MidSelfText>
               </MidTxetWrap>
               <MidTxetWrap>
-                <MidTitle>홈페이지</MidTitle>
+                <MidTitle>포트폴리오 링크(URL)</MidTitle>
                 <MidContentText>
                   <a
                     href={data.length > 0 ? data[0].content2 : ""}

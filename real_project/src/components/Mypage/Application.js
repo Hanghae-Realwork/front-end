@@ -94,7 +94,7 @@ const Application = () => {
                       {" "}
                       <InterviewButtonWrap>
                         <ButtonWrap>
-                          <InterviewButton onClick={() => {window.open(`https://rendev.click/`)}}>면접 보기</InterviewButton>
+                          <InterviewButton onClick={() => {window.open(`https://rendev.click/`)}}>인터뷰 보기</InterviewButton>
                           <InterviewDateWrap>
                             <InterviewTimeText>
                               {data && list.schedule.slice(0, 4)}년{" "}
@@ -109,7 +109,7 @@ const Application = () => {
                         </ButtonWrap>
                         <InterviewDateWrap>
                           <CodeText>
-                            면접 코드: {data && list.interviewCode}
+                            인터뷰 코드: {data && list.interviewCode}
                           </CodeText>
                         </InterviewDateWrap>
                       </InterviewButtonWrap>

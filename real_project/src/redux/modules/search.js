@@ -81,10 +81,10 @@ export const SearchAxios = (
   start,
   end
   ) => {
-    console.log('role',role)
-    console.log('skill',skill)
-    console.log('start',start)
-    console.log('end',end)
+    // console.log('role',role)
+    // console.log('skill',skill)
+    // console.log('start',start)
+    // console.log('end',end)
 
   return async function (dispatch) {
     await apis
@@ -118,10 +118,10 @@ export const SearchResumeAxios = (
   start,
   end
   ) => {
-    console.log('role',role)
-    console.log('skill',skills)
-    console.log('start',start)
-    console.log('end',end)
+    // console.log('role',role)
+    // console.log('skill',skills)
+    // console.log('start',start)
+    // console.log('end',end)
 
   return async function (dispatch) {
     await apis
