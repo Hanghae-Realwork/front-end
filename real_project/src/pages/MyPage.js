@@ -103,9 +103,7 @@ function MyPage() {
                   onClick={plusImgOnclick}
                   id="uploadEnd"
                 >
-                 
-                  {uploadEnd.status ? uploadEnd.msg :"사진 업로드 완료하기"}
-                  
+                  {uploadEnd.status ? uploadEnd.msg : "사진 업로드 완료하기"}
                 </ProfilePhotoSpan>
 
                 <NameMyPage>
@@ -124,6 +122,14 @@ function MyPage() {
                 >
                   회원 탈퇴
                 </PassWordText>
+                <UserWordText
+                  target="_blank"
+                  href={
+                    "https://docs.google.com/forms/d/e/1FAIpQLSdyRGjMuu-Fn3WUgz5xLdg_45vzYxUmy8Rwxnqs1aUhfpQG-Q/viewform"
+                  }
+                >
+                  고객 센터
+                </UserWordText>
               </MyPagePasswordWrap>
             </LeftBackgroundWrap>
           </MyPageLeftWrap>
@@ -278,7 +284,9 @@ const Mycall = styled.span`
 
 const MyPagePasswordWrap = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: column;
+
+  /* flex-flow: row wrap; */
   justify-content: center;
   align-items: center;
   margin-top: 150px;
@@ -295,9 +303,18 @@ const PassWordText = styled.span`
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
+  margin-bottom: 10px;
   cursor: pointer;
 `
-
+const UserWordText = styled.a`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  margin-bottom: 10px;
+  text-decoration-line: none;
+  cursor: pointer;
+  color: black;
+`;
 const ModalWrap = styled.div`
   /* border: 4px solid white; */
   z-index: 4;
