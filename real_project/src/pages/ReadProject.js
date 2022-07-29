@@ -355,6 +355,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
+  margin-top: 20px;
 `;
 
 const DivideLine = styled.hr`
