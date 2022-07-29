@@ -9,7 +9,7 @@ const Projects = () => {
     const dispatch = useDispatch();
     const nickname = useSelector((state) => state.user.userInfo.nickname);
     const data = useSelector((state) => state.postProfile.Myproject);
-    console.log(data)
+
   useEffect(() => {
     if (nickname && nickname) {
       dispatch(loadProjectsAxios(nickname));
