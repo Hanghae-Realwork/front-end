@@ -311,7 +311,7 @@ function Join() {
         } else {
           setUserIdError({
             status: true,
-            text: "이미 사용중이거나 탈퇴한 아이디입니다.",
+            text: "사용할 수 없는 아이디 입니다.",
           });
           setUserIdCheck(false);
         }
@@ -328,13 +328,13 @@ function Join() {
         if (checksuccess === true) {
           setNicknameError({
             status: true,
-            text: "사용 가능한 닉네임입니다.",
+            text: "사용 가능한 닉네임 입니다.",
           });
           setNicknameCheck(true)
         } else {
           setNicknameError({
             status: true,
-            text: "이미 사용중이거나 탈퇴한 닉네임입니다.",
+            text: "사용할 수 없는 닉네임 입니다.",
           });
           setNicknameCheck(false)
         }
