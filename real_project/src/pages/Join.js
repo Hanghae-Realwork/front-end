@@ -126,7 +126,9 @@ function Join() {
         setYear(e.target.value);
       } 
     } else if (name === "month") {
-      setMonth(e.target.value);
+      if (BirthRegex.test(e.target.value)) {
+        setMonth(e.target.value);
+      }
     } else if (name === "day") {
       if (BirthRegex.test(e.target.value)) {
         setDay(e.target.value);
@@ -309,7 +311,7 @@ function Join() {
         } else {
           setUserIdError({
             status: true,
-            text: "이미 사용중이거나 탈퇴한 아이디입니다.",
+            text: "사용할 수 없는 아이디 입니다.",
           });
           setUserIdCheck(false);
         }
@@ -318,6 +320,7 @@ function Join() {
       alert("err");
     }
   };
+
   //닉네임 중복체크
   const onClickChecknickname = async () => {
     try {
@@ -325,13 +328,13 @@ function Join() {
         if (checksuccess === true) {
           setNicknameError({
             status: true,
-            text: "사용 가능한 닉네임입니다.",
+            text: "사용 가능한 닉네임 입니다.",
           });
           setNicknameCheck(true)
         } else {
           setNicknameError({
             status: true,
-            text: "이미 사용중이거나 탈퇴한 닉네임입니다.",
+            text: "사용할 수 없는 닉네임 입니다.",
           });
           setNicknameCheck(false)
         }
@@ -341,6 +344,7 @@ function Join() {
     }
   };
   const signupFunction = async () => {
+
  // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
       userId === "" ||
@@ -426,7 +430,7 @@ function Join() {
               <div>
               <InputBar
                 type="text"
-                placeholder="김크루"
+                placeholder="닉네임"
                 minLength={2}
                 maxLength={8}
                 value={nickname}
@@ -450,9 +454,12 @@ function Join() {
             
             <BirthWrap>
               <BirthAlignWrap>
-              <InpuBirth name="year" type="text" maxLength="4" placeholder="년(4자)"
+              <InputBirth name="year" type="text" maxLength="4" placeholder="년(4자)"
                 onBlur={BlurYear} value={year} onChange={onChangeBirth}/>
-              <SelectMonth onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
+              <InputMonth name="month" type="text" maxLength="2" placeholder="월(2자)"
+                onBlur={BlurYear} value={month} onChange={onChangeBirth}/>
+              
+              {/* <SelectMonth onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
                 <option value="month" disabled>월</option>
                 <option value="01">1</option>
                 <option value="02">2</option>
@@ -466,8 +473,9 @@ function Join() {
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
-              </SelectMonth>
-              <InpuBirthDay type="text" maxLength="2" placeholder="일"
+              </SelectMonth> */}
+
+              <InputDay type="text" maxLength="2" placeholder="일"
                 value={day} onChange={onChangeBirth}
                 onBlur={BlurYear} name="day"/>
                 </BirthAlignWrap>
@@ -479,7 +487,7 @@ function Join() {
             </BirthWrap>           
             <IdWrap>
               <InputBar
-                placeholder="비밀번호"
+                placeholder="비밀번호 (비밀번호는 영문, 숫자, 특수문자를 포함하는 4~16자로 작성해주세요)"
                 type="password"
                 maxLength={16}
                 onChange={OnChangePassWord}
@@ -748,7 +756,7 @@ const CheckButton = styled.button`
   margin-left: 20px;
 `
 
-const InpuBirth = styled.input`
+const InputBirth = styled.input`
   outline: none;
   border: none;
   border-bottom: 1px solid white;
@@ -761,7 +769,20 @@ const InpuBirth = styled.input`
   margin-top: -0.5px;
 `
 
-const InpuBirthDay = styled.input`
+const InputMonth = styled.input`
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  padding: 7px;
+  width: 100px;
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: -0.5px;  
+`
+
+const InputDay = styled.input`
   outline: none;
   border: none;
   border-bottom: 1px solid white;
