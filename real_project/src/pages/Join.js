@@ -25,7 +25,7 @@ function Join() {
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [year, setYear] = useState("");
-  const [month, setMonth] = useState("month");
+  const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
 
   //error
@@ -126,8 +126,9 @@ function Join() {
         setYear(e.target.value);
       } 
     } else if (name === "month") {
+      console.log(e.target.value === "4")
       if (BirthRegex.test(e.target.value)) {
-        setMonth(e.target.value);
+          if (e.target.value <=12) setMonth(e.target.value);
       }
     } else if (name === "day") {
       if (BirthRegex.test(e.target.value)) {
@@ -150,7 +151,7 @@ function Join() {
         status: true,
         text: "태어난 년도 4자리를 정확하게 입력하세요.",
       });
-    } else if (month === "month") {
+    } else if (month.length <= 0) {
       setYearError({
         status: true,
         text: "태어난 월을 입력하세요.",
@@ -172,7 +173,7 @@ function Join() {
         text: "정말이세요?",
       });
     } else if (
-      (month === "04" || month === "06" || month === "09" || month === "11")) {
+      (month === "4" || month === "6" || month === "9" || month === "11")) {
       if (day >= 31) {
         setYearError({
           status: true,
@@ -184,7 +185,7 @@ function Join() {
           text: "",
         });
       }
-    } else if (month === "02") { 
+    } else if (month === "2") { 
       if (year % 4 === 0) {
                  if (day >= 30) {
                    setYearError({
@@ -344,14 +345,15 @@ function Join() {
     }
   };
   const signupFunction = async () => {
-
+      const newmonth = `${("00" + month).slice(-2)}`;
+   
  // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
       userId === "" ||
       nickname === "" ||
       name === "" ||
       year === "" ||
-      month === "" ||
+      newmonth === "" ||
       day === "" ||
       password === "" ||
       passwordCheck === "" ||
@@ -359,12 +361,12 @@ function Join() {
       nickname === " " ||
       name === " " ||
       year === " " ||
-      month === " " ||
+      newmonth === " " ||
       day === " " ||
       password === " " ||
       passwordCheck === " "
     ) {
-      alert("빈칸을 확인해주세요.")
+      alert("빈칸을 확인해주세요.");
       return false;
     }
     if (useCheck === false) {
@@ -385,7 +387,7 @@ function Join() {
           userId,
           nickname,
           name,
-          year+"-"+month+"-"+day,
+          year + "-" + newmonth + "-" + day,
           password,
           passwordCheck,
           allCheck
@@ -432,57 +434,8 @@ function Join() {
                   )}
                 </ValiWrap>
               </IdWrap>
-              <IdWrap>
-                <div>
-                  <InputBar
-                    type="text"
-                    placeholder="닉네임"
-                    minLength={2}
-                    maxLength={8}
-                    value={nickname}
-                    onChange={onChageNickName}
-                    onBlur={BlurNickName}
-                  ></InputBar>
-                  <CheckButton onClick={onClickChecknickname}>
-                    중복 확인
-                  </CheckButton>
-                </div>
-                <ValiWrap>
-                  {nicknameError.status && (
-                    <ValiSpan>{nicknameError.text}</ValiSpan>
-                  )}
-                </ValiWrap>
-              </IdWrap>
-              <IdWrap>
-                <InputBar
-                  type="text"
-                  placeholder="이름"
-                  minLength={2}
-                  maxLength={10}
-                  value={name}
-                  onChange={onChageName}
-                  onBlur={BlurName}
-                />
-                <ValiWrap>
-                  {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
-                </ValiWrap>
-              </IdWrap>
-
-
-          <InputJoinWrap>
-            <IdWrap>
-
-              <div>
-                <InputBar type="email" placeholder="아이디"
-                  id="userId" value={userId}
-                  onChange={onChangeUserId} onBlur={BlurUserId}
-                  autoFocus></InputBar>
-                <CheckButton onClick={onClickCheckUserId}>중복 확인</CheckButton>
-              </div>
-              <ValiWrap>
-              {userIdError.status && <ValiSpan>{userIdError.text}</ValiSpan>}
-              </ValiWrap>
-            </IdWrap>
+            
+                
             <IdWrap>
               <div>
               <InputBar
@@ -515,22 +468,7 @@ function Join() {
                 onBlur={BlurYear} value={year} onChange={onChangeBirth}/>
               <InputMonth name="month" type="text" maxLength="2" placeholder="월(2자)"
                 onBlur={BlurYear} value={month} onChange={onChangeBirth}/>
-              
-              {/* <SelectMonth onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
-                <option value="month" disabled>월</option>
-                <option value="01">1</option>
-                <option value="02">2</option>
-                <option value="03">3</option>
-                <option value="04">4</option>
-                <option value="05">5</option>
-                <option value="06">6</option>
-                <option value="07">7</option>
-                <option value="08">8</option>
-                <option value="09">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </SelectMonth> */}
+
 
               <InputDay type="text" maxLength="2" placeholder="일"
                 value={day} onChange={onChangeBirth}
@@ -573,7 +511,7 @@ function Join() {
               </ValiWrap>
             </IdWrap>
           </InputJoinWrap>
-\
+
 
             <AgreeFullWrap>
               <AgreementTitle>서비스 이용정책</AgreementTitle>
