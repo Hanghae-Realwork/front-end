@@ -234,7 +234,7 @@ function Join() {
     } else if (e.target.value.length > 0 && !passwordRegex.test(password)) {
       setPasswordError({
         status: true,
-        text: "영어, 숫자, 특수문자 포함 4~16자로 작성해주세요.",
+        text: "영문자, 숫자, 특수문자 포함 4~16자로 작성해주세요.",
       });
     } else {
       setPasswordError({
@@ -402,115 +402,151 @@ function Join() {
 
   return (
     <>
-    <BackgroundWrap>
-      <JoinWrap>
-        <AlignWrap>
-          <LogoWrap>
+      <BackgroundWrap>
+        <JoinWrap>
+          <AlignWrap>
+            <LogoWrap></LogoWrap>
+            <InputJoinWrap>
+              <IdWrap>
+                <div>
+                  <InputBar
+                    type="email"
+                    placeholder="rendev@dev.com"
+                    id="userId"
+                    value={userId}
+                    onChange={onChangeUserId}
+                    onBlur={BlurUserId}
+                    autoFocus
+                  ></InputBar>
+                  <CheckButton onClick={onClickCheckUserId}>
+                    중복 확인
+                  </CheckButton>
+                </div>
+                <ValiWrap>
+                  {userIdError.status && (
+                    <ValiSpan>{userIdError.text}</ValiSpan>
+                  )}
+                </ValiWrap>
+              </IdWrap>
+              <IdWrap>
+                <div>
+                  <InputBar
+                    type="text"
+                    placeholder="닉네임"
+                    minLength={2}
+                    maxLength={8}
+                    value={nickname}
+                    onChange={onChageNickName}
+                    onBlur={BlurNickName}
+                  ></InputBar>
+                  <CheckButton onClick={onClickChecknickname}>
+                    중복 확인
+                  </CheckButton>
+                </div>
+                <ValiWrap>
+                  {nicknameError.status && (
+                    <ValiSpan>{nicknameError.text}</ValiSpan>
+                  )}
+                </ValiWrap>
+              </IdWrap>
+              <IdWrap>
+                <InputBar
+                  type="text"
+                  placeholder="이름"
+                  minLength={2}
+                  maxLength={10}
+                  value={name}
+                  onChange={onChageName}
+                  onBlur={BlurName}
+                />
+                <ValiWrap>
+                  {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
+                </ValiWrap>
+              </IdWrap>
 
-          </LogoWrap>
-          <InputJoinWrap>
-            <IdWrap>
-
-              <div>
-                <InputBar type="email" placeholder="아이디"
-                  id="userId" value={userId}
-                  onChange={onChangeUserId} onBlur={BlurUserId}
-                  autoFocus></InputBar>
-                <CheckButton onClick={onClickCheckUserId}>중복 확인</CheckButton>
-              </div>
-              <ValiWrap>
-              {userIdError.status && <ValiSpan>{userIdError.text}</ValiSpan>}
-              </ValiWrap>
-            </IdWrap>
-            <IdWrap>
-              <div>
-              <InputBar
-                type="text"
-                placeholder="김크루"
-                minLength={2}
-                maxLength={8}
-                value={nickname}
-                onChange={onChageNickName}
-                onBlur={BlurNickName}
-              ></InputBar>
-              <CheckButton onClick={onClickChecknickname}>중복 확인</CheckButton>
-              </div>
-              <ValiWrap>
-              {nicknameError.status && (<ValiSpan>{nicknameError.text}</ValiSpan>)}
-              </ValiWrap>
-            </IdWrap>
-            <IdWrap>
-              <InputBar type="text" placeholder="이름" minLength={2}
-                maxLength={10} value={name} onChange={onChageName}
-                onBlur={BlurName}/>
-              <ValiWrap>
-              {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
-              </ValiWrap>
-            </IdWrap>
-            
-            <BirthWrap>
-              <BirthAlignWrap>
-              <InpuBirth name="year" type="text" maxLength="4" placeholder="년(4자)"
-                onBlur={BlurYear} value={year} onChange={onChangeBirth}/>
-              <SelectMonth onChange={onChangeBirth} value={month} name="month" onBlur={BlurYear}>
-                <option value="month" disabled>월</option>
-                <option value="01">1</option>
-                <option value="02">2</option>
-                <option value="03">3</option>
-                <option value="04">4</option>
-                <option value="05">5</option>
-                <option value="06">6</option>
-                <option value="07">7</option>
-                <option value="08">8</option>
-                <option value="09">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </SelectMonth>
-              <InpuBirthDay type="text" maxLength="2" placeholder="일"
-                value={day} onChange={onChangeBirth}
-                onBlur={BlurYear} name="day"/>
+              <BirthWrap>
+                <BirthAlignWrap>
+                  <InpuBirth
+                    name="year"
+                    type="text"
+                    maxLength="4"
+                    placeholder="년(4자)"
+                    onBlur={BlurYear}
+                    value={year}
+                    onChange={onChangeBirth}
+                  />
+                  <SelectMonth
+                    onChange={onChangeBirth}
+                    value={month}
+                    name="month"
+                    onBlur={BlurYear}
+                  >
+                    <option value="month" disabled>
+                      월
+                    </option>
+                    <option value="01">1</option>
+                    <option value="02">2</option>
+                    <option value="03">3</option>
+                    <option value="04">4</option>
+                    <option value="05">5</option>
+                    <option value="06">6</option>
+                    <option value="07">7</option>
+                    <option value="08">8</option>
+                    <option value="09">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </SelectMonth>
+                  <InpuBirthDay
+                    type="text"
+                    maxLength="2"
+                    placeholder="일"
+                    value={day}
+                    onChange={onChangeBirth}
+                    onBlur={BlurYear}
+                    name="day"
+                  />
                 </BirthAlignWrap>
                 <div>
-            <ValiWrap>
-              {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
-            </ValiWrap>
-            </div>
-            </BirthWrap>           
-            <IdWrap>
-              <InputBar
-                placeholder="비밀번호"
-                type="password"
-                maxLength={16}
-                onChange={OnChangePassWord}
-                value={password}
-                onBlur={BlurPassWord}
-              ></InputBar>
-              <ValiWrap>
-              {passwordError.status && (
-                <ValiSpan>{passwordError.text}</ValiSpan>
-              )}
-              </ValiWrap>
-            </IdWrap>
-            <IdWrap>
-              <InputBar
-                placeholder="비밀번호 확인"
-                type="password"
-                maxLength={16}
-                onChange={OnChangePassWordCheck}
-                value={passwordCheck}
-                onBlur={BlurPassWordCheck}
-              ></InputBar>
-              <ValiWrap>
-              {confirmPasswordError.status && (
-                <ValiSpan>{confirmPasswordError.text}</ValiSpan>
-              )}
-              </ValiWrap>
-            </IdWrap>
-          </InputJoinWrap>
+                  <ValiWrap>
+                    {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
+                  </ValiWrap>
+                </div>
+              </BirthWrap>
+              <IdWrap>
+                <InputBar
+                  placeholder="비밀번호(영문자, 숫자, 특수문자 포함 4~16자로 작성해주세요.)"
+                  type="password"
+                  maxLength={16}
+                  onChange={OnChangePassWord}
+                  value={password}
+                  onBlur={BlurPassWord}
+                ></InputBar>
+                <ValiWrap>
+                  {passwordError.status && (
+                    <ValiSpan>{passwordError.text}</ValiSpan>
+                  )}
+                </ValiWrap>
+              </IdWrap>
+              <IdWrap>
+                <InputBar
+                  placeholder="비밀번호 확인"
+                  type="password"
+                  maxLength={16}
+                  onChange={OnChangePassWordCheck}
+                  value={passwordCheck}
+                  onBlur={BlurPassWordCheck}
+                ></InputBar>
+                <ValiWrap>
+                  {confirmPasswordError.status && (
+                    <ValiSpan>{confirmPasswordError.text}</ValiSpan>
+                  )}
+                </ValiWrap>
+              </IdWrap>
+            </InputJoinWrap>
 
             <AgreeFullWrap>
-            <AgreementTitle>서비스 이용정책</AgreementTitle>
+              <AgreementTitle>서비스 이용정책</AgreementTitle>
               <AgreementWrap>
                 <AgreeChkWrap>
                   <ChcekWrap>
@@ -523,10 +559,15 @@ function Join() {
                     <AgreementText htmlFor="all-check">전체동의</AgreementText>
                   </ChcekWrap>
                 </AgreeChkWrap>
-                  <AgreementHr/>
+                <AgreementHr />
                 <AgreeChkWrap>
                   <ChcekWrap>
-                    <AgreementInput type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent}/>
+                    <AgreementInput
+                      type="checkbox"
+                      id="check2"
+                      checked={useCheck}
+                      onChange={useBtnEvent}
+                    />
                     <AgreementText htmlFor="check2">
                       이용약관 (필수)
                     </AgreementText>
@@ -550,17 +591,17 @@ function Join() {
               </AgreementWrap>
             </AgreeFullWrap>
 
-          <ButtonWrap>
-            <JoinButton
-              id="signBtnDisabled"
-              className="loginBtn"
-              onClick={signupFunction}
-            >
-              회원가입
-            </JoinButton>
-          </ButtonWrap>
-        </AlignWrap>
-      </JoinWrap>
+            <ButtonWrap>
+              <JoinButton
+                id="signBtnDisabled"
+                className="loginBtn"
+                onClick={signupFunction}
+              >
+                회원가입
+              </JoinButton>
+            </ButtonWrap>
+          </AlignWrap>
+        </JoinWrap>
       </BackgroundWrap>
     </>
   );
