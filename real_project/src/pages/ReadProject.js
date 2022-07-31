@@ -488,6 +488,9 @@ const ArcodianWrap = styled.div`
 
 const ArcodianTextWrap = styled.div`
   width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   margin-bottom: 20px;
 `;

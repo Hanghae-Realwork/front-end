@@ -26,9 +26,8 @@ function MatchingResume() {
 
 
     const navigate = useNavigate()
+    const ScrollRef = useRef(null)
 
- 
-  
     const MoveChapter = () => {
       navigate(`/matchingcrew`)
     };
@@ -47,8 +46,15 @@ function MatchingResume() {
       dispatch(matchesProjectsAxios(resumeId));
       setSeeData(true);
     }
-      
   }
+
+  useEffect(() => {
+    if (seeData === true){
+      ScrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+    };
+  }, [seeData]);
+
+
 
 
     return (
@@ -98,7 +104,7 @@ function MatchingResume() {
           </MatchingBotBtnWrap>
         </MatchingCrewWrap>
         {seeData ? (
-          <MatchingBotWrap>
+          <MatchingBotWrap ref={ScrollRef}>
             <TextAlingWrap>
               <MatchingText>나에게 맞는 프로젝트를 선택해주세요</MatchingText>
             </TextAlingWrap>

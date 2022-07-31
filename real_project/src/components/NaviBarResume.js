@@ -260,6 +260,7 @@ const ImageWrap = styled.div`
 
 const InlineDevide = styled.hr`
     width: 1200px;
+    margin-top: 20px;
     margin-bottom: 15px;
     border: 0.5px solid #d9d9d9;
 `
@@ -268,6 +269,7 @@ const SearchResultABarWrap = styled.div`
     /* border: 1px solid black; */
     width: 1200px;
     margin-bottom: 24px;
+    /* margin-top: 20px; */
 `
 
 const TagWrap = styled.div`
