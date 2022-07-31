@@ -39,6 +39,7 @@ function MatchingCrew() {
        dispatch(matchesResumesAxios(projectId));
       //  ScrollDown()
        setSeeData(true);
+       ScrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
     }  
   }
 

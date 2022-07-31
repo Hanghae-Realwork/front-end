@@ -45,10 +45,9 @@ function MatchingResume() {
     if (resumeId && resumeId) {
       dispatch(matchesProjectsAxios(resumeId));
       setSeeData(true);
+      ScrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
     }
   }
-
-  
 
   useEffect(() => {
     if (seeData === true){
