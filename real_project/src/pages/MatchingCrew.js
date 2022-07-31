@@ -20,12 +20,14 @@ function MatchingCrew() {
     const myProject = useSelector((state) => state.interview.projects);
     const navigate = useNavigate()
 
+    const ScrollRef = useRef(null)
+    
 
     //매칭하기 
     const data = useSelector((state) => state.matches.resumes)
     const [projectId, setProjectId] = useState("");
     const [seeData,setSeeData] = useState(false)
-   
+ 
 
   //프로젝트 카드
   useEffect(() => {
@@ -35,6 +37,7 @@ function MatchingCrew() {
   const matchOnclick = () => {
     if (projectId && projectId) {
        dispatch(matchesResumesAxios(projectId));
+      //  ScrollDown()
        setSeeData(true);
     }  
   }
@@ -47,8 +50,11 @@ function MatchingCrew() {
     navigate(`/matchingresume`)
   };
 
-
-
+  useEffect(() => {
+    if (seeData === true){
+      ScrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+    };
+  }, [seeData]);
 
   
     return (
@@ -70,12 +76,6 @@ function MatchingCrew() {
           </PositionWrap>
         </MatchingBtnWrap>
 
-       
-
-
-
-
-
         <MatchingCrewWrap>
           <MatchingTopWrap>
             <MatchingText>
@@ -92,19 +92,14 @@ function MatchingCrew() {
           </MatchingTopWrap>
           <MatchingBotBtnWrap>
             <MatchingButton
-              style={
-                projectId !== ""
-                  ? { backgroundColor: "" }
-                  : { backgroundColor: "#D9D9D9", pointerEvents: "none" }
-              }
-              onClick={matchOnclick}
-            >
+              style={projectId !== "" ? { backgroundColor: "" } : { backgroundColor: "#D9D9D9", pointerEvents: "none" }}
+              onClick={matchOnclick}>
               매칭하기
             </MatchingButton>
           </MatchingBotBtnWrap>
         </MatchingCrewWrap>
         {seeData ? (
-          <MatchingBotWrap>
+          <MatchingBotWrap ref={ScrollRef}>
             <TextAlingWrap>
               <MatchingText>내 프로젝트에 어울리는 지원자를 선택해주세요</MatchingText>
             </TextAlingWrap>

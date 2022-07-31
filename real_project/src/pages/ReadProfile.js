@@ -46,6 +46,7 @@ function EmploymentProfile() {
   useEffect(() => {
   dispatch(loadSingleEmployAxios(resumeId))
   }, [])
+
   //프로젝트 카드
   useEffect(() => {
     dispatch(loadProjectsAxios())
@@ -68,15 +69,14 @@ function EmploymentProfile() {
   }
 
   const applyOnClick = () => {
-   
- 
-
       dispatch(proposalUserProjectsAxios(resumeId, projectId));
-
-    
   }
+
  //undefined일때 null 처리 나머지 return 
  if(!data[0]) return null 
+
+
+
   return (
     <>
       <BackColorTestWrap>
@@ -160,6 +160,7 @@ function EmploymentProfile() {
               </>
             ) : (
               <>
+              <BotHr />
               <TestWrap>
                 <PropseText onClick={() => {setArcodian(!Arcodian);}}>
                   모집중인 프로젝트에 초대할까요?
@@ -167,10 +168,14 @@ function EmploymentProfile() {
                 </PropseText>
                 
                 <MiniProjectWrap style={{ display: Arcodian === true ? "" : "none" }}>
+                <TestText><ColorSpan>Step.01_ </ColorSpan>모집중인 프로젝트를 선택해 주세요</TestText>
+                  <CardWrap>
                   <MiniProject data={myProject} setProjectId={setProjectId} />
-                </MiniProjectWrap>
-                <SubmitButton style={projectId !== "" ? { background: "" } : { opacity: "0.5", pointerEvents: "none" }} onClick={applyOnClick}>
+                  </CardWrap>
+                <TestText><ColorSpan>Step.02_ </ColorSpan>인터뷰를 제안합니다! 좋은 팀원 만나실 거예요!</TestText>  
+                  <SubmitButton style={projectId !== "" ? { background: "" } : { opacity: "0.5", pointerEvents: "none" }} onClick={applyOnClick}>
                   면접 제안하기 </SubmitButton>
+                </MiniProjectWrap>
               </TestWrap>
               </>
             )}
@@ -207,7 +212,7 @@ const PropseText = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 `
 
 const DownIcon = styled.img`
@@ -417,15 +422,10 @@ const BotHr = styled.hr`
 `
 
 const MiniProjectWrap = styled.div`
-  width: 800px;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   justify-content: flex-start;
-  align-items: center;
-  gap: 24px;
-  margin-bottom: 40px;
-  height: 430px;
-  overflow: scroll;
+  align-items: flex-start;
 `
 
 const SubmitButton = styled.button`
@@ -438,13 +438,14 @@ const SubmitButton = styled.button`
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-  margin: 30px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 `;
 
 const BackColorTestWrap = styled.div`
   width: 100%;
   /* margin-bottom: 80px; */
-  height: 165vh;
+  height: 176vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -463,6 +464,35 @@ const BackColorTestWrap = styled.div`
   height: 25px;
   /* width: 900px; */
   `
+
+const CardWrap = styled.div`
+  width: 800px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  height: 400px;
+  overflow: scroll;
+  /* border: 1px solid black; */
+`
+
+const TestText = styled.span`
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 21px;
+  margin-top: 30px;
+`;
+
+const ColorSpan = styled.span`
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 21px;
+  color: #d9d9d9;
+`
+
+
 
 
 export default EmploymentProfile
