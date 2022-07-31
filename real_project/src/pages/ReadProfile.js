@@ -445,7 +445,7 @@ const SubmitButton = styled.button`
 const BackColorTestWrap = styled.div`
   width: 100%;
   /* margin-bottom: 80px; */
-  height: 176vh;
+  height: 185vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -473,8 +473,9 @@ const CardWrap = styled.div`
   align-items: center;
   gap: 24px;
   margin-bottom: 20px;
-  height: 400px;
+  height: 350px;
   overflow: scroll;
+  margin-top: 30px;
   /* border: 1px solid black; */
 `
 

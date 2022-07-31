@@ -429,7 +429,7 @@ function Join() {
                 <div>
                   <InputBar
                     type="email"
-                    placeholder="rendev@dev.com"
+                    placeholder="이메일을 입력해 주세요"
                     id="userId"
                     value={userId}
                     onChange={onChangeUserId}
