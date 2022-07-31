@@ -71,12 +71,12 @@ const Application = () => {
                     </RoleWrap>
                     <RoleWrap>
                       <UserText>보유 기술</UserText>
-                      <RoleText>
+                      <RoleTextWrap>
                         {list &&
                           list.ProjectSkills.map((list, idx) => {
                             return <TagCompoApp key={idx} skills={list} />;
                           })}
-                      </RoleText>
+                      </RoleTextWrap>
                     </RoleWrap>
                     <ProjectLimit>
                       <DateLimitText>프로젝트 러닝 기간 :</DateLimitText>
@@ -230,7 +230,7 @@ const UserText = styled.span`
 
 const TitleWrap = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 350px;
   margin-top: 15px;
@@ -242,7 +242,7 @@ const TitleWrap = styled.div`
 
 const DetailWrap = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 350px;
   height: 40px;
@@ -285,7 +285,7 @@ const ProjectLimit = styled.div`
   justify-content: flex-start;
   align-items: center;
   /* border: 1px solid black; */
-  margin-top: 10px;
+  margin-top: 7px;
   width: 350px;
 `;
 
@@ -326,6 +326,22 @@ const AllDivWrap = styled.div`
   border: 1px solid black;
   gap: 20px;
 `
+
+const RoleTextWrap = styled.div`
+  margin-top: 4px;    
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: hidden;
+  /* border: 1px solid black; */
+  width: 350px;
+  height: 33px;
+  line-height: 21px;
+
+  /* gap: 2px; */
+`
+
 
 
 export default Application;

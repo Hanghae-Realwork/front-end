@@ -204,6 +204,12 @@ const CardNameWrap = styled.div`
 
 const CardTitleWrap = styled.div`
   /* border: 1px solid black; */
+  display: flex;
+  flex-flow: row wrap;
+  width: 345px;
+  overflow: hidden;
+  height: 25px;
+  line-height: 21px;
   margin: 0px 20px 12px 20px;
 `
 
