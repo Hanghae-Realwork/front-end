@@ -50,15 +50,6 @@ function Join() {
   //아이디,비밀번호 중복체크
   const [userIdCheck, setUserIdCheck] = useState(false)
   const [nicknameCheck, setNicknameCheck] = useState(false)
-
-
-  // 입력완료 후 enter키 입력 시 회원가입 되도록 하기
-  window.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-      signupFunction();
-    }
-  });
-  
   
   //체크박스
   useEffect(() => {
@@ -87,7 +78,7 @@ function Join() {
     if (e.target.value.length > 0 && !emailRegex.test(userId)) {
       setUserIdError({
         status: true,
-        text: "이메일형식에 맞지 않습니다.",
+        text: "사용할 수 없는 이메일입니다.",
       });
     } else setUserIdError({ status: false, text: ""});
   };
@@ -547,7 +538,7 @@ function Join() {
               </BirthWrap>
               <IdWrap>
                 <InputBar
-                  placeholder="비밀번호 (비밀번호는 영문, 숫자, 특수문자를 포함하는 4~16자로 작성해주세요)"
+                  placeholder="비밀번호 (비밀번호는 영문, 숫자, 특수문자를 포함하는 4~16자)"
                   type="password"
                   maxLength={16}
                   onChange={OnChangePassWord}
