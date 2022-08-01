@@ -97,9 +97,12 @@ export const SearchAxios = (
         end: end
       }));
       dispatch(loadresult(res.data.skillFilteredProjects))
-      })
-      .catch((err) => {
-      });
+        if(res.data.skillFilteredProjects.length === 0 ){
+        alert('검색결과가 없습니다')
+      }
+    })
+    .catch((err) => {
+    });
   };
 };
 
@@ -111,6 +114,7 @@ export const SearchResumeAxios = (
   end
   ) => {
   return async function (dispatch) {
+    let success = null
     await apis
       .searchResume(
         role,
@@ -126,7 +130,9 @@ export const SearchResumeAxios = (
         end: end
       }));
       dispatch(loadresumeresult(res.data.skillFilteredResumes))
-        
+        if(res.data.skillFilteredResumes.length === 0 ){
+          alert('검색결과가 없습니다')
+          }
       })
       .catch((err) => {
       });

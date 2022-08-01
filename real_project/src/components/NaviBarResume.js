@@ -56,6 +56,11 @@ function NavigationBarResume() {
         ))
     }
 
+    useEffect(() => {
+
+      }, []);
+
+
     const JoinFunction = () => {
       
         if (loginInfo === false) {
