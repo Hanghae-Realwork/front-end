@@ -137,7 +137,6 @@ function EditProfile(props) {
          navigate("/mainemployment");
        })
        .catch((err) => {
-         // console.log(err);
        });
        
       } 

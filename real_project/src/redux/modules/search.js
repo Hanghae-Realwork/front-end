@@ -81,11 +81,6 @@ export const SearchAxios = (
   start,
   end
   ) => {
-    // console.log('role',role)
-    // console.log('skill',skill)
-    // console.log('start',start)
-    // console.log('end',end)
-
   return async function (dispatch) {
     await apis
       .searchProject(
@@ -95,7 +90,6 @@ export const SearchAxios = (
         end
       )
       .then((res) => {
-        console.log(res)
       dispatch(complete({
         role: role,
         skill: skill,
@@ -105,7 +99,6 @@ export const SearchAxios = (
       dispatch(loadresult(res.data.skillFilteredProjects))
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 };
@@ -117,11 +110,6 @@ export const SearchResumeAxios = (
   start,
   end
   ) => {
-    // console.log('role',role)
-    // console.log('skill',skills)
-    // console.log('start',start)
-    // console.log('end',end)
-
   return async function (dispatch) {
     await apis
       .searchResume(
@@ -131,7 +119,6 @@ export const SearchResumeAxios = (
         end
       )
       .then((res) => {
-        console.log(res)
       dispatch(complete({
         role: role,
         skills: skills,
@@ -142,7 +129,6 @@ export const SearchResumeAxios = (
         
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 };

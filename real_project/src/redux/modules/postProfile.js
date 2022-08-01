@@ -41,7 +41,7 @@ export const loadApplyAxios = (nickname) => {
       dispatch(loadApply(response.data));
       })
       .catch((err) => {
-        // console.log(err);
+
       });
   };
 };
@@ -56,7 +56,6 @@ export const loadProjectAxios = (nickname) => {
       dispatch(loadProject(response.data));
       })
       .catch((err) => {
-        // console.log(err);
       });
   };
 };
@@ -69,7 +68,6 @@ export const loadResumesAxios = (nickname) => {
         dispatch(loadResumes(response.data));
       })
       .catch((err) => {
-        // console.log(err);
       });
   };
 };
@@ -82,7 +80,6 @@ export const loadProjectsAxios = (nickname) => {
         dispatch(loadProjects(response.data));
       })
       .catch((err) => {
-        // console.log(err);
       });
   };
 };
@@ -90,7 +87,6 @@ export const loadProjectsAxios = (nickname) => {
 
 //프로필 업로드
 export const userPhotoAxios = (nickname,frm) => {
-  console.log(nickname,frm)
   return async function (dispatch) {
     let success = null;
     await apis

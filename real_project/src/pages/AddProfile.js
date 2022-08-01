@@ -135,7 +135,6 @@ function AddProfile(props) {
      ).then(() => {
         navigate("/mainemployment");
      }).catch((err) => {
-          console.log(err);
      })
        
       } 

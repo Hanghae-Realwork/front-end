@@ -51,7 +51,7 @@ export const loadResumesAxios = () => {
             dispatch(loadResumes(res.data.resumes));
       })
       .catch((err) => {
-        console.log(err);
+
       });
   };
 };
@@ -64,7 +64,7 @@ export const loadProjectsAxios = () => {
         dispatch(loadProjects(res.data.projects))
       })
       .catch((err) => {
-        console.log(err);
+
       });
   };
 };
@@ -80,7 +80,6 @@ export const projectInterviewAxios = (applcationId,resumeId) => {
       
       })
       .catch((err) => {
-        console.log(err)
         if (err) {
           alert(err.response.data.errorMessage);
         }

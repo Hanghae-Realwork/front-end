@@ -186,7 +186,6 @@ const FindProjectStep01 = (props) => {
   const timeAddOnClick = () => {
 
     let temp = { ...rangeTime };
-    // console.log(temp[date].length);
     if (temp[date] && temp[date].length < 5) { 
     if (Object.keys(temp).includes(date) && !temp[date].includes(time)) {
       temp[date] = [...temp[date], time];
@@ -296,7 +295,6 @@ const FindProjectStep01 = (props) => {
           new_list
         )
       ).then((res) => {
-        console.log(res)
         navigate("/mainrecruit");
       })
       

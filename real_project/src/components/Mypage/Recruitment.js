@@ -51,7 +51,6 @@ const Recruitment = () => {
           const today = new Date(list?.schedule);
           const tenMinutes = new Date(list?.schedule);
           const test2 = tenMinutes.setMinutes(tenMinutes.getMinutes() - 10);
-          // console.log("10분전", tenMinutes, "현재", today);
         
           const DisplayCreatedAt = () => {
             if (parseInt(startTime - nowTime) > -86400000) {

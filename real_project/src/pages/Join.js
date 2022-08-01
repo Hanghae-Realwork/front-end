@@ -136,7 +136,6 @@ function Join() {
         setYear(e.target.value);
       } 
     } else if (name === "month") {
-      console.log(e.target.value === "4")
       if (BirthRegex.test(e.target.value)) {
           if (e.target.value <=12) setMonth(e.target.value);
       }
@@ -415,12 +414,10 @@ function Join() {
         if (res === true) {
           navigate("/login");
           alert("크루원이 되신 것을 축하드립니다! 🥸");
-        } else {
-          console.log("회원가입에 실패했습니다!");
         }
       });
     } catch (err) {
-      console.log("에러입니다!");
+
     }
   };
 
