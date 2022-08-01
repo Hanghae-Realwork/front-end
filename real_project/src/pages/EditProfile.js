@@ -90,22 +90,19 @@ function EditProfile(props) {
       startDate === "" ||
       endDate === "" ||
       role === "" ||
-      checkList === "" ||
       content2Ref.current.value === "" ||
       content3Ref.current.value === "" ||
       introduceRef.current.value === " " ||
       startDate === " " ||
       endDate === " " ||
       role === " " ||
-      checkList === " " ||
       content2Ref.current.value === " " ||
       content3Ref.current.value === " " ||
-   
       introduceRef.current.value === null ||
       startDate === null ||
       endDate === null ||
       role === null ||
-      checkList === null ||
+      checkList.length <= 0 ||
       content2Ref.current.value === null ||
       content3Ref.current.value === null 
    
