@@ -18,7 +18,6 @@ import ko from "date-fns/locale/ko";
 import Footer from "../components/Date/Footer";
 
 
-
 function EditProfile(props) {
 
   const navigate = useNavigate();
