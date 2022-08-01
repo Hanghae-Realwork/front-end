@@ -1,7 +1,10 @@
-<a align="center" href="https://rendev99.com">![KakaoTalk_Photo_2022-08-01-10-40-41](https://user-images.githubusercontent.com/103410051/182056537-68c6094d-7ac2-4679-9ffd-b8ea9848ce86.png)</a>
+<h2><b>항해 99 7기 B반 | 실전 프로젝트 renDev [ 랑데브 ] FE </b><h2>
+
+<a align="center" href="https://rendev99.com">![KakaoTalk_Photo_2022-08-01-20-41-56](https://user-images.githubusercontent.com/103410051/182140573-62a62e72-15f0-4ab4-8297-2f082b8af344.png)</a>
 <br/>
 
-<span> 이미지를 클릭하시면 랑데브 페이지로 이동 합니다.<span>
+<span> (이미지를 클릭하시면 랑데브 페이지로 이동 합니다)<span>
+<br/>
 <br/>
 <br/>
 
@@ -13,10 +16,15 @@
 <img src="https://img.shields.io/badge/AmazonAWS-569a31?style=flat-square&logo=AmazoneAWS&logoColor=303032"/>
 </p>
 
+<br/>
+
 ## 🚀 **서비스 소개**  
 취업 이전, 혹은 이직 준비중에 개발 프로젝트를 함께할 팀원을 구하는 서비스. renDev 입니다.
 <br/>
 좋은 팀원 만나실 수 있을거예요!
+ 
+<br/>
+<br/>
 
 ## 👨‍🚀👩‍🚀 **프로젝트 기간 및 팀원 소개**
 
@@ -26,6 +34,8 @@ FrontEnd : 이천희, 유승연 <br/>
 BackEnd : 우재영, 김주혁, 유승재, 윤형진 <br/>
 Designer : 김나정<br/>
 
+<br/>
+<br/>
 
 ## 🌌 **프론트엔드 개요**
 
@@ -34,12 +44,18 @@ Designer : 김나정<br/>
 - 형상 관리 : git hub<br/>
 - 협업 툴 : notion<br/>
 - 디자인 공유 : Figma<br/>
+ 
+<br/>
+<br/>
 
 
 ## 🏗  **프로젝트 아키텍쳐**
 ![KakaoTalk_Photo_2022-08-01-10-49-48](https://user-images.githubusercontent.com/103410051/182057279-4ad66097-6fab-4499-adc0-ea3461014af7.png)
 
 
+<br/>
+<br/>
+ 
 
 ## 📝  **renDev 주요 기능**
 <br/>
@@ -67,6 +83,9 @@ Designer : 김나정<br/>
 **6. 지원 현황 살펴보기**      
 
  - 내가 지원한 프로젝트의 인터뷰 결과는 어떻게 됐을까요? 마이페이지에서 현재 진행 현황을 한눈에 파악해 볼 수 있습니다.
+ 
+<br/>
+<br/>
 <br/>
 
 
@@ -104,5 +123,5 @@ Designer : 김나정<br/>
 
 
 
-
+좋은 팀원을 만나게 되실 거예요, renDev 드림.
 
