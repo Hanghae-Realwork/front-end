@@ -58,6 +58,8 @@ function App() {
       
       <Header />
 
+      {/* <AgreementModal/> */}
+
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/mainrecruit" element={<MainRecruit />} />
@@ -78,6 +80,7 @@ function App() {
         <Route path="/datemodal" element={<DateModal />}></Route>
         <Route path="/loginmodal" element={<LoginModal />}></Route>
         <Route path="/Joinmodal" element={<JoinModal />}></Route>
+        <Route path="/agreement" element={<AgreementModal />}></Route>
 
         <Route path="mypage/:nickname/*" element={<MyPage />}>
           <Route path="apply" element={<Application />}></Route>
@@ -92,6 +95,7 @@ function App() {
     </MainWrap>
   );
 }
+
 
 
 const MainWrap = styled.div`

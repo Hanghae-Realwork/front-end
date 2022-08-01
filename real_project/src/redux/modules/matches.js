@@ -33,11 +33,9 @@ export const matchesResumesAxios = (projectId) => {
     await apis
       .matchResumes(projectId)
         .then((res) => {
-          console.log(res)
         dispatch(matchesResumes(res.data));
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 };
@@ -50,7 +48,6 @@ export const matchesProjectsAxios = (resumeId) => {
         dispatch(matchesProjects(res.data));
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 };

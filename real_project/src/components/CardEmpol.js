@@ -78,6 +78,7 @@ const AllCardWrap = styled.div`
     justify-content: flex-start;
     align-items: center;
     background-image: url(${cardBackground});
+    cursor: pointer;
 `
 
 const CardTopWrap = styled.div`

@@ -50,7 +50,6 @@ export const loadRecruitAxios = () => {
         dispatch(loadRecruit(list));
       })
       .catch((err) => {
-        console.log(err);
       });
     } 
   };
@@ -96,7 +95,6 @@ export const createRecruitAxios = (
         schedule
       )
       .then((res) => {
-        console.log(res)
         dispatch(
           createRecruit({
             title: title,
@@ -111,7 +109,6 @@ export const createRecruitAxios = (
         );
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 };
@@ -124,7 +121,6 @@ export const LoadDetailAxios = (projectId) => {
       dispatch(detailRecruit(res.data.project))
     })
     .catch((err) => {
-      console.log(err)
     })
   }
 }
@@ -171,7 +167,6 @@ export const editRecruitAxios = (
         })
       );
     }).catch((err) => {
-      console.log(err)
       res = false;
     })
     return res;
@@ -190,7 +185,6 @@ export const deleteRecruitAxios = (projectId) => {
       })
       .catch((err) => {
         res = false;
-        console.log(err);
       });
     return res;
   };

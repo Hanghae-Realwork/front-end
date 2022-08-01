@@ -9,12 +9,16 @@ import {
 import { useNavigate } from "react-router-dom";
 import { flushSync } from "react-dom";
 
+import AgreementModal from "../components/Modal/AgreementModal";
+
 import Logo from "../image/Logo_vertical.svg"
 
 
 
 
 function Join() {
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,6 +31,9 @@ function Join() {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
+
+  const [Agreemodal, setAgreeModal] = useState(false);
+
 
   //error
   const [userIdError, setUserIdError] = useState({
@@ -133,7 +140,6 @@ function Join() {
         setYear(e.target.value);
       } 
     } else if (name === "month") {
-      console.log(e.target.value === "4")
       if (BirthRegex.test(e.target.value)) {
           if (e.target.value <=12) setMonth(e.target.value);
       }
@@ -444,18 +450,19 @@ function Join() {
         if (res === true) {
           navigate("/login");
           alert("크루원이 되신 것을 축하드립니다! 🥸");
-        } else {
-          console.log("회원가입에 실패했습니다!");
         }
       });
     } catch (err) {
-      console.log("에러입니다!");
+
     }
   };
 
 
   return (
     <>
+    <ModralWrap>
+         {Agreemodal === true ? (<AgreementModal close={setAgreeModal}/>) : null}
+    </ModralWrap>
       <BackgroundWrap>
         <JoinWrap>
           <AlignWrap>
@@ -647,7 +654,7 @@ function Join() {
                       이용약관 (필수)
                     </AgreementText>
                   </ChcekWrap>
-                  <AgreementCheckButton>약관 보기</AgreementCheckButton>
+                  <AgreementCheckButton onClick={() => {setAgreeModal(true)}}>약관 보기</AgreementCheckButton>
                 </AgreeChkWrap>
                 <AgreeChkWrap>
                   <ChcekWrap>
@@ -661,7 +668,6 @@ function Join() {
                       마케팅 동의 (선택)
                     </AgreementText>
                   </ChcekWrap>
-                  <AgreementCheckButton>약관 보기</AgreementCheckButton>
                 </AgreeChkWrap>
               </AgreementWrap>
             </AgreeFullWrap>
@@ -685,6 +691,7 @@ function Join() {
 
 const BackgroundWrap = styled.div`
   background-color: #1f1f1f;
+  height: 140vh;
   width: 100%;
 `
 
@@ -976,5 +983,11 @@ const ChcekWrap = styled.div`
   align-items: center;
 `
 
+const ModralWrap = styled.div`
+  position: relative;
+  /* height: auto; */
+  left: -1600px;
+
+`
 
 export default Join;

@@ -262,7 +262,6 @@ const EditProject = (props) => {
           }
         });
       } catch (err) {
-        console.log(err);
       }
     }
 

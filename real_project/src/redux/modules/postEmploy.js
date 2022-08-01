@@ -45,7 +45,6 @@ export const loadEmployAxios = () => {
 
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 };
@@ -105,7 +104,6 @@ export const resumesCreateAxios = (
         );
        
       }).catch((err) => {
-        console.log(err)
       })
   };
 };
@@ -119,7 +117,7 @@ export const loadSingleEmployAxios = (resumeId) => {
         // dispatch(loadEmploy(list));
       })
       .catch((err) => {
-        // console.log(err);
+
       });
   };
 };
@@ -171,7 +169,7 @@ export const deleteEmployAxios = (resumeId) => {
         
         dispatch(deleteEmploy());
       }).catch((err) => {
-        console.log(err)
+
       })
   };
 };
@@ -185,7 +183,7 @@ export default function reducer(state = initialState, action = {}) {
 
     case "employ/CREATE": {
       const newResumes = [action.payload, ...state.returnResumes];
-      // console.log(newResumes)
+
       return {
         returnResumes: newResumes,
         resumes: state.resumes,
@@ -206,7 +204,6 @@ export default function reducer(state = initialState, action = {}) {
     }
       //delete가 있으면 작동하지않음 
     // case "employ/DELETE": {
-    //   console.log(action.payload)
     //   return { returnResumes: action.state, resumes: action.payload };
     // }
 

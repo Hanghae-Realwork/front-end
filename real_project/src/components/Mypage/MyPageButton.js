@@ -15,9 +15,6 @@ function ButtonLine() {
   const MoveMyRecruit = (e) => {
     navigate(`/mypage/${nickname}/apply`)
     setCurrentClick(e.target.id);
-    // console.log(e)
-    // console.log(e.target)
-    // console.log(e.target.id)
   };
 
   const MoveMyEmpol = (e) => {

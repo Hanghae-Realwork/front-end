@@ -15,10 +15,6 @@ const DatePickerSingle = ( props ) => {
   const onChange = (date) => {
     setStartDate(date)
    copy.push(date);
-
-    
-      // setUsers(users.concate(date))
-      // console.log(users);
   }
  
  
