@@ -75,15 +75,12 @@ function SelectSkill() {
 
 
 const SelectBoxTab = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
   gap: 13px;
 `;
-
-
 
 const SkillWrap = styled.div`
   display: flex;
@@ -92,12 +89,10 @@ const SkillWrap = styled.div`
   align-items: flex-start;
   width: 580px;
   padding: 10px;
-  /* border: 1px solid black; */
 `;
 
 const TecLabel = styled.label`
   font-size: 14px;
-  /* border: 1px solid black; */
 `;
 
 const CheckBox = styled.input`

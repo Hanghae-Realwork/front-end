@@ -4,8 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadEmployAxios } from "../redux/modules/postEmploy";
 
 import CardEmpol from "../components/CardEmpol";
-import TagCompoDes from "../components/Tag/TagCompoDes";
-import TagCompoDev from "../components/Tag/TagCompoDev";
 import NavigationBarResume from "../components/NaviBarResume";
 
 const MainEmployment = () => {
@@ -54,7 +52,6 @@ const CardContainerWrap = styled.div`
   gap: 24px;
   margin-top: 50px;
   margin-bottom: 50px;
-  /* border: 1px solid black; */
 `
 
 const CardBackGround = styled.div`

@@ -114,7 +114,6 @@ const CheckBox = styled.input`
 `
 
 const InputMainTextWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 20px 30px 20px 30px;
   display: flex;
   flex-flow: column nowrap;
@@ -123,7 +122,6 @@ const InputMainTextWrap = styled.div`
 `
 
 const SelectBoxTab = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -141,7 +139,6 @@ const ProjectTitleText = styled.span`
 
 const TecLabel = styled.label`
   font-size: 14px;
-  /* border: 1px solid black; */
 `;
 
 const ModalLine = styled.hr`

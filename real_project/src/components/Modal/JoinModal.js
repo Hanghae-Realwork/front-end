@@ -91,13 +91,11 @@ const GotoJoinBtn = styled.button`
   color: white;
   background: transparent;
   border: 1px solid white;
-  /* background-image: linear-gradient(#303032, #303032),linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%); */
   background-clip: content-box, border-box;
   border-radius: 4px;
   padding: 6.5px 33.5px 6.5px 33.5px;
   font-size: 18px;
   font-weight: 700;
-  /* border: none; */
   outline: none;
   margin-top: 20.79px;
   width: 384px;

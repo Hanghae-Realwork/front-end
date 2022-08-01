@@ -3,7 +3,6 @@ import styled from "styled-components"
 
 import "../App.css"
 
-import MatchingBtn from "../components/Matching/MatchingBtn"
 import MiniProject from "../components/MiniProject"
 import { useSelector, useDispatch } from "react-redux"
 import { loadProjectsAxios } from "../redux/modules/interview"
@@ -142,7 +141,6 @@ const MatchingCrewWrap = styled.div`
 
 const MatchingTopWrap = styled.div`
     width: 100%;
-    /* border: 1px solid black; */
     margin-top: 44.5px;
 `
 
@@ -155,7 +153,6 @@ const MatchingText = styled.span`
 const MatchingCardWrap = styled.div`
     height: 384px;
     width: 1200px;
-    /* border: 1px solid black; */
     overflow-x: scroll;
     display: flex;
     flex-flow: row wrap;
@@ -166,7 +163,6 @@ const MatchingCardWrap = styled.div`
 `
 
 const MatchingBotBtnWrap = styled.div`
-    /* border: 1px solid black; */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -188,7 +184,6 @@ const MatchingButton = styled.button`
 `
 
 const MatchingResumeWrap = styled.div`
-    /* border: 1px solid black; */
     width: 100%;
     margin-top: 20px;
     height: auto;
@@ -200,7 +195,6 @@ const MatchingResumeWrap = styled.div`
     overflow: scroll;
     gap: 21px;
 `               
-                        
 
 const ContentAlignWrap = styled.div`
   margin-top: 35px;
@@ -210,7 +204,6 @@ const ContentAlignWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   height: auto;
-  /* border: 1px solid black; */
 `
 
 const TextAlingWrap = styled.div`
@@ -218,28 +211,22 @@ const TextAlingWrap = styled.div`
   margin-top: 35px;
 `
 
-
 const MatchingBotWrap = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  /* margin-top: 20px; */
   height: auto;
   padding-bottom: 80px;
-  /* height: 20vh; */
   background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
 `
 
-const FallowText = styled.span`
-  /* margin-top: 60px; */
-`
+const FallowText = styled.span``
 
 const MatchingCardNoWrap = styled.div`
     height: 360px;
     width: 1200px;
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -258,7 +245,6 @@ const MatchingBtnWrap = styled.div`
     flex-flow: row wrap;
     justify-content: center;
     align-items: flex-end;
-    /* border: 1px solid white; */
 `
 
 const LeftTriangleDiv = styled.label`
@@ -306,7 +292,6 @@ const BtnDivWrap = styled.div`
 
 const PositionWrap = styled.div`
     position: relative;
-    /* border: 1px solid white; */
     width: auto;
     display: flex;
     flex-flow: row wrap;
@@ -322,7 +307,6 @@ const SecondBtnDivWrap = styled.div`
     justify-content: center;
     align-items: center;
     margin-left: -20px;
-    /* margin-bottom: -3px; */
 `
 
 const LeftTriangleDivtwo = styled.div`

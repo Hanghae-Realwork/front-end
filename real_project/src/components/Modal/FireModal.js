@@ -62,7 +62,6 @@ const LogoBox = styled.div`
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    /* border: 1px solid white; */
 `
 
 const LoginGuide = styled.span`

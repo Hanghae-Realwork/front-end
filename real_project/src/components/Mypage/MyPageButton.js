@@ -72,7 +72,6 @@ function ButtonLine() {
 }
 
 const BackgroundAllWrap = styled.div`
-  /* border: 1px solid white; */
   width: 1440px;
   height: 130px;
   background-color: #323230;
@@ -83,7 +82,6 @@ const BackgroundAllWrap = styled.div`
 `;
 
 const RightTopWrap = styled.div`
-  /* border: 1px solid white; */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -91,7 +89,6 @@ const RightTopWrap = styled.div`
   gap: 44px;
   margin-right: 250px;
   margin-bottom: 30px;
-  /* position: relative; */
 `;
 
 const OnlyBackgroundWrap = styled.div`
@@ -100,14 +97,8 @@ const OnlyBackgroundWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid white; */
     height: 130px;
 `
-
-// const LeftTopWrap = styled.div`
-//     border: 1px solid white;
-//     width: 500px;
-// `
 
 const MyMenuButton = styled.label`
   padding: 4px 15px 4px 15px;
@@ -120,16 +111,10 @@ const MyMenuButton = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: transparent; */
-  /* background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%); */
   border: none;
   outline: none;
   cursor: pointer;
   color: white;
-
-  :active{
-    
-}
 `;
 
 export default ButtonLine;

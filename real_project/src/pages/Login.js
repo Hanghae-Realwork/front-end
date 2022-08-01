@@ -102,7 +102,6 @@ const LoginWrap = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: -200px;
-  /* border: 1px solid white; */
 `;
 
 const AlignWrap = styled.div`
@@ -114,32 +113,11 @@ const AlignWrap = styled.div`
 
 
 const InpuLoginWrap = styled.div`
-  /* border: 1px solid white; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   gap: 40px;
-`;
-
-const IdWrap = styled.div`
-  /* border: 1px solid white; */
-  width: 500px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px;
-`;
-
-const PwWrap = styled.div`
-  /* border: 1px solid black; */
-  width: 500px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px;
 `;
 
 const InputBar = styled.input`
@@ -152,15 +130,6 @@ const InputBar = styled.input`
   background-color: transparent;
 `;
 
-const ButtonWrap = styled.div`
-  /* border:1px solid black; */
-  width: auto;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-`;
 
 const LoginButton = styled.button`
   outline: none;

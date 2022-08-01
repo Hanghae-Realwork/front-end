@@ -158,7 +158,6 @@ const AllMyWrap = styled.div`
 `
 
 const MypageBackGround = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -167,14 +166,11 @@ const MypageBackGround = styled.div`
 `;
 
 const MyPageMainWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: flex-start;
-  /* margin-top: -50px; */
   position: relative;
-  /* top: -200px; */
   left: 30px;
   width: 820px;
   gap: 20px;
@@ -213,7 +209,6 @@ const LeftBackgroundWrap = styled.div`
 
 // 좌측 프로필 CSS
 const MyPageProfileWrap = styled.div`
-  /* border: 1px solid black; */
   width: 200px;
   display: flex;
   flex-flow: column nowrap;
@@ -222,7 +217,6 @@ const MyPageProfileWrap = styled.div`
 `;
 
 const MyPagePhotoWrap = styled.img`
-  /* border: 1px solid black; */
   width: 160px;
   height: 160px;
   border-radius: 100%;
@@ -235,8 +229,9 @@ const MyPagePhotoWrap = styled.img`
   background-position: center;
   background-repeat: no-repeat;
 `;
+
 const MyPagePhotoIn = styled.img`
-  /* border: 1px solid black; */
+
   width: 160px;
   height: 160px;
   border-radius: 100%;
@@ -244,11 +239,11 @@ const MyPagePhotoIn = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 `;
+
 const ProfilePhotoSpan = styled.button`
   font-size: 12px;
   font-weight: 400;
@@ -277,6 +272,7 @@ const MypageTextWrap = styled.div`
   align-items: center;
   margin-top: 10px;
 `;
+
 const Mycall = styled.span`
   font-size: 16px;
   font-weight: 400;
@@ -285,12 +281,9 @@ const Mycall = styled.span`
 const MyPagePasswordWrap = styled.div`
   display: flex;
   flex-direction: column;
-
-  /* flex-flow: row wrap; */
   justify-content: center;
   align-items: center;
   margin-top: 150px;
-  /* border: 1px solid black; */
 `;
 
 
@@ -316,10 +309,8 @@ const UserWordText = styled.a`
   color: black;
 `;
 const ModalWrap = styled.div`
-  /* border: 4px solid white; */
   z-index: 4;
   position: absolute;
-  /* margin-bottom: -100px; */
 `
 
 
