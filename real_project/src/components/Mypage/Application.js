@@ -8,25 +8,20 @@ import TagCompoApp from "./TagCompoApp";
 import EmptyCard from "./EmptyCard";
 import ApplyTag from "../../components/Tag/ApplyTag"
 
-import Check from "../../image/check.svg"
-
-
 const Application = () => {
   
-    const dispatch = useDispatch();
-    const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+  const dispatch = useDispatch();
 
-    const [_nickname,setNickname]=useState('')
-    const data = useSelector((state) => state.postProfile.Applications);
+  const [_nickname, setNickname] = useState('')
+
+  const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
+  const data = useSelector((state) => state.postProfile.Applications);
      
-
-  
-
     useEffect(() => {
-        if (!(nickname_Info === undefined || nickname_Info === null)) {
-            dispatch(loadApplyAxios(nickname_Info));
+      if (!(nickname_Info === undefined || nickname_Info === null)) {
+        dispatch(loadApplyAxios(nickname_Info));
       }
-    }, [nickname_Info]);
+    }, [nickname_Info, loadApplyAxios]);
  
   return (
     <RightMapingWrap>
@@ -144,8 +139,6 @@ const RightMapingWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 25px;
-  /* border: 1px solid black; */
-
 `;
 
 const RightCardWrap = styled.div`
@@ -164,7 +157,6 @@ const InterviewButtonWrap = styled.div`
   align-items: center;
   width: 385px;
   margin-top: 20px;
-  /* border: 1px solid black; */
 `;
 
 const InterviewButton = styled.button`
@@ -199,7 +191,6 @@ const RightContentWrap = styled.div`
   align-items: center;
   width: 390px;
   margin-bottom: 40px;
-  /* border: 1px solid black; */
 `;
 
 const CardAllWrap = styled.div`
@@ -218,7 +209,6 @@ const TopWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid black; */
   width: 350px;
   margin-top: 20px;
 `;
@@ -237,7 +227,7 @@ const TitleWrap = styled.div`
   overflow: hidden;
   height: 20px;
   line-height: 21px;
-  /* border: 1px solid black; */
+
 `;
 
 const DetailWrap = styled.div`
@@ -249,7 +239,7 @@ const DetailWrap = styled.div`
   margin-top: 15px;
   overflow: hidden;
   line-height: 21px;
-  /* border: 1px solid black; */
+
 `
 
 
@@ -268,7 +258,6 @@ const RoleWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  /* border: 1px solid black; */
   margin-top: 20px;
   width: 350px;
 `;
@@ -284,7 +273,6 @@ const ProjectLimit = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-  /* border: 1px solid black; */
   margin-top: 7px;
   width: 350px;
 `;
@@ -318,15 +306,6 @@ const CodeText = styled.span`
   font-weight: 500;
 `;
 
-const AllDivWrap = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border: 1px solid black;
-  gap: 20px;
-`
-
 const RoleTextWrap = styled.div`
   margin-top: 4px;    
   display: flex;
@@ -334,12 +313,9 @@ const RoleTextWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   overflow: hidden;
-  /* border: 1px solid black; */
   width: 350px;
   height: 33px;
   line-height: 21px;
-
-  /* gap: 2px; */
 `
 
 

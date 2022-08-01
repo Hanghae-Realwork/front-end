@@ -7,7 +7,6 @@ import { loadProjectAxios } from "../../redux/modules/postProfile";
 
 import check from "../../image/check.svg"
 
-
 function RecruitTag({list}) {
 
   const dispatch = useDispatch();
@@ -136,161 +135,11 @@ function RecruitTag({list}) {
           </RecruitmentStatusLabel>
         </>
       )}
-      {/* {
-        <>
-          <ApplyStatusLabel
-            style={
-              list.available
-                ? ""
-                : {
-                    fontWeight: "600",
-                    border: "1.5px solid black",
-                    backgroundColor: "ghostwhite",
-                  }
-            }
-          >
-            지원서 접수
-            <img src={check} />
-          </ApplyStatusLabel>
-          <ApplyLine />
-          <InterviewStatusLabel
-            style={{
-              fontWeight: "600",
-              border: "1.5px solid black",
-              backgroundColor: "ghostwhite",
-            }}
-            onClick={() => {
-              if (list.status === "interviewed") {
-                {
-                  alert("이미 완료되었습니다.");
-                }
-              } else {
-                if (window.confirm("인터뷰을 완료하시나요?")) {
-                  dispatch(interviewEndStatusAxios(list.applicationId)).then(
-                    (success) => {
-                      if (success) {
-                        dispatch(loadProjectAxios());
-                      } else {
-                        return;
-                      }
-                    }
-                  );
-                } else {
-                  return;
-                }
-              }
-            }}
-          >
-            인터뷰 완료
-            <img src={check} />
-          </InterviewStatusLabel>
-          <ApplyLine />
-
-          <RecruitmentStatusLabel
-            onClick={() => {
-              if (window.confirm("함께 하실건가요? 취소 시 불합격")) {
-                dispatch(
-                  interviewMatchStatusAxios(list.applicationId, "matched")
-                ).then((success) => {
-                  if (success) {
-                    dispatch(loadProjectAxios());
-                  } else {
-                    return;
-                  }
-                });
-              } else {
-                //매칭실패시
-                //unmatched
-                dispatch(
-                  interviewMatchStatusAxios(list.applicationId, "unmatched")
-                ).then((success) => {
-                  if (success) {
-                    dispatch(loadProjectAxios());
-                  } else {
-                    return;
-                  }
-                });
-              }
-            }}
-          >
-            모집 완료
-            <img src={check} />
-          </RecruitmentStatusLabel>
-        </>
-      } */}
-
-      {/* {list.status === "unmatched" ? (
-        <>
-          <ApplyStatusLabel
-            style={{
-              fontWeight: "600",
-              border: "1.5px solid black",
-              backgroundColor: "ghostwhite",
-            }}
-          >
-            지원서 접수
-            <img src={check} />
-          </ApplyStatusLabel>
-          <ApplyLine />
-          <InterviewStatusLabel
-            style={{
-              fontWeight: "600",
-              border: "1.5px solid black",
-              backgroundColor: "ghostwhite",
-            }}
-          >
-            인터뷰 완료
-            <img src={check} />
-          </InterviewStatusLabel>
-
-          <ApplyLine />
-          <RecruitmentStatusLabel
-            style={{
-              fontWeight: "600",
-              border: "1.5px solid black",
-              backgroundColor: "ghostwhite",
-            }}
-            onClick={() => {
-              if (window.confirm("함께 하실건가요? 취소 시 불합격")) {
-                dispatch(
-                  interviewMatchStatusAxios(list.applicationId, "matched")
-                ).then((success) => {
-                  if (success) {
-                    dispatch(loadProjectAxios());
-                  } else {
-                    return;
-                  }
-                });
-              } else {
-                //매칭실패시
-                //unmatched
-                dispatch(
-                  interviewMatchStatusAxios(list.applicationId, "unmatched")
-                ).then((success) => {
-                  if (success) {
-                    dispatch(loadProjectAxios());
-                  } else {
-                    return;
-                  }
-                });
-              }
-            }}
-          >
-            다음 기회에
-            <img src={check} />
-          </RecruitmentStatusLabel>
-        </>
-      ) : (
-        ""
-      )}
-
-      {} */}
     </LoadWrap>
   );
 }
 
 const LoadWrap = styled.div`
-  /* border: 1px solid black; */
   width: 120px;
   height: 307px;
   display: flex;
@@ -308,7 +157,6 @@ const RecruitmentStatusLabel = styled.label`
   align-items: center;
   gap: 10px;
   background-color: white;
-  /* border:  1px solid black; */
   border-radius: 20px;
   font-size: 13px;
 `;
@@ -329,7 +177,6 @@ const ApplyStatusLabel = styled.label`
   align-items: center;
   gap: 10px;
   background-color: white;
-  /* border:1px solid black; */
   border-radius: 20px;
   font-size: 13px;
 `;
@@ -343,13 +190,8 @@ const InterviewStatusLabel = styled.label`
   align-items: center;
   gap: 10px;
   background-color: white;
-  /* border: 1px solid black; */
   border-radius: 20px;
   font-size: 13px;
-
-  /* font-weight: ${(props) => (props.color ? "600" : "")};
-  border: ${(props) => (props.color ? "1.5px solid black" : "1px solid black")};
-  background-color: ${(props) => (props.color ? "ghostwhite" : "")}; */
 `;
 
 export default RecruitTag

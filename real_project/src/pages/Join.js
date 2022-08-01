@@ -7,7 +7,6 @@ import {
   checkUserNicknameAxios,
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
-import { flushSync } from "react-dom";
 
 import AgreementModal from "../components/Modal/AgreementModal";
 
@@ -290,18 +289,18 @@ function Join() {
     if (e.target.value.length > 0 && password !== e.target.value) {
       setConfirmPasswordError({
         status: true,
-        text: "비밀번호와 일치하지 않습니다.",
+        text: "비밀번호가 일치하지 않습니다.",
         color: false,
       });
     } else if (e.target.value.length > 0 && password === e.target.value) {
       setConfirmPasswordError({
         status: true,
-        text: "비밀번호와 일치합니다.",
+        text: "비밀번호가 일치합니다.",
         color: true,
       });
       setPasswordError({
         status: true,
-        text: "비밀번호와 일치합니다.",
+        text: "비밀번호가 일치합니다.",
         color: true,
       });
 

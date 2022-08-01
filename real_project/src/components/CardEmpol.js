@@ -4,20 +4,21 @@ import TagDev from "./Tag/TagCompoDev"
 import BasicPhoto from "../image/astroman.svg"
 
 import { useNavigate} from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
 
 import cardBackground from "../image/cardBackground.svg"
-
+import { useEffect } from "react"
 
 function CradEmpol({ data }) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
- const profileImage = useSelector((state) => state.user.userInfo.profileImage);
   const start =
     data > 0 ? "" : data?.start.replace("-", ".").replace("-", ".");
   const end =
     data > 0 ? "" : data?.end.replace("-", ".").replace("-", ".");
-
+  useEffect(() => {
+    if (data&data) {
+    
+  }
+},[data])
     return (
       <>
         <AllCardWrap
