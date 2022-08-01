@@ -135,7 +135,7 @@ Designer : 김나정<br/>
 ![KakaoTalk_Photo_2022-08-01-11-53-42](https://user-images.githubusercontent.com/103410051/182063129-0c8d5757-42f6-4b0e-9e56-6cbd445162aa.png)
 
 
-
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter&count_bg=%234E8FC7&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true)](https://hits.seeyoufarm.com)
 
 ### 🎁 좋은 팀원을 만나게 되실 거예요, renDev 드림.
 
