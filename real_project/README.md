@@ -1,5 +1,7 @@
 
-![KakaoTalk_Photo_2022-08-01-10-40-41](https://user-images.githubusercontent.com/103410051/182056537-68c6094d-7ac2-4679-9ffd-b8ea9848ce86.png)
+<a href="https://rendev99.com">![KakaoTalk_Photo_2022-08-01-10-40-41](https://user-images.githubusercontent.com/103410051/182056537-68c6094d-7ac2-4679-9ffd-b8ea9848ce86.png)</a>
+<br/>
+<span> 이미지를 클릭하시면 랑데브 페이지로 이동 합니다.<span>
 
 ## 🚀 **서비스 소개**  
 취업 이전, 혹은 이직 준비중에 개발 프로젝트를 함께할 팀원을 구하는 서비스. renDev 입니다.
