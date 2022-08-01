@@ -17,6 +17,9 @@
 취업 이전, 혹은 이직 준비중에 개발 프로젝트를 함께할 팀원을 구하는 서비스. renDev 입니다.
 <br/>
 좋은 팀원 만나실 수 있을거예요!
+ 
+<br/>
+<br/>
 
 ## 👨‍🚀👩‍🚀 **프로젝트 기간 및 팀원 소개**
 
@@ -26,6 +29,8 @@ FrontEnd : 이천희, 유승연 <br/>
 BackEnd : 우재영, 김주혁, 유승재, 윤형진 <br/>
 Designer : 김나정<br/>
 
+<br/>
+<br/>
 
 ## 🌌 **프론트엔드 개요**
 
@@ -34,12 +39,18 @@ Designer : 김나정<br/>
 - 형상 관리 : git hub<br/>
 - 협업 툴 : notion<br/>
 - 디자인 공유 : Figma<br/>
+ 
+<br/>
+<br/>
 
 
 ## 🏗  **프로젝트 아키텍쳐**
 ![KakaoTalk_Photo_2022-08-01-10-49-48](https://user-images.githubusercontent.com/103410051/182057279-4ad66097-6fab-4499-adc0-ea3461014af7.png)
 
 
+<br/>
+<br/>
+ 
 
 ## 📝  **renDev 주요 기능**
 <br/>
