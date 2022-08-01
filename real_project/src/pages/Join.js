@@ -5,6 +5,7 @@ import {
   signupAxios,
   checkUserIdAxios,
   checkUserNicknameAxios,
+  checkEmailAxios,
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 
@@ -13,10 +14,7 @@ import AgreementModal from "../components/Modal/AgreementModal";
 import Logo from "../image/Logo_vertical.svg"
 
 
-
-
 function Join() {
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,12 +25,9 @@ function Join() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  // const [year, setYear] = useState("");
-  // const [month, setMonth] = useState("");
-  // const [day, setDay] = useState("");
-  const [checkEmail,setCheckEmail]= useState("")
+  const [checkEmail, setCheckEmail] = useState("")
+  
   const [Agreemodal, setAgreeModal] = useState(false);
-
 
   //error
   const [userIdError, setUserIdError] = useState({
@@ -41,15 +36,19 @@ function Join() {
     color: false,
   });
   const [nicknameError, setNicknameError] = useState({ status: false, text: "", color:false});
-  
-  // const [nameError, setNameError] = useState({status: false, text: "", color:false});
-  const [passwordError, setPasswordError] = useState({status: false,text: "",color: false});
+  const [passwordError, setPasswordError] = useState({status: false, text: "",color: false});
   const [confirmPasswordError, setConfirmPasswordError] = useState({
     status: false,
     text: "",
     color: false,
   });
-  // const [yearError, setYearError] = useState({status: false,text: ""});
+  //이메일 인증
+   const [checkEmailError, setCheckEmailError] = useState({
+     status: false,
+     text: "",
+     color: false,
+   });
+
 
   //error name
   //이용약관:동의 비동의
@@ -93,12 +92,13 @@ function Join() {
     } else setUserIdError({ status: false, text: ""});
   };
   const onChangecheckEmail = (e) => {
-
-  setCheckEmail(e.target.value)
+    setCheckEmail(e.target.value)
   }
   const onClickcheckEmail = () =>
+  
   {
-    
+    dispatch(checkEmailAxios(userId,checkEmail))
+ 
     }
   const BlurcheckEmail = () => {
     
@@ -122,132 +122,6 @@ function Join() {
     }
   };
 
-  //Name
-  // const onChageName = (e) => {
-  //   setName(e.target.value);
-  // };
-  // const BlurName = (e) => {
-  //   if (e.target.value.length <= 0) {
-  //     setNameError({ status: true, text: "필수 정보입니다.", color:false});
-  //     return;
-  //   }
-  //   if (e.target.value.length === 1) {
-  //     setNameError({
-  //       status: true,
-  //       text: "한글자 이상 입력해주세요!",
-  //       color: false,
-  //     });
-  //   } else {
-  //     setNameError({ status: false, text: "", color: false });
-  //   }
-  // };
-
-  //유효성검사:Birth
-  // const onChangeBirth = (e) => {
-  //   const BirthRegex = /^[0-9\b -]{0,4}$/;
-  //   const { name } = e.target;
-  //   if (name === "year") {
-  //     if (BirthRegex.test(e.target.value)) {
-  //       setYear(e.target.value);
-  //     } 
-  //   } else if (name === "month") {
-  //     if (BirthRegex.test(e.target.value)) {
-  //         if (e.target.value <=12) setMonth(e.target.value);
-  //     }
-  //   } else if (name === "day") {
-  //     if (BirthRegex.test(e.target.value)) {
-  //       setDay(e.target.value);
-  //     }
-  //   }
-  // };
-
-  // const BlurYear = (e) => {
-  //   const { name } = e.target;
-  //   //0~9 사이 숫자 입력 시 0번째에 0추가
-  //   if (name === "day") {
-  //     if (day < 10 && day.length === 1) {
-  //       setDay(0 + e.target.value);
-  //     }
-  //   }
-  //   //조건
-  //   if (year.length <= 0) {
-  //     setYearError({
-  //       status: true,
-  //       text: "태어난 년도 4자리를 정확하게 입력하세요.",
-  //     });
-  //   } else if (month.length <= 0) {
-  //     setYearError({
-  //       status: true,
-  //       text: "태어난 월을 입력하세요.",
-  //     });
-
-  //   } else if (day.length <= 0) {
-  //     setYearError({
-  //       status: true,
-  //       text: "태어난 일을 입력하세요.",
-  //     });
-  //   } else if (year >= 2022) {
-  //     setYearError({
-  //       status: true,
-  //       text: "미래에서 오셨군요^^",
-  //     });
-  //   } else if (year <= 1922) {
-  //     setYearError({
-  //       status: true,
-  //       text: "정말이세요?",
-  //     });
-  //   } else if (
-  //     (month === "4" || month === "6" || month === "9" || month === "11")) {
-  //     if (day >= 31) {
-  //       setYearError({
-  //         status: true,
-  //         text: "날짜를 다시 확인해주세요.",
-  //       });
-  //     } else { 
-  //       setYearError({
-  //         status: false,
-  //         text: "",
-  //       });
-  //     }
-  //   } else if (month === "2") { 
-  //     if (year % 4 === 0) {
-  //                if (day >= 30) {
-  //                  setYearError({
-  //                    status: true,
-  //                    text: "날짜를 다시 확인해주세요.",
-  //                  });
-  //                } else {
-  //                  setYearError({
-  //                    status: false,
-  //                    text: "",
-  //                  });
-  //                }
-  //     } else { 
-  //       if (day >= 29) {
-  //         setYearError({
-  //           status: true,
-  //           text: "날짜를 다시 확인해주세요.",
-  //         });
-  //       } else { 
-  //          setYearError({
-  //            status: false,
-  //            text: "",
-  //          });
-  //       }
-  //     }
-  //   }
-  //   else if (day >= 32) {
-  //     setYearError({
-  //       status: true,
-  //       text: "날짜를 다시 확인해주세요.",
-  //     });
-  //   } else {
-  //     setYearError({
-  //       status: false,
-  //       text: "",
-  //     });
-  //   }     
-  // };
 
   //유효성검사:Password
   const OnChangePassWord = (e) => {
@@ -269,7 +143,6 @@ function Join() {
         color: false,
       });
     } else if (e.target.value.length > 0 && passwordCheck === e.target.value) {
-     
       setPasswordError({
         status: true,
         text: "비밀번호와 일치합니다.",
@@ -356,6 +229,7 @@ function Join() {
 
   //아이디 중복체크
   const onClickCheckUserId = async () => {
+    console.log(userId)
     try {
       await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
         if (checksuccess === true) {
@@ -368,12 +242,10 @@ function Join() {
           setUserIdCheck(true)
 
         } else {
-         
           setUserIdError({
             status: true,
             text: "사용할 수 없는 이메일입니다.",
             color:false
-  
           });
           setUserIdCheck(false);
         }
@@ -408,24 +280,14 @@ function Join() {
     }
   };
   const signupFunction = async () => {
-      // const newmonth = `${("00" + month).slice(-2)}`;
-   
  // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
       userId === "" ||
       nickname === "" ||
-      // name === "" ||
-      // year === "" ||
-      // newmonth === "" ||
-      // day === "" ||
       password === "" ||
       passwordCheck === "" ||
       userId === " " ||
       nickname === " " ||
-      // name === " " ||
-      // year === " " ||
-      // newmonth === " " ||
-      // day === " " ||
       password === " " ||
       passwordCheck === " "
     ) {
@@ -449,8 +311,6 @@ function Join() {
         signupAxios(
           userId,
           nickname,
-          // name,
-          // year + "-" + newmonth + "-" + day,
           password,
           passwordCheck,
           allCheck
@@ -567,58 +427,7 @@ function Join() {
                   )}
                 </ValiWrap>
               </IdWrap>
-              {/* <IdWrap>
-                <InputBar
-                  type="text"
-                  placeholder="이름"
-                  minLength={2}
-                  maxLength={10}
-                  value={name}
-                  onChange={onChageName}
-                  onBlur={BlurName}
-                />
-                <ValiWrap>
-                  {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
-                </ValiWrap>
-              </IdWrap>
-
-              <BirthWrap>
-                <BirthAlignWrap>
-                  <InputBirth
-                    name="year"
-                    type="text"
-                    maxLength="4"
-                    placeholder="년(4자)"
-                    onBlur={BlurYear}
-                    value={year}
-                    onChange={onChangeBirth}
-                  />
-                  <InputMonth
-                    name="month"
-                    type="text"
-                    maxLength="2"
-                    placeholder="월(2자)"
-                    onBlur={BlurYear}
-                    value={month}
-                    onChange={onChangeBirth}
-                  />
-
-                  <InputDay
-                    type="text"
-                    maxLength="2"
-                    placeholder="일"
-                    value={day}
-                    onChange={onChangeBirth}
-                    onBlur={BlurYear}
-                    name="day"
-                  />
-                </BirthAlignWrap>
-                <div>
-                  <ValiWrap>
-                    {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
-                  </ValiWrap>
-                </div>
-              </BirthWrap> */}
+              
               <IdWrap>
                 <InputBar
                   placeholder="비밀번호 (비밀번호는 영문, 숫자, 특수문자를 포함하는 4~16자)"

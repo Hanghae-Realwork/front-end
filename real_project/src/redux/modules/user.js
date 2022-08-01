@@ -5,7 +5,7 @@ const LOGOUT = "user/LOGOUT";
 const USERINFO = "user/USERINFO";
 const CheckUserId = "user/CheckUserId";
 const VALIDATION = "user/VALIDATION";
-
+const CHECKEMAIL = "user/CHECKEMAIL";
 
 const initialState = {
   signup: {
@@ -40,7 +40,9 @@ export function userId(payload) {
 export function validation(payload) {
   return { type: VALIDATION, payload };
 }
-
+export function checkEmail(payload) {
+   return { type: CHECKEMAIL, payload };
+}
 //middleWare
 //회원가입
 export const signupAxios = (
@@ -154,13 +156,23 @@ export const checkUserValidation = () => {
       });
   };
 };
-
+  //  - 9. 이메일 코드
+export const checkEmailAxios = (userId, code) => {
+  return async function (dispatch) {
+    await apis
+      .checkEmail(userId, code)
+      .then((res) => {
+        console.log(res)})
+      .catch((err) => {});
+  };
+};
   //  - 9. 회원탈퇴
 export const userDeleteAxios = (nickname,password) => {
   return async function (dispatch) {
     await apis
       .userDelete(nickname, password)
       .then((res) => {
+        dispatch(logOut())
       })
       .catch((err) => {
       });

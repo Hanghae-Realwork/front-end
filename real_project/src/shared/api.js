@@ -2,7 +2,7 @@ import axios from "axios";
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "https://sprata-owl.shop/",
+  baseURL: "http://43.200.119.149:3000/",
   headers: {
     "content-type": "multipart/form-data",
     withCredentials: true,
@@ -11,16 +11,17 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "https://sprata-owl.shop/",
+  baseURL: "http://43.200.119.149:3000/",
   headers: {
-    "Access-Control-Allow-Origin": "https://sprata-owl.shop/",
+    "Access-Control-Allow-Origin": "http://43.200.119.149:3000/",
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
   },
   withCredentials: true,
   credentials: "include",
 });
-
+// https://sprata-owl.shop/
+// https://43.200.119.149:3000/
   //토큰
   api.interceptors.request.use(function (config) {
     const accessToken = `${localStorage.getItem("token")}`;
@@ -102,10 +103,13 @@ export const apis = {
     api.post("/api/users/signup/checkNickname", {
       nickname: nickname,
     }),
-
-  //  - 8. 토큰 재발급
-  // 재발급 과정 스터디 필요
-  // refresh: () => api.post("/api/users/refresh"),
+  //인증번호 검사
+  
+  checkEmail: (userId,code) =>
+    api.post("/api/users/signup/checkEmail", {
+      userId: userId,
+      code:code
+    }),
 
   //  - 9. 회원탈퇴
   userDelete: (nickname, password) =>
