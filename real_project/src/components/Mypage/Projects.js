@@ -14,7 +14,7 @@ const Projects = () => {
     if (nickname && nickname) {
       dispatch(loadProjectsAxios(nickname));
     }
-  }, [loadProjectsAxios]);
+  }, [loadProjectsAxios,nickname]);
 
   return (
     <>

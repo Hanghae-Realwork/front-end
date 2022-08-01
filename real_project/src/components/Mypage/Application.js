@@ -8,7 +8,6 @@ import TagCompoApp from "./TagCompoApp";
 import EmptyCard from "./EmptyCard";
 import ApplyTag from "../../components/Tag/ApplyTag"
 
-import Check from "../../image/check.svg"
 
 
 const Application = () => {
@@ -19,14 +18,11 @@ const Application = () => {
     const [_nickname,setNickname]=useState('')
     const data = useSelector((state) => state.postProfile.Applications);
      
-
-  
-
     useEffect(() => {
-        if (!(nickname_Info === undefined || nickname_Info === null)) {
-            dispatch(loadApplyAxios(nickname_Info));
+      if (!(nickname_Info === undefined || nickname_Info === null)) {
+        dispatch(loadApplyAxios(nickname_Info));
       }
-    }, [nickname_Info]);
+    }, [nickname_Info, loadApplyAxios]);
  
   return (
     <RightMapingWrap>
