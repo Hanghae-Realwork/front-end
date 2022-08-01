@@ -8,12 +8,10 @@ import {
   designerSkills_list,
 } from "../shared/developeSkills";
 import {
-  projectsPhotosAxios,
   resumesCreateAxios,
 } from "../redux/modules/postEmploy";
 
 import astroman from "../image/astroman.svg";
-import Letter from "../image/letter.svg";
 
 //DatePicker
 import DatePicker from "react-datepicker";
@@ -85,7 +83,6 @@ function AddProfile(props) {
       startDate === "" ||
       endDate === "" ||
       role === "" ||
-      checkList === "" ||
       content2Ref.current.value === "" ||
       content3Ref.current.value === "" ||
       _resumeId === "" ||
@@ -94,7 +91,6 @@ function AddProfile(props) {
       startDate === " " ||
       endDate === " " ||
       role === " " ||
-      checkList === " " ||
       content2Ref.current.value === " " ||
       content3Ref.current.value === " " ||
       _resumeId === " " ||
@@ -103,7 +99,7 @@ function AddProfile(props) {
       startDate === null ||
       endDate === null ||
       role === null ||
-      checkList === null ||
+      checkList.length <=0 ||
       content2Ref.current.value === null ||
       content3Ref.current.value === null ||
       _resumeId === null ||

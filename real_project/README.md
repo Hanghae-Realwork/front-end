@@ -1,8 +1,22 @@
+<a align="center" href="https://rendev99.com">![KakaoTalk_Photo_2022-08-01-10-40-41](https://user-images.githubusercontent.com/103410051/182056537-68c6094d-7ac2-4679-9ffd-b8ea9848ce86.png)</a>
+<br/>
 
-![KakaoTalk_Photo_2022-08-01-10-40-41](https://user-images.githubusercontent.com/103410051/182056537-68c6094d-7ac2-4679-9ffd-b8ea9848ce86.png)
+<span> 이미지를 클릭하시면 랑데브 페이지로 이동 합니다.<span>
+<br/>
+<br/>
+
+<p>
+<img src="https://img.shields.io/badge/React-61dafb?style=flat-square&logo=React&logoColor=303032"/>
+<img src="https://img.shields.io/badge/Redux-764abc?style=flat-square&logo=Redux&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=303032"/>
+<img src="https://img.shields.io/badge/styledcomponents-db7093?style=flat-square&logo=styledcomponents&logoColor=white"/>
+<img src="https://img.shields.io/badge/AmazonAWS-569a31?style=flat-square&logo=AmazoneAWS&logoColor=303032"/>
+</p>
 
 ## 🚀 **서비스 소개**  
 취업 이전, 혹은 이직 준비중에 개발 프로젝트를 함께할 팀원을 구하는 서비스. renDev 입니다.
+<br/>
+좋은 팀원 만나실 수 있을거예요!
 
 ## 👨‍🚀👩‍🚀 **프로젝트 기간 및 팀원 소개**
 
@@ -17,7 +31,7 @@ Designer : 김나정<br/>
 
 - 개발 언어 : Javascript<br/>
 - 개발 라이브러리 : React.js<br/>
-- 형상 관리 : git<br/>
+- 형상 관리 : git hub<br/>
 - 협업 툴 : notion<br/>
 - 디자인 공유 : Figma<br/>
 
@@ -27,7 +41,7 @@ Designer : 김나정<br/>
 
 
 
-## **renDev 주요 기능**
+## 📝  **renDev 주요 기능**
 <br/>
 
 **1. 프로젝트 등록**     
@@ -56,7 +70,7 @@ Designer : 김나정<br/>
 <br/>
 
 
-## **프로젝트 특징**
+## 🔧  **프로젝트 특징**
 <br/>
 
 **배포**

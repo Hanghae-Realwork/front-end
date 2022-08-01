@@ -5,6 +5,7 @@ import {loadProjectsAxios} from "../../redux/modules/postProfile";
 
 import CardRecruit from "../CardRecruit";
 import EmptyMyProject from "./EmptyMyProject";
+
 const Projects = () => {
     const dispatch = useDispatch();
     const nickname = useSelector((state) => state.user.userInfo.nickname);
@@ -14,7 +15,7 @@ const Projects = () => {
     if (nickname && nickname) {
       dispatch(loadProjectsAxios(nickname));
     }
-  }, [loadProjectsAxios]);
+  }, [loadProjectsAxios,nickname]);
 
   return (
     <>
@@ -42,6 +43,5 @@ const MyPageResumeBackWrap = styled.div`
   align-items: center;
   gap: 20px;
 `;
-
 
 export default Projects;

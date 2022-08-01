@@ -7,7 +7,6 @@ import { loadProjectAxios } from "../../redux/modules/postProfile";
 
 import check from "../../image/check.svg"
 
-
 function RecruitTag({list}) {
 
   const dispatch = useDispatch();
@@ -193,7 +192,6 @@ const InterviewStatusLabel = styled.label`
   background-color: white;
   border-radius: 20px;
   font-size: 13px;
-
 `;
 
 export default RecruitTag

@@ -22,17 +22,17 @@ const Recruitment = () => {
   const nickname_Info = useSelector((state) => state.user.userInfo.nickname);
   const value = useSelector((state) => state.postProfile.Myprojects);
   
-  useEffect(() => {
-    if (value.message === "토큰이 재발급 됐습니다.") { 
-      localStorage.setItem("token", value.token);
-    }
-  },[])
+  // useEffect(() => {
+  //   if (value.message === "토큰이 재발급 됐습니다.") { 
+  //     localStorage.setItem("token", value.token);
+  //   }
+  // },[])
 
   useEffect(() => {
       if (nickname_Info !== undefined || nickname_Info !== null) {
           dispatch(loadProjectAxios(nickname_Info));
     }
-  }, [nickname_Info]);
+  }, [nickname_Info,loadProjectAxios]);
 
 
 

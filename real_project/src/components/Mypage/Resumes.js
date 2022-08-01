@@ -16,15 +16,14 @@ import EmptyMyCard from "../Mypage/EmptyMyCard";
 const Resumes = () => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const nickname = useSelector((state) => state.user.userInfo.nickname);
   const data = useSelector((state) => state.postProfile.Myresumes);
 
   useEffect(() => {
     if (nickname && nickname) {
-       dispatch(loadResumesAxios(nickname));
+      dispatch(loadResumesAxios(nickname));
     }
-},[loadResumesAxios])
+  }, [loadResumesAxios, nickname]);
    return (
      <>
        <MyPageResumeBackWrap>
