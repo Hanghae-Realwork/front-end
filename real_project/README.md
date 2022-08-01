@@ -13,8 +13,10 @@
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=303032"/>
 <img src="https://img.shields.io/badge/styledcomponents-db7093?style=flat-square&logo=styledcomponents&logoColor=white"/>
 <img src="https://img.shields.io/badge/AmazonAWS-569a31?style=flat-square&logo=AmazoneAWS&logoColor=303032"/>
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FHanghae-Realwork%2Ffront-end%2Ftree%2Fmain%2Freal_project&count_bg=%234E8FC7&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true)](https://hits.seeyoufarm.com)
 </p>
+ 
+ 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FHanghae-Realwork%2Ffront-end%2Ftree%2Fmain%2Freal_project&count_bg=%234E8FC7&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true)](https://hits.seeyoufarm.com)
  
 ---
  
