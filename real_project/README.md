@@ -17,7 +17,7 @@ Designer : 김나정<br/>
 
 - 개발 언어 : Javascript<br/>
 - 개발 라이브러리 : React.js<br/>
-- 형상 관리 : git<br/>
+- 형상 관리 : git hub<br/>
 - 협업 툴 : notion<br/>
 - 디자인 공유 : Figma<br/>
 
