@@ -78,14 +78,18 @@ Designer : 김나정<br/>
 **직군, 기술, 기간별 검색을 통해 찾고자 하는 글에 대한 접근성 강화**
 <br/>
 <br/>
-![스크린샷 2022-08-01 오전 11 26 48](https://user-images.githubusercontent.com/103410051/182060627-e6a03ced-0887-436d-bc2d-131159cbc412.png)
+![KakaoTalk_Photo_2022-08-01-11-53-46](https://user-images.githubusercontent.com/103410051/182063128-0e49d72b-c550-4cdd-801c-8f4295283e10.png)
 <br/>
 <br/>
 **한눈에 나와 맞는 프로젝트(팀원)를 탐색할 수 있는 매칭 기능을 통해 한층 더 강화 된 유저 접근성**
 <br/>
 <br/>
 ![KakaoTalk_Photo_2022-08-01-11-53-49](https://user-images.githubusercontent.com/103410051/182063125-6bb7ddce-d81e-42ae-9d58-75761863df98.png)
-![KakaoTalk_Photo_2022-08-01-11-53-46](https://user-images.githubusercontent.com/103410051/182063128-0e49d72b-c550-4cdd-801c-8f4295283e10.png)
+<br/>
+<br/>
+**채팅과 화상채팅을 통해 나와 함께 프로젝트를 진행할 상대방에 대해 조금 더 친밀감을 높일 수 있습니다**
+<br/>
+<br/>
 ![KakaoTalk_Photo_2022-08-01-11-53-42](https://user-images.githubusercontent.com/103410051/182063129-0c8d5757-42f6-4b0e-9e56-6cbd445162aa.png)
 
 
