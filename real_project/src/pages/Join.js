@@ -27,10 +27,10 @@ function Join() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
-  const [day, setDay] = useState("");
-
+  // const [year, setYear] = useState("");
+  // const [month, setMonth] = useState("");
+  // const [day, setDay] = useState("");
+  const [checkEmail,setCheckEmail]= useState("")
   const [Agreemodal, setAgreeModal] = useState(false);
 
 
@@ -42,14 +42,14 @@ function Join() {
   });
   const [nicknameError, setNicknameError] = useState({ status: false, text: "", color:false});
   
-  const [nameError, setNameError] = useState({status: false, text: "", color:false});
+  // const [nameError, setNameError] = useState({status: false, text: "", color:false});
   const [passwordError, setPasswordError] = useState({status: false,text: "",color: false});
   const [confirmPasswordError, setConfirmPasswordError] = useState({
     status: false,
     text: "",
     color: false,
   });
-  const [yearError, setYearError] = useState({status: false,text: ""});
+  // const [yearError, setYearError] = useState({status: false,text: ""});
 
   //error name
   //이용약관:동의 비동의
@@ -92,6 +92,18 @@ function Join() {
       });
     } else setUserIdError({ status: false, text: ""});
   };
+  const onChangecheckEmail = (e) => {
+
+  setCheckEmail(e.target.value)
+  }
+  const onClickcheckEmail = () =>
+  {
+    
+    }
+  const BlurcheckEmail = () => {
+    
+  }
+
 
   //유효성검사:nickName
   const onChageNickName = (e) => {
@@ -111,131 +123,131 @@ function Join() {
   };
 
   //Name
-  const onChageName = (e) => {
-    setName(e.target.value);
-  };
-  const BlurName = (e) => {
-    if (e.target.value.length <= 0) {
-      setNameError({ status: true, text: "필수 정보입니다.", color:false});
-      return;
-    }
-    if (e.target.value.length === 1) {
-      setNameError({
-        status: true,
-        text: "한글자 이상 입력해주세요!",
-        color: false,
-      });
-    } else {
-      setNameError({ status: false, text: "", color: false });
-    }
-  };
+  // const onChageName = (e) => {
+  //   setName(e.target.value);
+  // };
+  // const BlurName = (e) => {
+  //   if (e.target.value.length <= 0) {
+  //     setNameError({ status: true, text: "필수 정보입니다.", color:false});
+  //     return;
+  //   }
+  //   if (e.target.value.length === 1) {
+  //     setNameError({
+  //       status: true,
+  //       text: "한글자 이상 입력해주세요!",
+  //       color: false,
+  //     });
+  //   } else {
+  //     setNameError({ status: false, text: "", color: false });
+  //   }
+  // };
 
   //유효성검사:Birth
-  const onChangeBirth = (e) => {
-    const BirthRegex = /^[0-9\b -]{0,4}$/;
-    const { name } = e.target;
-    if (name === "year") {
-      if (BirthRegex.test(e.target.value)) {
-        setYear(e.target.value);
-      } 
-    } else if (name === "month") {
-      if (BirthRegex.test(e.target.value)) {
-          if (e.target.value <=12) setMonth(e.target.value);
-      }
-    } else if (name === "day") {
-      if (BirthRegex.test(e.target.value)) {
-        setDay(e.target.value);
-      }
-    }
-  };
+  // const onChangeBirth = (e) => {
+  //   const BirthRegex = /^[0-9\b -]{0,4}$/;
+  //   const { name } = e.target;
+  //   if (name === "year") {
+  //     if (BirthRegex.test(e.target.value)) {
+  //       setYear(e.target.value);
+  //     } 
+  //   } else if (name === "month") {
+  //     if (BirthRegex.test(e.target.value)) {
+  //         if (e.target.value <=12) setMonth(e.target.value);
+  //     }
+  //   } else if (name === "day") {
+  //     if (BirthRegex.test(e.target.value)) {
+  //       setDay(e.target.value);
+  //     }
+  //   }
+  // };
 
-  const BlurYear = (e) => {
-    const { name } = e.target;
-    //0~9 사이 숫자 입력 시 0번째에 0추가
-    if (name === "day") {
-      if (day < 10 && day.length === 1) {
-        setDay(0 + e.target.value);
-      }
-    }
-    //조건
-    if (year.length <= 0) {
-      setYearError({
-        status: true,
-        text: "태어난 년도 4자리를 정확하게 입력하세요.",
-      });
-    } else if (month.length <= 0) {
-      setYearError({
-        status: true,
-        text: "태어난 월을 입력하세요.",
-      });
+  // const BlurYear = (e) => {
+  //   const { name } = e.target;
+  //   //0~9 사이 숫자 입력 시 0번째에 0추가
+  //   if (name === "day") {
+  //     if (day < 10 && day.length === 1) {
+  //       setDay(0 + e.target.value);
+  //     }
+  //   }
+  //   //조건
+  //   if (year.length <= 0) {
+  //     setYearError({
+  //       status: true,
+  //       text: "태어난 년도 4자리를 정확하게 입력하세요.",
+  //     });
+  //   } else if (month.length <= 0) {
+  //     setYearError({
+  //       status: true,
+  //       text: "태어난 월을 입력하세요.",
+  //     });
 
-    } else if (day.length <= 0) {
-      setYearError({
-        status: true,
-        text: "태어난 일을 입력하세요.",
-      });
-    } else if (year >= 2022) {
-      setYearError({
-        status: true,
-        text: "미래에서 오셨군요^^",
-      });
-    } else if (year <= 1922) {
-      setYearError({
-        status: true,
-        text: "정말이세요?",
-      });
-    } else if (
-      (month === "4" || month === "6" || month === "9" || month === "11")) {
-      if (day >= 31) {
-        setYearError({
-          status: true,
-          text: "날짜를 다시 확인해주세요.",
-        });
-      } else { 
-        setYearError({
-          status: false,
-          text: "",
-        });
-      }
-    } else if (month === "2") { 
-      if (year % 4 === 0) {
-                 if (day >= 30) {
-                   setYearError({
-                     status: true,
-                     text: "날짜를 다시 확인해주세요.",
-                   });
-                 } else {
-                   setYearError({
-                     status: false,
-                     text: "",
-                   });
-                 }
-      } else { 
-        if (day >= 29) {
-          setYearError({
-            status: true,
-            text: "날짜를 다시 확인해주세요.",
-          });
-        } else { 
-           setYearError({
-             status: false,
-             text: "",
-           });
-        }
-      }
-    }
-    else if (day >= 32) {
-      setYearError({
-        status: true,
-        text: "날짜를 다시 확인해주세요.",
-      });
-    } else {
-      setYearError({
-        status: false,
-        text: "",
-      });
-    }     
-  };
+  //   } else if (day.length <= 0) {
+  //     setYearError({
+  //       status: true,
+  //       text: "태어난 일을 입력하세요.",
+  //     });
+  //   } else if (year >= 2022) {
+  //     setYearError({
+  //       status: true,
+  //       text: "미래에서 오셨군요^^",
+  //     });
+  //   } else if (year <= 1922) {
+  //     setYearError({
+  //       status: true,
+  //       text: "정말이세요?",
+  //     });
+  //   } else if (
+  //     (month === "4" || month === "6" || month === "9" || month === "11")) {
+  //     if (day >= 31) {
+  //       setYearError({
+  //         status: true,
+  //         text: "날짜를 다시 확인해주세요.",
+  //       });
+  //     } else { 
+  //       setYearError({
+  //         status: false,
+  //         text: "",
+  //       });
+  //     }
+  //   } else if (month === "2") { 
+  //     if (year % 4 === 0) {
+  //                if (day >= 30) {
+  //                  setYearError({
+  //                    status: true,
+  //                    text: "날짜를 다시 확인해주세요.",
+  //                  });
+  //                } else {
+  //                  setYearError({
+  //                    status: false,
+  //                    text: "",
+  //                  });
+  //                }
+  //     } else { 
+  //       if (day >= 29) {
+  //         setYearError({
+  //           status: true,
+  //           text: "날짜를 다시 확인해주세요.",
+  //         });
+  //       } else { 
+  //          setYearError({
+  //            status: false,
+  //            text: "",
+  //          });
+  //       }
+  //     }
+  //   }
+  //   else if (day >= 32) {
+  //     setYearError({
+  //       status: true,
+  //       text: "날짜를 다시 확인해주세요.",
+  //     });
+  //   } else {
+  //     setYearError({
+  //       status: false,
+  //       text: "",
+  //     });
+  //   }     
+  // };
 
   //유효성검사:Password
   const OnChangePassWord = (e) => {
@@ -347,12 +359,10 @@ function Join() {
     try {
       await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
         if (checksuccess === true) {
-          
           setUserIdError({
             status: true,
-            text: "사용 가능한 이메일입니다.",
-            color:true
-           
+            text: "사용가능한 이메일입니다. 해당 이메일로 인증번호가 전송됩니다.",
+            color: true,
           });
           
           setUserIdCheck(true)
@@ -398,7 +408,7 @@ function Join() {
     }
   };
   const signupFunction = async () => {
-      const newmonth = `${("00" + month).slice(-2)}`;
+      // const newmonth = `${("00" + month).slice(-2)}`;
    
  // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
     if (
@@ -459,9 +469,9 @@ function Join() {
 
   return (
     <>
-    <ModralWrap>
-         {Agreemodal === true ? (<AgreementModal close={setAgreeModal}/>) : null}
-    </ModralWrap>
+      <ModralWrap>
+        {Agreemodal === true ? <AgreementModal close={setAgreeModal} /> : null}
+      </ModralWrap>
       <BackgroundWrap>
         <JoinWrap>
           <AlignWrap>
@@ -492,6 +502,37 @@ function Join() {
                       }
                     >
                       {userIdError.text}
+                    </ValiSpan>
+                  )}
+                </ValiWrap>
+              </IdWrap>
+
+              <IdWrap>
+                <div>
+                  <InputBar
+                    type="text"
+                    placeholder="이메일 인증번호"
+                    id="checkEmail"
+                    maxLength={5}
+                    value={checkEmail}
+                    onChange={onChangecheckEmail}
+                    onBlur={BlurcheckEmail}
+                    autoFocus
+                  ></InputBar>
+                  <CheckButton onClick={onClickcheckEmail}>
+                    인증번호 확인
+                  </CheckButton>
+                </div>
+                <ValiWrap>
+                  {checkEmail.status && (
+                    <ValiSpan
+                      style={
+                        userIdError.color
+                          ? { color: "#b3e3c8" }
+                          : { color: "#e07967" }
+                      }
+                    >
+                      {checkEmail.text}
                     </ValiSpan>
                   )}
                 </ValiWrap>
@@ -653,7 +694,13 @@ function Join() {
                       이용약관 (필수)
                     </AgreementText>
                   </ChcekWrap>
-                  <AgreementCheckButton onClick={() => {setAgreeModal(true)}}>약관 보기</AgreementCheckButton>
+                  <AgreementCheckButton
+                    onClick={() => {
+                      setAgreeModal(true);
+                    }}
+                  >
+                    약관 보기
+                  </AgreementCheckButton>
                 </AgreeChkWrap>
                 <AgreeChkWrap>
                   <ChcekWrap>
