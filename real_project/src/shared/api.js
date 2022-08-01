@@ -50,14 +50,14 @@ export const apis = {
   ///////////////////////
 
   //  - 1. 회원가입
-  signup: (userId, nickname, name, birth, password, passwordCheck, allCheck) =>
+  signup: (userId, nickname, password, passwordCheck, allCheck) =>
     api.post("/api/users/signup", {
       userId: userId,
       nickname: nickname,
       password: password,
       passwordCheck: passwordCheck,
-      name: name,
-      birth: birth,
+      // name: name,
+      // birth: birth,
       policy: allCheck,
     }),
 
