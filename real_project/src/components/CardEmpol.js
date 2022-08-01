@@ -69,11 +69,9 @@ function CradEmpol({ data }) {
 
 
 const AllCardWrap = styled.div`
-    /* border: 0.5px solid black; */
     border-radius: 2px;
     width: 384px;
     height: 250px;
-    /* margin: 50px 24px 24px 24px; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -83,7 +81,6 @@ const AllCardWrap = styled.div`
 `
 
 const CardTopWrap = styled.div`
-    /* border: 1px solid black; */
     width: 384px;
     height: 70px;
     margin-bottom: 12px;
@@ -94,7 +91,6 @@ const CardTopWrap = styled.div`
 `
 
 const CardTextWrap = styled.div`
-    /* border: 1px solid black; */
     margin: 19px 0px 0px 12px;
 `
 
@@ -106,7 +102,6 @@ const ProfileTopWrap = styled.div`
 `
 
 const CardTitle = styled.div`
-    /* border: 1px solid black; */
     width: 120px;
     height: 27px;
     font-weight: 700;
@@ -115,14 +110,12 @@ const CardTitle = styled.div`
 `
 
 const CardText = styled.div`
-    /* border: 1px solid black; */
     width: 110px;
     height: 21px;
     font-size: 14px;
 `
 
 const ProfileWrap = styled.div`
-    /* border: 1px solid black; */
     width: 60px;
     height: 60px;
     margin: 15px 0px 0px 20px;
@@ -132,7 +125,6 @@ const ProfileWrap = styled.div`
 `
 
 const ProfileCircle = styled.div`
-    /* border: 1px solid black; */
     width: 60px;
     height: 60px;
     border-radius: 60px;
@@ -142,7 +134,6 @@ const ProfileCircle = styled.div`
 `
 
 const CardMidWrap = styled.div`
-    /* border: 1px solid black; */
     margin: 5px 20px 0px 20px; 
     width: 350px;
     height: 50px;
@@ -155,7 +146,6 @@ const MidText = styled.span`
 `
 
 const CardMidMini = styled.div`
-    /* border: 1px solid black; */
     width: 350px;
     margin: 5px 20px 5px 20px;
     line-height: 21px;
@@ -167,7 +157,6 @@ const MidDateText = styled.span`
 `
 
 const CardBotTag = styled.div`
-    /* border: 1px solid black; */
     width: 350px;
     margin: 7px 20px 16px 20px;
     display: flex;

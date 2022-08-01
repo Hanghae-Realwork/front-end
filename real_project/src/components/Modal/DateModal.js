@@ -83,7 +83,6 @@ const ModalCalWrap = styled.div`
 `
 
 const CalBtnWrap = styled.div`
-    /* border: 1px solid black; */
     width: 555px;
     padding: 20px 35px 20px 35px;
     display: flex;
@@ -119,13 +118,11 @@ const DatePickerWrapper = styled(
    `;
   
   const Calendar = styled.div`
-    /* width : 706px; */
     border-radius: 4px;
     overflow: hidden;
   `;
   
     const CalendarWrap =styled.div`
-      /* border: 0.5px solid black; */
       border-radius: 4px;
       width: 670px;
       height: 330px;

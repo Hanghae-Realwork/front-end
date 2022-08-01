@@ -362,7 +362,6 @@ const BackgroundAllWrap = styled.div`
 `;
 
 const AddProfileWrap = styled.div`
-  /* border: 1px solid black; */
   border-radius: 20px;
   display: flex;
   flex-flow: column nowrap;
@@ -376,12 +375,10 @@ const AddProfileWrap = styled.div`
 `;
 
 const SelfWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  /* padding: 30px; */
   margin-left: 30px;
 `
 
@@ -396,7 +393,6 @@ const ProfileInput = styled.input`
 `;
 
 const ProfilePicWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -404,7 +400,6 @@ const ProfilePicWrap = styled.div`
 `;
 
 const ProfileTopWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -413,7 +408,6 @@ const ProfileTopWrap = styled.div`
 `;
 
 const NoShowCircleProfile = styled.div`
-  /* border: 1px solid black; */
   width: 200px;
   height: 200px;
   border-radius: 100%;
@@ -429,7 +423,6 @@ const RoleLabel = styled.label`
 `;
 
 const SelectBoxWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -442,9 +435,7 @@ const SelectAllWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  /* margin-bottom: px; */
   width: 100%;
-  /* border: 1px solid black; */
 `;
 
 const PhoneNumberWrap = styled.div`
@@ -452,7 +443,6 @@ const PhoneNumberWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
   gap: 12px;
 `;
 
@@ -462,7 +452,6 @@ const RadioRoleWrap = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  /* border: 1px solid black; */
   gap: 25px;
 `;
 
@@ -478,7 +467,6 @@ const Contect = styled.span`
 `;
 
 const HeaderHeadLine = styled.hr`
-  /* border: 1px solid #D9D9D9; */
   width: 1200px;
 `;
 
@@ -488,7 +476,6 @@ const TitleDiv = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 1200px;
-  /* border: 1px solid black; */
 `;
 
 const TitleText = styled.span`
@@ -498,7 +485,6 @@ const TitleText = styled.span`
 `;
 
 const PortfollioWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -512,11 +498,9 @@ const NickNameBox = styled.div`
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 10px;
-  /* border: 1px solid black; */
 `;
 
 const SubmitButtonWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1140px;
   display: flex;
   justify-content: flex-end;
@@ -524,7 +508,6 @@ const SubmitButtonWrap = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  /* width: 150px; */
   height: 45px;
   background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
   border-radius: 4px;
@@ -539,7 +522,6 @@ const SubmitButton = styled.button`
 
 //skills input
 const SelectBoxTab = styled.div`
-  /* border: 1px solid black; */
   width: 1100px;
   display: flex;
   flex-flow: row wrap;
@@ -552,7 +534,6 @@ const SelectBoxTab = styled.div`
 
 const TecLabel = styled.label`
   font-size: 14px;
-  /* border: 1px solid black; */
 `;
 
 const CheckBox = styled.input`
@@ -575,7 +556,6 @@ const CheckBox = styled.input`
 `;
 
 const NewProfileWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -584,10 +564,7 @@ const NewProfileWrap = styled.div`
   margin-top: 70px;
 `;
 
-const ProfileTextWrap = styled.div`
-  /* border: 1px solid black; */
-
-`
+const ProfileTextWrap = styled.div``
 
 const SelfIntWrap = styled.div`
   margin-top: 105px;

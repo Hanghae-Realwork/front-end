@@ -108,7 +108,6 @@ const AllTopWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  /* border: 1px solid black; */
 `;
 
 const AllBotWrap = styled.div`
@@ -117,13 +116,12 @@ const AllBotWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
 `;
+
 
 //// 카드 내용 관련 CSS 뭉치
 
 const CardTopInfo = styled.div`
-  /* border: 1px solid black; */
   width: 344px;
   height: 17px;
   display: flex;
@@ -144,7 +142,6 @@ const CardWriteTime = styled.span`
 `;
 
 const CardTitleInfo = styled.div`
-  /* border: 1px solid black; */
   height: 20px;
   width: 344px;
   margin: 16px 0px 0px 0px;
@@ -158,7 +155,6 @@ const CardTitleText = styled.span`
 `;
 
 const CardMainTextInfo = styled.div`
-  /* border: 1px solid black; */
   width: 344px;
   height: 45px;
   margin: 20px 0px 0px 0px;
@@ -172,7 +168,6 @@ const CardMainText = styled.span`
 `;
 
 const CardJobTextWrap = styled.div`
-  /* border: 1px solid black; */
   width: 344px;
   margin-top: 20px;
   display: flex;
@@ -196,14 +191,12 @@ const CardJobMainTitle = styled.span`
 `;
 
 const CardTagWrap = styled.div`
-  /* border: 1px solid black; */
   width: 344px;
   height: 55px;
   margin-top: 8px;
 `;
 
 const TagWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -222,7 +215,6 @@ const DashedLine = styled.hr`
 `
 
 const CardBotTopWrap = styled.div`
-  /* border: 1px solid black; */
   width: 340px;
   height: 17px;
   display: flex;

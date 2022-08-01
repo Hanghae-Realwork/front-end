@@ -510,7 +510,6 @@ const FindProjectAllWrap = styled.div`
   align-items: flex-start;
   margin-top: 60px;
   width: 1200px;
-  /* border: 1px solid black; */
   background-color: white;
   border-radius: 5px;
   margin-bottom: 40px;
@@ -550,7 +549,6 @@ const FindProjectInputDate = styled.div`
 `;
 
 const FindProjectInputTitle = styled.div`
-  /* border: 1px solid black; */
   margin: 40px 0px 16px 30px;
   width: 1100px;
   display: flex;
@@ -560,7 +558,6 @@ const FindProjectInputTitle = styled.div`
 `;
 
 const InputMainTextWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 40px 0px 16px 30px;
   width: 1100px;
   display: flex;
@@ -579,7 +576,6 @@ const ProjectInput = styled.input`
 `;
 
 const SelectBoxTab = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -593,7 +589,6 @@ const SubmitButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-end;
   align-items: center;
-  /* border: 1px solid black; */
   width: 1200px;
 `;
 
@@ -620,7 +615,6 @@ const ProjectTitleText = styled.span`
 
 const TecLabel = styled.label`
   font-size: 14px;
-  /* border: 1px solid black; */
 `;
 
 const CheckBox = styled.input`
@@ -668,14 +662,12 @@ const ReMainConWrap = styled.div`
 `;
 
 const RecMainCon = styled.textarea`
-  /* margin: 20px;  */
   padding: 10px;
   width: 1075px;
   height: 350px;
   outline: none;
   border: none;
   resize: none;
-  /* border-radius: 4px; */
 `;
 
 const TimeWrap = styled.div`
@@ -691,7 +683,6 @@ const TimeWrap = styled.div`
 `;
 
 const TimeArea = styled.div`
-  /* border: 1px solid black;  */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -757,7 +748,6 @@ const InterviewTableWrap = styled.div`
 `;
 
 const TimeAllDiv = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -766,7 +756,6 @@ const TimeAllDiv = styled.div`
 
 
 const CalenderAllWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -787,7 +776,6 @@ const RoleLabel = styled.label`
 `;
 
 const EditDateWrap = styled.div`
-  /* border: 1px solid; */
   width: 1100px;
   display: flex;
   flex-flow: row wrap;
@@ -807,7 +795,6 @@ const EditLabel = styled.label`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   padding: 10px 12px 10px 12px;
-
   background-color: ${(props) => (props.color ? "white" : "orange")};
 `;
 

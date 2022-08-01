@@ -44,7 +44,6 @@ const Resumes = () => {
 const MyPageResumeBackWrap = styled.div`
   border-radius: 4px;
   width: 792px;
-  /* height: 877px; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;

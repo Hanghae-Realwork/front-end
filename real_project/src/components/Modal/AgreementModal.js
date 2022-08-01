@@ -320,9 +320,7 @@ const AgreementBackgroundWrap = styled.div`
 
 const JustRelative = styled.div`
     position: relative;
-    /* left: -1350px; */
     left: -640px;
-    /* top: -100px; */
 `
 
 const AgreementWrap = styled.div`
@@ -339,7 +337,6 @@ const AgreementWrap = styled.div`
     z-index: 5;
     top: 100px;
     left: 1800px;
-    /* border: 4px solid white; */
 `
 
 const TextWrap = styled.div`
@@ -365,7 +362,6 @@ const BoldText = styled.span`
 
 const TextContentWrap = styled.div`
     margin: 0px 40px 0px 40px;
-    /* border: 1px solid white; */
     height: 240px;
     line-height: 18px;
     overflow: scroll;
@@ -390,12 +386,7 @@ const CloseWrap = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  /* margin-top: 10px; */
   margin-bottom: 10px;
-  /* border: 1px solid white; */
-  /* margin-right: -70px; */
-  /* margin-top: -60px;
-  margin-bottom: 80px; */
 `;
 
 const CloseBtn = styled.img`

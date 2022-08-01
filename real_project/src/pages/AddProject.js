@@ -605,6 +605,7 @@ const FindProjectStep01 = (props) => {
   );
 };
 
+
 const BackgroundAllWrap = styled.div`
   background: linear-gradient(
       0deg,
@@ -631,7 +632,6 @@ const FindProjectAllWrap = styled.div`
   align-items: flex-start;
   margin-top: 60px;
   width: 1200px;
-  /* border: 1px solid black; */
   background-color: white;
   border-radius: 5px;
   margin-bottom: 40px;
@@ -671,7 +671,6 @@ const FindProjectInputDate = styled.div`
 `;
 
 const FindProjectInputTitle = styled.div`
-  /* border: 1px solid black; */
   margin: 40px 0px 16px 30px;
   width: 1100px;
   display: flex;
@@ -681,7 +680,6 @@ const FindProjectInputTitle = styled.div`
 `;
 
 const InputMainTextWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 40px 0px 16px 30px;
   width: 1100px;
   display: flex;
@@ -700,7 +698,6 @@ const ProjectInput = styled.input`
 `;
 
 const SelectBoxTab = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -714,7 +711,6 @@ const SubmitButtonWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-end;
   align-items: center;
-  /* border: 1px solid black; */
   width: 1200px;
 `;
 
@@ -741,7 +737,6 @@ const ProjectTitleText = styled.span`
 
 const TecLabel = styled.label`
   font-size: 14px;
-  /* border: 1px solid black; */
 `;
 
 const CheckBox = styled.input`
@@ -790,14 +785,12 @@ const ReMainConWrap = styled.div`
 `;
 
 const RecMainCon = styled.textarea`
-  /* margin: 20px;  */
   padding: 10px;
   width: 1075px;
   height: 350px;
   outline: none;
   border: none;
   resize: none;
-  /* border-radius: 4px; */
 `;
 
 const TimeWrap = styled.div`
@@ -813,7 +806,6 @@ const TimeWrap = styled.div`
 `;
 
 const TimeArea = styled.div`
-  /* border: 1px solid black;  */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -879,7 +871,6 @@ const InterviewTableWrap = styled.div`
 `;
 
 const TimeAllDiv = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -892,7 +883,6 @@ const InterviewText = styled.span`
 `;
 
 const CalenderAllWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -917,7 +907,6 @@ const TimeSelectWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
   margin-left: 100px;
   height: 390px;
 `;
@@ -927,10 +916,7 @@ const TimeSelectWrapPlus = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
   width: 235px;
-  /* margin-top: 100px;
-  margin-left: 20px; */
 `;
 
 const TimeAddButton = styled.button`
@@ -950,15 +936,12 @@ const TimeAddButtonWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  /* border: 1px solid black; */
   margin-bottom: 40px;
   margin-top: 10px;
   gap: 12px;
 `;
 
 const TimeAddLeftWrap = styled.div`
-  /* height: 250px; */
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -983,7 +966,6 @@ const LeftDelBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
   font-size: 12px;
   font-weight: 400;
   height: 40px;
@@ -994,7 +976,6 @@ const BotDelBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
@@ -1004,7 +985,6 @@ const InterviewTextDate = styled.span`
   color: #8d8d8d;
   font-size: 14px;
   font-weight: 400;
-  /* border: 1px solid black; */
   height: 20px;
 `;
 
@@ -1012,7 +992,6 @@ const InterviewTextDateBot = styled.div`
   color: #303032;
   font-size: 14px;
   font-weight: 400;
-  /* border: 1px solid black; */
   height: 20px;
 `;
 
@@ -1021,7 +1000,6 @@ const AddbleTimeWrap = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-  /* border: 1px solid black; */
   width: 1200px;
   margin-top: 100px;
 `;
@@ -1031,7 +1009,6 @@ const InterviewDateWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid black; */
   width: 180px;
 `;
 
@@ -1080,36 +1057,3 @@ export default FindProjectStep01;
 
 
 
-
-// {/* <PhotoUPloadWrap>
-//               {filesImg ? (
-//                 <UpPhotoArea alt="sample" id="showImg" src={filesImg} />
-//               ) : (
-//                 <DisablePhotoWrap></DisablePhotoWrap>
-//               )}
-//               <EditWrapPhoto>
-//                 {filesImg ? (
-//                   <PhotoText>
-//                     수정하기
-//                     <input
-//                       name="imgUpload"
-//                       type="file"
-//                       id="add_img"
-//                       accept="image/*"
-//                       onChange={onChangeImg}
-//                     />
-//                   </PhotoText>
-//                 ) : (
-//                   <PhotoText>
-//                     등록하기
-//                     <input
-//                       name="imgUpload"
-//                       type="file"
-//                       id="add_img"
-//                       accept="image/*"
-//                       onChange={onChangeImg}
-//                     />
-//                   </PhotoText>
-//                 )}
-//               </EditWrapPhoto>
-//             </PhotoUPloadWrap> */}

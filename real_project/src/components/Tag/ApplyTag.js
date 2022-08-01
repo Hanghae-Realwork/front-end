@@ -101,7 +101,6 @@ const BeltWrap = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 35px;
-  /* border: 1px solid black; */
   width: 389px;
 `;
 

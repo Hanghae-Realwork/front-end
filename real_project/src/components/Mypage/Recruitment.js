@@ -149,12 +149,9 @@ const Recruitment = () => {
 };
 
 
-const RecruitAllWrap = styled.div`
-  
-`
+const RecruitAllWrap = styled.div``
 
 const RecruitCardMainWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -173,7 +170,6 @@ const CardWrap = styled.div`
 `
 
 const ProfileWrap = styled.div`
-  /* border: 1px solid black; */
   width: 230px;
   height: 307px;
   display: flex;
@@ -182,18 +178,7 @@ const ProfileWrap = styled.div`
   align-items: center;
 `
 
-const LoadWrap = styled.div`
-  border: 1px solid black;
-  width: 120px;
-  height: 307px;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-`
-
 const CardNameWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 20px 20px 12px 20px;
   display: flex;
   flex-flow: row wrap;
@@ -202,7 +187,6 @@ const CardNameWrap = styled.div`
 `
 
 const CardTitleWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   width: 345px;
@@ -213,7 +197,6 @@ const CardTitleWrap = styled.div`
 `
 
 const CardTextWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 0px 20px 20px 20px;
   height: 45px;
   line-height: 21px;
@@ -221,7 +204,6 @@ const CardTextWrap = styled.div`
 `
 
 const CardRoleWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 0px 20px 8px 20px;
   display: flex;
   flex-flow: column nowrap;
@@ -231,7 +213,6 @@ const CardRoleWrap = styled.div`
 `
 
 const CardJobWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 5px 20px 10px 20px;
   display: flex;
   flex-flow: column nowrap;
@@ -240,7 +221,6 @@ const CardJobWrap = styled.div`
 `
 
 const CardLimitWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 0px 20px 0px 20px;
   display: flex;
   flex-flow: row wrap;
@@ -272,7 +252,6 @@ const DateText = styled.span`
 
 //프로필 영역 CSS
 const PhotoBox = styled.div`
-  /* border: 1px solid black; */
   margin: 0px 0px 5px 0px;
 `
 
@@ -280,7 +259,6 @@ const PhotoCircle = styled.div`
   width: 120px;
   height: 120px;
   border-radius: 100%;
-  /* border: 1px solid black; */
   background-image: url(${astroman});
   background-position: center;
   background-size: contain;
@@ -288,7 +266,6 @@ const PhotoCircle = styled.div`
 `
 
 const NameBox = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -308,12 +285,10 @@ const RoleText = styled.span`
 `
 
 const InterviewWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  /* gap: 5px; */
   margin-bottom: 8px;
 `
 
@@ -332,26 +307,12 @@ const TimeTextWrap = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: flex-start;
-  /* border: 1px solid black; */
 `
 
 const InterviewTimeText = styled.span`
   font-size: 12px;
   font-weight: 400;
 `
-const RecruitmentStatusLabel = styled.label`
-  padding: 8px 15px 8px 15px;
-  width: 90px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: white;
-  border:  1px solid black;
-  border-radius: 20px;
-  font-size: 13px;
-`;
 
 const NameTextBold = styled.span`
   font-weight: 600;

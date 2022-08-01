@@ -252,8 +252,8 @@ function ReadProject() {
   );
 }
 
+
 const AllWrap = styled.div`
-  /* border: 1px solid black; */
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -262,7 +262,6 @@ const AllWrap = styled.div`
 `;
 
 const TopWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: column nowrap;
@@ -274,7 +273,6 @@ const TopWrap = styled.div`
 `;
 
 const MainTextWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: column nowrap;
@@ -284,7 +282,6 @@ const MainTextWrap = styled.div`
 `;
 
 const FindRoleWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: column nowrap;
@@ -295,7 +292,6 @@ const FindRoleWrap = styled.div`
 `;
 
 const FindSkillWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: column nowrap;
@@ -307,7 +303,6 @@ const FindSkillWrap = styled.div`
 `;
 
 const DateWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: row wrap;
@@ -319,7 +314,6 @@ const DateWrap = styled.div`
 `;
 
 const ProfileWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: column nowrap;
@@ -330,7 +324,6 @@ const ProfileWrap = styled.div`
 `;
 
 const ButtonWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: row wrap;
@@ -384,7 +377,6 @@ const RoleTitle = styled.span`
 `;
 
 const ProfileDetailWrap = styled.div`
-  /* border: 1px solid black; */
   height: 100px;
   display: flex;
   flex-flow: row wrap;
@@ -398,12 +390,10 @@ const ProfilePhoto = styled.div`
   background-image: url(${astroman});
   background-position: center;
   background-size: cover;
-  /* border: 1px solid black; */
   border-radius: 50%;
 `;
 
 const UserNameWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -411,7 +401,6 @@ const UserNameWrap = styled.div`
 `;
 
 const UserMailWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -419,7 +408,6 @@ const UserMailWrap = styled.div`
 `;
 
 const UserAllWrap = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -447,7 +435,6 @@ const ProfileTitleWrap = styled.div`
 `;
 
 const MiniResumeWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: row wrap;
@@ -459,13 +446,11 @@ const MiniResumeWrap = styled.div`
 `;
 
 const ViewDateWrap = styled.div`
-  /* border: 1px solid black; */
   width: 1200px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  /* margin-top: 30px; */
   gap: 12px;
 `;
 
@@ -483,7 +468,6 @@ const ArcodianWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  /* border: 1px solid black; */
 `;
 
 const ArcodianTextWrap = styled.div`
@@ -505,7 +489,6 @@ const ArcodianText = styled.span`
 `;
 
 const InputMainTextWrap = styled.div`
-  /* border: 1px solid black; */
   margin: 20px 0px 25px 0px;
   width: 1200px;
   display: flex;
@@ -515,7 +498,6 @@ const InputMainTextWrap = styled.div`
 `;
 
 const EditDateWrap = styled.div`
-  /* border: 1px solid; */
   width: 1200px;
   display: flex;
   flex-flow: row wrap;
@@ -535,13 +517,6 @@ const EditLabel = styled.label`
   border: 0.5px solid #d9d9d9;
   border-radius: 4px;
   padding: 10px 12px 10px 12px;
-`;
-
-const GuideText = styled.span`
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 21px;
-  margin-top: 15px;
 `;
 
 const BtnWrap = styled.div`
