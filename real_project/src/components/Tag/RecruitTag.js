@@ -7,7 +7,6 @@ import { loadProjectAxios } from "../../redux/modules/postProfile";
 
 import check from "../../image/check.svg"
 
-
 function RecruitTag({list}) {
 
   const dispatch = useDispatch();

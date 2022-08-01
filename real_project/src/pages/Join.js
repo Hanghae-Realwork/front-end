@@ -7,7 +7,6 @@ import {
   checkUserNicknameAxios,
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
-import { flushSync } from "react-dom";
 
 import Logo from "../image/Logo_vertical.svg"
 
