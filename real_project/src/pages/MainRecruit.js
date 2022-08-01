@@ -55,8 +55,6 @@ const CardContainerWrap = styled.div`
   width: 1200px;
   height: 1000px;
   overflow-y: scroll;
-  /* padding: 33px 50px 0px 50px; */
-  /* border:1px solid black; */
   gap: 24px;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -68,7 +66,6 @@ const CardBackGround = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* border: 1px solid black; */
 `
 
 const SearchWrap = styled.div`

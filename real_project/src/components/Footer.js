@@ -33,7 +33,6 @@ const AllFooterWrap = styled.div`
 
 const FooterWrap = styled.div`
     width: 1200px;
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;

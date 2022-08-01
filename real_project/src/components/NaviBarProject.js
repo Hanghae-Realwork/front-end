@@ -164,7 +164,6 @@ function NavigationBarProject() {
 
 const OnlyBackgroundDiv = styled.div`
     width: 1440px;
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -209,19 +208,16 @@ const MainNavigationWrap = styled.div`
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    /* border: 1px solid black; */
     width: 1200px;
     margin: 42px 0px 30px 0px;
 `
 
 const NaviWrap = styled.div`
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
     width: 1200px;
-    /* margin-bottom: 20px; */
 `
 
 const MainNavigation = styled.div`
@@ -261,7 +257,6 @@ const SerchButton = styled.button`
     outline: none;
     font-size: 14px;
     font-weight: 700;
-    /* margin-left: 12px; */
     cursor: pointer;
 `
 
@@ -294,13 +289,11 @@ const InlineDevide = styled.hr`
 `
 
 const SearchResultABarWrap = styled.div`
-    /* border: 1px solid black; */
     width: 1200px;
     margin-bottom: 24px;
 `
 
 const TagWrap = styled.div`
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;

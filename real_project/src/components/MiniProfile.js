@@ -95,7 +95,6 @@ const MiniCardAllWrap = styled.div`
 `;
 
 const MiniTopWrap = styled.div`
-    /* border: 1px solid black; */
     width: 344px;
     display: flex;
     flex-flow: row wrap;
@@ -106,7 +105,6 @@ const MiniTopWrap = styled.div`
 `
 
 const MiniBodyWrap = styled.div`
-    /* border: 1px solid black; */
     width: 344px;
     margin: 0px 12px 12px 20px;
     pointer-events : none;
@@ -116,7 +114,6 @@ const MiniBodyWrap = styled.div`
 `
 
 const MiniDateWrap = styled.div`
-    /* border: 1px solid black; */
     width: 344px;
     margin: 0px 0px 16px 20px;
     pointer-events : none;
@@ -124,7 +121,6 @@ const MiniDateWrap = styled.div`
 `
 
 const TecWrap = styled.div`
-    /* border: 1px solid black; */
     width: 344px;
     margin-left: 20px;
     pointer-events : none;
@@ -138,7 +134,6 @@ const MiniPhotoWrap = styled.div`
 `
 
 const Photo = styled.div`
-    /* border: 1px solid black; */
     width: 60px;
     height: 60px;
     border-radius: 100%;
@@ -153,7 +148,6 @@ const MiniNickName = styled.span`
 `
 
 const MiniNameWrap = styled.div`
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -180,7 +174,6 @@ const MiniDateText = styled.span`
 `
 
 const TecMiniWrap = styled.div`
-    /* bordeR: 1px solid black; */
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;

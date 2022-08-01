@@ -103,7 +103,6 @@ const RoleWrap = styled.div`
 
 
 const RoleLabel = styled.label`
-    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +112,6 @@ const RoleLabel = styled.label`
 `
 
 const RoleLabelEnd = styled.label`
-    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,7 +122,6 @@ const RoleLabelEnd = styled.label`
 
 
 const RoleLabelStart = styled.label`
-    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,8 +137,6 @@ const RadioWrap = styled.div`
     align-items: center;
     gap: 17px;
     margin: 20px 0px 20px 0px;
-    /* border: 1px solid black; */
-    /* margin-bottom: 40px; */
 `
 
 const DivideLine = styled.hr`
@@ -152,7 +147,6 @@ const DivideLine = styled.hr`
 
 const ButtonWrap = styled.div`
     width: 425px;
-    /* border: 1px solid black; */
     display: flex;
     justify-content: flex-end;
     align-items: center;

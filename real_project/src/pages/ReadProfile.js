@@ -203,7 +203,6 @@ const TestWrap = styled.div`
   align-items: center;
   cursor: pointer;
   margin-bottom: 60px;
-  /* z-index: 5; */
 `
 
 const PropseText = styled.span`
@@ -233,8 +232,6 @@ const BackGround = styled.div`
   background-size: contain;
   position: absolute;
   top: 30px;
-  /* border: 5px solid black; */
-
 `
 
 const PageAllWrap = styled.div`
@@ -244,7 +241,6 @@ const PageAllWrap = styled.div`
   align-items: center;
   width: 994px;
   margin-top: 40px;
-  /* border: 5px solid black; */
 `
 
 //내부 틀
@@ -273,8 +269,6 @@ const BotWrap = styled.div`
   align-items: center;
   width: 988.5px;
   background-color: white;
-  /* height: 80px; */
-  /* margin: 30px 240px 30px 240px; */
   gap: 10px;
   margin-top: 15px;
   border-top: none;
@@ -303,7 +297,6 @@ const MidTxetWrap = styled.div`
   justify-content: flex-start;
   align-content: flex-start;
   gap: 8px;
-  /* border: 1px solid black; */
   width: 800px;
 `
 
@@ -356,8 +349,6 @@ const MidTitle = styled.span`
 const MidSelfText = styled.div`
   font-size: 14px;
   font-weight: 400;
-  width: 580px;
-  /* border: 1px solid black; */
   width: 800px;
   line-height: 21px;
   height: 55px;
@@ -376,7 +367,6 @@ const MidTagWrap = styled.div`
   align-items: flex-start;
   margin-top: 8px;
   gap: 4px;
-  /* border: 1px solid black; */
 `
 
 const FixedBtn = styled.button`
@@ -388,9 +378,6 @@ const FixedBtn = styled.button`
   font-weight: 700;
   width: 140px;
   margin-bottom: 30px;
-  /* margin-bottom: 20px; */
-  /* height: 40px; */
-  /* margin-top: -30px; */
   border: none;
   outline: none;
   cursor: pointer;
@@ -404,8 +391,6 @@ const DelBtn = styled.button`
   font-weight: 700;
   width: 140px;
   margin-bottom: 30px;
-  /* margin-top: -20px; */
-  /* height: 40px; */
   border: 1px solid #303032;
   outline: none;
   cursor: pointer;
@@ -444,7 +429,6 @@ const SubmitButton = styled.button`
 
 const BackColorTestWrap = styled.div`
   width: 100%;
-  /* margin-bottom: 80px; */
   height: 185vh;
   display: flex;
   justify-content: center;
@@ -457,12 +441,10 @@ const BackColorTestWrap = styled.div`
   `
 
   const UrlWrap = styled.div`
-  /* border: 1px solid black; */
   line-height: 21px;
   overflow: hidden;
   width: 800px;
   height: 25px;
-  /* width: 900px; */
   `
 
 const CardWrap = styled.div`
@@ -476,7 +458,6 @@ const CardWrap = styled.div`
   height: 350px;
   overflow: scroll;
   margin-top: 30px;
-  /* border: 1px solid black; */
 `
 
 const TestText = styled.span`

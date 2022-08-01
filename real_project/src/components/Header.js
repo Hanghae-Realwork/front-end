@@ -206,7 +206,6 @@ const BackGroundDiv = styled.div`
 `
 
 const HeaderWrap = styled.div`
-    /* border: 1px solid white; */
     width: 100%;
     max-width: 1440px;
     height: 80px;
@@ -223,7 +222,6 @@ const LogoWrap = styled.div`
     font-weight: 700;
     font-size: 32px;
     margin-bottom: 5px;
-    /* margin: 26px 0px 26px 0px; */
     cursor: pointer;
     display: flex;
     flex-flow: row wrap;
@@ -233,18 +231,14 @@ const LogoWrap = styled.div`
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    /* border: 1px solid white; */
 `
 
 const HeaderConWrap = styled.div`
-    /* border: 1px solid white; */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    /* width: 155vh; */
     width: 1189px;
-    /* max-width: 1440px; */
 `
 
 const HeaderAlignWrap = styled.div`
@@ -252,17 +246,14 @@ const HeaderAlignWrap = styled.div`
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    /* border: 1px solid white; */
     width: auto;
 `
 
 const HeaderLeftWrap = styled.div`
-    /* border: 1px solid white; */
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: flex-start;
-    /* width: 108vh; */
     gap: 20px;
     margin-left: 80px;
 `
@@ -280,17 +271,14 @@ const FindProject = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-
     border-radius: 2px;
 `
 
 const FindMatching = styled.button`
-    /* border: 1px solid white; */
     outline: none;
     border: none;
     cursor: pointer;
     background-color: transparent;
-    /* margin: 10px; */
     font-size: 15px;
     color: #FFF;
     font-weight: 400;
@@ -303,7 +291,6 @@ const FindMatching = styled.button`
 `
 
 const HeaderRightWrap = styled.div`
-    /* border: 1px solid black; */
     display: flex;
     flex-flow:row wrap;
     justify-content: center;
@@ -322,8 +309,6 @@ const LoginButton = styled.span`
     margin-right: 18px;
     cursor: pointer;
     color: #fff;
-    /* border: 1px solid black; */
-
 `
 
 
@@ -335,9 +320,6 @@ const CircleImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-image: url(${BasicPhoto});
-    background-position: center;
-    background-size: cover;  */
   background-position: center;
   background-size: cover;
   cursor: pointer;

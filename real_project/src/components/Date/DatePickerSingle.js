@@ -42,10 +42,8 @@ const DatePickerWrapper = styled(({ TestClass, ...props }) => (
   `;
   
   const Daystring = styled.div`
-  /* font-size: large; */
   `
   const Calendar = styled.div`
-    /* width : 706px; */
     border-radius: 4px;
     overflow: hidden;
   `;
@@ -59,7 +57,6 @@ const DatePickerWrapper = styled(({ TestClass, ...props }) => (
   `;
 
 const CalendarInfoWrap = styled.div`
-/* border: 1px solid black; */
 width: 150px;
 height: 43px;
 display: flex;

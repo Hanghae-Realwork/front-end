@@ -227,7 +227,6 @@ const TitleWrap = styled.div`
   overflow: hidden;
   height: 20px;
   line-height: 21px;
-
 `;
 
 const DetailWrap = styled.div`
@@ -239,7 +238,6 @@ const DetailWrap = styled.div`
   margin-top: 15px;
   overflow: hidden;
   line-height: 21px;
-
 `
 
 

@@ -42,7 +42,6 @@ const EmptyCardInnerWrap = styled.div`
 `
 
 const EmptyCardTop = styled.div`
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -51,7 +50,6 @@ const EmptyCardTop = styled.div`
 `
 
 const EmptyCardBot = styled.div`
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;

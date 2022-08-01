@@ -404,18 +404,18 @@ function Join() {
     if (
       userId === "" ||
       nickname === "" ||
-      name === "" ||
-      year === "" ||
-      newmonth === "" ||
-      day === "" ||
+      // name === "" ||
+      // year === "" ||
+      // newmonth === "" ||
+      // day === "" ||
       password === "" ||
       passwordCheck === "" ||
       userId === " " ||
       nickname === " " ||
-      name === " " ||
-      year === " " ||
-      newmonth === " " ||
-      day === " " ||
+      // name === " " ||
+      // year === " " ||
+      // newmonth === " " ||
+      // day === " " ||
       password === " " ||
       passwordCheck === " "
     ) {
@@ -439,8 +439,8 @@ function Join() {
         signupAxios(
           userId,
           nickname,
-          name,
-          year + "-" + newmonth + "-" + day,
+          // name,
+          // year + "-" + newmonth + "-" + day,
           password,
           passwordCheck,
           allCheck
@@ -487,8 +487,8 @@ function Join() {
                     <ValiSpan
                       style={
                         userIdError.color
-                          ? { color: "green" }
-                          : { color: "#C70000" }
+                          ? { color: "#b3e3c8" }
+                          : { color: "#e07967" }
                       }
                     >
                       {userIdError.text}
@@ -517,8 +517,8 @@ function Join() {
                     <ValiSpan
                       style={
                         nicknameError.color
-                          ? { color: "green" }
-                          : { color: "#C70000" }
+                          ? { color: "#b3e3c8" }
+                          : { color: "#e07967" }
                       }
                     >
                       {nicknameError.text}
@@ -592,8 +592,8 @@ function Join() {
                     <ValiSpan
                       style={
                         passwordError.color
-                          ? { color: "green" }
-                          : { color: "#C70000" }
+                          ? { color: "#b3e3c8" }
+                          : { color: "#e07967" }
                       }
                     >
                       {passwordError.text}
@@ -615,8 +615,8 @@ function Join() {
                     <ValiSpan
                       style={
                         confirmPasswordError.color
-                          ? { color: "green" }
-                          : { color: "#C70000" }
+                          ? { color: "#b3e3c8" }
+                          : { color: "#e07967" }
                       }
                     >
                       {confirmPasswordError.text}

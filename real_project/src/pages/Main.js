@@ -24,7 +24,7 @@ import planet from "../image/rotationplanet.svg"
 function Main() {
 
     const navigate = useNavigate();
-    console.log('빌드 1.2.9')
+    console.log('빌드 1.2.12')
 
     return(
         <>
@@ -72,11 +72,9 @@ const BackGroundDiv = styled.div`
     justify-content: center;
     align-items: center;
     background-color: #303032;
-    /* className="MainBack" */
 `
 
 const MainAllWrap = styled.div`
-  /* border: 1px solid white; */
   width: 1440px;
   height: 602px;
   display: flex;
@@ -84,7 +82,6 @@ const MainAllWrap = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   background-image: url(${emptyspace});
-  /* background-image: url(${spacebackground}); */
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -93,7 +90,6 @@ const MainAllWrap = styled.div`
 `;
 
 const MainBackgroundWrap = styled.div`
-    /* border: 1px solid white; */
     width: 815px;
     height: 600px;
     display: flex;
@@ -124,7 +120,6 @@ const Planet = styled.img`
 
 
 const MaininTitleTopWrap = styled.div`
-  /* border: 1px solid black; */
   width: 500px;
   height: 350px;
   margin: 144px 0px 200px 120px;
@@ -142,13 +137,11 @@ const TitleMain = styled.span`
 `;
 
 const HeadTitleWrap = styled.div`
-    /* border: 1px solid black; */
     text-align: justify;
 `
 
 const SubWrap = styled.div`
     margin-top: 20px;
-    /* border: 1px solid black; */
     text-align: justify;
 `
 
@@ -185,7 +178,6 @@ const PageButton2 = styled.button`
 `;
 
 const MainButtonWrap = styled.div`
-    /* border: 1px solid black; */
     margin-top: 30px;
     display: flex;
     justify-content: flex-start;
@@ -194,8 +186,6 @@ const MainButtonWrap = styled.div`
 `
 
 const MainTextTitle = styled.div`
-    /* color: white; */
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -215,7 +205,6 @@ const CircleMainIcon = styled.div`
     width: 140px;
     height: 140px;
     border-radius: 100%;
-    /* border: 1px solid black; */
     margin-top: 20px;
     margin-bottom: 40px;
     display: flex;
@@ -228,12 +217,10 @@ const CircleImage = styled.div`
     width: 120px;
     height: 120px;
     border-radius: 100%;
-    /* border: 1px solid black; */
     background-image: url(${Space});
 `
 
 const BackgroundBot = styled.div`
-    /* border: 1px solid black; */
     width: 100%;
     margin-bottom: 127px;
     margin-top: 127px;
