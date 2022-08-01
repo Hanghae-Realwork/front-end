@@ -26,4 +26,9 @@ Designer : 김나정<br/>
 ---
 
 ### **프로젝트 아키텍쳐**
+![KakaoTalk_Photo_2022-08-01-10-49-48](https://user-images.githubusercontent.com/103410051/182057279-4ad66097-6fab-4499-adc0-ea3461014af7.png)
 
+
+---
+
+### **renDev 주요 기능
