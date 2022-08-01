@@ -79,3 +79,13 @@ Designer : 김나정<br/>
 <br/>
 <br/>
 ![스크린샷 2022-08-01 오전 11 26 48](https://user-images.githubusercontent.com/103410051/182060627-e6a03ced-0887-436d-bc2d-131159cbc412.png)
+<br/>
+<br/>
+**한눈에 나와 맞는 프로젝트(팀원)를 탐색할 수 있는 매칭 기능을 통해 한층 더 강화 된 유저 접근성**
+<br/>
+<br/>
+![스크린샷 2022-08-01 오전 11 31 30](https://user-images.githubusercontent.com/103410051/182061023-80ec1d92-147b-47f8-81f8-99720b78f79b.png)
+
+
+
+
