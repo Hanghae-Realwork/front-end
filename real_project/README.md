@@ -1,6 +1,7 @@
-
+<div>
 <a href="https://rendev99.com">![KakaoTalk_Photo_2022-08-01-10-40-41](https://user-images.githubusercontent.com/103410051/182056537-68c6094d-7ac2-4679-9ffd-b8ea9848ce86.png)</a>
 <br/>
+</div>
 <span> 이미지를 클릭하시면 랑데브 페이지로 이동 합니다.<span>
 <br/>
 <br/>
