@@ -1,6 +1,5 @@
 import { apis } from "../../shared/api";
-import { setCookie, deleteCookie,getCookie } from "../../shared/cookie";
-import {useCookies} from "react-cookie"
+
 const LOGIN = "user/LOGIN";
 const LOGOUT = "user/LOGOUT";
 const USERINFO = "user/USERINFO";
@@ -197,14 +196,10 @@ export default function reducer(state = initialState, action = {}) {
     }
     case "user/LOGOUT": {
 
-     
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("nickname");
-      localStorage.removeItem("token");
-      
 
-      deleteCookie("refreshToken");
     
       const newUserInfo = {
         userEmail: null,

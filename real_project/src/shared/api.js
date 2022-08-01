@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 //이미지 데이터
 const imgApi = axios.create({
   baseURL: "https://sprata-owl.shop/",
@@ -23,23 +21,10 @@ const api = axios.create({
   credentials: "include",
 });
 
-
-// 테스트(재영님)
-// baseURL: "http://13.125.145.26/",
-
-// 테스트(형진님)
-// baseURL: "http://52.78.205.196/",
-
-// 주혁님 코드 : https
-  // baseURL: "https://43.200.119.149/",
-  // baseURL: "https://rendev.link/",
-
   //토큰
   api.interceptors.request.use(function (config) {
     const accessToken = `${localStorage.getItem("token")}`;
-    //  const rtoken = getCookie("REFRESH_TOKEN");
     config.headers.common["authorization"] = `Bearer ${accessToken}`;
-    // config.headers.common["Cookies"] = `Bearer ${rtoken}`;
     return config;
   });
 
