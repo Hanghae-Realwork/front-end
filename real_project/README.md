@@ -1,11 +1,10 @@
 <h2><b>항해 99 7기 B반 | 실전 프로젝트 renDev [ 랑데브 ] FE </b><h2>
-
-<a align="center" href="https://rendev99.com">![KakaoTalk_Photo_2022-08-01-20-41-56](https://user-images.githubusercontent.com/103410051/182140573-62a62e72-15f0-4ab4-8297-2f082b8af344.png)</a>
+ 
+<div align="center">
+<a align="center" href="https://rendev99.com"><img src="https://user-images.githubusercontent.com/103410051/182140573-62a62e72-15f0-4ab4-8297-2f082b8af344.png"/><h6>(이미지를 클릭하시면 랑데브 페이지로 이동 합니다)</h6></a>
+ </div>
 <br/>
 
-<span> (이미지를 클릭하시면 랑데브 페이지로 이동 합니다)<span>
-<br/>
-<br/>
 <br/>
 
 <p>
@@ -15,8 +14,20 @@
 <img src="https://img.shields.io/badge/styledcomponents-db7093?style=flat-square&logo=styledcomponents&logoColor=white"/>
 <img src="https://img.shields.io/badge/AmazonAWS-569a31?style=flat-square&logo=AmazoneAWS&logoColor=303032"/>
 </p>
+ 
+---
+ 
+<b>목차 | Contents</b>
+1. [서비스 소개](#-서비스-소개)
+2. [프로젝트 기간 및 팀원 소개](#-프로젝트-기간-및-팀원-소개)
+3. [프론트앤드 개요](#-프론트앤드-개요)
+4. [프로젝트 아키텍쳐](#-프로젝트-아키텍쳐)
+5. [주요 기능](#-주요-기능)
+6. [프로젝트 특징](#-프로젝트-특징)
 
 <br/>
+
+---
 
 ## 🚀 **서비스 소개**  
 취업 이전, 혹은 이직 준비중에 개발 프로젝트를 함께할 팀원을 구하는 서비스. renDev 입니다.
