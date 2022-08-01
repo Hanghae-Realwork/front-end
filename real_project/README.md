@@ -1,7 +1,8 @@
 <a align="center" href="https://rendev99.com">![KakaoTalk_Photo_2022-08-01-20-25-25](https://user-images.githubusercontent.com/103410051/182138072-205e9c79-f2d0-4439-9bd3-c84bb9fa318c.png)</a>
 <br/>
 
-<span> 이미지를 클릭하시면 랑데브 페이지로 이동 합니다.<span>
+<span> (이미지를 클릭하시면 랑데브 페이지로 이동 합니다)<span>
+<br/>
 <br/>
 <br/>
 
@@ -12,6 +13,8 @@
 <img src="https://img.shields.io/badge/styledcomponents-db7093?style=flat-square&logo=styledcomponents&logoColor=white"/>
 <img src="https://img.shields.io/badge/AmazonAWS-569a31?style=flat-square&logo=AmazoneAWS&logoColor=303032"/>
 </p>
+
+<br/>
 
 ## 🚀 **서비스 소개**  
 취업 이전, 혹은 이직 준비중에 개발 프로젝트를 함께할 팀원을 구하는 서비스. renDev 입니다.
