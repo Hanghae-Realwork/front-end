@@ -34,11 +34,15 @@ function Join() {
     text: "",
     color: false,
   });
-  const [nicknameError, setNicknameError] = useState({ status: false, text: "",color:false});
+  const [nicknameError, setNicknameError] = useState({ status: false, text: "", color:false});
   
-  const [nameError, setNameError] = useState({status: false, text: "",color:false});
-  const [passwordError, setPasswordError] = useState({status: false,text: ""});
-  const [confirmPasswordError, setConfirmPasswordError] = useState({status: false,text: ""});
+  const [nameError, setNameError] = useState({status: false, text: "", color:false});
+  const [passwordError, setPasswordError] = useState({status: false,text: "",color: false});
+  const [confirmPasswordError, setConfirmPasswordError] = useState({
+    status: false,
+    text: "",
+    color: false,
+  });
   const [yearError, setYearError] = useState({status: false,text: ""});
 
   //error name
@@ -236,16 +240,34 @@ function Join() {
     const passwordRegex =
       /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
     if (e.target.value.length <= 0) {
-      setPasswordError({ status: true, text: "필수 정보입니다." });
+      setPasswordError({
+        status: true,
+        text: "필수 정보입니다.",
+        color:false
+      });
     } else if (e.target.value.length > 0 && !passwordRegex.test(password)) {
       setPasswordError({
         status: true,
         text: "영문자, 숫자, 특수문자 포함 4~16자로 작성해주세요.",
+        color: false,
+      });
+    } else if (e.target.value.length > 0 && passwordCheck === e.target.value) {
+     
+      setPasswordError({
+        status: true,
+        text: "비밀번호와 일치합니다.",
+        color: true,
+      });
+      setConfirmPasswordError({
+        status: true,
+        text: "비밀번호와 일치합니다.",
+        color: true,
       });
     } else {
       setPasswordError({
         status: false,
         text: "",
+        color: false,
       });
     }
   };
@@ -256,18 +278,32 @@ function Join() {
   };
   const BlurPassWordCheck = (e) => {
     if (e.target.value.length <= 0) {
-      setConfirmPasswordError({ status: true, text: "필수 정보입니다." });
+      setConfirmPasswordError({ status: true, text: "필수 정보입니다.",color:false });
       return;
     }
     if (e.target.value.length > 0 && password !== e.target.value) {
       setConfirmPasswordError({
         status: true,
         text: "비밀번호와 일치하지 않습니다.",
+        color: false,
       });
+    } else if (e.target.value.length > 0 && password === e.target.value) {
+      setConfirmPasswordError({
+        status: true,
+        text: "비밀번호와 일치합니다.",
+        color: true,
+      });
+      setPasswordError({
+        status: true,
+        text: "비밀번호와 일치합니다.",
+        color: true,
+      });
+
     } else {
       setConfirmPasswordError({
         status: false,
         text: "",
+        color: true,
       });
     }
   };
@@ -547,7 +583,15 @@ function Join() {
                 ></InputBar>
                 <ValiWrap>
                   {passwordError.status && (
-                    <ValiSpan>{passwordError.text}</ValiSpan>
+                    <ValiSpan
+                      style={
+                        passwordError.color
+                          ? { color: "green" }
+                          : { color: "#C70000" }
+                      }
+                    >
+                      {passwordError.text}
+                    </ValiSpan>
                   )}
                 </ValiWrap>
               </IdWrap>
@@ -562,7 +606,15 @@ function Join() {
                 ></InputBar>
                 <ValiWrap>
                   {confirmPasswordError.status && (
-                    <ValiSpan>{confirmPasswordError.text}</ValiSpan>
+                    <ValiSpan
+                      style={
+                        confirmPasswordError.color
+                          ? { color: "green" }
+                          : { color: "#C70000" }
+                      }
+                    >
+                      {confirmPasswordError.text}
+                    </ValiSpan>
                   )}
                 </ValiWrap>
               </IdWrap>
