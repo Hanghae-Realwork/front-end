@@ -668,7 +668,9 @@ function Join() {
             </InputJoinWrap>
 
             <AgreeFullWrap>
-              <AgreementTitle>서비스 이용정책</AgreementTitle>
+              <TextWrap>
+                <AgreementTitle>서비스 이용정책</AgreementTitle>
+              </TextWrap>
               <AgreementWrap>
                 <AgreeChkWrap>
                   <ChcekWrap>
@@ -782,14 +784,15 @@ const ValiWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-top: 8px;
-  color: "#C70000";
+  line-height: 21px;
   /* border: 1px solid white; */
 `;
 
 const ValiSpan = styled.span`
   color: #C70000;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
+  line-height: 21px;
 `;
 
 const InputJoinWrap = styled.div`
@@ -800,6 +803,7 @@ const InputJoinWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
+  gap: 30px;
 `;
 
 const IdWrap = styled.div`
@@ -809,7 +813,7 @@ const IdWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin: 30px 0px 30px 90px;
+  /* margin: 30px 0px 30px 90px; */
   /* width: 510px; */
   flex-flow: column nowrap;
 `;
@@ -820,7 +824,7 @@ const InputBar = styled.input`
   border: none;
   border-bottom: 1px solid white;
   padding: 7px;
-  width: 375px;
+  width: 345px;
   background-color: transparent;
   color: white;
   font-weight: 400;
@@ -864,7 +868,7 @@ const AgreementWrap = styled.div`
   gap: 7px;
   color: white;
   /* border: 1px solid white; */
-  width: 384px;
+  width: 450px;
   margin-top: 10px;
   padding: 15px 0px 15px 0px;
   gap: 12px;
@@ -873,8 +877,8 @@ const AgreementWrap = styled.div`
 `;
 
 const AgreementTitle = styled.label`
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 16px;
   margin-top: 50px;
   margin-bottom: 5px;
   color: white;
@@ -908,14 +912,16 @@ const AgreementInput = styled.input`
 const CheckButton = styled.button`
   background-color: #303032;
   color: white;
+  width: 100px;
   padding: 5px 15px 5px 15px;
   border: none;
   outline: none;
   cursor: pointer;
   border-radius: 5px;
-  font-weight: 400;
-  font-size: 11px;
+  font-weight: 500;
+  font-size: 12px;
   margin-left: 20px;
+  line-height: 18px;
 `
 
 const InputBirth = styled.input`
@@ -991,7 +997,7 @@ const BirthAlignWrap = styled.div`
 
 const AgreementHr = styled.hr`
   border: 0.5px solid white;
-  width: 354px; 
+  width: 415px; 
 `
 
 const AgreeChkWrap = styled.div`
@@ -1001,13 +1007,18 @@ const AgreeChkWrap = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  width: 420px;
 `
 
 const AgreeFullWrap = styled.div`
-  margin-top: 50px;
+  margin-top: 25px;
   /* border: 1px solid white; */
-  width: 384px;
+  width: 480px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
 `
 
 const AgreementCheckButton = styled.button`
@@ -1033,7 +1044,14 @@ const ModralWrap = styled.div`
   position: relative;
   /* height: auto; */
   left: -1600px;
+`
 
+const TextWrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 420px;
+  /* border: 1px solid white; */
 `
 
 export default Join;
