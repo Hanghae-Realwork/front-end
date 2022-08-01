@@ -73,5 +73,6 @@ Designer : 김나정<br/>
 <br/>
 ![KakaoTalk_Photo_2022-08-01-11-21-02](https://user-images.githubusercontent.com/103410051/182060031-49634943-e727-471f-832b-0e5acd7af07b.png)
 <br/>
+<br/>
 **직군, 기술, 기간별 검색을 통해 찾고자 하는 글에 대한 접근성 강화**
 ![스크린샷 2022-08-01 오전 11 26 48](https://user-images.githubusercontent.com/103410051/182060627-e6a03ced-0887-436d-bc2d-131159cbc412.png)
