@@ -61,3 +61,13 @@ Designer : 김나정<br/>
 
 ---
 
+### **프로젝트 특징**
+<br/>
+
+**배포**
+<br/>
+- Client : AWS CloudFront와 AWS S3를 이용한 https 배포 
+<br/>
+
+**정보 파악이 용이한 카드형 UI 사용**
+<br/>
