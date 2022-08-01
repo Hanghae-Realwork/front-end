@@ -527,7 +527,7 @@ function Join() {
                   )}
                 </ValiWrap>
               </IdWrap>
-              <IdWrap>
+              {/* <IdWrap>
                 <InputBar
                   type="text"
                   placeholder="이름"
@@ -578,7 +578,7 @@ function Join() {
                     {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
                   </ValiWrap>
                 </div>
-              </BirthWrap>
+              </BirthWrap> */}
               <IdWrap>
                 <InputBar
                   placeholder="비밀번호 (비밀번호는 영문, 숫자, 특수문자를 포함하는 4~16자)"
