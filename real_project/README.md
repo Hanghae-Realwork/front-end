@@ -69,5 +69,6 @@ Designer : 김나정<br/>
 - Client : AWS CloudFront와 AWS S3를 이용한 https 배포 
 <br/>
 
-**정보 파악이 용이한 카드형 UI 사용**
+**한눈에 정보 파악이 용이한 카드형 UI 사용**
 <br/>
+![KakaoTalk_Photo_2022-08-01-11-21-02](https://user-images.githubusercontent.com/103410051/182060031-49634943-e727-471f-832b-0e5acd7af07b.png)
