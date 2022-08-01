@@ -1,3 +1,5 @@
+<h2><b>항해 99 7기 B반 | 실전 프로젝트 renDev [ 랑데브 ] FE </b><h2>
+
 <a align="center" href="https://rendev99.com">![KakaoTalk_Photo_2022-08-01-20-41-56](https://user-images.githubusercontent.com/103410051/182140573-62a62e72-15f0-4ab4-8297-2f082b8af344.png)</a>
 <br/>
 
