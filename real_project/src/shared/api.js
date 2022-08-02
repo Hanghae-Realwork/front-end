@@ -2,7 +2,7 @@ import axios from "axios";
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "http://43.200.119.149:3000/",
+  baseURL: "https://sprata-owl.shop/",
   headers: {
     "content-type": "multipart/form-data",
     withCredentials: true,
@@ -11,9 +11,9 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "http://43.200.119.149:3000/",
+  baseURL: "https://sprata-owl.shop/",
   headers: {
-    "Access-Control-Allow-Origin": "http://43.200.119.149:3000/",
+    "Access-Control-Allow-Origin": "https://sprata-owl.shop/",
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
   },
