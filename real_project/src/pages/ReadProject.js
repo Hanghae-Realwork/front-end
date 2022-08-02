@@ -366,7 +366,7 @@ const MainText = styled.div`
   width: 1200px;
 `;
 
-const MainTextSpan = styled.span`
+const MainTextSpan = styled.pre`
   font-size: 16px;
   font-weight: 400;
 `;
