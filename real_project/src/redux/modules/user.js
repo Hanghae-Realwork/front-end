@@ -154,7 +154,7 @@ export const checkEmailAxios = (userId, code) => {
       .checkEmail(userId, code)
       .then((res) => {
         checksuccess = true;
-        console.log(res)})
+        })
       .catch((err) => {
         checksuccess = false;
       });
@@ -163,15 +163,12 @@ export const checkEmailAxios = (userId, code) => {
 };
 
 export const logOutAxios = () => {
-  console.log("들어옴")
   return async function (dispatch) {
     await apis
       .userlogOut().
       then((res) => {
-        console.log("아시옥스 응답",res)
         dispatch(logOut());
       }).catch((err) => {
-        console.log(err)
       })
   }
 }
@@ -207,7 +204,6 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "user/LOGOUT": {
-      console.log("리듀서 응답");
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("nickname");
