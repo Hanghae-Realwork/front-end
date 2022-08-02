@@ -25,6 +25,7 @@ function ReadProject() {
 
   const userName_Info = useSelector((state) => state.user.userInfo.userId);
   const profileImage = useSelector((state) => state.user.userInfo.profileImage);
+  
   // 예약기능
   const [applicationId, setApplicationId] = useState("");
   const [resumeId, setResumeId] = useState("");
@@ -364,11 +365,13 @@ const TopDateLimit = styled.span`
 
 const MainText = styled.div`
   width: 1200px;
+  line-height: 28px;
 `;
 
 const MainTextSpan = styled.pre`
   font-size: 16px;
   font-weight: 400;
+  white-space: pre-wrap;
 `;
 
 const RoleTitle = styled.span`
