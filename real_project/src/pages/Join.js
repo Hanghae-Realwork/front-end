@@ -5,6 +5,7 @@ import {
   signupAxios,
   checkUserIdAxios,
   checkUserNicknameAxios,
+  checkEmailAxios,
 } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 
@@ -12,26 +13,17 @@ import AgreementModal from "../components/Modal/AgreementModal";
 
 import Logo from "../image/Logo_vertical.svg"
 
-
-
-
 function Join() {
-
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   //회원가입 변수
   const [userId, setUserId] = useState("");
+   const [certification, setCertification] = useState("");
   const [nickname, setNickname] = useState("");
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  // const [year, setYear] = useState("");
-  // const [month, setMonth] = useState("");
-  // const [day, setDay] = useState("");
-  const [checkEmail,setCheckEmail]= useState("")
-  const [Agreemodal, setAgreeModal] = useState(false);
+
 
 
   //error
@@ -40,35 +32,45 @@ function Join() {
     text: "",
     color: false,
   });
-  const [nicknameError, setNicknameError] = useState({ status: false, text: "", color:false});
-  
-  // const [nameError, setNameError] = useState({status: false, text: "", color:false});
-  const [passwordError, setPasswordError] = useState({status: false,text: "",color: false});
+  //인증번호
+  const [certificationError, setCertificationError] = useState({
+    status: false,
+    text: "",
+    color: false,
+  });
+
+  const [nicknameError, setNicknameError] = useState({
+    status: false,
+    text: "",
+    color: false,
+  });
+  const [passwordError, setPasswordError] = useState({
+    status: false,
+    text: "",
+    color: false,
+  });
   const [confirmPasswordError, setConfirmPasswordError] = useState({
     status: false,
     text: "",
     color: false,
   });
-  // const [yearError, setYearError] = useState({status: false,text: ""});
 
-  //error name
+  //error
   //이용약관:동의 비동의
   const [allCheck, setAllCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
-  
+
   //아이디,비밀번호 중복체크
-  const [userIdCheck, setUserIdCheck] = useState(false)
-  const [nicknameCheck, setNicknameCheck] = useState(false)
-  
+  const [userIdCheck, setUserIdCheck] = useState(false);
+  const [nicknameCheck, setNicknameCheck] = useState(false);
+  const [emailCheck, setEmailCheck] = useState(false);
+    const [Agreemodal, setAgreeModal] = useState(false);
   //체크박스
   useEffect(() => {
     if (useCheck === true && marketingCheck === true) {
       setAllCheck(true);
-    } else if (
-      useCheck === true &&
-      marketingCheck === false
-    ) {
+    } else if (useCheck === true && marketingCheck === false) {
       setAllCheck(false);
     }
   }, [useCheck, marketingCheck]);
@@ -77,33 +79,79 @@ function Join() {
   const onChangeUserId = (e) => {
     setUserId(e.target.value);
   };
-
   const BlurUserId = (e) => {
     const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     if (e.target.value.length <= 0) {
-      setUserIdError({ status: true, text: "필수 정보입니다." });
-      return;
-    }
-    if (e.target.value.length > 0 && !emailRegex.test(userId)) {
+      setUserIdError({ status: true, text: "필수 항목입니다.", color: false });
+    } else if (e.target.value.length > 0 && !emailRegex.test(userId)) {
       setUserIdError({
         status: true,
         text: "사용할 수 없는 이메일입니다.",
+        color: false,
       });
-    } else setUserIdError({ status: false, text: ""});
+    } else
+      setUserIdError({
+        status: false,
+        text: "",
+        color: false,
+      });
   };
+
+  //아이디 중복체크
+  const onClickCheckUserId = () => {
+    dispatch(checkUserIdAxios(userId))
+      .then((checksuccess) => {
+        if (checksuccess === true) {
+          setUserIdError({
+            status: true,
+            text: "사용가능한 이메일입니다. 해당 이메일로 인증번호가 전송됩니다.",
+            color: true,
+          });
+          setUserIdCheck(true);
+        } else {
+          setUserIdError({
+            status: true,
+            text: "사용할 수 없는 이메일입니다.",
+            color: false,
+          });
+          setUserIdCheck(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const onChangecheckEmail = (e) => {
+    setCertification(e.target.value);
+  };
+  const BlurcheckEmail = (e) => {
+    console.log(e.target.value)
+ 
+  };
+  const onClickcheckEmail = () => {
+    dispatch(checkEmailAxios(userId, certification)).then((checksuccess) => {
+      if (checksuccess === true) { 
+       setCertificationError({
+        status: true,
+        text: "인증번호가 일치합니다.",
+        color: true,
+       });
+        setEmailCheck(true)
+      } else {
+       setCertificationError({
+        status: true,
+        text: "인증번호가 일치하지 않습니다.",
+        color: false,
+       });
+        setEmailCheck(false)
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
 
-  setCheckEmail(e.target.value)
-  }
-  const onClickcheckEmail = () =>
-  {
-    
-    }
-  const BlurcheckEmail = () => {
-    
-  }
-
+  };
 
   //유효성검사:nickName
   const onChageNickName = (e) => {
@@ -112,142 +160,23 @@ function Join() {
 
   const BlurNickName = (e) => {
     if (e.target.value.length <= 0) {
-      setNicknameError({ status: true, text: "필수 정보입니다.",color:false });
+      setNicknameError({
+        status: true,
+        text: "필수 정보입니다.",
+        color: false,
+      });
       return;
     }
     if (nickname.length === 1) {
-      setNicknameError({ status: true, text: "한글자 이상 입력해주세요!",color:false });
+      setNicknameError({
+        status: true,
+        text: "한글자 이상 입력해주세요!",
+        color: false,
+      });
     } else {
-      setNicknameError({ status: false, text: "",color:false });
+      setNicknameError({ status: false, text: "", color: false });
     }
   };
-
-  //Name
-  // const onChageName = (e) => {
-  //   setName(e.target.value);
-  // };
-  // const BlurName = (e) => {
-  //   if (e.target.value.length <= 0) {
-  //     setNameError({ status: true, text: "필수 정보입니다.", color:false});
-  //     return;
-  //   }
-  //   if (e.target.value.length === 1) {
-  //     setNameError({
-  //       status: true,
-  //       text: "한글자 이상 입력해주세요!",
-  //       color: false,
-  //     });
-  //   } else {
-  //     setNameError({ status: false, text: "", color: false });
-  //   }
-  // };
-
-  //유효성검사:Birth
-  // const onChangeBirth = (e) => {
-  //   const BirthRegex = /^[0-9\b -]{0,4}$/;
-  //   const { name } = e.target;
-  //   if (name === "year") {
-  //     if (BirthRegex.test(e.target.value)) {
-  //       setYear(e.target.value);
-  //     } 
-  //   } else if (name === "month") {
-  //     if (BirthRegex.test(e.target.value)) {
-  //         if (e.target.value <=12) setMonth(e.target.value);
-  //     }
-  //   } else if (name === "day") {
-  //     if (BirthRegex.test(e.target.value)) {
-  //       setDay(e.target.value);
-  //     }
-  //   }
-  // };
-
-  // const BlurYear = (e) => {
-  //   const { name } = e.target;
-  //   //0~9 사이 숫자 입력 시 0번째에 0추가
-  //   if (name === "day") {
-  //     if (day < 10 && day.length === 1) {
-  //       setDay(0 + e.target.value);
-  //     }
-  //   }
-  //   //조건
-  //   if (year.length <= 0) {
-  //     setYearError({
-  //       status: true,
-  //       text: "태어난 년도 4자리를 정확하게 입력하세요.",
-  //     });
-  //   } else if (month.length <= 0) {
-  //     setYearError({
-  //       status: true,
-  //       text: "태어난 월을 입력하세요.",
-  //     });
-
-  //   } else if (day.length <= 0) {
-  //     setYearError({
-  //       status: true,
-  //       text: "태어난 일을 입력하세요.",
-  //     });
-  //   } else if (year >= 2022) {
-  //     setYearError({
-  //       status: true,
-  //       text: "미래에서 오셨군요^^",
-  //     });
-  //   } else if (year <= 1922) {
-  //     setYearError({
-  //       status: true,
-  //       text: "정말이세요?",
-  //     });
-  //   } else if (
-  //     (month === "4" || month === "6" || month === "9" || month === "11")) {
-  //     if (day >= 31) {
-  //       setYearError({
-  //         status: true,
-  //         text: "날짜를 다시 확인해주세요.",
-  //       });
-  //     } else { 
-  //       setYearError({
-  //         status: false,
-  //         text: "",
-  //       });
-  //     }
-  //   } else if (month === "2") { 
-  //     if (year % 4 === 0) {
-  //                if (day >= 30) {
-  //                  setYearError({
-  //                    status: true,
-  //                    text: "날짜를 다시 확인해주세요.",
-  //                  });
-  //                } else {
-  //                  setYearError({
-  //                    status: false,
-  //                    text: "",
-  //                  });
-  //                }
-  //     } else { 
-  //       if (day >= 29) {
-  //         setYearError({
-  //           status: true,
-  //           text: "날짜를 다시 확인해주세요.",
-  //         });
-  //       } else { 
-  //          setYearError({
-  //            status: false,
-  //            text: "",
-  //          });
-  //       }
-  //     }
-  //   }
-  //   else if (day >= 32) {
-  //     setYearError({
-  //       status: true,
-  //       text: "날짜를 다시 확인해주세요.",
-  //     });
-  //   } else {
-  //     setYearError({
-  //       status: false,
-  //       text: "",
-  //     });
-  //   }     
-  // };
 
   //유효성검사:Password
   const OnChangePassWord = (e) => {
@@ -260,7 +189,7 @@ function Join() {
       setPasswordError({
         status: true,
         text: "필수 정보입니다.",
-        color:false
+        color: false,
       });
     } else if (e.target.value.length > 0 && !passwordRegex.test(password)) {
       setPasswordError({
@@ -269,7 +198,6 @@ function Join() {
         color: false,
       });
     } else if (e.target.value.length > 0 && passwordCheck === e.target.value) {
-     
       setPasswordError({
         status: true,
         text: "비밀번호와 일치합니다.",
@@ -280,6 +208,7 @@ function Join() {
         text: "비밀번호와 일치합니다.",
         color: true,
       });
+        
     } else {
       setPasswordError({
         status: false,
@@ -294,8 +223,14 @@ function Join() {
     setPasswordCheck(e.target.value);
   };
   const BlurPassWordCheck = (e) => {
+     const passwordRegex =
+       /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
     if (e.target.value.length <= 0) {
-      setConfirmPasswordError({ status: true, text: "필수 정보입니다.",color:false });
+      setConfirmPasswordError({
+        status: true,
+        text: "필수 정보입니다.",
+        color: false,
+      });
       return;
     }
     if (e.target.value.length > 0 && password !== e.target.value) {
@@ -305,17 +240,30 @@ function Join() {
         color: false,
       });
     } else if (e.target.value.length > 0 && password === e.target.value) {
-      setConfirmPasswordError({
-        status: true,
-        text: "비밀번호가 일치합니다.",
-        color: true,
-      });
-      setPasswordError({
-        status: true,
-        text: "비밀번호가 일치합니다.",
-        color: true,
-      });
-
+      if (!passwordRegex.test(password)) {
+         setConfirmPasswordError({
+           status: true,
+           text: "영문자, 숫자, 특수문자 포함 4~16자로 작성해주세요.",
+           color: false,
+         });
+         setPasswordError({
+           status: true,
+           text: "영문자, 숫자, 특수문자 포함 4~16자로 작성해주세요.",
+           color: false,
+         });
+      } else {
+           setConfirmPasswordError({
+             status: true,
+             text: "비밀번호가 일치합니다",
+             color: true,
+           });
+           setPasswordError({
+             status: true,
+             text: "비밀번호가 일치합니다.",
+             color: true,
+           });
+      }
+       
     } else {
       setConfirmPasswordError({
         status: false,
@@ -354,118 +302,63 @@ function Join() {
     }
   };
 
-  //아이디 중복체크
-  const onClickCheckUserId = async () => {
-    try {
-      await dispatch(checkUserIdAxios(userId)).then((checksuccess) => {
-        if (checksuccess === true) {
-          setUserIdError({
-            status: true,
-            text: "사용가능한 이메일입니다. 해당 이메일로 인증번호가 전송됩니다.",
-            color: true,
-          });
-          
-          setUserIdCheck(true)
-
-        } else {
-         
-          setUserIdError({
-            status: true,
-            text: "사용할 수 없는 이메일입니다.",
-            color:false
-  
-          });
-          setUserIdCheck(false);
-        }
-      });
-    } catch (err) {
-      alert("err");
-    }
-  };
-
   //닉네임 중복체크
-  const onClickChecknickname = async () => {
-    try {
-      await dispatch(checkUserNicknameAxios(nickname)).then((checksuccess) => {
+  const onClickChecknickname = () => {
+    dispatch(checkUserNicknameAxios(nickname))
+      .then((checksuccess) => {
         if (checksuccess === true) {
           setNicknameError({
             status: true,
             text: "사용 가능한 닉네임 입니다.",
-            color:true
+            color: true,
           });
-          setNicknameCheck(true)
+          setNicknameCheck(true);
         } else {
           setNicknameError({
             status: true,
             text: "사용할 수 없는 닉네임 입니다.",
-            color: false
+            color: false,
           });
-          setNicknameCheck(false)
+          setNicknameCheck(false);
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    } catch (err) {
-      alert("err");
-    }
   };
   const signupFunction = async () => {
-      // const newmonth = `${("00" + month).slice(-2)}`;
-   
- // 빈칸 아닐 시 axios로 넘어가는 회원가입 부분 
-    if (
-      userId === "" ||
-      nickname === "" ||
-      // name === "" ||
-      // year === "" ||
-      // newmonth === "" ||
-      // day === "" ||
-      password === "" ||
-      passwordCheck === "" ||
-      userId === " " ||
-      nickname === " " ||
-      // name === " " ||
-      // year === " " ||
-      // newmonth === " " ||
-      // day === " " ||
-      password === " " ||
-      passwordCheck === " "
-    ) {
-      alert("빈칸을 확인해주세요.");
-      return false;
-    }
+    
     if (useCheck === false) {
       alert("약관동의를 확인해주세요.");
       return false;
     }
-
     if (!userIdCheck) {
       alert("이메일 중복체크를 확인해주세요.");
-      return false
+      return false;
     } else if (!nicknameCheck) {
       alert("닉네임 중복체크를 확인해주세요.");
-      return false
+      return false;
+    } else if (!setEmailCheck) {
+      alert("이메일 인증을 확인해주세요.")
     }
-    try {
-      await dispatch(
-        signupAxios(
-          userId,
-          nickname,
-          // name,
-          // year + "-" + newmonth + "-" + day,
-          password,
-          passwordCheck,
-          allCheck
-        )
-      ).then((res) => {
-        if (res === true) {
-          navigate("/login");
-          alert("크루원이 되신 것을 축하드립니다! 🥸");
-        }
-      });
-    } catch (err) {
-
-    }
+      try {
+        await dispatch(
+          signupAxios(
+            userId,
+            nickname,
+            certification,
+            password,
+            passwordCheck,
+            allCheck
+          )
+        ).then((res) => {
+          if (res === true) {
+            navigate("/login");
+            alert("크루원이 되신 것을 축하드립니다! 🥸");
+          }
+        });
+      } catch (err) {}
   };
-
 
   return (
     <>
@@ -486,9 +379,15 @@ function Join() {
                     value={userId}
                     onChange={onChangeUserId}
                     onBlur={BlurUserId}
-                    autoFocus
                   ></InputBar>
-                  <CheckButton onClick={onClickCheckUserId}>
+                  <CheckButton
+                    style={
+                      userId !== ""
+                        ? { background: "" }
+                        : { opacity: "0.5", pointerEvents: "none" }
+                    }
+                    onClick={onClickCheckUserId}
+                  >
                     중복 확인
                   </CheckButton>
                 </div>
@@ -512,27 +411,33 @@ function Join() {
                   <InputBar
                     type="text"
                     placeholder="이메일 인증번호"
-                    id="checkEmail"
+                    id="certification"
                     maxLength={5}
-                    value={checkEmail}
+                    value={certification}
                     onChange={onChangecheckEmail}
                     onBlur={BlurcheckEmail}
-                    autoFocus
                   ></InputBar>
-                  <CheckButton onClick={onClickcheckEmail}>
+                  <CheckButton
+                    style={
+                      userId !== "" && certification !== ""
+                        ? { background: "" }
+                        : { opacity: "0.5", pointerEvents: "none" }
+                    }
+                    onClick={onClickcheckEmail}
+                  >
                     인증번호 확인
                   </CheckButton>
                 </div>
                 <ValiWrap>
-                  {checkEmail.status && (
+                  {certificationError.status && (
                     <ValiSpan
                       style={
-                        userIdError.color
+                        certificationError.color
                           ? { color: "#b3e3c8" }
                           : { color: "#e07967" }
                       }
                     >
-                      {checkEmail.text}
+                      {certificationError.text}
                     </ValiSpan>
                   )}
                 </ValiWrap>
@@ -542,6 +447,7 @@ function Join() {
                 <div>
                   <InputBar
                     type="text"
+                    id="nickname"
                     placeholder="닉네임"
                     minLength={2}
                     maxLength={8}
@@ -549,7 +455,14 @@ function Join() {
                     onChange={onChageNickName}
                     onBlur={BlurNickName}
                   ></InputBar>
-                  <CheckButton onClick={onClickChecknickname}>
+                  <CheckButton
+                    onClick={onClickChecknickname}
+                    style={
+                      nickname !== ""
+                        ? { background: "" }
+                        : { opacity: "0.5", pointerEvents: "none" }
+                    }
+                  >
                     중복 확인
                   </CheckButton>
                 </div>
@@ -567,62 +480,12 @@ function Join() {
                   )}
                 </ValiWrap>
               </IdWrap>
-              {/* <IdWrap>
-                <InputBar
-                  type="text"
-                  placeholder="이름"
-                  minLength={2}
-                  maxLength={10}
-                  value={name}
-                  onChange={onChageName}
-                  onBlur={BlurName}
-                />
-                <ValiWrap>
-                  {nameError.status && <ValiSpan>{nameError.text}</ValiSpan>}
-                </ValiWrap>
-              </IdWrap>
 
-              <BirthWrap>
-                <BirthAlignWrap>
-                  <InputBirth
-                    name="year"
-                    type="text"
-                    maxLength="4"
-                    placeholder="년(4자)"
-                    onBlur={BlurYear}
-                    value={year}
-                    onChange={onChangeBirth}
-                  />
-                  <InputMonth
-                    name="month"
-                    type="text"
-                    maxLength="2"
-                    placeholder="월(2자)"
-                    onBlur={BlurYear}
-                    value={month}
-                    onChange={onChangeBirth}
-                  />
-
-                  <InputDay
-                    type="text"
-                    maxLength="2"
-                    placeholder="일"
-                    value={day}
-                    onChange={onChangeBirth}
-                    onBlur={BlurYear}
-                    name="day"
-                  />
-                </BirthAlignWrap>
-                <div>
-                  <ValiWrap>
-                    {yearError.status && <ValiSpan>{yearError.text}</ValiSpan>}
-                  </ValiWrap>
-                </div>
-              </BirthWrap> */}
               <IdWrap>
                 <InputBar
-                  placeholder="비밀번호 (비밀번호는 영문, 숫자, 특수문자를 포함하는 4~16자)"
+                  placeholder="비밀번호 (영문, 숫자, 특수문자를 포함하는 4~16자)"
                   type="password"
+                  id="password"
                   maxLength={16}
                   onChange={OnChangePassWord}
                   value={password}
@@ -646,6 +509,7 @@ function Join() {
                 <InputBar
                   placeholder="비밀번호 확인"
                   type="password"
+                  id="passwordCheck"
                   maxLength={16}
                   onChange={OnChangePassWordCheck}
                   value={passwordCheck}
@@ -725,6 +589,11 @@ function Join() {
                 id="signBtnDisabled"
                 className="loginBtn"
                 onClick={signupFunction}
+                style={
+                  userId !== "" && certification !== "" && nickname !== "" && password !== "" && passwordCheck !== ""
+                    ? { background: "" }
+                    : { opacity: "0.5", pointerEvents: "none" }
+                }
               >
                 회원가입
               </JoinButton>

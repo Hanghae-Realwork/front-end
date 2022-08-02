@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUserValidation, logOut, userInfo } from "../redux/modules/user";
+import { checkUserValidation, logOutAxios,logOut} from "../redux/modules/user";
 import {resetresult} from "../redux/modules/search"
 
 import JoinModal from "../components/Modal/JoinModal";
@@ -37,7 +37,7 @@ const [cookies, setCookie, removeCookie] = useCookies(["refreshtoken"]);
       
        navigate("/");
       dispatch(logOut());
-
+    
         removeCookie("refreshtoken");
 
        

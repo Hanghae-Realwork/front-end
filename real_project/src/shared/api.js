@@ -2,7 +2,7 @@ import axios from "axios";
 
 //이미지 데이터
 const imgApi = axios.create({
-  baseURL: "https://sprata-owl.shop/",
+  baseURL: "http://43.200.119.149:3000/",
   headers: {
     "content-type": "multipart/form-data",
     withCredentials: true,
@@ -11,16 +11,17 @@ const imgApi = axios.create({
 });
 //기존 api
 const api = axios.create({
-  baseURL: "https://sprata-owl.shop/",
+  baseURL: "http://43.200.119.149:3000/",
   headers: {
-    "Access-Control-Allow-Origin": "https://sprata-owl.shop/",
+    "Access-Control-Allow-Origin": "http://43.200.119.149:3000/",
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
   },
   withCredentials: true,
   credentials: "include",
 });
-
+// https://sprata-owl.shop/
+// https://43.200.119.149:3000/
   //토큰
   api.interceptors.request.use(function (config) {
     const accessToken = `${localStorage.getItem("token")}`;
@@ -39,10 +40,6 @@ imgApi.interceptors.request.use(function (config) {
   return config;
 });
 
-
-
-
-
 //apis body
 export const apis = {
   ///////////////////////
@@ -50,18 +47,17 @@ export const apis = {
   ///////////////////////
 
   //  - 1. 회원가입
-  signup: (userId, nickname, password, passwordCheck, allCheck) =>
+  signup: (userId, nickname, code, password, passwordCheck, allCheck) =>
     api.post("/api/users/signup", {
       userId: userId,
       nickname: nickname,
+      code: code,
       password: password,
       passwordCheck: passwordCheck,
-      // name: name,
-      // birth: birth,
       policy: allCheck,
     }),
 
-  //  - 2.로그인
+  //  - 2. 로그인
   login: (userId, password) =>
     api.post("/api/users/login", { userId: userId, password: password }),
 
@@ -103,33 +99,38 @@ export const apis = {
       nickname: nickname,
     }),
 
-  //  - 8. 토큰 재발급
-  // 재발급 과정 스터디 필요
-  // refresh: () => api.post("/api/users/refresh"),
+  //  - 8. 인증번호 검사
+  checkEmail: (userId, code) =>
+    api.post("/api/users/signup/checkEmail", {
+      userId: userId,
+      code: code,
+    }),
 
-  //  - 9. 회원탈퇴
+  //  - 10. 회원탈퇴
   userDelete: (nickname, password) =>
     api.put(`/api/users/details/${nickname}/delete`, {
       password: password,
     }),
 
-  //  - 10. 내 Project 조회
+  //  - 11. 내 Project 조회
   userProjects: (nickname) =>
     api.get(`/api/users/details/${nickname}/projects`),
 
-  //  - 11. 내 Resume 조회
+  //  - 12. 내 Resume 조회
   userResumes: (nickname) => api.get(`/api/users/details/${nickname}/resumes`),
 
-  //  - 12. 내 지원정보 조회
+  //  - 13. 내 지원정보 조회
   userApply: (nickname) => api.get(`/api/users/details/${nickname}/apply`),
 
-  //  - 13. 내 모집현황
+  //  - 14. 내 모집현황
   userRecruit: (nickname) => api.get(`/api/users/details/${nickname}/applys`),
 
-  //  - 14. 프로필 이미지
+  //  - 15. 프로필 이미지
   userPhoto: (nickname, frm) =>
     imgApi.put(`/api/users/details/${nickname}/image`, frm),
-
+  
+  //  - 16. 로그아웃
+  userlogOut: () => api.get("/api/users/logout"),
   ///////////////////////
   ////<2. 프로젝트 API>////
   //////////////////////

@@ -5,7 +5,7 @@ const LOGOUT = "user/LOGOUT";
 const USERINFO = "user/USERINFO";
 const CheckUserId = "user/CheckUserId";
 const VALIDATION = "user/VALIDATION";
-
+const CHECKEMAIL = "user/CHECKEMAIL";
 
 const initialState = {
   signup: {
@@ -40,14 +40,15 @@ export function userId(payload) {
 export function validation(payload) {
   return { type: VALIDATION, payload };
 }
-
+export function checkEmail(payload) {
+   return { type: CHECKEMAIL, payload };
+}
 //middleWare
 //회원가입
 export const signupAxios = (
   userId,
   nickname,
-  name,
-  birth,
+  code,
   password,
   passwordCheck,
   allCheck
@@ -55,15 +56,7 @@ export const signupAxios = (
   return async function (dispatch) {
     let res = null;
     await apis
-      .signup(
-        userId,
-        nickname,
-        name,
-        birth,
-        password,
-        passwordCheck,
-        allCheck
-      )
+      .signup(userId, nickname, code, password, passwordCheck, allCheck)
       .then(() => {
         res = true;
       })
@@ -127,7 +120,6 @@ export const loginAxios = (userEmail, password) => {
         } else if (error.request.status === 401) {
           alert("아이디 또는 비밀번호가 일치하지 않습니다. 🥸 ");
         }
-        
       });
     return success;
   };
@@ -154,18 +146,49 @@ export const checkUserValidation = () => {
       });
   };
 };
+  //  - 9. 이메일 코드
+export const checkEmailAxios = (userId, code) => {
+  return async function (dispatch) {
+    let checksuccess = null;
+    await apis
+      .checkEmail(userId, code)
+      .then((res) => {
+        checksuccess = true;
+        console.log(res)})
+      .catch((err) => {
+        checksuccess = false;
+      });
+    return checksuccess;
+  };
+};
 
+export const logOutAxios = () => {
+  console.log("들어옴")
+  return async function (dispatch) {
+    await apis
+      .userlogOut().
+      then((res) => {
+        console.log("아시옥스 응답",res)
+        dispatch(logOut());
+      }).catch((err) => {
+        console.log(err)
+      })
+  }
+}
   //  - 9. 회원탈퇴
 export const userDeleteAxios = (nickname,password) => {
   return async function (dispatch) {
     await apis
       .userDelete(nickname, password)
       .then((res) => {
+        dispatch(logOut())
       })
       .catch((err) => {
       });
   };
 };
+
+
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -184,12 +207,11 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "user/LOGOUT": {
-
+      console.log("리듀서 응답");
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("nickname");
 
-    
       const newUserInfo = {
         userEmail: null,
         nickname:null,
@@ -200,8 +222,6 @@ export default function reducer(state = initialState, action = {}) {
         userInfo: newUserInfo,
       };
     }
-
-
     default:
       return state;
   }

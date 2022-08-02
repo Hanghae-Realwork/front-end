@@ -1,22 +1,17 @@
-import React, {useEffect, useRef} from "react"
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginAxios, checkUserValidation } from "../redux/modules/user";
 
-import Logo from "../image/Logo_vertical.svg"
-import { useSelector } from "react-redux";
+import Logo from "../image/Logo_vertical.svg";
+
 function Login() {
   const loginidRef = useRef(null);
   const passwordRef = useRef(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
-
- const is_login = useSelector((state) => state.user.userInfo.is_login); 
-
 
   // 로그인 벨리데이션 체크 함수
   const loginFunction = () => {
@@ -33,25 +28,17 @@ function Login() {
     }
     document.getElementById("LoginBtn").disabled = true;
 
-      
-    
-
-
-
-      dispatch(
-        loginAxios(loginidRef.current.value, passwordRef.current.value)
-
-      ).then((success) => {
+    dispatch(loginAxios(loginidRef.current.value, passwordRef.current.value))
+      .then((success) => {
         if (success === true) {
           // alert("랑데브에 오신 것을 환영합니다! 당신의 꿈을 펼쳐보세요 🥸");
           navigate("/loading");
-
         }
-      }).catch((err) => {
-      document.getElementById("LoginBtn").disabled = false;
       })
+      .catch((err) => {
+        document.getElementById("LoginBtn").disabled = false;
+      });
   };
-
 
   return (
     <>
@@ -72,11 +59,7 @@ function Login() {
                 type="password"
               ></InputBar>
             </InpuLoginWrap>
-            <LoginButton
-              onClick={loginFunction}
-            >
-              로그인
-            </LoginButton>
+            <LoginButton onClick={loginFunction}>로그인</LoginButton>
             <LoginText>
               랑데브가 처음인가요?
               <MovetoJoin
@@ -95,7 +78,6 @@ function Login() {
   );
 }
 
-
 const LoginWrap = styled.div`
   display: flex;
   flex-flow: row wrap;
@@ -110,7 +92,6 @@ const AlignWrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 
 const InpuLoginWrap = styled.div`
   display: flex;
@@ -130,7 +111,6 @@ const InputBar = styled.input`
   background-color: transparent;
 `;
 
-
 const LoginButton = styled.button`
   outline: none;
   border: none;
@@ -142,7 +122,7 @@ const LoginButton = styled.button`
   color: white;
   font-weight: bold;
   font-size: 20px;
-  background: linear-gradient(115.2deg, #AE97E3 0%, #77C3E7 77.66%);
+  background: linear-gradient(115.2deg, #ae97e3 0%, #77c3e7 77.66%);
   margin-top: 80px;
 `;
 
@@ -160,13 +140,13 @@ const MovetoJoin = styled.span`
 `;
 
 const LoginBackgroundWrap = styled.div`
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const MainLogo = styled.div`
   width: 170px;
@@ -176,6 +156,6 @@ const MainLogo = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-`
+`;
 
 export default Login;
