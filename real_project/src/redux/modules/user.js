@@ -188,15 +188,6 @@ export const userDeleteAxios = (nickname,password) => {
 };
 
 
-
-
-
-
-
-
-
-
-
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
 
