@@ -127,7 +127,6 @@ function Join() {
     setCertification(e.target.value);
   };
   const BlurcheckEmail = (e) => {
-    console.log(e.target.value)
  
   };
   const onClickcheckEmail = () => {
@@ -338,7 +337,7 @@ function Join() {
     } else if (!nicknameCheck) {
       alert("닉네임 중복체크를 확인해주세요.");
       return false;
-    } else if (!setEmailCheck) {
+    } else if (!emailCheck) {
       alert("이메일 인증을 확인해주세요.")
     }
       try {
