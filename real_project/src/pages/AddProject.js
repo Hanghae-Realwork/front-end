@@ -313,7 +313,9 @@ const FindProjectStep01 = (props) => {
         <FindprojectTopWrap>
           <FindProjectTitleText>새로운 크루 모집하기</FindProjectTitleText>
         </FindprojectTopWrap>
+        
         <HeadLine />
+
         <FindProjectInputTitle>
           <ProjectTitleText>제목</ProjectTitleText>
           <ProjectInput
@@ -323,6 +325,7 @@ const FindProjectStep01 = (props) => {
             placeholder="제목을 입력해주세요"
           ></ProjectInput>
         </FindProjectInputTitle>
+
         <FindProjectInputTitle>
           <ProjectTitleText>프로젝트 요약 (미리보기에 보여질 간략한 소개입니다)</ProjectTitleText>
           <ProjectInput
@@ -674,9 +677,9 @@ const FindProjectInputTitle = styled.div`
   margin: 40px 0px 16px 30px;
   width: 1100px;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const InputMainTextWrap = styled.div`
@@ -731,8 +734,6 @@ const SubmitButton = styled.button`
 const ProjectTitleText = styled.span`
   font-size: 16px;
   font-weight: 500;
-  gap: 15px;
-  margin-bottom: 20px;
 `;
 
 const TecLabel = styled.label`
