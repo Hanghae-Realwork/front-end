@@ -162,31 +162,35 @@ export const checkEmailAxios = (userId, code) => {
   };
 };
 
-export const logOutAxios = () => {
-  console.log("들어옴")
-  return async function (dispatch) {
-    await apis
-      .userlogOut().
-      then((res) => {
-        console.log("아시옥스 응답",res)
-        dispatch(logOut());
-      }).catch((err) => {
-        console.log(err)
-      })
-  }
-}
   //  - 9. 회원탈퇴
 export const userDeleteAxios = (nickname,password) => {
   return async function (dispatch) {
     await apis
       .userDelete(nickname, password)
       .then((res) => {
-        dispatch(logOut())
+        dispatch(logOutAxios());
       })
       .catch((err) => {
       });
   };
 };
+
+export const logOutAxios = () => {
+  return async function (dispatch) {
+    await apis
+      .userlogOut()
+      .then((res) => {
+         dispatch(logOut());
+      })
+      .catch((err) => {});
+  };
+};
+
+
+
+
+
+
 
 
 

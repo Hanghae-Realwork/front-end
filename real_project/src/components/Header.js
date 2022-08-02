@@ -36,7 +36,7 @@ const [cookies, setCookie, removeCookie] = useCookies(["refreshtoken"]);
     if (result) {
       
        navigate("/");
-      dispatch(logOut());
+      dispatch(logOutAxios());
     
         removeCookie("refreshtoken");
 
