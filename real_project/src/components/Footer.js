@@ -12,12 +12,10 @@ function Footer (){
                 <FooterWrap>
                     <LogoWrap/>
                     <TextDiv>
-                        <AgreeText>이용약관</AgreeText>
                         <CopyText>Copyright(c)2022 renDev랑데브 All Rights Reserved.</CopyText>
                     </TextDiv>
                 </FooterWrap>
             </AllFooterWrap>
-
         </>
     )
 }
@@ -60,12 +58,5 @@ const CopyText = styled.span`
     font-weight: 400;
     line-height: 21px;
 `
-
-const AgreeText = styled.span`
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-`
-
 
 export default Footer
