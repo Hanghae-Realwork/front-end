@@ -652,6 +652,7 @@ const ValiWrap = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-top: 8px;
+  height: 21px;
   line-height: 21px;
   /* border: 1px solid white; */
 `;
