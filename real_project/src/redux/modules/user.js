@@ -154,13 +154,25 @@ export const checkEmailAxios = (userId, code) => {
       .checkEmail(userId, code)
       .then((res) => {
         checksuccess = true;
-        console.log(res)})
+        })
       .catch((err) => {
         checksuccess = false;
       });
     return checksuccess;
   };
 };
+
+
+export const logOutAxios = () => {
+  return async function (dispatch) {
+    await apis
+      .userlogOut().
+      then((res) => {
+        dispatch(logOut());
+      }).catch((err) => {
+      })
+  }
+}
 
   //  - 9. 회원탈퇴
 export const userDeleteAxios = (nickname,password) => {
@@ -175,16 +187,7 @@ export const userDeleteAxios = (nickname,password) => {
   };
 };
 
-export const logOutAxios = () => {
-  return async function (dispatch) {
-    await apis
-      .userlogOut()
-      .then((res) => {
-         dispatch(logOut());
-      })
-      .catch((err) => {});
-  };
-};
+
 
 
 
@@ -211,7 +214,6 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case "user/LOGOUT": {
-      console.log("리듀서 응답");
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("nickname");
