@@ -119,7 +119,9 @@ function Join() {
         }
       })
       .catch((err) => {
-        // console.log(err);
+
+
+
       });
   };
 
@@ -147,7 +149,7 @@ function Join() {
         setEmailCheck(false)
       }
     }).catch((err) => {
-      // console.log(err)
+
     })
 
   };
@@ -322,7 +324,7 @@ function Join() {
         }
       })
       .catch((err) => {
-        // console.log(err);
+
       });
   };
   const signupFunction = async () => {
