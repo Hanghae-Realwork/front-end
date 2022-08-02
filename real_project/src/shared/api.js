@@ -20,8 +20,7 @@ const api = axios.create({
   withCredentials: true,
   credentials: "include",
 });
-// https://sprata-owl.shop/
-// https://43.200.119.149:3000/
+
   //토큰
   api.interceptors.request.use(function (config) {
     const accessToken = `${localStorage.getItem("token")}`;
@@ -128,14 +127,15 @@ export const apis = {
   //  - 15. 프로필 이미지
   userPhoto: (nickname, frm) =>
     imgApi.put(`/api/users/details/${nickname}/image`, frm),
-  
+
   //  - 16. 로그아웃
   userlogOut: () => api.get("/api/users/logout"),
+
   ///////////////////////
   ////<2. 프로젝트 API>////
   //////////////////////
 
-  //  - 9. 프로젝트 등록
+  //  - 17. 프로젝트 등록
 
   projectsCreate: (
     title,
@@ -158,13 +158,13 @@ export const apis = {
       schedule: schedule,
     }),
 
-  //  - 10. 프로젝트 조회
+  //  - 18. 프로젝트 조회
   projectsLoad: () => api.get("/api/projects"),
 
-  //  - 11. 프로젝트 상세조회
+  //  - 19. 프로젝트 상세조회
   projectsLoadDetail: (projectId) => api.get(`/api/projects/${projectId}`),
 
-  //  - 12. 프로젝트 수정
+  //  - 20. 프로젝트 수정
   projectsModify: (
     projectId,
     title,
@@ -189,7 +189,7 @@ export const apis = {
       applications: applications,
     }),
 
-  //  - 13. 프로젝트 삭제
+  //  - 21. 프로젝트 삭제
   projectsDelete: (projectId) => api.delete(`/api/projects/${projectId}`),
 
   //  - ## 이미지 업로드
@@ -200,7 +200,7 @@ export const apis = {
   ////<3. 팀원 찾기 페이지 이력서(지원자) API>////
   /////////////////////////////////////////
 
-  //  - 14. 팀원 찾기 등록
+  //  - 22. 팀원 찾기 등록
   resumesCreate: (content, start, end, role, skills, content2, content3) =>
     api.post("/api/resumes", {
       content: content,
@@ -212,13 +212,13 @@ export const apis = {
       content3: content3,
     }),
 
-  //  - 15. 팀원 찾기 전체 조회
+  //  - 23. 팀원 찾기 전체 조회
   resumesLoad: () => api.get("/api/resumes"),
 
-  //  - 16. 팀원 찾기 상세조회
+  //  - 24. 팀원 찾기 상세조회
   resumesLoadDetail: (resumeId) => api.get(`/api/resumes/${resumeId}`),
 
-  //  - 17. 팀원 찾기 수정
+  //  - 25. 팀원 찾기 수정
   resumesModify: (
     resumeId,
     content,
@@ -239,43 +239,42 @@ export const apis = {
       content3: content3,
     }),
 
-  //  - 18. 팀원 찾기 삭제
+  //  - 26. 팀원 찾기 삭제
   resumesDelete: (resumeId) => api.delete(`/api/resumes/${resumeId}`),
-
-  //  - 19. 팀원 찾기 프로필 이미지 편집(보류)
-  //  - 20. 팀원 찾기 프로필 이미지 삭제(보류)
 
   //////////////////////////////
   ////<4. 면접,이미지업로드 API>////
   //////////////////////////////
-  //[면접]
 
+  // 27. 프로젝트에 면접 예약
   interviews: (projectId) => api.post(`/api/interviews/${projectId}`),
 
-  //  - 20. 면접요청 취소
-  //  - 21. 프로젝트 면접 예약
+  // 28.- 지원자의 지원서 목록 조회
   appointmentProject: (applicationId) =>
     api.put(`/api/applications/${applicationId}`),
 
-  //  - 22. 면접요청 취소
-  //  - 23. (팀장) 면접 승낙
-  //  - 24. 승낙 취소
-  //  - 25. 채팅화면으로 이동
-  //  - 26. 채팅화면 종료하기
-  //  - 27. 화상채팅 연결
-  //  - 28. 화상채팅 종료
-  //  - 29. 화면공유 시작
-  //  - 30. 화면공유 종료
+  // 29. 선택한 프로젝트를 지원서에 제안
+  proposalUserProjects: (resumeId, projectId) =>
+    api.post(`/api/proposals/${resumeId}/${projectId}`),
 
-  //[이미지업로드]
-  //  - 31. 이미지 업로드
-  //[이미지업로드]
+  //30. 지원서에 면접 제안시 내 프로젝트 목록 조회
+  proposalsProjects: () => api.get("/api/proposals/projects"),
+
+  //31(30 - 1). 인터뷰 완료 상태 업데이트
+  interviewEndStatus: (applicationId) =>
+    api.patch(`/api/applications/interviewed/${applicationId}`),
+
+  // 32(30 - 2). 매칭 결과 상태 업데이트
+  interviewMatchStatus: (applicationId, matching) =>
+    api.patch(`/api/applications/matched/${applicationId}`, {
+      status: matching,
+    }),
 
   ///////////////////////
   ////// 검색 기능 //////
   //////////////////////
 
-  // 32. 프로젝트 검색
+  // 33. 프로젝트 검색
   searchProject: (role, skill, start, end) =>
     api.get("/api/search/project", {
       params: {
@@ -286,7 +285,7 @@ export const apis = {
       },
     }),
 
-  // 33. 리쥬메 검색
+  // 34. 리쥬메 검색
   searchResume: (role, skill, start, end) =>
     api.get("/api/search/resume", {
       params: {
@@ -297,35 +296,17 @@ export const apis = {
       },
     }),
 
-  // 34. 매칭 기능
-
   ///////////////////////
   ////// 4. 면접예약//////
   //////////////////////
 
-  //21. 프로젝트에 면접 예약
+  //35. 프로젝트에 면접 예약
   projectInterview: (applicationId, resumeId) =>
     api.put(`/api/applications/${applicationId}`, {
       resumeId: resumeId,
     }),
   //-지원서의 지원서 목록 조회
   applicationsResumes: () => api.get("/api/applications/resumes"),
-
-  // 22. 선택한 프로젝트를 지원서에 제안
-  proposalUserProjects: (resumeId, projectId) =>
-    api.post(`/api/proposals/${resumeId}/${projectId}`),
-
-  //23. 지원서에 면접 제안시 내 프로젝트 목록 조회
-  proposalsProjects: () => api.get("/api/proposals/projects"),
-
-  //24.인터뷰 완료 상태 업데이트
-  interviewEndStatus: (applicationId) =>
-    api.patch(`/api/applications/interviewed/${applicationId}`),
-  // 24 - 2. 매칭 결과 상태 업데이트
-  interviewMatchStatus: (applicationId, matching) =>
-    api.patch(`/api/applications/matched/${applicationId}`, {
-      status: matching,
-    }),
 
   // 검색기능 api
   //1. 프로젝트에 맞는 이력서 조회
