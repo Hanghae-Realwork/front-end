@@ -43,8 +43,10 @@
 <br/>
 
 프론트앤드 wiki 바로가기(https://github.com/Hanghae-Realwork/front-end/wiki)
-
 <br/>
+
+팀 노션 바로가기 (https://bubble-dove-10c.notion.site/renDev-7-B-2-4ff257b005c74b59a4ab1c52a0e69c79)
+
 
 ## **👨‍🚀👩‍🚀 프로젝트 기간 및 팀원 소개**
 
